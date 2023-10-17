@@ -1,0 +1,30 @@
+{
+  "endOfLine": "auto",
+  "singleQuote": true,
+  "tabWidth": 2,
+  "printWidth": 100,
+  "semi": true,
+  "bracketSameLine": false,
+  "bracketSpacing": true,
+  "importOrder": [
+    "^react(.*)",
+    "^@tanstack/(.*)$",
+    "^recoil(.*)",
+    "^axios(.*)",
+    "^@pages/(.*)$",
+    "^@components/(.*)$",
+    "^@hooks/(.*)$",
+    "^@store/(.*)$",
+    "^@api/(.*)$",
+    "^@utils/(.*)$",
+    "^@router/(.*)$",
+    "^@type/(.*)$",
+    "^@constants/(.*)$",
+    "^@assets/(.*)$",
+    "^@styles/(.*)$",
+    "^@stories/(.*)$",
+    "^[./]"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
+}
