@@ -5,6 +5,7 @@
   "printWidth": 100,
   "semi": true,
   "bracketSameLine": false,
+  "plugins": ["@trivago/prettier-plugin-sort-imports"],
   "bracketSpacing": true,
   "importOrder": [
     "^react(.*)",
