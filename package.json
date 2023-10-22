@@ -1,9 +1,9 @@
 {
-  "name": "didi",
+  "name": "SpaceClub",
   "private": true,
   "version": "0.0.0",
-  "description": "지도 가반 다이어리 서비스 DIDI",
-  "author": "DIDI",
+  "description": "동아리 행사 홍보 및 관리 서비스 SpaceClub",
+  "author": "TEAM-SKRRR",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -32,6 +32,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
     "typescript": "^5.0.2",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "vite-tsconfig-paths": "^4.2.1"
   }
 }
