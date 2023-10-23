@@ -1,11 +1,11 @@
 import styled from '@emotion/styled';
 
-const ContainerStyle = styled.div`
+const ContainerStyled = styled.div`
   display: flex;
   height: 100vh;
 `;
 
-const ItemLogoArea = styled.div`
+const ItemLogoAreaStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,7 +15,7 @@ const ItemLogoArea = styled.div`
   min-height: 30rem;
 `;
 
-const LogoCircle = styled.div`
+const LogoCircleStyled = styled.div`
   width: 28rem;
   height: 28rem;
   border-radius: 50%;
@@ -30,7 +30,7 @@ const LogoCircle = styled.div`
   overflow: hidden;
 `;
 
-const LogoText = styled.div`
+const LogoTextStyled = styled.div`
   display: flex;
   flex-direction: column;
   color: #ffffff;
@@ -41,7 +41,7 @@ const LogoText = styled.div`
   line-height: normal;
 `;
 
-const ItemLoginStyle = styled.div`
+const ItemLoginStyled = styled.div`
   width: 50%;
   min-width: 30rem;
   display: flex;
@@ -50,29 +50,17 @@ const ItemLoginStyle = styled.div`
   align-items: center;
 `;
 
-const TitleStyle = styled.div`
+const TitleStyled = styled.div`
   padding: 10%;
   font-weight: bold;
   font-size: large;
 `;
 
-const LoginPage = () => {
-  return (
-    <ContainerStyle>
-      <ItemLogoArea>
-        <LogoCircle>
-          <LogoText>
-            <span>Space</span>
-            <span>Club</span>
-          </LogoText>
-        </LogoCircle>
-      </ItemLogoArea>
-      <ItemLoginStyle>
-        <TitleStyle>스페이스 클럽에 오신 걸 환영합니다!</TitleStyle>
-        <button>Login with Kakao</button>
-      </ItemLoginStyle>
-    </ContainerStyle>
-  );
+export {
+  ContainerStyled,
+  ItemLogoAreaStyled,
+  LogoCircleStyled,
+  LogoTextStyled,
+  ItemLoginStyled,
+  TitleStyled,
 };
-
-export default LoginPage;
