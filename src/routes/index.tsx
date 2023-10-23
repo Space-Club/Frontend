@@ -1,5 +1,6 @@
 import App from '@/App';
 import Layout from '@/pages/Layout';
+import LoginPage from '@/pages/LoginPage/LoginPage';
 import MainPage from '@/pages/MainPage';
 import NotFoundPage from '@/pages/NotFoundPage';
 import ProfilePage from '@/pages/ProfilePage';
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: 'register',
         element: <RegisterPage />,
+      },
+      {
+        path: 'login',
+        element: <LoginPage />,
       },
       {
         path: '',
