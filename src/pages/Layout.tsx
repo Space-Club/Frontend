@@ -1,7 +1,7 @@
 import React from 'react';
 import { Outlet } from 'react-router-dom';
 
-const App = () => {
+const Layout = () => {
   return (
     <div>
       <Outlet />
@@ -9,4 +9,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default Layout;
