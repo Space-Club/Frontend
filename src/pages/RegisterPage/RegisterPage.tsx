@@ -1,6 +1,7 @@
 import InputForm from '@/components/common/InputForm/InputForm';
 
-import { useRef, useState } from 'react';
+import { ChangeEvent, MouseEvent, useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { Container, SubmitBtn, Title } from './RegisterPage.style';
 
@@ -8,6 +9,40 @@ const RegisterPage = () => {
   const [name, setName] = useState<string>('');
   const [number, setNumber] = useState<string>('');
   const nameRef = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Todo: 로그인 페이지에서 온 것이 아닐 경우 처리
+    nameRef.current?.focus();
+  }, []);
+
+  const validationName = (input: string) => {
+    const regex = /^[가-힣ㄱ-ㅎㅏ-ㅣ]+$/;
+    return regex.test(input);
+  };
+  const validationNumber = (input: string) => {
+    const regex = /^[0-9]+$/;
+    return regex.test(input);
+  };
+
+  const handleChangeName = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (value !== '' && !validationName(value)) return;
+    setName(value);
+  };
+  const handleChangeNumber = (e: ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    if (value !== '' && !validationNumber(value)) return;
+    setNumber(value);
+  };
+
+  const handleSubmit = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    // Todo: 제출 api 처리
+
+    navigate('/');
+  };
 
   return (
     <Container>
@@ -16,18 +51,20 @@ const RegisterPage = () => {
         labelText="이름"
         labelId="id"
         inputType="text"
+        placeholoder="이름을 입력해주세요."
         value={name}
         inputRef={nameRef}
-        onChange={(e) => setName(e.target.value)}
+        onChange={handleChangeName}
       />
       <InputForm
         labelText="연락처"
         labelId="number"
         inputType="tel"
+        placeholoder="숫자만 입력해주세요."
         value={number}
-        onChange={(e) => setNumber(e.target.value)}
+        onChange={handleChangeNumber}
       />
-      <SubmitBtn>가입 완료</SubmitBtn>
+      <SubmitBtn onClick={handleSubmit}>가입 완료</SubmitBtn>
     </Container>
   );
 };
