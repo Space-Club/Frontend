@@ -6,6 +6,7 @@ interface InputForm<T> {
   labelText: string;
   labelId: string;
   inputType: 'date' | 'file' | 'number' | 'search' | 'tel' | 'text' | 'time';
+  placeholoder?: string;
   inputRef?: RefObject<HTMLInputElement>;
   value: T;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
@@ -15,6 +16,7 @@ const InputForm = <T extends string | number | string[]>({
   labelText,
   labelId,
   inputType,
+  placeholoder,
   inputRef,
   value,
   onChange,
@@ -27,6 +29,7 @@ const InputForm = <T extends string | number | string[]>({
         id={labelId}
         type={inputType}
         ref={inputRef}
+        placeholder={placeholoder}
         value={value}
         onChange={onChange}
         {...props}
