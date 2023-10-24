@@ -29,7 +29,7 @@ const LogoCircleStyled = styled.div`
 `;
 
 const LogoTextStyled = styled.div`
-  color: #fafafa;
+  color: ${({ theme }) => theme.color.logoTextColor};
   font-family: 'LogoFont';
   font-size: x-large;
   text-shadow: 0.2rem 0.2rem 0.2rem rgba(50, 51, 96, 0.78);

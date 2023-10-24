@@ -1,4 +1,4 @@
-import { ThemeProvider, keyframes } from '@emotion/react';
+import { keyframes } from '@emotion/react';
 
 const color = {
   //codes for test
@@ -7,6 +7,7 @@ const color = {
   white: '#ffffff',
   black: '#000000',
   gray: '#f0f0f0',
+  logoTextColor: '#fafafa',
 } as const;
 
 const componentStyle = {
