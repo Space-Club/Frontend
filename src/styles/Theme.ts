@@ -1,4 +1,4 @@
-import { ThemeProvider, keyframes } from '@emotion/react';
+import { keyframes } from '@emotion/react';
 
 const color = {
   //codes for test
@@ -6,8 +6,9 @@ const color = {
   secondary: '#ff5a03',
   white: '#ffffff',
   black: '#000000',
-  gray: '#f0f0f0',
   kakaoYellow: '#FEE500',
+  gray: '#d9d9d9',
+  indigo: '#003949',
 } as const;
 
 const componentStyle = {
