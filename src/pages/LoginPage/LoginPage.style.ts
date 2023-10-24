@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 
+import Theme from '@styles/Theme';
+
 const PageContainerStyled = styled.div`
   display: flex;
   height: 100vh;
@@ -35,7 +37,7 @@ const LogoTextStyled = styled.h1`
   position: relative;
   top: 1rem;
   right: 3rem;
-  color: #ffffff;
+  color: ${Theme.color.logoTextColor};
   text-align: end;
   font-size: 6.25rem;
   font-family: 'LogoFont';
