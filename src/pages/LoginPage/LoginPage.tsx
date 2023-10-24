@@ -1,5 +1,7 @@
 import { LogoText, Message } from '@/constants/LoginPage';
 
+import KakaoLoginButton from '@components/kakaoLoginButton/KakaoLoginButton';
+
 import {
   LoginAreaStyled,
   LogoAreaStyled,
@@ -19,7 +21,7 @@ const LoginPage = () => {
       </LogoAreaStyled>
       <LoginAreaStyled>
         <TitleStyled>{Message.WELCOME}</TitleStyled>
-        <button>Login with Kakao</button>
+        <KakaoLoginButton />
       </LoginAreaStyled>
     </PageContainerStyled>
   );
