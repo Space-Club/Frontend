@@ -3,7 +3,7 @@ import Layout from '@/pages/Layout';
 import MainPage from '@/pages/MainPage';
 import NotFoundPage from '@/pages/NotFoundPage';
 import ProfilePage from '@/pages/ProfilePage';
-import RegisterPage from '@/pages/RegisterPage';
+import RegisterPage from '@/pages/RegisterPage/RegisterPage';
 import ClubEventPage from '@/pages/club/ClubEventPage';
 import ClubHomePage from '@/pages/club/ClubHomePage';
 import CreateClubPage from '@/pages/club/CreateClubPage';
