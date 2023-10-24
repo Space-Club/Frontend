@@ -33,8 +33,8 @@ const router = createBrowserRouter([
         element: <RegisterPage />,
       },
       {
-        path: 'login',
-        element: <LoginPage />,
+        path: 'oauth/kakao',
+        element: <OauthRedirectPage />,
       },
       {
         path: '',
