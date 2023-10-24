@@ -6,7 +6,8 @@ const color = {
   secondary: '#ff5a03',
   white: '#ffffff',
   black: '#000000',
-  gray: '#f0f0f0',
+  gray: '#d9d9d9',
+  indigo: '#003949',
   logoTextColor: '#fafafa',
 } as const;
 
