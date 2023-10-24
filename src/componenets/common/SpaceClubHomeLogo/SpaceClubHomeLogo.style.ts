@@ -1,6 +1,5 @@
+import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
-
-import { useNavigate } from 'react-router-dom';
 
 const ContainerStyled = styled.div`
   display: flex;
@@ -29,22 +28,10 @@ const LogoCircleStyled = styled.div`
 `;
 
 const LogoTextStyled = styled.div`
-  color: ${({ theme }) => theme.color.logoTextColor};
+  color: ${Theme.color.logoTextColor};
   font-family: 'LogoFont';
   font-size: x-large;
   text-shadow: 0.2rem 0.2rem 0.2rem rgba(50, 51, 96, 0.78);
 `;
 
-const SpaceClubHomeLogo = () => {
-  const navigate = useNavigate();
-
-  return (
-    <ContainerStyled onClick={() => navigate('/')}>
-      <LogoCircleStyled>
-        <LogoTextStyled>Space_Club</LogoTextStyled>
-      </LogoCircleStyled>
-    </ContainerStyled>
-  );
-};
-
-export default SpaceClubHomeLogo;
+export { ContainerStyled, LogoCircleStyled, LogoTextStyled };
