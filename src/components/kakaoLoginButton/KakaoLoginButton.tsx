@@ -1,7 +1,5 @@
 import { KAKAO_AUTH_URL } from '@/constants/auth';
 
-import { useNavigate } from 'react-router-dom';
-
 import { KakaoLoginButtonStyled, KakaoLoginLink } from './KakaoLoginButton.style';
 
 const KakaoLoginButton = () => {
