@@ -14,9 +14,7 @@ const LoginPage = () => {
     <ContainerStyled>
       <LogoAreaStyled>
         <LogoCircleStyled>
-          <LogoTextStyled>
-            <span>{LogoText.SPACE_CLUB}</span>
-          </LogoTextStyled>
+          <LogoTextStyled>{LogoText.SPACE_CLUB}</LogoTextStyled>
         </LogoCircleStyled>
       </LogoAreaStyled>
       <LoginAreaStyled>

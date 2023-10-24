@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-const ContainerStyled = styled.div`
+const PageContainerStyled = styled.div`
   display: flex;
   height: 100vh;
 `;
@@ -29,7 +29,7 @@ const LogoCircleStyled = styled.div`
   overflow: hidden;
 `;
 
-const LogoTextStyled = styled.div`
+const LogoTextStyled = styled.h1`
   display: flex;
   flex-direction: column;
   position: relative;
@@ -38,10 +38,7 @@ const LogoTextStyled = styled.div`
   color: #ffffff;
   text-align: end;
   font-size: 6.25rem;
-  font-style: normal;
   font-family: 'LogoFont';
-  font-weight: 400;
-  line-height: normal;
 `;
 
 const LoginAreaStyled = styled.div`
@@ -56,14 +53,14 @@ const LoginAreaStyled = styled.div`
   font-family: 'MainBold';
 `;
 
-const TitleStyled = styled.div`
+const TitleStyled = styled.h1`
   padding: 0 10% 3rem 10%;
   font-weight: bold;
   font-size: large;
 `;
 
 export {
-  ContainerStyled,
+  PageContainerStyled as ContainerStyled,
   LogoAreaStyled,
   LogoCircleStyled,
   LogoTextStyled,
