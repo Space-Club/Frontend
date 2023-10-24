@@ -1,4 +1,4 @@
-import InputForm from '@/componenets/common/InputForm/InputForm';
+import InputForm from '@components/common/InputForm/InputForm';
 
 import { Container, SubmitBtn, Title } from './RegisterPage.style';
 
