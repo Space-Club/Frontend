@@ -62,7 +62,7 @@ const TitleStyled = styled.h1`
 `;
 
 export {
-  PageContainerStyled as ContainerStyled,
+  PageContainerStyled,
   LogoAreaStyled,
   LogoCircleStyled,
   LogoTextStyled,
