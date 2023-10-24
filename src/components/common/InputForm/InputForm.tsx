@@ -4,17 +4,15 @@ import { InputStyled, InputWrapper, LabelStyled } from './InputForm.style';
 
 interface InputForm<T> {
   labelText: string;
-  labelId: string;
   inputType: 'date' | 'file' | 'number' | 'search' | 'tel' | 'text' | 'time';
   placeholoder?: string;
   inputRef?: RefObject<HTMLInputElement>;
-  value: T;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  value?: T;
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
 const InputForm = <T extends string | number | string[]>({
   labelText,
-  labelId,
   inputType,
   placeholoder,
   inputRef,
@@ -24,9 +22,9 @@ const InputForm = <T extends string | number | string[]>({
 }: InputForm<T>) => {
   return (
     <InputWrapper>
-      <LabelStyled htmlFor={labelId}>{labelText}</LabelStyled>
+      <LabelStyled htmlFor={labelText}>{labelText}</LabelStyled>
       <InputStyled
-        id={labelId}
+        id={labelText}
         type={inputType}
         ref={inputRef}
         placeholder={placeholoder}
