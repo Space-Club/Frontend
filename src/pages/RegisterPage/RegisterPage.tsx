@@ -49,7 +49,6 @@ const RegisterPage = () => {
       <Title>추가 정보를 입력해주세요</Title>
       <InputForm
         labelText="이름"
-        labelId="id"
         inputType="text"
         placeholoder="이름을 입력해주세요."
         value={name}
@@ -58,7 +57,6 @@ const RegisterPage = () => {
       />
       <InputForm
         labelText="연락처"
-        labelId="number"
         inputType="tel"
         placeholoder="숫자만 입력해주세요."
         value={number}
