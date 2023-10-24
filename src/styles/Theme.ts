@@ -9,6 +9,7 @@ const color = {
   kakaoYellow: '#FEE500',
   gray: '#d9d9d9',
   indigo: '#003949',
+  logoTextColor: '#fafafa',
 } as const;
 
 const componentStyle = {

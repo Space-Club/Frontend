@@ -1,6 +1,6 @@
 import App from '@/App';
 import Layout from '@/pages/Layout';
-import LoginPage from '@/pages/LoginPage';
+import LoginPage from '@/pages/LoginPage/LoginPage';
 import MainPage from '@/pages/MainPage';
 import NotFoundPage from '@/pages/NotFoundPage';
 import OauthRedirectPage from '@/pages/OauthRedirectPage';
@@ -33,8 +33,8 @@ const router = createBrowserRouter([
         element: <RegisterPage />,
       },
       {
-        path: 'oauth/kakao',
-        element: <OauthRedirectPage />,
+        path: 'login',
+        element: <LoginPage />,
       },
       {
         path: '',
