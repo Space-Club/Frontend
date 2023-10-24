@@ -1,7 +1,9 @@
 import App from '@/App';
 import Layout from '@/pages/Layout';
+import LoginPage from '@/pages/LoginPage/LoginPage';
 import MainPage from '@/pages/MainPage';
 import NotFoundPage from '@/pages/NotFoundPage';
+import OauthRedirectPage from '@/pages/OauthRedirectPage';
 import ProfilePage from '@/pages/ProfilePage';
 import RegisterPage from '@/pages/RegisterPage/RegisterPage';
 import ClubEventPage from '@/pages/club/ClubEventPage';
@@ -23,8 +25,16 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
+        path: 'login',
+        element: <LoginPage />,
+      },
+      {
         path: 'register',
         element: <RegisterPage />,
+      },
+      {
+        path: 'oauth/kakao',
+        element: <OauthRedirectPage />,
       },
       {
         path: '',
@@ -85,6 +95,9 @@ const router = createBrowserRouter([
               {
                 path: 'writeform',
                 element: <WriteEventFormPage />,
+              },
+              {
+                path: 'https://kauth.kakao.com/oauth',
               },
             ],
           },
