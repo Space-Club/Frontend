@@ -1,6 +1,13 @@
 import React from 'react';
 
-import { Container, InputStyled, InputWrapper, LabelStyled, SubmitBtn, Title } from './style';
+import {
+  Container,
+  InputStyled,
+  InputWrapper,
+  LabelStyled,
+  SubmitBtn,
+  Title,
+} from './RegisterPage.style';
 
 const RegisterPage = () => {
   return (
