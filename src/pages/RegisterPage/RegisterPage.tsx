@@ -1,3 +1,4 @@
+import postUser from '@/apis/users/postUser';
 import InputForm from '@/components/common/InputForm/InputForm';
 import { ChangeEvent, MouseEvent, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -35,10 +36,10 @@ const RegisterPage = () => {
     setNumber(value);
   };
 
-  const handleSubmit = (e: MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-    // Todo: 제출 api 처리
+    await postUser({ name, number });
 
     navigate('/');
   };
