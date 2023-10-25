@@ -1,13 +1,17 @@
 import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
-interface HeaderProps {
-  page: 'main' | 'club';
-}
+const HeaderLayoutStyled = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+  height: 15vh;
+  min-height: 4rem;
+`;
 
 const HeaderContainerStyled = styled.div`
   display: flex;
-  justify-content: space-between;
   width: 80%;
   min-width: 60rem;
   border-bottom: 0.07rem solid ${Theme.color.lineColor};
@@ -19,17 +23,10 @@ const LogoWrapperStyled = styled.div`
   align-items: center;
 `;
 
-const OptionWrapperStyled = styled.div<HeaderProps>`
+const ChildrenContainerStyled = styled.div`
   display: flex;
-  width: 75%;
-  justify-content: ${({ page }) => (page === 'main' ? 'space-between' : 'flex-end')};
+  flex-grow: 1;
   align-items: center;
 `;
 
-const ChildrenStyled = styled.div<HeaderProps>`
-  display: flex;
-  justify-content: space-between;
-  width: ${({ page }) => (page === 'main' ? '100%' : '40%')};
-`;
-
-export { HeaderContainerStyled, LogoWrapperStyled, OptionWrapperStyled, ChildrenStyled };
+export { HeaderLayoutStyled, HeaderContainerStyled, LogoWrapperStyled, ChildrenContainerStyled };
