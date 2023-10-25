@@ -1,3 +1,4 @@
+import createUser from '@/apis/users/createUser';
 import InputForm from '@/components/common/InputForm/InputForm';
 
 import { ChangeEvent, MouseEvent, useEffect, useRef, useState } from 'react';
@@ -36,10 +37,10 @@ const RegisterPage = () => {
     setNumber(value);
   };
 
-  const handleSubmit = (e: MouseEvent<HTMLButtonElement>) => {
+  const handleSubmit = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
 
-    // Todo: 제출 api 처리
+    await createUser({ name, number });
 
     navigate('/');
   };
