@@ -32,12 +32,12 @@ const ProfileImageStyled = styled.img<AvatarProps>`
   height: ${({ avatarShape }) => getAvatarSize(avatarShape)};
   border-radius: ${({ avatarShape }) => (avatarShape === 'rectangle' ? '1.7rem' : '50%')};
   object-fit: cover;
-  cursor: pointer;
+  cursor: ${({ avatarShape }) => (avatarShape === 'large' ? 'default' : 'pointer')};
 `;
 
-const EditButtonStyled = styled.div`
-  width: 4rem;
-  height: 4rem;
+const EditButtonStyled = styled.div<AvatarProps>`
+  width: ${({ avatarShape }) => (avatarShape === 'large' ? '4rem' : '2rem')};
+  height: ${({ avatarShape }) => (avatarShape === 'large' ? '4rem' : '2rem')};
   position: absolute;
   right: 2%;
   bottom: 2%;
