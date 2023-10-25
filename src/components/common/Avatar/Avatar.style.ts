@@ -1,32 +1,13 @@
+import { AvatarShapeType } from '@/types/user';
+import { getAvatarSize } from '@/utils/getAvatarSize';
 import styled from '@emotion/styled';
-
-interface AvatarProps {
-  avatarShape: 'rectangle' | 'normal' | 'large' | 'small' | 'medium';
-}
-
-const getAvatarSize = (avatarShape: AvatarProps['avatarShape']) => {
-  switch (avatarShape) {
-    case 'normal':
-      return '4rem';
-    case 'large':
-      return '16.3rem';
-    case 'small':
-      return '1.5rem';
-    case 'medium':
-      return '6.875rem';
-    case 'rectangle':
-      return '4.5rem';
-    default:
-      return '4rem';
-  }
-};
 
 const AvatarContainerStyled = styled.div`
   position: relative;
   display: inline-flex;
 `;
 
-const ProfileImageStyled = styled.img<AvatarProps>`
+const ProfileImageStyled = styled.img<AvatarShapeType>`
   position: relative;
   width: ${({ avatarShape }) => getAvatarSize(avatarShape)};
   height: ${({ avatarShape }) => getAvatarSize(avatarShape)};
@@ -35,7 +16,7 @@ const ProfileImageStyled = styled.img<AvatarProps>`
   cursor: ${({ avatarShape }) => (avatarShape === 'large' ? 'default' : 'pointer')};
 `;
 
-const EditButtonStyled = styled.div<AvatarProps>`
+const EditButtonStyled = styled.div<AvatarShapeType>`
   width: ${({ avatarShape }) => (avatarShape === 'large' ? '4rem' : '2rem')};
   height: ${({ avatarShape }) => (avatarShape === 'large' ? '4rem' : '2rem')};
   position: absolute;

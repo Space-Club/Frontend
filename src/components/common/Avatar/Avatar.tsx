@@ -1,32 +1,17 @@
+import { AvatarShapeType } from '@/types/user';
+import { getAvatarSize } from '@/utils/getAvatarSize';
+
 import { AvatarContainerStyled, EditButtonStyled, ProfileImageStyled } from './Avatar.style';
 
 interface AvatarProps {
-  avatarShape: 'rectangle' | 'normal' | 'large' | 'small' | 'medium';
+  avatarShape: AvatarShapeType['avatarShape'];
   profileImageSrc?: string;
   isEdit?: boolean;
   onClick?: () => void;
 }
 
-const getAvatarSize = (avatarShape: AvatarProps['avatarShape']) => {
-  switch (avatarShape) {
-    case 'small':
-      return '1.5rem';
-    case 'normal':
-      return '4rem';
-    case 'rectangle':
-      return '4.5rem';
-    case 'medium':
-      return '6.875rem';
-    case 'large':
-      return '16.3rem';
-    default:
-      return '4rem';
-  }
-};
-
 const Avatar = ({ avatarShape, profileImageSrc, isEdit, onClick }: AvatarProps) => {
   const width = getAvatarSize(avatarShape);
-  const height = getAvatarSize(avatarShape);
 
   return (
     <div>
@@ -39,12 +24,11 @@ const Avatar = ({ avatarShape, profileImageSrc, isEdit, onClick }: AvatarProps) 
             style={{ width: `${width}`, height: `${width}` }}
           />
         ) : (
-          <img
+          <ProfileImageStyled
             src="https://picsum.photos/200/300"
-            width={width}
-            height={height}
+            avatarShape={avatarShape}
             style={{ width: `${width}`, height: `${width}` }}
-            alt="리액트 아이콘 기본이미지로 바꿀 부분"
+            alt="이 부분은 추후 수정 예정입니다."
           />
         )}
         {isEdit && (
