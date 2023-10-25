@@ -1,4 +1,4 @@
-import { BannerContainerStyled, BannerImageStyled } from './banner.style';
+import { BannerContainerStyled, BannerImageStyled } from './Banner.style';
 
 interface BannerProps {
   bannerImageSrc?: string;
