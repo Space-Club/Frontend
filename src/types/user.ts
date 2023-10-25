@@ -2,4 +2,8 @@ interface User {
   accessToken: string;
 }
 
-export { User };
+interface AvatarShapeType {
+  avatarShape: 'rectangle' | 'normal' | 'large' | 'small' | 'medium';
+}
+
+export { User, AvatarShapeType };

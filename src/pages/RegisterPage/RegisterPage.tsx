@@ -1,5 +1,4 @@
 import InputForm from '@/components/common/InputForm/InputForm';
-
 import { ChangeEvent, MouseEvent, useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
