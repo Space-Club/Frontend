@@ -2,7 +2,7 @@ import { AvatarContainerStyled, EditButtonStyled, ProfileImageStyled } from './A
 
 interface AvatarProps {
   avatarShape: 'rectangle' | 'normal' | 'large' | 'small' | 'medium';
-  profileImage?: string;
+  profileImageSrc?: string;
   isEdit?: boolean;
   onClick?: () => void;
 }
@@ -24,17 +24,17 @@ const getAvatarSize = (avatarShape: AvatarProps['avatarShape']) => {
   }
 };
 
-const Avatar = ({ avatarShape, profileImage, isEdit, onClick }: AvatarProps) => {
+const Avatar = ({ avatarShape, profileImageSrc, isEdit, onClick }: AvatarProps) => {
   const width = getAvatarSize(avatarShape);
   const height = getAvatarSize(avatarShape);
 
   return (
     <div>
       <AvatarContainerStyled onClick={onClick}>
-        {profileImage ? (
+        {profileImageSrc ? (
           <ProfileImageStyled
             avatarShape={avatarShape}
-            src={profileImage}
+            src={profileImageSrc}
             alt="profile image"
             style={{ width: `${width}`, height: `${width}` }}
           />
