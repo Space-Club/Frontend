@@ -1,3 +1,4 @@
+import { END_POINTS } from '@/constants/api';
 import { HttpResponse, http } from 'msw';
 
 interface member {
@@ -8,7 +9,7 @@ interface member {
 const members: member[] = [];
 
 export const userHandlers = [
-  http.post('/register', async ({ request }) => {
+  http.post(END_POINTS.REGISTER, async ({ request }) => {
     const reader = request.body?.getReader();
     let data = '';
 

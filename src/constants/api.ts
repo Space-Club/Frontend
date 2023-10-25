@@ -4,6 +4,7 @@ const NETWORK_TIMEOUT = 10000;
 
 const END_POINTS = {
   KAKAO_LOGIN: '/login/kakao',
+  REGISTER: '/users',
 };
 
 export { SPACECLUB_BASE_URL, NETWORK_TIMEOUT, END_POINTS };
