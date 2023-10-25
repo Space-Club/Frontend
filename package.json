@@ -39,6 +39,7 @@
     "eslint-plugin-react-refresh": "^0.4.3",
     "husky": "^8.0.3",
     "lint-staged": "^15.0.2",
+    "msw": "^2.0.0",
     "typescript": "^5.0.2",
     "vite": "^4.4.5",
     "vite-tsconfig-paths": "^4.2.1"
@@ -48,5 +49,8 @@
       "eslint --fix",
       "prettier --cache --write"
     ]
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
