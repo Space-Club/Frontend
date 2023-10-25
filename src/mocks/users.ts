@@ -1,5 +1,6 @@
-import { END_POINTS } from '@/constants/api';
 import { HttpResponse, http } from 'msw';
+
+import { END_POINTS } from '@constants/api';
 
 interface member {
   name: string;
@@ -25,5 +26,12 @@ export const userHandlers = [
     members.push(JSON.parse(data));
 
     return HttpResponse.json({ status: 201 });
+  }),
+
+  http.post(END_POINTS.KAKAO_LOGIN, async () => {
+    return HttpResponse.json({
+      token: 'test token',
+      isNewUser: true,
+    });
   }),
 ];

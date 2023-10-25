@@ -1,5 +1,5 @@
 interface User {
-  accessToken: string;
+  token: string;
 }
 
 interface AvatarShapeType {
