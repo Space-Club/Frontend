@@ -6,11 +6,11 @@ import { AvatarContainerStyled, EditButtonStyled, ProfileImageStyled } from './A
 interface AvatarProps {
   avatarShape: AvatarShapeType['avatarShape'];
   profileImageSrc?: string;
-  isEdit?: boolean;
+  isEditable?: boolean;
   onClick?: () => void;
 }
 
-const Avatar = ({ avatarShape, profileImageSrc, isEdit, onClick }: AvatarProps) => {
+const Avatar = ({ avatarShape, profileImageSrc, isEditable, onClick }: AvatarProps) => {
   const width = getAvatarSize(avatarShape);
 
   return (
@@ -31,7 +31,7 @@ const Avatar = ({ avatarShape, profileImageSrc, isEdit, onClick }: AvatarProps) 
             alt="이 부분은 추후 수정 예정입니다."
           />
         )}
-        {isEdit && (
+        {isEditable && (
           <EditButtonStyled avatarShape={avatarShape}>
             <span>편집아이콘추가예정</span>
           </EditButtonStyled>
