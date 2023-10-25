@@ -6,8 +6,8 @@ export interface createUser {
 }
 
 const createUser = async ({ name, number }: createUser) => {
-  const res = await axiosClient.post('/register', { name, number });
-  return res.data;
+  const { data } = await axiosClient.post('/register', { name, number });
+  return data;
 };
 
 export default createUser;
