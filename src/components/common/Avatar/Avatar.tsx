@@ -3,19 +3,18 @@ import { getAvatarSize } from '@/utils/getAvatarSize';
 
 import { AvatarContainerStyled, EditButtonStyled, ProfileImageStyled } from './Avatar.style';
 
-interface AvatarProps {
+interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   avatarShape: AvatarShapeType['avatarShape'];
   profileImageSrc?: string;
   isEditable?: boolean;
-  onClick?: () => void;
 }
 
-const Avatar = ({ avatarShape, profileImageSrc, isEditable, onClick }: AvatarProps) => {
+const Avatar = ({ avatarShape, profileImageSrc, isEditable }: AvatarProps) => {
   const width = getAvatarSize(avatarShape);
 
   return (
     <div>
-      <AvatarContainerStyled onClick={onClick}>
+      <AvatarContainerStyled>
         {profileImageSrc ? (
           <ProfileImageStyled
             avatarShape={avatarShape}
