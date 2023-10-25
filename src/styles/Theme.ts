@@ -10,6 +10,7 @@ const color = {
   gray: '#d9d9d9',
   indigo: '#003949',
   logoTextColor: '#fafafa',
+  lineColor: '#261359',
 } as const;
 
 const componentStyle = {
