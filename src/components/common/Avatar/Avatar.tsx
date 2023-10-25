@@ -48,7 +48,7 @@ const Avatar = ({ avatarShape, profileImage, isEdit, onClick }: AvatarProps) => 
           />
         )}
         {isEdit && (
-          <EditButtonStyled>
+          <EditButtonStyled avatarShape={avatarShape}>
             <span>편집아이콘추가예정</span>
           </EditButtonStyled>
         )}
