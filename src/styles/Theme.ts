@@ -11,6 +11,7 @@ const color = {
   indigo: '#003949',
   logoTextColor: '#fafafa',
   lineColor: '#261359',
+  activeColor: '#6433CD',
 } as const;
 
 const componentStyle = {

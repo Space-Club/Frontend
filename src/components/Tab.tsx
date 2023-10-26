@@ -21,7 +21,10 @@ interface TabProps {
 
 const TabContainerStyled = styled.div<{ maxWidth: string }>`
   display: flex;
+  justify-content: space-evenly;
+  align-items: center;
   max-width: ${(props) => `${props.maxWidth}rem`};
+  width: 100%;
 `;
 
 const TabItemStyled = styled.div<{ isActive: boolean; width: string }>`
@@ -30,8 +33,13 @@ const TabItemStyled = styled.div<{ isActive: boolean; width: string }>`
   align-items: center;
   width: ${(props) => `${props.width}rem`};
   height: 2rem;
-  color: ${(props) => (props.isActive ? `${Theme.color.lineColor}` : `${Theme.color.black}`)};
+  color: ${(props) => (props.isActive ? `${Theme.color.activeColor}` : `${Theme.color.black}`)};
   cursor: pointer;
+`;
+
+const SeparatorStyled = styled.div`
+  height: 1.5rem;
+  border-left: 0.07rem solid;
 `;
 
 const Tab = ({ active, maxWidth, defaultTab, tabItems }: TabProps) => {
@@ -50,18 +58,24 @@ const Tab = ({ active, maxWidth, defaultTab, tabItems }: TabProps) => {
     <TabContainerStyled maxWidth={maxWidth}>
       {tabItems.map((tabItem, index) => {
         const isActive = TAB_CONSTANTS[activeIndex as keyof typeof TAB_CONSTANTS] === tabItem.title;
+
+        const isLastItem = index === tabItems.length - 1;
+
         return (
-          <TabItemStyled
-            key={index}
-            isActive={isActive}
-            width={tabItem.width}
-            onClick={() => {
-              tabItem.onClick?.();
-              setActiveTab(tabItem.title);
-            }}
-          >
-            <span>{tabItem.title}</span>
-          </TabItemStyled>
+          <>
+            <TabItemStyled
+              key={index}
+              isActive={isActive}
+              width={tabItem.width}
+              onClick={() => {
+                tabItem.onClick?.();
+                setActiveTab(tabItem.title);
+              }}
+            >
+              <span>{tabItem.title}</span>
+            </TabItemStyled>
+            {!isLastItem && <SeparatorStyled />}
+          </>
         );
       })}
     </TabContainerStyled>
