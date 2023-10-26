@@ -9,23 +9,6 @@ const ContainerStyled = styled.div`
   transition: transform 0.3s ease;
 `;
 
-const PosterAreaStyled = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 12rem;
-  height: 17rem;
-  &:hover {
-    transform: scale(1.02);
-  }
-`;
-
-const PosterStyled = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-`;
-
 const EventInfoWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -64,8 +47,6 @@ const ClubNameStyled = styled.div`
 
 export {
   ContainerStyled,
-  PosterAreaStyled,
-  PosterStyled,
   EventInfoWrapper,
   TitleStyled,
   EventDateStyled,
