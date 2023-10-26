@@ -6,7 +6,7 @@ import { TabContextProvider } from '@/context/TabContext';
 const MainPage = () => {
   return (
     <TabContextProvider>
-      <Header>
+      <Header style={{ justifyContent: 'end' }}>
         <Tab
           active={`${TAB_CONSTANTS.PERFORMANCE}`}
           maxWidth="13"
