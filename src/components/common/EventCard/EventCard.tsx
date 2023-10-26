@@ -1,19 +1,13 @@
+import { ClubNameStyled, EventDateStyled, EventTitleStyled, PlaceStyled } from '@/styles/common';
+
 import { useNavigate } from 'react-router-dom';
 
 import Poster from '../Poster/Poster';
-import {
-  ClubNameStyled,
-  ContainerStyled,
-  EventDateStyled,
-  EventFooterWrapper,
-  EventInfoWrapper,
-  PlaceStyled,
-  TitleStyled,
-} from './EventCard.style';
+import { ContainerStyled, EventFooterWrapper, EventInfoWrapper } from './EventCard.style';
 
 interface EventProps {
   eventId: number;
-  eventPoster: string;
+  posterSrc: string;
   eventTitle: string;
   eventDate: string;
   eventPlace: string;
@@ -22,7 +16,7 @@ interface EventProps {
 
 const EventCard = ({
   eventId,
-  eventPoster,
+  posterSrc,
   eventTitle,
   eventDate,
   eventPlace,
@@ -32,10 +26,10 @@ const EventCard = ({
 
   return (
     <ContainerStyled onClick={() => navigate(`/event/detail/${eventId}`)}>
-      <Poster posterSrc={eventPoster} />
+      <Poster posterSrc={posterSrc} />
       <EventInfoWrapper>
         <div>
-          <TitleStyled>{eventTitle}</TitleStyled>
+          <EventTitleStyled>{eventTitle}</EventTitleStyled>
           <EventDateStyled>{eventDate}</EventDateStyled>
         </div>
         <EventFooterWrapper>

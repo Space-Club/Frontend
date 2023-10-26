@@ -10,23 +10,15 @@ const ContainerStyled = styled.div`
 `;
 
 const EventInfoWrapper = styled.div`
+  width: 13rem;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
   margin: 3%;
 `;
 
-const TitleStyled = styled.div`
-  padding-bottom: 3%;
-  font-family: 'MainBold';
-  font-size: 1.5rem;
-`;
-
-const EventDateStyled = styled.div`
-  font-size: 1rem;
-`;
-
 const EventFooterWrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -35,22 +27,4 @@ const EventFooterWrapper = styled.div`
   margin-right: 3%;
 `;
 
-const PlaceStyled = styled.div`
-  color: grey;
-  font-size: 1rem;
-`;
-
-const ClubNameStyled = styled.div`
-  font-family: 'MainRegular';
-  font-size: 0.8rem;
-`;
-
-export {
-  ContainerStyled,
-  EventInfoWrapper,
-  TitleStyled,
-  EventDateStyled,
-  EventFooterWrapper,
-  PlaceStyled,
-  ClubNameStyled,
-};
+export { ContainerStyled, EventInfoWrapper, EventFooterWrapper };
