@@ -1,4 +1,3 @@
-import Avatar from '@/components/common/Avatar/Avatar';
 import Theme from '@/styles/Theme';
 import { css } from '@emotion/css';
 import styled from '@emotion/styled';
@@ -21,23 +20,13 @@ export const AvatarGroup = styled.div`
   flex-grow: 1;
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
   width: 100%;
-  align-items: center;
 `;
 export const iconStyle = css`
   display: block;
   width: 2rem;
   height: 2rem;
   cursor: pointer;
-`;
-export const ProfileWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  cursor: pointer;
-`;
-export const ProfileAvatar = styled(Avatar)``;
-export const ProfileName = styled.div`
-  text-align: center;
 `;
