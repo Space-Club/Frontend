@@ -6,10 +6,9 @@ import { useEffect } from 'react';
 
 import { SeparatorStyled, TabContainerStyled, TabItemStyled } from './Tab.style';
 
-interface TabItemProps {
+interface TabItemProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
   width: string;
-  onClick?: () => void;
 }
 
 interface TabProps {
@@ -45,7 +44,6 @@ const Tab = ({ active, maxWidth, defaultTab, tabItems }: TabProps) => {
               isActive={isActive}
               width={tabItem.width}
               onClick={() => {
-                tabItem.onClick?.();
                 setActiveTab(tabItem.title);
               }}
             >
