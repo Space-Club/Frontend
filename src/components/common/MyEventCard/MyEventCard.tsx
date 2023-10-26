@@ -13,13 +13,19 @@ interface MyEventCardProps extends React.HTMLAttributes<HTMLDivElement> {
   posterSrc: string;
 }
 
-const MyEventCard = ({ posterSrc, ...props }: MyEventCardProps) => {
+const MyEventCard = ({ ...props }: MyEventCardProps) => {
   return (
     <MyEventCardContainer {...props}>
       <EventLeftSection>
-        <Poster posterSrc={posterSrc} />
+        <Poster
+          posterSrc={
+            'https://s3-eu-west-1.amazonaws.com/blog-ecotree/blog/0001/01/ad46dbb447cd0e9a6aeecd64cc2bd332b0cbcb79.jpeg'
+          }
+        />
         <EventInfoSection>
-          <EventTitleStyled>연어 연주회</EventTitleStyled>
+          <EventTitleStyled>
+            연어 연어전시회연어전시회연어전시회연어전시회연어전시회
+          </EventTitleStyled>
           <EventDateStyled>12/20</EventDateStyled>
           <ClubNameStyled>동아리명</ClubNameStyled>
           <PlaceStyled>국민대학교 미래관 403호</PlaceStyled>

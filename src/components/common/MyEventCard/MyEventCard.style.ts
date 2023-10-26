@@ -14,6 +14,8 @@ const EventLeftSection = styled.div`
 `;
 
 const EventInfoSection = styled.div`
+  flex-grow: 1;
+  margin-left: 1rem;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
