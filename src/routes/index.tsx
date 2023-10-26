@@ -86,7 +86,7 @@ const router = createBrowserRouter([
                 element: <SubmitFormPage />,
               },
               {
-                path: 'form',
+                path: '',
                 element: <FormLayout />,
                 children: [
                   {
