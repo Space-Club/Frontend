@@ -1,5 +1,5 @@
-import Tab from '@/components/Tab';
 import Header from '@/components/common/Header/Header';
+import Tab from '@/components/common/Tab/Tab';
 import { TAB_CONSTANTS } from '@/constants/tab';
 import { TabContextProvider } from '@/context/TabContext';
 
