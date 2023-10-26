@@ -8,6 +8,7 @@ import {
   EventInfoWrapper,
   PlaceStyled,
   PosterAreaStyled,
+  PosterStyled,
   TitleStyled,
 } from './EventCard.style';
 
@@ -33,7 +34,7 @@ const EventCard = ({
   return (
     <ContainerStyled onClick={() => navigate(`/event/detail/${eventId}`)}>
       <PosterAreaStyled>
-        <img src={eventPoster} alt="poster image" />
+        <PosterStyled src={eventPoster} alt="poster image" />
       </PosterAreaStyled>
       <EventInfoWrapper>
         <div>

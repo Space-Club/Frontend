@@ -7,10 +7,6 @@ const ContainerStyled = styled.div`
   font-family: 'MainThin';
   cursor: pointer;
   transition: transform 0.3s ease;
-
-  &:hover {
-    transform: scale(1.02);
-  }
 `;
 
 const PosterAreaStyled = styled.div`
@@ -19,6 +15,15 @@ const PosterAreaStyled = styled.div`
   align-items: center;
   width: 12rem;
   height: 17rem;
+  &:hover {
+    transform: scale(1.02);
+  }
+`;
+
+const PosterStyled = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 `;
 
 const EventInfoWrapper = styled.div`
@@ -60,6 +65,7 @@ const ClubNameStyled = styled.div`
 export {
   ContainerStyled,
   PosterAreaStyled,
+  PosterStyled,
   EventInfoWrapper,
   TitleStyled,
   EventDateStyled,
