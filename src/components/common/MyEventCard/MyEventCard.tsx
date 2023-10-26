@@ -2,7 +2,12 @@ import { ClubNameStyled, EventDateStyled, EventTitleStyled, PlaceStyled } from '
 
 import Poster from '@components/common/Poster/Poster';
 
-import { EventActionSection, EventInfoSection, MyEventCardContainer } from './MyEventCard.style';
+import {
+  EventInfoSection,
+  EventLeftSection,
+  EventRightSection,
+  MyEventCardContainer,
+} from './MyEventCard.style';
 
 interface MyEventCardProps extends React.HTMLAttributes<HTMLDivElement> {
   posterSrc: string;
@@ -11,16 +16,16 @@ interface MyEventCardProps extends React.HTMLAttributes<HTMLDivElement> {
 const MyEventCard = ({ posterSrc, ...props }: MyEventCardProps) => {
   return (
     <MyEventCardContainer {...props}>
-      <EventInfoSection>
+      <EventLeftSection>
         <Poster posterSrc={posterSrc} />
-        <div>
-          <EventTitleStyled>제목</EventTitleStyled>
-          <EventDateStyled>날짜</EventDateStyled>
-          <PlaceStyled>장소</PlaceStyled>
+        <EventInfoSection>
+          <EventTitleStyled>연어 연주회</EventTitleStyled>
+          <EventDateStyled>12/20</EventDateStyled>
           <ClubNameStyled>동아리명</ClubNameStyled>
-        </div>
-      </EventInfoSection>
-      <EventActionSection></EventActionSection>
+          <PlaceStyled>국민대학교 미래관 403호</PlaceStyled>
+        </EventInfoSection>
+      </EventLeftSection>
+      <EventRightSection></EventRightSection>
     </MyEventCardContainer>
   );
 };
