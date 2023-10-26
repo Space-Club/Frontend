@@ -1,0 +1,10 @@
+export enum TAB_CONSTANTS {
+  PERFORMANCE = '공연',
+  EVENT_SHOW = '행사',
+  RECRUITMENT = '모집공고',
+  APPLY_PARTICIPATION = '참여신청한 행사',
+  BOOKMARKED_EVENT = '북마크한 행사',
+}
+
+export const CURRENT_MAIN_TAB_KEY = 'CURRENT_NEWS_TAB';
+export const CURRENT_PROFILE_TAB_KEY = 'CURRENT_PROFILE_TAB';
