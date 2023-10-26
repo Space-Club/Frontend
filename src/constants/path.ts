@@ -18,6 +18,6 @@ const PATH = {
     WRITE_INFO: '/event/writeinfo',
     WRITE_FORM: '/event/writeform',
   },
-};
+} as const;
 
 export { PATH };
