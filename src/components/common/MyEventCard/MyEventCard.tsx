@@ -2,6 +2,7 @@ import { ClubNameStyled, EventDateStyled, EventTitleStyled, PlaceStyled } from '
 
 import Poster from '@components/common/Poster/Poster';
 
+import EventStateTag from '../EventStateTag/EventStatusTag';
 import {
   EventInfoSection,
   EventLeftSection,
@@ -31,7 +32,9 @@ const MyEventCard = ({ ...props }: MyEventCardProps) => {
           <PlaceStyled>국민대학교 미래관 403호</PlaceStyled>
         </EventInfoSection>
       </EventLeftSection>
-      <EventRightSection></EventRightSection>
+      <EventRightSection>
+        <EventStateTag eventStatus="cancelled" />
+      </EventRightSection>
     </MyEventCardContainer>
   );
 };
