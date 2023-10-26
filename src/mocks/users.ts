@@ -7,6 +7,7 @@ interface member {
 }
 
 const members: member[] = [];
+
 const club = [
   {
     id: 1,
