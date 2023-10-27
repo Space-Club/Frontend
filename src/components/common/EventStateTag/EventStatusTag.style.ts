@@ -10,6 +10,7 @@ const EventStatusTagStyled = styled.div<{ eventStatus: EventStatusType }>`
   font-size: 0.625rem;
   text-align: center;
   color: white;
+  user-select: none;
   background: ${({ eventStatus }) =>
     eventStatus === 'cancelRequested'
       ? Theme.color.cancelRequestPendingBackground

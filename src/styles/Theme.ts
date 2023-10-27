@@ -1,12 +1,10 @@
 import { keyframes } from '@emotion/react';
 
 const color = {
-  //codes for test
-  primary: '#03c75a',
-  secondary: '#ff5a03',
   white: '#ffffff',
   black: '#000000',
   kakaoYellow: '#FEE500',
+  red: '#FF0000',
   gray: '#d9d9d9',
   indigo: '#003949',
   logoTextColor: '#fafafa',
