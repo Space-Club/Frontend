@@ -47,7 +47,8 @@ export const userHandlers = [
     return HttpResponse.json({
       token: 'test token',
       isNewMember: false,
-    }),
+    });
+  }),
 
   http.get(END_POINTS.MY_CLUB, async ({ request }) => {
     const url = new URL(request.url);
