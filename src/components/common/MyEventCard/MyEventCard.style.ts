@@ -1,10 +1,15 @@
+import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
 const MyEventCardContainer = styled.div`
-  width: 100%;
+  width: 80%;
   min-width: 30rem;
   display: flex;
   justify-content: space-between;
+  border: 0.1rem solid transparent;
+  border-image: ${Theme.color.eventCardBackground};
+  border-image-slice: 1;
+  padding: 1rem;
 `;
 
 const EventLeftSection = styled.div`

@@ -9,11 +9,12 @@ const color = {
   indigo: '#003949',
   logoTextColor: '#fafafa',
   lineColor: '#261359',
-  confirmedBackground: 'linear-gradient(135deg, #0070F3 0%, rgba(248, 28, 146, 0.60) 100%))',
+  eventCardBackground: 'linear-gradient(135deg, #0070F3 0%, #F81C92 100%)',
+  confirmedBackground: 'linear-gradient(135deg, #0070F3 0%, #F81C92 100%)',
   pendingBackground: 'linear-gradient(135deg, #4DF171 0%, #FFE91F 100%)',
-  paymentPendingBackground: 'linear-gradient(135deg, #FF9431 0%, #FEE793  100%)',
-  cancelledBackground: 'linear-gradient(135deg, #FD4F4F  0%, #FFF   100%)',
-  cancelRequestPendingBackground: 'linear-gradient(135deg, #FF90E7   0%, #E5D9FF    100%)',
+  paymentPendingBackground: 'linear-gradient(135deg, #FF9431 0%, #FEE793 100%)',
+  cancelledBackground: 'linear-gradient(135deg, #FD4F4F  0%, #FFF 100%)',
+  cancelRequestPendingBackground: 'linear-gradient(135deg, #FF90E7 0%, #E5D9FF 100%)',
 } as const;
 
 const componentStyle = {
