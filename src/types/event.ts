@@ -1,3 +1,3 @@
-type EventStatusType = 'cancelled' | 'confirmed' | 'pending' | 'cancelRequested' | 'paymentPending';
+type EventStatusType = 'confirmed' | 'pending' | 'cancelled';
 
 export { EventStatusType };

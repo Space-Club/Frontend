@@ -1,4 +1,5 @@
-import { ClubNameStyled, EventDateStyled, EventTitleStyled, PlaceStyled } from '@/styles/common';
+import { PATH } from '@/constants/path';
+import { EventTitleStyled } from '@/styles/common';
 import { EventStatusType } from '@/types/event';
 
 import { useNavigate } from 'react-router-dom';
@@ -6,46 +7,60 @@ import { useNavigate } from 'react-router-dom';
 import Poster from '@components/common/Poster/Poster';
 
 import EventCancelButton from '../EventCancelButton/EventCancelButton';
-import EventStateTag from '../EventStateTag/EventStatusTag';
+import EventStatusTag from '../EventStateTag/EventStatusTag';
 import {
+  EventDescription,
   EventInfoSection,
   EventLeftSection,
   EventRightSection,
   MyEventCardContainer,
+  SemiBlackFont,
 } from './MyEventCard.style';
 
 interface MyEventCardProps extends React.HTMLAttributes<HTMLDivElement> {
-  posterSrc: string;
-  eventId: string;
   eventStatus: EventStatusType;
+  eventId: string;
+  posterSrc: string;
+  eventTitle: string;
+  eventDate: string;
+  eventPlace: string;
+  clubName: string;
 }
 
-const MyEventCard = ({ posterSrc, eventStatus, eventId, ...props }: MyEventCardProps) => {
+const MyEventCard = ({
+  posterSrc,
+  eventStatus,
+  eventId,
+  eventDate,
+  eventPlace,
+  eventTitle,
+  clubName,
+  ...props
+}: MyEventCardProps) => {
   const navigate = useNavigate();
-  //TODO: 이벤트 상세 페이지로 이동경로 상수로 설정하기
   return (
     <MyEventCardContainer {...props}>
       <EventLeftSection>
         <Poster posterSrc={posterSrc} width={7} />
         <EventInfoSection>
-          <EventTitleStyled
-            onClick={() =>
-              navigate('', {
-                state: {
-                  eventId,
-                },
-              })
-            }
-          >
-            연어전시회
+          <EventStatusTag eventStatus={eventStatus} />
+          <EventTitleStyled onClick={() => navigate(PATH.EVENT.DETAIL + `${eventId}`)}>
+            {eventTitle}
           </EventTitleStyled>
-          <EventDateStyled>12/20</EventDateStyled>
-          <ClubNameStyled>동아리명</ClubNameStyled>
-          <PlaceStyled>국민대학교 미래관 403호</PlaceStyled>
+          <EventDescription>
+            날짜<SemiBlackFont>{eventDate}</SemiBlackFont>
+          </EventDescription>
+          <EventDescription>
+            클럽
+            <SemiBlackFont>{clubName}</SemiBlackFont>
+          </EventDescription>
+          <EventDescription>
+            장소
+            <SemiBlackFont>{eventPlace}</SemiBlackFont>
+          </EventDescription>
         </EventInfoSection>
       </EventLeftSection>
       <EventRightSection>
-        <EventStateTag eventStatus={eventStatus} />
         <EventCancelButton eventId={eventId} />
       </EventRightSection>
     </MyEventCardContainer>
