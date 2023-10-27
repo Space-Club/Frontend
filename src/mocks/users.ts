@@ -9,6 +9,21 @@ interface member {
 
 const members: member[] = [];
 
+const club = [
+  {
+    id: 1,
+    src: 'https://picsum.photos/200/301',
+  },
+  {
+    id: 2,
+    src: 'https://picsum.photos/200/302',
+  },
+  {
+    id: 3,
+    src: 'https://picsum.photos/200/303',
+  },
+];
+
 export const userHandlers = [
   http.post(END_POINTS.REGISTER, async ({ request }) => {
     const reader = request.body?.getReader();
@@ -32,6 +47,14 @@ export const userHandlers = [
     return HttpResponse.json({
       token: 'test token',
       isNewMember: false,
-    });
+    }),
+
+  http.get(END_POINTS.MY_CLUB, async ({ request }) => {
+    const url = new URL(request.url);
+
+    const userId = url.searchParams.get('id');
+    console.log(userId);
+
+    return HttpResponse.json(club, { status: 201 });
   }),
 ];

@@ -5,7 +5,7 @@ const ContainerStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 15rem;
+  width: 10rem;
   height: 4rem;
 `;
 
