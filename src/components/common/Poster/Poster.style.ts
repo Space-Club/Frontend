@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
 
-const PosterAreaStyled = styled.div`
-  min-width: 12rem;
-  height: 17rem;
+const PosterAreaStyled = styled.div<{ width: number }>`
+  width: ${({ width }) => width + 'rem'};
+  min-width: ${({ width }) => width + 'rem'};
+  height: ${({ width }) => width * 1.4 + 'rem'};
   display: flex;
   overflow: hidden;
 `;
