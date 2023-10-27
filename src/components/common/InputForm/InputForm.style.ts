@@ -12,7 +12,9 @@ export const InputStyled = styled.input`
   height: 3rem;
   border: none;
   outline: none;
-  background-color: ${Theme.color.gray};
+  margin-top: 0.5rem;
+  border: 1px solid ${Theme.color.tLine};
+  border-radius: 1rem;
   padding-left: 1rem;
   box-sizing: border-box;
 `;
