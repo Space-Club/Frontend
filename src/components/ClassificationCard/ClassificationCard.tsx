@@ -1,6 +1,8 @@
+import React from 'react';
+
 import { Container, Content, Example, Title, Wrapper } from './ClassificationCard.style';
 
-interface ClassificationCard {
+interface ClassificationCard extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
   content: string;
   exampleText: string;
@@ -8,9 +10,16 @@ interface ClassificationCard {
   color: string;
 }
 
-const ClassificationCard = ({ title, content, exampleText, imgSrc, color }: ClassificationCard) => {
+const ClassificationCard = ({
+  title,
+  content,
+  exampleText,
+  imgSrc,
+  color,
+  onClick,
+}: ClassificationCard) => {
   return (
-    <Container backColor={color}>
+    <Container backColor={color} onClick={onClick}>
       <Wrapper img={imgSrc}>
         <Title>{title}</Title>
         <Content>{content}</Content>

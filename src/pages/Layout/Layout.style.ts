@@ -10,6 +10,6 @@ export const Content = styled.div`
   width: calc(100% - 7rem);
   position: relative;
   left: 7rem;
-  padding: 0 8rem;
+  padding: 1rem 8rem;
   box-sizing: border-box;
 `;

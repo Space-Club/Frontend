@@ -8,6 +8,12 @@ const Container = styled.div<{ backColor: string }>`
   background-color: ${({ backColor }) => backColor};
   border-radius: 1rem;
   cursor: pointer;
+  box-shadow: 0.5rem 0.5rem 0.5rem rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: translateY(-0.5rem); /* 호버 시 조금 위로 이동 */
+  }
 `;
 const Wrapper = styled.div<{ img: string }>`
   display: flex;
