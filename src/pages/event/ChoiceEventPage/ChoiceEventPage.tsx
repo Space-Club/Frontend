@@ -1,4 +1,5 @@
 import ClassificationCard from '@/components/ClassificationCard/ClassificationCard';
+import { PATH } from '@/constants/path';
 import Theme from '@/styles/Theme';
 
 import { useNavigate } from 'react-router-dom';
@@ -52,7 +53,7 @@ const ChoiceEventPage = () => {
           exampleText={item[2]}
           imgSrc={item[3]}
           color={item[4]}
-          onClick={() => navigate(`/event/writeinfo?event=${item[5]}`)}
+          onClick={() => navigate(`${PATH.EVENT.WRITE_INFO}?event=${item[5]}`)}
         />
       ))}
     </ChoiceEventContainer>
