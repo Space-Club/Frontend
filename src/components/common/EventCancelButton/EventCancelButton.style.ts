@@ -9,8 +9,9 @@ const EventCancelButtonStyled = styled.button`
   font-size: 0.625rem;
   text-align: center;
   background-color: ${Theme.color.white};
-  border: 0.1rem solid ${Theme.color.red};
+  border: 0.1rem solid ${Theme.color.tRed};
   box-sizing: border-box;
+  color: ${Theme.color.tRed};
   cursor: pointer;
 `;
 

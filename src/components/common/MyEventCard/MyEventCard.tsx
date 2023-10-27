@@ -1,5 +1,4 @@
 import { PATH } from '@/constants/path';
-import { EventTitleStyled } from '@/styles/common';
 import { EventStatusType } from '@/types/event';
 
 import { useNavigate } from 'react-router-dom';
@@ -14,6 +13,7 @@ import {
   EventLeftSection,
   EventRightSection,
   MyEventCardContainer,
+  MyEventTitleStyled,
   SemiBlackFont,
 } from './MyEventCard.style';
 
@@ -44,9 +44,9 @@ const MyEventCard = ({
         <Poster posterSrc={posterSrc} width={7} />
         <EventInfoSection>
           <EventStatusTag eventStatus={eventStatus} />
-          <EventTitleStyled onClick={() => navigate(PATH.EVENT.DETAIL + `${eventId}`)}>
+          <MyEventTitleStyled onClick={() => navigate(PATH.EVENT.DETAIL + `${eventId}`)}>
             {eventTitle}
-          </EventTitleStyled>
+          </MyEventTitleStyled>
           <EventDescription>
             날짜<SemiBlackFont>{eventDate}</SemiBlackFont>
           </EventDescription>

@@ -19,6 +19,7 @@ const color = {
   tGrayBlue: '#5C5F90',
   tActive: '#6433CD',
   tSeparator: '#CDCCCC',
+
   logo_2: 'linear-gradient(175deg, #031f2b -19.45%, #486282 55.68%, #9458b5 117.93%)',
 } as const;
 
