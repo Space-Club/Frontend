@@ -1,19 +1,9 @@
 import ClassificationCard from '@/components/ClassificationCard/ClassificationCard';
 import Theme from '@/styles/Theme';
-import styled from '@emotion/styled';
 
-import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Container = styled.div`
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
-  gap: 1rem;
-  height: 100%;
-  padding: 3rem 0;
-  box-sizing: border-box;
-`;
+import { ChoiceEventContainer } from './ChoiceEventPage.style';
 
 const ChoiceEventPage = () => {
   const navigate = useNavigate();
@@ -53,7 +43,7 @@ const ChoiceEventPage = () => {
     ],
   ];
   return (
-    <Container>
+    <ChoiceEventContainer>
       {content.map((item, index) => (
         <ClassificationCard
           key={index}
@@ -65,7 +55,7 @@ const ChoiceEventPage = () => {
           onClick={() => navigate(`/event/writeinfo?event=${item[5]}`)}
         />
       ))}
-    </Container>
+    </ChoiceEventContainer>
   );
 };
 
