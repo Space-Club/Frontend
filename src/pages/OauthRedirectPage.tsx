@@ -1,20 +1,20 @@
-import { kakaoLogin } from '@/apis/auth/kakaoLogin';
+import useOauthLogin from '@/hooks/query/auth/useOauthLogin';
 
 import { useEffect } from 'react';
 
 const OauthRedirectPage = () => {
-  const authCode = new URL(window.location.href).searchParams.get('code');
+  const code = new URLSearchParams(window.location.search).get('code') ?? '';
+
+  if (!code) {
+    //TODO: 에러페이지로 이동시켜주기
+    throw new Error('code is not exist');
+  }
+
+  const { login } = useOauthLogin({ code });
 
   useEffect(() => {
-    if (!authCode) {
-      throw new Error('인증 코드가 없습니다.');
-    }
-
-    kakaoLogin(authCode).then(({ accessToken }) => {
-      localStorage.setItem('accessToken', accessToken);
-      window.location.href = '/';
-    });
-  });
+    login();
+  }, [code, login]);
 
   return <div>OauthRedirectPage</div>;
 };
