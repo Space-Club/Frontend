@@ -19,10 +19,10 @@ const useOauthLogin = ({ code }: OauthLoginRequest) => {
         navigate(PATH.MAIN);
       }
     },
-    onError: () => {
+    onError: ({ data }) => {
       //TODO: Toast 띄우기
       navigate(PATH.LOGIN);
-      throw new Error('로그인 중 서버에서 오류가 발생했습니다');
+      throw new Error(data.message);
     },
   });
   return {
