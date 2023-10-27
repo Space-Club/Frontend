@@ -1,6 +1,5 @@
 import getMyClub from '@/apis/users/getMyClub';
 import Avatar from '@/components/common/Avatar/Avatar';
-import { PATH } from '@/constants/path';
 
 import { FaBell, FaHome, FaPlusCircle } from 'react-icons/fa';
 import { Link, useNavigate } from 'react-router-dom';
@@ -24,7 +23,7 @@ const SideNav = () => {
           </Link>
         ))}
       </AvatarGroup>
-      <FaPlusCircle className={iconStyle} onClick={() => navigate(`${PATH.CLUB.CREATE}`)} />
+      <FaPlusCircle className={iconStyle} onClick={() => navigate('/club/create')} />
       <FaHome className={iconStyle} onClick={() => navigate('/')} />
       <FaBell className={iconStyle} onClick={() => alert('알림페이지 준비 중')} />
       <Link to={`/profile`}>
