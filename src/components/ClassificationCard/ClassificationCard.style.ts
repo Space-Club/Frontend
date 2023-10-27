@@ -1,3 +1,4 @@
+import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
 const Container = styled.div<{ backColor: string }>`
@@ -29,7 +30,7 @@ const Content = styled.div`
   color: white;
 `;
 const Example = styled.div`
-  color: lightgray;
+  color: ${Theme.color.gray};
 `;
 
 export { Container, Wrapper, Title, Content, Example };

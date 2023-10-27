@@ -1,4 +1,4 @@
-import { Container, Content, Example, Title, Wrapper } from './Card.style';
+import { Container, Content, Example, Title, Wrapper } from './ClassificationCard.style';
 
 interface ClassificationCard {
   title: string;
@@ -8,7 +8,7 @@ interface ClassificationCard {
   color: string;
 }
 
-const Card = ({ title, content, exampleText, imgSrc, color }: ClassificationCard) => {
+const ClassificationCard = ({ title, content, exampleText, imgSrc, color }: ClassificationCard) => {
   return (
     <Container backColor={color}>
       <Wrapper img={imgSrc}>
@@ -20,4 +20,4 @@ const Card = ({ title, content, exampleText, imgSrc, color }: ClassificationCard
   );
 };
 
-export default Card;
+export default ClassificationCard;
