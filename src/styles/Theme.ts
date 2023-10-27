@@ -12,6 +12,11 @@ const color = {
   logoTextColor: '#fafafa',
   lineColor: '#261359',
   logo_2: 'linear-gradient(175deg, #031f2b -19.45%, #486282 55.68%, #9458b5 117.93%)',
+  tGreen: '#8CB79A',
+  tPurple: '#7B5BA5',
+  tPink: 'B28FB9',
+  tBlue: '4B6184',
+  tRed: 'BC1584',
 } as const;
 
 const componentStyle = {
