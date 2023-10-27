@@ -11,6 +11,7 @@ const color = {
   indigo: '#003949',
   logoTextColor: '#fafafa',
   lineColor: '#261359',
+  logo_2: 'linear-gradient(175deg, #031f2b -19.45%, #486282 55.68%, #9458b5 117.93%)',
 } as const;
 
 const componentStyle = {
