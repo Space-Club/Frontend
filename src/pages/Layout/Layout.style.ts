@@ -7,6 +7,9 @@ export const Container = styled.div`
 `;
 
 export const Content = styled.div`
-  flex-grow: 1;
-  margin: 0 8rem;
+  width: calc(100% - 7rem);
+  position: relative;
+  left: 7rem;
+  padding: 0 8rem;
+  box-sizing: border-box;
 `;

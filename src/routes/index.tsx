@@ -1,5 +1,4 @@
 import App from '@/App';
-
 import FormLayout from '@/pages/FormLayout/FormLayout';
 import Layout from '@/pages/Layout/Layout';
 import LoginPage from '@/pages/LoginPage/LoginPage';
