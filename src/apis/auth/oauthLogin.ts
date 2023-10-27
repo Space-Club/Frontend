@@ -1,4 +1,4 @@
-import { OauthLoginRequest, OauthLoginResponse } from '@/constants/auth';
+import { OauthLoginRequest, OauthLoginResponse } from '@/types/auth';
 
 import { END_POINTS } from '@constants/api';
 

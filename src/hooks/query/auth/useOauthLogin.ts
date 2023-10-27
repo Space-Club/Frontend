@@ -1,6 +1,6 @@
 import { oauthLogin } from '@/apis/auth/oauthLogin';
-import { OauthLoginRequest } from '@/constants/auth';
 import { PATH } from '@/constants/path';
+import { OauthLoginRequest } from '@/types/auth';
 import { setStorage } from '@/utils/localStorage';
 
 import { useNavigate } from 'react-router-dom';
