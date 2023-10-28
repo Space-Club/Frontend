@@ -21,6 +21,7 @@ const MyEventTitleStyled = styled.div`
   font-size: 1rem;
   line-height: 1.2rem;
   margin: 0.8rem 0;
+  cursor: pointer;
 `;
 
 const SemiBlackFont = styled.div`
