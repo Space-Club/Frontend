@@ -1,11 +1,10 @@
 import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
-const TabContainerStyled = styled.div<{ maxWidth: string }>`
+const TabContainerStyled = styled.div`
   display: flex;
   align-items: center;
-  max-width: ${(props) => `${props.maxWidth}rem`};
-  width: 100%;
+  width: fit-content;
 `;
 
 const TabItemStyled = styled.div<{ isActive: boolean }>`

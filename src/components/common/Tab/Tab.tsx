@@ -9,12 +9,11 @@ interface TabItemProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 interface TabProps {
-  maxWidth: string;
   defaultTab?: string;
   tabItems: TabItemProps[];
 }
 
-const Tab = ({ maxWidth, tabItems }: TabProps) => {
+const Tab = ({ tabItems }: TabProps) => {
   const { activeTab, setActiveTab } = useTabContext();
 
   useEffect(() => {
@@ -22,7 +21,7 @@ const Tab = ({ maxWidth, tabItems }: TabProps) => {
   }, [setActiveTab, tabItems]);
 
   return (
-    <TabContainerStyled maxWidth={maxWidth}>
+    <TabContainerStyled>
       {tabItems.map((tabItem, index) => {
         return (
           <>

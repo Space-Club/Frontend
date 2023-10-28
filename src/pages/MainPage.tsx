@@ -10,7 +10,6 @@ const MainPage = () => {
       <Header style={{ justifyContent: 'space-between' }}>
         <SearchInputForm />
         <Tab
-          maxWidth="25"
           defaultTab={`${TAB_CONSTANTS.PERFORMANCE}`}
           tabItems={[
             {
