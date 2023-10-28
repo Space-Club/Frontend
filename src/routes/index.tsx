@@ -1,4 +1,6 @@
 import App from '@/App';
+
+import FormLayout from '@/pages/FormLayout/FormLayout';
 import Layout from '@/pages/Layout/Layout';
 import LoginPage from '@/pages/LoginPage/LoginPage';
 import MainPage from '@/pages/MainPage';
@@ -85,16 +87,22 @@ const router = createBrowserRouter([
                 element: <SubmitFormPage />,
               },
               {
-                path: 'choice',
-                element: <ChoiceEventPage />,
-              },
-              {
-                path: 'writeinfo',
-                element: <WriteEventInfoPage />,
-              },
-              {
-                path: 'writeform',
-                element: <WriteEventFormPage />,
+                path: '',
+                element: <FormLayout />,
+                children: [
+                  {
+                    path: 'choice',
+                    element: <ChoiceEventPage />,
+                  },
+                  {
+                    path: 'writeinfo',
+                    element: <WriteEventInfoPage />,
+                  },
+                  {
+                    path: 'writeform',
+                    element: <WriteEventFormPage />,
+                  },
+                ],
               },
               {
                 path: 'https://kauth.kakao.com/oauth',
