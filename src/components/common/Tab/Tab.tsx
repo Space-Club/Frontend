@@ -33,7 +33,7 @@ const Tab = ({ active, maxWidth, defaultTab, tabItems }: TabProps) => {
   return (
     <TabContainerStyled maxWidth={maxWidth}>
       {tabItems.map((tabItem, index) => {
-        const isActive = TAB_CONSTANTS[activeIndex as keyof typeof TAB_CONSTANTS] === tabItem.title;
+        const isActive = activeIndex && TAB_CONSTANTS[activeIndex] === tabItem.title;
 
         const isLastItem = index === tabItems.length - 1;
 
@@ -41,7 +41,7 @@ const Tab = ({ active, maxWidth, defaultTab, tabItems }: TabProps) => {
           <>
             <TabItemStyled
               key={index}
-              isActive={isActive}
+              isActive={isActive ? isActive : false}
               width={tabItem.width}
               onClick={() => {
                 setActiveTab(tabItem.title);
