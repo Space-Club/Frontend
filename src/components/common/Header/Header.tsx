@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { CSSProperties, ReactNode } from 'react';
 
 import SpaceClubHomeLogo from '../SpaceClubHomeLogo/SpaceClubHomeLogo';
 import {
@@ -10,16 +10,17 @@ import {
 
 interface HeaderProps {
   children?: ReactNode;
+  style?: CSSProperties;
 }
 
-const Header = ({ children }: HeaderProps) => {
+const Header = ({ children, style }: HeaderProps) => {
   return (
     <HeaderLayoutStyled>
       <HeaderContainerStyled>
         <LogoWrapperStyled>
           <SpaceClubHomeLogo />
         </LogoWrapperStyled>
-        <ChildrenContainerStyled>{children}</ChildrenContainerStyled>
+        <ChildrenContainerStyled style={style}>{children}</ChildrenContainerStyled>
       </HeaderContainerStyled>
     </HeaderLayoutStyled>
   );
