@@ -13,4 +13,15 @@ type EventTags = {
   [key in EventTagKey]: EventTag;
 };
 
-export { EventTagKey, EventTags, EventTag };
+interface Event {
+  id: string;
+  title: string;
+  poster: string;
+  startDate: string;
+  startTime: string;
+  location: string;
+  clubName: string;
+  clubImage: string;
+}
+
+export { EventTagKey, EventTags, EventTag, Event };
