@@ -10,20 +10,17 @@ const MainPage = () => {
       <Header style={{ justifyContent: 'space-between' }}>
         <SearchInputForm />
         <Tab
-          maxWidth="13"
+          maxWidth="25"
           defaultTab={`${TAB_CONSTANTS.PERFORMANCE}`}
           tabItems={[
             {
               title: `${TAB_CONSTANTS.PERFORMANCE}`,
-              width: '3',
             },
             {
               title: `${TAB_CONSTANTS.EVENT_SHOW}`,
-              width: '3',
             },
             {
               title: `${TAB_CONSTANTS.RECRUITMENT}`,
-              width: '4',
             },
           ]}
         />

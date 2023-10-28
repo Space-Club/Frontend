@@ -1,14 +1,11 @@
-import { TAB_CONSTANTS } from '@/constants/tab';
 import { useTabContext } from '@/hooks/useTabContext';
-import { getKeyByValue } from '@/utils/getKeyByValue';
 
 import { useEffect } from 'react';
 
-import { SeparatorStyled, TabContainerStyled, TabItemStyled } from './Tab.style';
+import { TabContainerStyled, TabItemStyled } from './Tab.style';
 
 interface TabItemProps extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
-  width: string;
 }
 
 interface TabProps {
@@ -19,7 +16,6 @@ interface TabProps {
 
 const Tab = ({ maxWidth, tabItems }: TabProps) => {
   const { activeTab, setActiveTab } = useTabContext();
-  const activeIndex = getKeyByValue(TAB_CONSTANTS, activeTab);
 
   useEffect(() => {
     setActiveTab(tabItems[0].title);
@@ -28,23 +24,17 @@ const Tab = ({ maxWidth, tabItems }: TabProps) => {
   return (
     <TabContainerStyled maxWidth={maxWidth}>
       {tabItems.map((tabItem, index) => {
-        const isActive = activeIndex && TAB_CONSTANTS[activeIndex] === tabItem.title;
-
-        const isLastItem = index === tabItems.length - 1;
-
         return (
           <>
             <TabItemStyled
               key={index}
-              isActive={isActive ?? false}
-              width={tabItem.width}
+              isActive={activeTab === tabItem.title}
               onClick={() => {
                 setActiveTab(tabItem.title);
               }}
             >
-              <span>{tabItem.title}</span>
+              {tabItem.title}
             </TabItemStyled>
-            {!isLastItem && <SeparatorStyled />}
           </>
         );
       })}
