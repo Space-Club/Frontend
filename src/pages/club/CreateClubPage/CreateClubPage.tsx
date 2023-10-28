@@ -1,6 +1,7 @@
 import ActiveButton from '@/components/ActiveButton/ActiveButton';
 import Avatar from '@/components/common/Avatar/Avatar';
 import InputForm from '@/components/common/InputForm/InputForm';
+import { createClub } from '@/constants/club';
 
 import {
   ButtonWrapperStyled,
@@ -14,25 +15,25 @@ const CreateClubPage = () => {
   return (
     <>
       <HeaderContainerStyled>
-        <TitleStyled>클럽을 생성해보세요</TitleStyled>
+        <TitleStyled>{createClub.CREATE_CLUB}</TitleStyled>
       </HeaderContainerStyled>
       <ContentWrapperStyled>
         <Avatar avatarShape="large" isEditable={true} />
         <ClubInfoWrapperStyled>
           <InputForm
-            labelText="클럽 이름"
+            labelText={createClub.CLUB_NAME}
             inputType="text"
-            placeholoder="클럽 이름을 작성하세요."
+            placeholoder={createClub.CLUB_NAME_PLACEHOLDER}
           />
           <InputForm
-            labelText="클럽 소개"
+            labelText={createClub.CLUB_INTRO}
             inputType="text"
-            placeholoder="클럽 소개를 작성하세요."
+            placeholoder={createClub.CLUB_INTRO_PLACEHOLDER}
           />
         </ClubInfoWrapperStyled>
       </ContentWrapperStyled>
       <ButtonWrapperStyled>
-        <ActiveButton buttonText="클럽 생성하기" fontSize="mediumTitle" />
+        <ActiveButton buttonText={createClub.CREATE_CLUB_BUTTON} fontSize="mediumTitle" />
       </ButtonWrapperStyled>
     </>
   );
