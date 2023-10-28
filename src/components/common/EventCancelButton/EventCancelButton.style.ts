@@ -9,16 +9,16 @@ const EventCancelButtonStyled = styled.button`
   font-size: ${Theme.fontSize.tagText};
   text-align: center;
   background-color: ${Theme.color.white};
-  border: 0.1rem solid ${Theme.color.tRed};
-  color: ${Theme.color.tRed};
+  border: 0.1rem solid ${Theme.color.tSeparator};
+  color: ${Theme.color.tSeparator};
   user-select: none;
   cursor: pointer;
 
   transition: all 0.2s ease-in-out;
 
   :hover {
-    background-color: ${Theme.color.tRed};
-    color: ${Theme.color.white};
+    border: 0.1rem solid ${Theme.color.tRed};
+    color: ${Theme.color.tRed};
   }
 
   :active {

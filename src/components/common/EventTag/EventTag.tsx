@@ -1,6 +1,6 @@
 import { EventTag } from '@/types/event';
 
-import { EventStatusTagStyled } from './EventStatusTag.style';
+import { EventStatusTagStyled } from './EventTag.style';
 
 interface EventStateTagProps {
   eventTag: EventTag;
