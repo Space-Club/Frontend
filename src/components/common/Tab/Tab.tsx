@@ -12,23 +12,18 @@ interface TabItemProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 interface TabProps {
-  active?: string;
   maxWidth: string;
   defaultTab?: string;
   tabItems: TabItemProps[];
 }
 
-const Tab = ({ active, maxWidth, defaultTab, tabItems }: TabProps) => {
+const Tab = ({ maxWidth, tabItems }: TabProps) => {
   const { activeTab, setActiveTab } = useTabContext();
   const activeIndex = getKeyByValue(TAB_CONSTANTS, activeTab);
 
   useEffect(() => {
-    if (active) {
-      setActiveTab(active);
-    } else if (defaultTab) {
-      setActiveTab(defaultTab);
-    }
-  }, [active, setActiveTab, defaultTab]);
+    setActiveTab(tabItems[0].title);
+  }, [setActiveTab, tabItems]);
 
   return (
     <TabContainerStyled maxWidth={maxWidth}>
@@ -41,7 +36,7 @@ const Tab = ({ active, maxWidth, defaultTab, tabItems }: TabProps) => {
           <>
             <TabItemStyled
               key={index}
-              isActive={isActive ? isActive : false}
+              isActive={isActive ?? false}
               width={tabItem.width}
               onClick={() => {
                 setActiveTab(tabItem.title);
