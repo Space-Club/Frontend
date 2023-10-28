@@ -2,17 +2,28 @@ import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
 const EventCancelButtonStyled = styled.button`
-  width: 4.375rem;
-  height: 1.875rem;
-  line-height: 1.875rem;
+  width: 5rem;
+  height: 2.1875rem;
+  line-height: 2.1875rem;
   border-radius: 0.3125rem;
-  font-size: 0.625rem;
+  font-size: ${Theme.fontSize.tagText};
   text-align: center;
   background-color: ${Theme.color.white};
   border: 0.1rem solid ${Theme.color.tRed};
-  box-sizing: border-box;
   color: ${Theme.color.tRed};
+  user-select: none;
   cursor: pointer;
+
+  transition: all 0.2s ease-in-out;
+
+  :hover {
+    background-color: ${Theme.color.tRed};
+    color: ${Theme.color.white};
+  }
+
+  :active {
+    transform: scale(0.95);
+  }
 `;
 
 export { EventCancelButtonStyled };

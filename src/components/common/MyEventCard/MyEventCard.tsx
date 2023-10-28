@@ -1,5 +1,6 @@
+import { MY_EVENTS_TAGS } from '@/constants/event';
 import { PATH } from '@/constants/path';
-import { EventStatusType } from '@/types/event';
+import { EventTagKey } from '@/types/event';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -18,7 +19,7 @@ import {
 } from './MyEventCard.style';
 
 interface MyEventCardProps extends React.HTMLAttributes<HTMLDivElement> {
-  eventStatus: EventStatusType;
+  eventTagKey: EventTagKey;
   eventId: string;
   posterSrc: string;
   eventTitle: string;
@@ -29,7 +30,7 @@ interface MyEventCardProps extends React.HTMLAttributes<HTMLDivElement> {
 
 const MyEventCard = ({
   posterSrc,
-  eventStatus,
+  eventTagKey,
   eventId,
   eventDate,
   eventPlace,
@@ -43,7 +44,7 @@ const MyEventCard = ({
       <EventLeftSection>
         <Poster posterSrc={posterSrc} width={7} />
         <EventInfoSection>
-          <EventStatusTag eventStatus={eventStatus} />
+          <EventStatusTag eventTag={MY_EVENTS_TAGS[eventTagKey]} />
           <MyEventTitleStyled onClick={() => navigate(PATH.EVENT.DETAIL + `${eventId}`)}>
             {eventTitle}
           </MyEventTitleStyled>

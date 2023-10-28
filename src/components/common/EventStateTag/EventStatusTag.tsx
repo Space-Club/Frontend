@@ -1,21 +1,20 @@
-import { EventStatusType } from '@/types/event';
+import { EventTag } from '@/types/event';
 
 import { EventStatusTagStyled } from './EventStatusTag.style';
 
 interface EventStateTagProps {
-  eventStatus: EventStatusType;
+  eventTag: EventTag;
 }
 
-const EventStatusTag = ({ eventStatus }: EventStateTagProps) => {
+const EventStatusTag = ({ eventTag, ...props }: EventStateTagProps) => {
   return (
-    <EventStatusTagStyled eventStatus={eventStatus}>
-      {eventStatus === 'cancelled'
-        ? '취소완료'
-        : eventStatus === 'confirmed'
-        ? '신청확정'
-        : eventStatus === 'pending'
-        ? '관리자 확인중'
-        : '오류'}
+    <EventStatusTagStyled
+      borderColor={eventTag.borderColor}
+      backgroundColor={eventTag.backgroundColor}
+      textColor={eventTag.textColor}
+      {...props}
+    >
+      {eventTag.title}
     </EventStatusTagStyled>
   );
 };

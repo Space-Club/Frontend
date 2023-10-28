@@ -1,29 +1,26 @@
 import Theme from '@/styles/Theme';
-import { EventStatusType } from '@/types/event';
 import styled from '@emotion/styled';
 
-const EventStatusTagStyled = styled.div<{ eventStatus: EventStatusType }>`
-  width: 5.25rem;
-  height: 1.375rem;
-  line-height: 1.375rem;
-  text-align: center;
+interface EventStatusTagStyledProps {
+  borderColor: keyof typeof Theme.color;
+  backgroundColor: keyof typeof Theme.color;
+  textColor: keyof typeof Theme.color;
+}
+
+const EventStatusTagStyled = styled.div<EventStatusTagStyledProps>`
+  width: fit-content;
+  height: 1.18rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 0.3125rem;
-  font-size: 0.625rem;
+  padding: 0 0.5rem;
+  font-size: ${Theme.fontSize.tagText};
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
   user-select: none;
-  color: ${({ eventStatus }) =>
-    eventStatus === 'confirmed'
-      ? Theme.color.tGreen
-      : eventStatus === 'pending'
-      ? Theme.color.tBlue
-      : Theme.color.tPink};
-  border: 0.1rem solid
-    ${({ eventStatus }) =>
-      eventStatus === 'confirmed'
-        ? Theme.color.tGreen
-        : eventStatus === 'pending'
-        ? Theme.color.tBlue
-        : Theme.color.tPink};
+  color: ${({ textColor }) => Theme.color[textColor]};
+  background-color: ${({ backgroundColor }) => Theme.color[backgroundColor]};
+  border: 1px solid ${({ borderColor }) => Theme.color[borderColor]};
 `;
 
 export { EventStatusTagStyled };
