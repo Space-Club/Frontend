@@ -29,4 +29,10 @@ const PlaceStyled = styled.div`
   font-size: 1rem;
 `;
 
-export { EventTitleStyled, EventDateStyled, ClubNameStyled, PlaceStyled };
+const ellipsisText = styled.p`
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+`;
+
+export { EventTitleStyled, EventDateStyled, ClubNameStyled, PlaceStyled, ellipsisText };
