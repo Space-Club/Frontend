@@ -1,3 +1,4 @@
+import Theme from '@/styles/Theme';
 import { AvatarShapeType } from '@/types/user';
 import { getAvatarSize } from '@/utils/getAvatarSize';
 import styled from '@emotion/styled';
@@ -20,7 +21,7 @@ const DefaultImageStyled = styled.div<AvatarShapeType>`
   width: ${({ avatarShape }) => getAvatarSize(avatarShape)};
   height: ${({ avatarShape }) => getAvatarSize(avatarShape)};
   border-radius: ${({ avatarShape }) => (avatarShape === 'rectangle' ? '1.7rem' : '50%')};
-  background-color: white;
+  background-color: ${Theme.color.tWhiteGrey};
   object-fit: cover;
 `;
 
@@ -34,7 +35,7 @@ const EditButtonStyled = styled.div<AvatarShapeType>`
   right: 2%;
   bottom: 2%;
   border-radius: 50%;
-  background-color: white;
+  background-color: ${Theme.color.idkGrey};
   cursor: pointer;
 `;
 
