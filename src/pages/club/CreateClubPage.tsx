@@ -1,3 +1,4 @@
+import ActiveButton from '@/components/ActiveButton/ActiveButton';
 import Avatar from '@/components/common/Avatar/Avatar';
 import InputForm from '@/components/common/InputForm/InputForm';
 import styled from '@emotion/styled';
@@ -9,12 +10,10 @@ const HeaderContainerStyled = styled.div`
   align-items: center;
   width: 100%;
   height: 20%;
-  border: 1px solid;
 `;
 
 const TitleStyled = styled.h1`
   font-size: 40px;
-  border: 1px solid;
 `;
 
 const ContentWrapperStyled = styled.div`
@@ -23,16 +22,23 @@ const ContentWrapperStyled = styled.div`
   align-items: center;
   /* height: calc(100% - ${HeaderContainerStyled.height}); */
   min-width: 30rem;
+  min-height: 17rem;
   height: 60%;
   gap: 5%;
-  border: 1px solid;
 `;
 
 const ClubInfoWrapperStyled = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   width: 50%;
-  border: 1px solid;
+  height: 40%;
+`;
+
+const ButtonWrapperStyled = styled.div`
+  position: fixed;
+  right: 10%;
+  bottom: 10%;
 `;
 
 const CreateClubPage = () => {
@@ -56,6 +62,9 @@ const CreateClubPage = () => {
           />
         </ClubInfoWrapperStyled>
       </ContentWrapperStyled>
+      <ButtonWrapperStyled>
+        <ActiveButton buttonText="클럽 생성하기" fontSize="mediumTitle" />
+      </ButtonWrapperStyled>
     </>
   );
 };
