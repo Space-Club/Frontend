@@ -1,18 +1,20 @@
 import MyEventCard from '@/components/common/MyEventCard/MyEventCard';
+import { Event } from '@/types/event';
 
 const ProfilePage = () => {
+  const TestEvent: Event = {
+    id: '1',
+    title: 'Test Event',
+    clubName: 'Test Club',
+    clubImage: 'https://picsum.photos/200/300',
+    startTime: '2023-12-30T00:00:00.000Z',
+    startDate: '2023-12-30',
+    location: 'Test Location',
+    poster: 'https://picsum.photos/200/300',
+  };
   return (
     <div>
-      asdf asdf asdf
-      <MyEventCard
-        posterSrc="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
-        eventTagKey="pending"
-        eventId="1"
-        eventPlace="고려대학교 SK미래관"
-        eventTitle="연어전시회"
-        eventDate="12/20"
-        clubName="동아리명"
-      />
+      <MyEventCard event={TestEvent} eventTagKey="pending" />
     </div>
   );
 };
