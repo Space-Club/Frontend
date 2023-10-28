@@ -1,5 +1,4 @@
 import App from '@/App';
-
 import FormLayout from '@/pages/FormLayout/FormLayout';
 import Layout from '@/pages/Layout/Layout';
 import LoginPage from '@/pages/LoginPage/LoginPage';
@@ -17,7 +16,7 @@ import ChoiceEventPage from '@/pages/event/ChoiceEventPage';
 import EventDetailPage from '@/pages/event/EventDetailPage';
 import SubmitFormPage from '@/pages/event/SubmitFormPage';
 import WriteEventFormPage from '@/pages/event/WriteEventFormPage';
-import WriteEventInfoPage from '@/pages/event/WriteEventInfoPage';
+import WriteEventInfoPage from '@/pages/event/WriteEventInfoPage/WriteEventInfoPage';
 
 import { createBrowserRouter } from 'react-router-dom';
 
