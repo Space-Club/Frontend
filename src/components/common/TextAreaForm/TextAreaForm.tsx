@@ -1,3 +1,5 @@
+import { forwardRef } from 'react';
+
 import { InputWrapper, LabelStyled, TextAreaStyled } from './TextAreaForm.style';
 
 interface TextAreaForm {
@@ -6,13 +8,22 @@ interface TextAreaForm {
   placeholoder?: string;
 }
 
-const TextAreaForm = ({ labelText, placeholoder, rows, ...props }: TextAreaForm) => {
-  return (
-    <InputWrapper>
-      <LabelStyled htmlFor={labelText}>{labelText}</LabelStyled>
-      <TextAreaStyled id={labelText} rows={rows} placeholder={placeholoder} required {...props} />
-    </InputWrapper>
-  );
-};
+const TextAreaForm = forwardRef<HTMLTextAreaElement, TextAreaForm>(
+  ({ labelText, placeholoder, rows, ...props }, ref) => {
+    return (
+      <InputWrapper>
+        <LabelStyled htmlFor={labelText}>{labelText}</LabelStyled>
+        <TextAreaStyled
+          id={labelText}
+          rows={rows}
+          placeholder={placeholoder}
+          required
+          ref={ref}
+          {...props}
+        />
+      </InputWrapper>
+    );
+  },
+);
 
 export default TextAreaForm;
