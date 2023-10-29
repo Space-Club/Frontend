@@ -1,3 +1,4 @@
+import Theme from '@/styles/Theme';
 import { AvatarShapeType } from '@/types/user';
 import { getAvatarSize } from '@/utils/getAvatarSize';
 
@@ -28,12 +29,12 @@ const Avatar = ({ avatarShape, profileImageSrc, isEditable }: AvatarProps) => {
           <ProfileImageStyled avatarShape={avatarShape} src={profileImageSrc} alt="profile image" />
         ) : (
           <DefaultImageStyled avatarShape={avatarShape}>
-            <BiSolidUserCircle size={`${defaultIconSize}`} />
+            <BiSolidUserCircle size={`${defaultIconSize}`} color={`${Theme.color.idkGrey}`} />
           </DefaultImageStyled>
         )}
         {isEditable && (
           <EditButtonStyled avatarShape={avatarShape}>
-            <AiFillEdit size={editIconSize} />
+            <AiFillEdit size={editIconSize} color={`${Theme.color.tWhiteGrey}`} />
           </EditButtonStyled>
         )}
       </AvatarContainerStyled>
