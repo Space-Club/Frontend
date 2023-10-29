@@ -8,6 +8,7 @@ import {
   EventDateStyled,
   EventFooterWrapper,
   EventInfoWrapper,
+  EventTimeStyled,
   PlaceStyled,
   PosterAreaStyled,
   TitleStyled,
@@ -18,6 +19,7 @@ interface EventProps {
   eventPoster: string;
   eventTitle: string;
   eventDate: string;
+  eventTime: string;
   eventPlace: string;
   clubImageSrc?: string;
   clubName: string;
@@ -28,6 +30,7 @@ const EventCard = ({
   eventPoster,
   eventTitle,
   eventDate,
+  eventTime,
   eventPlace,
   clubImageSrc,
   clubName,
@@ -43,6 +46,7 @@ const EventCard = ({
         <div>
           <TitleStyled>{eventTitle}</TitleStyled>
           <EventDateStyled>{eventDate}</EventDateStyled>
+          <EventTimeStyled>{eventTime}</EventTimeStyled>
         </div>
         <EventFooterWrapper>
           <PlaceStyled>{eventPlace}</PlaceStyled>

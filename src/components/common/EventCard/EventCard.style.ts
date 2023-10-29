@@ -7,11 +7,6 @@ const ContainerStyled = styled.div`
   font-family: 'MainThin';
   margin-bottom: 5%;
   cursor: pointer;
-  transition: transform 0.3s ease;
-
-  &:hover {
-    transform: scale(1.02);
-  }
 `;
 
 const PosterAreaStyled = styled.div`
@@ -38,6 +33,11 @@ const TitleStyled = styled.div`
 `;
 
 const EventDateStyled = styled.div`
+  padding-bottom: 2%;
+  font-size: 1rem;
+`;
+
+const EventTimeStyled = styled.div`
   font-size: 1rem;
 `;
 
@@ -71,6 +71,7 @@ export {
   EventInfoWrapper,
   TitleStyled,
   EventDateStyled,
+  EventTimeStyled,
   EventFooterWrapper,
   PlaceStyled,
   ClubInfoWrapperStyle,

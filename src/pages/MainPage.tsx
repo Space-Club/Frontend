@@ -57,6 +57,7 @@ const MainPage = () => {
             eventPoster="https://picsum.photos/153/213"
             eventTitle="연어 전시회"
             eventDate="2023/10/29, 15시 30분 dfad"
+            eventTime="15시 30분"
             eventPlace="하천대강당"
             clubName="불곰"
           />
@@ -64,7 +65,8 @@ const MainPage = () => {
             eventId={2}
             eventPoster="https://picsum.photos/153/213"
             eventTitle="연어 전시회"
-            eventDate="2023/10/29, 15시 30분ㅇㄻㄴㄻㄴㅇㄻㄴㄹㄹ"
+            eventDate="2023/10/29"
+            eventTime="15시 30분"
             eventPlace="하천대강당"
             clubImageSrc="https://picsum.photos/200"
             clubName="불곰"
@@ -72,19 +74,21 @@ const MainPage = () => {
           <EventCard
             eventId={3}
             eventPoster="https://picsum.photos/153/213"
-            eventTitle="연어 전시회"
+            eventTitle="연어 전시회가나다라알말"
             eventDate="2023/10/29, 15시 30분ㅇㄻㄴㄻㄴㅇㄻㄴㄹㄹ"
+            eventTime="15시 30분"
             eventPlace="하천대강당"
             clubImageSrc="https://picsum.photos/200"
-            clubName="불곰"
+            clubName="불곰열글자라면어떨까가나다"
           />
           <EventCard
             eventId={4}
             eventPoster="https://picsum.photos/153/213"
-            eventTitle="연어 전시회"
+            eventTitle="연어불곰합동 전시회"
             eventDate="2023/10/29, 15시 30분ㅇㄻㄴㄻㄴㅇㄻㄴㄹㄹ"
+            eventTime="15시 30분"
             eventPlace="하천대강당"
-            clubName="불곰"
+            clubName="호엔하임"
           />
         </EventCardWrapperStyled>
       </ContentContainerStyled>
