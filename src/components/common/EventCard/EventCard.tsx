@@ -1,6 +1,8 @@
 import { useNavigate } from 'react-router-dom';
 
+import Avatar from '../Avatar/Avatar';
 import {
+  ClubInfoWrapperStyle,
   ClubNameStyled,
   ContainerStyled,
   EventDateStyled,
@@ -17,6 +19,7 @@ interface EventProps {
   eventTitle: string;
   eventDate: string;
   eventPlace: string;
+  clubImageSrc?: string;
   clubName: string;
 }
 
@@ -26,6 +29,7 @@ const EventCard = ({
   eventTitle,
   eventDate,
   eventPlace,
+  clubImageSrc,
   clubName,
 }: EventProps) => {
   const navigate = useNavigate();
@@ -42,7 +46,10 @@ const EventCard = ({
         </div>
         <EventFooterWrapper>
           <PlaceStyled>{eventPlace}</PlaceStyled>
-          <ClubNameStyled>{clubName}</ClubNameStyled>
+          <ClubInfoWrapperStyle>
+            <Avatar avatarShape="small" profileImageSrc={clubImageSrc} />
+            <ClubNameStyled>{clubName}</ClubNameStyled>
+          </ClubInfoWrapperStyle>
         </EventFooterWrapper>
       </EventInfoWrapper>
     </ContainerStyled>

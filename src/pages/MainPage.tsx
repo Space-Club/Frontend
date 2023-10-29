@@ -58,7 +58,7 @@ const MainPage = () => {
             eventId={1}
             eventPoster="https://picsum.photos/153/213"
             eventTitle="연어 전시회"
-            eventDate="2023/10/29, 15시 30분ㅇㄻㄴㄻㄴㅇㄻㄴㄹㄹ"
+            eventDate="2023/10/29, 15시 30분"
             eventPlace="하천대강당"
             clubName="불곰"
           />

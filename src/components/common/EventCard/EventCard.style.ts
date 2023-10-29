@@ -2,11 +2,13 @@ import styled from '@emotion/styled';
 
 const ContainerStyled = styled.div`
   display: flex;
-  width: 25rem;
-  height: 17rem;
+  width: 20.3rem;
+  height: 13.3rem;
   font-family: 'MainThin';
+  margin-bottom: 5%;
   cursor: pointer;
   transition: transform 0.3s ease;
+  border: 1px solid red;
 
   &:hover {
     transform: scale(1.02);
@@ -17,8 +19,7 @@ const PosterAreaStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 12rem;
-  height: 17rem;
+  object-fit: cover;
 `;
 
 const EventInfoWrapper = styled.div`
@@ -26,6 +27,7 @@ const EventInfoWrapper = styled.div`
   justify-content: space-between;
   flex-direction: column;
   margin: 3%;
+  word-break: break-all;
 `;
 
 const TitleStyled = styled.div`
@@ -42,7 +44,6 @@ const EventFooterWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: end;
   height: 20%;
   margin-right: 3%;
 `;
@@ -50,6 +51,11 @@ const EventFooterWrapper = styled.div`
 const PlaceStyled = styled.div`
   color: grey;
   font-size: 1rem;
+`;
+
+const ClubInfoWrapperStyle = styled.div`
+  display: flex;
+  align-items: center;
 `;
 
 const ClubNameStyled = styled.div`
@@ -65,5 +71,6 @@ export {
   EventDateStyled,
   EventFooterWrapper,
   PlaceStyled,
+  ClubInfoWrapperStyle,
   ClubNameStyled,
 };
