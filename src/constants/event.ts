@@ -27,4 +27,6 @@ const MY_EVENTS_TAGS: EventTags = {
   },
 };
 
-export { MY_EVENTS_TAGS };
+const MY_EVENTS_TABS = [{ title: '참여 신청한 행사' }, { title: '북마크한 행사' }];
+
+export { MY_EVENTS_TAGS, MY_EVENTS_TABS };
