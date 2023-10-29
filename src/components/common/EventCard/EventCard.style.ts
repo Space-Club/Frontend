@@ -8,7 +8,6 @@ const ContainerStyled = styled.div`
   margin-bottom: 5%;
   cursor: pointer;
   transition: transform 0.3s ease;
-  border: 1px solid red;
 
   &:hover {
     transform: scale(1.02);

@@ -11,7 +11,6 @@ const ContentContainerStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid;
 `;
 
 const BannerWrapperStyled = styled.div`
@@ -26,7 +25,6 @@ const EventCardWrapperStyled = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   margin-bottom: 5%;
-  border: 1px solid;
 `;
 
 const MainPage = () => {
@@ -58,7 +56,7 @@ const MainPage = () => {
             eventId={1}
             eventPoster="https://picsum.photos/153/213"
             eventTitle="연어 전시회"
-            eventDate="2023/10/29, 15시 30분"
+            eventDate="2023/10/29, 15시 30분 dfad"
             eventPlace="하천대강당"
             clubName="불곰"
           />
@@ -68,6 +66,7 @@ const MainPage = () => {
             eventTitle="연어 전시회"
             eventDate="2023/10/29, 15시 30분ㅇㄻㄴㄻㄴㅇㄻㄴㄹㄹ"
             eventPlace="하천대강당"
+            clubImageSrc="https://picsum.photos/200"
             clubName="불곰"
           />
           <EventCard
@@ -76,6 +75,7 @@ const MainPage = () => {
             eventTitle="연어 전시회"
             eventDate="2023/10/29, 15시 30분ㅇㄻㄴㄻㄴㅇㄻㄴㄹㄹ"
             eventPlace="하천대강당"
+            clubImageSrc="https://picsum.photos/200"
             clubName="불곰"
           />
           <EventCard
