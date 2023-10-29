@@ -47,7 +47,7 @@ const EventCard = ({
         <EventFooterWrapper>
           <PlaceStyled>{eventPlace}</PlaceStyled>
           <ClubInfoWrapperStyle>
-            <Avatar avatarShape="small" profileImageSrc={clubImageSrc} />
+            <Avatar avatarSize="small" profileImageSrc={clubImageSrc} isClub={true} />
             <ClubNameStyled>{clubName}</ClubNameStyled>
           </ClubInfoWrapperStyle>
         </EventFooterWrapper>

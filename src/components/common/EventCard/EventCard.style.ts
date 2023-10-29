@@ -25,7 +25,9 @@ const EventInfoWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  margin: 3%;
+  width: 100%;
+  height: 100%;
+  margin: 0 3%;
   word-break: break-all;
 `;
 
@@ -55,6 +57,7 @@ const PlaceStyled = styled.div`
 const ClubInfoWrapperStyle = styled.div`
   display: flex;
   align-items: center;
+  gap: 0.3rem;
 `;
 
 const ClubNameStyled = styled.div`

@@ -19,7 +19,7 @@ const SideNav = () => {
       <AvatarGroup>
         {clubs?.map((club) => (
           <Link to={`/club/home/${club.id}`}>
-            <Avatar key={club.id} avatarShape="normal" profileImageSrc={club.src}></Avatar>
+            <Avatar key={club.id} avatarSize="normal" profileImageSrc={club.src}></Avatar>
           </Link>
         ))}
       </AvatarGroup>
@@ -27,7 +27,7 @@ const SideNav = () => {
       <FaHome className={iconStyle} onClick={() => navigate('/')} />
       <FaBell className={iconStyle} onClick={() => alert('알림페이지 준비 중')} />
       <Link to={`/profile`}>
-        <Avatar avatarShape="rectangle" />
+        <Avatar avatarSize="normal" />
       </Link>
     </Container>
   );
