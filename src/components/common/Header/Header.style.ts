@@ -13,7 +13,7 @@ const HeaderLayoutStyled = styled.div`
 const HeaderContainerStyled = styled.div`
   display: flex;
   width: 80%;
-  min-width: 60rem;
+  min-width: 35rem;
   border-bottom: 0.07rem solid ${Theme.color.lineColor};
 `;
 
