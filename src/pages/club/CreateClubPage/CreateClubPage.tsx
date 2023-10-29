@@ -1,7 +1,7 @@
 import ActiveButton from '@/components/ActiveButton/ActiveButton';
 import Avatar from '@/components/common/Avatar/Avatar';
 import InputForm from '@/components/common/InputForm/InputForm';
-import { createClub } from '@/constants/club';
+import { CREATE_CLUB } from '@/constants/club';
 
 import {
   ButtonWrapperStyled,
@@ -12,28 +12,33 @@ import {
 } from './CreateClubPage.style';
 
 const CreateClubPage = () => {
+  const {
+    CREATE_CLUB_TEXT,
+    CLUB_NAME,
+    CLUB_NAME_PLACEHOLDER,
+    CLUB_INTRO,
+    CLUB_INTRO_PLACEHOLDER,
+    CREATE_CLUB_BUTTON,
+  } = CREATE_CLUB;
+
   return (
     <>
       <HeaderContainerStyled>
-        <TitleStyled>{createClub.CREATE_CLUB}</TitleStyled>
+        <TitleStyled>{CREATE_CLUB_TEXT}</TitleStyled>
       </HeaderContainerStyled>
       <ContentWrapperStyled>
         <Avatar avatarShape="large" isEditable={true} />
         <ClubInfoWrapperStyled>
+          <InputForm labelText={CLUB_NAME} inputType="text" placeholoder={CLUB_NAME_PLACEHOLDER} />
           <InputForm
-            labelText={createClub.CLUB_NAME}
+            labelText={CLUB_INTRO}
             inputType="text"
-            placeholoder={createClub.CLUB_NAME_PLACEHOLDER}
-          />
-          <InputForm
-            labelText={createClub.CLUB_INTRO}
-            inputType="text"
-            placeholoder={createClub.CLUB_INTRO_PLACEHOLDER}
+            placeholoder={CLUB_INTRO_PLACEHOLDER}
           />
         </ClubInfoWrapperStyled>
       </ContentWrapperStyled>
       <ButtonWrapperStyled>
-        <ActiveButton buttonText={createClub.CREATE_CLUB_BUTTON} fontSize="mediumTitle" />
+        <ActiveButton buttonText={CREATE_CLUB_BUTTON} fontSize="mediumTitle" />
       </ButtonWrapperStyled>
     </>
   );
