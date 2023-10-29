@@ -5,16 +5,15 @@ const SearchInputContainerStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 60%;
+  flex-grow: 1;
   height: 100%;
 `;
 
 const SearchBarStyled = styled.div`
   display: flex;
-  justify-content: start;
   align-items: center;
   width: 90%;
-  height: 60%;
+  height: 50%;
   border: 0.05rem solid ${Theme.color.lineColor};
   border-radius: 1rem;
 `;
@@ -22,7 +21,7 @@ const SearchBarStyled = styled.div`
 const SearchInputStyled = styled.input`
   flex-grow: 1;
   height: 70%;
-  margin: 0 1rem;
+  margin-left: 1rem;
   outline: none;
   border: none;
 `;
