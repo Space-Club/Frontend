@@ -25,7 +25,7 @@ const MyEventCard = ({
   return (
     <MyEventCardContainer {...props}>
       <EventLeftSection>
-        <Poster posterSrc={poster} width={7} />
+        <Poster posterSrc={poster} width={7.6} />
         <MyEventInfo
           eventId={eventId}
           title={title}

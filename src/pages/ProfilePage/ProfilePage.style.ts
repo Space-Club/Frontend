@@ -1,12 +1,17 @@
 import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
+const ProfilePageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 const MyEventSection = styled.div`
   display: flex;
   flex-direction: column;
-  max-width: 53.5625rem;
 `;
 const MyEventTabContainer = styled.div`
+  min-width: 53.6rem;
   border-bottom: 1px solid ${Theme.color.tLine};
 `;
 
@@ -16,11 +21,11 @@ const MyEventContainer = styled.div`
   align-items: center;
 
   & > * {
-    padding: 1.875rem 0;
+    padding: 1.53rem 0;
   }
   & > *:not(:last-of-type) {
     border-bottom: 1px solid ${Theme.color.tSeparator};
   }
 `;
 
-export { MyEventSection, MyEventTabContainer, MyEventContainer };
+export { MyEventSection, MyEventTabContainer, MyEventContainer, ProfilePageContainer };
