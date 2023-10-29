@@ -6,13 +6,13 @@ interface UseMyEventProps {
   pageNumber: number;
 }
 
-const QUERY_KEN = {
+const QUERY_KEY = {
   MY_EVENT: 'MY_EVENT',
 };
 
 const useMyEvent = ({ pageNumber }: UseMyEventProps) => {
   const { data: myEvent } = useQuery({
-    queryKey: [QUERY_KEN.MY_EVENT, pageNumber],
+    queryKey: [QUERY_KEY.MY_EVENT, pageNumber],
     queryFn: () => getMyEvent({ pageNumber }),
   });
 
