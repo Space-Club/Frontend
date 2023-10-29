@@ -49,5 +49,16 @@ const SubmitButton = styled.button`
   cursor: pointer;
   color: white;
 `;
+const ErrorMessage = styled.div`
+  font-size: 0.7rem;
+  color: red;
+`;
 
-export { PerformanceFormContainer, ContentArea, TwoInputContainer, HalfInputForm, SubmitButton };
+export {
+  PerformanceFormContainer,
+  ContentArea,
+  TwoInputContainer,
+  HalfInputForm,
+  SubmitButton,
+  ErrorMessage,
+};

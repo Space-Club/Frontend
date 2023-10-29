@@ -17,7 +17,6 @@ const TextAreaForm = forwardRef<HTMLTextAreaElement, TextAreaForm>(
           id={labelText}
           rows={rows}
           placeholder={placeholoder}
-          required
           ref={ref}
           {...props}
         />
