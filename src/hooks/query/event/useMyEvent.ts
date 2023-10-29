@@ -11,12 +11,12 @@ const QUERY_KEY = {
 };
 
 const useMyEvent = ({ pageNumber }: UseMyEventProps) => {
-  const { data: myEvent } = useQuery({
+  const { data: myEvents } = useQuery({
     queryKey: [QUERY_KEY.MY_EVENT, pageNumber],
     queryFn: () => getMyEvent({ pageNumber }),
   });
 
-  return { myEvent };
+  return { myEvents };
 };
 
 export default useMyEvent;
