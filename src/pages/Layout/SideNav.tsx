@@ -1,4 +1,5 @@
 import getMyClub from '@/apis/users/getMyClub';
+import SideBarMyProfile from '@/components/SideBarMyProfile/SideBarMyProfile';
 import Avatar from '@/components/common/Avatar/Avatar';
 
 import { FaBell, FaHome, FaPlusCircle } from 'react-icons/fa';
@@ -27,7 +28,7 @@ const SideNav = () => {
       <FaHome className={iconStyle} onClick={() => navigate('/')} />
       <FaBell className={iconStyle} onClick={() => alert('알림페이지 준비 중')} />
       <Link to={`/profile`}>
-        <Avatar avatarSize="normal" />
+        <SideBarMyProfile />
       </Link>
     </Container>
   );
