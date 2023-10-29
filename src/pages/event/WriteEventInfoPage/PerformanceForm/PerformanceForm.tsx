@@ -24,6 +24,22 @@ const PerformanceForm = () => {
     formState: { errors },
   } = useForm();
   const [imgFile, setImgFile] = useState('');
+  const {
+    REQUIRED_EVENT_NAME,
+    REQUIRED_START_TIME,
+    REQUIRED_LOCATION,
+    REQUIRED_FORM_START_TIME,
+    REQUIRED_FORM_LAST_TIME,
+    REQUIRED_POSTER,
+    REQUIRED_EVENT_CONTENT,
+    PERSONNEL,
+    COST,
+    BANK_NAME,
+    ACCOUNT,
+    MAX_TICKET,
+    START_TIME,
+    LAST_TIME,
+  } = ERROR_MESSAGE.EVENT;
 
   useEffect(() => {
     const imgSrc = watch('poster');
@@ -50,7 +66,7 @@ const PerformanceForm = () => {
     const today = new Date();
 
     if (selectedDate <= today) {
-      return ERROR_MESSAGE.START_TIME;
+      return START_TIME;
     }
 
     return true;
@@ -61,7 +77,7 @@ const PerformanceForm = () => {
     const start = new Date(startTime);
 
     if (selectedTime <= start) {
-      return ERROR_MESSAGE.LAST_TIME;
+      return LAST_TIME;
     }
 
     return true;
@@ -72,7 +88,7 @@ const PerformanceForm = () => {
       <ContentArea>
         <InputForm
           {...register('eventName', {
-            required: `${ERROR_MESSAGE.REQUIRED_EVENT_NAME}`,
+            required: `${REQUIRED_EVENT_NAME}`,
             maxLength: 30,
           })}
           labelText="행사 이름"
@@ -83,7 +99,7 @@ const PerformanceForm = () => {
         <TwoInputContainer>
           <HalfInputForm
             {...register('startTime', {
-              required: `${ERROR_MESSAGE.REQUIRED_START_TIME}`,
+              required: `${REQUIRED_START_TIME}`,
               validate: validateTodayDate,
             })}
             labelText="행사 시작 날짜 및 시간"
@@ -92,7 +108,7 @@ const PerformanceForm = () => {
         </TwoInputContainer>
         {errors.startTime && <ErrorMessage>{errors.startTime.message as string}</ErrorMessage>}
         <InputForm
-          {...register('location', { required: `${ERROR_MESSAGE.REQUIRED_LOCATION}` })}
+          {...register('location', { required: `${REQUIRED_LOCATION}` })}
           labelText="장소"
           inputType="text"
         />
@@ -100,7 +116,7 @@ const PerformanceForm = () => {
         <TwoInputContainer>
           <InputForm
             {...register('personnel', {
-              max: { value: 999, message: `${ERROR_MESSAGE.PERSONNEL}` },
+              max: { value: 999, message: `${PERSONNEL}` },
             })}
             labelText="정원"
             inputType="number"
@@ -108,7 +124,7 @@ const PerformanceForm = () => {
           />
           <InputForm
             {...register('cost', {
-              max: { value: 1000000, message: `${ERROR_MESSAGE.COST}` },
+              max: { value: 1000000, message: `${COST}` },
             })}
             labelText="비용"
             inputType="number"
@@ -120,7 +136,7 @@ const PerformanceForm = () => {
         <TwoInputContainer>
           <InputForm
             {...register('bankName', {
-              maxLength: { value: 20, message: `${ERROR_MESSAGE.BANK_NAME}` },
+              maxLength: { value: 20, message: `${BANK_NAME}` },
             })}
             labelText="은행 명"
             inputType="text"
@@ -128,7 +144,7 @@ const PerformanceForm = () => {
           />
           <InputForm
             {...register('account', {
-              maxLength: { value: 30, message: `${ERROR_MESSAGE.ACCOUNT}` },
+              maxLength: { value: 30, message: `${ACCOUNT}` },
             })}
             labelText="계좌 번호"
             inputType="text"
@@ -139,7 +155,7 @@ const PerformanceForm = () => {
         {errors.account && <ErrorMessage>{errors.account?.message as string}</ErrorMessage>}
         <HalfInputForm
           {...register('maxTicket', {
-            max: { value: 999, message: `${ERROR_MESSAGE.MAX_TICKET}` },
+            max: { value: 999, message: `${MAX_TICKET}` },
           })}
           labelText="인당 예매 가능 수"
           inputType="number"
@@ -148,7 +164,7 @@ const PerformanceForm = () => {
         <TwoInputContainer>
           <InputForm
             {...register('formStartTime', {
-              required: `${ERROR_MESSAGE.REQUIRED_FORM_START_TIME}`,
+              required: `${REQUIRED_FORM_START_TIME}`,
               validate: validateTodayDate,
             })}
             labelText="신청 시작 날짜 및 시간"
@@ -156,7 +172,7 @@ const PerformanceForm = () => {
           />
           <InputForm
             {...register('formLastTime', {
-              required: `${ERROR_MESSAGE.REQUIRED_FORM_LAST_TIME}`,
+              required: `${REQUIRED_FORM_LAST_TIME}`,
               validate: (value) => validateTimeCompare(value, watch('formStartTime')),
             })}
             labelText="마감 시작 날짜 및 시간"
@@ -172,7 +188,7 @@ const PerformanceForm = () => {
       </ContentArea>
       <ContentArea>
         <ImageForm
-          {...register('poster', { required: `${ERROR_MESSAGE.REQUIRED_POSTER}` })}
+          {...register('poster', { required: `${REQUIRED_POSTER}` })}
           imgFile={imgFile}
           labelText="포스터"
           buttonText="이미지 선택하기"
@@ -180,7 +196,7 @@ const PerformanceForm = () => {
         {errors.poster && <ErrorMessage>{errors.poster.message as string}</ErrorMessage>}
         <TextAreaForm
           {...register('eventContent', {
-            required: `${ERROR_MESSAGE.REQUIRED_EVENT_CONTENT}`,
+            required: `${REQUIRED_EVENT_CONTENT}`,
             maxLength: 200,
           })}
           labelText="행사 내용 작성"
