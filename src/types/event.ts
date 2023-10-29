@@ -51,8 +51,6 @@ interface GetMyEventRequest {
   pageNumber: number;
 }
 
-export { GetMyEventResponse, GetMyEventRequest };
-
 interface GetAllEventsRequest {
   pageNumber: number;
 }
@@ -78,4 +76,4 @@ interface GetAllEventsResponse {
   };
 }
 
-export { GetAllEventsRequest, GetAllEventsResponse };
+export { GetAllEventsRequest, GetAllEventsResponse, GetMyEventRequest, GetMyEventResponse };

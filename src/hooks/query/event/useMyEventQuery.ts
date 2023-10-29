@@ -13,7 +13,9 @@ const useMyEventQuery = ({ pageNumber }: GetMyEventRequest) => {
     queryFn: () => getMyEvent({ pageNumber }),
   });
 
-  return { myEvent };
+  const { data, pageData } = myEvent ?? {};
+
+  return { events: data, pageData };
 };
 
 export default useMyEventQuery;
