@@ -14,6 +14,7 @@ const PurpleButton = styled.button<{ reverse?: boolean }>`
   border-radius: 0.25rem;
   padding: 0.5rem 1rem;
   box-sizing: border-box;
+  cursor: pointer;
 `;
 const UpdateDeleteWrapper = styled.div`
   display: flex;
@@ -23,10 +24,10 @@ const EventDetailWrapper = styled.div`
   display: flex;
   width: 100%;
 `;
-const PosterImage = styled.img`
+const PosterImage = styled.img<{ noneBackGround: boolean }>`
   width: 23rem;
   height: 31rem;
-  background-color: lightgray;
+  background-color: ${({ noneBackGround }) => !noneBackGround && Theme.color.gray};
 `;
 const DetailContentWrapper = styled.div`
   display: flex;
@@ -58,6 +59,7 @@ const SemiPurpleButton = styled.button<{ reverse?: boolean }>`
   border-radius: 0.25rem;
   padding: 0.5rem 2rem;
   box-sizing: border-box;
+  cursor: pointer;
 `;
 
 export {

@@ -51,4 +51,17 @@ interface GetMyEventRequest {
   pageNumber: number;
 }
 
-export { GetMyEventResponse, GetMyEventRequest };
+interface getEventDetailResponse {
+  title: string;
+  startDate: string;
+  startTime: string;
+  location: string;
+  openDate: string;
+  openTime: string;
+  closeDate: string;
+  closeTime: string;
+  name: string;
+  poster: string;
+}
+
+export { GetMyEventResponse, GetMyEventRequest, getEventDetailResponse };
