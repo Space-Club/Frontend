@@ -6,7 +6,7 @@ import Poster from '../Poster/Poster';
 import { ContainerStyled, EventFooterWrapper, EventInfoWrapper } from './EventCard.style';
 
 interface EventProps {
-  eventId: number;
+  eventId: string;
   posterSrc: string;
   eventTitle: string;
   eventDate: string;
