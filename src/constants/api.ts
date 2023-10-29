@@ -7,6 +7,7 @@ const END_POINTS = {
   REGISTER: '/users',
   MY_CLUB: '/myclub', // API 명세서 나올시, 수정 필요
   ALL_EVENTS: '/events',
+  GET_MY_EVENT: '/profile/event/myEvent', //TODO: API 명세서 나올시, 수정 필요
 };
 
 export { SPACECLUB_BASE_URL, NETWORK_TIMEOUT, END_POINTS };
