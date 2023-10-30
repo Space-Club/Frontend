@@ -17,6 +17,12 @@ import {
   TitleStyled,
 } from './CreateClubPage.style';
 
+interface FormValueType {
+  name: string;
+  info: string;
+  image: File | string | null;
+}
+
 const CreateClubPage = () => {
   const {
     CREATE_CLUB_TEXT,
