@@ -1,5 +1,5 @@
 import Theme from '@/styles/Theme';
-import { AvatarSizeType } from '@/types/user';
+import { AvatarSize } from '@/types/user';
 import { getAvatarSize } from '@/utils/getAvatarSize';
 import styled from '@emotion/styled';
 
@@ -8,7 +8,7 @@ const AvatarContainerStyled = styled.div`
   display: inline-flex;
 `;
 
-const ProfileImageStyled = styled.img<AvatarSizeType>`
+const ProfileImageStyled = styled.img<{ avatarSize: AvatarSize }>`
   position: relative;
   width: ${({ avatarSize }) => getAvatarSize(avatarSize)};
   height: ${({ avatarSize }) => getAvatarSize(avatarSize)};
@@ -16,9 +16,9 @@ const ProfileImageStyled = styled.img<AvatarSizeType>`
   object-fit: cover;
 `;
 
-const DefaultImageStyled = styled.div<AvatarSizeType>`
+const DefaultImageStyled = styled.div<{ avatarSize: AvatarSize }>`
   position: relative;
-  width: ${({ avatarSize }) => getAvatarSize(avatarSize)};
+  width: ${(props) => getAvatarSize(props.avatarSize)};
   height: ${({ avatarSize }) => getAvatarSize(avatarSize)};
   border-radius: 50%;
   background-color: #cccccc;
@@ -26,7 +26,7 @@ const DefaultImageStyled = styled.div<AvatarSizeType>`
   object-fit: cover;
 `;
 
-const EditButtonStyled = styled.div<AvatarSizeType>`
+const EditButtonStyled = styled.div<{ avatarSize: AvatarSize }>`
   display: flex;
   justify-content: center;
   align-items: center;
