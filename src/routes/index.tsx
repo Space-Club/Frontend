@@ -9,7 +9,7 @@ import ProfilePage from '@/pages/ProfilePage';
 import RegisterPage from '@/pages/RegisterPage/RegisterPage';
 import ClubEventPage from '@/pages/club/ClubEventPage';
 import ClubHomePage from '@/pages/club/ClubHomePage';
-import CreateClubPage from '@/pages/club/CreateClubPage';
+import CreateClubPage from '@/pages/club/CreateClubPage/CreateClubPage';
 import ManageClubPage from '@/pages/club/ManageClubPage';
 import CheckFormPage from '@/pages/event/CheckFormPage';
 import ChoiceEventPage from '@/pages/event/ChoiceEventPage';
@@ -46,7 +46,7 @@ const router = createBrowserRouter([
             element: <MainPage />,
           },
           {
-            path: 'profile/:profileId',
+            path: 'profile',
             element: <ProfilePage />,
           },
           {

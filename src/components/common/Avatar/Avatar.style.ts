@@ -21,6 +21,7 @@ const DefaultImageStyled = styled.div<AvatarSizeType>`
   height: ${({ avatarSize }) => getAvatarSize(avatarSize)};
   border-radius: 50%;
   background-color: #cccccc;
+
   object-fit: cover;
 `;
 
@@ -34,7 +35,7 @@ const EditButtonStyled = styled.div<AvatarSizeType>`
   right: 2%;
   bottom: 2%;
   border-radius: 50%;
-  background-color: white;
+  background-color: ${Theme.color.idkGrey};
   cursor: pointer;
 `;
 

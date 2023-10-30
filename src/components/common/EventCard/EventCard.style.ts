@@ -17,6 +17,7 @@ const PosterAreaStyled = styled.div`
 `;
 
 const EventInfoWrapper = styled.div`
+  width: 13rem;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
@@ -42,6 +43,7 @@ const EventTimeStyled = styled.div`
 `;
 
 const EventFooterWrapper = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
