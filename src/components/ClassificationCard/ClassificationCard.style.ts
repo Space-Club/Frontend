@@ -5,6 +5,7 @@ const Container = styled.div<{ backColor: string }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  height: 19rem;
   background-color: ${({ backColor }) => backColor};
   border-radius: 1rem;
   cursor: pointer;
