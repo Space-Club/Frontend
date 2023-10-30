@@ -2,8 +2,6 @@ interface User {
   token: string;
 }
 
-interface AvatarSizeType {
-  avatarSize: 'normal' | 'large' | 'small' | 'medium';
-}
+type AvatarSize = 'normal' | 'large' | 'small' | 'medium';
 
-export { User, AvatarSizeType };
+export { User, AvatarSize };
