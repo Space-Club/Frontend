@@ -65,8 +65,8 @@ const eventHandlers = [
     console.log('eventList', eventList);
     return HttpResponse.json({ status: 201 });
   }),
-  
-    http.get(`${END_POINTS.GET_MY_EVENT}?page=$1size=10&sort=id,startDate`, async () => {
+
+  http.get(`${END_POINTS.GET_MY_EVENT}?page=$1size=10&sort=id,startDate`, async () => {
     return HttpResponse.json(myEvent, { status: 201 });
   }),
 ];
