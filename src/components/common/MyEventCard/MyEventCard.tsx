@@ -6,19 +6,28 @@ import EventCancelButton from '../EventCancelButton/EventCancelButton';
 import MyEventInfo from '../MyEventInfo/MyEventInfo';
 import { EventLeftSection, EventRightSection, MyEventCardContainer } from './MyEventCard.style';
 
-interface MyEventCardProps extends React.HTMLAttributes<HTMLDivElement> {
-  event: Event;
+interface MyEventCardProps
+  extends Pick<Event, 'title' | 'poster' | 'startDate' | 'location' | 'clubName'> {
+  eventId: string;
   eventTagKey: EventTagKey;
 }
 
-const MyEventCard = ({ event, eventTagKey, ...props }: MyEventCardProps) => {
-  const { poster, startDate, id, location, title, clubName } = event;
+const MyEventCard = ({
+  eventId,
+  title,
+  poster,
+  startDate,
+  location,
+  clubName,
+  eventTagKey,
+  ...props
+}: MyEventCardProps) => {
   return (
     <MyEventCardContainer {...props}>
       <EventLeftSection>
-        <Poster posterSrc={poster} width={7} />
+        <Poster posterSrc={poster} width={7.6} />
         <MyEventInfo
-          id={id}
+          eventId={eventId}
           title={title}
           startDate={startDate}
           location={location}
@@ -27,7 +36,7 @@ const MyEventCard = ({ event, eventTagKey, ...props }: MyEventCardProps) => {
         />
       </EventLeftSection>
       <EventRightSection>
-        <EventCancelButton eventId={id} />
+        <EventCancelButton eventId={eventId} />
       </EventRightSection>
     </MyEventCardContainer>
   );
