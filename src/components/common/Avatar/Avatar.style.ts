@@ -1,3 +1,4 @@
+import Theme from '@/styles/Theme';
 import { AvatarSizeType } from '@/types/user';
 import { getAvatarSize } from '@/utils/getAvatarSize';
 import styled from '@emotion/styled';
