@@ -1,6 +1,6 @@
 import { LogoText, Message } from '@/constants/LoginPage';
 
-import KakaoLoginButton from '@components/kakaoLoginButton/KakaoLoginButton';
+import KakaoLoginButton from '@components/KakaoLoginButton/KakaoLoginButton';
 
 import {
   LoginAreaStyled,
