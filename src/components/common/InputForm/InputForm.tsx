@@ -1,39 +1,28 @@
-import { ChangeEvent, RefObject } from 'react';
+import { forwardRef } from 'react';
 
 import { InputStyled, InputWrapper, LabelStyled } from './InputForm.style';
 
-interface InputForm<T> {
+interface InputFormProps {
   labelText: string;
   inputType: 'date' | 'file' | 'number' | 'search' | 'tel' | 'text' | 'time';
   placeholoder?: string;
-  inputRef?: RefObject<HTMLInputElement>;
-  value?: T;
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-const InputForm = <T extends string | number | string[]>({
-  labelText,
-  inputType,
-  placeholoder,
-  inputRef,
-  value,
-  onChange,
-  ...props
-}: InputForm<T>) => {
-  return (
-    <InputWrapper>
-      <LabelStyled htmlFor={labelText}>{labelText}</LabelStyled>
-      <InputStyled
-        id={labelText}
-        type={inputType}
-        ref={inputRef}
-        placeholder={placeholoder}
-        value={value}
-        onChange={onChange}
-        {...props}
-      />
-    </InputWrapper>
-  );
-};
+const InputForm = forwardRef<HTMLInputElement, InputFormProps>(
+  ({ labelText, inputType, placeholoder, ...props }, ref) => {
+    return (
+      <InputWrapper>
+        <LabelStyled htmlFor={labelText}>{labelText}</LabelStyled>
+        <InputStyled
+          id={labelText}
+          type={inputType}
+          ref={ref}
+          placeholder={placeholoder}
+          {...props}
+        />
+      </InputWrapper>
+    );
+  },
+);
 
 export default InputForm;
