@@ -6,7 +6,7 @@ const HeaderLayoutStyled = styled.div`
   justify-content: center;
   align-items: flex-end;
   width: 100%;
-  height: 15vh;
+  height: 5.44rem;
   min-height: 4rem;
 `;
 
