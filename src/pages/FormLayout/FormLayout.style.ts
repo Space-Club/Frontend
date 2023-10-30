@@ -7,6 +7,7 @@ const Container = styled.div`
 `;
 const Title = styled.div`
   font-size: 2.5rem;
+  margin-top: 1rem;
 `;
 const Content = styled.div`
   flex-grow: 1;
