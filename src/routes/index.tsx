@@ -5,7 +5,7 @@ import LoginPage from '@/pages/LoginPage/LoginPage';
 import MainPage from '@/pages/MainPage/MainPage';
 import NotFoundPage from '@/pages/NotFoundPage';
 import OauthRedirectPage from '@/pages/OauthRedirectPage';
-import ProfilePage from '@/pages/ProfilePage';
+import ProfilePage from '@/pages/ProfilePage/ProfilePage';
 import RegisterPage from '@/pages/RegisterPage/RegisterPage';
 import ClubEventPage from '@/pages/club/ClubEventPage';
 import ClubHomePage from '@/pages/club/ClubHomePage';

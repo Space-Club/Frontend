@@ -1,6 +1,6 @@
 import { useTabContext } from '@/hooks/useTabContext';
 
-import { useEffect } from 'react';
+import { Fragment, useEffect } from 'react';
 
 import { TabContainerStyled, TabItemStyled } from './Tab.style';
 
@@ -22,11 +22,10 @@ const Tab = ({ tabItems }: TabProps) => {
 
   return (
     <TabContainerStyled>
-      {tabItems.map((tabItem, index) => {
+      {tabItems?.map((tabItem, index) => {
         return (
-          <>
+          <Fragment key={index}>
             <TabItemStyled
-              key={index}
               isActive={activeTab === tabItem.title}
               onClick={() => {
                 setActiveTab(tabItem.title);
@@ -34,7 +33,7 @@ const Tab = ({ tabItems }: TabProps) => {
             >
               {tabItem.title}
             </TabItemStyled>
-          </>
+          </Fragment>
         );
       })}
     </TabContainerStyled>

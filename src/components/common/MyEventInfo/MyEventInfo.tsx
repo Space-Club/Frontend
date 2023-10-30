@@ -13,12 +13,13 @@ import {
   SemiBlackFont,
 } from './MyEventInfo.style';
 
-interface MyEventInfoProps extends Omit<Event, 'poster' | 'startTime' | 'clubImage'> {
+interface MyEventInfoProps extends Pick<Event, 'title' | 'startDate' | 'location' | 'clubName'> {
+  eventId: string;
   eventTagKey: EventTagKey;
 }
 
 const MyEventInfo = ({
-  id,
+  eventId,
   title,
   startDate,
   location,
@@ -29,7 +30,7 @@ const MyEventInfo = ({
   return (
     <EventInfoSection>
       <EventStatusTag eventTag={MY_EVENTS_TAGS[eventTagKey]} />
-      <MyEventTitleStyled onClick={() => navigate(PATH.EVENT.DETAIL + `${id}`)}>
+      <MyEventTitleStyled onClick={() => navigate(PATH.EVENT.DETAIL + `${eventId}`)}>
         {title}
       </MyEventTitleStyled>
       <EventDescription>

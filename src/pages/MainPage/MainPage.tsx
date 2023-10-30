@@ -39,7 +39,7 @@ const MainPage = () => {
         </BannerWrapperStyled>
         <EventCardWrapperStyled>
           <EventCard
-            eventId={1}
+            eventId={'1'}
             posterSrc="https://picsum.photos/153/213"
             eventTitle={truncateText('연어 전시회1', 13)}
             eventDate="2023/10/29"
@@ -48,7 +48,7 @@ const MainPage = () => {
             clubName={truncateText('불곰', 12)}
           />
           <EventCard
-            eventId={2}
+            eventId={'2'}
             posterSrc="https://picsum.photos/153/213"
             eventTitle={truncateText('가나다라마바사아자차카타파하', 13)}
             eventDate="2023/10/30"
@@ -58,7 +58,7 @@ const MainPage = () => {
             clubName={truncateText('어제는 공연을 봤는데 오랜만에', 12)}
           />
           <EventCard
-            eventId={3}
+            eventId={'3'}
             posterSrc="https://picsum.photos/153/213"
             eventTitle={truncateText('추억의 8090: 그날의 우리', 13)}
             eventDate="2023/10/31"
@@ -68,7 +68,7 @@ const MainPage = () => {
             clubName={truncateText('pinkfloyd', 12)}
           />
           <EventCard
-            eventId={4}
+            eventId={'4'}
             posterSrc="https://picsum.photos/153/213"
             eventTitle={truncateText('BornToBe', 13)}
             eventDate="2023/10/32"
