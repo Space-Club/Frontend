@@ -1,4 +1,4 @@
-import { getMyEvent } from '@/apis/event/getMyEvent';
+import getMyEvent from '@/apis/event/getMyEvent';
 import { GetMyEventRequest } from '@/types/event';
 
 import { useQuery } from '@tanstack/react-query';

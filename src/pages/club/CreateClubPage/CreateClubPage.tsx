@@ -46,7 +46,6 @@ const CreateClubPage = () => {
   const [previewImage, setPreviewImage] = useState<File | null>(null);
 
   const onSubmit: SubmitHandler<CreateClubFormValue> = (data) => {
-    console.log(data);
     createClub(data);
   };
 
@@ -73,7 +72,7 @@ const CreateClubPage = () => {
         <ContentWrapperStyled>
           <ImageSelectWrapper>
             <Avatar
-              avatarShape="large"
+              avatarSize="large"
               profileImageSrc={previewImage ? `${URL.createObjectURL(previewImage)}` : ''}
             />
             <input
@@ -92,7 +91,7 @@ const CreateClubPage = () => {
               })}
               labelText={CLUB_NAME}
               inputType="text"
-              placeholoder={CLUB_NAME_PLACEHOLDER}
+              placeholder={CLUB_NAME_PLACEHOLDER}
               maxLenght={12}
             />
             {errors?.name && <span>{errors.name.message}</span>}
@@ -105,7 +104,7 @@ const CreateClubPage = () => {
               })}
               labelText={CLUB_INTRO}
               inputType="text"
-              placeholoder={CLUB_INTRO_PLACEHOLDER}
+              placeholder={CLUB_INTRO_PLACEHOLDER}
               maxLenght={25}
             />
             {errors?.info && <span>{errors.info.message}</span>}
