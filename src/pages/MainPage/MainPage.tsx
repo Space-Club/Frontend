@@ -16,7 +16,7 @@ import {
 const MainPage = () => {
   return (
     <TabContextProvider>
-      <Header style={{ justifyContent: 'space-between' }}>
+      <Header>
         <SearchInputForm />
         <Tab
           defaultTab={`${TAB_CONSTANTS.PERFORMANCE}`}
@@ -40,7 +40,7 @@ const MainPage = () => {
         <EventCardWrapperStyled>
           <EventCard
             eventId={1}
-            eventPoster="https://picsum.photos/153/213"
+            posterSrc="https://picsum.photos/153/213"
             eventTitle={truncateText('연어 전시회1', 13)}
             eventDate="2023/10/29"
             eventTime="15시 30분"
@@ -49,7 +49,7 @@ const MainPage = () => {
           />
           <EventCard
             eventId={2}
-            eventPoster="https://picsum.photos/153/213"
+            posterSrc="https://picsum.photos/153/213"
             eventTitle={truncateText('가나다라마바사아자차카타파하', 13)}
             eventDate="2023/10/30"
             eventTime="15시"
@@ -59,7 +59,7 @@ const MainPage = () => {
           />
           <EventCard
             eventId={3}
-            eventPoster="https://picsum.photos/153/213"
+            posterSrc="https://picsum.photos/153/213"
             eventTitle={truncateText('추억의 8090: 그날의 우리', 13)}
             eventDate="2023/10/31"
             eventTime="16시"
@@ -69,7 +69,7 @@ const MainPage = () => {
           />
           <EventCard
             eventId={4}
-            eventPoster="https://picsum.photos/153/213"
+            posterSrc="https://picsum.photos/153/213"
             eventTitle={truncateText('BornToBe', 13)}
             eventDate="2023/10/32"
             eventTime="32시 68분"

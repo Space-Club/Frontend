@@ -1,4 +1,4 @@
-import { AvatarSizeType } from '@/types/user';
+import { AvatarSize } from '@/types/user';
 import { getAvatarSize } from '@/utils/getAvatarSize';
 
 import { AiFillEdit } from 'react-icons/ai';
@@ -13,7 +13,7 @@ import {
 } from './Avatar.style';
 
 interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
-  avatarSize: AvatarSizeType['avatarSize'];
+  avatarSize: AvatarSize;
   profileImageSrc?: string;
   isEditable?: boolean;
   isClub?: boolean;
