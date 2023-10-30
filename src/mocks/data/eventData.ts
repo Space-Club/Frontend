@@ -8,7 +8,9 @@ const myEvent: GetMyEventResponse = {
       clubName: 'test',
       startDate: '2021-10-10',
       location: 'test',
-      status: 'test',
+      status: 'cancelRequested',
+      poster:
+        'https://english.seoul.go.kr/wp-content/uploads/2022/09/working-seoul-poster-214x300.jpg',
     },
     {
       id: '2',
@@ -16,7 +18,8 @@ const myEvent: GetMyEventResponse = {
       clubName: 'test',
       startDate: '2021-10-10',
       location: 'test',
-      status: 'test',
+      status: 'cancelled',
+      poster: 'https://www.europosters.ie/image/framed/750/115398_modenacerna.jpg',
     },
   ],
   pageData: {

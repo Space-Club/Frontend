@@ -32,7 +32,8 @@ interface GetMyEventData {
   clubName: string;
   startDate: string;
   location: string;
-  status: string; //TODO: EventTagType으로 변경
+  status: EventTagKey;
+  poster: string;
 }
 
 interface GetMyEventResponse {
