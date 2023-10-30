@@ -1,5 +1,4 @@
 interface PostEventApplyRequest {
-  userId: string;
   eventId: string;
 }
 

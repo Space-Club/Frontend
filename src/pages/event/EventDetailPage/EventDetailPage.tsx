@@ -2,6 +2,7 @@ import getEventDetail from '@/apis/event/getEventDetail';
 import BookMark from '@/components/common/BookMark/BookMark';
 import { SemiPurpleButton } from '@/components/common/BookMark/BookMark.style';
 import Poster from '@/components/common/Poster/Poster';
+import usePostEventApplyMutation from '@/hooks/query/event/usePostEventApplyMutation';
 
 import { useParams } from 'react-router-dom';
 
@@ -25,6 +26,8 @@ const EventDetailPage = () => {
   const { data: eventDetail } = useQuery(['event_detail', 'eventId'], () =>
     getEventDetail({ id: eventId! }),
   );
+
+  const { applyEvent } = usePostEventApplyMutation();
 
   if (!eventDetail) {
     return <div>Loading...</div>; // TODO: 로딩 컴포넌트 구현 시 교체
@@ -81,7 +84,9 @@ const EventDetailPage = () => {
             <div>{name}</div>
           </div>
           <ButtonWrapper>
-            <SemiPurpleButton>참여 신청하기</SemiPurpleButton>
+            <SemiPurpleButton onClick={() => applyEvent({ eventId: '1' })}>
+              참여 신청하기
+            </SemiPurpleButton>
             <BookMark reverse />
           </ButtonWrapper>
         </DetailContentWrapper>
