@@ -1,4 +1,5 @@
 import getMyClub from '@/apis/users/getMyClub';
+import SideBarMyProfile from '@/components/SideBarMyProfile/SideBarMyProfile';
 import Avatar from '@/components/common/Avatar/Avatar';
 
 import { FaBell, FaHome, FaPlusCircle } from 'react-icons/fa';
@@ -19,7 +20,7 @@ const SideNav = () => {
       <AvatarGroup>
         {clubs?.map((club) => (
           <Link key={club.id} to={`/club/home/${club.id}`}>
-            <Avatar key={club.id} avatarShape="normal" profileImageSrc={club.src}></Avatar>
+            <Avatar key={club.id} avatarSize="normal" profileImageSrc={club.src}></Avatar>
           </Link>
         ))}
       </AvatarGroup>
@@ -27,7 +28,7 @@ const SideNav = () => {
       <FaHome className={iconStyle} onClick={() => navigate('/')} />
       <FaBell className={iconStyle} onClick={() => alert('알림페이지 준비 중')} />
       <Link to={`/profile`}>
-        <Avatar avatarShape="rectangle" />
+        <SideBarMyProfile />
       </Link>
     </Container>
   );

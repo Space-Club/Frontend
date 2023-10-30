@@ -77,4 +77,24 @@ interface GetAllEventsResponse {
   };
 }
 
-export { GetAllEventsRequest, GetAllEventsResponse, GetMyEventRequest, GetMyEventResponse };
+interface getEventDetailResponse {
+  title: string;
+  content: string;
+  startDate: string;
+  startTime: string;
+  location: string;
+  openDate: string;
+  openTime: string;
+  closeDate: string;
+  closeTime: string;
+  name: string;
+  poster: string;
+}
+
+export {
+  GetAllEventsRequest,
+  GetAllEventsResponse,
+  GetMyEventRequest,
+  GetMyEventResponse,
+  getEventDetailResponse,
+};
