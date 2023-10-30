@@ -13,9 +13,9 @@ const setStorage = <T>(key: StorageKeys, value: T) => {
 
 const getStorage = <T>(key: StorageKeys, defaultValue?: unknown): T => {
   const jsonValue = localStorage.getItem(key);
-  if (!jsonValue && !defaultValue) {
-    throw new Error('로컬 스토리지에 존재하지 않는 값입니다.');
-  }
+  // if (!jsonValue && !defaultValue) {
+  //   throw new Error('로컬 스토리지에 존재하지 않는 값입니다.');
+  // } #TODO: 에러 처리
   return jsonValue ? JSON.parse(jsonValue) : defaultValue;
 };
 
