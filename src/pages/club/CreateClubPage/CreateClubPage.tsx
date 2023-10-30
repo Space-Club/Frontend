@@ -1,7 +1,9 @@
+import { CreateClubFormValue } from '@/apis/club/postCreateClub';
 import ActiveButton from '@/components/ActiveButton/ActiveButton';
 import Avatar from '@/components/common/Avatar/Avatar';
 import InputForm from '@/components/common/InputForm/InputForm';
 import { CREATE_CLUB } from '@/constants/club';
+import { useClub } from '@/hooks/query/club/useClub';
 
 import { ChangeEvent, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -11,14 +13,9 @@ import {
   ClubInfoWrapperStyled,
   ContentWrapperStyled,
   HeaderContainerStyled,
+  ImageSelectWrapper,
   TitleStyled,
 } from './CreateClubPage.style';
-
-interface FormValueType {
-  name: string;
-  info: string;
-  image: File | string | null;
-}
 
 const CreateClubPage = () => {
   const {
@@ -34,21 +31,22 @@ const CreateClubPage = () => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<FormValueType>({
+  } = useForm<CreateClubFormValue>({
     defaultValues: {
       name: '',
       info: '',
       image: null,
+      owner: '이채연', //#TODO: 로그인 한 유저 정보 받아오기
     },
     mode: 'onChange',
   });
 
+  const { createClub, isLoading } = useClub();
   const [clubName, clubInfo] = [watch('name'), watch('info')];
   const [previewImage, setPreviewImage] = useState<File | null>(null);
 
-  const onSubmit: SubmitHandler<FormValueType> = (data) => {
-    console.log(data);
-    //createClub({...data, previewImage})
+  const onSubmit: SubmitHandler<CreateClubFormValue> = (data) => {
+    createClub(data);
   };
 
   const handleChangeImage = (event: ChangeEvent<HTMLInputElement>) => {
@@ -61,6 +59,10 @@ const CreateClubPage = () => {
     setPreviewImage(imageFile[0]);
   };
 
+  //#TODO: ImageForm의 ImageLabelStyled 적용하기
+  //#TODO: InputForm의 labelText props 옵셔널로 변경
+  //#TODO: 클럽소개 TextAreaForm으로 변경하기
+
   return (
     <>
       <HeaderContainerStyled>
@@ -68,11 +70,18 @@ const CreateClubPage = () => {
       </HeaderContainerStyled>
       <form onSubmit={handleSubmit(onSubmit)}>
         <ContentWrapperStyled>
-          <Avatar
-            avatarShape="large"
-            profileImageSrc={previewImage ? `${URL.createObjectURL(previewImage)}` : ''}
-          />
-          <input type="file" accept="image/*" {...register('image')} onChange={handleChangeImage} />
+          <ImageSelectWrapper>
+            <Avatar
+              avatarShape="large"
+              profileImageSrc={previewImage ? `${URL.createObjectURL(previewImage)}` : ''}
+            />
+            <input
+              type="file"
+              accept="image/*"
+              {...register('image')}
+              onChange={handleChangeImage}
+            />
+          </ImageSelectWrapper>
           <ClubInfoWrapperStyled>
             <InputForm
               {...register('name', {
@@ -101,7 +110,12 @@ const CreateClubPage = () => {
           </ClubInfoWrapperStyled>
         </ContentWrapperStyled>
         <ButtonWrapperStyled>
-          <ActiveButton buttonText={CREATE_CLUB_BUTTON} fontSize="mediumTitle" />
+          <ActiveButton
+            buttonText={CREATE_CLUB_BUTTON}
+            fontSize="mediumTitle"
+            isLoading={isLoading}
+            disabled={isLoading}
+          />
         </ButtonWrapperStyled>
       </form>
     </>
