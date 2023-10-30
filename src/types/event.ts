@@ -53,6 +53,7 @@ interface GetMyEventRequest {
 
 interface getEventDetailResponse {
   title: string;
+  content: string;
   startDate: string;
   startTime: string;
   location: string;

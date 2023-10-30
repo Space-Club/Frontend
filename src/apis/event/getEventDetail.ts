@@ -4,7 +4,7 @@ import { getEventDetailResponse } from '@/types/event';
 import { axiosClient } from '../axiosClient';
 
 interface getEventDetail {
-  id: string | undefined;
+  id: string;
 }
 
 const getEventDetail = async ({ id }: getEventDetail) => {

@@ -1,6 +1,8 @@
 import getEventDetail from '@/apis/event/getEventDetail';
+import BookMark from '@/components/common/BookMark/BookMark';
+import { SemiPurpleButton } from '@/components/common/BookMark/BookMark.style';
+import Poster from '@/components/common/Poster/Poster';
 
-import { FaRegBookmark } from 'react-icons/fa';
 import { useParams } from 'react-router-dom';
 
 import { useQuery } from '@tanstack/react-query';
@@ -9,12 +11,11 @@ import {
   ButtonWrapper,
   ContentLabel,
   DetailContentWrapper,
+  EventContent,
   EventDetailWrapper,
   EventTitle,
   FormButtonWrapper,
-  PosterImage,
   PurpleButton,
-  SemiPurpleButton,
   TwoContentWrapper,
   UpdateDeleteWrapper,
 } from './EventDetailPage.style';
@@ -22,15 +23,16 @@ import {
 const EventDetailPage = () => {
   const { eventId } = useParams();
   const { data: eventDetail } = useQuery(['event_detail', 'eventId'], () =>
-    getEventDetail({ id: eventId }),
+    getEventDetail({ id: eventId! }),
   );
 
   if (!eventDetail) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>; // TODO: 로딩 컴포넌트 구현 시 교체
   }
 
   const {
     title,
+    content,
     poster,
     startDate,
     startTime,
@@ -40,7 +42,7 @@ const EventDetailPage = () => {
     closeDate,
     closeTime,
     name,
-  } = eventDetail;
+  } = eventDetail ?? {};
   return (
     <div>
       <FormButtonWrapper>
@@ -51,7 +53,7 @@ const EventDetailPage = () => {
         </UpdateDeleteWrapper>
       </FormButtonWrapper>
       <EventDetailWrapper>
-        <PosterImage src={poster} noneBackGround={!!poster} />
+        <Poster posterSrc={poster} width={23} />
         <DetailContentWrapper>
           <EventTitle>{title}</EventTitle>
           <TwoContentWrapper>
@@ -80,12 +82,11 @@ const EventDetailPage = () => {
           </div>
           <ButtonWrapper>
             <SemiPurpleButton>참여 신청하기</SemiPurpleButton>
-            <SemiPurpleButton reverse>
-              <FaRegBookmark size={30} strokeWidth={10} />
-            </SemiPurpleButton>
+            <BookMark reverse />
           </ButtonWrapper>
         </DetailContentWrapper>
       </EventDetailWrapper>
+      <EventContent>{content}</EventContent>
     </div>
   );
 };

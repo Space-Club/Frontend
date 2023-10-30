@@ -24,11 +24,6 @@ const EventDetailWrapper = styled.div`
   display: flex;
   width: 100%;
 `;
-const PosterImage = styled.img<{ noneBackGround: boolean }>`
-  width: 23rem;
-  height: 31rem;
-  background-color: ${({ noneBackGround }) => !noneBackGround && Theme.color.gray};
-`;
 const DetailContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -51,15 +46,9 @@ const ButtonWrapper = styled.div`
   gap: 0.5rem;
   justify-content: flex-end;
 `;
-const SemiPurpleButton = styled.button<{ reverse?: boolean }>`
-  outline: none;
-  background-color: ${({ reverse }) => (reverse ? 'white' : `${Theme.color.tSemiActive}`)};
-  color: ${({ reverse }) => (reverse ? `${Theme.color.tSemiActive}` : 'white')};
-  border: 1px solid ${Theme.color.tSemiActive};
-  border-radius: 0.25rem;
-  padding: 0.5rem 2rem;
-  box-sizing: border-box;
-  cursor: pointer;
+const EventContent = styled.div`
+  width: 100%;
+  margin-top: 2rem;
 `;
 
 export {
@@ -67,11 +56,10 @@ export {
   PurpleButton,
   UpdateDeleteWrapper,
   EventDetailWrapper,
-  PosterImage,
   DetailContentWrapper,
   EventTitle,
   TwoContentWrapper,
   ContentLabel,
   ButtonWrapper,
-  SemiPurpleButton,
+  EventContent,
 };
