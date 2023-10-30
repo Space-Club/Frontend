@@ -1,4 +1,4 @@
-import { GetAllEventsResponse, GetMyEventResponse } from '@/types/event';
+import { GetAllEventsResponse, GetMyEventResponse, getEventDetailResponse } from '@/types/event';
 
 const myEvent: GetMyEventResponse = {
   data: [
@@ -65,4 +65,18 @@ const allEvents: GetAllEventsResponse = {
   },
 };
 
-export { myEvent, allEvents };
+const eventDetail: getEventDetailResponse = {
+  title: '스클 행사',
+  content: '안녕하세요. 스클 행사입니다. 많은 참여 부탁드립니다.',
+  startDate: '2023-10-11',
+  startTime: '15:30',
+  location: '대학교 정문',
+  openDate: '2023-10-10',
+  openTime: '10:00',
+  closeDate: '2023-10-10',
+  closeTime: '13:00',
+  name: '연어',
+  poster: '/src/assets/image/headhunting.svg',
+};
+
+export { myEvent, allEvents, eventDetail };
