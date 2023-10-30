@@ -16,10 +16,10 @@ const ClassificationCard = ({
   exampleText,
   imgSrc,
   color,
-  onClick,
+  ...props
 }: ClassificationCard) => {
   return (
-    <Container backColor={color} onClick={onClick}>
+    <Container backColor={color} {...props}>
       <Wrapper img={imgSrc}>
         <Title>{title}</Title>
         <Content>{content}</Content>
