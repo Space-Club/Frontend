@@ -7,7 +7,7 @@ const END_POINTS = {
   REGISTER: '/users',
   MY_CLUB: '/myclub', // API 명세서 나올시, 수정 필요
   GET_EVENT_DETAIL: '/event/detail',
-  GET_MY_EVENT: '/user/events',
+  GET_MY_EVENT: '/users/events',
   ALL_EVENTS: '/events',
   POST_EVENT_APPLY: '/events/apply',
 };
