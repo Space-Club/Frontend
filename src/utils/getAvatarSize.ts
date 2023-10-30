@@ -1,6 +1,6 @@
-import { AvatarSizeType } from '@/types/user';
+import { AvatarSize } from '@/types/user';
 
-export const getAvatarSize = (avatarSize: AvatarSizeType['avatarSize']) => {
+export const getAvatarSize = (avatarSize: AvatarSize) => {
   switch (avatarSize) {
     case 'small':
       return '1.3rem';

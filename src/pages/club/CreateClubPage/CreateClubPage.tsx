@@ -27,7 +27,7 @@ const CreateClubPage = () => {
         <TitleStyled>{CREATE_CLUB_TEXT}</TitleStyled>
       </HeaderContainerStyled>
       <ContentWrapperStyled>
-        <Avatar avatarShape="large" isEditable={true} />
+        <Avatar avatarSize="large" isEditable={true} />
         <ClubInfoWrapperStyled>
           <InputForm labelText={CLUB_NAME} inputType="text" placeholoder={CLUB_NAME_PLACEHOLDER} />
           <InputForm
