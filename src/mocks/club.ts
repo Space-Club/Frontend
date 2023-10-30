@@ -4,6 +4,7 @@ import { HttpResponse, http } from 'msw';
 interface club {
   name: string;
   info: string;
+  owner: string;
   image: File | null;
 }
 
