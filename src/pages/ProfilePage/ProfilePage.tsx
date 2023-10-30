@@ -4,7 +4,7 @@ import MyEventCard from '@/components/common/MyEventCard/MyEventCard';
 import Tab from '@/components/common/Tab/Tab';
 import { MY_EVENTS_TABS } from '@/constants/event';
 import { TabContextProvider } from '@/context/TabContext';
-import useMyEvent from '@/hooks/query/event/useMyEvent';
+import useMyEventQuery from '@/hooks/query/event/useMyEventQuery';
 
 import {
   MyEventContainer,
@@ -14,7 +14,7 @@ import {
 } from './ProfilePage.style';
 
 const ProfilePage = () => {
-  const { myEvents } = useMyEvent({ pageNumber: 1 }); //TODO: 페이지네이션 처리
+  const { events } = useMyEventQuery({ pageNumber: 1 }); //TODO: 페이지네이션 처리
 
   return (
     <TabContextProvider>
@@ -27,7 +27,7 @@ const ProfilePage = () => {
             <Tab tabItems={MY_EVENTS_TABS} />
           </MyEventTabContainer>
           <MyEventContainer>
-            {myEvents?.data.map((event) => (
+            {events?.map((event) => (
               <MyEventCard
                 key={event.id}
                 eventId={event.id}
