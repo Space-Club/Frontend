@@ -51,19 +51,14 @@ const postPerformanceForm = async ({ data }: postPerformanceForm) => {
   };
   const formData = new FormData();
   const blobRequest = new Blob([JSON.stringify(dataTrasnform)], { type: 'application/json' });
-  const imageBlob = new Blob([poster[0]], { type: 'image/jpeg' });
   formData.append('request', blobRequest);
-  formData.append('poster', imageBlob, 'image.png');
+  formData.append('poster', poster[0]);
 
-  await axiosClient.post(
-    `https://spaceclub.site/api/v1${END_POINTS.PERFORMANCE_FORM}`,
-    { formData },
-    {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
+  await axiosClient.post(`${END_POINTS.PERFORMANCE_FORM}`, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
     },
-  );
+  });
 };
 
 export default postPerformanceForm;
