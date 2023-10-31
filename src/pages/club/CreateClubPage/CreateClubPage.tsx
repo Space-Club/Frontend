@@ -92,6 +92,7 @@ const CreateClubPage = () => {
               labelText={CLUB_NAME}
               inputType="text"
               placeholoder={CLUB_NAME_PLACEHOLDER}
+              maxLenght={12}
             />
             {errors?.name && <span>{errors.name.message}</span>}
             <span>{`${clubName.length}/12`}</span>
@@ -104,6 +105,7 @@ const CreateClubPage = () => {
               labelText={CLUB_INTRO}
               inputType="text"
               placeholoder={CLUB_INTRO_PLACEHOLDER}
+              maxLenght={25}
             />
             {errors?.info && <span>{errors.info.message}</span>}
             <span>{`${clubInfo.length}/25`}</span>
