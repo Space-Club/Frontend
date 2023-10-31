@@ -1,5 +1,5 @@
 import Theme from '@/styles/Theme';
-import { AvatarShapeType } from '@/types/user';
+import { AvatarSize } from '@/types/user';
 import { getAvatarSize } from '@/utils/getAvatarSize';
 import styled from '@emotion/styled';
 
@@ -8,29 +8,30 @@ const AvatarContainerStyled = styled.div`
   display: inline-flex;
 `;
 
-const ProfileImageStyled = styled.img<AvatarShapeType>`
+const ProfileImageStyled = styled.img<{ avatarSize: AvatarSize }>`
   position: relative;
-  width: ${({ avatarShape }) => getAvatarSize(avatarShape)};
-  height: ${({ avatarShape }) => getAvatarSize(avatarShape)};
-  border-radius: ${({ avatarShape }) => (avatarShape === 'rectangle' ? '1.7rem' : '50%')};
+  width: ${({ avatarSize }) => getAvatarSize(avatarSize)};
+  height: ${({ avatarSize }) => getAvatarSize(avatarSize)};
+  border-radius: 50%;
   object-fit: cover;
 `;
 
-const DefaultImageStyled = styled.div<AvatarShapeType>`
+const DefaultImageStyled = styled.div<{ avatarSize: AvatarSize }>`
   position: relative;
-  width: ${({ avatarShape }) => getAvatarSize(avatarShape)};
-  height: ${({ avatarShape }) => getAvatarSize(avatarShape)};
-  border-radius: ${({ avatarShape }) => (avatarShape === 'rectangle' ? '1.7rem' : '50%')};
-  background-color: ${Theme.color.tWhiteGrey};
+  width: ${(props) => getAvatarSize(props.avatarSize)};
+  height: ${({ avatarSize }) => getAvatarSize(avatarSize)};
+  border-radius: 50%;
+  background-color: #cccccc;
+
   object-fit: cover;
 `;
 
-const EditButtonStyled = styled.div<AvatarShapeType>`
+const EditButtonStyled = styled.div<{ avatarSize: AvatarSize }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: ${({ avatarShape }) => (avatarShape === 'large' ? '4rem' : '1.5rem')};
-  height: ${({ avatarShape }) => (avatarShape === 'large' ? '4rem' : '1.5rem')};
+  width: ${({ avatarSize }) => (avatarSize === 'large' ? '4rem' : '1.5rem')};
+  height: ${({ avatarSize }) => (avatarSize === 'large' ? '4rem' : '1.5rem')};
   position: absolute;
   right: 2%;
   bottom: 2%;
@@ -39,10 +40,4 @@ const EditButtonStyled = styled.div<AvatarShapeType>`
   cursor: pointer;
 `;
 
-export {
-  getAvatarSize,
-  AvatarContainerStyled,
-  ProfileImageStyled,
-  DefaultImageStyled,
-  EditButtonStyled,
-};
+export { AvatarContainerStyled, ProfileImageStyled, DefaultImageStyled, EditButtonStyled };

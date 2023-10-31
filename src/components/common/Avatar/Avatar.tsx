@@ -1,9 +1,9 @@
-import Theme from '@/styles/Theme';
-import { AvatarShapeType } from '@/types/user';
+import { AvatarSize } from '@/types/user';
 import { getAvatarSize } from '@/utils/getAvatarSize';
 
 import { AiFillEdit } from 'react-icons/ai';
 import { BiSolidUserCircle } from 'react-icons/bi';
+import { IoPeopleCircleSharp } from 'react-icons/io5';
 
 import {
   AvatarContainerStyled,
@@ -13,28 +13,33 @@ import {
 } from './Avatar.style';
 
 interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
-  avatarShape: AvatarShapeType['avatarShape'];
+  avatarSize: AvatarSize;
   profileImageSrc?: string;
   isEditable?: boolean;
+  isClub?: boolean;
 }
 
-const Avatar = ({ avatarShape, profileImageSrc, isEditable }: AvatarProps) => {
-  const defaultIconSize = getAvatarSize(avatarShape);
-  const editIconSize = isEditable ? (avatarShape === 'large' ? '3rem' : '1rem') : undefined;
+const Avatar = ({ avatarSize, profileImageSrc, isEditable, isClub }: AvatarProps) => {
+  const defaultIconSize = getAvatarSize(avatarSize);
+  const editIconSize = isEditable ? (avatarSize === 'large' ? '3rem' : '1rem') : undefined;
 
   return (
     <div>
       <AvatarContainerStyled>
         {profileImageSrc ? (
-          <ProfileImageStyled avatarShape={avatarShape} src={profileImageSrc} alt="profile image" />
+          <ProfileImageStyled avatarSize={avatarSize} src={profileImageSrc} alt="profile image" />
         ) : (
-          <DefaultImageStyled avatarShape={avatarShape}>
-            <BiSolidUserCircle size={`${defaultIconSize}`} color={`${Theme.color.idkGrey}`} />
+          <DefaultImageStyled avatarSize={avatarSize}>
+            {isClub ? (
+              <IoPeopleCircleSharp size={defaultIconSize} color="#A89BB9" />
+            ) : (
+              <BiSolidUserCircle size={defaultIconSize} color="#A89BB9" />
+            )}
           </DefaultImageStyled>
         )}
         {isEditable && (
-          <EditButtonStyled avatarShape={avatarShape}>
-            <AiFillEdit size={editIconSize} color={`${Theme.color.tWhiteGrey}`} />
+          <EditButtonStyled avatarSize={avatarSize}>
+            <AiFillEdit size={editIconSize} />
           </EditButtonStyled>
         )}
       </AvatarContainerStyled>

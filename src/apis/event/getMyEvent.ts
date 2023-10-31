@@ -10,4 +10,4 @@ const getMyEvent = async ({ pageNumber }: GetMyEventRequest) => {
   return data;
 };
 
-export { getMyEvent };
+export default getMyEvent;
