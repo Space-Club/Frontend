@@ -2,11 +2,18 @@ import styled from '@emotion/styled';
 
 const ContainerStyled = styled.div`
   display: flex;
-  width: 25rem;
-  height: 17rem;
+  width: 20.3rem;
+  height: 13.3rem;
   font-family: 'MainThin';
+  margin-bottom: 5%;
   cursor: pointer;
-  transition: transform 0.3s ease;
+`;
+
+const PosterAreaStyled = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  object-fit: cover;
 `;
 
 const EventInfoWrapper = styled.div`
@@ -14,7 +21,25 @@ const EventInfoWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   flex-direction: column;
-  margin: 3%;
+  width: 100%;
+  height: 100%;
+  margin: 0 3%;
+  word-break: break-all;
+`;
+
+const TitleStyled = styled.div`
+  padding-bottom: 3%;
+  font-family: 'MainBold';
+  font-size: 1.5rem;
+`;
+
+const EventDateStyled = styled.div`
+  padding-bottom: 2%;
+  font-size: 1rem;
+`;
+
+const EventTimeStyled = styled.div`
+  font-size: 1rem;
 `;
 
 const EventFooterWrapper = styled.div`
@@ -22,9 +47,35 @@ const EventFooterWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  align-items: end;
   height: 20%;
   margin-right: 3%;
 `;
 
-export { ContainerStyled, EventInfoWrapper, EventFooterWrapper };
+const PlaceStyled = styled.div`
+  color: grey;
+  font-size: 1rem;
+`;
+
+const ClubInfoWrapperStyle = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+`;
+
+const ClubNameStyled = styled.div`
+  font-family: 'MainRegular';
+  font-size: 0.8rem;
+`;
+
+export {
+  ContainerStyled,
+  PosterAreaStyled,
+  EventInfoWrapper,
+  TitleStyled,
+  EventDateStyled,
+  EventTimeStyled,
+  EventFooterWrapper,
+  PlaceStyled,
+  ClubInfoWrapperStyle,
+  ClubNameStyled,
+};

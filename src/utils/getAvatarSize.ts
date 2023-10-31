@@ -1,17 +1,15 @@
-import { AvatarShapeType } from '@/types/user';
+import { AvatarSize } from '@/types/user';
 
-export const getAvatarSize = (avatarShape: AvatarShapeType['avatarShape']) => {
-  switch (avatarShape) {
+export const getAvatarSize = (avatarSize: AvatarSize) => {
+  switch (avatarSize) {
     case 'small':
-      return '1.5rem';
+      return '1.3rem';
     case 'normal':
-      return '4rem';
-    case 'rectangle':
-      return '4.5rem';
+      return '3.7rem';
     case 'medium':
-      return '6.875rem';
+      return '6.6rem';
     case 'large':
-      return '16.3rem';
+      return '16rem';
     default:
       return '4rem';
   }

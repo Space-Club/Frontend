@@ -32,7 +32,8 @@ interface GetMyEventData {
   clubName: string;
   startDate: string;
   location: string;
-  status: string; //TODO: EventTagType으로 변경
+  status: EventTagKey;
+  poster: string;
 }
 
 interface GetMyEventResponse {
@@ -51,4 +52,43 @@ interface GetMyEventRequest {
   pageNumber: number;
 }
 
-export { GetMyEventResponse, GetMyEventRequest };
+interface GetAllEventsRequest {
+  pageNumber: number;
+}
+
+interface GetAllEventsResponse {
+  data: {
+    id: string;
+    title: string;
+    poster: string;
+    startDate: string;
+    startTime: string;
+    location: string;
+    clubName: string;
+    clubImage: string;
+  }[];
+  pageData: {
+    first: boolean;
+    last: boolean;
+    pageNumber: number;
+    size: number;
+    totalPage: number;
+    totalElement: number;
+  };
+}
+
+interface getEventDetailResponse {
+  title: string;
+  content: string;
+  startDate: string;
+  startTime: string;
+  location: string;
+  openDate: string;
+  openTime: string;
+  closeDate: string;
+  closeTime: string;
+  name: string;
+  poster: string;
+}
+
+export { GetAllEventsRequest, GetAllEventsResponse, GetMyEventRequest, GetMyEventResponse, getEventDetailResponse };
