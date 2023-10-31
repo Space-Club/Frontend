@@ -1,3 +1,4 @@
+import postUser from '@/apis/users/postUser';
 import InputForm from '@/components/common/InputForm/InputForm';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
 import { validateName, validateNumber } from '@/utils/validate';
