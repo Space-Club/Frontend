@@ -1,15 +1,20 @@
 import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
-const Container = styled.div<{ backColor: string }>`
+const CardContainer = styled.div<{ backColor: string }>`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  width: 30rem;
-  height: 16rem;
+  width: 95%;
+  height: 19rem;
   background-color: ${({ backColor }) => backColor};
   border-radius: 1rem;
   cursor: pointer;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 `;
 const Wrapper = styled.div<{ img: string }>`
   display: flex;
@@ -35,4 +40,4 @@ const Example = styled.div`
   color: ${Theme.color.gray};
 `;
 
-export { Container, Wrapper, Title, Content, Example };
+export { CardContainer, Wrapper, Title, Content, Example };

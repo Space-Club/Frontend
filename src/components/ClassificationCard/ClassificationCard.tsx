@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Container, Content, Example, Title, Wrapper } from './ClassificationCard.style';
+import { CardContainer, Content, Example, Title, Wrapper } from './ClassificationCard.style';
 
 interface ClassificationCard extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
@@ -19,13 +19,13 @@ const ClassificationCard = ({
   ...props
 }: ClassificationCard) => {
   return (
-    <Container backColor={color} {...props}>
+    <CardContainer backColor={color} {...props}>
       <Wrapper img={imgSrc}>
         <Title>{title}</Title>
         <Content>{content}</Content>
         <Example>{exampleText}</Example>
       </Wrapper>
-    </Container>
+    </CardContainer>
   );
 };
 
