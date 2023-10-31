@@ -3,6 +3,7 @@ import InputForm from '@/components/common/InputForm/InputForm';
 import TextAreaForm from '@/components/common/TextAreaForm/TextAreaForm';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
 import useSubmitForm from '@/hooks/query/event/useSubmitForm';
+import { validateTimeCompare, validateTodayDate } from '@/utils/validate';
 
 import { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
@@ -39,14 +40,11 @@ const PerformanceForm = () => {
     BANK_NAME,
     ACCOUNT,
     MAX_TICKET,
-    START_TIME,
-    LAST_TIME,
   } = ERROR_MESSAGE.EVENT;
 
   useEffect(() => {
     const imgSrc = watch('poster');
     if (imgSrc[0]) {
-      console.log(imgSrc);
       const reader = new FileReader();
       reader.readAsDataURL(imgSrc[0]);
       reader.onload = () => {
@@ -59,28 +57,6 @@ const PerformanceForm = () => {
   const handleSubmitForm = (data: FieldValues) => {
     if (isSubmitLoading) return;
     submitForm({ data });
-  };
-
-  const validateTodayDate = (value: Date) => {
-    const selectedDate = new Date(value);
-    const today = new Date();
-
-    if (selectedDate <= today) {
-      return START_TIME;
-    }
-
-    return true;
-  };
-
-  const validateTimeCompare = (lastTime: Date, startTime: Date) => {
-    const selectedTime = new Date(lastTime);
-    const start = new Date(startTime);
-
-    if (selectedTime <= start) {
-      return LAST_TIME;
-    }
-
-    return true;
   };
 
   return (
