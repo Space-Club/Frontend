@@ -6,7 +6,7 @@ const END_POINTS = {
   KAKAO_LOGIN: '/login/kakao',
   REGISTER: '/users',
   MY_CLUB: '/myclub', // TODO: API 명세서 나올시, 수정 필요
-  PERFORMANCE_FORM: '/events', // TODO: API 명세서 나올시, 수정 필요
+  PERFORMANCE_FORM: '/events',
   GET_MY_EVENT: '/profile/event/myEvent', //TODO: API 명세서 나올시, 수정 필요
 };
 

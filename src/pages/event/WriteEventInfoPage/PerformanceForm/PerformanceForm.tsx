@@ -54,13 +54,13 @@ const PerformanceForm = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watch('poster')]);
 
-  const handleSubmitForm = (data: FieldValues) => {
+  const onPerformanceSubmitForm = (data: FieldValues) => {
     if (isSubmitLoading) return;
     submitForm({ data });
   };
 
   return (
-    <PerformanceFormContainer onSubmit={handleSubmit(handleSubmitForm)}>
+    <PerformanceFormContainer onSubmit={handleSubmit(onPerformanceSubmitForm)}>
       <ContentArea>
         <InputForm
           {...register('title', {
