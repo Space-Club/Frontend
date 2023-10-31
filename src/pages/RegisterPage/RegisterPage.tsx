@@ -6,7 +6,7 @@ import { FieldValues, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import { ErrorMessage } from './RegisterPage.style';
-import { Container, SubmitBtn, Title } from './RegisterPage.style';
+import { RegisterContainer, SubmitBtn, Title } from './RegisterPage.style';
 
 const RegisterPage = () => {
   const {
@@ -47,7 +47,7 @@ const RegisterPage = () => {
   };
 
   return (
-    <Container onSubmit={handleSubmit(handleFormSubmit)}>
+    <RegisterContainer onSubmit={handleSubmit(handleFormSubmit)}>
       <Title>추가 정보를 입력해주세요</Title>
       <InputForm
         {...register('name', {
@@ -69,7 +69,7 @@ const RegisterPage = () => {
       />
       {errors.number && <ErrorMessage>{errors.number.message as string}</ErrorMessage>}
       <SubmitBtn type="submit">가입 완료</SubmitBtn>
-    </Container>
+    </RegisterContainer>
   );
 };
 

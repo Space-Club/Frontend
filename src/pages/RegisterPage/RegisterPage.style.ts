@@ -1,7 +1,7 @@
 import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
-const Container = styled.form`
+const RegisterContainer = styled.form`
   width: 30rem;
   height: 100vh;
   display: flex;
@@ -34,4 +34,4 @@ const ErrorMessage = styled.div`
   align-self: flex-start;
 `;
 
-export { Container, Title, SubmitBtn, ErrorMessage };
+export { RegisterContainer, Title, SubmitBtn, ErrorMessage };
