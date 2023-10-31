@@ -1,8 +1,8 @@
-import postPerformanceForm from '@/apis/event/postPerformanceForm';
 import ImageForm from '@/components/ImageForm/ImageForm';
 import InputForm from '@/components/common/InputForm/InputForm';
 import TextAreaForm from '@/components/common/TextAreaForm/TextAreaForm';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
+import useSubmitForm from '@/hooks/query/event/useSubmitForm';
 
 import { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
@@ -24,6 +24,8 @@ const PerformanceForm = () => {
     formState: { errors },
   } = useForm();
   const [imgFile, setImgFile] = useState('');
+  const { mutate: submitForm, isLoading: isSubmitLoading } = useSubmitForm();
+
   const {
     REQUIRED_EVENT_NAME,
     REQUIRED_START_TIME,
@@ -44,6 +46,7 @@ const PerformanceForm = () => {
   useEffect(() => {
     const imgSrc = watch('poster');
     if (imgSrc[0]) {
+      console.log(imgSrc);
       const reader = new FileReader();
       reader.readAsDataURL(imgSrc[0]);
       reader.onload = () => {
@@ -53,12 +56,9 @@ const PerformanceForm = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watch('poster')]);
 
-  const handleSubmitForm = async (data: FieldValues) => {
-    try {
-      await postPerformanceForm({ data });
-    } catch {
-      throw new Error('폼을 제출하는데 실패했습니다.');
-    }
+  const handleSubmitForm = (data: FieldValues) => {
+    if (isSubmitLoading) return;
+    submitForm({ data });
   };
 
   const validateTodayDate = (value: Date) => {

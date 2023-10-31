@@ -23,8 +23,8 @@ const postPerformanceForm = async ({ data }: postPerformanceForm) => {
     poster,
   } = data;
 
-  const formData = {
-    category: '공연',
+  const mook = {
+    category: 'SHOW',
     clubId: 1,
     eventInfo: {
       title,
@@ -49,12 +49,17 @@ const postPerformanceForm = async ({ data }: postPerformanceForm) => {
       closeTime: closeDate.split('T')[1],
     },
   };
+  const formData = new FormData();
+  formData.append('request', JSON.stringify(mook));
+  const imageBlob = new Blob([poster[0]], { type: 'image/jpeg' });
+  formData.append('poster', imageBlob, 'image.png');
+  console.log('form', formData);
   await axiosClient.post(
-    END_POINTS.PERFORMANCE_FORM,
+    `https://spaceclub.site/api/v1${END_POINTS.PERFORMANCE_FORM}`,
     { formData },
     {
       headers: {
-        image: poster,
+        'Content-Type': 'multipart/form-data',
       },
     },
   );
