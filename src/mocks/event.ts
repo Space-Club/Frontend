@@ -33,8 +33,8 @@ const eventHandlers = [
 
       data += new TextDecoder().decode(value);
     }
+
     eventList.push(JSON.parse(data));
-    console.log('eventList', eventList);
     return HttpResponse.json({ status: 201 });
   }),
 

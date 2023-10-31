@@ -1,8 +1,9 @@
-import postPerformanceForm from '@/apis/event/postPerformanceForm';
 import ImageForm from '@/components/ImageForm/ImageForm';
 import InputForm from '@/components/common/InputForm/InputForm';
 import TextAreaForm from '@/components/common/TextAreaForm/TextAreaForm';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
+import useSubmitForm from '@/hooks/query/event/useSubmitForm';
+import { validateTimeCompare, validateTodayDate } from '@/utils/validate';
 
 import { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
@@ -24,6 +25,8 @@ const PerformanceForm = () => {
     formState: { errors },
   } = useForm();
   const [imgFile, setImgFile] = useState('');
+  const { mutate: submitForm, isLoading: isSubmitLoading } = useSubmitForm();
+
   const {
     REQUIRED_EVENT_NAME,
     REQUIRED_START_TIME,
@@ -37,8 +40,6 @@ const PerformanceForm = () => {
     BANK_NAME,
     ACCOUNT,
     MAX_TICKET,
-    START_TIME,
-    LAST_TIME,
   } = ERROR_MESSAGE.EVENT;
 
   useEffect(() => {
@@ -53,41 +54,16 @@ const PerformanceForm = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watch('poster')]);
 
-  const handleSubmitForm = async (data: FieldValues) => {
-    try {
-      await postPerformanceForm({ data });
-    } catch {
-      throw new Error('폼을 제출하는데 실패했습니다.');
-    }
-  };
-
-  const validateTodayDate = (value: Date) => {
-    const selectedDate = new Date(value);
-    const today = new Date();
-
-    if (selectedDate <= today) {
-      return START_TIME;
-    }
-
-    return true;
-  };
-
-  const validateTimeCompare = (lastTime: Date, startTime: Date) => {
-    const selectedTime = new Date(lastTime);
-    const start = new Date(startTime);
-
-    if (selectedTime <= start) {
-      return LAST_TIME;
-    }
-
-    return true;
+  const onPerformanceSubmitForm = (data: FieldValues) => {
+    if (isSubmitLoading) return;
+    submitForm({ data });
   };
 
   return (
-    <PerformanceFormContainer onSubmit={handleSubmit(handleSubmitForm)}>
+    <PerformanceFormContainer onSubmit={handleSubmit(onPerformanceSubmitForm)}>
       <ContentArea>
         <InputForm
-          {...register('eventName', {
+          {...register('title', {
             required: `${REQUIRED_EVENT_NAME}`,
             maxLength: 30,
           })}
@@ -95,10 +71,10 @@ const PerformanceForm = () => {
           inputType="text"
           placeholder="행사 이름을 입력하세요"
         />
-        {errors.eventName && <ErrorMessage>{errors.eventName.message as string}</ErrorMessage>}
+        {errors.title && <ErrorMessage>{errors.title.message as string}</ErrorMessage>}
         <TwoInputContainer>
           <HalfInputForm
-            {...register('startTime', {
+            {...register('startDate', {
               required: `${REQUIRED_START_TIME}`,
               validate: validateTodayDate,
             })}
@@ -106,7 +82,7 @@ const PerformanceForm = () => {
             inputType="datetime-local"
           />
         </TwoInputContainer>
-        {errors.startTime && <ErrorMessage>{errors.startTime.message as string}</ErrorMessage>}
+        {errors.startDate && <ErrorMessage>{errors.startDate.message as string}</ErrorMessage>}
         <InputForm
           {...register('location', { required: `${REQUIRED_LOCATION}` })}
           labelText="장소"
@@ -115,7 +91,7 @@ const PerformanceForm = () => {
         {errors.location && <ErrorMessage>{errors.location.message as string}</ErrorMessage>}
         <TwoInputContainer>
           <InputForm
-            {...register('personnel', {
+            {...register('capacity', {
               max: { value: 999, message: `${PERSONNEL}` },
             })}
             labelText="정원"
@@ -143,7 +119,7 @@ const PerformanceForm = () => {
             placeholder="은행명"
           />
           <InputForm
-            {...register('account', {
+            {...register('accountNumber', {
               maxLength: { value: 30, message: `${ACCOUNT}` },
             })}
             labelText="계좌 번호"
@@ -154,7 +130,7 @@ const PerformanceForm = () => {
         {errors.bankName && <ErrorMessage>{errors.bankName?.message as string}</ErrorMessage>}
         {errors.account && <ErrorMessage>{errors.account?.message as string}</ErrorMessage>}
         <HalfInputForm
-          {...register('maxTicket', {
+          {...register('maxTicketCount', {
             max: { value: 999, message: `${MAX_TICKET}` },
           })}
           labelText="인당 예매 가능 수"
@@ -163,7 +139,7 @@ const PerformanceForm = () => {
         />
         <TwoInputContainer>
           <InputForm
-            {...register('formStartTime', {
+            {...register('openDate', {
               required: `${REQUIRED_FORM_START_TIME}`,
               validate: validateTodayDate,
             })}
@@ -171,20 +147,16 @@ const PerformanceForm = () => {
             inputType="datetime-local"
           />
           <InputForm
-            {...register('formLastTime', {
+            {...register('closeDate', {
               required: `${REQUIRED_FORM_LAST_TIME}`,
-              validate: (value) => validateTimeCompare(value, watch('formStartTime')),
+              validate: (value) => validateTimeCompare(value, watch('openDate')),
             })}
             labelText="마감 시작 날짜 및 시간"
             inputType="datetime-local"
           />
         </TwoInputContainer>
-        {errors.formStartTime && (
-          <ErrorMessage>{errors.formStartTime.message as string}</ErrorMessage>
-        )}
-        {errors.formLastTime && (
-          <ErrorMessage>{errors.formLastTime.message as string}</ErrorMessage>
-        )}
+        {errors.openDate && <ErrorMessage>{errors.openDate.message as string}</ErrorMessage>}
+        {errors.closeDate && <ErrorMessage>{errors.closeDate.message as string}</ErrorMessage>}
       </ContentArea>
       <ContentArea>
         <ImageForm
@@ -195,16 +167,14 @@ const PerformanceForm = () => {
         />
         {errors.poster && <ErrorMessage>{errors.poster.message as string}</ErrorMessage>}
         <TextAreaForm
-          {...register('eventContent', {
+          {...register('content', {
             required: `${REQUIRED_EVENT_CONTENT}`,
             maxLength: 200,
           })}
           labelText="행사 내용 작성"
           rows={10}
         />
-        {errors.eventContent && (
-          <ErrorMessage>{errors.eventContent?.message as string}</ErrorMessage>
-        )}
+        {errors.content && <ErrorMessage>{errors.content?.message as string}</ErrorMessage>}
         <SubmitButton type="submit">다음</SubmitButton>
       </ContentArea>
     </PerformanceFormContainer>

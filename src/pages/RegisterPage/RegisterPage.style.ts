@@ -1,7 +1,7 @@
 import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
-const Container = styled.form`
+const RegisterContainer = styled.form`
   width: 30rem;
   height: 100vh;
   display: flex;
@@ -16,12 +16,12 @@ const Title = styled.div`
   font-size: 2rem;
   margin: 3rem 0;
 `;
-const SubmitBtn = styled.button`
+const SubmitButton = styled.button`
   width: 100%;
   margin-top: 3rem;
   padding: 0.5rem 0;
   border: none;
-  font-size: 20px;
+  font-size: ${Theme.fontSize.smallTitle};
   background-color: ${Theme.color.tSemiActive};
   border-radius: 0.25rem;
   color: white;
@@ -34,4 +34,4 @@ const ErrorMessage = styled.div`
   align-self: flex-start;
 `;
 
-export { Container, Title, SubmitBtn, ErrorMessage };
+export { RegisterContainer, Title, SubmitButton, ErrorMessage };
