@@ -50,8 +50,9 @@ const postPerformanceForm = async ({ data }: postPerformanceForm) => {
     },
   };
   const formData = new FormData();
-  formData.append('request', JSON.stringify(dataTrasnform));
+  const blobRequest = new Blob([JSON.stringify(dataTrasnform)], { type: 'application/json' });
   const imageBlob = new Blob([poster[0]], { type: 'image/jpeg' });
+  formData.append('request', blobRequest);
   formData.append('poster', imageBlob, 'image.png');
 
   await axiosClient.post(

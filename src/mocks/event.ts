@@ -2,7 +2,7 @@ import { HttpResponse, http } from 'msw';
 
 import { END_POINTS } from '@constants/api';
 
-import { allEvents, myEvent, eventDetail } from './data/eventData';
+import { allEvents, eventDetail, myEvent } from './data/eventData';
 
 interface event {
   eventName: string;
@@ -17,35 +17,6 @@ interface event {
   poster: File;
   eventContent: string;
 }
-
-const myEvent: GetMyEventResponse = {
-  data: [
-    {
-      id: '1',
-      title: 'test1',
-      clubName: 'test',
-      startDate: '2021-10-10',
-      location: 'test',
-      status: 'test',
-    },
-    {
-      id: '2',
-      title: 'test2',
-      clubName: 'test',
-      startDate: '2021-10-10',
-      location: 'test',
-      status: 'test',
-    },
-  ],
-  pageData: {
-    first: true,
-    last: true,
-    pageNumber: 1,
-    size: 10,
-    totalPages: 30,
-    totalElements: 2,
-  },
-};
 
 const eventList: event[] = [];
 
@@ -74,8 +45,8 @@ const eventHandlers = [
   http.get(`${END_POINTS.ALL_EVENTS}?page=1&size=10&sort=id,startDate`, async () => {
     return HttpResponse.json(allEvents, { status: 201 });
   }),
-  
-   http.get(`${END_POINTS.GET_EVENT_DETAIL}/:eventId`, async ({ params }) => {
+
+  http.get(`${END_POINTS.GET_EVENT_DETAIL}/:eventId`, async ({ params }) => {
     const { eventId } = params;
     console.log('id', eventId);
     return HttpResponse.json(eventDetail, { status: 201 });
