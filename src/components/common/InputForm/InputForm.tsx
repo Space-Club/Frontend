@@ -11,6 +11,7 @@ interface InputFormProps {
 
 const InputForm = forwardRef<HTMLInputElement, InputFormProps>(
   ({ labelText, inputType, placeholder, maxLenght, ...props }, ref) => {
+
     return (
       <InputWrapper>
         <LabelStyled htmlFor={labelText}>{labelText}</LabelStyled>
