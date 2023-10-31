@@ -46,6 +46,7 @@ const CreateClubPage = () => {
   const [previewImage, setPreviewImage] = useState<File | null>(null);
 
   const onSubmit: SubmitHandler<CreateClubFormValue> = (data) => {
+    console.log(data);
     createClub(data);
   };
 
