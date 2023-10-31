@@ -29,12 +29,8 @@ const CreateClubPage = () => {
       <ContentWrapperStyled>
         <Avatar avatarSize="large" isEditable={true} />
         <ClubInfoWrapperStyled>
-          <InputForm labelText={CLUB_NAME} inputType="text" placeholoder={CLUB_NAME_PLACEHOLDER} />
-          <InputForm
-            labelText={CLUB_INTRO}
-            inputType="text"
-            placeholoder={CLUB_INTRO_PLACEHOLDER}
-          />
+          <InputForm labelText={CLUB_NAME} inputType="text" placeholder={CLUB_NAME_PLACEHOLDER} />
+          <InputForm labelText={CLUB_INTRO} inputType="text" placeholder={CLUB_INTRO_PLACEHOLDER} />
         </ClubInfoWrapperStyled>
       </ContentWrapperStyled>
       <ButtonWrapperStyled>

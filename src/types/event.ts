@@ -91,4 +91,10 @@ interface getEventDetailResponse {
   poster: string;
 }
 
-export { GetAllEventsRequest, GetAllEventsResponse, GetMyEventRequest, GetMyEventResponse, getEventDetailResponse };
+export {
+  GetAllEventsRequest,
+  GetAllEventsResponse,
+  GetMyEventRequest,
+  GetMyEventResponse,
+  getEventDetailResponse,
+};

@@ -1,69 +1,57 @@
 import postUser from '@/apis/users/postUser';
 import InputForm from '@/components/common/InputForm/InputForm';
-import { ChangeEvent, MouseEvent, useEffect, useRef, useState } from 'react';
+import { ERROR_MESSAGE } from '@/constants/errorMessage';
+import { validateName, validateNumber } from '@/utils/validate';
+
+import { FieldValues, useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import { Container, SubmitBtn, Title } from './RegisterPage.style';
+import { ErrorMessage } from './RegisterPage.style';
+import { RegisterContainer, SubmitButton, Title } from './RegisterPage.style';
 
 const RegisterPage = () => {
-  const [name, setName] = useState<string>('');
-  const [number, setNumber] = useState<string>('');
-  const nameRef = useRef<HTMLInputElement>(null);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const { REQUIRED_NAME, REQUIRED_NUMBER, NAME } = ERROR_MESSAGE.REGISTER;
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // Todo: 로그인 페이지에서 온 것이 아닐 경우 처리
-    nameRef.current?.focus();
-  }, []);
-
-  const validationName = (input: string) => {
-    const regex = /^[가-힣ㄱ-ㅎㅏ-ㅣ]+$/;
-    return regex.test(input);
-  };
-  const validationNumber = (input: string) => {
-    const regex = /^[0-9]+$/;
-    return regex.test(input);
-  };
-
-  const handleChangeName = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    if (value !== '' && !validationName(value)) return;
-    setName(value);
-  };
-  const handleChangeNumber = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    if (value !== '' && !validationNumber(value)) return;
-    setNumber(value);
-  };
-
-  const handleSubmit = async (e: MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-
-    await postUser({ name, number });
-
-    navigate('/');
+  const onRegisterSubmitForm = async (data: FieldValues) => {
+    try {
+      const { name, number } = data;
+      await postUser({ name, number });
+      navigate('/');
+    } catch {
+      throw new Error('폼을 제출하는데 실패했습니다.');
+    }
   };
 
   return (
-    <Container>
+    <RegisterContainer onSubmit={handleSubmit(onRegisterSubmitForm)}>
       <Title>추가 정보를 입력해주세요</Title>
       <InputForm
+        {...register('name', {
+          required: REQUIRED_NAME,
+          minLength: { value: 2, message: `${NAME}` },
+          maxLength: { value: 10, message: `${NAME}` },
+          validate: validateName,
+        })}
         labelText="이름"
         inputType="text"
-        placeholoder="이름을 입력해주세요."
-        value={name}
-        inputRef={nameRef}
-        onChange={handleChangeName}
+        placeholder="이름을 입력해주세요."
       />
+      {errors.name && <ErrorMessage>{errors.name.message as string}</ErrorMessage>}
       <InputForm
+        {...register('number', { required: REQUIRED_NUMBER, validate: validateNumber })}
         labelText="연락처"
         inputType="tel"
-        placeholoder="숫자만 입력해주세요."
-        value={number}
-        onChange={handleChangeNumber}
+        placeholder="숫자만 입력해주세요."
       />
-      <SubmitBtn onClick={handleSubmit}>가입 완료</SubmitBtn>
-    </Container>
+      {errors.number && <ErrorMessage>{errors.number.message as string}</ErrorMessage>}
+      <SubmitButton type="submit">가입 완료</SubmitButton>
+    </RegisterContainer>
   );
 };
 
