@@ -23,6 +23,11 @@ import {
 
 const EventDetailPage = () => {
   const { eventId } = useParams();
+
+  if (!eventId) {
+    throw new Error('eventId is null'); //TODO: eventId가 없을 때 처리
+  }
+
   const { data: eventDetail } = useQuery(['event_detail', 'eventId'], () =>
     getEventDetail({ id: eventId! }),
   );
@@ -84,7 +89,7 @@ const EventDetailPage = () => {
             <div>{name}</div>
           </div>
           <ButtonWrapper>
-            <SemiPurpleButton onClick={() => applyEvent({ eventId: '1' })}>
+            <SemiPurpleButton onClick={() => applyEvent({ eventId })}>
               참여 신청하기
             </SemiPurpleButton>
             <BookMark reverse />
