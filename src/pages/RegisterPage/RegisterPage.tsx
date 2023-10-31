@@ -1,24 +1,56 @@
 import InputForm from '@/components/common/InputForm/InputForm';
+import { ERROR_MESSAGE } from '@/constants/errorMessage';
+import { validateName, validateNumber } from '@/utils/validate';
 
-import { useEffect, useRef } from 'react';
+import { FieldValues, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
-import { Container, SubmitBtn, Title } from './RegisterPage.style';
+import { ErrorMessage } from './RegisterPage.style';
+import { RegisterContainer, SubmitButton, Title } from './RegisterPage.style';
 
 const RegisterPage = () => {
-  const nameRef = useRef<HTMLInputElement>(null);
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const { REQUIRED_NAME, REQUIRED_NUMBER, NAME } = ERROR_MESSAGE.REGISTER;
+  const navigate = useNavigate();
 
-  useEffect(() => {
-    // Todo: 로그인 페이지에서 온 것이 아닐 경우 처리
-    nameRef.current?.focus();
-  }, []);
+  const onRegisterSubmitForm = async (data: FieldValues) => {
+    try {
+      const { name, number } = data;
+      await postUser({ name, number });
+      navigate('/');
+    } catch {
+      throw new Error('폼을 제출하는데 실패했습니다.');
+    }
+  };
 
   return (
-    <Container>
+    <RegisterContainer onSubmit={handleSubmit(onRegisterSubmitForm)}>
       <Title>추가 정보를 입력해주세요</Title>
-      <InputForm labelText="이름" inputType="text" placeholoder="이름을 입력해주세요." />
-      <InputForm labelText="연락처" inputType="tel" placeholoder="숫자만 입력해주세요." />
-      <SubmitBtn>가입 완료</SubmitBtn>
-    </Container>
+      <InputForm
+        {...register('name', {
+          required: REQUIRED_NAME,
+          minLength: { value: 2, message: `${NAME}` },
+          maxLength: { value: 10, message: `${NAME}` },
+          validate: validateName,
+        })}
+        labelText="이름"
+        inputType="text"
+        placeholder="이름을 입력해주세요."
+      />
+      {errors.name && <ErrorMessage>{errors.name.message as string}</ErrorMessage>}
+      <InputForm
+        {...register('number', { required: REQUIRED_NUMBER, validate: validateNumber })}
+        labelText="연락처"
+        inputType="tel"
+        placeholder="숫자만 입력해주세요."
+      />
+      {errors.number && <ErrorMessage>{errors.number.message as string}</ErrorMessage>}
+      <SubmitButton type="submit">가입 완료</SubmitButton>
+    </RegisterContainer>
   );
 };
 

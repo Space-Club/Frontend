@@ -4,13 +4,13 @@ import { InputStyled, InputWrapper, LabelStyled } from './InputForm.style';
 
 interface InputFormProps {
   labelText: string;
-  inputType: 'date' | 'file' | 'number' | 'search' | 'tel' | 'text' | 'time';
-  placeholoder?: string;
+  inputType: 'date' | 'file' | 'number' | 'search' | 'tel' | 'text' | 'time' | 'datetime-local';
+  placeholder?: string;
   maxLenght?: number;
 }
 
 const InputForm = forwardRef<HTMLInputElement, InputFormProps>(
-  ({ labelText, inputType, placeholoder, maxLenght, ...props }, ref) => {
+  ({ labelText, inputType, placeholder, maxLenght, ...props }, ref) => {
     return (
       <InputWrapper>
         <LabelStyled htmlFor={labelText}>{labelText}</LabelStyled>
@@ -18,8 +18,8 @@ const InputForm = forwardRef<HTMLInputElement, InputFormProps>(
           id={labelText}
           type={inputType}
           ref={ref}
-          placeholder={placeholoder}
           maxLength={maxLenght}
+          placeholder={placeholder}
           {...props}
         />
       </InputWrapper>
