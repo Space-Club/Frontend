@@ -6,14 +6,14 @@ const HeaderLayoutStyled = styled.div`
   justify-content: center;
   align-items: flex-end;
   width: 100%;
-  height: 15vh;
+  height: 5.44rem;
   min-height: 4rem;
 `;
 
 const HeaderContainerStyled = styled.div`
   display: flex;
   width: 80%;
-  min-width: 60rem;
+  min-width: 35rem;
   border-bottom: 0.07rem solid ${Theme.color.lineColor};
 `;
 
