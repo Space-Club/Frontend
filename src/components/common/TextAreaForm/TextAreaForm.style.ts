@@ -6,16 +6,14 @@ export const InputWrapper = styled.div`
 `;
 export const LabelStyled = styled.label`
   display: block;
-  font-size: 1rem;
 `;
-export const InputStyled = styled.input`
+export const TextAreaStyled = styled.textarea`
   width: 100%;
-  height: 3rem;
   border: none;
   outline: none;
   margin-top: 0.5rem;
   border: 1px solid ${Theme.color.tLine};
   border-radius: 1rem;
-  padding-left: 1rem;
+  padding: 1rem;
   box-sizing: border-box;
 `;
