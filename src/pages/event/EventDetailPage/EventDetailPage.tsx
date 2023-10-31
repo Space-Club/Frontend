@@ -34,10 +34,6 @@ const EventDetailPage = () => {
 
   const { applyEvent } = usePostEventApplyMutation();
 
-  if (!eventDetail) {
-    return <div>Loading...</div>; // TODO: 로딩 컴포넌트 구현 시 교체
-  }
-
   const {
     title,
     content,
@@ -61,7 +57,7 @@ const EventDetailPage = () => {
         </UpdateDeleteWrapper>
       </FormButtonWrapper>
       <EventDetailWrapper>
-        <Poster posterSrc={poster} width={23} />
+        <Poster posterSrc={poster ? poster : '123'} width={23} />
         <DetailContentWrapper>
           <EventTitle>{title}</EventTitle>
           <TwoContentWrapper>
