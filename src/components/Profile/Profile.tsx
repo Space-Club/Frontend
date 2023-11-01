@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import getMyProfileInfo from '@/apis/users/getMyProfileInfo';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
 import { getStorage } from '@/utils/localStorage';
@@ -8,10 +9,13 @@ import { useForm } from 'react-hook-form';
 
 import { useQuery } from '@tanstack/react-query';
 
+=======
+>>>>>>> 9394bae (feat: profilePage ui 구현)
 import Avatar from '../common/Avatar/Avatar';
 import InputForm from '../common/InputForm/InputForm';
 import { EditButton, InfoWrapper, ProfileContainer } from './Profile.style';
 
+<<<<<<< HEAD
 const QUERY_KEY = {
   ALL_EVENTS: 'USER_PROFILE',
   ID: getStorage('token'),
@@ -53,6 +57,16 @@ const Profile = () => {
           {...register('phoneNumber', { required: REQUIRED_NUMBER, validate: validateNumber })}
           inputType="text"
         />
+=======
+const Profile = () => {
+  return (
+    <ProfileContainer>
+      <Avatar avatarSize="large" isEditable />
+      <InfoWrapper>
+        <EditButton>정보 수정하기</EditButton>
+        <InputForm inputType="text" />
+        <InputForm inputType="text" />
+>>>>>>> 9394bae (feat: profilePage ui 구현)
       </InfoWrapper>
     </ProfileContainer>
   );
