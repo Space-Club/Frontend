@@ -1,4 +1,5 @@
 import Theme from '@/styles/Theme';
+import { sideBarScrollAreaStyled } from '@/styles/common';
 import { css } from '@emotion/css';
 import styled from '@emotion/styled';
 
@@ -16,7 +17,7 @@ const SidebarContainer = styled.div`
   color: ${Theme.color.gray};
 `;
 
-const ClubWrapper = styled.div`
+const ClubWrapper = styled(sideBarScrollAreaStyled)`
   overflow: auto;
   flex-grow: 1;
   display: flex;

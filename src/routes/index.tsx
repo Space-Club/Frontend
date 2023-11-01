@@ -61,7 +61,7 @@ const router = createBrowserRouter([
                 element: <ClubEventPage />,
               },
               {
-                path: 'manage/clubId',
+                path: 'manage/:clubId',
                 element: <ManageClubPage />,
               },
               {

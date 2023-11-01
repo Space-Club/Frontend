@@ -1,6 +1,6 @@
 import { KAKAO_AUTH_URL } from '@/constants/auth';
 
-import { KakaoLoginButtonStyled, KakaoLoginLink } from './KakaoLoginButton.style';
+import { KakaoLoginButtonStyled, KakaoLoginLink } from './KakaoAuthButton.style';
 
 const KakaoLoginButton = () => {
   return (

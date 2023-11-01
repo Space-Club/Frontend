@@ -6,5 +6,8 @@ const CREATE_CLUB = {
   CLUB_INTRO_PLACEHOLDER: '클럽 소개를 작성하세요.',
   CREATE_CLUB_BUTTON: '클럽 생성하기',
 };
+const INVITE_LINK = {
+  VALID_TIME: 48,
+};
 
-export { CREATE_CLUB };
+export { CREATE_CLUB, INVITE_LINK };
