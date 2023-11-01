@@ -1,6 +1,6 @@
 import { END_POINTS } from '@/constants/api';
 
-import { axiosClient } from '../axiosClient';
+import { axiosClientWithAuth } from '../axiosClient';
 
 interface GetMyClub {
   clubId: number;
@@ -13,8 +13,7 @@ interface GetMyClubsResponse {
 }
 
 const getMyClubs = async () => {
-  const { data } = await axiosClient.get<GetMyClubsResponse>(`${END_POINTS.MY_CLUB}`);
-  console.log(data);
+  const { data } = await axiosClientWithAuth.get<GetMyClubsResponse>(`${END_POINTS.MY_CLUB}`);
   return data;
 };
 

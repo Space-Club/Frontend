@@ -12,7 +12,6 @@ import { ClubWrapper, CreateClubButtonStyled, SidebarContainer, iconStyle } from
 const SideNav = () => {
   const { clubs, isLoading } = useClubs();
   const navigate = useNavigate();
-  console.log(clubs);
 
   return (
     <SidebarContainer>
