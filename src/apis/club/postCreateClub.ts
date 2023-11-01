@@ -1,12 +1,6 @@
 import { axiosClient } from '@/apis/axiosClient';
 import { END_POINTS } from '@/constants/api';
-
-export interface CreateClubFormValue {
-  name: string;
-  info: string;
-  owner: string;
-  image: FileList | null;
-}
+import { CreateClubFormValue } from '@/types/club';
 
 const postCreateClub = async ({ name, info, owner, image }: CreateClubFormValue) => {
   const dataTransform = {

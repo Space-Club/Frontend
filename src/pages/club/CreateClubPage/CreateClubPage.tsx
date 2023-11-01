@@ -1,10 +1,10 @@
-import { CreateClubFormValue } from '@/apis/club/postCreateClub';
 import ActiveButton from '@/components/ActiveButton/ActiveButton';
 import Avatar from '@/components/common/Avatar/Avatar';
 import InputForm from '@/components/common/InputForm/InputForm';
 import { CREATE_CLUB } from '@/constants/club';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
 import { useClub } from '@/hooks/query/club/useClub';
+import { CreateClubFormValue } from '@/types/club';
 
 import { ChangeEvent, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
