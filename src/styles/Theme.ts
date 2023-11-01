@@ -30,6 +30,8 @@ const color = {
   tWhiteGrey: '#EFEFF4',
   idkGrey: '#CCCCCC',
   tSemiActive: '#9370DC',
+  sideScrollBarThumb: 'rgba(239, 239, 244, 0.2)',
+  sideScrollBarTrack: 'rgba(239, 239, 244, 0.1)',
 } as const;
 
 const componentStyle = {

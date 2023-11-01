@@ -11,6 +11,7 @@ const END_POINTS = {
   GET_EVENT_DETAIL: '/event/detail',
   ALL_EVENTS: '/events',
   INVITE_LINK: '/club/invite', // TODO: API 명세서 나올시, 수정 필요
-};
+  POST_EVENT_APPLY: '/events/apply',
+} as const;
 
 export { SPACECLUB_BASE_URL, NETWORK_TIMEOUT, END_POINTS };

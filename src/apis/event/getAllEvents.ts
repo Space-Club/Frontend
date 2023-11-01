@@ -5,9 +5,8 @@ import { axiosClient } from '../axiosClient';
 
 const getAllEvents = async ({ pageNumber }: GetAllEventsRequest) => {
   const { data } = await axiosClient.get<GetAllEventsResponse>(
-    `${END_POINTS.ALL_EVENTS}?page${pageNumber}$size={10}&sort=startDate,desc`,
+    `${END_POINTS.ALL_EVENTS}?page=${pageNumber}&size=3&sort=id,asc`,
   );
   return data;
 };
-
 export default getAllEvents;
