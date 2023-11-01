@@ -6,12 +6,11 @@ interface InputFormProps {
   labelText: string;
   inputType: 'date' | 'file' | 'number' | 'search' | 'tel' | 'text' | 'time' | 'datetime-local';
   placeholder?: string;
-  maxLenght?: number;
+  maxLength?: number;
 }
 
 const InputForm = forwardRef<HTMLInputElement, InputFormProps>(
-  ({ labelText, inputType, placeholder, maxLenght, ...props }, ref) => {
-
+  ({ labelText, inputType, placeholder, maxLength, ...props }, ref) => {
     return (
       <InputWrapper>
         <LabelStyled htmlFor={labelText}>{labelText}</LabelStyled>
@@ -19,7 +18,7 @@ const InputForm = forwardRef<HTMLInputElement, InputFormProps>(
           id={labelText}
           type={inputType}
           ref={ref}
-          maxLength={maxLenght}
+          maxLength={maxLength}
           placeholder={placeholder}
           {...props}
         />

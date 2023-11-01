@@ -3,6 +3,7 @@ import ActiveButton from '@/components/ActiveButton/ActiveButton';
 import Avatar from '@/components/common/Avatar/Avatar';
 import InputForm from '@/components/common/InputForm/InputForm';
 import { CREATE_CLUB } from '@/constants/club';
+import { ERROR_MESSAGE } from '@/constants/errorMessage';
 import { useClub } from '@/hooks/query/club/useClub';
 
 import { ChangeEvent, useState } from 'react';
@@ -18,14 +19,6 @@ import {
 } from './CreateClubPage.style';
 
 const CreateClubPage = () => {
-  const {
-    CREATE_CLUB_TEXT,
-    CLUB_NAME,
-    CLUB_NAME_PLACEHOLDER,
-    CLUB_INTRO,
-    CLUB_INTRO_PLACEHOLDER,
-    CREATE_CLUB_BUTTON,
-  } = CREATE_CLUB;
   const {
     register,
     handleSubmit,
@@ -46,7 +39,6 @@ const CreateClubPage = () => {
   const [previewImage, setPreviewImage] = useState<File | null>(null);
 
   const onSubmit: SubmitHandler<CreateClubFormValue> = (data) => {
-    console.log(data);
     createClub(data);
   };
 
@@ -67,7 +59,7 @@ const CreateClubPage = () => {
   return (
     <>
       <HeaderContainerStyled>
-        <TitleStyled>{CREATE_CLUB_TEXT}</TitleStyled>
+        <TitleStyled>{CREATE_CLUB.TITLE}</TitleStyled>
       </HeaderContainerStyled>
       <form onSubmit={handleSubmit(onSubmit)}>
         <ContentWrapperStyled>
@@ -86,35 +78,47 @@ const CreateClubPage = () => {
           <ClubInfoWrapperStyled>
             <InputForm
               {...register('name', {
-                required: '클럽 이름을 작성해주세요.',
-                minLength: { value: 2, message: '최소 두 글자 이상 작성해주세요.' },
-                maxLength: { value: 12, message: '12글자 이상 작성할 수 없습니다.' },
+                required: ERROR_MESSAGE.CLUB.REQUIRED_NAME,
+                minLength: {
+                  value: CREATE_CLUB.NAME_MIN_LENGTH,
+                  message: ERROR_MESSAGE.CLUB.MIN_LENGTH_NAME,
+                },
+                maxLength: {
+                  value: CREATE_CLUB.NAME_MAX_LENGTH,
+                  message: ERROR_MESSAGE.CLUB.MAX_LENGTH_NAME,
+                },
               })}
-              labelText={CLUB_NAME}
+              labelText={CREATE_CLUB.NAME}
               inputType="text"
-              placeholder={CLUB_NAME_PLACEHOLDER}
-              maxLenght={12}
+              placeholder={CREATE_CLUB.NAME_PLACEHOLDER}
+              maxLength={CREATE_CLUB.NAME_MAX_LENGTH}
             />
             {errors?.name && <span>{errors.name.message}</span>}
-            <span>{`${clubName.length}/12`}</span>
+            <span>{`${clubName.length}/${CREATE_CLUB.NAME_MAX_LENGTH}`}</span>
             <InputForm
               {...register('info', {
-                required: '클럽 소개를 작성해주세요.',
-                minLength: { value: 2, message: '최소 두 글자 이상 작성해주세요.' },
-                maxLength: { value: 25, message: '25글자 이상 작성할 수 없습니다. ' },
+                required: ERROR_MESSAGE.CLUB.REQUIRED_INFO,
+                minLength: {
+                  value: CREATE_CLUB.INFO_MIN_LENGTH,
+                  message: ERROR_MESSAGE.CLUB.MIN_LENGTH_INFO,
+                },
+                maxLength: {
+                  value: CREATE_CLUB.INFO_MAX_LENGTH,
+                  message: ERROR_MESSAGE.CLUB.MAX_LENGTH_INFO,
+                },
               })}
-              labelText={CLUB_INTRO}
+              labelText={CREATE_CLUB.INFO}
               inputType="text"
-              placeholder={CLUB_INTRO_PLACEHOLDER}
-              maxLenght={25}
+              placeholder={CREATE_CLUB.INFO_PLACEHOLDER}
+              maxLength={CREATE_CLUB.INFO_MAX_LENGTH}
             />
             {errors?.info && <span>{errors.info.message}</span>}
-            <span>{`${clubInfo.length}/25`}</span>
+            <span>{`${clubInfo.length}/${CREATE_CLUB.INFO_MAX_LENGTH}`}</span>
           </ClubInfoWrapperStyled>
         </ContentWrapperStyled>
         <ButtonWrapperStyled>
           <ActiveButton
-            buttonText={CREATE_CLUB_BUTTON}
+            buttonText={CREATE_CLUB.BUTTON}
             fontSize="mediumTitle"
             isLoading={isLoading}
             disabled={isLoading}
