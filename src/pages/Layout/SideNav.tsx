@@ -1,30 +1,35 @@
-import getMyClub from '@/apis/users/getMyClub';
 import SideBarMyProfile from '@/components/SideBarMyProfile/SideBarMyProfile';
 import Avatar from '@/components/common/Avatar/Avatar';
 import { PATH } from '@/constants/path';
+import useClubs from '@/hooks/query/club/useClubs';
 
 import { FaPlusCircle } from 'react-icons/fa';
 import { IoMdHome, IoMdNotifications } from 'react-icons/io';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { useQuery } from '@tanstack/react-query';
-
 import { ClubWrapper, CreateClubButtonStyled, SidebarContainer, iconStyle } from './SideNav.style';
 
 const SideNav = () => {
-  const { data: clubs } = useQuery(['myclubs', 'userid'], () => getMyClub({ id: '1' }), {
-    refetchInterval: false,
-  }); //userid에 받는 방식 고려 후, 리팩토링
+  const { clubs, isLoading } = useClubs();
   const navigate = useNavigate();
+  console.log(clubs);
 
   return (
     <SidebarContainer>
       <ClubWrapper>
-        {clubs?.map((club) => (
-          <Link to={`/club/home/${club.id}`}>
-            <Avatar key={club.id} avatarSize="normal" profileImageSrc={club.src}></Avatar>
-          </Link>
-        ))}
+        {clubs?.map((club) =>
+          isLoading ? (
+            <div>loading</div>
+          ) : (
+            <Link to={`${PATH.CLUB.HOME}${club.clubId}`}>
+              <Avatar
+                key={club.clubId}
+                avatarSize="normal"
+                profileImageSrc={club.clubImage ?? ''}
+              ></Avatar>
+            </Link>
+          ),
+        )}
       </ClubWrapper>
       <CreateClubButtonStyled>
         <FaPlusCircle size={'1rem'} onClick={() => navigate(`${PATH.CLUB.CREATE}`)} />

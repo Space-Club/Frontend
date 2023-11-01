@@ -25,7 +25,7 @@ const ClubWrapper = styled.div`
   gap: 1rem;
   width: 100%;
 
-  &:first-child {
+  &:first-of-type {
     padding-top: 1rem;
   }
 `;
