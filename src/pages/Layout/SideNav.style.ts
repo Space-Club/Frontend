@@ -1,4 +1,5 @@
 import Theme from '@/styles/Theme';
+import { sideBarScrollAreaStyled } from '@/styles/common';
 import { css } from '@emotion/css';
 import styled from '@emotion/styled';
 
@@ -16,7 +17,7 @@ export const Container = styled.div`
   color: ${Theme.color.gray};
 `;
 
-export const AvatarGroup = styled.div`
+export const AvatarGroup = styled(sideBarScrollAreaStyled)`
   overflow: auto;
   flex-grow: 1;
   display: flex;
