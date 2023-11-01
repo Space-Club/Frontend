@@ -11,6 +11,8 @@ const END_POINTS = {
   GET_EVENT_DETAIL: '/event/detail',
   ALL_EVENTS: '/events',
   POST_EVENT_APPLY: '/events/apply',
+  PATCH_MEMBER_ROLE: ({ clubId, memberId }: { clubId: string; memberId: string }) =>
+    `/clubs/${clubId}/members/${memberId}`,
 } as const;
 
 export { SPACECLUB_BASE_URL, NETWORK_TIMEOUT, END_POINTS };
