@@ -1,5 +1,7 @@
 import styled from '@emotion/styled';
 
+import Theme from './Theme';
+
 const EventTitleStyled = styled.div`
   margin-bottom: 3%;
   font-family: 'MainBold';
@@ -40,13 +42,13 @@ const sideBarScrollAreaStyled = styled.div`
     width: 0.3rem;
   }
   &::-webkit-scrollbar-thumb {
-    background: rgba(239, 239, 244, 0.2);
+    background: ${Theme.color.sideScrollBarThumb};
     border-radius: 0.75rem;
     box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
   }
   &::-webkit-scrollbar-track {
     border-radius: 0.75rem;
-    background: rgba(239, 239, 244, 0.1);
+    background: ${Theme.color.sideScrollBarTrack};
     box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
   }
 `;
