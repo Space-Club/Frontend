@@ -9,7 +9,7 @@ const END_POINTS = {
   PERFORMANCE_FORM: '/events',
   GET_MY_EVENT: '/profile/event/myEvent', //TODO: API 명세서 나올시, 수정 필요
   GET_EVENT_DETAIL: '/event/detail',
-  EVENTS: '/events',
+  ALL_EVENTS: '/events',
   INVITE_LINK: '/club/invite', // TODO: API 명세서 나올시, 수정 필요
 };
 
