@@ -35,4 +35,27 @@ const ellipsisText = styled.p`
   white-space: nowrap;
 `;
 
-export { EventTitleStyled, EventDateStyled, ClubNameStyled, PlaceStyled, ellipsisText };
+const sideBarScrollAreaStyled = styled.div`
+  &::-webkit-scrollbar {
+    width: 0.3rem;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(239, 239, 244, 0.2);
+    border-radius: 0.75rem;
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+  &::-webkit-scrollbar-track {
+    border-radius: 0.75rem;
+    background: rgba(239, 239, 244, 0.1);
+    box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+  }
+`;
+
+export {
+  EventTitleStyled,
+  EventDateStyled,
+  ClubNameStyled,
+  PlaceStyled,
+  ellipsisText,
+  sideBarScrollAreaStyled,
+};
