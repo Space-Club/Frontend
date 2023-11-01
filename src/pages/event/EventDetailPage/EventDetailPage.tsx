@@ -28,7 +28,7 @@ const EventDetailPage = () => {
     throw new Error('eventId is null'); //TODO: eventId가 없을 때 처리
   }
 
-  const { data: eventDetail } = useQuery(['event_detail', 'eventId'], () =>
+  const { data: eventDetail, isLoading } = useQuery(['event_detail', 'eventId'], () =>
     getEventDetail({ id: eventId! }),
   );
 
@@ -47,52 +47,57 @@ const EventDetailPage = () => {
     closeTime,
     name,
   } = eventDetail ?? {};
+
   return (
     <div>
-      <FormButtonWrapper>
-        <PurpleButton>제출된 폼 보기</PurpleButton>
-        <UpdateDeleteWrapper>
-          <PurpleButton reverse>수정하기</PurpleButton>
-          <PurpleButton>삭제하기</PurpleButton>
-        </UpdateDeleteWrapper>
-      </FormButtonWrapper>
-      <EventDetailWrapper>
-        <Poster posterSrc={poster ? poster : '123'} width={23} />
-        <DetailContentWrapper>
-          <EventTitle>{title}</EventTitle>
-          <TwoContentWrapper>
-            <div>
-              <ContentLabel>날짜</ContentLabel>
-              <div>{startDate}</div>
-            </div>
-            <div>
-              <ContentLabel>시간</ContentLabel>
-              <div>{startTime}</div>
-            </div>
-          </TwoContentWrapper>
-          <div>
-            <ContentLabel>장소</ContentLabel>
-            <div>{location}</div>
-          </div>
-          <div>
-            <ContentLabel>참여신청가능 기간</ContentLabel>
-            <div>
-              {openDate}, {openTime} - {closeDate}, {closeTime}
-            </div>
-          </div>
-          <div>
-            <ContentLabel>주최자</ContentLabel>
-            <div>{name}</div>
-          </div>
-          <ButtonWrapper>
-            <SemiPurpleButton onClick={() => applyEvent({ eventId })}>
-              참여 신청하기
-            </SemiPurpleButton>
-            <BookMark reverse />
-          </ButtonWrapper>
-        </DetailContentWrapper>
-      </EventDetailWrapper>
-      <EventContent>{content}</EventContent>
+      {!isLoading && (
+        <>
+          <FormButtonWrapper>
+            <PurpleButton>제출된 폼 보기</PurpleButton>
+            <UpdateDeleteWrapper>
+              <PurpleButton reverse>수정하기</PurpleButton>
+              <PurpleButton>삭제하기</PurpleButton>
+            </UpdateDeleteWrapper>
+          </FormButtonWrapper>
+          <EventDetailWrapper>
+            <Poster posterSrc={poster ? poster : ''} width={23} />
+            <DetailContentWrapper>
+              <EventTitle>{title}</EventTitle>
+              <TwoContentWrapper>
+                <div>
+                  <ContentLabel>날짜</ContentLabel>
+                  <div>{startDate}</div>
+                </div>
+                <div>
+                  <ContentLabel>시간</ContentLabel>
+                  <div>{startTime}</div>
+                </div>
+              </TwoContentWrapper>
+              <div>
+                <ContentLabel>장소</ContentLabel>
+                <div>{location}</div>
+              </div>
+              <div>
+                <ContentLabel>참여신청가능 기간</ContentLabel>
+                <div>
+                  {openDate}, {openTime} - {closeDate}, {closeTime}
+                </div>
+              </div>
+              <div>
+                <ContentLabel>주최자</ContentLabel>
+                <div>{name}</div>
+              </div>
+              <ButtonWrapper>
+                <SemiPurpleButton onClick={() => applyEvent({ eventId })}>
+                  참여 신청하기
+                </SemiPurpleButton>
+                <BookMark reverse />
+              </ButtonWrapper>
+            </DetailContentWrapper>
+          </EventDetailWrapper>
+          <EventContent>{content}</EventContent>
+        </>
+      )}
     </div>
   );
 };
