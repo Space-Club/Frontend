@@ -1,30 +1,18 @@
 import { END_POINTS } from '@/constants/api';
 import { HttpResponse, http } from 'msw';
+import { inviteLinkResponse } from './data/clubData';
 
-interface club {
-  name: string;
-  info: string;
-  image: File | null;
-}
+const clubHandlers = [
+  http.get(END_POINTS.INVITE_LINK, async ({ request }) => {
+    const auth = request.headers.get('Authorization');
+    const token = auth?.split(' ')[1];
 
-const clubs: club[] = [];
-
-export const clubHandlers = [
-  http.post(END_POINTS.CREATE_CLUB, async ({ request }) => {
-    const reader = request.body?.getReader();
-    let data = '';
-
-    // eslint-disable-next-line no-constant-condition
-    while (true) {
-      const { done, value } = await reader!.read();
-
-      if (done) break;
-
-      data += new TextDecoder().decode(value);
+    if (token !== '123') {
+      return new HttpResponse(null, { status: 401 });
     }
 
-    clubs.push(JSON.parse(data));
-
-    return HttpResponse.json({ status: 201 });
+    return HttpResponse.json(inviteLinkResponse, { status: 200 });
   }),
 ];
+
+export default clubHandlers;

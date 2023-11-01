@@ -10,5 +10,8 @@ const CREATE_CLUB = {
   NAME_MAX_LENGTH: 12,
   INFO_MAX_LENGTH: 25,
 };
+const INVITE_LINK = {
+  VALID_TIME: 48,
+};
 
-export { CREATE_CLUB };
+export { CREATE_CLUB, INVITE_LINK };
