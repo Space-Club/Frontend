@@ -20,7 +20,7 @@ const SideNav = () => {
     <Container>
       <AvatarGroup>
         {clubs?.map((club) => (
-          <Link to={`/club/home/${club.id}`}>
+          <Link key={club.id} to={`/club/home/${club.id}`}>
             <Avatar key={club.id} avatarSize="normal" profileImageSrc={club.src}></Avatar>
           </Link>
         ))}

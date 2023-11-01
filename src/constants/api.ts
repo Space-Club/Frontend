@@ -10,6 +10,7 @@ const END_POINTS = {
   GET_MY_EVENT: '/profile/event/myEvent', //TODO: API 명세서 나올시, 수정 필요
   GET_EVENT_DETAIL: '/event/detail',
   ALL_EVENTS: '/events',
-};
+  POST_EVENT_APPLY: '/events/apply',
+} as const;
 
 export { SPACECLUB_BASE_URL, NETWORK_TIMEOUT, END_POINTS };
