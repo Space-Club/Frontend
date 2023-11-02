@@ -4,4 +4,10 @@ interface User {
 
 type AvatarSize = 'normal' | 'large' | 'small' | 'medium';
 
-export { User, AvatarSize };
+interface GetMyProfileInfoResponse {
+  username: string;
+  phoneNumber: string;
+  profileImageUrl: string;
+}
+
+export { User, AvatarSize, GetMyProfileInfoResponse };
