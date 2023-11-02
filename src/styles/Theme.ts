@@ -30,6 +30,8 @@ const color = {
   tWhiteGrey: '#EFEFF4',
   idkGrey: '#CCCCCC',
   tSemiActive: '#9370DC',
+  sidebarBackground: 'rgba(239, 239, 244, 0.2)',
+  shadow: 'rgba(0, 0, 0, 0.25)',
   sideScrollBarThumb: 'rgba(239, 239, 244, 0.2)',
   sideScrollBarTrack: 'rgba(239, 239, 244, 0.1)',
 } as const;
