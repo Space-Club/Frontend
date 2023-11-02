@@ -9,7 +9,7 @@ interface InputForm {
   maxLength?: number;
 }
 
-const InputForm = forwardRef<HTMLInputElement, InputFormProps>(
+const InputForm = forwardRef<HTMLInputElement, InputForm>(
   ({ labelText, inputType, placeholder, maxLength, ...props }, ref) => {
     return (
       <InputWrapper>
