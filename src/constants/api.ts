@@ -10,6 +10,7 @@ const END_POINTS = {
   GET_MY_EVENT: '/profile/event/myEvent', //TODO: API 명세서 나올시, 수정 필요
   GET_EVENT_DETAIL: '/event/detail',
   ALL_EVENTS: '/events',
+  CREATE_CLUB: '/clubs',
   INVITE_LINK: '/club/invite', // TODO: API 명세서 나올시, 수정 필요
   POST_EVENT_APPLY: '/events/apply',
 } as const;
