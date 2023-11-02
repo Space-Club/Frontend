@@ -1,3 +1,4 @@
+import InviteLink from '@/components/InviteLink/InviteLink';
 import DropDown from '@/components/common/DropDown/DropDown';
 import { MEMBER_ROLE_DROPDOWN_OPTIONS } from '@/constants/user';
 import usePatchMemberRoleMutation from '@/hooks/query/user/usePatchMemberRoleMutation';
@@ -16,13 +17,16 @@ const ManageClubPage = () => {
   }
 
   return (
-    <DropDown
-      options={MEMBER_ROLE_DROPDOWN_OPTIONS}
-      selectedValue={MEMBER_ROLE_DROPDOWN_OPTIONS[0].value ?? ''} //TODO 실제 멤버 ROLE 값으로 변경
-      onChange={(event) => {
-        changeMemberRole({ memberId: '1', clubId, role: event.target.value as MemberRole }); //TODO 실제 멤버 ID로 변경
-      }}
-    />
+    <>
+      <DropDown
+        options={MEMBER_ROLE_DROPDOWN_OPTIONS}
+        selectedValue={MEMBER_ROLE_DROPDOWN_OPTIONS[0].value ?? ''} //TODO 실제 멤버 ROLE 값으로 변경
+        onChange={(event) => {
+          changeMemberRole({ memberId: '1', clubId, role: event.target.value as MemberRole }); //TODO 실제 멤버 ID로 변경
+        }}
+      />
+      <InviteLink />;
+    </>
   );
 };
 

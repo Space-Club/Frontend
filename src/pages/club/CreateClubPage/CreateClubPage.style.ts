@@ -1,3 +1,4 @@
+import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
 const HeaderContainerStyled = styled.div`
@@ -8,7 +9,7 @@ const HeaderContainerStyled = styled.div`
 `;
 
 const TitleStyled = styled.h1`
-  font-size: 40px;
+  font-size: ${Theme.fontSize.extraTitle};
 `;
 
 const ContentWrapperStyled = styled.div`
@@ -27,6 +28,7 @@ const ClubInfoWrapperStyled = styled.div`
   justify-content: space-between;
   width: 50%;
   height: 40%;
+  font-size: ${Theme.fontSize.smallTitle};
 `;
 
 const ButtonWrapperStyled = styled.div`
@@ -35,10 +37,16 @@ const ButtonWrapperStyled = styled.div`
   bottom: 10%;
 `;
 
+const ImageSelectWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 export {
   HeaderContainerStyled,
   TitleStyled,
   ContentWrapperStyled,
   ClubInfoWrapperStyled,
   ButtonWrapperStyled,
+  ImageSelectWrapper,
 };
