@@ -39,7 +39,7 @@ const Profile = () => {
     <ProfileContainer>
       <Avatar avatarSize="large" isEditable profileImageSrc={data?.profileImageUrl} />
       <InfoWrapper>
-        <EditButton>정보 수정하기</EditButton>
+        <EditButton buttonText="정보 수정하기" />
         <InputForm
           {...register('username', {
             required: REQUIRED_NAME,
