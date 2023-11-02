@@ -13,6 +13,8 @@ const END_POINTS = {
   CREATE_CLUB: '/clubs',
   INVITE_LINK: '/club/invite', // TODO: API 명세서 나올시, 수정 필요
   POST_EVENT_APPLY: '/events/apply',
+  DELETE_MEMBER: ({ clubId, memberId }: { clubId: string; memberId: string }) =>
+    `/clubs/${clubId}/members/${memberId}`,
 } as const;
 
 export { SPACECLUB_BASE_URL, NETWORK_TIMEOUT, END_POINTS };
