@@ -5,7 +5,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 const useDeleteMemberMutation = () => {
   const queryClient = useQueryClient();
 
-  const { mutate: withdrawMember, ...others } = useMutation({
+  const { mutate: withdrawMember } = useMutation({
     mutationFn: deleteMember,
     onSuccess: () => {
       queryClient.invalidateQueries(['clubMembers']);
@@ -13,7 +13,7 @@ const useDeleteMemberMutation = () => {
     onError: () => {}, //TODO: 에러 발생했습니다 toast 띄우기
   });
 
-  return { withdrawMember, ...others };
+  return { withdrawMember };
 };
 
 export default useDeleteMemberMutation;
