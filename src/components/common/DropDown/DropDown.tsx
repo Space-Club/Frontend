@@ -3,8 +3,8 @@ import Theme from '@/styles/Theme';
 import { OptionStyled, SelectStyled } from './DropDown.style';
 
 export interface DropDownOption {
-  value: string;
   label: string;
+  value?: string;
   fontColor?: keyof typeof Theme.color;
 }
 
@@ -17,8 +17,8 @@ interface DropDownProps {
 
 const DropDown = ({
   backgroundColor = 'dropDownBackground',
-  value,
   options,
+  value = options[0].value ?? '',
   children,
   ...props
 }: DropDownProps) => {
