@@ -50,7 +50,7 @@ const router = createBrowserRouter([
             element: <ProfilePage />,
           },
           {
-            path: 'club',
+            path: 'club/:clubId',
             children: [
               {
                 path: 'home',
@@ -64,11 +64,11 @@ const router = createBrowserRouter([
                 path: 'manage',
                 element: <ManageClubPage />,
               },
-              {
-                path: 'create',
-                element: <CreateClubPage />,
-              },
             ],
+          },
+          {
+            path: 'create',
+            element: <CreateClubPage />,
           },
           {
             path: 'event',

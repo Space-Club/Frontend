@@ -6,12 +6,13 @@ interface CreateClubFormValue {
 }
 
 interface GetClubEventsRequest {
+  clubId: number;
   pageNumber: number;
 }
 
 interface GetClubEventsResponse {
   data: {
-    id: number;
+    id: string;
     title: string;
     poster: string;
     startDate: string;

@@ -2,7 +2,9 @@ import ActiveButton from '@/components/ActiveButton/ActiveButton';
 import EventCard from '@/components/common/EventCard/EventCard';
 import Header from '@/components/common/Header/Header';
 import Tab from '@/components/common/Tab/Tab';
+import { TAB_CONSTANTS } from '@/constants/tab';
 import { TabContextProvider } from '@/context/TabContext';
+import useClubEventsQuery from '@/hooks/query/club/useClubEventsQuery';
 import styled from '@emotion/styled';
 
 import { useNavigate } from 'react-router-dom';
@@ -30,6 +32,7 @@ const ButtonWrapper = styled.div`
 `;
 
 const ClubEventPage = () => {
+  const { clubEvents, isLoading } = useClubEventsQuery({ clubId: 1, pageNumber: 1 });
   const navigate = useNavigate();
 
   return (
@@ -39,51 +42,30 @@ const ClubEventPage = () => {
           <Tab
             tabItems={[
               {
-                title: '클럽 홈',
+                title: `${TAB_CONSTANTS.CLUB_HOME}`,
               },
-              { title: '클럽 행사' },
-              { title: '클럽 관리' },
+              { title: `${TAB_CONSTANTS.CLUB_PERFORMANCE}` },
+              { title: `${TAB_CONSTANTS.CLUB_MANAGEMENT}` },
             ]}
           />
         </HeaderElementWrapper>
       </Header>
       <EventsContainer>
-        <EventCard
-          eventId="1"
-          posterSrc="https://picsum.photos/200/300"
-          eventTitle="A BIENTOT A DEMAIN A MAIN"
-          eventDate="2023/10/24"
-          eventTime="15시40분"
-          eventPlace="우리집"
-          clubName="강아지는 복슬강아지 나만 보면 반갑다고 멍멍멍"
-        />
-        <EventCard
-          eventId="2"
-          posterSrc="https://picsum.photos/200/300"
-          eventTitle="연어 전시회"
-          eventDate="2023/10/24"
-          eventTime="15시40분"
-          eventPlace="텍미홈컨트리로드투더플레이스아빌롱"
-          clubName="범블비"
-        />
-        <EventCard
-          eventId="3"
-          posterSrc="https://picsum.photos/200/300"
-          eventTitle="A BIENTOT A DEMAIN A MAIN"
-          eventDate="2023/10/24"
-          eventTime="15시40분"
-          eventPlace="우리집"
-          clubName="강아지는 복슬강아지 나만 보면 반갑다고 멍멍멍"
-        />
-        <EventCard
-          eventId="4"
-          posterSrc="https://picsum.photos/200/300"
-          eventTitle="연어 전시회"
-          eventDate="2023/10/24"
-          eventTime="15시40분"
-          eventPlace="텍미홈컨트리로드투더플레이스아빌롱"
-          clubName="범블비"
-        />
+        {clubEvents?.map((clubEvent) =>
+          isLoading ? (
+            <div>Loading...</div>
+          ) : (
+            <EventCard
+              eventId={clubEvent.id}
+              posterSrc={clubEvent.poster}
+              eventTitle={clubEvent.title}
+              eventDate={clubEvent.startDate}
+              eventTime={clubEvent.startTime}
+              eventPlace={clubEvent.location}
+              clubName={clubEvent.clubName}
+            />
+          ),
+        )}
       </EventsContainer>
       <ButtonWrapper>
         <ActiveButton
