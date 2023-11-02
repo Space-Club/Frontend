@@ -23,6 +23,14 @@ const ERROR_MESSAGE = {
     START_TIME: '* 날짜는 오늘 이후로 설정해야 합니다.',
     LAST_TIME: '* 날짜는 시작 날짜 이후로 설정해야 합니다.',
   },
+  CLUB: {
+    REQUIRED_NAME: '클럽 이름을 작성해주세요.',
+    REQUIRED_INFO: '클럽 소개를 작성해주세요.',
+    MIN_LENGTH_NAME: '최소 두 글자 이상 작성해 주세요.',
+    MIN_LENGTH_INFO: '최소 두 글자 이상 작성해 주세요.',
+    MAX_LENGTH_NAME: '12글자 이상 작성할 수 없습니다.',
+    MAX_LENGTH_INFO: '25글자 이상 작성할 수 없습니다.',
+  },
 } as const;
 
 export { ERROR_MESSAGE };
