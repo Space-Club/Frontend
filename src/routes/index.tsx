@@ -53,15 +53,15 @@ const router = createBrowserRouter([
             path: 'club',
             children: [
               {
-                path: 'home/:clubId',
+                path: 'home',
                 element: <ClubHomePage />,
               },
               {
-                path: 'event/:eventId',
+                path: 'event',
                 element: <ClubEventPage />,
               },
               {
-                path: 'manage/:clubId',
+                path: 'manage',
                 element: <ManageClubPage />,
               },
               {

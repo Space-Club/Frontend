@@ -5,8 +5,34 @@ interface CreateClubFormValue {
   image: FileList | null;
 }
 
+interface GetClubEventsRequest {
+  pageNumber: number;
+}
+
+interface GetClubEventsResponse {
+  data: {
+    id: number;
+    title: string;
+    poster: string;
+    startDate: string;
+    startTime: string;
+    location: string;
+    clubName: string;
+    clubImage: string;
+    openStatus: 'CLUB' | 'ALL'; //혹은 string
+  }[];
+  pageData: {
+    first: boolean;
+    last: boolean;
+    pageNumber: number;
+    size: number;
+    totalPages: number;
+    totalElement: number;
+  };
+}
+
 interface getInviteLinkResponse {
   link: 'string'; // TODO 명세서 나올시 수정 필요;
 }
 
-export { getInviteLinkResponse, CreateClubFormValue };
+export { getInviteLinkResponse, GetClubEventsRequest, GetClubEventsResponse, CreateClubFormValue };
