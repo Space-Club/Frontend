@@ -3,7 +3,7 @@ const SPACECLUB_BASE_URL = 'https://spaceclub.site';
 const NETWORK_TIMEOUT = 10000;
 
 const END_POINTS = {
-  KAKAO_LOGIN: '/login/kakao',
+  KAKAO_LOGIN: '/users/oauths',
   REGISTER: '/users',
   MY_CLUB: '/myclub', // TODO: API 명세서 나올시, 수정 필요
   PERFORMANCE_FORM: '/event/performance', // TODO: API 명세서 나올시, 수정 필요
