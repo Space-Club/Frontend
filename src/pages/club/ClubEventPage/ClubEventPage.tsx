@@ -2,37 +2,18 @@ import ActiveButton from '@/components/ActiveButton/ActiveButton';
 import EventCard from '@/components/common/EventCard/EventCard';
 import Header from '@/components/common/Header/Header';
 import Tab from '@/components/common/Tab/Tab';
+import { CREATE_EVENT } from '@/constants/club';
+import { PATH } from '@/constants/path';
 import { TAB_CONSTANTS } from '@/constants/tab';
 import { TabContextProvider } from '@/context/TabContext';
 import useClubEventsQuery from '@/hooks/query/club/useClubEventsQuery';
-import styled from '@emotion/styled';
 
 import { useNavigate } from 'react-router-dom';
 
-const HeaderElementWrapper = styled.div`
-  display: flex;
-  justify-content: end;
-  align-items: end;
-  width: 100%;
-  height: 100%;
-`;
-
-const EventsContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  padding-top: 3rem;
-`;
-
-const ButtonWrapper = styled.div`
-  position: fixed;
-  bottom: 3rem;
-  right: 5rem;
-`;
+import { ButtonWrapper, EventsContainer, HeaderElementWrapper } from './ClubEventPage.style';
 
 const ClubEventPage = () => {
-  const { clubEvents, isLoading } = useClubEventsQuery({ clubId: 1, pageNumber: 1 });
+  const { clubEvents, isLoading } = useClubEventsQuery({ clubId: 1, pageNumber: 0 });
   const navigate = useNavigate();
 
   return (
@@ -52,7 +33,7 @@ const ClubEventPage = () => {
       </Header>
       <EventsContainer>
         {clubEvents?.map((clubEvent) =>
-          isLoading ? (
+          isLoading ? ( //#TODO: EventCard 스켈레톤
             <div>Loading...</div>
           ) : (
             <EventCard
@@ -69,9 +50,9 @@ const ClubEventPage = () => {
       </EventsContainer>
       <ButtonWrapper>
         <ActiveButton
-          buttonText="행사 생성하기"
+          buttonText={CREATE_EVENT.BUTTON_TEXT}
           fontSize="mediumTitle"
-          onClick={() => navigate('/club/create')}
+          onClick={() => navigate(`${PATH.EVENT.CHOICE}`)}
         />
       </ButtonWrapper>
     </TabContextProvider>

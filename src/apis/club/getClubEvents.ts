@@ -5,7 +5,7 @@ import { axiosClientWithAuth } from '../axiosClient';
 
 const getClubEvents = async ({ clubId, pageNumber }: GetClubEventsRequest) => {
   const { data } = await axiosClientWithAuth.get<GetClubEventsResponse>(
-    `${END_POINTS.CLUB_EVENTS({ clubId })}?page=${pageNumber}&size=3&sort=id%2C,asc`,
+    `${END_POINTS.CLUB_EVENTS({ clubId })}?page=${pageNumber}&size=10&sort=id%2C,asc`,
   );
   return data;
 };
