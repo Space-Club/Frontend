@@ -1,7 +1,9 @@
+import { MemberRole } from '../user';
+
 interface PatchMemberRoleRequest {
   memberId: string;
   clubId: string;
-  role: string;
+  role: MemberRole;
 }
 
 export { PatchMemberRoleRequest };
