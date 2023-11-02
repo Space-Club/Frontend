@@ -24,7 +24,7 @@ const club = [
   },
 ];
 
-export const userHandlers = [
+const userHandlers = [
   http.post(END_POINTS.REGISTER, async ({ request }) => {
     const reader = request.body?.getReader();
     let data = '';
@@ -59,3 +59,5 @@ export const userHandlers = [
     return HttpResponse.json(club, { status: 201 });
   }),
 ];
+
+export default userHandlers;
