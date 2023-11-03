@@ -89,6 +89,7 @@ interface getEventDetailResponse {
   closeTime: string;
   name: string;
   poster: string;
+  isManager: boolean;
 }
 
 export {

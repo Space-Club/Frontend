@@ -47,7 +47,6 @@ const EventDetailPage = () => {
   );
 
   const { applyEvent } = usePostEventApplyMutation();
-  // TODO: 행사 관리자인지 여부 확인 -> 제출된 폼 보기, 수정 및 삭제 권한 부여
   // TODO: 수정하기 버튼 클릭시, 게시물 수정 페이지로 이동
 
   const {
@@ -62,6 +61,7 @@ const EventDetailPage = () => {
     closeDate,
     closeTime,
     name,
+    isManager,
   } = eventDetail ?? {};
 
   const handleBookmarkClick = async () => {
@@ -82,15 +82,17 @@ const EventDetailPage = () => {
     <div>
       {!isLoading && (
         <>
-          <FormButtonWrapper>
-            <PurpleButton onClick={() => navigate(`/checkform/${eventId}`)}>
-              제출된 폼 보기
-            </PurpleButton>
-            <UpdateDeleteWrapper>
-              <PurpleButton reverse>수정하기</PurpleButton>
-              <PurpleButton onClick={handleEventDelete}>삭제하기</PurpleButton>
-            </UpdateDeleteWrapper>
-          </FormButtonWrapper>
+          {isManager && (
+            <FormButtonWrapper>
+              <PurpleButton onClick={() => navigate(`/checkform/${eventId}`)}>
+                제출된 폼 보기
+              </PurpleButton>
+              <UpdateDeleteWrapper>
+                <PurpleButton reverse>수정하기</PurpleButton>
+                <PurpleButton onClick={handleEventDelete}>삭제하기</PurpleButton>
+              </UpdateDeleteWrapper>
+            </FormButtonWrapper>
+          )}
           <EventDetailWrapper>
             <Poster posterSrc={poster ? poster : ''} width={23} />
             <DetailContentWrapper>

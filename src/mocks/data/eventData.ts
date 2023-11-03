@@ -120,6 +120,7 @@ const eventDetail: getEventDetailResponse = {
   closeTime: '13:00',
   name: '연어',
   poster: '/src/assets/image/headhunting.svg',
+  isManager: true,
 };
 
 export { myEvent, allEvents, eventDetail };
