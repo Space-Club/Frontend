@@ -51,6 +51,16 @@ const eventHandlers = [
     console.log('id', eventId);
     return HttpResponse.json(eventDetail, { status: 201 });
   }),
+  http.delete(`${END_POINTS.GET_EVENT_DETAIL}/:eventId`, async ({ params }) => {
+    const { eventId } = params;
+    console.log('deleteId', eventId);
+    return new HttpResponse(null, { status: 204 });
+  }),
+  http.post(`${END_POINTS.BOOK_MARK}/:eventId`, async ({ params }) => {
+    const { eventId } = params;
+    console.log('bookmark', eventId);
+    return new HttpResponse(null, { status: 200 });
+  }),
 ];
 
 export default eventHandlers;

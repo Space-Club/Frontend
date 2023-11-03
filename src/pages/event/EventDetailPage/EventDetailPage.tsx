@@ -1,12 +1,16 @@
+import deleteEvent from '@/apis/event/deleteEvent';
 import getEventDetail from '@/apis/event/getEventDetail';
+import postEventBookmark from '@/apis/event/postEventBookmark';
 import BookMark from '@/components/common/BookMark/BookMark';
 import { SemiPurpleButton } from '@/components/common/BookMark/BookMark.style';
 import Poster from '@/components/common/Poster/Poster';
 import usePostEventApplyMutation from '@/hooks/query/event/usePostEventApplyMutation';
+import { getStorage } from '@/utils/localStorage';
 
+import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { useQuery } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 
 import {
   ButtonWrapper,
@@ -24,6 +28,9 @@ import {
 const EventDetailPage = () => {
   const { eventId } = useParams();
   const navigate = useNavigate();
+  const [bookmarkPaint, setBookmarkPaint] = useState(false);
+
+  const token = getStorage('token');
 
   if (!eventId) {
     throw new Error('eventId is null'); //TODO: eventId가 없을 때 처리
@@ -32,13 +39,16 @@ const EventDetailPage = () => {
   const { data: eventDetail, isLoading } = useQuery(['event_detail', `${eventId}`], () =>
     getEventDetail({ id: eventId! }),
   );
+  const { mutate: deleteEventMutate } = useMutation(['delete_event', `${eventId}`], () =>
+    deleteEvent({ eventId }),
+  );
+  const { mutate: postBookmarkMutate } = useMutation(['bookmark', `${eventId}`], () =>
+    postEventBookmark({ eventId }),
+  );
 
   const { applyEvent } = usePostEventApplyMutation();
-  // TODO: 행사 관리자인지 여부 확인 -> 제출된 폼 보기, 수정 및 삭제 권한 부여 -> 참여 신청 및 북마크 권한 부여 X
+  // TODO: 행사 관리자인지 여부 확인 -> 제출된 폼 보기, 수정 및 삭제 권한 부여
   // TODO: 수정하기 버튼 클릭시, 게시물 수정 페이지로 이동
-  // TODO: 삭제하기 버튼 클릭시, 모달로 한 번더 물어본 후 삭제 API 연동 후, 이전 페이지로 이동
-  // TODO: 참여 신청하기 버튼 클릭하는 API 연결
-  // TODO: 북마크 버튼 클릭하는 API 연결
 
   const {
     title,
@@ -54,6 +64,20 @@ const EventDetailPage = () => {
     name,
   } = eventDetail ?? {};
 
+  const handleBookmarkClick = async () => {
+    postBookmarkMutate();
+    setBookmarkPaint(true);
+  };
+
+  const handleEventDelete = async () => {
+    const confirmed = window.confirm('정말로 행사를 삭제하시겠습니까?'); // TODO 모달로 변경
+
+    if (confirmed) {
+      deleteEventMutate();
+      navigate(-1);
+    }
+  };
+
   return (
     <div>
       {!isLoading && (
@@ -64,7 +88,7 @@ const EventDetailPage = () => {
             </PurpleButton>
             <UpdateDeleteWrapper>
               <PurpleButton reverse>수정하기</PurpleButton>
-              <PurpleButton>삭제하기</PurpleButton>
+              <PurpleButton onClick={handleEventDelete}>삭제하기</PurpleButton>
             </UpdateDeleteWrapper>
           </FormButtonWrapper>
           <EventDetailWrapper>
@@ -95,12 +119,14 @@ const EventDetailPage = () => {
                 <ContentLabel>주최자</ContentLabel>
                 <div>{name}</div>
               </div>
-              <ButtonWrapper>
-                <SemiPurpleButton onClick={() => applyEvent({ eventId })}>
-                  참여 신청하기
-                </SemiPurpleButton>
-                <BookMark reverse />
-              </ButtonWrapper>
+              {!!token && (
+                <ButtonWrapper>
+                  <SemiPurpleButton onClick={() => applyEvent({ eventId })}>
+                    참여 신청하기
+                  </SemiPurpleButton>
+                  <BookMark reverse paint={bookmarkPaint} onClick={handleBookmarkClick} />
+                </ButtonWrapper>
+              )}
             </DetailContentWrapper>
           </EventDetailWrapper>
           <EventContent>{content}</EventContent>
