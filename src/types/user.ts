@@ -6,7 +6,7 @@ interface ClubMember {
   id: string;
   name: string;
   image: string;
-  role: string;
+  role: MemberRole;
 }
 
 type AvatarSize = 'normal' | 'large' | 'small' | 'medium';

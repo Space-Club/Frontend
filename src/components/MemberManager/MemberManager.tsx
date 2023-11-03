@@ -16,6 +16,7 @@ const MemberManager = () => {
             key={clubMember.id}
             clubId={clubId}
             memberId={clubMember.id}
+            role={clubMember.role}
             name={clubMember.name}
             profileImageSrc={clubMember.image}
           />
