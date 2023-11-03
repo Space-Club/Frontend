@@ -1,17 +1,11 @@
 import useClubMembersQuery from '@/hooks/query/club/useClubMembersQuery';
-
-import { useLocation } from 'react-router-dom';
+import useClubId from '@/hooks/useClubId';
 
 import MemberManageItem from '../MemberManageItem/MemberManageItem';
 import { MemberManagerContainer } from './MemberManager.style';
 
 const MemberManager = () => {
-  const { pathname } = useLocation();
-  const clubId = pathname.split('/').pop();
-
-  if (!clubId) {
-    throw new Error('pathname을 가져오는 도중 에러가 발생했습니다.');
-  }
+  const { clubId } = useClubId();
 
   const { clubMembers } = useClubMembersQuery({ clubId });
 
