@@ -29,7 +29,6 @@ const CreateClubPage = () => {
       name: '',
       info: '',
       image: null,
-      owner: '이채연', //#TODO: 로그인 한 유저 정보 받아오기
     },
     mode: 'onChange',
   });

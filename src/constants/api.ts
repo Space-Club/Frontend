@@ -13,7 +13,11 @@ const END_POINTS = {
   CREATE_CLUB: '/clubs',
   INVITE_LINK: '/club/invite', // TODO: API 명세서 나올시, 수정 필요
   POST_EVENT_APPLY: '/events/apply',
+<<<<<<< HEAD
   GET_USER_INFO: '/users/profiles',
+=======
+  CLUB_EVENTS: ({ clubId }: { clubId: number }) => `/clubs/${clubId}/events`,
+>>>>>>> cba4fee (SKRF-186 design, feat: 클럽 행사 페이지 ui 구현 및 api 연결 (#50))
   PATCH_MEMBER_ROLE: ({ clubId, memberId }: { clubId: string; memberId: string }) =>
     `/clubs/${clubId}/members/${memberId}`,
   DELETE_MEMBER: ({ clubId, memberId }: { clubId: string; memberId: string }) =>
