@@ -1,7 +1,6 @@
 import { useLocation } from 'react-router-dom';
 
 const useClubId = () => {
-  return { clubId: '1' }; //TODO: 임시 코드
   const { pathname } = useLocation();
   const pathArray = pathname.split('/');
 
