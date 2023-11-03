@@ -3,7 +3,7 @@ import { GetClubMembersRequest } from '@/types/api/getClubMembers';
 
 import { useQuery } from '@tanstack/react-query';
 
-const QUERY_KEY = { CLUB_MEMBERS: 'CLUB_MEMBERS' };
+export const QUERY_KEY = { CLUB_MEMBERS: 'CLUB_MEMBERS' };
 
 const useClubMembersQuery = ({ clubId }: GetClubMembersRequest) => {
   const { data: clubMembers } = useQuery({
