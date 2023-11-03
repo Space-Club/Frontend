@@ -1,5 +1,6 @@
 import { END_POINTS } from '@/constants/api';
 import { HttpResponse, http } from 'msw';
+
 import { inviteLinkResponse } from './data/clubData';
 
 const clubHandlers = [

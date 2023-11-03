@@ -4,10 +4,6 @@ interface User {
 
 type AvatarSize = 'normal' | 'large' | 'small' | 'medium';
 
-interface GetMyProfileInfoResponse {
-  username: string;
-  phoneNumber: string;
-  profileImageUrl: string;
-}
+type MemberRole = 'MEMBER' | 'MANAGER';
 
-export { User, AvatarSize, GetMyProfileInfoResponse };
+export { User, AvatarSize, MemberRole };
