@@ -1,3 +1,5 @@
+import { MODAL_BUTTON_TEXT } from '@/constants/modalMessage';
+
 import {
   BackgroundOverlay,
   ButtonWrapper,
@@ -14,12 +16,7 @@ interface ConfirmModalProps {
   onConfirm?: () => void;
 }
 
-const ConfirmModal = ({
-  message = '멤버를 탈퇴시키겠습니까?',
-  confirmLabel = '확인',
-  onClose,
-  onConfirm,
-}: ConfirmModalProps) => {
+const ConfirmModal = ({ message, confirmLabel, onClose, onConfirm }: ConfirmModalProps) => {
   return (
     <Portal>
       <BackgroundOverlay onClick={onClose} />
@@ -28,7 +25,7 @@ const ConfirmModal = ({
           <MessageStyled>{message}</MessageStyled>
           <ButtonWrapper>
             <button type="button" onClick={onClose}>
-              취소
+              {MODAL_BUTTON_TEXT.CANCEL}
             </button>
             <button
               type="button"

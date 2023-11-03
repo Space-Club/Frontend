@@ -3,6 +3,7 @@ import ConfirmModal from '@/components/Modals/ConfirmModal';
 import BookMark from '@/components/common/BookMark/BookMark';
 import { SemiPurpleButton } from '@/components/common/BookMark/BookMark.style';
 import Poster from '@/components/common/Poster/Poster';
+import { MODAL_BUTTON_TEXT, MODAL_TEXT } from '@/constants/modalMessage';
 import usePostEventApplyMutation from '@/hooks/query/event/usePostEventApplyMutation';
 import useModal from '@/hooks/useModal';
 
@@ -56,9 +57,9 @@ const EventDetailPage = () => {
       {!isLoading && (
         <>
           {showModal && (
-            <ConfirmModal
-              message="참여 신청을 하시겠습니까?"
-              confirmLabel="확인"
+            <ConfirmModal //#TODO: Alert 모달이 더 잘 어울림
+              message={MODAL_TEXT.EVENT_APPLY}
+              confirmLabel={MODAL_BUTTON_TEXT.CONFIRM}
               onClose={modalClose}
               onConfirm={() => applyEvent({ eventId })}
             />

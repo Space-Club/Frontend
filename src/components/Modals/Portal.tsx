@@ -1,10 +1,10 @@
 import { ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 
-type PortalProps = {
+interface PortalProps {
   children: ReactNode;
   elementId?: string;
-};
+}
 
 const Portal = ({ children, elementId = 'overlays' }: PortalProps) => {
   const element = document.getElementById(elementId) as HTMLElement;
