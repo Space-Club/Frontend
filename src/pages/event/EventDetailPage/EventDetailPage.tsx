@@ -4,7 +4,7 @@ import { SemiPurpleButton } from '@/components/common/BookMark/BookMark.style';
 import Poster from '@/components/common/Poster/Poster';
 import usePostEventApplyMutation from '@/hooks/query/event/usePostEventApplyMutation';
 
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { useQuery } from '@tanstack/react-query';
 
@@ -23,16 +23,22 @@ import {
 
 const EventDetailPage = () => {
   const { eventId } = useParams();
+  const navigate = useNavigate();
 
   if (!eventId) {
     throw new Error('eventId is null'); //TODO: eventId가 없을 때 처리
   }
 
-  const { data: eventDetail, isLoading } = useQuery(['event_detail', 'eventId'], () =>
+  const { data: eventDetail, isLoading } = useQuery(['event_detail', `${eventId}`], () =>
     getEventDetail({ id: eventId! }),
   );
 
   const { applyEvent } = usePostEventApplyMutation();
+  // TODO: 행사 관리자인지 여부 확인 -> 제출된 폼 보기, 수정 및 삭제 권한 부여 -> 참여 신청 및 북마크 권한 부여 X
+  // TODO: 수정하기 버튼 클릭시, 게시물 수정 페이지로 이동
+  // TODO: 삭제하기 버튼 클릭시, 모달로 한 번더 물어본 후 삭제 API 연동 후, 이전 페이지로 이동
+  // TODO: 참여 신청하기 버튼 클릭하는 API 연결
+  // TODO: 북마크 버튼 클릭하는 API 연결
 
   const {
     title,
@@ -53,7 +59,9 @@ const EventDetailPage = () => {
       {!isLoading && (
         <>
           <FormButtonWrapper>
-            <PurpleButton>제출된 폼 보기</PurpleButton>
+            <PurpleButton onClick={() => navigate(`/checkform/${eventId}`)}>
+              제출된 폼 보기
+            </PurpleButton>
             <UpdateDeleteWrapper>
               <PurpleButton reverse>수정하기</PurpleButton>
               <PurpleButton>삭제하기</PurpleButton>
