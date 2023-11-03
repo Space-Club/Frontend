@@ -6,7 +6,6 @@ import { MemberManagerContainer } from './MemberManager.style';
 
 const MemberManager = () => {
   const { clubId } = useClubId();
-
   const { clubMembers } = useClubMembersQuery({ clubId });
 
   return (
@@ -19,17 +18,6 @@ const MemberManager = () => {
             memberId={clubMember.id}
             name={clubMember.name}
             profileImageSrc={clubMember.image}
-          />
-        );
-      })}
-      {clubMembers.map((clubMember) => {
-        return (
-          <MemberManageItem
-            key={clubMember.id}
-            clubId={clubId}
-            memberId={clubMember.id}
-            name={clubMember.name}
-            profileImageSrc={'https://avatars.githubusercontent.com/u/48426991?v=4'}
           />
         );
       })}
