@@ -1,3 +1,5 @@
+import { Event } from './event';
+
 interface CreateClubFormValue {
   name: string;
   info: string;
@@ -10,18 +12,10 @@ interface GetClubEventsRequest {
   pageNumber: number;
 }
 
+type ClubEventType = Event & { openStatus: 'CLUB' | 'All' };
+
 interface GetClubEventsResponse {
-  data: {
-    id: string;
-    title: string;
-    poster: string;
-    startDate: string;
-    startTime: string;
-    location: string;
-    clubName: string;
-    clubImage: string;
-    openStatus: 'CLUB' | 'ALL'; //혹은 string
-  }[];
+  data: ClubEventType[];
   pageData: {
     first: boolean;
     last: boolean;
