@@ -1,4 +1,3 @@
-import ConfirmModal from '@/components/Modals/ConfirmModal';
 import SearchInputForm from '@/components/SearchInputForm/SearchInputForm';
 import Banner from '@/components/common/Banner/Banner';
 import EventCard from '@/components/common/EventCard/EventCard';
@@ -54,7 +53,6 @@ const MainPage = () => {
             );
           })}
         </EventCardWrapperStyled>
-        <ConfirmModal />
       </ContentContainerStyled>
     </TabContextProvider>
   );

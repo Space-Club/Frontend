@@ -1,8 +1,10 @@
 import getEventDetail from '@/apis/event/getEventDetail';
+import ConfirmModal from '@/components/Modals/ConfirmModal';
 import BookMark from '@/components/common/BookMark/BookMark';
 import { SemiPurpleButton } from '@/components/common/BookMark/BookMark.style';
 import Poster from '@/components/common/Poster/Poster';
 import usePostEventApplyMutation from '@/hooks/query/event/usePostEventApplyMutation';
+import useModal from '@/hooks/useModal';
 
 import { useParams } from 'react-router-dom';
 
@@ -23,6 +25,7 @@ import {
 
 const EventDetailPage = () => {
   const { eventId } = useParams();
+  const { showModal, modalOpen, modalClose } = useModal();
 
   if (!eventId) {
     throw new Error('eventId is null'); //TODO: eventId가 없을 때 처리
@@ -52,6 +55,14 @@ const EventDetailPage = () => {
     <div>
       {!isLoading && (
         <>
+          {showModal && (
+            <ConfirmModal
+              message="참여 신청을 하시겠습니까?"
+              confirmLabel="확인"
+              onClose={modalClose}
+              onConfirm={() => applyEvent({ eventId })}
+            />
+          )}
           <FormButtonWrapper>
             <PurpleButton>제출된 폼 보기</PurpleButton>
             <UpdateDeleteWrapper>
@@ -88,7 +99,8 @@ const EventDetailPage = () => {
                 <div>{name}</div>
               </div>
               <ButtonWrapper>
-                <SemiPurpleButton onClick={() => applyEvent({ eventId })}>
+                <SemiPurpleButton onClick={() => modalOpen()}>
+                  {/* <SemiPurpleButton onClick={() => applyEvent({ eventId })}> */}
                   참여 신청하기
                 </SemiPurpleButton>
                 <BookMark reverse />
