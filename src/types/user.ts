@@ -11,4 +11,6 @@ interface ClubMember {
 
 type AvatarSize = 'normal' | 'large' | 'small' | 'medium';
 
-export { User, AvatarSize, ClubMember };
+type MemberRole = 'MEMBER' | 'MANAGER';
+
+export { User, AvatarSize, MemberRole, ClubMember };
