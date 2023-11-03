@@ -1,9 +1,11 @@
 import {
+  BackgroundOverlay,
   ButtonWrapper,
   MessageStyled,
   ModalBaseContainer,
   ModalContentWrapper,
 } from './Modal.style';
+import Portal from './Portal';
 
 interface ConfirmModalProps {
   message?: string;
@@ -19,25 +21,28 @@ const ConfirmModal = ({
   onConfirm,
 }: ConfirmModalProps) => {
   return (
-    <ModalBaseContainer>
-      <ModalContentWrapper>
-        <MessageStyled>{message}</MessageStyled>
-        <ButtonWrapper>
-          <button type="button" onClick={onClose}>
-            취소
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              onConfirm && onConfirm();
-              onClose && onClose();
-            }}
-          >
-            {confirmLabel}
-          </button>
-        </ButtonWrapper>
-      </ModalContentWrapper>
-    </ModalBaseContainer>
+    <Portal>
+      <BackgroundOverlay onClick={onClose} />
+      <ModalBaseContainer>
+        <ModalContentWrapper>
+          <MessageStyled>{message}</MessageStyled>
+          <ButtonWrapper>
+            <button type="button" onClick={onClose}>
+              취소
+            </button>
+            <button
+              type="button"
+              onClick={() => {
+                onConfirm && onConfirm();
+                onClose && onClose();
+              }}
+            >
+              {confirmLabel}
+            </button>
+          </ButtonWrapper>
+        </ModalContentWrapper>
+      </ModalBaseContainer>
+    </Portal>
   );
 };
 
