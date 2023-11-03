@@ -10,7 +10,7 @@ import GlobalStyle from '@styles/GlobalStyle';
 import Theme from '@styles/Theme';
 
 import { worker } from './mocks/worker';
-import router from './routes';
+import router from './routes/router';
 
 if (import.meta.env.VITE_USER_NODE_ENV === 'development') {
   worker.start();
