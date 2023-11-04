@@ -5,8 +5,8 @@ interface CreateClubFormValue {
   image: FileList | null;
 }
 
-interface getInviteLinkResponse {
+interface postInviteLinkResponse {
   invitationCode: 'string'; // TODO 명세서 나올시 수정 필요;
 }
 
-export { getInviteLinkResponse, CreateClubFormValue };
+export { postInviteLinkResponse, CreateClubFormValue };

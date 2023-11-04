@@ -1,4 +1,4 @@
-import getInviteLink from '@/apis/club/getInviteLink';
+import postInviteLink from '@/apis/club/postInviteLink';
 import { INVITE_LINK } from '@/constants/club';
 
 import { useParams } from 'react-router-dom';
@@ -17,7 +17,7 @@ import {
 
 const InviteLink = () => {
   const { clubId = '' } = useParams();
-  const { data, refetch } = useQuery(['inviteLink'], () => getInviteLink({ clubId }), {
+  const { data, refetch } = useQuery(['inviteLink'], () => postInviteLink({ clubId }), {
     enabled: false,
     initialData: {
       invitationCode: '',
