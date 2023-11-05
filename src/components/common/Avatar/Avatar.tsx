@@ -14,7 +14,7 @@ import {
 
 interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   avatarSize: AvatarSize;
-  profileImageSrc?: string;
+  profileImageSrc?: string | null;
   isEditable?: boolean;
   isClub?: boolean;
 }
