@@ -5,6 +5,9 @@ interface GetClubRequest {
 }
 
 interface GetClubResponse
-  extends Pick<Club, 'background' | 'image' | 'info' | 'inviteCode' | 'memberCount' | 'name'> {}
+  extends Pick<
+    Club,
+    'coverImageUrl' | 'logoImageUrl' | 'info' | 'inviteUrl' | 'memberCount' | 'name'
+  > {}
 
 export { GetClubRequest, GetClubResponse };
