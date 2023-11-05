@@ -7,15 +7,16 @@ interface Pagination {
   setPage: Dispatch<SetStateAction<number>>;
   total: number;
   limit: number;
+  pageLength?: number;
 }
 
-const Pagination = ({ page, setPage, total, limit }: Pagination) => {
+const Pagination = ({ page, setPage, total, limit, pageLength = 10 }: Pagination) => {
   const totalPageNum = Math.ceil(total / limit);
 
-  const currentPageSize = Math.floor(page / 10);
+  const currentPageSize = Math.floor(page / pageLength);
 
-  const startPage = currentPageSize * 10 + 1;
-  const endPage = Math.min((currentPageSize + 1) * 10, totalPageNum);
+  const startPage = currentPageSize * pageLength + 1;
+  const endPage = Math.min((currentPageSize + 1) * pageLength, totalPageNum);
 
   const pageNumbers = Array.from(
     { length: endPage - startPage + 1 },
