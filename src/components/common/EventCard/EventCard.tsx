@@ -1,8 +1,10 @@
+import { MY_EVENTS_TAGS } from '@/constants/event';
 import { getTimeStamp } from '@/utils/getTimeStamp';
 
 import { useNavigate } from 'react-router-dom';
 
 import Avatar from '../Avatar/Avatar';
+import EventStatusTag from '../EventTag/EventTag';
 import Poster from '../Poster/Poster';
 import {
   ClubInfoWrapperStyle,
@@ -25,6 +27,7 @@ interface EventProps {
   eventPlace: string;
   clubImageSrc?: string;
   clubName: string;
+  openStatus?: string;
 }
 
 const EventCard = ({
@@ -36,13 +39,20 @@ const EventCard = ({
   eventPlace,
   clubImageSrc,
   clubName,
+  openStatus,
 }: EventProps) => {
   const navigate = useNavigate();
   const timeStamp = getTimeStamp(eventTime);
 
   return (
     <ContainerStyled onClick={() => navigate(`/event/detail/${eventId}`)}>
-      <Poster posterSrc={posterSrc} width={9.5} />
+      <Poster posterSrc={posterSrc} width={9.5}>
+        {openStatus && (
+          <EventStatusTag
+            eventTag={MY_EVENTS_TAGS[openStatus === 'ALL' ? 'publicEvent' : 'clubOnlyEvent']}
+          />
+        )}
+      </Poster>
       <EventInfoWrapper>
         <div>
           <TitleStyled>{eventTitle}</TitleStyled>

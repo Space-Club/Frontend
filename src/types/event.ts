@@ -1,6 +1,12 @@
 import Theme from '@/styles/Theme';
 
-type EventTagKey = 'confirmed' | 'pending' | 'cancelled' | 'cancelRequested';
+type EventTagKey =
+  | 'confirmed'
+  | 'pending'
+  | 'cancelled'
+  | 'cancelRequested'
+  | 'publicEvent'
+  | 'clubOnlyEvent';
 
 interface EventTag {
   title: string;
@@ -33,7 +39,7 @@ interface GetMyEventData {
   startDate: string;
   location: string;
   status: EventTagKey;
-  poster: string;
+  posterImageUrl: string;
 }
 
 interface GetMyEventResponse {

@@ -32,7 +32,7 @@ const ProfilePage = () => {
                 key={event.id}
                 eventId={event.id}
                 title={event.title}
-                poster={event.poster}
+                posterImageUrl={event.posterImageUrl}
                 startDate={event.startDate}
                 location={event.location}
                 clubName={event.clubName}
