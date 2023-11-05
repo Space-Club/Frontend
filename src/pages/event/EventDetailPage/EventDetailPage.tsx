@@ -1,6 +1,7 @@
 import BookMark from '@/components/common/BookMark/BookMark';
 import { SemiPurpleButton } from '@/components/common/BookMark/BookMark.style';
 import Poster from '@/components/common/Poster/Poster';
+import { EVENT_DETAIL, EVENT_DETAIL_BUTTON } from '@/constants/event';
 import useDeleteEventMutation from '@/hooks/query/event/useDeleteEventMutation';
 import useEventDetailQuery from '@/hooks/query/event/useEventDetailQuery';
 import usePostBookmarkMutation from '@/hooks/query/event/usePostBookmarkMutation';
@@ -77,11 +78,13 @@ const EventDetailPage = () => {
           {isManager && (
             <FormButtonWrapper>
               <PurpleButton onClick={() => navigate(`/checkform/${eventId}`)}>
-                제출된 폼 보기
+                {EVENT_DETAIL_BUTTON.showSubmitForm}
               </PurpleButton>
               <UpdateDeleteWrapper>
-                <PurpleButton reverse>수정하기</PurpleButton>
-                <PurpleButton onClick={handleEventDelete}>삭제하기</PurpleButton>
+                <PurpleButton reverse>{EVENT_DETAIL_BUTTON.edit}</PurpleButton>
+                <PurpleButton onClick={handleEventDelete}>
+                  {EVENT_DETAIL_BUTTON.delete}
+                </PurpleButton>
               </UpdateDeleteWrapper>
             </FormButtonWrapper>
           )}
@@ -91,32 +94,32 @@ const EventDetailPage = () => {
               <EventTitle>{title}</EventTitle>
               <TwoContentWrapper>
                 <div>
-                  <ContentLabel>날짜</ContentLabel>
+                  <ContentLabel>{EVENT_DETAIL.date}</ContentLabel>
                   <div>{startDate}</div>
                 </div>
                 <div>
-                  <ContentLabel>시간</ContentLabel>
+                  <ContentLabel>{EVENT_DETAIL.time}</ContentLabel>
                   <div>{startTime}</div>
                 </div>
               </TwoContentWrapper>
               <div>
-                <ContentLabel>장소</ContentLabel>
+                <ContentLabel>{EVENT_DETAIL.location}</ContentLabel>
                 <div>{location}</div>
               </div>
               <div>
-                <ContentLabel>참여신청가능 기간</ContentLabel>
+                <ContentLabel>{EVENT_DETAIL.applicationPeriod}</ContentLabel>
                 <div>
                   {openDate}, {openTime} - {closeDate}, {closeTime}
                 </div>
               </div>
               <div>
-                <ContentLabel>주최자</ContentLabel>
+                <ContentLabel>{EVENT_DETAIL.organizer}</ContentLabel>
                 <div>{name}</div>
               </div>
               {!!token && (
                 <ButtonWrapper>
                   <SemiPurpleButton onClick={() => applyEvent({ eventId })}>
-                    참여 신청하기
+                    {EVENT_DETAIL_BUTTON.apply}
                   </SemiPurpleButton>
                   <BookMark reverse fill={bookmarkPaint} onClick={handleBookmarkClick} />
                 </ButtonWrapper>
