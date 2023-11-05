@@ -8,12 +8,9 @@ interface GetMyClub {
   name: string;
 }
 
-interface GetMyClubsResponse {
-  data: GetMyClub[];
-}
-
 const getMyClubs = async () => {
-  const { data } = await axiosClientWithAuth.get<GetMyClubsResponse>(`${END_POINTS.MY_CLUB}/1`);
+  const { data } = await axiosClientWithAuth.get<GetMyClub[]>(`${END_POINTS.MY_CLUB}/1`);
+  console.log(data);
   return data;
 };
 
