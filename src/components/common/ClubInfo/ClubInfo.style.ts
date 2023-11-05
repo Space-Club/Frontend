@@ -4,8 +4,9 @@ import styled from '@emotion/styled';
 
 const ClubInfoContainer = styled.div`
   display: flex;
+  height: 100%;
   flex-direction: column;
-  flex: 1;
+  justify-content: space-evenly;
   margin-left: 1.3rem;
 `;
 

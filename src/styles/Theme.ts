@@ -30,6 +30,7 @@ const color = {
   activeColor: '#6433CD',
   idkGrey: '#CCCCCC',
   dropDownBackground: '#F7F6F6',
+  clubCoverTransparent: 'rgba(0, 0, 0, 0.25)',
   logo_2: 'linear-gradient(175deg, #031f2b -19.45%, #486282 55.68%, #9458b5 117.93%)',
   sidebarBackground: 'rgba(239, 239, 244, 0.2)',
   shadow: 'rgba(0, 0, 0, 0.25)',

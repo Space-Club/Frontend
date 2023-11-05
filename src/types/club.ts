@@ -1,10 +1,10 @@
 interface Club {
   name: string;
-  image: string;
+  logoImageUrl: string;
   info: string;
-  memberCount: 1;
-  background: string;
-  inviteCode: string;
+  memberCount: string;
+  coverImageUrl: string;
+  inviteUrl: string;
 }
 
 interface CreateClubFormValue extends Pick<Club, 'name' | 'info'> {
