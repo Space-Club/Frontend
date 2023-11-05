@@ -17,10 +17,10 @@ const Pagination = ({ page, setPage, total, limit }: Pagination) => {
   const startPage = num * 10 + 1;
   const endPage = Math.min((num + 1) * 10, totalPageNum);
 
-  const pageNumbers = [];
-  for (let i = startPage; i <= endPage; i++) {
-    pageNumbers.push(i);
-  }
+  const pageNumbers = Array.from(
+    { length: endPage - startPage + 1 },
+    (_, index) => startPage + index,
+  );
 
   return (
     <PaginationWrapper>
