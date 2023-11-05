@@ -7,7 +7,7 @@ import { SemiPurpleButton } from './BookMark.style';
 
 interface BookMark extends HTMLAttributes<HTMLButtonElement> {
   reverse?: boolean;
-  paint?: boolean;
+  fill?: boolean;
   size?: number;
   strokeWidth?: number;
   eventId: string;
