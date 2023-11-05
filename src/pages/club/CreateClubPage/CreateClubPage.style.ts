@@ -51,6 +51,7 @@ const LengthCheckWrapper = styled.div`
 
 const LengthCheckStyled = styled.span`
   font-size: ${Theme.fontSize.smallContent};
+  color: ${Theme.color.tLine};
 `;
 
 const ErrorMessageStyled = styled.span`
