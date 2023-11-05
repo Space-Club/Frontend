@@ -12,17 +12,18 @@ const useOauthLogin = ({ code }: OauthLoginRequest) => {
   const { mutate: login } = useMutation({
     mutationFn: () => oauthLogin({ code }),
     onSuccess: ({ data }) => {
-      setStorage('token', data.token);
-      if (data.isNewMember) {
+      if (data.token === '') {
+        setStorage('userId', data.userId);
         navigate(PATH.REGISTER);
       } else {
+        setStorage('token', data.token);
         navigate(PATH.MAIN);
       }
     },
-    onError: ({ data }) => {
+    onError: () => {
       //TODO: Toast 띄우기
       navigate(PATH.LOGIN);
-      throw new Error(data.message);
+      throw new Error('로그인에 실패했습니다');
     },
   });
   return {

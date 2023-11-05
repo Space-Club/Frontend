@@ -4,7 +4,7 @@ interface OauthLoginRequest {
 
 interface OauthLoginResponse {
   token: string;
-  isNewMember: boolean;
+  userId: string;
 }
 
 export { OauthLoginRequest, OauthLoginResponse };

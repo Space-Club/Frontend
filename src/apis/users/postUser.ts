@@ -1,13 +1,11 @@
 import { axiosClient } from '@/apis/axiosClient';
 import { END_POINTS } from '@/constants/api';
+import { PostUserRequest } from '@/types/api/postUser';
+import { getStorage } from '@/utils/localStorage';
 
-export interface createUser {
-  name: string;
-  number: string;
-}
-
-const postUser = async ({ name, number }: createUser) => {
-  await axiosClient.post(END_POINTS.REGISTER, { name, number });
+const postUser = async ({ name, number }: PostUserRequest) => {
+  const userId = getStorage('userId');
+  await axiosClient.post(END_POINTS.REGISTER, { name, number, userId });
 };
 
 export default postUser;
