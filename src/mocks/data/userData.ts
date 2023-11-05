@@ -1,4 +1,4 @@
-import { GetMyProfileInfoResponse } from '@/types/user';
+import { GetMyProfileInfoResponse } from '@/types/api/getMyProfileInfo';
 
 const userInfo: GetMyProfileInfoResponse = {
   username: '쓰꺼르',
