@@ -20,11 +20,11 @@ const SideNav = () => {
           isLoading ? (
             <div>loading</div>
           ) : (
-            <Link to={`${PATH.CLUB.HOME}${club.clubId}`}>
+            <Link to={`${PATH.CLUB.HOME}${club.id}`}>
               <Avatar
-                key={club.clubId}
+                key={club.id}
                 avatarSize="normal"
-                profileImageSrc={club.clubImage ?? ''}
+                profileImageSrc={club.logoImageUrl}
               ></Avatar>
             </Link>
           ),

@@ -38,11 +38,12 @@ const ClubEventPage = () => {
           ) : (
             <EventCard
               eventId={clubEvent.id}
-              posterSrc={clubEvent.poster}
+              posterSrc={clubEvent.posterImageUrl}
               eventTitle={clubEvent.title}
               eventDate={clubEvent.startDate}
               eventTime={clubEvent.startTime}
               eventPlace={clubEvent.location}
+              clubImageSrc={clubEvent.clubLogoImageUrl}
               clubName={clubEvent.clubName}
             />
           ),

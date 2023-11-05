@@ -16,12 +16,12 @@ type EventTags = {
 interface Event {
   id: string;
   title: string;
-  poster: string;
+  posterImageUrl: string;
   startDate: string;
   startTime: string;
   location: string;
   clubName: string;
-  clubImage: string;
+  clubLogoImageUrl: string;
 }
 
 export { EventTagKey, EventTags, EventTag, Event };
