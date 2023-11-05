@@ -1,16 +1,14 @@
-import deleteEvent from '@/apis/event/deleteEvent';
-import getEventDetail from '@/apis/event/getEventDetail';
-import postEventBookmark from '@/apis/event/postEventBookmark';
 import BookMark from '@/components/common/BookMark/BookMark';
 import { SemiPurpleButton } from '@/components/common/BookMark/BookMark.style';
 import Poster from '@/components/common/Poster/Poster';
+import useDeleteEventMutation from '@/hooks/query/event/useDeleteEventMutation';
+import useEventDetailQuery from '@/hooks/query/event/useEventDetailQuery';
+import usePostBookmarkMutation from '@/hooks/query/event/usePostBookmarkMutation';
 import usePostEventApplyMutation from '@/hooks/query/event/usePostEventApplyMutation';
 import { getStorage } from '@/utils/localStorage';
 
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-
-import { useMutation, useQuery } from '@tanstack/react-query';
 
 import {
   ButtonWrapper,
@@ -36,15 +34,9 @@ const EventDetailPage = () => {
     throw new Error('eventId is null'); //TODO: eventId가 없을 때 처리
   }
 
-  const { data: eventDetail, isLoading } = useQuery(['event_detail', `${eventId}`], () =>
-    getEventDetail({ id: eventId! }),
-  );
-  const { mutate: deleteEventMutate } = useMutation(['delete_event', `${eventId}`], () =>
-    deleteEvent({ eventId }),
-  );
-  const { mutate: postBookmarkMutate } = useMutation(['bookmark', `${eventId}`], () =>
-    postEventBookmark({ eventId }),
-  );
+  const { eventDetail, isEventDetailLoading } = useEventDetailQuery({ eventId });
+  const { deleteEventMutate } = useDeleteEventMutation({ eventId });
+  const { postBookmarkMutate } = usePostBookmarkMutation({ eventId });
 
   const { applyEvent } = usePostEventApplyMutation();
   // TODO: 수정하기 버튼 클릭시, 게시물 수정 페이지로 이동
@@ -80,7 +72,7 @@ const EventDetailPage = () => {
 
   return (
     <div>
-      {!isLoading && (
+      {!isEventDetailLoading && (
         <>
           {isManager && (
             <FormButtonWrapper>
