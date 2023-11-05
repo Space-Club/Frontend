@@ -1,37 +1,38 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import getMyProfileInfo from '@/apis/users/getMyProfileInfo';
+=======
+>>>>>>> 134da3e (코드리뷰 profile types 파일 이동및 buttonType추가)
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
-import { getStorage } from '@/utils/localStorage';
+import useMyProfile from '@/hooks/query/user/useMyProfile';
 import { validateName, validateNumber } from '@/utils/validate';
 
 import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
+<<<<<<< HEAD
 import { useQuery } from '@tanstack/react-query';
 
 =======
 >>>>>>> 9394bae (feat: profilePage ui 구현)
+=======
+>>>>>>> 134da3e (코드리뷰 profile types 파일 이동및 buttonType추가)
 import Avatar from '../common/Avatar/Avatar';
 import InputForm from '../common/InputForm/InputForm';
 import { EditButton, InfoWrapper, ProfileContainer } from './Profile.style';
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 const QUERY_KEY = {
   ALL_EVENTS: 'USER_PROFILE',
   ID: getStorage('token'),
 };
 
+=======
+>>>>>>> 134da3e (코드리뷰 profile types 파일 이동및 buttonType추가)
 const Profile = () => {
   const { register, setValue } = useForm();
-  const { data, refetch } = useQuery({
-    queryKey: [QUERY_KEY.ALL_EVENTS, QUERY_KEY.ID],
-    queryFn: () => getMyProfileInfo(),
-    onSuccess: ({ username, phoneNumber }) => {
-      setValue('username', username);
-      setValue('phoneNumber', phoneNumber);
-    },
-    enabled: false,
-  });
+  const { data, refetch } = useMyProfile({ setValue });
   // TODO : 정보수정하기 버튼
   useEffect(() => {
     refetch();

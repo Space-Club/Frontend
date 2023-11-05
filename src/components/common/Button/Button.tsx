@@ -6,11 +6,19 @@ interface Button extends HTMLAttributes<HTMLButtonElement> {
   width?: string | number;
   height?: string | number;
   buttonText: string;
+  buttonType?: 'submit' | 'button' | 'reset';
 }
 
-const Button = ({ buttonText, width = 6, height = 2, onClick, ...props }: Button) => {
+const Button = ({
+  buttonText,
+  buttonType = 'submit',
+  width = 6,
+  height = 2,
+  onClick,
+  ...props
+}: Button) => {
   return (
-    <ButtonStyled width={width} height={height} onClick={onClick} {...props}>
+    <ButtonStyled type={buttonType} width={width} height={height} onClick={onClick} {...props}>
       {buttonText}
     </ButtonStyled>
   );

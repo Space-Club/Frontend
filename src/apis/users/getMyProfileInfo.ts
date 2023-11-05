@@ -1,5 +1,5 @@
 import { END_POINTS } from '@/constants/api';
-import { GetMyProfileInfoResponse } from '@/types/user';
+import { GetMyProfileInfoResponse } from '@/types/api/getMyProfileInfo';
 
 import { axiosClientWithAuth } from '../axiosClient';
 
