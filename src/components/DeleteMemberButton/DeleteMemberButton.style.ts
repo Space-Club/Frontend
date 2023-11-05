@@ -6,7 +6,7 @@ const DeleteMemberButtonStyled = styled.button`
   height: 1.25rem;
   border-radius: 0.3125rem;
   font-size: ${Theme.fontSize.tagText};
-  background-color: ${Theme.color.tWhiteGrey};
+  background-color: ${Theme.color.tButtonWhite};
   border: none;
   cursor: pointer;
   outline: none;
