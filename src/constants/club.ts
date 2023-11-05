@@ -10,8 +10,13 @@ const CREATE_CLUB = {
   NAME_MAX_LENGTH: 12,
   INFO_MAX_LENGTH: 25,
 };
+
+const CREATE_EVENT = {
+  BUTTON_TEXT: '행사 생성하기',
+};
+
 const INVITE_LINK = {
   VALID_TIME: 48,
 };
 
-export { CREATE_CLUB, INVITE_LINK };
+export { CREATE_CLUB, INVITE_LINK, CREATE_EVENT };

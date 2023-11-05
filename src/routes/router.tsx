@@ -7,7 +7,7 @@ import NotFoundPage from '@/pages/NotFoundPage';
 import OauthRedirectPage from '@/pages/OauthRedirectPage';
 import ProfilePage from '@/pages/ProfilePage/ProfilePage';
 import RegisterPage from '@/pages/RegisterPage/RegisterPage';
-import ClubEventPage from '@/pages/club/ClubEventPage';
+import ClubEventPage from '@/pages/club/ClubEventPage/ClubEventPage';
 import ClubHomePage from '@/pages/club/ClubHomePage';
 import CreateClubPage from '@/pages/club/CreateClubPage/CreateClubPage';
 import ManageClubPage from '@/pages/club/ManageClubPage';
@@ -50,25 +50,25 @@ const router = createBrowserRouter([
             element: <ProfilePage />,
           },
           {
-            path: 'club',
+            path: 'club/:clubId',
             children: [
               {
-                path: 'home/:clubId',
+                path: 'home',
                 element: <ClubHomePage />,
               },
               {
-                path: 'event/:eventId',
+                path: 'event',
                 element: <ClubEventPage />,
               },
               {
-                path: 'manage/:clubId',
+                path: 'manage',
                 element: <ManageClubPage />,
               },
-              {
-                path: 'create',
-                element: <CreateClubPage />,
-              },
             ],
+          },
+          {
+            path: 'create',
+            element: <CreateClubPage />,
           },
           {
             path: 'event',

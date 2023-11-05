@@ -14,6 +14,7 @@ const END_POINTS = {
   INVITE_LINK: '/club/invite', // TODO: API 명세서 나올시, 수정 필요
   POST_EVENT_APPLY: '/events/apply',
   CLUB_MEMBERS: (clubId: string) => `/clubs/${clubId}/members`,
+  CLUB_EVENTS: ({ clubId }: { clubId: number }) => `/clubs/${clubId}/events`,
   PATCH_MEMBER_ROLE: ({ clubId, memberId }: { clubId: string; memberId: string }) =>
     `/clubs/${clubId}/members/${memberId}`,
   DELETE_MEMBER: ({ clubId, memberId }: { clubId: string; memberId: string }) =>

@@ -31,7 +31,7 @@ const SideNav = () => {
         )}
       </ClubWrapper>
       <CreateClubButtonStyled>
-        <FaPlusCircle size={'1rem'} onClick={() => navigate(`${PATH.CLUB.CREATE}`)} />
+        <FaPlusCircle size={'1rem'} onClick={() => navigate(`${PATH.CREATE}`)} />
       </CreateClubButtonStyled>
       <IoMdHome className={iconStyle} onClick={() => navigate('/')} />
       <IoMdNotifications className={iconStyle} onClick={() => alert('알림페이지 준비 중')} />
