@@ -3,7 +3,7 @@ const SPACECLUB_BASE_URL = 'https://spaceclub.site';
 const NETWORK_TIMEOUT = 10000;
 
 const END_POINTS = {
-  KAKAO_LOGIN: '/login/kakao',
+  KAKAO_LOGIN: '/users/oauths',
   REGISTER: '/users',
   MY_CLUB: '/clubs/all',
   PERFORMANCE_FORM: '/events',
@@ -13,6 +13,10 @@ const END_POINTS = {
   CREATE_CLUB: '/clubs',
   INVITE_LINK: '/club/invite', // TODO: API 명세서 나올시, 수정 필요
   POST_EVENT_APPLY: '/events/apply',
+  CLUB_MEMBERS: (clubId: string) => `/clubs/${clubId}/members`,
+  CLUB_EVENTS: ({ clubId }: { clubId: number }) => `/clubs/${clubId}/events`,
+  PATCH_MEMBER_ROLE: ({ clubId, memberId }: { clubId: string; memberId: string }) =>
+    `/clubs/${clubId}/members/${memberId}`,
   DELETE_MEMBER: ({ clubId, memberId }: { clubId: string; memberId: string }) =>
     `/clubs/${clubId}/members/${memberId}`,
   BOOK_MARK: '/bookmark',

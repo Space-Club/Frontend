@@ -7,6 +7,9 @@ import useEventDetailQuery from '@/hooks/query/event/useEventDetailQuery';
 import usePostBookmarkMutation from '@/hooks/query/event/usePostBookmarkMutation';
 import usePostEventApplyMutation from '@/hooks/query/event/usePostEventApplyMutation';
 import { getStorage } from '@/utils/localStorage';
+import ConfirmModal from '@/components/Modals/ConfirmModal';
+import { MODAL_BUTTON_TEXT, MODAL_TEXT } from '@/constants/modalMessage';
+import useModal from '@/hooks/useModal';
 
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -28,7 +31,8 @@ const EventDetailPage = () => {
   const { eventId } = useParams();
   const navigate = useNavigate();
   const [bookmarkPaint, setBookmarkPaint] = useState(false);
-
+  const { showModal, modalOpen, modalClose } = useModal();
+        
   const token = getStorage('token');
 
   if (!eventId) {
@@ -75,6 +79,14 @@ const EventDetailPage = () => {
     <div>
       {!isEventDetailLoading && (
         <>
+          {showModal && (
+            <ConfirmModal //#TODO: Alert 모달이 더 잘 어울림
+              message={MODAL_TEXT.EVENT_APPLY}
+              confirmLabel={MODAL_BUTTON_TEXT.CONFIRM}
+              onClose={modalClose}
+              onConfirm={() => applyEvent({ eventId })}
+            />
+          )}
           {isManager && (
             <FormButtonWrapper>
               <PurpleButton onClick={() => navigate(`/checkform/${eventId}`)}>
@@ -118,7 +130,7 @@ const EventDetailPage = () => {
               </div>
               {!!token && (
                 <ButtonWrapper>
-                  <SemiPurpleButton onClick={() => applyEvent({ eventId })}>
+                  <SemiPurpleButton onClick={() => modalOpen()}>
                     {EVENT_DETAIL_BUTTON.apply}
                   </SemiPurpleButton>
                   <BookMark reverse fill={bookmarkPaint} onClick={handleBookmarkClick} />
