@@ -22,9 +22,7 @@ const ClubEventPage = () => {
         <HeaderElementWrapper>
           <Tab
             tabItems={[
-              {
-                title: `${TAB_CONSTANTS.CLUB_HOME}`,
-              },
+              { title: `${TAB_CONSTANTS.CLUB_HOME}` },
               { title: `${TAB_CONSTANTS.CLUB_PERFORMANCE}` },
               { title: `${TAB_CONSTANTS.CLUB_MANAGEMENT}` },
             ]}
