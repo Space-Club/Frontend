@@ -16,7 +16,7 @@ interface DropDownProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
 }
 
 const DropDown = ({
-  backgroundColor = 'dropDownBackground',
+  backgroundColor = 'tButtonWhite',
   options,
   selectedValue,
   children,

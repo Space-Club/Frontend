@@ -24,26 +24,24 @@ const Avatar = ({ avatarSize, profileImageSrc, isEditable, isClub }: AvatarProps
   const editIconSize = isEditable ? (avatarSize === 'large' ? '3rem' : '1rem') : undefined;
 
   return (
-    <div>
-      <AvatarContainerStyled>
-        {profileImageSrc ? (
-          <ProfileImageStyled avatarSize={avatarSize} src={profileImageSrc} alt="profile image" />
-        ) : (
-          <DefaultImageStyled avatarSize={avatarSize}>
-            {isClub ? (
-              <IoPeopleCircleSharp size={defaultIconSize} color="#A89BB9" />
-            ) : (
-              <BiSolidUserCircle size={defaultIconSize} color="#A89BB9" />
-            )}
-          </DefaultImageStyled>
-        )}
-        {isEditable && (
-          <EditButtonStyled avatarSize={avatarSize}>
-            <AiFillEdit size={editIconSize} />
-          </EditButtonStyled>
-        )}
-      </AvatarContainerStyled>
-    </div>
+    <AvatarContainerStyled>
+      {profileImageSrc ? (
+        <ProfileImageStyled avatarSize={avatarSize} src={profileImageSrc} alt="profile image" />
+      ) : (
+        <DefaultImageStyled avatarSize={avatarSize}>
+          {isClub ? (
+            <IoPeopleCircleSharp size={defaultIconSize} color="#A89BB9" />
+          ) : (
+            <BiSolidUserCircle size={defaultIconSize} color="#A89BB9" />
+          )}
+        </DefaultImageStyled>
+      )}
+      {isEditable && (
+        <EditButtonStyled avatarSize={avatarSize}>
+          <AiFillEdit size={editIconSize} />
+        </EditButtonStyled>
+      )}
+    </AvatarContainerStyled>
   );
 };
 
