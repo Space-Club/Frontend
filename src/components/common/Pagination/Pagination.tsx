@@ -12,10 +12,10 @@ interface Pagination {
 const Pagination = ({ page, setPage, total, limit }: Pagination) => {
   const totalPageNum = Math.ceil(total / limit);
 
-  const num = Math.floor(page / 10);
+  const currentPageSize = Math.floor(page / 10);
 
-  const startPage = num * 10 + 1;
-  const endPage = Math.min((num + 1) * 10, totalPageNum);
+  const startPage = currentPageSize * 10 + 1;
+  const endPage = Math.min((currentPageSize + 1) * 10, totalPageNum);
 
   const pageNumbers = Array.from(
     { length: endPage - startPage + 1 },
