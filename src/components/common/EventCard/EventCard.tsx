@@ -1,3 +1,5 @@
+import { getTimeStamp } from '@/utils/getTimeStamp';
+
 import { useNavigate } from 'react-router-dom';
 
 import Avatar from '../Avatar/Avatar';
@@ -36,6 +38,7 @@ const EventCard = ({
   clubName,
 }: EventProps) => {
   const navigate = useNavigate();
+  const timeStamp = getTimeStamp(eventTime);
 
   return (
     <ContainerStyled onClick={() => navigate(`/event/detail/${eventId}`)}>
@@ -44,7 +47,7 @@ const EventCard = ({
         <div>
           <TitleStyled>{eventTitle}</TitleStyled>
           <EventDateStyled>{eventDate}</EventDateStyled>
-          <EventTimeStyled>{eventTime}</EventTimeStyled>
+          <EventTimeStyled>{timeStamp}</EventTimeStyled>
         </div>
         <EventFooterWrapper>
           <PlaceStyled>{eventPlace}</PlaceStyled>
