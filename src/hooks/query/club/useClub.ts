@@ -10,7 +10,8 @@ export const useClub = () => {
   const { mutate: createClub, isLoading } = useMutation(postCreateClub, {
     onSuccess: (data) => {
       //#TODO: 클럽 생성 되었다는 토스트 메시지와 함께 이동
-      navigate(`/${data}`); //생성된 클럽 홈 화면? 아니면 클럽 관리 화면?
+      console.log(data);
+      navigate(`/`); //생성된 클럽 홈 화면? 아니면 클럽 관리 화면?
     },
     onError: () => {
       console.log('생성 실패');

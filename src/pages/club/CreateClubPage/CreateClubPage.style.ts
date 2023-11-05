@@ -40,6 +40,22 @@ const ButtonWrapperStyled = styled.div`
 const ImageSelectWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 1rem;
+`;
+
+const LengthCheckWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+`;
+
+const LengthCheckStyled = styled.span`
+  font-size: ${Theme.fontSize.smallContent};
+`;
+
+const ErrorMessageStyled = styled.span`
+  font-size: ${Theme.fontSize.smallContent};
+  color: ${Theme.color.tRed};
 `;
 
 export {
@@ -49,4 +65,7 @@ export {
   ClubInfoWrapperStyled,
   ButtonWrapperStyled,
   ImageSelectWrapper,
+  ErrorMessageStyled,
+  LengthCheckStyled,
+  LengthCheckWrapper,
 };

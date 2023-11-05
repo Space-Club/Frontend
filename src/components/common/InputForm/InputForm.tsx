@@ -3,7 +3,7 @@ import { forwardRef } from 'react';
 import { InputStyled, InputWrapper, LabelStyled } from './InputForm.style';
 
 interface InputFormProps {
-  labelText: string;
+  labelText?: string;
   inputType: 'date' | 'file' | 'number' | 'search' | 'tel' | 'text' | 'time' | 'datetime-local';
   placeholder?: string;
   maxLength?: number;
