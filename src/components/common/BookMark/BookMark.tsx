@@ -5,14 +5,14 @@ import { SemiPurpleButton } from './BookMark.style';
 
 interface BookMark extends HTMLAttributes<HTMLButtonElement> {
   reverse?: boolean;
-  paint?: boolean;
+  fill?: boolean;
   size?: number;
   strokeWidth?: number;
 }
 
 const BookMark = ({
   reverse = false,
-  paint = false,
+  fill = false,
   size = 30,
   strokeWidth = 10,
   onClick,
@@ -20,7 +20,7 @@ const BookMark = ({
 }: BookMark) => {
   return (
     <SemiPurpleButton reverse={reverse} onClick={onClick} {...props}>
-      {paint ? (
+      {fill ? (
         <FaBookmark size={size} strokeWidth={strokeWidth} />
       ) : (
         <FaRegBookmark size={size} strokeWidth={strokeWidth} />

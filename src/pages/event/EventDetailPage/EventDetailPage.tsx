@@ -118,7 +118,7 @@ const EventDetailPage = () => {
                   <SemiPurpleButton onClick={() => applyEvent({ eventId })}>
                     참여 신청하기
                   </SemiPurpleButton>
-                  <BookMark reverse paint={bookmarkPaint} onClick={handleBookmarkClick} />
+                  <BookMark reverse fill={bookmarkPaint} onClick={handleBookmarkClick} />
                 </ButtonWrapper>
               )}
             </DetailContentWrapper>
