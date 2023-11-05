@@ -66,6 +66,19 @@ const sideBarScrollAreaStyled = styled.div`
     box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
   }
 `;
+const memberManagerScrollAreaStyled = styled.div`
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: ${Theme.color.tSemiPurple};
+    border: 1px solid ${Theme.color.tPurple};
+    border-radius: 0.75rem;
+  }
+  &::-webkit-scrollbar-track {
+    display: none;
+  }
+`;
 
 export {
   EventTitleStyled,
@@ -76,4 +89,5 @@ export {
   ellipsisTitle,
   sideBarScrollAreaStyled,
   twoLineTitle,
+  memberManagerScrollAreaStyled,
 };
