@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 
 const PosterAreaStyled = styled.div<{ width: number }>`
+  position: relative;
   width: ${({ width }) => width + 'rem'};
   min-width: ${({ width }) => width + 'rem'};
   height: ${({ width }) => width * 1.4 + 'rem'};
@@ -18,4 +19,10 @@ const PosterStyled = styled.img`
   }
 `;
 
-export { PosterAreaStyled, PosterStyled };
+const TagStyled = styled.div`
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+`;
+
+export { PosterAreaStyled, PosterStyled, TagStyled };

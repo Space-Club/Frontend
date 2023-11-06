@@ -3,17 +3,14 @@ import { END_POINTS } from '@/constants/api';
 import { axiosClientWithAuth } from '../axiosClient';
 
 interface GetMyClub {
-  clubId: number;
-  clubImage: string | null;
-  clubName: string;
-}
-
-interface GetMyClubsResponse {
-  data: GetMyClub[];
+  id: number;
+  logoImageUrl: string | null;
+  name: string;
 }
 
 const getMyClubs = async () => {
-  const { data } = await axiosClientWithAuth.get<GetMyClubsResponse>(`${END_POINTS.MY_CLUB}`);
+  const { data } = await axiosClientWithAuth.get<GetMyClub[]>(`${END_POINTS.MY_CLUB}/1`);
+  console.log(data);
   return data;
 };
 

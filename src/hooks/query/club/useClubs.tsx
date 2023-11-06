@@ -13,9 +13,7 @@ const useClubs = () => {
     staleTime: 1000 * 60,
   });
 
-  const { data } = myClubs ?? {};
-
-  return { clubs: data, isLoading };
+  return { myClubs, isLoading };
 };
 
 export default useClubs;
