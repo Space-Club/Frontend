@@ -1,8 +1,11 @@
 interface PostUserRequest {
-  name: string;
-  number: string;
+  nickname: string;
+  phoneNumber: string;
 }
 
-interface PostUserResponse {}
+interface PostUserResponse {
+  userId: string;
+  accessToken: string;
+}
 
 export { PostUserRequest, PostUserResponse };

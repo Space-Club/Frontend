@@ -3,7 +3,7 @@ interface OauthLoginRequest {
 }
 
 interface OauthLoginResponse {
-  token: string;
+  accessToken: string;
   userId: string;
 }
 

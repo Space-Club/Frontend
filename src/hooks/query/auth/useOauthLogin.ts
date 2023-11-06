@@ -1,6 +1,6 @@
 import { oauthLogin } from '@/apis/auth/oauthLogin';
 import { PATH } from '@/constants/path';
-import { OauthLoginRequest } from '@/types/auth';
+import { OauthLoginRequest } from '@/types/api/authLogin';
 import { setStorage } from '@/utils/localStorage';
 
 import { useNavigate } from 'react-router-dom';
@@ -12,11 +12,11 @@ const useOauthLogin = ({ code }: OauthLoginRequest) => {
   const { mutate: login } = useMutation({
     mutationFn: () => oauthLogin({ code }),
     onSuccess: ({ data }) => {
-      if (data.token === '') {
+      if (data.accessToken === '') {
         setStorage('userId', data.userId);
         navigate(PATH.REGISTER);
       } else {
-        setStorage('token', data.token);
+        setStorage('token', data.accessToken);
         navigate(PATH.MAIN);
       }
     },
