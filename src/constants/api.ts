@@ -20,6 +20,7 @@ const END_POINTS = {
   DELETE_MEMBER: ({ clubId, memberId }: { clubId: string; memberId: string }) =>
     `/clubs/${clubId}/members/${memberId}`,
   GET_CLUB: ({ clubId }: { clubId: string }) => `/clubs/${clubId}`,
+  GET_USER_INFO: '/users/profiles',
 } as const;
 
 export { SPACECLUB_BASE_URL, NETWORK_TIMEOUT, END_POINTS };
