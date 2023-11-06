@@ -16,7 +16,7 @@ export const axiosClient = axios.create({
 export const axiosClientWithAuth = axios.create({
   headers: {
     'Content-Type': 'application/json',
-    Authorization: getStorage('token'),
+    Authorization: `Bearer + ${getStorage('token')}`,
   },
   baseURL: 'https://spaceclub.site/api/v1',
   withCredentials: true,

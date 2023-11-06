@@ -47,8 +47,8 @@ const userHandlers = [
 
   http.post(END_POINTS.KAKAO_LOGIN, async () => {
     return HttpResponse.json({
-      token: 'test token',
-      isNewMember: false,
+      userId: 'test id',
+      accessToken: '',
     });
   }),
 
