@@ -11,6 +11,7 @@ export const TextAreaStyled = styled.textarea`
   width: 100%;
   border: none;
   outline: none;
+  resize: none;
   margin-top: 0.5rem;
   border: 1px solid ${Theme.color.tLine};
   border-radius: 1rem;

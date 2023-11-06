@@ -33,6 +33,7 @@ const color = {
   tSemiActive: '#9370DC',
   idkGrey: '#CCCCCC',
   dropDownBackground: '#F7F6F6',
+  clubCoverTransparent: 'rgba(0, 0, 0, 0.25)',
   sidebarBackground: 'rgba(239, 239, 244, 0.2)',
   shadow: 'rgba(0, 0, 0, 0.25)',
   sideScrollBarThumb: 'rgba(239, 239, 244, 0.2)',

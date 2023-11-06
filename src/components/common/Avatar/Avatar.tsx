@@ -14,34 +14,42 @@ import {
 
 interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   avatarSize: AvatarSize;
-  profileImageSrc?: string;
+  profileImageSrc?: string | null;
   isEditable?: boolean;
   isClub?: boolean;
+  pointer?: boolean;
 }
 
-const Avatar = ({ avatarSize, profileImageSrc, isEditable, isClub }: AvatarProps) => {
+const Avatar = ({ avatarSize, profileImageSrc, isEditable, isClub, pointer }: AvatarProps) => {
   const defaultIconSize = getAvatarSize(avatarSize);
   const editIconSize = isEditable ? (avatarSize === 'large' ? '3rem' : '1rem') : undefined;
 
   return (
-    <AvatarContainerStyled>
-      {profileImageSrc ? (
-        <ProfileImageStyled avatarSize={avatarSize} src={profileImageSrc} alt="profile image" />
-      ) : (
-        <DefaultImageStyled avatarSize={avatarSize}>
-          {isClub ? (
-            <IoPeopleCircleSharp size={defaultIconSize} color="#A89BB9" />
-          ) : (
-            <BiSolidUserCircle size={defaultIconSize} color="#A89BB9" />
-          )}
-        </DefaultImageStyled>
-      )}
-      {isEditable && (
-        <EditButtonStyled avatarSize={avatarSize}>
-          <AiFillEdit size={editIconSize} />
-        </EditButtonStyled>
-      )}
-    </AvatarContainerStyled>
+    <div>
+      <AvatarContainerStyled>
+        {profileImageSrc ? (
+          <ProfileImageStyled
+            avatarSize={avatarSize}
+            src={profileImageSrc}
+            pointer={pointer}
+            alt="profile image"
+          />
+        ) : (
+          <DefaultImageStyled avatarSize={avatarSize} pointer={pointer}>
+            {isClub ? (
+              <IoPeopleCircleSharp size={defaultIconSize} color="#A89BB9" />
+            ) : (
+              <BiSolidUserCircle size={defaultIconSize} color="#A89BB9" />
+            )}
+          </DefaultImageStyled>
+        )}
+        {isEditable && (
+          <EditButtonStyled avatarSize={avatarSize}>
+            <AiFillEdit size={editIconSize} />
+          </EditButtonStyled>
+        )}
+      </AvatarContainerStyled>
+    </div>
   );
 };
 

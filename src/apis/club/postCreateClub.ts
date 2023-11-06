@@ -12,16 +12,21 @@ const postCreateClub = async ({ name, info, image }: CreateClubFormValue) => {
   formData.append('request', blobRequest);
 
   if (image) {
-    formData.append('thumbnail', image[0]);
+    formData.append('logoImage', image[0]);
   }
 
-  const { data } = await axiosClientWithAuth.post(END_POINTS.CREATE_CLUB, formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
-    },
-  });
-
-  return data;
+  await axiosClientWithAuth
+    .post(END_POINTS.CREATE_CLUB, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    })
+    .then((response) => {
+      if (response.status === 201) {
+        console.log(response.headers);
+        return response.headers.Location;
+      }
+    });
 };
 
 export default postCreateClub;
