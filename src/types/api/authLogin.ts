@@ -3,8 +3,8 @@ interface OauthLoginRequest {
 }
 
 interface OauthLoginResponse {
-  token: string;
-  isNewMember: boolean;
+  accessToken: string;
+  userId: string;
 }
 
 export { OauthLoginRequest, OauthLoginResponse };
