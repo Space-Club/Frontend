@@ -1,7 +1,11 @@
-import React from 'react';
+import ClubBanner from '@/components/common/ClubBanner/ClubBanner';
 
 const ClubHomePage = () => {
-  return <div></div>;
+  return (
+    <>
+      <ClubBanner />
+    </>
+  );
 };
 
 export default ClubHomePage;

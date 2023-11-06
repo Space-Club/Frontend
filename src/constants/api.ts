@@ -20,6 +20,7 @@ const END_POINTS = {
   DELETE_MEMBER: ({ clubId, memberId }: { clubId: string; memberId: string }) =>
     `/clubs/${clubId}/members/${memberId}`,
   BOOK_MARK: '/bookmark',
+  GET_CLUB: ({ clubId }: { clubId: string }) => `/clubs/${clubId}`,
   GET_USER_INFO: '/users/profiles',
 } as const;
 

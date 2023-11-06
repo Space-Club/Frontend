@@ -1,8 +1,17 @@
 import { Event } from './event';
 
-interface CreateClubFormValue {
+interface Club {
   name: string;
+  logoImageUrl: string;
   info: string;
+  memberCount: string;
+  coverImageUrl: string;
+  inviteUrl: string;
+}
+
+interface CreateClubFormValue extends Club {}
+
+interface CreateClubFormValue extends Pick<Club, 'name' | 'info'> {
   owner: string;
   image: FileList | null;
 }
@@ -30,4 +39,10 @@ interface getInviteLinkResponse {
   link: 'string'; // TODO 명세서 나올시 수정 필요;
 }
 
-export { getInviteLinkResponse, GetClubEventsRequest, GetClubEventsResponse, CreateClubFormValue };
+export {
+  getInviteLinkResponse,
+  GetClubEventsRequest,
+  GetClubEventsResponse,
+  CreateClubFormValue,
+  Club,
+};
