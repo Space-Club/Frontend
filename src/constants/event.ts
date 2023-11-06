@@ -25,6 +25,18 @@ const MY_EVENTS_TAGS: EventTags = {
     backgroundColor: 'tSemiPink',
     textColor: 'white',
   },
+  publicEvent: {
+    title: '전체공개',
+    borderColor: 'tPurple',
+    backgroundColor: 'tSemiPurple',
+    textColor: 'white',
+  },
+  clubOnlyEvent: {
+    title: '클럽공개',
+    borderColor: 'tGreen',
+    backgroundColor: 'tSemiGreen',
+    textColor: 'white',
+  },
 };
 
 const MY_EVENTS_TABS = [{ title: '참여 신청한 행사' }, { title: '북마크한 행사' }];
