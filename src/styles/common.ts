@@ -37,6 +37,20 @@ const ellipsisText = styled.p`
   white-space: nowrap;
 `;
 
+const ellipsisTitle = styled.h1`
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+`;
+
+const twoLineTitle = styled.h1`
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+`;
+
 const sideBarScrollAreaStyled = styled.div`
   &::-webkit-scrollbar {
     width: 0.3rem;
@@ -72,6 +86,8 @@ export {
   ClubNameStyled,
   PlaceStyled,
   ellipsisText,
+  ellipsisTitle,
   sideBarScrollAreaStyled,
+  twoLineTitle,
   memberManagerScrollAreaStyled,
 };
