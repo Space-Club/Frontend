@@ -2,6 +2,7 @@ import SideBarMyProfile from '@/components/SideBarMyProfile/SideBarMyProfile';
 import Avatar from '@/components/common/Avatar/Avatar';
 import { PATH } from '@/constants/path';
 import useClubs from '@/hooks/query/club/useClubs';
+import useUserImageQuery from '@/hooks/query/user/useUserImageQuery';
 
 import { FaPlusCircle } from 'react-icons/fa';
 import { IoMdHome, IoMdNotifications } from 'react-icons/io';
@@ -11,6 +12,7 @@ import { ClubWrapper, CreateClubButtonStyled, SidebarContainer, iconStyle } from
 
 const SideNav = () => {
   const { clubs, isLoading } = useClubs();
+  const { userImage } = useUserImageQuery();
   const navigate = useNavigate();
 
   return (
@@ -36,7 +38,7 @@ const SideNav = () => {
       <IoMdHome className={iconStyle} onClick={() => navigate('/')} />
       <IoMdNotifications className={iconStyle} onClick={() => alert('알림페이지 준비 중')} />
       <Link to={`/profile`}>
-        <SideBarMyProfile />
+        <SideBarMyProfile profileImageUrl={userImage?.profileImageUrl} />
       </Link>
     </SidebarContainer>
   );
