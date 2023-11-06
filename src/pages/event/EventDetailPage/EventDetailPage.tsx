@@ -1,15 +1,15 @@
+import ConfirmModal from '@/components/Modals/ConfirmModal';
 import BookMark from '@/components/common/BookMark/BookMark';
 import { SemiPurpleButton } from '@/components/common/BookMark/BookMark.style';
 import Poster from '@/components/common/Poster/Poster';
 import { EVENT_DETAIL, EVENT_DETAIL_BUTTON } from '@/constants/event';
+import { MODAL_BUTTON_TEXT, MODAL_TEXT } from '@/constants/modalMessage';
 import useDeleteEventMutation from '@/hooks/query/event/useDeleteEventMutation';
 import useEventDetailQuery from '@/hooks/query/event/useEventDetailQuery';
 import usePostBookmarkMutation from '@/hooks/query/event/usePostBookmarkMutation';
 import usePostEventApplyMutation from '@/hooks/query/event/usePostEventApplyMutation';
-import { getStorage } from '@/utils/localStorage';
-import ConfirmModal from '@/components/Modals/ConfirmModal';
-import { MODAL_BUTTON_TEXT, MODAL_TEXT } from '@/constants/modalMessage';
 import useModal from '@/hooks/useModal';
+import { getStorage } from '@/utils/localStorage';
 
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -32,7 +32,7 @@ const EventDetailPage = () => {
   const navigate = useNavigate();
   const [bookmarkPaint, setBookmarkPaint] = useState(false);
   const { showModal, modalOpen, modalClose } = useModal();
-        
+
   const token = getStorage('token');
 
   if (!eventId) {
