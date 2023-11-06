@@ -15,18 +15,15 @@ const postCreateClub = async ({ name, info, image }: CreateClubFormValue) => {
     formData.append('logoImage', image[0]);
   }
 
-  await axiosClientWithAuth
-    .post(END_POINTS.CREATE_CLUB, formData, {
-      headers: {
-        'Content-Type': 'multipart/form-data',
-      },
-    })
-    .then((response) => {
-      if (response.status === 201) {
-        console.log(response.headers);
-        return response.headers.Location;
-      }
-    });
+  const { headers } = await axiosClientWithAuth.post(END_POINTS.CREATE_CLUB, formData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+  });
+  console.log(headers['Location']);
+  console.log(headers.Location);
+
+  return headers;
 };
 
 export default postCreateClub;
