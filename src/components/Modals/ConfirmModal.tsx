@@ -14,7 +14,7 @@ interface ConfirmModalProps {
   message?: string;
   confirmLabel?: string;
   onClose?: () => React.MouseEventHandler<HTMLElement>;
-  onConfirm?: () => React.MouseEventHandler<HTMLElement>;
+  onConfirm?: () => void;
 }
 
 const ConfirmModal = ({
