@@ -1,6 +1,7 @@
 const MODAL_TEXT = {
   UNDONE: '저장되지 않은 수정사항이 있습니다.',
   EVENT_APPLY: '참여 신청을 하시겠습니까?',
+  DELETE_MEMBER: '정말 이 멤버를 탈퇴시키시겠어요?',
 };
 
 const MODAL_BUTTON_TEXT = {

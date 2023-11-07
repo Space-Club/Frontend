@@ -1,3 +1,4 @@
+import { MODAL_TEXT } from '@/constants/modalMessage';
 import useDeleteMemberMutation from '@/hooks/query/user/useDeleteMemberMutation';
 import useModal from '@/hooks/useModal';
 
@@ -17,7 +18,7 @@ const DeleteMemberButton = ({ memberId, clubId, children, ...props }: DeleteMemb
     <>
       {showModal && (
         <ConfirmModal
-          message="정말 이 멤버를 탈퇴시키시겠어요?"
+          message={MODAL_TEXT.DELETE_MEMBER}
           confirmLabel="탈퇴"
           onConfirm={() => withdrawMember({ memberId, clubId })}
           onClose={modalClose}
