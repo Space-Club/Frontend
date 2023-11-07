@@ -11,7 +11,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { ClubWrapper, CreateClubButtonStyled, SidebarContainer, iconStyle } from './SideNav.style';
 
 const SideNav = () => {
-  const { clubs, isLoading } = useClubs();
+  const { clubs } = useClubs();
   const { userImage } = useUserImageQuery();
 
   const navigate = useNavigate();
