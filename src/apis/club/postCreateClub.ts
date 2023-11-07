@@ -10,7 +10,7 @@ const postCreateClub = async ({ name, info, image }: CreateClubFormValue) => {
   const formData = new FormData();
   const blobRequest = new Blob([JSON.stringify(dataTransform)], { type: 'application/json' });
   formData.append('request', blobRequest);
-  console.log(Image);
+
   if (image) {
     formData.append('logoImage', image[0]);
   }
