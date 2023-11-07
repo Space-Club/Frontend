@@ -8,7 +8,7 @@ const END_POINTS = {
   MY_CLUB: '/clubs/all',
   PERFORMANCE_FORM: '/events',
   GET_MY_EVENT: '/profile/event/myEvent', //TODO: API 명세서 나올시, 수정 필요
-  GET_EVENT_DETAIL: '/event/detail',
+  GET_EVENT_DETAIL: '/events',
   ALL_EVENTS: '/events',
   CREATE_CLUB: '/clubs',
   INVITE_LINK: '/club/invite', // TODO: API 명세서 나올시, 수정 필요
@@ -19,6 +19,7 @@ const END_POINTS = {
     `/clubs/${clubId}/members/${memberId}`,
   DELETE_MEMBER: ({ clubId, memberId }: { clubId: string; memberId: string }) =>
     `/clubs/${clubId}/members/${memberId}`,
+  BOOK_MARK: '/bookmark',
   GET_CLUB: ({ clubId }: { clubId: string }) => `/clubs/${clubId}`,
   GET_USER_INFO: '/users/profiles',
 } as const;
