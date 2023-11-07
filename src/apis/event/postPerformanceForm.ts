@@ -52,7 +52,7 @@ const postPerformanceForm = async ({ data }: postPerformanceForm) => {
   const formData = new FormData();
   const blobRequest = new Blob([JSON.stringify(dataTrasnform)], { type: 'application/json' });
   formData.append('request', blobRequest);
-  formData.append('poster', poster[0]);
+  formData.append('posterImage', poster[0]);
 
   await axiosClient.post(`${END_POINTS.PERFORMANCE_FORM}`, formData, {
     headers: {
