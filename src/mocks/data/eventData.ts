@@ -118,8 +118,9 @@ const eventDetail: getEventDetailResponse = {
   openTime: '10:00',
   closeDate: '2023-10-10',
   closeTime: '13:00',
-  name: '연어',
-  poster: '/src/assets/image/headhunting.svg',
+  clubName: '연어',
+  posterImageUrl: '/src/assets/image/headhunting.svg',
+  isManager: true,
 };
 
 export { myEvent, allEvents, eventDetail };
