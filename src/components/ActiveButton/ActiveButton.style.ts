@@ -10,6 +10,7 @@ const ButtonStyled = styled.button<{ fontSize: ActiveButtonProps['fontSize'] }>`
   background-color: ${Theme.color.tSemiActive};
   color: white;
   font-size: ${(props) => getFontSize(props.fontSize)};
+  cursor: pointer;
 `;
 
 export { ButtonStyled };
