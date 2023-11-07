@@ -45,7 +45,7 @@ const EventDetailPage = () => {
   const {
     title,
     content,
-    poster,
+    posterImageUrl,
     startDate,
     startTime,
     location,
@@ -53,7 +53,7 @@ const EventDetailPage = () => {
     openTime,
     closeDate,
     closeTime,
-    name,
+    clubName,
     isManager,
   } = eventDetail ?? {};
 
@@ -92,7 +92,7 @@ const EventDetailPage = () => {
             </FormButtonWrapper>
           )}
           <EventDetailWrapper>
-            <Poster posterSrc={poster ? poster : ''} width={23} />
+            <Poster posterSrc={posterImageUrl ? posterImageUrl : ''} width={23} />
             <DetailContentWrapper>
               <EventTitle>{title}</EventTitle>
               <TwoContentWrapper>
@@ -117,7 +117,7 @@ const EventDetailPage = () => {
               </div>
               <div>
                 <ContentLabel>{EVENT_DETAIL.organizer}</ContentLabel>
-                <div>{name}</div>
+                <div>{clubName}</div>
               </div>
               {!!token && (
                 <ButtonWrapper>

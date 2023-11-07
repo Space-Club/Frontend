@@ -85,16 +85,17 @@ interface GetAllEventsResponse {
 
 interface getEventDetailResponse {
   title: string;
-  content: string;
+  posterImageUrl: string;
   startDate: string;
   startTime: string;
   location: string;
+  clubName: string;
+  clubLogoImageUrl: string;
   openDate: string;
   openTime: string;
   closeDate: string;
   closeTime: string;
-  name: string;
-  poster: string;
+  content: string;
   isManager: boolean;
 }
 
