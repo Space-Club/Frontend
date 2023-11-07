@@ -20,10 +20,8 @@ const postCreateClub = async ({ name, info, image }: CreateClubFormValue) => {
       'Content-Type': 'multipart/form-data',
     },
   });
-  console.log(headers['Location']);
-  console.log(headers.Location);
 
-  return headers;
+  return headers.location;
 };
 
 export default postCreateClub;
