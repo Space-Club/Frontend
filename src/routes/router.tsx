@@ -34,7 +34,7 @@ const router = createBrowserRouter([
         element: <RegisterPage />,
       },
       {
-        path: 'oauth/kakao',
+        path: 'oauths/kakao/callback',
         element: <OauthRedirectPage />,
       },
       {

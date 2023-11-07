@@ -10,7 +10,7 @@ const useDeleteMemberMutation = () => {
   const { mutate: withdrawMember } = useMutation({
     mutationFn: deleteMember,
     onSuccess: () => {
-      queryClient.invalidateQueries([QUERY_KEY.CLUB_MEMBERS]);
+      queryClient.invalidateQueries([QUERY_KEY]);
     },
     onError: () => {}, //TODO: 에러 발생했습니다 toast 띄우기
   });
