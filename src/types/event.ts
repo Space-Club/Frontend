@@ -95,12 +95,7 @@ interface getEventDetailResponse {
   openTime: string;
   closeDate: string;
   closeTime: string;
-<<<<<<< HEAD
   content: string;
-=======
-  clubName: string;
-  posterImageUrl: string;
->>>>>>> f649206 (feat: 관리자 권한에 따른 기능 나누기)
   isManager: boolean;
 }
 
