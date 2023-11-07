@@ -7,13 +7,13 @@ const QUERY_KEY = {
 };
 
 const useClubs = () => {
-  const { data: myClubs, isLoading } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: [QUERY_KEY.MY_CLUB],
     queryFn: () => getMyClubs(),
     staleTime: 1000 * 60,
   });
 
-  return { myClubs, isLoading };
+  return { clubs: data, isLoading };
 };
 
 export default useClubs;

@@ -6,11 +6,13 @@ interface GetMyClub {
   id: number;
   logoImageUrl: string | null;
   name: string;
+  id: number;
+  logoImageUrl: string | null;
+  name: string;
 }
 
 const getMyClubs = async () => {
-  const { data } = await axiosClientWithAuth.get<GetMyClub[]>(`${END_POINTS.MY_CLUB}/1`);
-  console.log(data);
+  const { data } = await axiosClientWithAuth.get<GetMyClub[]>(`${END_POINTS.MY_CLUB}`);
   return data;
 };
 
