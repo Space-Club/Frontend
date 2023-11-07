@@ -5,7 +5,7 @@ const NETWORK_TIMEOUT = 10000;
 const END_POINTS = {
   KAKAO_LOGIN: '/users/oauths',
   REGISTER: '/users',
-  MY_CLUB: '/clubs/all',
+  MY_CLUB: '/users/clubs',
   PERFORMANCE_FORM: '/events',
   GET_MY_EVENT: '/profile/event/myEvent', //TODO: API 명세서 나올시, 수정 필요
   GET_EVENT_DETAIL: '/events',
