@@ -29,7 +29,6 @@ const EventDetailPage = () => {
   const { eventId } = useParams();
   const navigate = useNavigate();
   const { showModal, modalOpen, modalClose } = useModal();
-
   const token = getStorage('token');
 
   if (!eventId) {
