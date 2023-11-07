@@ -13,7 +13,6 @@ const DeleteMemberButton = ({ memberId, clubId, children, ...props }: DeleteMemb
   const { withdrawMember } = useDeleteMemberMutation();
   const { showModal, modalOpen, modalClose } = useModal();
 
-  //TODO: 탈퇴 버튼 클릭 시, confirm 모달 띄우기
   return (
     <>
       {showModal && (

@@ -3,10 +3,10 @@ import { END_POINTS } from '@/constants/api';
 import { PostUserRequest, PostUserResponse } from '@/types/api/postUser';
 import { getStorage, setStorage } from '@/utils/localStorage';
 
-const postUser = async ({ nickname, phoneNumber }: PostUserRequest) => {
+const postUser = async ({ name, phoneNumber }: PostUserRequest) => {
   const userId = getStorage('userId');
   const { data } = await axiosClient.post<PostUserResponse>(END_POINTS.REGISTER, {
-    nickname,
+    name,
     phoneNumber,
     userId,
   });

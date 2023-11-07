@@ -1,5 +1,5 @@
 interface PostUserRequest {
-  nickname: string;
+  name: string;
   phoneNumber: string;
 }
 
