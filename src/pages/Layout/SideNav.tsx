@@ -13,24 +13,17 @@ import { ClubWrapper, CreateClubButtonStyled, SidebarContainer, iconStyle } from
 const SideNav = () => {
   const { clubs, isLoading } = useClubs();
   const { userImage } = useUserImageQuery();
+
   const navigate = useNavigate();
 
   return (
     <SidebarContainer>
       <ClubWrapper>
-        {clubs?.map((club) =>
-          isLoading ? (
-            <div>loading</div>
-          ) : (
-            <Link to={`${PATH.CLUB.HOME}${club.clubId}`}>
-              <Avatar
-                key={club.clubId}
-                avatarSize="normal"
-                profileImageSrc={club.clubImage ?? ''}
-              ></Avatar>
-            </Link>
-          ),
-        )}
+        {clubs?.map((club) => (
+          <Link to={`/club/${club.id}/home`}>
+            <Avatar key={club.id} avatarSize="normal" profileImageSrc={club.logoImageUrl}></Avatar>
+          </Link>
+        ))}
       </ClubWrapper>
       <CreateClubButtonStyled>
         <FaPlusCircle size={'1rem'} onClick={() => navigate(`${PATH.CREATE}`)} />

@@ -2,6 +2,8 @@ import { HttpResponse, http } from 'msw';
 
 import { END_POINTS } from '@constants/api';
 
+import { userInfo } from './data/userData';
+
 interface member {
   name: string;
   number: string;
@@ -45,8 +47,8 @@ const userHandlers = [
 
   http.post(END_POINTS.KAKAO_LOGIN, async () => {
     return HttpResponse.json({
-      token: 'test token',
-      isNewMember: false,
+      userId: 'test id',
+      accessToken: '',
     });
   }),
 
@@ -57,6 +59,16 @@ const userHandlers = [
     console.log(userId);
 
     return HttpResponse.json(club, { status: 201 });
+  }),
+
+  http.get(END_POINTS.GET_USER_INFO, async ({ request }) => {
+    const token = request.headers.get('Authorization');
+
+    if (token === '123') {
+      return HttpResponse.json(userInfo, { status: 200 });
+    } else {
+      return new HttpResponse(null, { status: 404 });
+    }
   }),
 ];
 

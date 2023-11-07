@@ -5,9 +5,9 @@ const PATH = {
   MAIN: '/',
   PROFILE: '/profile/',
   CLUB: {
-    HOME: '/club/home/', // /club/:clubId
-    EVENT: '/club/event/', // /club/:clubId/event
-    MANAGE: '/club/manage/', // /club/:clubId/manage
+    HOME: '/club/:clubId/home/',
+    EVENT: '/club/:clubId/event/',
+    MANAGE: '/club/:clubId/manage/',
   },
   CREATE: '/create',
   EVENT: {

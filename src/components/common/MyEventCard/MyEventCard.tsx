@@ -7,7 +7,7 @@ import MyEventInfo from '../MyEventInfo/MyEventInfo';
 import { EventLeftSection, EventRightSection, MyEventCardContainer } from './MyEventCard.style';
 
 interface MyEventCardProps
-  extends Pick<Event, 'title' | 'poster' | 'startDate' | 'location' | 'clubName'> {
+  extends Pick<Event, 'title' | 'posterImageUrl' | 'startDate' | 'location' | 'clubName'> {
   eventId: string;
   eventTagKey: EventTagKey;
 }
@@ -15,7 +15,7 @@ interface MyEventCardProps
 const MyEventCard = ({
   eventId,
   title,
-  poster,
+  posterImageUrl,
   startDate,
   location,
   clubName,
@@ -25,7 +25,7 @@ const MyEventCard = ({
   return (
     <MyEventCardContainer {...props}>
       <EventLeftSection>
-        <Poster posterSrc={poster} width={7.6} />
+        <Poster posterSrc={posterImageUrl} width={7.6} />
         <MyEventInfo
           eventId={eventId}
           title={title}

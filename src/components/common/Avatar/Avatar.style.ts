@@ -8,21 +8,22 @@ const AvatarContainerStyled = styled.div`
   display: inline-flex;
 `;
 
-const ProfileImageStyled = styled.img<{ avatarSize: AvatarSize }>`
+const ProfileImageStyled = styled.img<{ avatarSize: AvatarSize; pointer: boolean | undefined }>`
   position: relative;
   width: ${({ avatarSize }) => getAvatarSize(avatarSize)};
   height: ${({ avatarSize }) => getAvatarSize(avatarSize)};
   border-radius: 50%;
   object-fit: cover;
+  cursor: ${({ pointer }) => (pointer ? 'pointer' : 'default')};
 `;
 
-const DefaultImageStyled = styled.div<{ avatarSize: AvatarSize }>`
+const DefaultImageStyled = styled.div<{ avatarSize: AvatarSize; pointer: boolean | undefined }>`
   position: relative;
   width: ${(props) => getAvatarSize(props.avatarSize)};
   height: ${({ avatarSize }) => getAvatarSize(avatarSize)};
   border-radius: 50%;
   background-color: #cccccc;
-
+  cursor: ${({ pointer }) => (pointer ? 'pointer' : 'default')};
   object-fit: cover;
 `;
 
