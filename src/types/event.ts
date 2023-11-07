@@ -90,7 +90,6 @@ interface getEventDetailResponse {
   startTime: string;
   location: string;
   clubName: string;
-  clubLogoImageUrl: string;
   openDate: string;
   openTime: string;
   closeDate: string;
