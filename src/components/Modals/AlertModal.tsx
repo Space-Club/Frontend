@@ -10,7 +10,7 @@ import Portal from './Portal';
 
 interface AlertModalProps {
   message?: string;
-  onClose?: () => void;
+  onClose?: () => React.MouseEventHandler<HTMLElement>;
   confirmLabel?: string;
 }
 

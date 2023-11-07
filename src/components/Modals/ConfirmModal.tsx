@@ -13,8 +13,8 @@ import Portal from './Portal';
 interface ConfirmModalProps {
   message?: string;
   confirmLabel?: string;
-  onClose?: () => void;
-  onConfirm?: () => void;
+  onClose?: () => React.MouseEventHandler<HTMLElement>;
+  onConfirm?: () => React.MouseEventHandler<HTMLElement>;
 }
 
 const ConfirmModal = ({
