@@ -9,11 +9,9 @@ interface Club {
   inviteUrl: string;
 }
 
-// interface CreateClubFormValue extends Club {}
-
 interface CreateClubFormValue extends Pick<Club, 'name' | 'info'> {
   owner: string;
-  image: File | null;
+  image: FileList | null;
 }
 
 interface GetClubEventsRequest {
