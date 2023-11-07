@@ -1,9 +1,5 @@
-import postInviteLink from '@/apis/club/postInviteLink';
 import { INVITE_LINK } from '@/constants/club';
-
-import { useParams } from 'react-router-dom';
-
-import { useQuery } from '@tanstack/react-query';
+import useInviteLinkQuery from '@/hooks/query/club/useInviteLinkQuery';
 
 import {
   InputWrapper,
@@ -16,13 +12,7 @@ import {
 } from './InviteLink.style';
 
 const InviteLink = () => {
-  const { clubId = '' } = useParams();
-  const { data, refetch } = useQuery(['inviteLink'], () => postInviteLink({ clubId }), {
-    enabled: false,
-    initialData: {
-      invitationCode: '',
-    },
-  });
+  const { data, refetch } = useInviteLinkQuery();
 
   return (
     <InviteLinkContainer>
