@@ -13,7 +13,7 @@ import Portal from './Portal';
 interface ConfirmModalProps {
   message?: string;
   confirmLabel?: string;
-  onClose?: () => React.MouseEventHandler<HTMLElement>;
+  onClose?: () => void;
   onConfirm?: () => void;
 }
 
