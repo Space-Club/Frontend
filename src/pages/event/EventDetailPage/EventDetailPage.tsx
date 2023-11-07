@@ -6,12 +6,10 @@ import { EVENT_DETAIL, EVENT_DETAIL_BUTTON } from '@/constants/event';
 import { MODAL_BUTTON_TEXT, MODAL_TEXT } from '@/constants/modalMessage';
 import useDeleteEventMutation from '@/hooks/query/event/useDeleteEventMutation';
 import useEventDetailQuery from '@/hooks/query/event/useEventDetailQuery';
-import usePostBookmarkMutation from '@/hooks/query/event/usePostBookmarkMutation';
 import usePostEventApplyMutation from '@/hooks/query/event/usePostEventApplyMutation';
 import useModal from '@/hooks/useModal';
 import { getStorage } from '@/utils/localStorage';
 
-import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import {
@@ -30,7 +28,6 @@ import {
 const EventDetailPage = () => {
   const { eventId } = useParams();
   const navigate = useNavigate();
-  const [bookmarkPaint, setBookmarkPaint] = useState(false);
   const { showModal, modalOpen, modalClose } = useModal();
 
   const token = getStorage('token');
@@ -41,7 +38,6 @@ const EventDetailPage = () => {
 
   const { eventDetail, isEventDetailLoading } = useEventDetailQuery({ eventId });
   const { deleteEventMutate } = useDeleteEventMutation({ eventId });
-  const { postBookmarkMutate } = usePostBookmarkMutation({ eventId });
 
   const { applyEvent } = usePostEventApplyMutation();
   // TODO: 수정하기 버튼 클릭시, 게시물 수정 페이지로 이동
@@ -60,11 +56,6 @@ const EventDetailPage = () => {
     name,
     isManager,
   } = eventDetail ?? {};
-
-  const handleBookmarkClick = async () => {
-    postBookmarkMutate();
-    setBookmarkPaint(true);
-  };
 
   const handleEventDelete = async () => {
     const confirmed = window.confirm('정말로 행사를 삭제하시겠습니까?'); // TODO 모달로 변경
@@ -133,7 +124,7 @@ const EventDetailPage = () => {
                   <SemiPurpleButton onClick={() => modalOpen()}>
                     {EVENT_DETAIL_BUTTON.apply}
                   </SemiPurpleButton>
-                  <BookMark reverse fill={bookmarkPaint} onClick={handleBookmarkClick} />
+                  <BookMark reverse eventId={eventId} />
                 </ButtonWrapper>
               )}
             </DetailContentWrapper>
