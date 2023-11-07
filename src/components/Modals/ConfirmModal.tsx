@@ -1,5 +1,6 @@
 import { MODAL_BUTTON_TEXT } from '@/constants/modalMessage';
 
+import Button from '../common/Button/Button';
 import {
   BackgroundOverlay,
   ButtonWrapper,
@@ -16,7 +17,12 @@ interface ConfirmModalProps {
   onConfirm?: () => void;
 }
 
-const ConfirmModal = ({ message, confirmLabel, onClose, onConfirm }: ConfirmModalProps) => {
+const ConfirmModal = ({
+  message,
+  confirmLabel = '확인',
+  onClose,
+  onConfirm,
+}: ConfirmModalProps) => {
   return (
     <Portal>
       <BackgroundOverlay onClick={onClose} />
@@ -24,18 +30,20 @@ const ConfirmModal = ({ message, confirmLabel, onClose, onConfirm }: ConfirmModa
         <ModalContentWrapper>
           <MessageStyled>{message}</MessageStyled>
           <ButtonWrapper>
-            <button type="button" onClick={onClose}>
-              {MODAL_BUTTON_TEXT.CANCEL}
-            </button>
-            <button
-              type="button"
+            <Button
+              buttonType="button"
+              buttonText={MODAL_BUTTON_TEXT.CANCEL}
+              outline
+              onClick={onClose}
+            />
+            <Button
+              buttonType="button"
+              buttonText={confirmLabel}
               onClick={() => {
                 onConfirm && onConfirm();
                 onClose && onClose();
               }}
-            >
-              {confirmLabel}
-            </button>
+            />
           </ButtonWrapper>
         </ModalContentWrapper>
       </ModalBaseContainer>

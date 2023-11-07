@@ -1,3 +1,4 @@
+import ConfirmModal from '@/components/Modals/ConfirmModal';
 import SearchInputForm from '@/components/SearchInputForm/SearchInputForm';
 import Banner from '@/components/common/Banner/Banner';
 import EventCard from '@/components/common/EventCard/EventCard';
@@ -38,6 +39,7 @@ const MainPage = () => {
         <BannerWrapperStyled>
           <Banner width={35} height={20} />
         </BannerWrapperStyled>
+        <ConfirmModal message="안녕하세요 난 테스트" confirmLabel="확인" />
         <EventCardWrapperStyled>
           {events?.map((event) => {
             return (
