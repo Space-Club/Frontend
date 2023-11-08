@@ -43,17 +43,6 @@ const ImageSelectWrapper = styled.div`
   gap: 1rem;
 `;
 
-const LengthCheckWrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const LengthCheckStyled = styled.span`
-  font-size: ${Theme.fontSize.smallContent};
-  color: ${Theme.color.tLine};
-`;
-
 const ErrorMessageStyled = styled.span`
   font-size: ${Theme.fontSize.smallContent};
   color: ${Theme.color.tRed};
@@ -67,6 +56,4 @@ export {
   ButtonWrapperStyled,
   ImageSelectWrapper,
   ErrorMessageStyled,
-  LengthCheckStyled,
-  LengthCheckWrapper,
 };
