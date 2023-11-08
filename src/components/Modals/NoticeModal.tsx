@@ -40,6 +40,11 @@ const NoticeModal = ({ onClose, isManager, isNew, content, ...props }: NoticeMod
     setIsEdit(false);
   };
 
+  const handleDeleteButtonClick = () => {
+    //TODO: DELETE공지사항 API 호출
+    onClose();
+  };
+
   useEffect(() => {
     if (isEdit) {
       noticeContentRef.current?.focus();
@@ -59,6 +64,9 @@ const NoticeModal = ({ onClose, isManager, isNew, content, ...props }: NoticeMod
             <NoticeButtonStyled reverse onClick={handleEditButtonClick}>
               수정
             </NoticeButtonStyled>
+          )}
+          {!isNew && isManager && !isEdit && (
+            <NoticeButtonStyled onClick={handleDeleteButtonClick}>삭제</NoticeButtonStyled>
           )}
           {!isNew && isManager && isEdit && (
             <NoticeButtonStyled onClick={handleEditCompleteButtonClick}>
