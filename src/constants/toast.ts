@@ -7,4 +7,6 @@ const TOAST_COLOR: ToastColor = {
   success: Theme.color.tGreen,
 };
 
-export { TOAST_COLOR };
+const TOAST_TIME_DURATION = 4000;
+
+export { TOAST_COLOR, TOAST_TIME_DURATION };
