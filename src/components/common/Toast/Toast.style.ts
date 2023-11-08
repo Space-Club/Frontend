@@ -4,12 +4,15 @@ import styled from '@emotion/styled';
 const ToastContainer = styled.div<{ color: string }>`
   right: 1.5rem;
   top: 1.5rem;
-  width: 16rem;
+  width: fit-content;
+  position: relative;
+  max-width: 20rem;
   display: flex;
   align-items: center;
-  padding: 1rem 1rem;
+  padding: 1rem 1.5rem 1rem 1rem;
   border-radius: 1.1875rem;
   border: 1px solid ${({ color }) => color};
+  animation: ${Theme.keyframe.fadeIn} 0.2s ease-in-out;
 `;
 
 const ToastIconWrapper = styled.div`
@@ -27,4 +30,24 @@ const ToastMessageStyled = styled.h1`
   font-size: ${Theme.fontSize.mediumContent};
 `;
 
-export { ToastContainer, ToastIconWrapper, ToastMessageWrapper, ToastMessageStyled };
+const CloseButtonWrapper = styled.div`
+  position: absolute;
+  right: 0rem;
+  top: 0rem;
+  cursor: pointer;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.2s ease-in-out;
+`;
+
+export {
+  ToastContainer,
+  ToastIconWrapper,
+  ToastMessageWrapper,
+  ToastMessageStyled,
+  CloseButtonWrapper,
+};
