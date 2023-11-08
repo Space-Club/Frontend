@@ -1,3 +1,5 @@
+import { TAB_CONSTANTS } from './tab';
+
 const CREATE_CLUB = {
   TITLE: '클럽을 생성해보세요',
   NAME: '클럽 이름',
@@ -15,8 +17,14 @@ const CREATE_EVENT = {
   BUTTON_TEXT: '행사 생성하기',
 };
 
+const CLUB_TABS = [
+  { title: `${TAB_CONSTANTS.CLUB_HOME}` },
+  { title: `${TAB_CONSTANTS.CLUB_EVENTS}` },
+  { title: `${TAB_CONSTANTS.CLUB_MANAGE}` },
+];
+
 const INVITE_LINK = {
   VALID_TIME: 48,
 };
 
-export { CREATE_CLUB, INVITE_LINK, CREATE_EVENT };
+export { CREATE_CLUB, INVITE_LINK, CREATE_EVENT, CLUB_TABS };
