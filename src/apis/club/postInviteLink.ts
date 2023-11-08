@@ -1,5 +1,5 @@
 import { END_POINTS } from '@/constants/api';
-import { postInviteLinkResponse } from '@/types/club';
+import { postInviteLinkResponse } from '@/types/api/postInviteLink';
 
 import { axiosClientWithAuth } from '../axiosClient';
 

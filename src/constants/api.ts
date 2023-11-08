@@ -15,7 +15,6 @@ const END_POINTS = {
   POST_EVENT_APPLY: '/events/apply',
 
   CREATE_CLUB: '/clubs',
-  MY_CLUB: '/clubs/all',
   INVITE_LINK: (clubId: string) => `/clubs/${clubId}/invite`,
   CLUB_MEMBERS: (clubId: string) => `/clubs/${clubId}/members`,
   CLUB_EVENTS: ({ clubId }: { clubId: number }) => `/clubs/${clubId}/events`,
