@@ -5,7 +5,7 @@ const PATH = {
   MAIN: '/',
   PROFILE: '/profile/',
   CLUB: {
-    HOME: (clubId: string | number) => `/club/${clubId}/home/`,
+    HOME: (clubId: string) => `/club/${clubId}/home/`,
     EVENT: '/club/:clubId/event/',
     MANAGE: '/club/:clubId/manage/',
   },

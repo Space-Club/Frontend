@@ -18,7 +18,7 @@ const ModalBaseContainer = styled.div`
   top: 50%;
   left: 50%;
   z-index: 50;
-  min-width: 10rem;
+  min-width: 20rem;
   padding: 3rem 6rem;
   border-radius: 2rem;
   background-color: ${Theme.color.tWhiteGrey};
@@ -31,6 +31,7 @@ const ModalContentWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 2rem;
+  min-width: 15rem;
 `;
 
 const MessageStyled = styled.p`

@@ -1,7 +1,7 @@
 import { GetClubResponse } from '@/types/api/getClub';
 
 const inviteLinkResponse = {
-  link: 'https://github.com/Space-Club',
+  invitationCode: 'https://github.com/Space-Club',
 };
 
 const club: GetClubResponse = {

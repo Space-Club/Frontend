@@ -1,7 +1,5 @@
-import getInviteLink from '@/apis/club/getInviteLink';
 import { INVITE_LINK } from '@/constants/club';
-
-import { useQuery } from '@tanstack/react-query';
+import useInviteLinkQuery from '@/hooks/query/club/useInviteLinkQuery';
 
 import {
   InputWrapper,
@@ -14,12 +12,7 @@ import {
 } from './InviteLink.style';
 
 const InviteLink = () => {
-  const { data, refetch } = useQuery(['inviteLink'], () => getInviteLink(), {
-    enabled: false,
-    initialData: {
-      link: '',
-    },
-  });
+  const { data, refetch } = useInviteLinkQuery();
 
   return (
     <InviteLinkContainer>
@@ -28,7 +21,7 @@ const InviteLink = () => {
         <SubTitle>링크의 유효기간은 {INVITE_LINK.VALID_TIME}시간입니다.</SubTitle>
       </TitleWrapper>
       <InputWrapper>
-        <ReadonlyInput value={data.link} readOnly />
+        <ReadonlyInput value={data.invitationCode} readOnly />
         <SubmitButton onClick={() => refetch()}>생성</SubmitButton>
       </InputWrapper>
     </InviteLinkContainer>
