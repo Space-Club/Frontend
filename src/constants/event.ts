@@ -1,5 +1,7 @@
 import { EventTags } from '@/types/event';
 
+import { TAB_CONSTANTS } from './tab';
+
 const MY_EVENTS_TAGS: EventTags = {
   pending: {
     title: '관리자 확인중',
@@ -39,7 +41,15 @@ const MY_EVENTS_TAGS: EventTags = {
   },
 };
 
-const MY_EVENTS_TABS = [{ title: '참여 신청한 행사' }, { title: '북마크한 행사' }];
+const MY_EVENTS_TABS = [
+  { title: `${TAB_CONSTANTS.APPLY_PARTICIPATION}` },
+  { title: `${TAB_CONSTANTS.BOOKMARKED_EVENT}` },
+];
+const MAIN_TABS = [
+  { title: `${TAB_CONSTANTS.PERFORMANCE}` },
+  { title: `${TAB_CONSTANTS.EVENT_SHOW}` },
+  { title: `${TAB_CONSTANTS.RECRUITMENT}` },
+];
 
 const EVENT_DETAIL = {
   date: '날짜',
@@ -56,4 +66,4 @@ const EVENT_DETAIL_BUTTON = {
   apply: '참여 신청하기',
 };
 
-export { MY_EVENTS_TAGS, MY_EVENTS_TABS, EVENT_DETAIL, EVENT_DETAIL_BUTTON };
+export { MY_EVENTS_TAGS, MY_EVENTS_TABS, EVENT_DETAIL, EVENT_DETAIL_BUTTON, MAIN_TABS };

@@ -1,58 +1,37 @@
 import SearchInputForm from '@/components/SearchInputForm/SearchInputForm';
 import Banner from '@/components/common/Banner/Banner';
-import EventCard from '@/components/common/EventCard/EventCard';
 import Header from '@/components/common/Header/Header';
 import Tab from '@/components/common/Tab/Tab';
+import TabItem from '@/components/common/Tab/TabItem';
+import { MAIN_TABS } from '@/constants/event';
 import { TAB_CONSTANTS } from '@/constants/tab';
 import { TabContextProvider } from '@/context/TabContext';
-import useAllEventsQuery from '@/hooks/query/event/useAllEventsQuery';
 
-import {
-  BannerWrapperStyled,
-  ContentContainerStyled,
-  EventCardWrapperStyled,
-} from './MainPage.style';
+import { BannerWrapperStyled, ContentContainerStyled } from './MainPage.style';
+import RenderEventShows from './RenderEventShows';
+import RenderPerformances from './RenderPerformances';
+import RenderRecruitment from './RenderRecruitment';
 
 const MainPage = () => {
-  const { events } = useAllEventsQuery({ pageNumber: 1 }); //TODO: 페이지네이션 처리
   return (
     <TabContextProvider>
       <Header>
         <SearchInputForm />
-        <Tab
-          defaultTab={`${TAB_CONSTANTS.PERFORMANCE}`}
-          tabItems={[
-            {
-              title: `${TAB_CONSTANTS.PERFORMANCE}`,
-            },
-            {
-              title: `${TAB_CONSTANTS.EVENT_SHOW}`,
-            },
-            {
-              title: `${TAB_CONSTANTS.RECRUITMENT}`,
-            },
-          ]}
-        />
+        <Tab tabItems={MAIN_TABS} />
       </Header>
       <ContentContainerStyled>
         <BannerWrapperStyled>
           <Banner width={35} height={20} />
         </BannerWrapperStyled>
-        <EventCardWrapperStyled>
-          {events?.map((event) => {
-            return (
-              <EventCard
-                eventId={event.id}
-                posterSrc={event.poster}
-                eventTitle={event.title}
-                eventDate={event.startDate}
-                eventTime={event.startTime}
-                eventPlace={event.location}
-                clubName={event.clubName}
-              />
-            );
-          })}
-        </EventCardWrapperStyled>
+        <TabItem index={`${TAB_CONSTANTS.PERFORMANCE}`}>
+          <RenderPerformances />
+        </TabItem>
+        <TabItem index={`${TAB_CONSTANTS.EVENT_SHOW}`}>
+          <RenderEventShows />
+        </TabItem>
+        <TabItem index={`${TAB_CONSTANTS.RECRUITMENT}`}>
+          <RenderRecruitment />
+        </TabItem>
       </ContentContainerStyled>
     </TabContextProvider>
   );
