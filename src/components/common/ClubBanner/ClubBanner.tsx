@@ -1,20 +1,16 @@
 import useGetClubQuery from '@/hooks/query/club/useGetClubQuery';
 
-import { useParams } from 'react-router-dom';
-
 import Avatar from '../Avatar/Avatar';
 import ClubCover from '../ClubCover/ClubCover';
 import ClubInfo from '../ClubInfo/ClubInfo';
 import { ClubAvatarInfoWrapper, ClubBannerContainer } from './ClubBanner.style';
 
 interface ClubBannerProps {
+  clubId: string;
   bannerSize?: 'small' | 'large';
 }
 
-const ClubBanner = ({ bannerSize = 'large' }: ClubBannerProps) => {
-  const { clubId } = useParams();
-  if (!clubId) throw new Error('클럽 ID를 찾을 수 없습니다');
-
+const ClubBanner = ({ clubId, bannerSize = 'large' }: ClubBannerProps) => {
   const { clubInfo } = useGetClubQuery({ clubId });
 
   if (!clubInfo) return null;
