@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import { ButtonWrapper, EventsContainer, HeaderElementWrapper } from './ClubEventPage.style';
 
 const ClubEventPage = () => {
-  const { clubEvents, isLoading } = useClubEventsQuery({ clubId: 1, pageNumber: 0 });
+  const { clubEvents } = useClubEventsQuery({ clubId: 1, pageNumber: 0 });
   const navigate = useNavigate();
 
   return (
@@ -32,21 +32,19 @@ const ClubEventPage = () => {
         </HeaderElementWrapper>
       </Header>
       <EventsContainer>
-        {clubEvents?.map((clubEvent) =>
-          isLoading ? ( //#TODO: EventCard 스켈레톤
-            <div>Loading...</div>
-          ) : (
-            <EventCard
-              eventId={clubEvent.id}
-              posterSrc={clubEvent.poster}
-              eventTitle={clubEvent.title}
-              eventDate={clubEvent.startDate}
-              eventTime={clubEvent.startTime}
-              eventPlace={clubEvent.location}
-              clubName={clubEvent.clubName}
-            />
-          ),
-        )}
+        {clubEvents?.map((clubEvent) => (
+          <EventCard
+            eventId={clubEvent.id}
+            posterSrc={clubEvent.posterImageUrl}
+            eventTitle={clubEvent.title}
+            eventDate={clubEvent.startDate}
+            eventTime={clubEvent.startTime}
+            eventPlace={clubEvent.location}
+            clubImageSrc={clubEvent.clubLogoImageUrl}
+            clubName={clubEvent.clubName}
+            openStatus={clubEvent.openStatus}
+          />
+        ))}
       </EventsContainer>
       <ButtonWrapper>
         <ActiveButton

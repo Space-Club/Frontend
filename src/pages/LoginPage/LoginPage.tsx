@@ -1,25 +1,15 @@
-import { LogoText, Message } from '@/constants/LoginPage';
+import BigLogo from '@/components/common/BigLogo/BigLogo';
+import { LOGO_TEXT, MESSAGE } from '@/constants/logo';
 
 import KakaoAuthButton from '../../components/KakaoAuthButton/KakaoAuthButton';
-import {
-  LoginAreaStyled,
-  LogoAreaStyled,
-  LogoCircleStyled,
-  LogoTextStyled,
-  PageContainerStyled,
-  TitleStyled,
-} from './LoginPage.style';
+import { LoginAreaStyled, PageContainerStyled, TitleStyled } from './LoginPage.style';
 
 const LoginPage = () => {
   return (
     <PageContainerStyled>
-      <LogoAreaStyled>
-        <LogoCircleStyled>
-          <LogoTextStyled>{LogoText.SPACE_CLUB}</LogoTextStyled>
-        </LogoCircleStyled>
-      </LogoAreaStyled>
+      <BigLogo logoText={LOGO_TEXT.SPACE_CLUB} />
       <LoginAreaStyled>
-        <TitleStyled>{Message.WELCOME}</TitleStyled>
+        <TitleStyled>{MESSAGE.WELCOME}</TitleStyled>
         <KakaoAuthButton />
       </LoginAreaStyled>
     </PageContainerStyled>

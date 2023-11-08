@@ -1,6 +1,6 @@
 import { oauthLogin } from '@/apis/auth/oauthLogin';
 import { PATH } from '@/constants/path';
-import { OauthLoginRequest } from '@/types/auth';
+import { OauthLoginRequest } from '@/types/api/authLogin';
 import { setStorage } from '@/utils/localStorage';
 
 import { useNavigate } from 'react-router-dom';
@@ -12,17 +12,18 @@ const useOauthLogin = ({ code }: OauthLoginRequest) => {
   const { mutate: login } = useMutation({
     mutationFn: () => oauthLogin({ code }),
     onSuccess: ({ data }) => {
-      setStorage('token', data.token);
-      if (data.isNewMember) {
+      if (data.accessToken === '') {
+        setStorage('userId', data.userId);
         navigate(PATH.REGISTER);
       } else {
+        setStorage('token', data.accessToken);
         navigate(PATH.MAIN);
       }
     },
-    onError: ({ data }) => {
+    onError: () => {
       //TODO: Toast 띄우기
       navigate(PATH.LOGIN);
-      throw new Error(data.message);
+      throw new Error('로그인에 실패했습니다');
     },
   });
   return {

@@ -3,15 +3,15 @@ import { BiSolidUserCircle } from 'react-icons/bi';
 import { MyProfileStyled, ProfileImageStyled } from './SideBarMyProfile.style';
 
 interface SideBarAvatarProps {
-  userProfileImageSrc?: string;
+  profileImageUrl?: string | null;
 }
 
-const SideBarMyProfile = ({ userProfileImageSrc, ...props }: SideBarAvatarProps) => {
+const SideBarMyProfile = ({ profileImageUrl, ...props }: SideBarAvatarProps) => {
   return (
     <MyProfileStyled {...props}>
-      {userProfileImageSrc ? (
+      {profileImageUrl ? (
         <ProfileImageStyled>
-          <img src={userProfileImageSrc} alt="my profile image" />
+          <img src={profileImageUrl} alt="my profile image" />
         </ProfileImageStyled>
       ) : (
         <BiSolidUserCircle size="4.6rem" style={{ fill: 'rgba(239, 239, 244, 0.50)' }} />

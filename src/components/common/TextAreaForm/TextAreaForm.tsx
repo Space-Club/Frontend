@@ -3,20 +3,22 @@ import { forwardRef } from 'react';
 import { InputWrapper, LabelStyled, TextAreaStyled } from './TextAreaForm.style';
 
 interface TextAreaForm {
-  labelText: string;
+  labelText?: string;
   rows: number;
-  placeholoder?: string;
+  placeholder?: string;
+  maxLength?: number;
 }
 
 const TextAreaForm = forwardRef<HTMLTextAreaElement, TextAreaForm>(
-  ({ labelText, placeholoder, rows, ...props }, ref) => {
+  ({ labelText, placeholder, rows, maxLength, ...props }, ref) => {
     return (
       <InputWrapper>
         <LabelStyled htmlFor={labelText}>{labelText}</LabelStyled>
         <TextAreaStyled
           id={labelText}
           rows={rows}
-          placeholder={placeholoder}
+          placeholder={placeholder}
+          maxLength={maxLength}
           ref={ref}
           {...props}
         />
