@@ -9,6 +9,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import GlobalStyle from '@styles/GlobalStyle';
 import Theme from '@styles/Theme';
 
+import { ToastContextProvider } from './context/ToastContext';
 import { worker } from './mocks/worker';
 import router from './routes/router';
 
@@ -22,8 +23,10 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <ThemeProvider theme={Theme}>
-        <Global styles={GlobalStyle} />
-        <RouterProvider router={router} />
+        <ToastContextProvider>
+          <Global styles={GlobalStyle} />
+          <RouterProvider router={router} />
+        </ToastContextProvider>
       </ThemeProvider>
     </QueryClientProvider>
   </React.StrictMode>,
