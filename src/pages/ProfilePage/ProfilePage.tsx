@@ -7,12 +7,7 @@ import { MY_EVENTS_TABS } from '@/constants/event';
 import { TabContextProvider } from '@/context/TabContext';
 import useMyEventQuery from '@/hooks/query/event/useMyEventQuery';
 
-import {
-  MyEventContainer,
-  MyEventSection,
-  MyEventTabContainer,
-  ProfilePageContainer,
-} from './ProfilePage.style';
+import { MyEventContainer, MyEventTabContainer, ProfileBottomWrapper } from './ProfilePage.style';
 
 const ProfilePage = () => {
   const { events } = useMyEventQuery({ pageNumber: 1 }); //TODO: 페이지네이션 처리
@@ -23,27 +18,25 @@ const ProfilePage = () => {
         <SearchInputForm />
       </Header>
       <Profile />
-      <ProfilePageContainer>
-        <MyEventSection>
-          <MyEventTabContainer>
-            <Tab tabItems={MY_EVENTS_TABS} />
-          </MyEventTabContainer>
-          <MyEventContainer>
-            {events?.map((event) => (
-              <MyEventCard
-                key={event.id}
-                eventId={event.id}
-                title={event.title}
-                posterImageUrl={event.posterImageUrl}
-                startDate={event.startDate}
-                location={event.location}
-                clubName={event.clubName}
-                eventTagKey={event.status}
-              />
-            ))}
-          </MyEventContainer>
-        </MyEventSection>
-      </ProfilePageContainer>
+      <ProfileBottomWrapper>
+        <MyEventTabContainer>
+          <Tab tabItems={MY_EVENTS_TABS} />
+        </MyEventTabContainer>
+        <MyEventContainer>
+          {events?.map((event) => (
+            <MyEventCard
+              key={event.id}
+              eventId={event.id}
+              title={event.title}
+              posterImageUrl={event.posterImageUrl}
+              startDate={event.startDate}
+              location={event.location}
+              clubName={event.clubName}
+              eventTagKey={event.status}
+            />
+          ))}
+        </MyEventContainer>
+      </ProfileBottomWrapper>
     </TabContextProvider>
   );
 };

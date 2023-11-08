@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 const TabContainerStyled = styled.div`
   display: flex;
   align-items: center;
-  width: fit-content;
 `;
 
 const TabItemStyled = styled.div<{ isActive: boolean }>`
