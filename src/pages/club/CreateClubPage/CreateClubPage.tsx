@@ -90,7 +90,6 @@ const CreateClubPage = () => {
                   message: ERROR_MESSAGE.CLUB.MAX_LENGTH_NAME,
                 },
               })}
-              // labelText={CREATE_CLUB.NAME}
               inputType="text"
               placeholder={CREATE_CLUB.NAME_PLACEHOLDER}
               maxLength={CREATE_CLUB.NAME_MAX_LENGTH}
@@ -111,7 +110,6 @@ const CreateClubPage = () => {
                   message: ERROR_MESSAGE.CLUB.MAX_LENGTH_INFO,
                 },
               })}
-              // labelText={CREATE_CLUB.INFO}
               rows={2}
               placeholder={CREATE_CLUB.INFO_PLACEHOLDER}
               maxLength={CREATE_CLUB.INFO_MAX_LENGTH}

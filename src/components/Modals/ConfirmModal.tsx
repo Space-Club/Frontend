@@ -30,14 +30,9 @@ const ConfirmModal = ({
         <ModalContentWrapper>
           <MessageStyled>{message}</MessageStyled>
           <ButtonWrapper>
+            <Button type="button" buttonText={MODAL_BUTTON_TEXT.CANCEL} outline onClick={onClose} />
             <Button
-              buttonType="button"
-              buttonText={MODAL_BUTTON_TEXT.CANCEL}
-              outline
-              onClick={onClose}
-            />
-            <Button
-              buttonType="button"
+              type="button"
               buttonText={confirmLabel}
               onClick={() => {
                 onConfirm && onConfirm();

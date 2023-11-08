@@ -23,7 +23,7 @@ const AlertModal = ({ message, onClose, confirmLabel = '확인' }: AlertModalPro
           <MessageStyled>{message}</MessageStyled>
           <ButtonWrapper>
             <Button
-              buttonType="button"
+              type="button"
               buttonText={confirmLabel}
               onClick={() => {
                 onClose && onClose();
