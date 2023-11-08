@@ -5,7 +5,11 @@ import { axiosClientWithAuth } from '../axiosClient';
 
 const getMyEvent = async ({ pageNumber }: GetMyEventRequest) => {
   const { data } = await axiosClientWithAuth.get<GetMyEventResponse>(
-    `${END_POINTS.GET_MY_EVENT}?page=${pageNumber}size=10&sort=id,startDate`,
+    `${END_POINTS.GET_MY_EVENT({
+      page: pageNumber,
+      size: '10',
+      sort: 'id',
+    })}`,
   );
   return data;
 };

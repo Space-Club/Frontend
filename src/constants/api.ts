@@ -8,7 +8,8 @@ const END_POINTS = {
   USER_IMAGE: '/users/images',
   MY_CLUB: '/users/clubs',
   PERFORMANCE_FORM: '/events',
-  GET_MY_EVENT: '/profile/event/myEvent', //TODO: API 명세서 나올시, 수정 필요
+  GET_MY_EVENT: ({ page, size, sort }: { page: number; size: string; sort: string }) =>
+    `users/events?page=${page}&size=${size}&sort=${sort}`,
   GET_EVENT_DETAIL: '/events',
   ALL_EVENTS: '/events',
   CREATE_CLUB: '/clubs',
