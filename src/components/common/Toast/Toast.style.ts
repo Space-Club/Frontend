@@ -1,7 +1,7 @@
 import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
-const ToastContainer = styled.div<{ color: string }>`
+const ToastContainer = styled.div<{ color: string; isShow: boolean; animationTime: number }>`
   width: fit-content;
   position: relative;
   max-width: 20rem;
@@ -11,7 +11,9 @@ const ToastContainer = styled.div<{ color: string }>`
   border: 1px solid ${({ color }) => color};
   border-radius: 1.1875rem;
   background-color: ${Theme.color.white};
-  animation: ${Theme.keyframe.fadeIn} 0.2s ease-in-out;
+  animation: ${({ isShow }) => (isShow ? Theme.keyframe.fadeIn : Theme.keyframe.fadeOut)} 0.2s
+    ease-in-out;
+  opacity: ${({ isShow }) => (isShow ? 1 : 0)};
   user-select: none;
   filter: ${Theme.shadow.all};
 `;

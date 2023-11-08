@@ -1,7 +1,7 @@
-import { TOAST_COLOR, TOAST_TIME_DURATION } from '@/constants/toast';
+import { TOAST_ANIMATION_TIME, TOAST_COLOR, TOAST_TIME_DURATION } from '@/constants/toast';
 import { Toast as ToastInterface } from '@/types/toast';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useLayoutEffect, useState } from 'react';
 import { AiFillCheckCircle, AiFillInfoCircle, AiOutlineClose } from 'react-icons/ai';
 import { PiWarningCircleFill } from 'react-icons/pi';
 
@@ -25,22 +25,31 @@ const Toast = ({
   toastTimeDuration = TOAST_TIME_DURATION,
 }: ToastProps) => {
   const [isShow, setIsShow] = useState(true);
+  const [isUnmount, setIsUnmount] = useState(false);
 
-  useEffect(() => {
-    if (!isShow) {
+  useLayoutEffect(() => {
+    if (isUnmount) {
       onClose?.();
     }
 
     setTimeout(() => {
-      // setIsShow(false);
+      setIsShow(false);
     }, toastTimeDuration);
-  }, [isShow, onClose]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [isShow, onClose, isUnmount]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (!isShow) {
+      setTimeout(() => {
+        setIsUnmount(true);
+      }, TOAST_ANIMATION_TIME);
+    }
+  }, [isShow]);
 
   const toastColor = TOAST_COLOR[toastType];
 
   return (
-    isShow && (
-      <ToastContainer color={toastColor}>
+    !isUnmount && (
+      <ToastContainer color={toastColor} animationTime={TOAST_ANIMATION_TIME} isShow={isShow}>
         <ToastIconWrapper>
           {toastType === 'error' ? (
             <PiWarningCircleFill size={20} color={toastColor} />
@@ -53,8 +62,8 @@ const Toast = ({
         <ToastMessageWrapper>
           <ToastMessageStyled>{message}</ToastMessageStyled>
         </ToastMessageWrapper>
-        <CloseButtonWrapper>
-          <AiOutlineClose onClick={() => setIsShow(false)} size={10} color={toastColor} />
+        <CloseButtonWrapper onClick={() => setIsShow(false)}>
+          <AiOutlineClose size={10} color={toastColor} />
         </CloseButtonWrapper>
       </ToastContainer>
     )
