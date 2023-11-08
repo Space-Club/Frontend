@@ -17,13 +17,14 @@ import Portal from './Portal';
 interface NoticeModalProps {
   onClose: () => void;
   content?: string;
+  isManager?: boolean;
   isNew?: boolean;
 }
 
-const NoticeModal = ({ onClose, isNew, content, ...props }: NoticeModalProps) => {
+const NoticeModal = ({ onClose, isManager, isNew, content, ...props }: NoticeModalProps) => {
   const noticeContentRef = useRef<HTMLDivElement>(null);
 
-  const [isEdit, setIsEdit] = useState(isNew);
+  const [isEdit, setIsEdit] = useState(isNew && isManager);
 
   const handleCreateNoticeButtonClick = () => {
     //TODO: POST공지사항 API 호출
@@ -54,17 +55,17 @@ const NoticeModal = ({ onClose, isNew, content, ...props }: NoticeModalProps) =>
             <AiOutlineClose color={Theme.color.tActive} onClick={onClose} />
           </NoticeCloseButtonStyled>
           <NoticeTitleStyled>공지사항</NoticeTitleStyled>
-          {!isNew && !isEdit && (
+          {!isNew && isManager && !isEdit && (
             <NoticeButtonStyled reverse onClick={handleEditButtonClick}>
               수정
             </NoticeButtonStyled>
           )}
-          {!isNew && isEdit && (
+          {!isNew && isManager && isEdit && (
             <NoticeButtonStyled onClick={handleEditCompleteButtonClick}>
               수정완료
             </NoticeButtonStyled>
           )}
-          {isNew && (
+          {isNew && isManager && (
             <NoticeButtonStyled onClick={handleCreateNoticeButtonClick}>
               작성완료
             </NoticeButtonStyled>
