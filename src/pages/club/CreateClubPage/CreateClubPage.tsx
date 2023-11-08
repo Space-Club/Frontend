@@ -1,6 +1,7 @@
 import ActiveButton from '@/components/ActiveButton/ActiveButton';
 import Avatar from '@/components/common/Avatar/Avatar';
 import InputForm from '@/components/common/InputForm/InputForm';
+import TextAreaForm from '@/components/common/TextAreaForm/TextAreaForm';
 import { CREATE_CLUB } from '@/constants/club';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
 import { useClub } from '@/hooks/query/club/useClub';
@@ -13,8 +14,11 @@ import {
   ButtonWrapperStyled,
   ClubInfoWrapperStyled,
   ContentWrapperStyled,
+  ErrorMessageStyled,
   HeaderContainerStyled,
   ImageSelectWrapper,
+  LengthCheckStyled,
+  LengthCheckWrapper,
   TitleStyled,
 } from './CreateClubPage.style';
 
@@ -29,7 +33,6 @@ const CreateClubPage = () => {
       name: '',
       info: '',
       image: null,
-      owner: '이채연', //#TODO: 로그인 한 유저 정보 받아오기
     },
     mode: 'onChange',
   });
@@ -53,8 +56,6 @@ const CreateClubPage = () => {
   };
 
   //#TODO: ImageForm의 ImageLabelStyled 적용하기
-  //#TODO: InputForm의 labelText props 옵셔널로 변경
-  //#TODO: 클럽소개 TextAreaForm으로 변경하기
 
   return (
     <>
@@ -66,6 +67,7 @@ const CreateClubPage = () => {
           <ImageSelectWrapper>
             <Avatar
               avatarSize="large"
+              isClub={true}
               profileImageSrc={previewImage ? `${URL.createObjectURL(previewImage)}` : ''}
             />
             <input
@@ -88,14 +90,16 @@ const CreateClubPage = () => {
                   message: ERROR_MESSAGE.CLUB.MAX_LENGTH_NAME,
                 },
               })}
-              labelText={CREATE_CLUB.NAME}
+              // labelText={CREATE_CLUB.NAME}
               inputType="text"
               placeholder={CREATE_CLUB.NAME_PLACEHOLDER}
               maxLength={CREATE_CLUB.NAME_MAX_LENGTH}
             />
-            {errors?.name && <span>{errors.name.message}</span>}
-            <span>{`${clubName.length}/${CREATE_CLUB.NAME_MAX_LENGTH}`}</span>
-            <InputForm
+            <LengthCheckWrapper>
+              <ErrorMessageStyled>{errors?.name ? errors.name.message : ''}</ErrorMessageStyled>
+              <LengthCheckStyled>{`${clubName.length}/${CREATE_CLUB.NAME_MAX_LENGTH}`}</LengthCheckStyled>
+            </LengthCheckWrapper>
+            <TextAreaForm
               {...register('info', {
                 required: ERROR_MESSAGE.CLUB.REQUIRED_INFO,
                 minLength: {
@@ -107,13 +111,15 @@ const CreateClubPage = () => {
                   message: ERROR_MESSAGE.CLUB.MAX_LENGTH_INFO,
                 },
               })}
-              labelText={CREATE_CLUB.INFO}
-              inputType="text"
+              // labelText={CREATE_CLUB.INFO}
+              rows={2}
               placeholder={CREATE_CLUB.INFO_PLACEHOLDER}
               maxLength={CREATE_CLUB.INFO_MAX_LENGTH}
             />
-            {errors?.info && <span>{errors.info.message}</span>}
-            <span>{`${clubInfo.length}/${CREATE_CLUB.INFO_MAX_LENGTH}`}</span>
+            <LengthCheckWrapper>
+              <ErrorMessageStyled>{errors?.info ? errors.info.message : ''}</ErrorMessageStyled>
+              <LengthCheckStyled>{`${clubInfo.length}/${CREATE_CLUB.INFO_MAX_LENGTH}`}</LengthCheckStyled>
+            </LengthCheckWrapper>
           </ClubInfoWrapperStyled>
         </ContentWrapperStyled>
         <ButtonWrapperStyled>

@@ -25,8 +25,35 @@ const MY_EVENTS_TAGS: EventTags = {
     backgroundColor: 'tSemiPink',
     textColor: 'white',
   },
+  publicEvent: {
+    title: '전체공개',
+    borderColor: 'tPurple',
+    backgroundColor: 'tSemiPurple',
+    textColor: 'white',
+  },
+  clubOnlyEvent: {
+    title: '클럽공개',
+    borderColor: 'tGreen',
+    backgroundColor: 'tSemiGreen',
+    textColor: 'white',
+  },
 };
 
 const MY_EVENTS_TABS = [{ title: '참여 신청한 행사' }, { title: '북마크한 행사' }];
 
-export { MY_EVENTS_TAGS, MY_EVENTS_TABS };
+const EVENT_DETAIL = {
+  date: '날짜',
+  time: '시간',
+  location: '장소',
+  applicationPeriod: '참여신청 가능기간',
+  organizer: '주최자',
+};
+
+const EVENT_DETAIL_BUTTON = {
+  showSubmitForm: '제출된 폼 보기',
+  edit: '수정하기',
+  delete: '삭제하기',
+  apply: '참여 신청하기',
+};
+
+export { MY_EVENTS_TAGS, MY_EVENTS_TABS, EVENT_DETAIL, EVENT_DETAIL_BUTTON };

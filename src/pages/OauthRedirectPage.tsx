@@ -1,9 +1,12 @@
 import useOauthLogin from '@/hooks/query/auth/useOauthLogin';
 
 import { useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
 const OauthRedirectPage = () => {
-  const code = new URLSearchParams(window.location.search).get('code') ?? '';
+  const [searchParams] = useSearchParams();
+
+  const code = searchParams.get('code');
 
   if (!code) {
     //TODO: 에러페이지로 이동시켜주기

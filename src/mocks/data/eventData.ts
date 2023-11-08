@@ -9,7 +9,7 @@ const myEvent: GetMyEventResponse = {
       startDate: '2021-10-10',
       location: 'test',
       status: 'cancelRequested',
-      poster:
+      posterImageUrl:
         'https://english.seoul.go.kr/wp-content/uploads/2022/09/working-seoul-poster-214x300.jpg',
     },
     {
@@ -19,7 +19,7 @@ const myEvent: GetMyEventResponse = {
       startDate: '2021-10-10',
       location: 'test',
       status: 'cancelled',
-      poster: 'https://www.europosters.ie/image/framed/750/115398_modenacerna.jpg',
+      posterImageUrl: 'https://www.europosters.ie/image/framed/750/115398_modenacerna.jpg',
     },
   ],
   pageData: {
@@ -118,8 +118,9 @@ const eventDetail: getEventDetailResponse = {
   openTime: '10:00',
   closeDate: '2023-10-10',
   closeTime: '13:00',
-  name: '연어',
-  poster: '/src/assets/image/headhunting.svg',
+  clubName: '연어',
+  posterImageUrl: '/src/assets/image/headhunting.svg',
+  isManager: true,
 };
 
 export { myEvent, allEvents, eventDetail };

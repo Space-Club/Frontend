@@ -1,3 +1,4 @@
+import Profile from '@/components/Profile/Profile';
 import SearchInputForm from '@/components/SearchInputForm/SearchInputForm';
 import Header from '@/components/common/Header/Header';
 import MyEventCard from '@/components/common/MyEventCard/MyEventCard';
@@ -21,6 +22,7 @@ const ProfilePage = () => {
       <Header>
         <SearchInputForm />
       </Header>
+      <Profile />
       <ProfilePageContainer>
         <MyEventSection>
           <MyEventTabContainer>
@@ -32,7 +34,7 @@ const ProfilePage = () => {
                 key={event.id}
                 eventId={event.id}
                 title={event.title}
-                poster={event.poster}
+                posterImageUrl={event.posterImageUrl}
                 startDate={event.startDate}
                 location={event.location}
                 clubName={event.clubName}

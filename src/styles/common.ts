@@ -37,6 +37,20 @@ const ellipsisText = styled.p`
   white-space: nowrap;
 `;
 
+const ellipsisTitle = styled.h1`
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+`;
+
+const twoLineTitle = styled.h1`
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+`;
+
 const sideBarScrollAreaStyled = styled.div`
   &::-webkit-scrollbar {
     width: 0.3rem;
@@ -52,6 +66,19 @@ const sideBarScrollAreaStyled = styled.div`
     box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
   }
 `;
+const memberManagerScrollAreaStyled = styled.div`
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: ${Theme.color.tSemiPurple};
+    border: 1px solid ${Theme.color.tPurple};
+    border-radius: 0.75rem;
+  }
+  &::-webkit-scrollbar-track {
+    display: none;
+  }
+`;
 
 export {
   EventTitleStyled,
@@ -59,5 +86,8 @@ export {
   ClubNameStyled,
   PlaceStyled,
   ellipsisText,
+  ellipsisTitle,
   sideBarScrollAreaStyled,
+  twoLineTitle,
+  memberManagerScrollAreaStyled,
 };
