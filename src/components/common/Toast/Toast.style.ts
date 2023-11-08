@@ -2,17 +2,18 @@ import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
 const ToastContainer = styled.div<{ color: string }>`
-  right: 1.5rem;
-  top: 1.5rem;
   width: fit-content;
   position: relative;
   max-width: 20rem;
   display: flex;
   align-items: center;
-  padding: 1rem 1.5rem 1rem 1rem;
-  border-radius: 1.1875rem;
+  padding: 1rem 0.3rem 1rem 1rem;
   border: 1px solid ${({ color }) => color};
+  border-radius: 1.1875rem;
+  background-color: ${Theme.color.white};
   animation: ${Theme.keyframe.fadeIn} 0.2s ease-in-out;
+  user-select: none;
+  filter: ${Theme.shadow.all};
 `;
 
 const ToastIconWrapper = styled.div`
@@ -31,9 +32,6 @@ const ToastMessageStyled = styled.h1`
 `;
 
 const CloseButtonWrapper = styled.div`
-  position: absolute;
-  right: 0rem;
-  top: 0rem;
   cursor: pointer;
   width: 1.5rem;
   height: 1.5rem;
