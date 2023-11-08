@@ -32,7 +32,7 @@ const Toast = ({
     }
 
     setTimeout(() => {
-      setIsShow(false);
+      // setIsShow(false);
     }, toastTimeDuration);
   }, [isShow, onClose]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -41,9 +41,6 @@ const Toast = ({
   return (
     isShow && (
       <ToastContainer color={toastColor}>
-        <CloseButtonWrapper>
-          <AiOutlineClose onClick={() => setIsShow(false)} size={10} color={toastColor} />
-        </CloseButtonWrapper>
         <ToastIconWrapper>
           {toastType === 'error' ? (
             <PiWarningCircleFill size={20} color={toastColor} />
@@ -56,6 +53,9 @@ const Toast = ({
         <ToastMessageWrapper>
           <ToastMessageStyled>{message}</ToastMessageStyled>
         </ToastMessageWrapper>
+        <CloseButtonWrapper>
+          <AiOutlineClose onClick={() => setIsShow(false)} size={10} color={toastColor} />
+        </CloseButtonWrapper>
       </ToastContainer>
     )
   );
