@@ -2,7 +2,7 @@ import getMyClubs from '@/apis/users/getMyClub';
 
 import { useQuery } from '@tanstack/react-query';
 
-const QUERY_KEY = {
+export const QUERY_KEY = {
   MY_CLUB: 'MY_CLUB',
 };
 
