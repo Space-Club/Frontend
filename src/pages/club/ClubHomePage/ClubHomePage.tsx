@@ -1,4 +1,4 @@
-import ClubBanner from '@/components/common/ClubBanner/clubbanner';
+import ClubBanner from '@/components/common/ClubBanner/ClubBanner';
 import Header from '@/components/common/Header/Header';
 import Tab from '@/components/common/Tab/Tab';
 import { CLUB_TABS } from '@/constants/club';
