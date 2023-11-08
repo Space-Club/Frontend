@@ -34,8 +34,6 @@ const CreateClubPage = () => {
     mode: 'onChange',
   });
 
-  console.log('rerender');
-
   const { createClub, isLoading } = useClub();
   const [previewImage, setPreviewImage] = useState<File | null>(null);
 
