@@ -23,13 +23,13 @@ const MainPage = () => {
         <BannerWrapperStyled>
           <Banner width={35} height={20} />
         </BannerWrapperStyled>
-        <TabItem index={`${TAB_CONSTANTS.PERFORMANCE}`}>
+        <TabItem tabName={`${TAB_CONSTANTS.PERFORMANCE}`}>
           <RenderPerformances />
         </TabItem>
-        <TabItem index={`${TAB_CONSTANTS.EVENT_SHOW}`}>
+        <TabItem tabName={`${TAB_CONSTANTS.EVENT_SHOW}`}>
           <RenderEventShows />
         </TabItem>
-        <TabItem index={`${TAB_CONSTANTS.RECRUITMENT}`}>
+        <TabItem tabName={`${TAB_CONSTANTS.RECRUITMENT}`}>
           <RenderRecruitment />
         </TabItem>
       </ContentContainerStyled>

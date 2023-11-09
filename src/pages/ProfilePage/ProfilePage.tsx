@@ -7,9 +7,9 @@ import { MY_EVENTS_TABS } from '@/constants/event';
 import { TAB_CONSTANTS } from '@/constants/tab';
 import { TabContextProvider } from '@/context/TabContext';
 
-import { MyEventTabContainer, ProfileBottomWrapper } from './ProfilePage.style';
-import RenderApplyEvents from './RenderApplyEvents';
-import RenderBookedEvents from './RenderBookedEvents';
+import AppliedEvents from './AppliedEvents';
+import BookedEvents from './BookedEvents';
+import { AppliedEventTabContainer, ProfileBottomWrapper } from './ProfilePage.style';
 
 const ProfilePage = () => {
   return (
@@ -19,14 +19,14 @@ const ProfilePage = () => {
       </Header>
       <Profile />
       <ProfileBottomWrapper>
-        <MyEventTabContainer>
+        <AppliedEventTabContainer>
           <Tab tabItems={MY_EVENTS_TABS} />
-        </MyEventTabContainer>
-        <TabItem index={`${TAB_CONSTANTS.APPLY_PARTICIPATION}`}>
-          <RenderApplyEvents />
+        </AppliedEventTabContainer>
+        <TabItem tabName={`${TAB_CONSTANTS.APPLY_PARTICIPATION}`}>
+          <AppliedEvents />
         </TabItem>
-        <TabItem index={`${TAB_CONSTANTS.BOOKMARKED_EVENT}`}>
-          <RenderBookedEvents />
+        <TabItem tabName={`${TAB_CONSTANTS.BOOKMARKED_EVENT}`}>
+          <BookedEvents />
         </TabItem>
       </ProfileBottomWrapper>
     </TabContextProvider>
