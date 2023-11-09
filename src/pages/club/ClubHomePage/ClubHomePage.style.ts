@@ -12,6 +12,7 @@ const ClubHomeTopWrapper = styled.section`
 
 const ClubMiddleWrapper = styled.section`
   display: flex;
+  justify-content: space-around;
   margin-top: 1.3rem;
   height: 10.5rem;
 
@@ -22,14 +23,12 @@ const ClubMiddleWrapper = styled.section`
 `;
 
 const ClubNoticeWrapper = styled(whiteGreyBox)`
+  width: 1000px;
   overflow: hidden;
 `;
 
 const ClubMemberWrapper = styled(memberManagerScrollAreaStyled)`
-  min-width: 20rem;
   overflow-y: auto;
-  flex-grow: 1;
-  height: 100%;
 `;
 
 const ClubHomeBottomWrapper = styled.section`
