@@ -37,8 +37,13 @@ const NoticeButtonStyled = styled(PurpleButton)`
 `;
 
 const NoticeContentWrapper = styled.div`
+  min-height: 20rem;
+  min-width: 40rem;
   padding: 1.5rem 2.6rem;
   background-color: ${Theme.color.white};
+  &:focus {
+    outline: none;
+  }
 `;
 
 export {

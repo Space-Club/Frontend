@@ -1,5 +1,6 @@
 import ClubMember from '@/components/ClubMember/ClubMember';
 import ClubNotice from '@/components/ClubNotice/ClubNotice';
+import CreateNoticeButton from '@/components/CreateNoticeButton/CreateNoticeButton';
 import Carousel from '@/components/common/CarouselSlider/Carousel';
 import ClubBanner from '@/components/common/ClubBanner/ClubBanner';
 import Header from '@/components/common/Header/Header';
@@ -31,7 +32,10 @@ const ClubHomePage = () => {
         </ClubHomeTopWrapper>
         <ClubMiddleWrapper>
           <ClubNoticeTextedWrapper>
-            <ClubNoticeTextStyled>공지사항</ClubNoticeTextStyled>
+            <ClubNoticeTextStyled>
+              공지사항
+              <CreateNoticeButton clubId={clubId} />
+            </ClubNoticeTextStyled>
             <ClubNoticeWrapper>
               <Carousel totalItem={3}>
                 <ClubNotice clubId={clubId} />

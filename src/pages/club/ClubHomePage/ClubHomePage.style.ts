@@ -37,9 +37,13 @@ const ClubMemberTextedWrapper = styled.div`
   flex-direction: column;
 `;
 
-const ClubNoticeTextStyled = styled.p`
+const ClubNoticeTextStyled = styled.div`
+  display: flex;
   font-size: ${Theme.fontSize.smallTitle};
   margin-bottom: 0.5rem;
+  > button {
+    margin-left: 0.2rem;
+  }
 `;
 
 const ClubNoticeWrapper = styled(whiteGreyBox)`
