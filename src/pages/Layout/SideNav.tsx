@@ -20,8 +20,13 @@ const SideNav = () => {
     <SidebarContainer>
       <ClubWrapper>
         {clubs?.map((club) => (
-          <Link to={`/club/${club.id}/home`}>
-            <Avatar key={club.id} avatarSize="normal" profileImageSrc={club.logoImageUrl}></Avatar>
+          <Link to={PATH.CLUB.HOME(club.id)}>
+            <Avatar
+              key={club.id}
+              avatarSize="normal"
+              profileImageSrc={club.logoImageUrl}
+              isClub
+            ></Avatar>
           </Link>
         ))}
       </ClubWrapper>
