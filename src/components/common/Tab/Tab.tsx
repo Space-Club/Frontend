@@ -1,6 +1,6 @@
 import { useTabContext } from '@/hooks/useTabContext';
 
-import { Fragment, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { TabContainerStyled, TabItemStyled } from './Tab.style';
@@ -27,17 +27,16 @@ const Tab = ({ tabItems }: TabProps) => {
     <TabContainerStyled>
       {tabItems?.map((tabItem, index) => {
         return (
-          <Fragment key={index}>
-            <TabItemStyled
-              isActive={activeTab === tabItem.title}
-              onClick={() => {
-                setActiveTab(tabItem.title);
-                tabItem.link && navigate(tabItem.link);
-              }}
-            >
-              {tabItem.title}
-            </TabItemStyled>
-          </Fragment>
+          <TabItemStyled
+            key={index}
+            isActive={activeTab === tabItem.title}
+            onClick={() => {
+              setActiveTab(tabItem.title);
+              tabItem.link && navigate(tabItem.link);
+            }}
+          >
+            {tabItem.title}
+          </TabItemStyled>
         );
       })}
     </TabContainerStyled>
