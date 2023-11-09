@@ -12,12 +12,15 @@ const useCarousel = ({ totalItem, itemWidth }: UseCarouselProps) => {
 
   const carouselRef = useRef<HTMLDivElement>(null);
 
-  const slide = useCallback((index: number) => {
-    if (carouselRef.current) {
-      carouselRef.current.style.transform = `translateX(-${index * itemWidth}rem)`;
-      carouselRef.current.style.transition = `all ${SLIDE_DURATION}ms ease-in-out`;
-    }
-  }, []);
+  const slide = useCallback(
+    (index: number) => {
+      if (carouselRef.current) {
+        carouselRef.current.style.transform = `translateX(-${index * itemWidth}rem)`;
+        carouselRef.current.style.transition = `all ${SLIDE_DURATION}ms ease-in-out`;
+      }
+    },
+    [itemWidth],
+  );
   const goNext = useCallback(() => {
     if (currentIndex < totalItem - 1) {
       setCurrentIndex((prevIndex) => prevIndex + 1);
