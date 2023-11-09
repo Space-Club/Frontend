@@ -7,7 +7,7 @@ const ClubMemberContainer = styled(memberManagerScrollAreaStyled)`
   height: 100%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  padding: 1.5rem;
   overflow-y: auto;
   background-color: ${Theme.color.tWhiteGrey};
   border-radius: 1.3125rem;

@@ -21,7 +21,7 @@ const CarouselContainer = styled.section`
 
 const CarouselRefWrapper = styled.div`
   display: flex;
-
+  height: 100%;
   & > * {
     flex-shrink: 0;
   }

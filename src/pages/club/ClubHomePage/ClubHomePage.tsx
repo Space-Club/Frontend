@@ -10,8 +10,11 @@ import {
   ClubHomeBottomWrapper,
   ClubHomePageContainer,
   ClubHomeTopWrapper,
+  ClubMemberTextedWrapper,
   ClubMemberWrapper,
   ClubMiddleWrapper,
+  ClubNoticeTextStyled,
+  ClubNoticeTextedWrapper,
   ClubNoticeWrapper,
 } from './ClubHomePage.style';
 
@@ -27,16 +30,22 @@ const ClubHomePage = () => {
           <ClubBanner clubId={clubId} bannerSize="small" />
         </ClubHomeTopWrapper>
         <ClubMiddleWrapper>
-          <ClubNoticeWrapper>
-            <Carousel totalItem={3}>
-              <ClubNotice clubId={clubId} />
-              <ClubNotice clubId={clubId} />
-              <ClubNotice clubId={clubId} />
-            </Carousel>
-          </ClubNoticeWrapper>
-          <ClubMemberWrapper>
-            <ClubMember clubId={clubId} />
-          </ClubMemberWrapper>
+          <ClubNoticeTextedWrapper>
+            <ClubNoticeTextStyled>공지사항</ClubNoticeTextStyled>
+            <ClubNoticeWrapper>
+              <Carousel totalItem={3}>
+                <ClubNotice clubId={clubId} />
+                <ClubNotice clubId={clubId} />
+                <ClubNotice clubId={clubId} />
+              </Carousel>
+            </ClubNoticeWrapper>
+          </ClubNoticeTextedWrapper>
+          <ClubMemberTextedWrapper>
+            <ClubNoticeTextStyled>멤버</ClubNoticeTextStyled>
+            <ClubMemberWrapper>
+              <ClubMember clubId={clubId} />
+            </ClubMemberWrapper>
+          </ClubMemberTextedWrapper>
         </ClubMiddleWrapper>
         <ClubHomeBottomWrapper></ClubHomeBottomWrapper>
       </ClubHomePageContainer>
