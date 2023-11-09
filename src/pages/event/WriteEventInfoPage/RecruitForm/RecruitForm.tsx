@@ -76,7 +76,10 @@ const RecruitForm = () => {
           <InputForm
             {...register('startDate', {
               required: `${REQUIRED_ACTIVITY_START_TIME}`,
-              validate: validateTodayDate,
+              validate: {
+                today: validateTodayDate,
+                compare: (value) => validateTimeCompare(watch('startDate'), value),
+              },
             })}
             labelText="활동 시작 날짜"
             inputType="date"
@@ -133,7 +136,10 @@ const RecruitForm = () => {
           <InputForm
             {...register('openDate', {
               required: `${REQUIRED_FORM_START_TIME}`,
-              validate: validateTodayDate,
+              validate: {
+                today: validateTodayDate,
+                compare: (value) => validateTimeCompare(watch('openDate'), value),
+              },
             })}
             labelText="신청 시작 날짜 및 시간"
             inputType="datetime-local"

@@ -144,7 +144,10 @@ const PerformanceForm = () => {
           <InputForm
             {...register('openDate', {
               required: `${REQUIRED_FORM_START_TIME}`,
-              validate: validateTodayDate,
+              validate: {
+                today: validateTodayDate,
+                compare: (value) => validateTimeCompare(watch('openDate'), value),
+              },
             })}
             labelText="신청 시작 날짜 및 시간"
             inputType="datetime-local"

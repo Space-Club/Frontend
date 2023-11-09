@@ -9,6 +9,8 @@ const ERROR_MESSAGE = {
   EVENT: {
     REQUIRED_EVENT_NAME: '* 행사명은 필수입니다.',
     REQUIRED_CLUB_NAME: '* 클럽 이름은 필수입니다.',
+    REQUIRED_SCHEDULE_NAME: '* 일정 제목은 필수입니다.',
+    REQUIRED_SCHEDULE_MASTER: '* 일정 생성자명은 필수입니다.',
     REQUIRED_START_TIME: '* 행사 시작 날짜는 필수입니다.',
     REQUIRED_ACTIVITY_START_TIME: '* 활동 시작 날짜는 필수입니다.',
     REQUIRED_ACTIVITY_LAST_TIME: '* 활동 마감 날짜는 필수입니다.',
@@ -18,6 +20,7 @@ const ERROR_MESSAGE = {
     REQUIRED_POSTER: '* 포스터 이미지는 필수입니다.',
     REQUIRED_EVENT_CONTENT: '* 행사 내용 작성은 필수입니다.',
     REQUIRED_CLUB_CONTENT: '* 클럽 소개 작성은 필수입니다.',
+    REQUIRED_SCHEDULE_CONTENT: '* 일정 안내는 필수입니다.',
 
     PERSONNEL: '* 정원의 최댓값은 999입니다.',
     COST: '* 비용의 최댓값은 100만원입니다.',
