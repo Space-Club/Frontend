@@ -1,8 +1,9 @@
 import { EventTags } from '@/types/event';
 
+import { PATH } from './path';
 import { TAB_CONSTANTS } from './tab';
 
-const MY_EVENTS_TAGS: EventTags = {
+const APPLIED_EVENTS_TAGS: EventTags = {
   pending: {
     title: '관리자 확인중',
     borderColor: 'tGreen',
@@ -41,14 +42,10 @@ const MY_EVENTS_TAGS: EventTags = {
   },
 };
 
-const MY_EVENTS_TABS = [
-  { title: `${TAB_CONSTANTS.APPLY_PARTICIPATION}` },
-  { title: `${TAB_CONSTANTS.BOOKMARKED_EVENT}` },
-];
 const MAIN_TABS = [
-  { title: `${TAB_CONSTANTS.PERFORMANCE}` },
-  { title: `${TAB_CONSTANTS.EVENT_SHOW}` },
-  { title: `${TAB_CONSTANTS.RECRUITMENT}` },
+  { title: `${TAB_CONSTANTS.PERFORMANCE}`, link: `${PATH.MAIN}` },
+  { title: `${TAB_CONSTANTS.EVENT_SHOW}`, link: `${PATH.MAIN_EVENT}` },
+  { title: `${TAB_CONSTANTS.RECRUITMENT}`, link: `${PATH.MAIN_RECRUITMENT}` },
 ];
 
 const EVENT_DETAIL = {
@@ -66,4 +63,4 @@ const EVENT_DETAIL_BUTTON = {
   apply: '참여 신청하기',
 };
 
-export { MY_EVENTS_TAGS, MY_EVENTS_TABS, EVENT_DETAIL, EVENT_DETAIL_BUTTON, MAIN_TABS };
+export { APPLIED_EVENTS_TAGS, EVENT_DETAIL, EVENT_DETAIL_BUTTON, MAIN_TABS };

@@ -1,4 +1,4 @@
-import { MY_EVENTS_TAGS } from '@/constants/event';
+import { APPLIED_EVENTS_TAGS } from '@/constants/event';
 import { PATH } from '@/constants/path';
 import { EventTagKey } from '@/types/event';
 import { Event } from '@/types/event';
@@ -30,7 +30,7 @@ const AppliedEventInfo = ({
   const navigate = useNavigate();
   return (
     <EventInfoSection>
-      <EventStatusTag eventTag={MY_EVENTS_TAGS[eventTagKey]} />
+      <EventStatusTag eventTag={APPLIED_EVENTS_TAGS[eventTagKey]} />
       <AppliedEventTitleStyled onClick={() => navigate(PATH.EVENT.DETAIL + `${eventId}`)}>
         {title}
       </AppliedEventTitleStyled>

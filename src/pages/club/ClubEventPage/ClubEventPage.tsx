@@ -4,7 +4,6 @@ import Header from '@/components/common/Header/Header';
 import Tab from '@/components/common/Tab/Tab';
 import { CLUB_TABS, CREATE_EVENT } from '@/constants/club';
 import { PATH } from '@/constants/path';
-import { TabContextProvider } from '@/context/TabContext';
 import useClubEventsQuery from '@/hooks/query/club/useClubEventsQuery';
 
 import { useNavigate } from 'react-router-dom';
@@ -16,7 +15,7 @@ const ClubEventPage = () => {
   const navigate = useNavigate();
 
   return (
-    <TabContextProvider>
+    <>
       <Header>
         <HeaderElementWrapper>
           <Tab tabItems={CLUB_TABS} />
@@ -44,7 +43,7 @@ const ClubEventPage = () => {
           onClick={() => navigate(`${PATH.EVENT.CHOICE}`)}
         />
       </ButtonWrapper>
-    </TabContextProvider>
+    </>
   );
 };
 

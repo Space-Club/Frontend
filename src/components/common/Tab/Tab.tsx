@@ -1,27 +1,27 @@
-import { useTabContext } from '@/hooks/useTabContext';
-
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { TabContainerStyled, TabItemStyled } from './Tab.style';
 
 interface TabItem extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
-  link?: string;
+  link: string;
 }
 
 interface TabProps {
-  defaultTab?: string;
   tabItems: TabItem[];
 }
 
 const Tab = ({ tabItems }: TabProps) => {
-  const { activeTab, setActiveTab } = useTabContext();
+  const location = useLocation();
+  const [activeTab, setActiveTab] = useState(location.pathname);
   const navigate = useNavigate();
 
+  console.log(activeTab, location.pathname);
+
   useEffect(() => {
-    setActiveTab(tabItems[0].title);
-  }, [setActiveTab, tabItems]);
+    setActiveTab(location.pathname);
+  }, [setActiveTab, location]);
 
   return (
     <TabContainerStyled>
@@ -29,10 +29,10 @@ const Tab = ({ tabItems }: TabProps) => {
         return (
           <TabItemStyled
             key={index}
-            isActive={activeTab === tabItem.title}
+            isActive={activeTab === tabItem.link}
             onClick={() => {
-              setActiveTab(tabItem.title);
-              tabItem.link && navigate(tabItem.link);
+              setActiveTab(tabItem.link);
+              navigate(tabItem.link);
             }}
           >
             {tabItem.title}
