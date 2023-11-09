@@ -7,15 +7,18 @@ import { validateTimeCompare, validateTodayDate } from '@/utils/validate';
 
 import { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 import {
+  ButtonWrapper,
   ContentArea,
   ErrorMessage,
   HalfInputForm,
   PerformanceFormContainer,
+  PrevButton,
   SubmitButton,
   TwoInputContainer,
-} from './PerformanceForm.style';
+} from '../WriteEventInfoPage.style';
 
 const PerformanceForm = () => {
   const {
@@ -25,6 +28,7 @@ const PerformanceForm = () => {
     formState: { errors },
   } = useForm();
   const [imgFile, setImgFile] = useState('');
+  const navigate = useNavigate();
   const { mutate: submitForm, isLoading: isSubmitLoading } = useSubmitForm();
 
   const {
@@ -40,6 +44,7 @@ const PerformanceForm = () => {
     BANK_NAME,
     ACCOUNT,
     MAX_TICKET,
+    LENGTH,
   } = ERROR_MESSAGE.EVENT;
 
   useEffect(() => {
@@ -72,16 +77,14 @@ const PerformanceForm = () => {
           placeholder="행사 이름을 입력하세요"
         />
         {errors.title && <ErrorMessage>{errors.title.message as string}</ErrorMessage>}
-        <TwoInputContainer>
-          <HalfInputForm
-            {...register('startDate', {
-              required: `${REQUIRED_START_TIME}`,
-              validate: validateTodayDate,
-            })}
-            labelText="행사 시작 날짜 및 시간"
-            inputType="datetime-local"
-          />
-        </TwoInputContainer>
+        <HalfInputForm
+          {...register('startDate', {
+            required: `${REQUIRED_START_TIME}`,
+            validate: validateTodayDate,
+          })}
+          labelText="행사 시작 날짜 및 시간"
+          inputType="datetime-local"
+        />
         {errors.startDate && <ErrorMessage>{errors.startDate.message as string}</ErrorMessage>}
         <InputForm
           {...register('location', { required: `${REQUIRED_LOCATION}` })}
@@ -127,8 +130,8 @@ const PerformanceForm = () => {
             placeholder="계좌번호"
           />
         </TwoInputContainer>
-        {errors.bankName && <ErrorMessage>{errors.bankName?.message as string}</ErrorMessage>}
-        {errors.account && <ErrorMessage>{errors.account?.message as string}</ErrorMessage>}
+        {errors.bankName && <ErrorMessage>{errors.bankName.message as string}</ErrorMessage>}
+        {errors.account && <ErrorMessage>{errors.account.message as string}</ErrorMessage>}
         <HalfInputForm
           {...register('maxTicketCount', {
             max: { value: 999, message: `${MAX_TICKET}` },
@@ -169,14 +172,19 @@ const PerformanceForm = () => {
         <TextAreaForm
           {...register('content', {
             required: `${REQUIRED_EVENT_CONTENT}`,
-            maxLength: 200,
+            maxLength: { value: 200, message: LENGTH(200) },
           })}
           labelText="행사 내용 작성"
           rows={10}
         />
         {errors.content && <ErrorMessage>{errors.content?.message as string}</ErrorMessage>}
-        <SubmitButton type="submit">다음</SubmitButton>
       </ContentArea>
+      <ButtonWrapper>
+        <PrevButton type="button" onClick={() => navigate(-1)}>
+          이전으로
+        </PrevButton>
+        <SubmitButton type="submit">다음</SubmitButton>
+      </ButtonWrapper>
     </PerformanceFormContainer>
   );
 };

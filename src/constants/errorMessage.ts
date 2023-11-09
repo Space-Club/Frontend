@@ -8,12 +8,16 @@ const ERROR_MESSAGE = {
   },
   EVENT: {
     REQUIRED_EVENT_NAME: '* 행사명은 필수입니다.',
+    REQUIRED_CLUB_NAME: '* 클럽 이름은 필수입니다.',
     REQUIRED_START_TIME: '* 행사 시작 날짜는 필수입니다.',
+    REQUIRED_ACTIVITY_START_TIME: '* 활동 시작 날짜는 필수입니다.',
+    REQUIRED_ACTIVITY_LAST_TIME: '* 활동 마감 날짜는 필수입니다.',
     REQUIRED_LOCATION: '* 장소명은 필수입니다.',
     REQUIRED_FORM_START_TIME: '* 신청 시작 날짜는 필수입니다.',
     REQUIRED_FORM_LAST_TIME: '* 신청 마감 날짜는 필수입니다.',
     REQUIRED_POSTER: '* 포스터 이미지는 필수입니다.',
     REQUIRED_EVENT_CONTENT: '* 행사 내용 작성은 필수입니다.',
+    REQUIRED_CLUB_CONTENT: '* 클럽 소개 작성은 필수입니다.',
 
     PERSONNEL: '* 정원의 최댓값은 999입니다.',
     COST: '* 비용의 최댓값은 100만원입니다.',
@@ -22,6 +26,7 @@ const ERROR_MESSAGE = {
     MAX_TICKET: '* 인당 최대 예매 가능 수는 999입니다.',
     START_TIME: '* 날짜는 오늘 이후로 설정해야 합니다.',
     LAST_TIME: '* 날짜는 시작 날짜 이후로 설정해야 합니다.',
+    LENGTH: (num: number) => `* 최대 ${num}자 이하여야 합니다.`,
   },
   CLUB: {
     REQUIRED_NAME: '클럽 이름을 작성해주세요.',
