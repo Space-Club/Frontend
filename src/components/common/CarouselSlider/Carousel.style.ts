@@ -2,9 +2,9 @@ import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
 const CarouselContainer = styled.section`
+  position: relative;
   width: 100%;
   height: 100%;
-  position: relative;
   overflow: hidden;
 
   & > button {

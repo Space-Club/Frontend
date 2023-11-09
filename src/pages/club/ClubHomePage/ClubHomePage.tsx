@@ -1,4 +1,6 @@
+import ClubMember from '@/components/ClubMember/ClubMember';
 import ClubNotice from '@/components/ClubNotice/ClubNotice';
+import Carousel from '@/components/common/CarouselSlider/Carousel';
 import ClubBanner from '@/components/common/ClubBanner/ClubBanner';
 import Header from '@/components/common/Header/Header';
 
@@ -6,9 +8,11 @@ import { useParams } from 'react-router-dom';
 
 import {
   ClubHomeBottomWrapper,
-  ClubHomeMiddleMemberWrapper,
   ClubHomePageContainer,
   ClubHomeTopWrapper,
+  ClubMemberWrapper,
+  ClubMiddleWrapper,
+  ClubNoticeWrapper,
 } from './ClubHomePage.style';
 
 const ClubHomePage = () => {
@@ -22,9 +26,18 @@ const ClubHomePage = () => {
         <ClubHomeTopWrapper>
           <ClubBanner clubId={clubId} bannerSize="small" />
         </ClubHomeTopWrapper>
-        <ClubHomeMiddleMemberWrapper>
-          <ClubNotice clubId={clubId} />
-        </ClubHomeMiddleMemberWrapper>
+        <ClubMiddleWrapper>
+          <ClubNoticeWrapper>
+            <Carousel totalItem={3}>
+              <ClubNotice clubId={clubId} />
+              <ClubNotice clubId={clubId} />
+              <ClubNotice clubId={clubId} />
+            </Carousel>
+          </ClubNoticeWrapper>
+          <ClubMemberWrapper>
+            <ClubMember clubId={clubId} />
+          </ClubMemberWrapper>
+        </ClubMiddleWrapper>
         <ClubHomeBottomWrapper></ClubHomeBottomWrapper>
       </ClubHomePageContainer>
     </>
