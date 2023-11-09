@@ -5,14 +5,14 @@ import { useNavigate } from 'react-router-dom';
 
 import { TabContainerStyled, TabItemStyled } from './Tab.style';
 
-interface TabItemProps extends React.HTMLAttributes<HTMLDivElement> {
+interface TabItem extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
   link?: string;
 }
 
 interface TabProps {
   defaultTab?: string;
-  tabItems: TabItemProps[];
+  tabItems: TabItem[];
 }
 
 const Tab = ({ tabItems }: TabProps) => {
