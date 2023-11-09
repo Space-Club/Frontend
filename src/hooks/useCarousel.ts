@@ -2,20 +2,21 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 
 interface UseCarouselProps {
   totalItem: number;
-  itemWidth: number;
 }
 
 const SLIDE_DURATION = 300;
 
-const useCarousel = ({ totalItem, itemWidth }: UseCarouselProps) => {
+const useCarousel = ({ totalItem }: UseCarouselProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const carouselRef = useRef<HTMLDivElement>(null);
 
+  const itemWidth = carouselRef.current?.clientWidth ?? 0;
+
   const slide = useCallback(
     (index: number) => {
       if (carouselRef.current) {
-        carouselRef.current.style.transform = `translateX(-${index * itemWidth}rem)`;
+        carouselRef.current.style.transform = `translateX(-${index * itemWidth}px)`;
         carouselRef.current.style.transition = `all ${SLIDE_DURATION}ms ease-in-out`;
       }
     },

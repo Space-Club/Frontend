@@ -11,16 +11,15 @@ import {
 } from './Carousel.style';
 
 interface CarouselProps {
-  itemWidth: number;
   totalItem: number;
   children: React.ReactNode;
 }
 
-const Carousel = ({ itemWidth, totalItem, children }: CarouselProps) => {
-  const { goNext, goPrev, carouselRef, currentIndex } = useCarousel({ totalItem, itemWidth });
+const Carousel = ({ totalItem, children }: CarouselProps) => {
+  const { goNext, goPrev, carouselRef, currentIndex } = useCarousel({ totalItem });
 
   return (
-    <CarouselContainer itemWidth={itemWidth}>
+    <CarouselContainer>
       <CarouselNextButton onClick={goNext}>
         <GrFormNext size={30} />
       </CarouselNextButton>
