@@ -17,8 +17,6 @@ import {
   ErrorMessageStyled,
   HeaderContainerStyled,
   ImageSelectWrapper,
-  LengthCheckStyled,
-  LengthCheckWrapper,
   TitleStyled,
 } from './CreateClubPage.style';
 
@@ -26,7 +24,6 @@ const CreateClubPage = () => {
   const {
     register,
     handleSubmit,
-    watch,
     formState: { errors },
   } = useForm<CreateClubFormValue>({
     defaultValues: {
@@ -38,7 +35,6 @@ const CreateClubPage = () => {
   });
 
   const { createClub, isLoading } = useClub();
-  const [clubName, clubInfo] = [watch('name'), watch('info')];
   const [previewImage, setPreviewImage] = useState<File | null>(null);
 
   const onSubmit: SubmitHandler<CreateClubFormValue> = (data) => {
@@ -54,8 +50,6 @@ const CreateClubPage = () => {
 
     setPreviewImage(imageFile[0]);
   };
-
-  //#TODO: ImageForm의 ImageLabelStyled 적용하기
 
   return (
     <>
@@ -94,10 +88,7 @@ const CreateClubPage = () => {
               placeholder={CREATE_CLUB.NAME_PLACEHOLDER}
               maxLength={CREATE_CLUB.NAME_MAX_LENGTH}
             />
-            <LengthCheckWrapper>
-              <ErrorMessageStyled>{errors?.name ? errors.name.message : ''}</ErrorMessageStyled>
-              <LengthCheckStyled>{`${clubName.length}/${CREATE_CLUB.NAME_MAX_LENGTH}`}</LengthCheckStyled>
-            </LengthCheckWrapper>
+            <ErrorMessageStyled>{errors?.name ? errors.name.message : ''}</ErrorMessageStyled>
             <TextAreaForm
               {...register('info', {
                 required: ERROR_MESSAGE.CLUB.REQUIRED_INFO,
@@ -114,10 +105,7 @@ const CreateClubPage = () => {
               placeholder={CREATE_CLUB.INFO_PLACEHOLDER}
               maxLength={CREATE_CLUB.INFO_MAX_LENGTH}
             />
-            <LengthCheckWrapper>
-              <ErrorMessageStyled>{errors?.info ? errors.info.message : ''}</ErrorMessageStyled>
-              <LengthCheckStyled>{`${clubInfo.length}/${CREATE_CLUB.INFO_MAX_LENGTH}`}</LengthCheckStyled>
-            </LengthCheckWrapper>
+            <ErrorMessageStyled>{errors?.info ? errors.info.message : ''}</ErrorMessageStyled>
           </ClubInfoWrapperStyled>
         </ContentWrapperStyled>
         <ButtonWrapperStyled>
