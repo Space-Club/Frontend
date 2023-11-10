@@ -2,23 +2,32 @@ import ActiveButton from '@/components/ActiveButton/ActiveButton';
 import EventCard from '@/components/common/EventCard/EventCard';
 import Header from '@/components/common/Header/Header';
 import Tab from '@/components/common/Tab/Tab';
-import { CLUB_TABS, CREATE_EVENT } from '@/constants/club';
+import { CREATE_EVENT } from '@/constants/club';
 import { PATH } from '@/constants/path';
+import { TAB_CONSTANTS } from '@/constants/tab';
 import useClubEventsQuery from '@/hooks/query/club/useClubEventsQuery';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { ButtonWrapper, EventsContainer, HeaderElementWrapper } from './ClubEventPage.style';
 
 const ClubEventPage = () => {
   const { clubEvents } = useClubEventsQuery({ clubId: 1, pageNumber: 0 });
   const navigate = useNavigate();
+  const { clubId } = useParams();
+  if (!clubId) throw new Error('클럽 ID를 찾을 수 없습니다');
 
   return (
     <>
       <Header>
         <HeaderElementWrapper>
-          <Tab tabItems={CLUB_TABS} />
+          <Tab
+            tabItems={[
+              { title: `${TAB_CONSTANTS.CLUB_HOME}`, link: `${PATH.CLUB.HOME(clubId)}` },
+              { title: `${TAB_CONSTANTS.CLUB_EVENTS}`, link: `${PATH.CLUB.EVENT(clubId)}` },
+              { title: `${TAB_CONSTANTS.CLUB_MANAGE}`, link: `${PATH.CLUB.MANAGE(clubId)}` },
+            ]}
+          />
         </HeaderElementWrapper>
       </Header>
       <EventsContainer>

@@ -1,6 +1,3 @@
-import { PATH } from './path';
-import { TAB_CONSTANTS } from './tab';
-
 const CREATE_CLUB = {
   TITLE: '클럽을 생성해보세요',
   NAME: '클럽 이름',
@@ -18,20 +15,8 @@ const CREATE_EVENT = {
   BUTTON_TEXT: '행사 생성하기',
 };
 
-//TODO: 어케 해야 하지?
-const CLUB_MANAGER_TABS = [
-  { title: `${TAB_CONSTANTS.CLUB_HOME}`, link: `${PATH.CLUB.HOME}` },
-  { title: `${TAB_CONSTANTS.CLUB_EVENTS}`, link: `${PATH.CLUB.EVENT}` },
-  { title: `${TAB_CONSTANTS.CLUB_MANAGE}`, link: `${PATH.CLUB.MANAGE}` },
-];
-
-const CLUB_TABS = [
-  { title: `${TAB_CONSTANTS.CLUB_HOME}`, link: `${PATH.CLUB.HOME}` },
-  { title: `${TAB_CONSTANTS.CLUB_EVENTS}`, link: `${PATH.CLUB.EVENT}` },
-];
-
 const INVITE_LINK = {
   VALID_TIME: 48,
 };
 
-export { CREATE_CLUB, INVITE_LINK, CREATE_EVENT, CLUB_TABS, CLUB_MANAGER_TABS };
+export { CREATE_CLUB, INVITE_LINK, CREATE_EVENT };

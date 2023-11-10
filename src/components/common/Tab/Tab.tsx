@@ -17,8 +17,6 @@ const Tab = ({ tabItems }: TabProps) => {
   const [activeTab, setActiveTab] = useState(location.pathname);
   const navigate = useNavigate();
 
-  console.log(activeTab, location.pathname);
-
   useEffect(() => {
     setActiveTab(location.pathname);
   }, [setActiveTab, location]);
