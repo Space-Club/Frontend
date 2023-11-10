@@ -2,8 +2,7 @@ import ClubNotice from '@/components/ClubNotice/ClubNotice';
 import ClubBanner from '@/components/common/ClubBanner/ClubBanner';
 import Header from '@/components/common/Header/Header';
 import Tab from '@/components/common/Tab/Tab';
-import { PATH } from '@/constants/path';
-import { TAB_CONSTANTS } from '@/constants/tab';
+import { CLUB_TABS } from '@/constants/tab';
 
 import { useParams } from 'react-router-dom';
 
@@ -24,13 +23,7 @@ const ClubHomePage = () => {
     <>
       <Header>
         <TabWrapper>
-          <Tab
-            tabItems={[
-              { title: `${TAB_CONSTANTS.CLUB_HOME}`, link: `${PATH.CLUB.HOME(clubId)}` },
-              { title: `${TAB_CONSTANTS.CLUB_EVENTS}`, link: `${PATH.CLUB.EVENT(clubId)}` },
-              { title: `${TAB_CONSTANTS.CLUB_MANAGE}`, link: `${PATH.CLUB.MANAGE(clubId)}` },
-            ]}
-          />
+          <Tab tabItems={CLUB_TABS(clubId)} />
         </TabWrapper>
       </Header>
       <ClubHomePageContainer>

@@ -24,4 +24,10 @@ const PROFILE_TABS = [
   { title: `${TAB_CONSTANTS.BOOKMARKED_EVENT}`, link: `${PATH.BOOKMARK}` },
 ];
 
-export { TAB_CONSTANTS, MAIN_TABS, PROFILE_TABS };
+const CLUB_TABS = (clubId: string | number) => [
+  { title: `${TAB_CONSTANTS.CLUB_HOME}`, link: `${PATH.CLUB.HOME(clubId)}` },
+  { title: `${TAB_CONSTANTS.CLUB_EVENTS}`, link: `${PATH.CLUB.EVENT(clubId)}` },
+  { title: `${TAB_CONSTANTS.CLUB_MANAGE}`, link: `${PATH.CLUB.MANAGE(clubId)}` },
+];
+
+export { TAB_CONSTANTS, MAIN_TABS, PROFILE_TABS, CLUB_TABS };
