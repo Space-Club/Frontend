@@ -1,7 +1,7 @@
 import Profile from '@/components/Profile/Profile';
 import Header from '@/components/common/Header/Header';
 import Tab from '@/components/common/Tab/Tab';
-import { PROFILE_TABS } from '@/constants/user';
+import { PROFILE_TABS } from '@/constants/tab';
 
 import AppliedEvents from './AppliedEvents';
 import { AppliedEventTabContainer, ProfileBottomWrapper } from './ProfilePage.style';

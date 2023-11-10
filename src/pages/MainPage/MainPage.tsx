@@ -3,7 +3,7 @@ import Banner from '@/components/common/Banner/Banner';
 import EventCard from '@/components/common/EventCard/EventCard';
 import Header from '@/components/common/Header/Header';
 import Tab from '@/components/common/Tab/Tab';
-import { MAIN_TABS } from '@/constants/event';
+import { MAIN_TABS } from '@/constants/tab';
 import useAllEventsQuery from '@/hooks/query/event/useAllEventsQuery';
 
 import {
