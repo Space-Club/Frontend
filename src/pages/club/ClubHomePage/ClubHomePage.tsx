@@ -1,3 +1,4 @@
+import ClubNotice from '@/components/ClubNotice/ClubNotice';
 import ClubBanner from '@/components/common/ClubBanner/ClubBanner';
 import Header from '@/components/common/Header/Header';
 import Tab from '@/components/common/Tab/Tab';
@@ -36,7 +37,9 @@ const ClubHomePage = () => {
         <ClubHomeTopWrapper>
           <ClubBanner clubId={clubId} bannerSize="small" />
         </ClubHomeTopWrapper>
-        <ClubHomeMiddleMemberWrapper></ClubHomeMiddleMemberWrapper>
+        <ClubHomeMiddleMemberWrapper>
+          <ClubNotice clubId={clubId} />
+        </ClubHomeMiddleMemberWrapper>
         <ClubHomeBottomWrapper></ClubHomeBottomWrapper>
       </ClubHomePageContainer>
     </>

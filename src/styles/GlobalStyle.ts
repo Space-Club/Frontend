@@ -27,6 +27,11 @@ const GlobalStyle = css`
 
   body {
   }
+
+  #overlays {
+    position: fixed;
+    z-index: 100;
+  }
 `;
 
 export default GlobalStyle;

@@ -75,11 +75,16 @@ const fontSize = {
   tagText: '0.625rem',
 };
 
+const shadow = {
+  all: 'drop-shadow(0px 1px 4px rgba(0, 0, 0, 0.25))',
+};
+
 const Theme = {
   color,
   componentStyle,
   keyframe,
   fontSize,
+  shadow,
 };
 
 export default Theme;
