@@ -1,60 +1,80 @@
-const name = {
-  name: '이름',
-};
-const phoneNumber = {
-  name: '연락처',
-};
-const depositor = {
-  name: '입금자명',
-};
-const numberOfPeople = {
-  name: '인원 수',
-};
-const age = {
-  name: '나이',
-};
-const gender = {
-  name: '성별',
-};
-const major = {
-  name: '학교/과',
-};
-const mbti = {
-  name: 'MBTI',
-};
-const introduce = {
-  name: '자기소개',
-};
-const motivation = {
-  name: '지원동기',
-};
+const NAME = {
+  title: '이름',
+  type: 'TEXT',
+  visible: true,
+} as const;
+const PHONE_NUMBER = {
+  title: '연락처',
+  type: 'TEXT',
+  visible: true,
+} as const;
+const DEPOSITOR = {
+  title: '입금자명',
+  type: 'TEXT',
+  visible: true,
+} as const;
+const NUMBER_OF_PEOPLE = {
+  title: '인원 수',
+  type: 'NUMBER',
+  visible: true,
+} as const;
+const AGE = {
+  title: '나이',
+  type: 'NUMBER',
+  visible: true,
+} as const;
+const GENDER = {
+  title: '성별',
+  type: 'RADIO',
+  visible: true,
+} as const;
+const MAJOR = {
+  title: '학교/과',
+  type: 'TEXT',
+  visible: true,
+} as const;
+const MBTI = {
+  title: 'MBTI',
+  type: 'SELECT',
+  visible: true,
+} as const;
+const INTRODUCE = {
+  title: '자기소개',
+  type: 'TEXT',
+  visible: false,
+} as const;
+const MOTIVATION = {
+  title: '지원동기',
+  type: 'TEXT',
+  visible: false,
+} as const;
 
 const PERFORMANCE_FORM_OPTION = {
-  name,
-  phoneNumber,
-  numberOfPeople,
-  depositor,
+  NAME,
+  PHONE_NUMBER,
+  NUMBER_OF_PEOPLE,
+  DEPOSITOR,
 };
 
 const PROMOTION_FORM_OPTION = {
-  name,
-  phoneNumber,
+  NAME,
+  PHONE_NUMBER,
 };
 
 const RECRUITMENT_FORM_OPTION = {
-  name,
-  phoneNumber,
-  age,
-  gender,
-  major,
-  mbti,
-  introduce,
-  motivation,
+  NAME,
+  PHONE_NUMBER,
+  AGE,
+  GENDER,
+  MAJOR,
+  MBTI,
+  INTRODUCE,
+  MOTIVATION,
 };
 
 const CLUB_SCHEDULE_FORM_OPTION = {
-  name,
-  phoneNumber,
+  NAME,
+  PHONE_NUMBER,
 };
 
 export {
