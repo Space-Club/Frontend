@@ -1,8 +1,11 @@
+import { FormOption } from '@/types/event';
+
 import { createContext } from 'react';
+import { useState } from 'react';
 
 interface FormOptionContextProps {
-  selectedOptions: string[];
-  setSelectedOptions: React.Dispatch<React.SetStateAction<string[]>>;
+  selectedOptions: FormOption[];
+  setSelectedOptions: React.Dispatch<React.SetStateAction<FormOption[]>>;
   description: string;
   managed: boolean;
 }
@@ -19,11 +22,13 @@ const FormOptionContext = createContext<FormOptionContextProps>({
 });
 
 const FormOptionContextProvider = ({ children }: FormContextOptionProviderProps) => {
+  const [selectedOptions, setSelectedOptions] = useState<FormOption[]>([]);
+
   return (
     <FormOptionContext.Provider
       value={{
-        selectedOptions: [],
-        setSelectedOptions: () => {},
+        selectedOptions,
+        setSelectedOptions,
         description: '',
         managed: false,
       }}
