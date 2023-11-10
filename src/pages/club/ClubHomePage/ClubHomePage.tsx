@@ -22,7 +22,6 @@ import {
 const ClubHomePage = () => {
   const { clubId } = useParams();
   if (!clubId) throw new Error('클럽 ID를 찾을 수 없습니다');
-
   return (
     <>
       <Header></Header>
