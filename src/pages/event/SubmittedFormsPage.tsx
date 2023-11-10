@@ -1,5 +1,11 @@
+import FormCategory from '@/components/FormCategory/FormCategory';
+
 const SubmittedFormsPage = () => {
-  return <div>제출된 폼 확인 페이지</div>;
+  return (
+    <div>
+      <FormCategory />
+    </div>
+  );
 };
 
 export default SubmittedFormsPage;
