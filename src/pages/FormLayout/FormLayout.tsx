@@ -1,3 +1,5 @@
+import { FormOptionContextProvider } from '@/context/FormOptionContext';
+
 import { useEffect, useState } from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
 
@@ -22,12 +24,14 @@ const FormLayout = () => {
   }, [location.pathname]);
 
   return (
-    <Container>
-      <Title>{title}</Title>
-      <Content>
-        <Outlet />
-      </Content>
-    </Container>
+    <FormOptionContextProvider>
+      <Container>
+        <Title>{title}</Title>
+        <Content>
+          <Outlet />
+        </Content>
+      </Container>
+    </FormOptionContextProvider>
   );
 };
 
