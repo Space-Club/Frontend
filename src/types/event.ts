@@ -115,4 +115,5 @@ export {
   EventTags,
   EventTagKey,
   EventType,
+  EventTag,
 };
