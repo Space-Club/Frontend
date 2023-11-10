@@ -11,10 +11,10 @@ import ClubEventPage from '@/pages/club/ClubEventPage/ClubEventPage';
 import ClubHomePage from '@/pages/club/ClubHomePage/ClubHomePage';
 import CreateClubPage from '@/pages/club/CreateClubPage/CreateClubPage';
 import ManageClubPage from '@/pages/club/ManageClubPage';
-import CheckFormPage from '@/pages/event/CheckFormPage';
 import ChoiceEventPage from '@/pages/event/ChoiceEventPage/ChoiceEventPage';
 import EventDetailPage from '@/pages/event/EventDetailPage/EventDetailPage';
 import SubmitFormPage from '@/pages/event/SubmitFormPage';
+import SubmittedFormsPage from '@/pages/event/SubmittedFormsPage';
 import WriteEventFormPage from '@/pages/event/WriteEventFormPage';
 import WriteEventInfoPage from '@/pages/event/WriteEventInfoPage/WriteEventInfoPage';
 
@@ -71,15 +71,15 @@ const router = createBrowserRouter([
             element: <CreateClubPage />,
           },
           {
-            path: 'event',
+            path: 'event/:eventId',
             children: [
               {
-                path: 'detail/:eventId',
+                path: '',
                 element: <EventDetailPage />,
               },
               {
-                path: 'checkform/:eventId',
-                element: <CheckFormPage />,
+                path: 'forms',
+                element: <SubmittedFormsPage />,
               },
               {
                 path: 'submitform',
