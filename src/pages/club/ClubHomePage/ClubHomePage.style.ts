@@ -28,6 +28,11 @@ const ClubNoticeTextedWrapper = styled.div`
   display: flex;
   flex-direction: column;
   margin-right: 1rem;
+  @media (max-width: 768px) {
+    //TODO: 미디어 쿼리값 수정
+    margin-right: 0;
+    margin-bottom: 1rem;
+  }
 `;
 
 const ClubMemberTextedWrapper = styled.div`
