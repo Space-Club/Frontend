@@ -10,9 +10,9 @@ const PATH = {
   BOOKMARK: '/profile/bookmark',
 
   CLUB: {
-    HOME: (clubId: string) => `/club/${clubId}/home`,
-    EVENT: (clubId: string) => `/club/${clubId}/event`,
-    MANAGE: (clubId: string) => `/club/${clubId}/manage`,
+    HOME: (clubId: string | number) => `/club/${clubId}/home`,
+    EVENT: (clubId: string | number) => `/club/${clubId}/event`,
+    MANAGE: (clubId: string | number) => `/club/${clubId}/manage`,
   },
   CREATE: '/create',
 
