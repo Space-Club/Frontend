@@ -8,6 +8,8 @@ type EventTagKey =
   | 'publicEvent'
   | 'clubOnlyEvent';
 
+type EventType = 'performance' | 'promotion' | 'recruitment' | 'clubSchedule';
+
 interface EventTag {
   title: string;
   borderColor: keyof typeof Theme.color;
@@ -29,8 +31,6 @@ interface Event {
   clubName: string;
   clubLogoImageUrl: string;
 }
-
-export { EventTagKey, EventTags, EventTag, Event };
 
 interface GetMyEventData {
   id: string;
@@ -83,6 +83,12 @@ interface GetAllEventsResponse {
   };
 }
 
+interface FormOption {
+  title: string;
+  type: string;
+  visible: boolean;
+}
+
 interface getEventDetailResponse {
   title: string;
   posterImageUrl: string;
@@ -104,4 +110,9 @@ export {
   GetMyEventRequest,
   GetMyEventResponse,
   getEventDetailResponse,
+  FormOption,
+  Event,
+  EventTags,
+  EventTagKey,
+  EventType,
 };
