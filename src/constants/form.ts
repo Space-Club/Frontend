@@ -1,53 +1,55 @@
-const NAME = {
+import { FormOption } from '@/types/event';
+
+const NAME: FormOption = {
   title: '이름',
   type: 'TEXT',
   visible: true,
-};
-const PHONE_NUMBER = {
+} as const;
+const PHONE_NUMBER: FormOption = {
   title: '연락처',
   type: 'TEXT',
   visible: true,
-};
-const DEPOSITOR = {
+} as const;
+const DEPOSITOR: FormOption = {
   title: '입금자명',
   type: 'TEXT',
   visible: true,
-};
-const NUMBER_OF_PEOPLE = {
+} as const;
+const NUMBER_OF_PEOPLE: FormOption = {
   title: '인원 수',
   type: 'NUMBER',
   visible: true,
-};
-const AGE = {
+} as const;
+const AGE: FormOption = {
   title: '나이',
   type: 'NUMBER',
   visible: true,
-};
-const GENDER = {
+} as const;
+const GENDER: FormOption = {
   title: '성별',
   type: 'RADIO',
   visible: true,
-};
-const MAJOR = {
+} as const;
+const MAJOR: FormOption = {
   title: '학교/과',
   type: 'TEXT',
   visible: true,
-};
-const MBTI = {
+} as const;
+const MBTI: FormOption = {
   title: 'MBTI',
   type: 'SELECT',
   visible: true,
-};
-const INTRODUCE = {
+} as const;
+const INTRODUCE: FormOption = {
   title: '자기소개',
   type: 'TEXT',
   visible: false,
-};
-const MOTIVATION = {
+} as const;
+const MOTIVATION: FormOption = {
   title: '지원동기',
   type: 'TEXT',
   visible: false,
-};
+} as const;
 
 const PERFORMANCE_FORM_OPTION = {
   NAME,

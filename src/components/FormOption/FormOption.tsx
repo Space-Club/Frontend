@@ -5,27 +5,37 @@ import { AiOutlineClose } from 'react-icons/ai';
 import {
   FormOptionCloseButton,
   FormOptionContainer,
+  FormOptionCustomInputStyled,
   FormOptionTitleStyled,
 } from './FormOption.style';
 
 interface FormOptionProps {
   option: FormOptionType;
-  handleClose?: (option: FormOptionType) => void;
+  onClose: (option: FormOptionType) => void;
+  onBlur: (option: FormOptionType, title: string) => void;
 }
 
-const FormOption = ({ option, handleClose }: FormOptionProps) => {
+const FormOption = ({ option, onClose, onBlur }: FormOptionProps) => {
   const handleCloseClick = () => {
-    handleClose && handleClose(option);
+    onClose(option);
+  };
+
+  const handleInputBlur = () => {
+    onBlur(option, option.title);
   };
 
   return (
     <FormOptionContainer>
-      <FormOptionTitleStyled>{option.title}</FormOptionTitleStyled>
-      <FormOptionCloseButton
-        onClick={() => {
-          handleCloseClick();
-        }}
-      >
+      {option.title === '' ? (
+        <FormOptionCustomInputStyled
+          autoFocus={true}
+          onBlur={handleInputBlur}
+          placeholder="제목을 입력하세요"
+        ></FormOptionCustomInputStyled>
+      ) : (
+        <FormOptionTitleStyled>{option.title}</FormOptionTitleStyled>
+      )}
+      <FormOptionCloseButton onClick={handleCloseClick}>
         <AiOutlineClose size={15} />
       </FormOptionCloseButton>
     </FormOptionContainer>

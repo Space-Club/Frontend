@@ -2,6 +2,7 @@ import { FORM_OPTION } from '@/constants/form';
 import { FormOptionContext } from '@/context/FormOptionContext';
 import { FormOption } from '@/types/event';
 import { EventType } from '@/types/event';
+import generateUniqueId from '@/utils/generateUniqueId';
 
 import { useEffect, useRef, useState } from 'react';
 import { useContext } from 'react';
@@ -46,6 +47,12 @@ const FormOptionDropdown = ({ eventType }: FormOptionDropdownProps) => {
   };
 
   const handleDropdownCustomClick = () => {
+    appendOption({
+      id: generateUniqueId(),
+      title: '',
+      type: 'TEXT',
+      visible: false,
+    });
     toggleDropdown();
   };
 

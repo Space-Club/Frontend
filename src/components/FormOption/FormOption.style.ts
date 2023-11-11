@@ -18,6 +18,15 @@ const FormOptionTitleStyled = styled.p`
   font-size: ${Theme.fontSize.smallContent};
 `;
 
+const FormOptionCustomInputStyled = styled.input`
+  width: 100%;
+  font-size: ${Theme.fontSize.smallContent};
+  border: none;
+  :focus {
+    outline: none;
+  }
+`;
+
 const FormOptionCloseButton = styled.button`
   width: 1.25rem;
   height: 1.25rem;
@@ -30,4 +39,9 @@ const FormOptionCloseButton = styled.button`
   outline: none;
 `;
 
-export { FormOptionContainer, FormOptionTitleStyled, FormOptionCloseButton };
+export {
+  FormOptionContainer,
+  FormOptionTitleStyled,
+  FormOptionCloseButton,
+  FormOptionCustomInputStyled,
+};

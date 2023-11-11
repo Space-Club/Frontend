@@ -6,6 +6,8 @@ import { useState } from 'react';
 interface FormOptionContextProps {
   selectedOptions: FormOption[];
   appendOption: (options: FormOption) => void;
+  deleteOption: (options: FormOption) => void;
+  changeOptionTitle: (options: FormOption, title: string) => void;
   description: string;
   managed: boolean;
 }
@@ -17,6 +19,8 @@ interface FormContextOptionProviderProps {
 const FormOptionContext = createContext<FormOptionContextProps>({
   selectedOptions: [],
   appendOption: () => {},
+  deleteOption: () => {},
+  changeOptionTitle: () => {},
   description: '',
   managed: false,
 });
@@ -28,11 +32,32 @@ const FormOptionContextProvider = ({ children }: FormContextOptionProviderProps)
     setSelectedOptions((prev) => [...prev, option]);
   };
 
+  const deleteOption = (option: FormOption) => {
+    setSelectedOptions((prev) =>
+      prev.filter((prevOption) => {
+        return prevOption.id ? prevOption.id !== option.id : prevOption.title !== option.title;
+      }),
+    );
+  };
+
+  const changeOptionTitle = (option: FormOption, title: string) => {
+    setSelectedOptions((prev) =>
+      prev.map((prevOption) => {
+        if (prevOption.id === option.id) {
+          return { ...prevOption, title };
+        }
+        return prevOption;
+      }),
+    );
+  };
+
   return (
     <FormOptionContext.Provider
       value={{
         selectedOptions,
         appendOption,
+        deleteOption,
+        changeOptionTitle,
         description: '',
         managed: false,
       }}
