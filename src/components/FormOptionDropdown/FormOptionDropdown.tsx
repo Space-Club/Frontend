@@ -1,17 +1,24 @@
+import { FORM_OPTION } from '@/constants/form';
+import { FormOptionContext } from '@/context/FormOptionContext';
 import { FormOption } from '@/types/event';
+import { EventType } from '@/types/event';
 
 import { useEffect, useRef, useState } from 'react';
+import { useContext } from 'react';
 
 import { DropdownItemStyled, FormOptionDropdownContainer } from './FormOptionDropdown.style';
 
 interface FormOptionDropdownProps {
-  options: FormOption[];
-  handleChange: (option: FormOption) => void;
-  handleCustom: () => void;
+  eventType: EventType;
 }
 
-const FormOptionDropdown = ({ options, handleChange, handleCustom }: FormOptionDropdownProps) => {
+const FormOptionDropdown = ({ eventType }: FormOptionDropdownProps) => {
   const [showDropdown, setShowDropdown] = useState(false);
+  const { setSelectedOptions, selectedOptions } = useContext(FormOptionContext);
+
+  const options = Object.values(FORM_OPTION[eventType]).filter(
+    (option) => !selectedOptions.find((selectedOption) => selectedOption.title === option.title),
+  );
 
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -34,12 +41,11 @@ const FormOptionDropdown = ({ options, handleChange, handleCustom }: FormOptionD
   }, []);
 
   const handleDropdownItemClick = (option: FormOption) => {
-    handleChange(option);
+    setSelectedOptions((prev) => [...prev, option]);
     toggleDropdown();
   };
 
   const handleDropdownCustomClick = () => {
-    handleCustom();
     toggleDropdown();
   };
 
