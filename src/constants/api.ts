@@ -18,7 +18,7 @@ const END_POINTS = {
   CREATE_CLUB: '/clubs',
   INVITE_LINK: (clubId: string) => `/clubs/${clubId}/invite`,
   CLUB_MEMBERS: (clubId: string) => `/clubs/${clubId}/members`,
-  CLUB_EVENTS: ({ clubId }: { clubId: number }) => `/clubs/${clubId}/events`,
+  CLUB_EVENTS: ({ clubId }: { clubId: number | string }) => `/clubs/${clubId}/events`,
   PATCH_MEMBER_ROLE: ({ clubId, memberId }: { clubId: string; memberId: string }) =>
     `/clubs/${clubId}/members/${memberId}`,
 
