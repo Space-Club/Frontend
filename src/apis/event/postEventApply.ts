@@ -6,7 +6,7 @@ import { axiosClientWithAuth } from '../axiosClient';
 
 const postEventApply = async ({ eventId }: PostEventApplyRequest) => {
   const { data } = await axiosClientWithAuth.post<GetAppliedEventResponse>(
-    `${END_POINTS.GET_APPLIED_EVENT}`,
+    `${END_POINTS.POST_EVENT_APPLY}`,
     {
       eventId,
     },
