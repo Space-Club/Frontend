@@ -1,5 +1,5 @@
-import FormOption from '@/components/FormOption/FormOption';
 import FormOptionDropdown from '@/components/FormOptionDropdown/FormOptionDropdown';
+import FormOptions from '@/components/FormOptions/FormOptions';
 import { FORM_OPTION } from '@/constants/form';
 import { FormOptionContext } from '@/context/FormOptionContext';
 import { EventType } from '@/types/event';
@@ -21,17 +21,7 @@ const WriteEventFormPage = () => {
 
   return (
     <>
-      {selectedOptions.map((option) => (
-        <FormOption
-          key={option.title}
-          option={option}
-          handleClose={(option) => {
-            setSelectedOptions(
-              selectedOptions.filter((selectedOption) => selectedOption.title !== option.title),
-            );
-          }}
-        />
-      ))}
+      <FormOptions />
       <FormOptionDropdown
         options={Object.values(FORM_OPTION[event as EventType]).filter(
           (option) =>
