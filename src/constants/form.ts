@@ -94,6 +94,10 @@ const FORM_OPTION = {
   promotion: PROMOTION_FORM_OPTION,
   recruitment: RECRUITMENT_FORM_OPTION,
   clubSchedule: CLUB_SCHEDULE_FORM_OPTION,
+  defaultOption: {
+    NAME,
+    PHONE_NUMBER,
+  },
 };
 
 export {

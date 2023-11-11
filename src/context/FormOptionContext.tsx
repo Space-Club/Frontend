@@ -1,3 +1,4 @@
+import { FORM_OPTION } from '@/constants/form';
 import useToast from '@/hooks/useToast';
 import { FormOption } from '@/types/event';
 
@@ -27,7 +28,9 @@ const FormOptionContext = createContext<FormOptionContextProps>({
 });
 
 const FormOptionContextProvider = ({ children }: FormContextOptionProviderProps) => {
-  const [selectedOptions, setSelectedOptions] = useState<FormOption[]>([]);
+  const [selectedOptions, setSelectedOptions] = useState<FormOption[]>(
+    Object.values(FORM_OPTION.defaultOption),
+  );
 
   const { createToast } = useToast();
 
