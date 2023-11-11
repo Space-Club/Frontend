@@ -1,3 +1,4 @@
+import useToast from '@/hooks/useToast';
 import { FormOption } from '@/types/event';
 
 import { createContext } from 'react';
@@ -28,6 +29,8 @@ const FormOptionContext = createContext<FormOptionContextProps>({
 const FormOptionContextProvider = ({ children }: FormContextOptionProviderProps) => {
   const [selectedOptions, setSelectedOptions] = useState<FormOption[]>([]);
 
+  const { createToast } = useToast();
+
   const appendOption = (option: FormOption) => {
     setSelectedOptions((prev) => [...prev, option]);
   };
@@ -41,6 +44,13 @@ const FormOptionContextProvider = ({ children }: FormContextOptionProviderProps)
   };
 
   const changeOptionTitle = (option: FormOption, title: string) => {
+    if (validateOptionTitle(title)) {
+      createToast({
+        message: '중복된 제목은 사용할 수 없습니다.',
+        toastType: 'error',
+      });
+      return;
+    }
     setSelectedOptions((prev) =>
       prev.map((prevOption) => {
         if (prevOption.id === option.id) {
@@ -49,6 +59,10 @@ const FormOptionContextProvider = ({ children }: FormContextOptionProviderProps)
         return prevOption;
       }),
     );
+  };
+
+  const validateOptionTitle = (title: string) => {
+    return selectedOptions.some((option) => option.title === title);
   };
 
   return (
