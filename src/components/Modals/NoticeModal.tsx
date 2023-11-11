@@ -1,3 +1,4 @@
+import usePatchClubNoticeMutation from '@/hooks/query/club/usePatchClubNoticeMutation';
 import usePostNoticeMutation from '@/hooks/query/club/usePostClubNoticeMutation';
 import useToast from '@/hooks/useToast';
 import Theme from '@/styles/Theme';
@@ -19,6 +20,7 @@ import Portal from './Portal';
 interface NoticeModalProps {
   onClose: () => void;
   clubId: string;
+  noticeId?: string;
   content?: string;
   isManager?: boolean;
   isNew?: boolean;
@@ -26,6 +28,7 @@ interface NoticeModalProps {
 
 const NoticeModal = ({
   onClose,
+  noticeId,
   clubId,
   isManager,
   isNew,
@@ -39,16 +42,14 @@ const NoticeModal = ({
   const { createToast } = useToast();
 
   const { postNotice } = usePostNoticeMutation();
+  const { patchNotice } = usePatchClubNoticeMutation();
 
   const handleCreateNoticeButtonClick = () => {
-    const notice = noticeContentRef.current?.innerText;
-    if (!notice) {
-      createToast({ message: '공지사항을 입력해주세요', toastType: 'error' });
-      return;
+    const notice = getValidNotice();
+    if (notice) {
+      postNotice({ clubId, notice });
+      onClose();
     }
-
-    postNotice({ clubId, notice });
-    onClose();
   };
 
   const handleEditButtonClick = () => {
@@ -56,13 +57,28 @@ const NoticeModal = ({
   };
 
   const handleEditCompleteButtonClick = () => {
-    // console.log(noticeContentRef.current?.innerText); TODO: PUT공지사항 API 호출
-    setIsEdit(false);
+    const notice = getValidNotice();
+    if (!noticeId) {
+      throw new Error('공지사항 수정을 위해서 noticeId가 필요합니다.');
+    }
+    if (notice) {
+      patchNotice({ clubId, notice, noticeId });
+      setIsEdit(false);
+    }
   };
 
   const handleDeleteButtonClick = () => {
     //TODO: DELETE공지사항 API 호출
     onClose();
+  };
+
+  const getValidNotice = () => {
+    const notice = noticeContentRef.current?.innerText;
+    if (!notice) {
+      createToast({ message: '공지사항을 입력해주세요', toastType: 'error' });
+      return;
+    }
+    return notice;
   };
 
   useEffect(() => {

@@ -13,7 +13,7 @@ const ClubNotices = ({ clubId }: ClubNoticesProps) => {
   return (
     <Carousel totalItem={clubNotices.length}>
       {clubNotices.map((clubNotice) => (
-        <ClubNotice key={clubNotice.id} notice={clubNotice.notice} />
+        <ClubNotice key={clubNotice.id} noticeId={clubNotice.id} notice={clubNotice.notice} />
       ))}
     </Carousel>
   );

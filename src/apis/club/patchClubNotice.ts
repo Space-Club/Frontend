@@ -3,9 +3,10 @@ import { PatchClubNoticeRequest, PatchClubNoticeResponse } from '@/types/api/pat
 
 import { axiosClientWithAuth } from '../axiosClient';
 
-const patchClubNotice = async ({ clubId, noticeId }: PatchClubNoticeRequest) => {
+const patchClubNotice = async ({ clubId, noticeId, notice }: PatchClubNoticeRequest) => {
   const { data } = await axiosClientWithAuth.patch<PatchClubNoticeResponse>(
     END_POINTS.PATCH_CLUB_NOTICE({ clubId, noticeId }),
+    { notice },
   );
   return data;
 };

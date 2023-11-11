@@ -4,7 +4,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { QUERY_KEY } from './useGetClubNoticeQuery';
 
-const usePatchCLubNoticeMutation = () => {
+const usePatchClubNoticeMutation = () => {
   const queryClient = useQueryClient();
   const { data, mutate: patchNotice } = useMutation({
     mutationFn: patchClubNotice,
@@ -16,4 +16,4 @@ const usePatchCLubNoticeMutation = () => {
   return { data, patchNotice };
 };
 
-export default usePatchCLubNoticeMutation;
+export default usePatchClubNoticeMutation;
