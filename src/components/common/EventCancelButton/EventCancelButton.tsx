@@ -1,7 +1,7 @@
 import { EventCancelButtonStyled } from './EventCancelButton.style';
 
 interface EventCancelButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
-  eventId: string;
+  eventId?: string;
 }
 
 const EventCancelButton = ({ children, ...props }: EventCancelButtonProps) => {
