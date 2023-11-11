@@ -1,39 +1,40 @@
-import { useTabContext } from '@/hooks/useTabContext';
-
-import { Fragment, useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { TabContainerStyled, TabItemStyled } from './Tab.style';
 
-interface TabItemProps extends React.HTMLAttributes<HTMLDivElement> {
+interface TabItem extends React.HTMLAttributes<HTMLDivElement> {
   title: string;
+  link: string;
 }
 
 interface TabProps {
-  defaultTab?: string;
-  tabItems: TabItemProps[];
+  tabItems: TabItem[];
 }
 
 const Tab = ({ tabItems }: TabProps) => {
-  const { activeTab, setActiveTab } = useTabContext();
+  const location = useLocation();
+  const [activeTab, setActiveTab] = useState(location.pathname);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    setActiveTab(tabItems[0].title);
-  }, [setActiveTab, tabItems]);
+    setActiveTab(location.pathname);
+  }, [setActiveTab, location]);
 
   return (
     <TabContainerStyled>
       {tabItems?.map((tabItem, index) => {
         return (
-          <Fragment key={index}>
-            <TabItemStyled
-              isActive={activeTab === tabItem.title}
-              onClick={() => {
-                setActiveTab(tabItem.title);
-              }}
-            >
-              {tabItem.title}
-            </TabItemStyled>
-          </Fragment>
+          <TabItemStyled
+            key={index}
+            isActive={activeTab === tabItem.link}
+            onClick={() => {
+              setActiveTab(tabItem.link);
+              navigate(tabItem.link);
+            }}
+          >
+            {tabItem.title}
+          </TabItemStyled>
         );
       })}
     </TabContainerStyled>
