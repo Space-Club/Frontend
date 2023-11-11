@@ -11,7 +11,7 @@ const useGetClubNoticeQuery = ({ clubId }: GetClubNoticeRequest) => {
     queryFn: () => getClubNotice({ clubId }),
   });
 
-  return data ? { clubNotice: data } : { clubNotice: [] };
+  return data ? { clubNotices: data.notices } : { clubNotices: [] };
 };
 
 export default useGetClubNoticeQuery;

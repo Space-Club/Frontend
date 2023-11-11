@@ -1,7 +1,6 @@
 import ClubMember from '@/components/ClubMember/ClubMember';
-import ClubNotice from '@/components/ClubNotice/ClubNotice';
+import ClubNotices from '@/components/ClubNotices/ClubNotices';
 import CreateNoticeButton from '@/components/CreateNoticeButton/CreateNoticeButton';
-import Carousel from '@/components/common/CarouselSlider/Carousel';
 import ClubBanner from '@/components/common/ClubBanner/ClubBanner';
 import Header from '@/components/common/Header/Header';
 import Tab from '@/components/common/Tab/Tab';
@@ -45,11 +44,7 @@ const ClubHomePage = () => {
               <CreateNoticeButton clubId={clubId} />
             </ClubNoticeTextStyled>
             <ClubNoticeWrapper>
-              <Carousel totalItem={3}>
-                <ClubNotice clubId={clubId} />
-                <ClubNotice clubId={clubId} />
-                <ClubNotice clubId={clubId} />
-              </Carousel>
+              <ClubNotices clubId={clubId} />
             </ClubNoticeWrapper>
           </ClubNoticeTextedWrapper>
           <ClubMemberTextedWrapper>

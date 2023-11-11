@@ -20,15 +20,19 @@ const Carousel = ({ totalItem, children }: CarouselProps) => {
 
   return (
     <CarouselContainer>
-      <CarouselNextButton onClick={goNext}>
-        <GrFormNext size={30} />
-      </CarouselNextButton>
-      <CarouselPrevButton onClick={goPrev}>
-        <GrFormPrevious size={30} />
-      </CarouselPrevButton>
-      <CarouselCounterWrapper>
-        {currentIndex + 1} / {totalItem}
-      </CarouselCounterWrapper>
+      {totalItem !== 0 && (
+        <>
+          <CarouselNextButton onClick={goNext}>
+            <GrFormNext size={30} />
+          </CarouselNextButton>
+          <CarouselPrevButton onClick={goPrev}>
+            <GrFormPrevious size={30} />
+          </CarouselPrevButton>
+          <CarouselCounterWrapper>
+            {currentIndex + 1} / {totalItem}
+          </CarouselCounterWrapper>
+        </>
+      )}
       <CarouselRefWrapper ref={carouselRef}>{children}</CarouselRefWrapper>
     </CarouselContainer>
   );
