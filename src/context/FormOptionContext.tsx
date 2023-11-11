@@ -47,13 +47,7 @@ const FormOptionContextProvider = ({ children }: FormContextOptionProviderProps)
   };
 
   const changeOptionTitle = (option: FormOption, title: string) => {
-    if (validateOptionTitle(title)) {
-      createToast({
-        message: '중복된 제목은 사용할 수 없습니다.',
-        toastType: 'error',
-      });
-      return;
-    }
+    if (!validateOptionTitle(title)) return;
     setSelectedOptions((prev) =>
       prev.map((prevOption) => {
         if (prevOption.id === option.id) {
@@ -65,7 +59,23 @@ const FormOptionContextProvider = ({ children }: FormContextOptionProviderProps)
   };
 
   const validateOptionTitle = (title: string) => {
-    return selectedOptions.some((option) => option.title === title);
+    if (title === '') {
+      createToast({
+        message: '제목을 입력해주세요.',
+        toastType: 'error',
+      });
+      return false;
+    }
+
+    if (selectedOptions.some((option) => option.title === title)) {
+      createToast({
+        message: '중복된 제목은 사용할 수 없습니다.',
+        toastType: 'error',
+      });
+      return false;
+    }
+
+    return true;
   };
 
   return (
