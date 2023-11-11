@@ -23,6 +23,7 @@ const WriteEventFormPage = () => {
     <>
       {selectedOptions.map((option) => (
         <FormOption
+          key={option.title}
           option={option}
           handleClose={(option) => {
             setSelectedOptions(
@@ -37,6 +38,7 @@ const WriteEventFormPage = () => {
             !selectedOptions.find((selectedOption) => selectedOption.title === option.title),
         )}
         handleChange={(option) => setSelectedOptions((prev) => [...prev, option])}
+        handleCustom={() => {}}
       ></FormOptionDropdown>
     </>
   );

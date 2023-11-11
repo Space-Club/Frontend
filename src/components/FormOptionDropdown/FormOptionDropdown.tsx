@@ -1,6 +1,6 @@
 import { FormOption } from '@/types/event';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { DropdownItemStyled, FormOptionDropdownContainer } from './FormOptionDropdown.style';
 
@@ -13,9 +13,25 @@ interface FormOptionDropdownProps {
 const FormOptionDropdown = ({ options, handleChange, handleCustom }: FormOptionDropdownProps) => {
   const [showDropdown, setShowDropdown] = useState(false);
 
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
   const toggleDropdown = () => {
     setShowDropdown((prev) => !prev);
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setShowDropdown(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
 
   const handleDropdownItemClick = (option: FormOption) => {
     handleChange(option);
@@ -28,7 +44,7 @@ const FormOptionDropdown = ({ options, handleChange, handleCustom }: FormOptionD
   };
 
   return (
-    <FormOptionDropdownContainer>
+    <FormOptionDropdownContainer ref={dropdownRef}>
       <DropdownItemStyled onClick={toggleDropdown}>+ 추가</DropdownItemStyled>
       {showDropdown &&
         options.map((option) => (

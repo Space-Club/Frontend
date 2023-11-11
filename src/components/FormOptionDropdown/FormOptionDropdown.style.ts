@@ -1,13 +1,15 @@
 import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
-const FormOptionDropdownContainer = styled.div``;
+const FormOptionDropdownContainer = styled.div`
+  width: 9rem;
+`;
 
 const DropdownItemStyled = styled.div`
+  width: 100%;
+  height: 3rem;
   display: flex;
   align-items: center;
-  width: 9rem;
-  height: 3rem;
   font-size: ${Theme.fontSize.smallContent};
   padding: 1rem;
   border-radius: 0.5rem;
