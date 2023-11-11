@@ -86,7 +86,7 @@ interface GetAllEventsResponse {
 type FormType = 'RADIO' | 'TEXT' | 'SELECT' | 'NUMBER';
 
 interface FormOption {
-  id: string;
+  id?: string;
   title: string;
   type: FormType;
   visible: boolean;
