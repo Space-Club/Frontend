@@ -7,18 +7,15 @@ import FormOption from '../FormOption/FormOption';
 const FormOptions = () => {
   const { selectedOptions, deleteOption, changeOptionTitle } = useContext(FormOptionContext);
 
+  console.log(selectedOptions);
   return (
     <>
       {selectedOptions.map((option) => (
         <FormOption
           key={option.id}
           option={option}
-          onClose={(option) => {
-            deleteOption(option);
-          }}
-          onBlur={(option, title) => {
-            changeOptionTitle(option, title);
-          }}
+          onClose={deleteOption}
+          onBlur={changeOptionTitle}
         />
       ))}
     </>

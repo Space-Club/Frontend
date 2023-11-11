@@ -1,5 +1,6 @@
 import { FormOption as FormOptionType } from '@/types/event';
 
+import { ChangeEvent } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 
 import {
@@ -20,8 +21,8 @@ const FormOption = ({ option, onClose, onBlur }: FormOptionProps) => {
     onClose(option);
   };
 
-  const handleInputBlur = () => {
-    onBlur(option, option.title);
+  const handleInputBlur = (event: ChangeEvent<HTMLInputElement>) => {
+    onBlur(option, event.target.value);
   };
 
   return (
