@@ -7,8 +7,6 @@ import FormOption from '../FormOption/FormOption';
 const FormOptions = () => {
   const { selectedOptions, deleteOption, changeOptionTitle } = useContext(FormOptionContext);
 
-  console.log(selectedOptions);
-
   return (
     <>
       {selectedOptions.map((option) => (
