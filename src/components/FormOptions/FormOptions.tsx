@@ -11,7 +11,7 @@ const FormOptions = () => {
     <>
       {selectedOptions.map((option) => (
         <FormOption
-          key={option.title}
+          key={option.id}
           option={option}
           onClose={(option) => {
             deleteOption(option);

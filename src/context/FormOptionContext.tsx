@@ -35,7 +35,7 @@ const FormOptionContextProvider = ({ children }: FormContextOptionProviderProps)
   const deleteOption = (option: FormOption) => {
     setSelectedOptions((prev) =>
       prev.filter((prevOption) => {
-        return prevOption.id ? prevOption.id !== option.id : prevOption.title !== option.title;
+        return prevOption.id !== option.id;
       }),
     );
   };
