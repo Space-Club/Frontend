@@ -10,15 +10,12 @@ interface CreateNoticeButtonProps {
   clubId: string;
 }
 
-// eslint-disable-next-line
 const CreateNoticeButton = ({ clubId }: CreateNoticeButtonProps) => {
-  // const { mutate } = useCreateNotice(clubId); TODO: 공지사항 생성 API 연결
-
   const { showModal, modalOpen, modalClose } = useModal();
 
   return (
     <>
-      {showModal && <NoticeModal onClose={modalClose} isNew isManager />}
+      {showModal && <NoticeModal clubId={clubId} onClose={modalClose} isNew isManager />}
       <CreateButtonStyled onClick={modalOpen}>
         <AiFillPlusCircle size={20} color={Theme.color.tWhiteGrey} />
       </CreateButtonStyled>

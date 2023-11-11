@@ -1,3 +1,5 @@
+import usePostNoticeMutation from '@/hooks/query/club/usePostClubNoticeMutation';
+import useToast from '@/hooks/useToast';
 import Theme from '@/styles/Theme';
 
 import { useEffect, useRef, useState } from 'react';
@@ -16,18 +18,36 @@ import Portal from './Portal';
 
 interface NoticeModalProps {
   onClose: () => void;
+  clubId: string;
   content?: string;
   isManager?: boolean;
   isNew?: boolean;
 }
 
-const NoticeModal = ({ onClose, isManager, isNew, content, ...props }: NoticeModalProps) => {
+const NoticeModal = ({
+  onClose,
+  clubId,
+  isManager,
+  isNew,
+  content,
+  ...props
+}: NoticeModalProps) => {
   const noticeContentRef = useRef<HTMLDivElement>(null);
 
   const [isEdit, setIsEdit] = useState(isNew && isManager);
 
+  const { createToast } = useToast();
+
+  const { postNotice } = usePostNoticeMutation();
+
   const handleCreateNoticeButtonClick = () => {
-    //TODO: POST공지사항 API 호출
+    const notice = noticeContentRef.current?.innerText;
+    if (!notice) {
+      createToast({ message: '공지사항을 입력해주세요', toastType: 'error' });
+      return;
+    }
+
+    postNotice({ clubId, notice });
     onClose();
   };
 
@@ -59,7 +79,7 @@ const NoticeModal = ({ onClose, isManager, isNew, content, ...props }: NoticeMod
           <NoticeCloseButtonStyled>
             <AiOutlineClose color={Theme.color.tActive} onClick={onClose} />
           </NoticeCloseButtonStyled>
-          <NoticeTitleStyled>공지사항</NoticeTitleStyled>
+          <NoticeTitleStyled>{isNew ? '새 공지를 입력해주세요' : '공지사항'}</NoticeTitleStyled>
           {!isNew && isManager && !isEdit && (
             <NoticeButtonStyled reverse onClick={handleEditButtonClick}>
               수정
