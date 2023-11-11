@@ -5,10 +5,11 @@ import { ClubNoticeContainer, ClubNoticeTextStyled } from './ClubNotice.style';
 
 interface ClubNoticeProps {
   noticeId: string;
+  clubId: string;
   notice: string;
 }
 
-const ClubNotice = ({ notice, noticeId }: ClubNoticeProps) => {
+const ClubNotice = ({ notice, noticeId, clubId }: ClubNoticeProps) => {
   const { showModal, modalOpen, modalClose } = useModal();
 
   return (
@@ -16,7 +17,7 @@ const ClubNotice = ({ notice, noticeId }: ClubNoticeProps) => {
       {showModal && (
         <InfoModal
           noticeId={noticeId}
-          clubId={noticeId}
+          clubId={clubId}
           isManager
           content={notice}
           onClose={modalClose}
