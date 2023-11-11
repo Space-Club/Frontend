@@ -17,7 +17,7 @@ const EventInfoSection = styled.div`
   margin-left: 1rem;
 `;
 
-const MyEventTitleStyled = styled.div`
+const AppliedEventTitleStyled = styled.div`
   font-size: 1rem;
   line-height: 1.2rem;
   margin: 0.8rem 0;
@@ -31,4 +31,4 @@ const SemiBlackFont = styled.div`
   font-size: 0.7rem;
 `;
 
-export { EventDescription, EventInfoSection, MyEventTitleStyled, SemiBlackFont };
+export { EventDescription, EventInfoSection, AppliedEventTitleStyled, SemiBlackFont };

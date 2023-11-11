@@ -9,7 +9,7 @@ const useInviteLinkQuery = () => {
   const { data, refetch } = useQuery(['inviteLink'], () => postInviteLink({ clubId }), {
     enabled: false,
     initialData: {
-      invitationCode: '',
+      inviteLink: '',
     },
   });
 

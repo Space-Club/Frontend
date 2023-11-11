@@ -2,17 +2,21 @@ import { Event, EventTagKey } from '@/types/event';
 
 import Poster from '@components/common/Poster/Poster';
 
+import AppliedEventInfo from '../AppliedEventInfo/AppliedEventInfo';
 import EventCancelButton from '../EventCancelButton/EventCancelButton';
-import MyEventInfo from '../MyEventInfo/MyEventInfo';
-import { EventLeftSection, EventRightSection, MyEventCardContainer } from './MyEventCard.style';
+import {
+  AppliedEventCardContainer,
+  EventLeftSection,
+  EventRightSection,
+} from './AppliedEventCard.style';
 
-interface MyEventCardProps
+interface AppliedEventCardProps
   extends Pick<Event, 'title' | 'posterImageUrl' | 'startDate' | 'location' | 'clubName'> {
   eventId: string;
   eventTagKey: EventTagKey;
 }
 
-const MyEventCard = ({
+const AppliedEventCard = ({
   eventId,
   title,
   posterImageUrl,
@@ -21,12 +25,12 @@ const MyEventCard = ({
   clubName,
   eventTagKey,
   ...props
-}: MyEventCardProps) => {
+}: AppliedEventCardProps) => {
   return (
-    <MyEventCardContainer {...props}>
+    <AppliedEventCardContainer {...props}>
       <EventLeftSection>
         <Poster posterSrc={posterImageUrl} width={7.6} />
-        <MyEventInfo
+        <AppliedEventInfo
           eventId={eventId}
           title={title}
           startDate={startDate}
@@ -38,8 +42,8 @@ const MyEventCard = ({
       <EventRightSection>
         <EventCancelButton eventId={eventId} />
       </EventRightSection>
-    </MyEventCardContainer>
+    </AppliedEventCardContainer>
   );
 };
 
-export default MyEventCard;
+export default AppliedEventCard;

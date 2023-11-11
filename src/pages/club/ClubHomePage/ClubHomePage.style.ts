@@ -2,6 +2,12 @@ import Theme from '@/styles/Theme';
 import { memberManagerScrollAreaStyled, whiteGreyBox } from '@/styles/common';
 import styled from '@emotion/styled';
 
+const TabWrapper = styled.div`
+  display: flex;
+  justify-content: end;
+  width: 100%;
+`;
+
 const ClubHomePageContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -68,6 +74,7 @@ const ClubHomeBottomWrapper = styled.section`
 `;
 
 export {
+  TabWrapper,
   ClubHomePageContainer,
   ClubHomeTopWrapper,
   ClubNoticeWrapper,
