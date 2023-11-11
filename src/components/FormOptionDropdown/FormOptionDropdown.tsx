@@ -6,14 +6,25 @@ import { DropdownItemStyled, FormOptionDropdownContainer } from './FormOptionDro
 
 interface FormOptionDropdownProps {
   options: FormOption[];
-  handleChange?: (option: FormOption) => void;
+  handleChange: (option: FormOption) => void;
+  handleCustom: () => void;
 }
 
-const FormOptionDropdown = ({ options, handleChange }: FormOptionDropdownProps) => {
+const FormOptionDropdown = ({ options, handleChange, handleCustom }: FormOptionDropdownProps) => {
   const [showDropdown, setShowDropdown] = useState(false);
 
   const toggleDropdown = () => {
     setShowDropdown((prev) => !prev);
+  };
+
+  const handleDropdownItemClick = (option: FormOption) => {
+    handleChange(option);
+    toggleDropdown();
+  };
+
+  const handleDropdownCustomClick = () => {
+    handleCustom();
+    toggleDropdown();
   };
 
   return (
@@ -21,15 +32,13 @@ const FormOptionDropdown = ({ options, handleChange }: FormOptionDropdownProps) 
       <DropdownItemStyled onClick={toggleDropdown}>+ 추가</DropdownItemStyled>
       {showDropdown &&
         options.map((option) => (
-          <DropdownItemStyled
-            onClick={() => {
-              handleChange && handleChange(option);
-              toggleDropdown();
-            }}
-          >
+          <DropdownItemStyled onClick={() => handleDropdownItemClick(option)}>
             {option.title}
           </DropdownItemStyled>
         ))}
+      {showDropdown && (
+        <DropdownItemStyled onClick={handleDropdownCustomClick}>사용자 지정</DropdownItemStyled>
+      )}
     </FormOptionDropdownContainer>
   );
 };
