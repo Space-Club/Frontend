@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-const MyEventCardContainer = styled.div`
+const AppliedEventCardContainer = styled.div`
   display: flex;
 `;
 
@@ -19,4 +19,4 @@ const EventRightSection = styled.div`
   flex-direction: column;
 `;
 
-export { MyEventCardContainer, EventLeftSection, EventRightSection };
+export { AppliedEventCardContainer, EventLeftSection, EventRightSection };

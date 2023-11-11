@@ -3,8 +3,7 @@ import Banner from '@/components/common/Banner/Banner';
 import EventCard from '@/components/common/EventCard/EventCard';
 import Header from '@/components/common/Header/Header';
 import Tab from '@/components/common/Tab/Tab';
-import { TAB_CONSTANTS } from '@/constants/tab';
-import { TabContextProvider } from '@/context/TabContext';
+import { MAIN_TABS } from '@/constants/tab';
 import useAllEventsQuery from '@/hooks/query/event/useAllEventsQuery';
 
 import {
@@ -14,25 +13,14 @@ import {
 } from './MainPage.style';
 
 const MainPage = () => {
-  const { events } = useAllEventsQuery({ pageNumber: 1 }); //TODO: 페이지네이션 처리
+  const { events } = useAllEventsQuery({ pageNumber: 1 });
+  //TODO: pathname에 따라서 행사 불러오기 혹은 컴포넌트 불러오기
+
   return (
-    <TabContextProvider>
+    <>
       <Header>
         <SearchInputForm />
-        <Tab
-          defaultTab={`${TAB_CONSTANTS.PERFORMANCE}`}
-          tabItems={[
-            {
-              title: `${TAB_CONSTANTS.PERFORMANCE}`,
-            },
-            {
-              title: `${TAB_CONSTANTS.EVENT_SHOW}`,
-            },
-            {
-              title: `${TAB_CONSTANTS.RECRUITMENT}`,
-            },
-          ]}
-        />
+        <Tab tabItems={MAIN_TABS} />
       </Header>
       <ContentContainerStyled>
         <BannerWrapperStyled>
@@ -54,7 +42,7 @@ const MainPage = () => {
           })}
         </EventCardWrapperStyled>
       </ContentContainerStyled>
-    </TabContextProvider>
+    </>
   );
 };
 

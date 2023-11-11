@@ -32,7 +32,7 @@ interface Event {
   clubLogoImageUrl: string;
 }
 
-interface GetMyEventData {
+interface GetAppliedEventData {
   id: string;
   title: string;
   clubName: string;
@@ -42,8 +42,8 @@ interface GetMyEventData {
   posterImageUrl: string;
 }
 
-interface GetMyEventResponse {
-  data: GetMyEventData[];
+interface GetAppliedEventResponse {
+  data: GetAppliedEventData[];
   pageData: {
     first: boolean;
     last: boolean;
@@ -54,7 +54,7 @@ interface GetMyEventResponse {
   };
 }
 
-interface GetMyEventRequest {
+interface GetAppliedEventRequest {
   pageNumber: number;
 }
 
@@ -110,8 +110,8 @@ interface getEventDetailResponse {
 export {
   GetAllEventsRequest,
   GetAllEventsResponse,
-  GetMyEventRequest,
-  GetMyEventResponse,
+  GetAppliedEventRequest,
+  GetAppliedEventResponse,
   getEventDetailResponse,
   FormOption,
   Event,

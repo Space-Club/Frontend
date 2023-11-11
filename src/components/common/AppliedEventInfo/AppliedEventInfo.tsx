@@ -1,4 +1,4 @@
-import { MY_EVENTS_TAGS } from '@/constants/event';
+import { APPLIED_EVENTS_TAGS } from '@/constants/event';
 import { PATH } from '@/constants/path';
 import { EventTagKey } from '@/types/event';
 import { Event } from '@/types/event';
@@ -7,32 +7,33 @@ import { useNavigate } from 'react-router-dom';
 
 import EventStatusTag from '../EventTag/EventTag';
 import {
+  AppliedEventTitleStyled,
   EventDescription,
   EventInfoSection,
-  MyEventTitleStyled,
   SemiBlackFont,
-} from './MyEventInfo.style';
+} from './AppliedEventInfo.style';
 
-interface MyEventInfoProps extends Pick<Event, 'title' | 'startDate' | 'location' | 'clubName'> {
+interface AppliedEventInfoProps
+  extends Pick<Event, 'title' | 'startDate' | 'location' | 'clubName'> {
   eventId: string;
   eventTagKey: EventTagKey;
 }
 
-const MyEventInfo = ({
+const AppliedEventInfo = ({
   eventId,
   title,
   startDate,
   location,
   clubName,
   eventTagKey,
-}: MyEventInfoProps) => {
+}: AppliedEventInfoProps) => {
   const navigate = useNavigate();
   return (
     <EventInfoSection>
-      <EventStatusTag eventTag={MY_EVENTS_TAGS[eventTagKey]} />
-      <MyEventTitleStyled onClick={() => navigate(PATH.EVENT.DETAIL + `${eventId}`)}>
+      <EventStatusTag eventTag={APPLIED_EVENTS_TAGS[eventTagKey]} />
+      <AppliedEventTitleStyled onClick={() => navigate(PATH.EVENT.DETAIL + `${eventId}`)}>
         {title}
-      </MyEventTitleStyled>
+      </AppliedEventTitleStyled>
       <EventDescription>
         날짜<SemiBlackFont>{startDate}</SemiBlackFont>
       </EventDescription>
@@ -48,4 +49,4 @@ const MyEventInfo = ({
   );
 };
 
-export default MyEventInfo;
+export default AppliedEventInfo;

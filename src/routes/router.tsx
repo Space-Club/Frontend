@@ -44,10 +44,26 @@ const router = createBrowserRouter([
           {
             path: '',
             element: <MainPage />,
+            children: [
+              {
+                path: 'events',
+                element: <MainPage />,
+              },
+              {
+                path: 'recruitment',
+                element: <MainPage />,
+              },
+            ],
           },
           {
             path: 'profile',
             element: <ProfilePage />,
+            children: [
+              {
+                path: 'bookmark',
+                element: <ProfilePage />,
+              },
+            ],
           },
           {
             path: 'club/:clubId',
