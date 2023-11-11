@@ -5,14 +5,19 @@ import { FormOptionContext } from '@/context/FormOptionContext';
 import { EventType } from '@/types/event';
 
 import { useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 const WriteEventFormPage = () => {
-  const { eventType } = useParams();
+  const location = useLocation();
+
+  const { clubId } = useParams();
+  const queryParams = new URLSearchParams(location.search);
+  const event = queryParams.get('event');
+
+  if (!event) throw new Error('event가 없습니다.');
+  if (!clubId) throw new Error('clubId가 없습니다.');
 
   const { setSelectedOptions, selectedOptions } = useContext(FormOptionContext);
-
-  if (!eventType) throw new Error('eventType이 없습니다.');
 
   return (
     <>
@@ -27,7 +32,7 @@ const WriteEventFormPage = () => {
         />
       ))}
       <FormOptionDropdown
-        options={Object.values(FORM_OPTION[eventType as EventType]).filter(
+        options={Object.values(FORM_OPTION[event as EventType]).filter(
           (option) =>
             !selectedOptions.find((selectedOption) => selectedOption.title === option.title),
         )}
