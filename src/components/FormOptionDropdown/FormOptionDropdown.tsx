@@ -14,17 +14,13 @@ interface FormOptionDropdownProps {
 
 const FormOptionDropdown = ({ eventType }: FormOptionDropdownProps) => {
   const [showDropdown, setShowDropdown] = useState(false);
-  const { setSelectedOptions, selectedOptions } = useContext(FormOptionContext);
+  const { appendOption, selectedOptions } = useContext(FormOptionContext);
 
   const options = Object.values(FORM_OPTION[eventType]).filter(
     (option) => !selectedOptions.find((selectedOption) => selectedOption.title === option.title),
   );
 
   const dropdownRef = useRef<HTMLDivElement>(null);
-
-  const toggleDropdown = () => {
-    setShowDropdown((prev) => !prev);
-  };
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -40,8 +36,12 @@ const FormOptionDropdown = ({ eventType }: FormOptionDropdownProps) => {
     };
   }, []);
 
+  const toggleDropdown = () => {
+    setShowDropdown((prev) => !prev);
+  };
+
   const handleDropdownItemClick = (option: FormOption) => {
-    setSelectedOptions((prev) => [...prev, option]);
+    appendOption(option);
     toggleDropdown();
   };
 
@@ -54,7 +54,7 @@ const FormOptionDropdown = ({ eventType }: FormOptionDropdownProps) => {
       <DropdownItemStyled onClick={toggleDropdown}>+ 추가</DropdownItemStyled>
       {showDropdown &&
         options.map((option) => (
-          <DropdownItemStyled onClick={() => handleDropdownItemClick(option)}>
+          <DropdownItemStyled key={option.title} onClick={() => handleDropdownItemClick(option)}>
             {option.title}
           </DropdownItemStyled>
         ))}

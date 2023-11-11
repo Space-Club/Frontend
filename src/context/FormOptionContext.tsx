@@ -5,7 +5,7 @@ import { useState } from 'react';
 
 interface FormOptionContextProps {
   selectedOptions: FormOption[];
-  setSelectedOptions: React.Dispatch<React.SetStateAction<FormOption[]>>;
+  appendOption: (options: FormOption) => void;
   description: string;
   managed: boolean;
 }
@@ -16,7 +16,7 @@ interface FormContextOptionProviderProps {
 
 const FormOptionContext = createContext<FormOptionContextProps>({
   selectedOptions: [],
-  setSelectedOptions: () => {},
+  appendOption: () => {},
   description: '',
   managed: false,
 });
@@ -24,11 +24,15 @@ const FormOptionContext = createContext<FormOptionContextProps>({
 const FormOptionContextProvider = ({ children }: FormContextOptionProviderProps) => {
   const [selectedOptions, setSelectedOptions] = useState<FormOption[]>([]);
 
+  const appendOption = (option: FormOption) => {
+    setSelectedOptions((prev) => [...prev, option]);
+  };
+
   return (
     <FormOptionContext.Provider
       value={{
         selectedOptions,
-        setSelectedOptions,
+        appendOption,
         description: '',
         managed: false,
       }}
