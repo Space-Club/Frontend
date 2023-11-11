@@ -15,7 +15,7 @@ interface CreateClubFormValue extends Pick<Club, 'name' | 'info'> {
 }
 
 interface GetClubEventsRequest {
-  clubId: number;
+  clubId: number | string;
   pageNumber: number;
 }
 

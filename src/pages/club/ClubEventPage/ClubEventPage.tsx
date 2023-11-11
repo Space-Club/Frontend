@@ -12,10 +12,10 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { ButtonWrapper, EventsContainer, HeaderElementWrapper } from './ClubEventPage.style';
 
 const ClubEventPage = () => {
-  const { clubEvents } = useClubEventsQuery({ clubId: 1, pageNumber: 0 });
   const navigate = useNavigate();
   const { clubId } = useParams();
   if (!clubId) throw new Error('클럽 ID를 찾을 수 없습니다');
+  const { clubEvents } = useClubEventsQuery({ clubId, pageNumber: 0 });
 
   return (
     <>
