@@ -1,3 +1,4 @@
+import useDeleteClubNoticeMutation from '@/hooks/query/club/useDeleteClubNoticeMutation';
 import usePatchClubNoticeMutation from '@/hooks/query/club/usePatchClubNoticeMutation';
 import usePostNoticeMutation from '@/hooks/query/club/usePostClubNoticeMutation';
 import useToast from '@/hooks/useToast';
@@ -43,6 +44,7 @@ const NoticeModal = ({
 
   const { postNotice } = usePostNoticeMutation();
   const { patchNotice } = usePatchClubNoticeMutation();
+  const { deleteNotice } = useDeleteClubNoticeMutation();
 
   const handleCreateNoticeButtonClick = () => {
     const notice = getValidNotice();
@@ -68,7 +70,10 @@ const NoticeModal = ({
   };
 
   const handleDeleteButtonClick = () => {
-    //TODO: DELETE공지사항 API 호출
+    if (!noticeId) {
+      throw new Error('공지사항 삭제를 위해서 noticeId가 필요합니다.');
+    }
+    deleteNotice({ clubId, noticeId });
     onClose();
   };
 
