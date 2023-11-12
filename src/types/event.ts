@@ -98,10 +98,13 @@ interface getEventDetailResponse {
   isManager: boolean;
 }
 
+type ProfileEventType = 'applied' | 'bookmark';
+
 export {
   GetAllEventsRequest,
   GetAllEventsResponse,
   GetAppliedEventRequest,
   GetAppliedEventResponse,
   getEventDetailResponse,
+  ProfileEventType,
 };
