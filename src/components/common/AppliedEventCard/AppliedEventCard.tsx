@@ -13,7 +13,7 @@ import {
 interface AppliedEventCardProps
   extends Pick<Event, 'title' | 'posterImageUrl' | 'startDate' | 'location' | 'clubName'> {
   eventId: string;
-  eventTagKey: EventTagKey;
+  eventStatus: EventTagKey;
 }
 
 const AppliedEventCard = ({
@@ -23,7 +23,7 @@ const AppliedEventCard = ({
   startDate,
   location,
   clubName,
-  eventTagKey,
+  eventStatus,
   ...props
 }: AppliedEventCardProps) => {
   return (
@@ -36,7 +36,7 @@ const AppliedEventCard = ({
           startDate={startDate}
           location={location}
           clubName={clubName}
-          eventTagKey={eventTagKey}
+          eventStatus={eventStatus}
         />
       </EventLeftSection>
       <EventRightSection>

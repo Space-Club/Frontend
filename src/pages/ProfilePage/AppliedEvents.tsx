@@ -4,7 +4,9 @@ import useAppliedEventQuery from '@/hooks/query/event/useAppliedEventQuery';
 import { AppliedEventContainer } from './ProfilePage.style';
 
 const AppliedEvents = () => {
-  const { events } = useAppliedEventQuery({ pageNumber: 1 });
+  const { events } = useAppliedEventQuery({ pageNumber: 0 });
+
+  if (!events) return null;
 
   return (
     <AppliedEventContainer>
@@ -17,7 +19,7 @@ const AppliedEvents = () => {
           startDate={event.startDate}
           location={event.location}
           clubName={event.clubName}
-          eventTagKey={event.status}
+          eventStatus={event.status}
         />
       ))}
     </AppliedEventContainer>

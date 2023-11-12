@@ -16,7 +16,7 @@ import {
 interface AppliedEventInfoProps
   extends Pick<Event, 'title' | 'startDate' | 'location' | 'clubName'> {
   eventId: string;
-  eventTagKey: EventTagKey;
+  eventStatus: EventTagKey;
 }
 
 const AppliedEventInfo = ({
@@ -25,12 +25,12 @@ const AppliedEventInfo = ({
   startDate,
   location,
   clubName,
-  eventTagKey,
+  eventStatus,
 }: AppliedEventInfoProps) => {
   const navigate = useNavigate();
   return (
     <EventInfoSection>
-      <EventStatusTag eventTag={APPLIED_EVENTS_TAGS[eventTagKey]} />
+      <EventStatusTag eventTag={APPLIED_EVENTS_TAGS[eventStatus]} />
       <AppliedEventTitleStyled onClick={() => navigate(PATH.EVENT.DETAIL + `${eventId}`)}>
         {title}
       </AppliedEventTitleStyled>
