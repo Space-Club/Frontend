@@ -80,6 +80,24 @@ const router = createBrowserRouter([
                 path: 'manage',
                 element: <ManageClubPage />,
               },
+              {
+                path: '',
+                element: <FormLayout />,
+                children: [
+                  {
+                    path: 'choice',
+                    element: <ChoiceEventPage />,
+                  },
+                  {
+                    path: 'writeinfo',
+                    element: <WriteEventInfoPage />,
+                  },
+                  {
+                    path: 'writeform',
+                    element: <WriteEventFormPage />,
+                  },
+                ],
+              },
             ],
           },
           {
@@ -100,27 +118,6 @@ const router = createBrowserRouter([
               {
                 path: 'submitform',
                 element: <SubmitFormPage />,
-              },
-              {
-                path: '',
-                element: <FormLayout />,
-                children: [
-                  {
-                    path: 'choice',
-                    element: <ChoiceEventPage />,
-                  },
-                  {
-                    path: 'writeinfo',
-                    element: <WriteEventInfoPage />,
-                  },
-                  {
-                    path: 'writeform',
-                    element: <WriteEventFormPage />,
-                  },
-                ],
-              },
-              {
-                path: 'https://kauth.kakao.com/oauth',
               },
             ],
           },
