@@ -36,7 +36,7 @@ const validateTodayDate = (value: Date) => {
 const validateTimeCompare = (startTime: Date, lastTime: Date) => {
   const selectedTime = new Date(lastTime);
   const start = new Date(startTime);
-  console.log(selectedTime, start);
+
   if (selectedTime < start) {
     return LAST_TIME;
   }
