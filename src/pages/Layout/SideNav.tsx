@@ -35,7 +35,7 @@ const SideNav = () => {
       </CreateClubButtonStyled>
       <IoMdHome className={iconStyle} onClick={() => navigate('/')} />
       <IoMdNotifications className={iconStyle} onClick={() => alert('알림페이지 준비 중')} />
-      <Link to={`/profile`}>
+      <Link to={PATH.PROFILE_APPLIED}>
         <SideBarMyProfile profileImageUrl={userImage?.profileImageUrl} />
       </Link>
     </SidebarContainer>

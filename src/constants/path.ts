@@ -6,8 +6,8 @@ const PATH = {
   MAIN: '/',
   MAIN_EVENT: '/events',
   MAIN_RECRUITMENT: '/recruitment',
-  PROFILE: '/profile',
-  BOOKMARK: '/profile/bookmark',
+  PROFILE_APPLIED: '/profile/applied',
+  PROFILE_BOOKMARK: '/profile/bookmark',
 
   CLUB: {
     HOME: (clubId: string | number) => `/club/${clubId}/home`,

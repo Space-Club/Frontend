@@ -56,14 +56,8 @@ const router = createBrowserRouter([
             ],
           },
           {
-            path: 'profile',
+            path: 'profile/:category',
             element: <ProfilePage />,
-            children: [
-              {
-                path: 'bookmark',
-                element: <ProfilePage />,
-              },
-            ],
           },
           {
             path: 'club/:clubId',
