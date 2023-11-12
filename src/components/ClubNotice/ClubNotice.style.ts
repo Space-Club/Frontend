@@ -5,8 +5,8 @@ import styled from '@emotion/styled';
 const ClubNoticeContainer = styled(whiteGreyBox)`
   display: flex;
   align-items: center;
-  height: 10.5rem;
-  width: 36.1875rem;
+  height: 100%;
+  width: 100%;
   padding: 1.1rem 2rem;
   cursor: pointer;
 `;

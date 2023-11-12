@@ -1,4 +1,6 @@
-import ClubNotice from '@/components/ClubNotice/ClubNotice';
+import ClubMember from '@/components/ClubMember/ClubMember';
+import ClubNotices from '@/components/ClubNotices/ClubNotices';
+import CreateNoticeButton from '@/components/CreateNoticeButton/CreateNoticeButton';
 import ClubBanner from '@/components/common/ClubBanner/ClubBanner';
 import Header from '@/components/common/Header/Header';
 import Tab from '@/components/common/Tab/Tab';
@@ -8,9 +10,14 @@ import { useParams } from 'react-router-dom';
 
 import {
   ClubHomeBottomWrapper,
-  ClubHomeMiddleMemberWrapper,
   ClubHomePageContainer,
   ClubHomeTopWrapper,
+  ClubMemberTextedWrapper,
+  ClubMemberWrapper,
+  ClubMiddleWrapper,
+  ClubNoticeTextStyled,
+  ClubNoticeTextedWrapper,
+  ClubNoticeWrapper,
   TabWrapper,
 } from './ClubHomePage.style';
 
@@ -30,9 +37,23 @@ const ClubHomePage = () => {
         <ClubHomeTopWrapper>
           <ClubBanner clubId={clubId} bannerSize="small" />
         </ClubHomeTopWrapper>
-        <ClubHomeMiddleMemberWrapper>
-          <ClubNotice clubId={clubId} />
-        </ClubHomeMiddleMemberWrapper>
+        <ClubMiddleWrapper>
+          <ClubNoticeTextedWrapper>
+            <ClubNoticeTextStyled>
+              공지사항
+              <CreateNoticeButton clubId={clubId} />
+            </ClubNoticeTextStyled>
+            <ClubNoticeWrapper>
+              <ClubNotices clubId={clubId} />
+            </ClubNoticeWrapper>
+          </ClubNoticeTextedWrapper>
+          <ClubMemberTextedWrapper>
+            <ClubNoticeTextStyled>멤버</ClubNoticeTextStyled>
+            <ClubMemberWrapper>
+              <ClubMember clubId={clubId} />
+            </ClubMemberWrapper>
+          </ClubMemberTextedWrapper>
+        </ClubMiddleWrapper>
         <ClubHomeBottomWrapper></ClubHomeBottomWrapper>
       </ClubHomePageContainer>
     </>

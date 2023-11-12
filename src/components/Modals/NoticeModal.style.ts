@@ -11,6 +11,7 @@ const NoticeModalContainer = styled(ModalBaseContainer)`
   padding: 0;
   transform: translate(-50%, -50%);
   border-radius: 1.6rem;
+  animation: ${Theme.keyframe.fadeIn} 0.1s ease-in-out;
 `;
 
 const NoticeModalHeaderWrapper = styled.div`
@@ -37,8 +38,13 @@ const NoticeButtonStyled = styled(PurpleButton)`
 `;
 
 const NoticeContentWrapper = styled.div`
+  min-height: 20rem;
+  min-width: 40rem;
   padding: 1.5rem 2.6rem;
   background-color: ${Theme.color.white};
+  &:focus {
+    outline: none;
+  }
 `;
 
 export {
