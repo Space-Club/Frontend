@@ -10,6 +10,8 @@ interface Club {
   reverse?: boolean;
 }
 
+type JoinClubResponse = Pick<Club, 'name' | 'info' | 'logoImageUrl' | 'memberCount'>;
+
 interface CreateClubFormValue extends Pick<Club, 'name' | 'info'> {
   owner: string;
   image: FileList | null;
@@ -44,4 +46,5 @@ export {
   GetClubEventsResponse,
   CreateClubFormValue,
   Club,
+  JoinClubResponse,
 };
