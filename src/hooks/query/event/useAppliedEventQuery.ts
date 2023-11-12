@@ -3,7 +3,7 @@ import { GetAppliedEventRequest } from '@/types/event';
 
 import { useQuery } from '@tanstack/react-query';
 
-const QUERY_KEY = {
+export const QUERY_KEY = {
   APPLIED_EVENT: 'APPLIED_EVENT',
 };
 
