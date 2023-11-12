@@ -31,7 +31,7 @@ const AppliedEventInfo = ({
   return (
     <EventInfoSection>
       <EventStatusTag eventTag={APPLIED_EVENTS_TAGS[eventStatus]} />
-      <AppliedEventTitleStyled onClick={() => navigate(PATH.EVENT.DETAIL + `${eventId}`)}>
+      <AppliedEventTitleStyled onClick={() => navigate(PATH.EVENT.DETAIL(eventId))}>
         {title}
       </AppliedEventTitleStyled>
       <EventDescription>
