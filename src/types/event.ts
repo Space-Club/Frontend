@@ -1,12 +1,8 @@
 import Theme from '@/styles/Theme';
 
-type EventTagKey =
-  | 'CONFIRMED'
-  | 'PENDING'
-  | 'CANCEL_REQUESTED'
-  | 'CANCELLED'
-  | 'publicEvent'
-  | 'clubOnlyEvent';
+type EventStatus = 'CONFIRMED' | 'PENDING' | 'CANCEL_REQUESTED' | 'CANCELLED';
+
+type EventTagKey = 'publicEvent' | 'clubOnlyEvent' | EventStatus;
 
 type EventType = 'performance' | 'promotion' | 'recruitment' | 'clubSchedule';
 
@@ -122,4 +118,5 @@ export {
   EventType,
   EventTag,
   ProfileEventType,
+  EventStatus,
 };

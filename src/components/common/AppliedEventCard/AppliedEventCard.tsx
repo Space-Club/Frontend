@@ -1,4 +1,4 @@
-import { Event, EventTagKey } from '@/types/event';
+import { Event, EventStatus } from '@/types/event';
 
 import Poster from '@components/common/Poster/Poster';
 
@@ -13,7 +13,7 @@ import {
 interface AppliedEventCardProps
   extends Pick<Event, 'title' | 'posterImageUrl' | 'startDate' | 'location' | 'clubName'> {
   eventId: string;
-  eventStatus: EventTagKey;
+  eventStatus: EventStatus;
 }
 
 const AppliedEventCard = ({

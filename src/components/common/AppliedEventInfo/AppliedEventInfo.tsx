@@ -1,6 +1,6 @@
 import { APPLIED_EVENTS_TAGS } from '@/constants/event';
 import { PATH } from '@/constants/path';
-import { EventTagKey } from '@/types/event';
+import { EventStatus } from '@/types/event';
 import { Event } from '@/types/event';
 
 import { useNavigate } from 'react-router-dom';
@@ -16,7 +16,7 @@ import {
 interface AppliedEventInfoProps
   extends Pick<Event, 'title' | 'startDate' | 'location' | 'clubName'> {
   eventId: string;
-  eventStatus: EventTagKey;
+  eventStatus: EventStatus;
 }
 
 const AppliedEventInfo = ({
