@@ -40,7 +40,7 @@ const AppliedEventCard = ({
         />
       </EventLeftSection>
       <EventRightSection>
-        <EventCancelButton eventId={eventId} />
+        <EventCancelButton title={title} eventId={eventId} />
       </EventRightSection>
     </AppliedEventCardContainer>
   );
