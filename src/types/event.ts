@@ -1,10 +1,10 @@
 import Theme from '@/styles/Theme';
 
 type EventTagKey =
-  | 'confirmed'
-  | 'pending'
-  | 'cancelled'
-  | 'cancelRequested'
+  | 'CONFIRMED'
+  | 'PENDING'
+  | 'CANCEL_REQUESTED'
+  | 'CANCELLED'
   | 'publicEvent'
   | 'clubOnlyEvent';
 
