@@ -1,3 +1,7 @@
+import useDeleteClubNoticeMutation from '@/hooks/query/club/useDeleteClubNoticeMutation';
+import usePatchClubNoticeMutation from '@/hooks/query/club/usePatchClubNoticeMutation';
+import usePostNoticeMutation from '@/hooks/query/club/usePostClubNoticeMutation';
+import useToast from '@/hooks/useToast';
 import Theme from '@/styles/Theme';
 
 import { useEffect, useRef, useState } from 'react';
@@ -16,19 +20,38 @@ import Portal from './Portal';
 
 interface NoticeModalProps {
   onClose: () => void;
+  clubId: string;
+  noticeId?: string;
   content?: string;
   isManager?: boolean;
   isNew?: boolean;
 }
 
-const NoticeModal = ({ onClose, isManager, isNew, content, ...props }: NoticeModalProps) => {
+const NoticeModal = ({
+  onClose,
+  noticeId,
+  clubId,
+  isManager,
+  isNew,
+  content,
+  ...props
+}: NoticeModalProps) => {
   const noticeContentRef = useRef<HTMLDivElement>(null);
 
   const [isEdit, setIsEdit] = useState(isNew && isManager);
 
+  const { createToast } = useToast();
+
+  const { postNotice } = usePostNoticeMutation();
+  const { patchNotice } = usePatchClubNoticeMutation();
+  const { deleteNotice } = useDeleteClubNoticeMutation();
+
   const handleCreateNoticeButtonClick = () => {
-    //TODO: POST공지사항 API 호출
-    onClose();
+    const notice = getValidNotice();
+    if (notice) {
+      postNotice({ clubId, notice });
+      onClose();
+    }
   };
 
   const handleEditButtonClick = () => {
@@ -36,13 +59,31 @@ const NoticeModal = ({ onClose, isManager, isNew, content, ...props }: NoticeMod
   };
 
   const handleEditCompleteButtonClick = () => {
-    // console.log(noticeContentRef.current?.innerText); TODO: PUT공지사항 API 호출
-    setIsEdit(false);
+    const notice = getValidNotice();
+    if (!noticeId) {
+      throw new Error('공지사항 수정을 위해서 noticeId가 필요합니다.');
+    }
+    if (notice) {
+      patchNotice({ clubId, notice, noticeId });
+      setIsEdit(false);
+    }
   };
 
   const handleDeleteButtonClick = () => {
-    //TODO: DELETE공지사항 API 호출
+    if (!noticeId) {
+      throw new Error('공지사항 삭제를 위해서 noticeId가 필요합니다.');
+    }
+    deleteNotice({ clubId, noticeId });
     onClose();
+  };
+
+  const getValidNotice = () => {
+    const notice = noticeContentRef.current?.innerText;
+    if (!notice) {
+      createToast({ message: '공지사항을 입력해주세요', toastType: 'error' });
+      return;
+    }
+    return notice;
   };
 
   useEffect(() => {
@@ -59,7 +100,7 @@ const NoticeModal = ({ onClose, isManager, isNew, content, ...props }: NoticeMod
           <NoticeCloseButtonStyled>
             <AiOutlineClose color={Theme.color.tActive} onClick={onClose} />
           </NoticeCloseButtonStyled>
-          <NoticeTitleStyled>공지사항</NoticeTitleStyled>
+          <NoticeTitleStyled>{isNew ? '새 공지를 입력해주세요' : '공지사항'}</NoticeTitleStyled>
           {!isNew && isManager && !isEdit && (
             <NoticeButtonStyled reverse onClick={handleEditButtonClick}>
               수정
