@@ -12,6 +12,7 @@ import {
   ButtonWrapper,
   ContentArea,
   ErrorMessage,
+  HalfInputForm,
   PerformanceFormContainer,
   PrevButton,
   SubmitButton,
@@ -29,16 +30,12 @@ const RecruitForm = () => {
   const navigate = useNavigate();
 
   const {
-    REQUIRED_CLUB_NAME,
-    REQUIRED_ACTIVITY_START_TIME,
-    REQUIRED_ACTIVITY_LAST_TIME,
-    REQUIRED_LOCATION,
+    REQUIRED_RECRUIT_NAME,
     REQUIRED_FORM_START_TIME,
     REQUIRED_FORM_LAST_TIME,
     REQUIRED_POSTER,
-    REQUIRED_CLUB_CONTENT,
+    REQUIRED_RECRUIT_CONTENT,
     PERSONNEL,
-    COST,
     LENGTH,
   } = ERROR_MESSAGE.EVENT;
 
@@ -64,96 +61,66 @@ const RecruitForm = () => {
       <ContentArea>
         <InputForm
           {...register('title', {
-            required: `${REQUIRED_CLUB_NAME}`,
+            required: `${REQUIRED_RECRUIT_NAME}`,
             maxLength: 30,
           })}
-          labelText="클럽 이름"
+          labelText="공고 제목"
+          required
           inputType="text"
           placeholder="클럽 이름을 입력하세요"
         />
         {errors.title && <ErrorMessage>{errors.title.message as string}</ErrorMessage>}
-        <TwoInputContainer>
-          <InputForm
-            {...register('startDate', {
-              required: `${REQUIRED_ACTIVITY_START_TIME}`,
-              validate: {
-                today: validateTodayDate,
-                compare: (value) => validateTimeCompare(watch('startDate'), value),
-              },
-            })}
-            labelText="활동 시작 날짜"
-            inputType="date"
-          />
-          <InputForm
-            {...register('lastDate', {
-              required: `${REQUIRED_ACTIVITY_LAST_TIME}`,
-              validate: (value) => validateTimeCompare(value, watch('startDate')),
-            })}
-            labelText="활동 마감 날짜"
-            inputType="date"
-          />
-        </TwoInputContainer>
-        {errors.startDate && <ErrorMessage>{errors.startDate.message as string}</ErrorMessage>}
-        {errors.lastDate && <ErrorMessage>{errors.lastDate.message as string}</ErrorMessage>}
         <InputForm
-          {...register('location', { required: `${REQUIRED_LOCATION}` })}
-          labelText="클럽 위치"
+          {...register('location')}
+          labelText="활동 위치"
           inputType="text"
           placeholder="온라인일 경우, 온라인이라고 기재"
         />
-        {errors.location && <ErrorMessage>{errors.location.message as string}</ErrorMessage>}
-        <TwoInputContainer>
-          <InputForm
-            {...register('capacity', {
-              max: { value: 999, message: `${PERSONNEL}` },
-            })}
-            labelText="모집 인원"
-            inputType="number"
-            placeholder="정수(1-n)"
-          />
-          <InputForm
-            {...register('cost', {
-              max: { value: 1000000, message: `${COST}` },
-            })}
-            labelText="회비"
-            inputType="number"
-            placeholder="정수(0-n)"
-          />
-        </TwoInputContainer>
-        {errors.personnel && <ErrorMessage>{errors.personnel.message as string}</ErrorMessage>}
-        {errors.cost && <ErrorMessage>{errors.cost.message as string}</ErrorMessage>}
         <TextAreaForm
           {...register('recruitTarget', {
-            maxLength: { value: 100, message: LENGTH(100) },
+            maxLength: { value: 50, message: LENGTH(50) },
           })}
           labelText="모집 대상"
-          rows={5}
+          rows={2}
         />
         {errors.recruitTarget && (
           <ErrorMessage>{errors.recruitTarget.message as string}</ErrorMessage>
         )}
+        <HalfInputForm
+          {...register('personnel', {
+            max: { value: 999, message: `${PERSONNEL}` },
+          })}
+          labelText="모집 인원"
+          inputType="number"
+          placeholder="정수(1-n)"
+        />
+        {errors.personnel && <ErrorMessage>{errors.personnel.message as string}</ErrorMessage>}
         <TwoInputContainer>
           <InputForm
             {...register('openDate', {
               required: `${REQUIRED_FORM_START_TIME}`,
               validate: {
                 today: validateTodayDate,
-                compare: (value) => validateTimeCompare(watch('openDate'), value),
+                compare: (value) => validateTimeCompare(value, watch('closeDate')),
               },
             })}
             labelText="신청 시작 날짜 및 시간"
+            required
             inputType="datetime-local"
           />
           <InputForm
             {...register('closeDate', {
               required: `${REQUIRED_FORM_LAST_TIME}`,
-              validate: (value) => validateTimeCompare(value, watch('openDate')),
+              validate: (value) => validateTimeCompare(watch('openDate'), value),
             })}
             labelText="마감 시작 날짜 및 시간"
+            required
             inputType="datetime-local"
           />
         </TwoInputContainer>
-        {errors.openDate && <ErrorMessage>{errors.openDate.message as string}</ErrorMessage>}
+        {errors.openDate && errors.openDate.message !== errors.closeDate?.message && (
+          <ErrorMessage>{errors.openDate.message as string}</ErrorMessage>
+        )}
         {errors.closeDate && <ErrorMessage>{errors.closeDate.message as string}</ErrorMessage>}
       </ContentArea>
       <ContentArea>
@@ -161,19 +128,21 @@ const RecruitForm = () => {
           {...register('poster', { required: `${REQUIRED_POSTER}` })}
           imgFile={imgFile}
           labelText="포스터"
+          required
           buttonText="이미지 선택하기"
         />
         {errors.poster && <ErrorMessage>{errors.poster.message as string}</ErrorMessage>}
         <TextAreaForm
-          {...register('clubIntroduce', {
-            required: `${REQUIRED_CLUB_CONTENT}`,
+          {...register('recruitContent', {
+            required: `${REQUIRED_RECRUIT_CONTENT}`,
             maxLength: { value: 200, message: LENGTH(200) },
           })}
-          labelText="클럽 소개 작성"
+          labelText="공고 내용"
+          required
           rows={10}
         />
-        {errors.clubIntroduce && (
-          <ErrorMessage>{errors.clubIntroduce.message as string}</ErrorMessage>
+        {errors.recruitContent && (
+          <ErrorMessage>{errors.recruitContent.message as string}</ErrorMessage>
         )}
       </ContentArea>
       <ButtonWrapper>

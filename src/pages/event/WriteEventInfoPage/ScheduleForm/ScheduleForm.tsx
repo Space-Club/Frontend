@@ -24,7 +24,7 @@ const ScheduleForm = () => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm();
+  } = useForm({});
   const [imgFile, setImgFile] = useState('');
   const navigate = useNavigate();
 
@@ -32,14 +32,10 @@ const ScheduleForm = () => {
     REQUIRED_SCHEDULE_NAME,
     REQUIRED_ACTIVITY_START_TIME,
     REQUIRED_ACTIVITY_LAST_TIME,
-    REQUIRED_LOCATION,
     REQUIRED_SCHEDULE_MASTER,
-    REQUIRED_FORM_START_TIME,
-    REQUIRED_FORM_LAST_TIME,
-    REQUIRED_POSTER,
     PERSONNEL,
     COST,
-    REQUIRED_SCHEDULE_CONTENT,
+    ENTER_BOTH_SIDE,
     LENGTH,
   } = ERROR_MESSAGE.EVENT;
 
@@ -60,15 +56,19 @@ const ScheduleForm = () => {
     // TODO: API 연결
   };
 
+  const openDate = watch('openDate');
+  const closeDate = watch('closeDate');
+
   return (
     <PerformanceFormContainer onSubmit={handleSubmit(onScheduleSubmitForm)}>
       <ContentArea>
         <InputForm
           {...register('title', {
-            required: `${REQUIRED_SCHEDULE_NAME}`,
+            required: REQUIRED_SCHEDULE_NAME,
             maxLength: 30,
           })}
           labelText="일정 제목"
+          required
           inputType="text"
           placeholder="일정 제목을 입력해주세요."
         />
@@ -76,36 +76,37 @@ const ScheduleForm = () => {
         <TwoInputContainer>
           <InputForm
             {...register('startDate', {
-              required: `${REQUIRED_ACTIVITY_START_TIME}`,
+              required: REQUIRED_ACTIVITY_START_TIME,
               validate: {
                 today: validateTodayDate,
-                compare: (value) => validateTimeCompare(watch('startDate'), value),
+                compare: (value) => validateTimeCompare(value, watch('lastDate')),
               },
             })}
             labelText="활동 시작 날짜"
-            inputType="date"
+            required
+            inputType="datetime-local"
           />
           <InputForm
             {...register('lastDate', {
-              required: `${REQUIRED_ACTIVITY_LAST_TIME}`,
-              validate: (value) => validateTimeCompare(value, watch('startDate')),
+              required: REQUIRED_ACTIVITY_LAST_TIME,
+              validate: {
+                compare: (value) => validateTimeCompare(watch('startDate'), value),
+              },
             })}
             labelText="활동 마감 날짜"
-            inputType="date"
+            required
+            inputType="datetime-local"
           />
         </TwoInputContainer>
-        {errors.startDate && <ErrorMessage>{errors.startDate.message as string}</ErrorMessage>}
+        {errors.startDate && errors.startDate.message !== errors.lastDate?.message && (
+          <ErrorMessage>{errors.startDate.message as string}</ErrorMessage>
+        )}
         {errors.lastDate && <ErrorMessage>{errors.lastDate.message as string}</ErrorMessage>}
-        <InputForm
-          {...register('location', { required: `${REQUIRED_LOCATION}` })}
-          labelText="장소"
-          inputType="text"
-        />
-        {errors.location && <ErrorMessage>{errors.location.message as string}</ErrorMessage>}
+        <InputForm {...register('location')} labelText="장소" inputType="text" />
         <TwoInputContainer>
           <InputForm
             {...register('capacity', {
-              max: { value: 999, message: `${PERSONNEL}` },
+              max: { value: 999, message: PERSONNEL },
             })}
             labelText="정원"
             inputType="number"
@@ -113,7 +114,7 @@ const ScheduleForm = () => {
           />
           <InputForm
             {...register('cost', {
-              max: { value: 1000000, message: `${COST}` },
+              max: { value: 1000000, message: COST },
             })}
             labelText="회비"
             inputType="number"
@@ -124,20 +125,21 @@ const ScheduleForm = () => {
         {errors.cost && <ErrorMessage>{errors.cost.message as string}</ErrorMessage>}
         <InputForm
           {...register('master', {
-            required: `${REQUIRED_SCHEDULE_MASTER}`,
+            required: REQUIRED_SCHEDULE_MASTER,
             maxLength: 30,
           })}
           labelText="일정 생성자"
+          required
           inputType="text"
         />
         {errors.master && <ErrorMessage>{errors.master.message as string}</ErrorMessage>}
         <TwoInputContainer>
           <InputForm
             {...register('openDate', {
-              required: `${REQUIRED_FORM_START_TIME}`,
+              required: closeDate && ENTER_BOTH_SIDE,
               validate: {
                 today: validateTodayDate,
-                compare: (value) => validateTimeCompare(watch('openDate'), value),
+                compare: (value) => validateTimeCompare(value, watch('closeDate')),
               },
             })}
             labelText="신청 시작 날짜 및 시간"
@@ -145,32 +147,33 @@ const ScheduleForm = () => {
           />
           <InputForm
             {...register('closeDate', {
-              required: `${REQUIRED_FORM_LAST_TIME}`,
-              validate: (value) => validateTimeCompare(value, watch('openDate')),
+              required: openDate && ENTER_BOTH_SIDE,
+              validate: (value) => validateTimeCompare(watch('openDate'), value),
             })}
             labelText="마감 시작 날짜 및 시간"
             inputType="datetime-local"
           />
         </TwoInputContainer>
-        {errors.openDate && <ErrorMessage>{errors.openDate.message as string}</ErrorMessage>}
+        {errors.openDate && errors.openDate.message !== errors.closeDate?.message && (
+          <ErrorMessage>{errors.openDate.message as string}</ErrorMessage>
+        )}
         {errors.closeDate && <ErrorMessage>{errors.closeDate.message as string}</ErrorMessage>}
       </ContentArea>
       <ContentArea>
         <ImageForm
-          {...register('poster', { required: `${REQUIRED_POSTER}` })}
+          {...register('poster')}
           imgFile={imgFile}
           labelText="포스터"
           buttonText="이미지 선택하기"
         />
         <TextAreaForm
           {...register('content', {
-            required: `${REQUIRED_SCHEDULE_CONTENT}`,
             maxLength: { value: 200, message: LENGTH(200) },
           })}
           labelText="일정 안내"
           rows={10}
         />
-        {errors.content && <ErrorMessage>{errors.content?.message as string}</ErrorMessage>}
+        {errors.content && <ErrorMessage>{errors.content.message as string}</ErrorMessage>}
       </ContentArea>
       <ButtonWrapper>
         <PrevButton type="button" onClick={() => navigate(-1)}>

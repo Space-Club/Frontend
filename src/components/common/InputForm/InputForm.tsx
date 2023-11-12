@@ -1,19 +1,25 @@
 import { forwardRef } from 'react';
 
-import { InputStyled, InputWrapper, LabelStyled } from './InputForm.style';
+import { InputStyled, InputWrapper, LabelStyled, RequiredSquare } from './InputForm.style';
 
 interface InputForm {
   labelText?: string;
+  required?: boolean;
   inputType: 'date' | 'file' | 'number' | 'search' | 'tel' | 'text' | 'time' | 'datetime-local';
   placeholder?: string;
   maxLength?: number;
 }
 
 const InputForm = forwardRef<HTMLInputElement, InputForm>(
-  ({ labelText, inputType, placeholder, maxLength, ...props }, ref) => {
+  ({ labelText, required = false, inputType, placeholder, maxLength, ...props }, ref) => {
     return (
       <InputWrapper>
-        {labelText && <LabelStyled htmlFor={labelText}>{labelText}</LabelStyled>}
+        {labelText && (
+          <LabelStyled htmlFor={labelText}>
+            {labelText}
+            {required && <RequiredSquare />}
+          </LabelStyled>
+        )}
         <InputStyled
           id={labelText}
           type={inputType}

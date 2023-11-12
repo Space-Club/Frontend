@@ -32,13 +32,13 @@ const PerformanceForm = () => {
   const { mutate: submitForm, isLoading: isSubmitLoading } = useSubmitForm();
 
   const {
-    REQUIRED_EVENT_NAME,
-    REQUIRED_START_TIME,
+    REQUIRED_SHOW_NAME,
+    REQUIRED_SHOW_START_TIME,
     REQUIRED_LOCATION,
     REQUIRED_FORM_START_TIME,
     REQUIRED_FORM_LAST_TIME,
     REQUIRED_POSTER,
-    REQUIRED_EVENT_CONTENT,
+    REQUIRED_SHOW_CONTENT,
     PERSONNEL,
     COST,
     BANK_NAME,
@@ -69,26 +69,29 @@ const PerformanceForm = () => {
       <ContentArea>
         <InputForm
           {...register('title', {
-            required: `${REQUIRED_EVENT_NAME}`,
+            required: `${REQUIRED_SHOW_NAME}`,
             maxLength: 30,
           })}
-          labelText="행사 이름"
+          labelText="공연 이름"
+          required
           inputType="text"
           placeholder="행사 이름을 입력하세요"
         />
         {errors.title && <ErrorMessage>{errors.title.message as string}</ErrorMessage>}
         <HalfInputForm
           {...register('startDate', {
-            required: `${REQUIRED_START_TIME}`,
+            required: `${REQUIRED_SHOW_START_TIME}`,
             validate: validateTodayDate,
           })}
-          labelText="행사 시작 날짜 및 시간"
+          labelText="공연 시작 날짜 및 시간"
+          required
           inputType="datetime-local"
         />
         {errors.startDate && <ErrorMessage>{errors.startDate.message as string}</ErrorMessage>}
         <InputForm
           {...register('location', { required: `${REQUIRED_LOCATION}` })}
-          labelText="장소"
+          labelText="공연 장소"
+          required
           inputType="text"
         />
         {errors.location && <ErrorMessage>{errors.location.message as string}</ErrorMessage>}
@@ -146,22 +149,26 @@ const PerformanceForm = () => {
               required: `${REQUIRED_FORM_START_TIME}`,
               validate: {
                 today: validateTodayDate,
-                compare: (value) => validateTimeCompare(watch('openDate'), value),
+                compare: (value) => validateTimeCompare(value, watch('closeDate')),
               },
             })}
             labelText="신청 시작 날짜 및 시간"
+            required
             inputType="datetime-local"
           />
           <InputForm
             {...register('closeDate', {
               required: `${REQUIRED_FORM_LAST_TIME}`,
-              validate: (value) => validateTimeCompare(value, watch('openDate')),
+              validate: (value) => validateTimeCompare(watch('openDate'), value),
             })}
             labelText="마감 시작 날짜 및 시간"
+            required
             inputType="datetime-local"
           />
         </TwoInputContainer>
-        {errors.openDate && <ErrorMessage>{errors.openDate.message as string}</ErrorMessage>}
+        {errors.openDate && errors.openDate.message !== errors.closeDate?.message && (
+          <ErrorMessage>{errors.openDate.message as string}</ErrorMessage>
+        )}
         {errors.closeDate && <ErrorMessage>{errors.closeDate.message as string}</ErrorMessage>}
       </ContentArea>
       <ContentArea>
@@ -169,15 +176,17 @@ const PerformanceForm = () => {
           {...register('poster', { required: `${REQUIRED_POSTER}` })}
           imgFile={imgFile}
           labelText="포스터"
+          required
           buttonText="이미지 선택하기"
         />
         {errors.poster && <ErrorMessage>{errors.poster.message as string}</ErrorMessage>}
         <TextAreaForm
           {...register('content', {
-            required: `${REQUIRED_EVENT_CONTENT}`,
+            required: `${REQUIRED_SHOW_CONTENT}`,
             maxLength: { value: 200, message: LENGTH(200) },
           })}
-          labelText="행사 내용 작성"
+          labelText="공연 내용 작성"
+          required
           rows={10}
         />
         {errors.content && <ErrorMessage>{errors.content?.message as string}</ErrorMessage>}

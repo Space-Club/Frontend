@@ -31,7 +31,7 @@ const PromotionForm = () => {
 
   const {
     REQUIRED_EVENT_NAME,
-    REQUIRED_START_TIME,
+    REQUIRED_EVENT_START_TIME,
     REQUIRED_LOCATION,
     PERSONNEL,
     REQUIRED_FORM_START_TIME,
@@ -67,22 +67,25 @@ const PromotionForm = () => {
             maxLength: 30,
           })}
           labelText="행사 이름"
+          required
           inputType="text"
           placeholder="행사 이름을 입력하세요."
         />
         {errors.title && <ErrorMessage>{errors.title.message as string}</ErrorMessage>}
         <HalfInputForm
           {...register('startDate', {
-            required: `${REQUIRED_START_TIME}`,
+            required: `${REQUIRED_EVENT_START_TIME}`,
             validate: validateTodayDate,
           })}
           labelText="행사 시작 날짜 및 시간"
+          required
           inputType="datetime-local"
         />
         {errors.startDate && <ErrorMessage>{errors.startDate.message as string}</ErrorMessage>}
         <InputForm
           {...register('location', { required: `${REQUIRED_LOCATION}` })}
-          labelText="장소"
+          labelText="행사 장소"
+          required
           inputType="text"
         />
         {errors.location && <ErrorMessage>{errors.location.message as string}</ErrorMessage>}
@@ -101,22 +104,26 @@ const PromotionForm = () => {
               required: `${REQUIRED_FORM_START_TIME}`,
               validate: {
                 today: validateTodayDate,
-                compare: (value) => validateTimeCompare(watch('openDate'), value),
+                compare: (value) => validateTimeCompare(value, watch('closeDate')),
               },
             })}
             labelText="신청 시작 날짜 및 시간"
+            required
             inputType="datetime-local"
           />
           <InputForm
             {...register('closeDate', {
               required: `${REQUIRED_FORM_LAST_TIME}`,
-              validate: (value) => validateTimeCompare(value, watch('openDate')),
+              validate: (value) => validateTimeCompare(watch('openDate'), value),
             })}
             labelText="마감 시작 날짜 및 시간"
+            required
             inputType="datetime-local"
           />
         </TwoInputContainer>
-        {errors.openDate && <ErrorMessage>{errors.openDate.message as string}</ErrorMessage>}
+        {errors.openDate && errors.openDate.message !== errors.closeDate?.message && (
+          <ErrorMessage>{errors.openDate.message as string}</ErrorMessage>
+        )}
         {errors.closeDate && <ErrorMessage>{errors.closeDate.message as string}</ErrorMessage>}
       </ContentArea>
       <ContentArea>
@@ -124,6 +131,7 @@ const PromotionForm = () => {
           {...register('poster', { required: `${REQUIRED_POSTER}` })}
           imgFile={imgFile}
           labelText="포스터"
+          required
           buttonText="이미지 선택하기"
         />
         {errors.poster && <ErrorMessage>{errors.poster.message as string}</ErrorMessage>}
@@ -133,6 +141,7 @@ const PromotionForm = () => {
             maxLength: { value: 200, message: LENGTH(200) },
           })}
           labelText="행사 내용 작성"
+          required
           rows={10}
         />
         {errors.content && <ErrorMessage>{errors.content?.message as string}</ErrorMessage>}
