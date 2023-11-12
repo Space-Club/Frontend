@@ -26,6 +26,8 @@ const AppliedEventCard = ({
   eventStatus,
   ...props
 }: AppliedEventCardProps) => {
+  const isPossibleCancel = eventStatus === 'PENDING' || eventStatus === 'CONFIRMED';
+
   return (
     <AppliedEventCardContainer {...props}>
       <EventLeftSection>
@@ -40,7 +42,7 @@ const AppliedEventCard = ({
         />
       </EventLeftSection>
       <EventRightSection>
-        <EventCancelButton title={title} eventId={eventId} />
+        {isPossibleCancel && <EventCancelButton title={title} eventId={eventId} />}
       </EventRightSection>
     </AppliedEventCardContainer>
   );
