@@ -1,11 +1,11 @@
 import { EventStatus } from '../event';
 
-interface cancelEventRequest {
+interface CancelEventRequest {
   eventId: string;
 }
 
-interface cancelEventResponse {
+interface CancelEventResponse {
   eventStatus: EventStatus;
 }
 
-export { cancelEventRequest, cancelEventResponse };
+export { CancelEventRequest, CancelEventResponse };
