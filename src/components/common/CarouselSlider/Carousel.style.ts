@@ -1,14 +1,13 @@
 import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
-const CarouselContainer = styled.section<{ itemWidth: number }>`
-  display: flex;
-  width: ${({ itemWidth }) => itemWidth}rem;
-  height: 100%;
+const CarouselContainer = styled.section`
   position: relative;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 
-  & button {
+  & > button {
     opacity: 0;
     transition: opacity 0.15s ease-in-out;
   }
@@ -23,6 +22,9 @@ const CarouselContainer = styled.section<{ itemWidth: number }>`
 const CarouselRefWrapper = styled.div`
   display: flex;
   height: 100%;
+  & > * {
+    flex-shrink: 0;
+  }
 `;
 
 const CarouselNextButton = styled.button`
@@ -66,6 +68,7 @@ const CarouselPrevButton = styled.button`
 
 const CarouselCounterWrapper = styled.div`
   position: absolute;
+  z-index: 50;
   bottom: 0.5rem;
   right: 0.5rem;
   display: flex;

@@ -8,6 +8,8 @@ type EventTagKey =
   | 'publicEvent'
   | 'clubOnlyEvent';
 
+type EventType = 'performance' | 'promotion' | 'recruitment' | 'clubSchedule';
+
 interface EventTag {
   title: string;
   borderColor: keyof typeof Theme.color;
@@ -29,8 +31,6 @@ interface Event {
   clubName: string;
   clubLogoImageUrl: string;
 }
-
-export { EventTagKey, EventTags, EventTag, Event };
 
 interface GetAppliedEventData {
   id: string;
@@ -83,6 +83,15 @@ interface GetAllEventsResponse {
   };
 }
 
+type FormType = 'RADIO' | 'TEXT' | 'SELECT' | 'NUMBER';
+
+interface FormOption {
+  id: string;
+  title: string;
+  type: FormType;
+  visible: boolean;
+}
+
 interface getEventDetailResponse {
   title: string;
   posterImageUrl: string;
@@ -106,5 +115,11 @@ export {
   GetAppliedEventRequest,
   GetAppliedEventResponse,
   getEventDetailResponse,
+  FormOption,
+  Event,
+  EventTags,
+  EventTagKey,
+  EventType,
+  EventTag,
   ProfileEventType,
 };

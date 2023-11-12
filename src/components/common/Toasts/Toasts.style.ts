@@ -7,6 +7,7 @@ const ToastsContainer = styled.div`
   position: fixed;
   right: 1.5rem;
   top: 1.5rem;
+  z-index: 101;
 
   & > *:not(:last-of-type) {
     margin-bottom: 0.6rem;
