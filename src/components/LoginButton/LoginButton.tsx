@@ -3,7 +3,7 @@ import { LoginButtonStyled, TextStyled } from './LoginButton.style';
 const LoginButton = () => {
   return (
     <LoginButtonStyled>
-      <TextStyled>로그인 하기</TextStyled>
+      <TextStyled>로그인</TextStyled>
     </LoginButtonStyled>
   );
 };

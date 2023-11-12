@@ -15,9 +15,7 @@ import { ClubWrapper, CreateClubButtonStyled, SidebarContainer, iconStyle } from
 const SideNav = () => {
   const { clubs } = useClubs();
   const { userImage } = useUserImageQuery();
-  const isLoginUser = !!getStorage('token');
-
-  console.log(isLoginUser);
+  const isLoginUser = Boolean(getStorage('token'));
 
   const navigate = useNavigate();
 
