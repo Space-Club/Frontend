@@ -5,7 +5,7 @@ import { Event } from '@/types/event';
 
 import { useNavigate } from 'react-router-dom';
 
-import EventStatusTag from '../EventTag/EventTag';
+import EventStatusTag from '../EventStatusTag/EventTag';
 import {
   AppliedEventTitleStyled,
   EventDescription,
