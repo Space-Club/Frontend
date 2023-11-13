@@ -27,7 +27,7 @@ const InvitePage = () => {
   const isLogin = Boolean(getStorage('token'));
 
   if (!inviteClubInfo) {
-    return <div>가입할 클럽 정보를 불러오지 못했습니다. </div>;
+    throw new Error('eventId is null');
   }
 
   const { name, info, logoImageUrl, memberCount } = inviteClubInfo;
