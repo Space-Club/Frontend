@@ -1,4 +1,5 @@
 import FormItem from '@/components/FormItem/FormItem';
+import { getEventFormResponse } from '@/types/event';
 
 import {
   FormWrapper,
@@ -28,7 +29,7 @@ const SubmitFormPage = () => {
         },
       ],
     },
-  };
+  } as getEventFormResponse;
   const mbti = [
     'ENFJ',
     'ENFP',
@@ -46,8 +47,8 @@ const SubmitFormPage = () => {
     'ISFP',
     'ISTJ',
     'ISTP',
-  ];
-  const sex = ['남자', '여자'];
+  ]; // 임시 데이터
+  const gender = ['남자', '여자']; // 임시데이터
 
   return (
     <SubmitFormContainer>
@@ -55,10 +56,10 @@ const SubmitFormPage = () => {
       <SubmitFormContent>{mockData.form.description}</SubmitFormContent>
       <FormWrapper>
         {mockData.form.options.map(({ id, title, type }) => (
-          <FormItem id={id} title={title} type={type as 'TEXT'} />
+          <FormItem id={id} title={title} type={type} />
         ))}
         <FormItem id={3} title="MBTI" type="SELECT" options={mbti} />
-        <FormItem id={4} title="성별" type="RADIO" options={sex} />
+        <FormItem id={4} title="성별" type="RADIO" options={gender} />
         <SubmitButton>신청 폼 제출하기</SubmitButton>
       </FormWrapper>
     </SubmitFormContainer>

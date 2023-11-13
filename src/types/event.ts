@@ -107,7 +107,22 @@ interface getEventDetailResponse {
   isManager: boolean;
 }
 
+interface getEventFormResponse {
+  event: {
+    title: string;
+  };
+  form: {
+    description: string;
+    options: {
+      id: number;
+      title: string;
+      type: FormType;
+    }[];
+  };
+}
+
 export {
+  getEventFormResponse,
   GetAllEventsRequest,
   GetAllEventsResponse,
   GetAppliedEventRequest,
