@@ -39,7 +39,7 @@ const CheckBox = ({ onCheck, onUncheck, label, info }: CheckBoxProps) => {
       <CheckBoxContainer>
         {info && (
           <CheckBoxInfoWrapper onClick={modalOpen}>
-            <AiFillQuestionCircle size={17} fill={Theme.color.activeColor} />
+            <AiFillQuestionCircle size={17} fill={Theme.color.gray} />
           </CheckBoxInfoWrapper>
         )}
         <CheckBoxLabelStyled>{label}</CheckBoxLabelStyled>
