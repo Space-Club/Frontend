@@ -113,6 +113,7 @@ export {
   GetAppliedEventRequest,
   GetAppliedEventResponse,
   getEventDetailResponse,
+  FormType,
   FormOption,
   Event,
   EventTags,
