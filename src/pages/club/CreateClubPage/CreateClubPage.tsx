@@ -3,7 +3,7 @@ import Avatar from '@/components/common/Avatar/Avatar';
 import InputForm from '@/components/common/InputForm/InputForm';
 import TextAreaForm from '@/components/common/TextAreaForm/TextAreaForm';
 import { CREATE_CLUB } from '@/constants/club';
-import { ERROR_MESSAGE } from '@/constants/errorMessage';
+import { ERROR_MESSAGE } from '@/constants/toastMessage';
 import { useClub } from '@/hooks/query/club/useClub';
 import { CreateClubFormValue } from '@/types/club';
 

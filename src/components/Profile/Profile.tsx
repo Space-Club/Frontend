@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from '@/constants/errorMessage';
+import { ERROR_MESSAGE } from '@/constants/toastMessage';
 import useMyProfile from '@/hooks/query/user/useMyProfile';
 import { validateName, validateNumber } from '@/utils/validate';
 

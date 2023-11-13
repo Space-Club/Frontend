@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from '@/constants/errorMessage';
+import { ERROR_MESSAGE } from '@/constants/toastMessage';
 
 const { START_TIME, LAST_TIME } = ERROR_MESSAGE.EVENT;
 const { NAME, NUMBER } = ERROR_MESSAGE.REGISTER;
