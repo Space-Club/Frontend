@@ -3,6 +3,7 @@ import Theme from '@/styles/Theme';
 import { forwardRef } from 'react';
 import { FaRegImage } from 'react-icons/fa';
 
+import { RequiredSquare } from '../common/InputForm/InputForm.style';
 import {
   ImageInputStyled,
   ImageLabelStyled,
@@ -14,15 +15,19 @@ import {
 
 interface ImageForm {
   labelText: string;
+  required?: boolean;
   buttonText: string;
   imgFile: string;
 }
 
 const ImageForm = forwardRef<HTMLInputElement, ImageForm>(
-  ({ labelText, buttonText, imgFile, ...props }, ref) => {
+  ({ labelText, required = false, buttonText, imgFile, ...props }, ref) => {
     return (
       <InputWrapper>
-        <ImageTitle>{labelText}</ImageTitle>
+        <ImageTitle>
+          {labelText}
+          {required && <RequiredSquare />}
+        </ImageTitle>
         <ImageWrapper>
           {imgFile ? (
             <PreviewImage src={imgFile} />
