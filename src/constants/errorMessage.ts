@@ -1,5 +1,6 @@
 const ERROR_MESSAGE = {
   REGISTER: {
+    FAILED: '가입에 실패했습니다',
     REQUIRED_NAME: '* 이름은 필수입니다.',
     REQUIRED_NUMBER: '* 번호는 필수입니다.',
 
