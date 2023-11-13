@@ -19,7 +19,7 @@ const ModalBaseContainer = styled.div`
   left: 50%;
   z-index: 50;
   min-width: 20rem;
-  padding: 3rem 6rem;
+  padding: 3rem;
   border-radius: 2rem;
   background-color: ${Theme.color.tWhiteGrey};
   transform: translate(-38%, -50%);
@@ -35,8 +35,7 @@ const ModalContentWrapper = styled.div`
 `;
 
 const MessageStyled = styled.p`
-  font-size: ${Theme.fontSize.smallTitle};
-  text-align: center;
+  font-size: ${Theme.fontSize.mediumContent};
 `;
 
 const ButtonWrapper = styled.div`
