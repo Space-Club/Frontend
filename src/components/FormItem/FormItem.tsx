@@ -1,5 +1,5 @@
 import FormDropDown from './FormDropDown';
-import { Answer, FormItemContainer, Question } from './FormItem.style';
+import { AnswerStyled, FormItemContainer, QuestionStyled } from './FormItem.style';
 import FormRadio from './FormRadio';
 
 interface FormItem {
@@ -12,17 +12,17 @@ interface FormItem {
 const FormItem = ({ id, title, type, options }: FormItem) => {
   return (
     <FormItemContainer>
-      <Question>
+      <QuestionStyled>
         {id}. {title}
-      </Question>
+      </QuestionStyled>
       {type === 'SELECT' ? (
         <FormDropDown options={options!} />
       ) : type === 'RADIO' ? (
         <FormRadio options={options!} keyName={title} />
       ) : type === 'NUMBER' ? (
-        <Answer type="number" />
+        <AnswerStyled type="number" />
       ) : (
-        <Answer type="text" />
+        <AnswerStyled type="text" />
       )}
     </FormItemContainer>
   );
