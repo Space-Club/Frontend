@@ -33,7 +33,7 @@ const InvitePage = () => {
   const { name, info, logoImageUrl, memberCount } = inviteClubInfo;
 
   const handleClickJoinButton = () => {
-    sessionStorage.setItem('return page', pathname);
+    sessionStorage.setItem('returnpage', pathname);
     navigate(PATH.LOGIN);
   };
 
@@ -46,7 +46,7 @@ const InvitePage = () => {
             <Avatar avatarSize="medium" profileImageSrc={logoImageUrl} isClub />
             <ClubInfo reverse name={name} info={info} memberCount={memberCount} />
           </ClubInfoWrapper>
-          <MessageStyled>`${name}에 가입하시겠습니까?`</MessageStyled>
+          <MessageStyled>{name} 클럽에 가입하시겠습니까?</MessageStyled>
           <ActiveButton
             buttonText="가입하기"
             fontSize="smallTitle"

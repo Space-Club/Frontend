@@ -9,7 +9,7 @@ import { useMutation } from '@tanstack/react-query';
 
 const useOauthLogin = ({ code }: OauthLoginRequest) => {
   const navigate = useNavigate();
-  const returnPage = sessionStorage.getItem('return page');
+  const returnPage = sessionStorage.getItem('returnpage');
   const { mutate: login } = useMutation({
     mutationFn: () => oauthLogin({ code }),
     onSuccess: ({ data }) => {

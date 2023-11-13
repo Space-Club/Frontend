@@ -10,7 +10,7 @@ const postUser = async (
   navigate: ReturnType<typeof useNavigate>,
 ) => {
   const userId = getStorage('userId');
-  const returnPage = sessionStorage.getItem('return page');
+  const returnPage = sessionStorage.getItem('returnpage');
 
   const { data } = await axiosClient.post<PostUserResponse>(END_POINTS.REGISTER, {
     name,
