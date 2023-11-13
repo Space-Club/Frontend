@@ -17,10 +17,10 @@ const FormItem = ({ id, title, type, options }: FormItem) => {
       <QuestionStyled>
         {id}. {title}
       </QuestionStyled>
-      {type === 'SELECT' ? (
-        <FormDropDown options={options!} />
-      ) : type === 'RADIO' ? (
-        <FormRadio options={options!} keyName={title} />
+      {type === 'SELECT' && options ? (
+        <FormDropDown options={options} />
+      ) : type === 'RADIO' && options ? (
+        <FormRadio options={options} keyName={title} />
       ) : type === 'NUMBER' ? (
         <AnswerStyled type="number" />
       ) : (
