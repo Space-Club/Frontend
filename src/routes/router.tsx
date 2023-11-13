@@ -39,7 +39,7 @@ const router = createBrowserRouter([
         element: <OauthRedirectPage />,
       },
       {
-        path: 'clubs/invite/*',
+        path: 'clubs/invite/:invitecode',
         element: <InvitePage />,
       },
       {

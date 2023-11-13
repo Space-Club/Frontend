@@ -3,9 +3,12 @@ import Avatar from '@/components/common/Avatar/Avatar';
 import BigLogo from '@/components/common/BigLogo/BigLogo';
 import ClubInfo from '@/components/common/ClubInfo/ClubInfo';
 import { LOGO_TEXT } from '@/constants/logo';
+import { PATH } from '@/constants/path';
+import useGetInviteClubInfoQuery from '@/hooks/query/club/useGetInviteClubInfoQuery';
 import useJoinClub from '@/hooks/query/club/useJoinClub';
+import { getStorage } from '@/utils/localStorage';
 
-import { useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
 import {
   ClubInfoWrapper,
@@ -16,9 +19,23 @@ import {
 } from './InvitePage.style';
 
 const InvitePage = () => {
-  const inviteCode = String(useParams());
+  const { invitecode } = useParams();
+  const { pathname } = useLocation();
+  const { inviteClubInfo } = useGetInviteClubInfoQuery(invitecode ?? '');
   const { joinClub, isLoading } = useJoinClub();
-  //TODO: 가입할 클럽 정보 요청 api
+  const navigate = useNavigate();
+  const isLogin = Boolean(getStorage('token'));
+
+  if (!inviteClubInfo) {
+    return <div>가입할 클럽 정보를 불러오지 못했습니다. </div>;
+  }
+
+  const { name, info, logoImageUrl, memberCount } = inviteClubInfo;
+
+  const handleClickJoinButton = () => {
+    sessionStorage.setItem('return page', pathname);
+    navigate(PATH.LOGIN);
+  };
 
   return (
     <PageContainer>
@@ -26,15 +43,17 @@ const InvitePage = () => {
         <BigLogo logoText={LOGO_TEXT.SPACE_CLUB} />
         <InviteInfoWrapper>
           <ClubInfoWrapper>
-            <Avatar avatarSize="medium" profileImageSrc="https://picsum.photos/200/300" isClub />
-            <ClubInfo reverse name="연사모" info="연어를 사랑하는 사람들의 모임" memberCount="4" />
+            <Avatar avatarSize="medium" profileImageSrc={logoImageUrl} isClub />
+            <ClubInfo reverse name={name} info={info} memberCount={memberCount} />
           </ClubInfoWrapper>
-          <MessageStyled>연사모에 가입하시겠습니까?</MessageStyled>
+          <MessageStyled>`${name}에 가입하시겠습니까?`</MessageStyled>
           <ActiveButton
             buttonText="가입하기"
             fontSize="smallTitle"
             isLoading={isLoading}
-            onClick={() => joinClub(inviteCode)}
+            onClick={() => {
+              isLogin ? joinClub(invitecode ?? '') : handleClickJoinButton();
+            }}
           />
         </InviteInfoWrapper>
       </LogoNInfoWrapper>

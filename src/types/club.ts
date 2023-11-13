@@ -10,7 +10,9 @@ interface Club {
   reverse?: boolean;
 }
 
-type JoinClubResponse = Pick<Club, 'name' | 'info' | 'logoImageUrl' | 'memberCount'>;
+type JoinClubResponse = Pick<Club, 'name' | 'info' | 'logoImageUrl' | 'memberCount'> & {
+  clubId: string;
+};
 
 interface CreateClubFormValue extends Pick<Club, 'name' | 'info'> {
   owner: string;

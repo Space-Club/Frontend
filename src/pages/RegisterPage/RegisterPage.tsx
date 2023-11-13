@@ -21,7 +21,7 @@ const RegisterPage = () => {
   const onRegisterSubmitForm = async (data: FieldValues) => {
     try {
       const { name, number } = data;
-      await postUser({ name, phoneNumber: number });
+      await postUser({ name, phoneNumber: number }, navigate);
       navigate('/');
     } catch {
       throw new Error('폼을 제출하는데 실패했습니다.');
