@@ -1,5 +1,7 @@
 import useGetClubQuery from '@/hooks/query/club/useGetClubQuery';
 
+import { useEffect } from 'react';
+
 import Avatar from '../Avatar/Avatar';
 import ClubCover from '../ClubCover/ClubCover';
 import ClubInfo from '../ClubInfo/ClubInfo';
@@ -11,7 +13,11 @@ interface ClubBannerProps {
 }
 
 const ClubBanner = ({ clubId, bannerSize = 'large' }: ClubBannerProps) => {
-  const { clubInfo } = useGetClubQuery({ clubId });
+  const { clubInfo, refetch } = useGetClubQuery({ clubId });
+
+  useEffect(() => {
+    refetch();
+  }, [clubId, refetch]);
 
   if (!clubInfo) return null;
 
