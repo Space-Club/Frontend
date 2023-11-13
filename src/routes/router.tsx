@@ -93,7 +93,7 @@ const router = createBrowserRouter([
                     element: <WriteEventInfoPage />,
                   },
                   {
-                    path: 'writeform',
+                    path: 'writeform/:eventId',
                     element: <WriteEventFormPage />,
                   },
                 ],
