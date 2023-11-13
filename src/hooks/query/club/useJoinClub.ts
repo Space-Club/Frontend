@@ -15,10 +15,10 @@ const useJoinClub = () => {
   const queryClient = useQueryClient();
 
   const { mutate: joinClub, isLoading } = useMutation(postJoinClub, {
-    onSuccess: (data: string) => {
+    onSuccess: (data) => {
       queryClient.invalidateQueries([QUERY_KEY.MY_CLUB]);
       createToast({ message: '클럽 가입이 완료되었습니다.', toastType: 'success' });
-      navigate(PATH.CLUB.HOME(data));
+      navigate(PATH.CLUB.HOME(data.clubId));
     },
     onError: () => {
       createToast({ message: ERROR_MESSAGE.CLUB.JOIN_FAILED, toastType: 'error' });

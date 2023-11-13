@@ -10,7 +10,7 @@ interface Club {
   reverse?: boolean;
 }
 
-type JoinClubResponse = Pick<Club, 'name' | 'info' | 'logoImageUrl' | 'memberCount'> & {
+type InviteClubResponse = Pick<Club, 'name' | 'info' | 'logoImageUrl' | 'memberCount'> & {
   clubId: string;
 };
 
@@ -48,5 +48,5 @@ export {
   GetClubEventsResponse,
   CreateClubFormValue,
   Club,
-  JoinClubResponse,
+  InviteClubResponse,
 };
