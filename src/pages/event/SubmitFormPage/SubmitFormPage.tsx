@@ -29,6 +29,25 @@ const SubmitFormPage = () => {
       ],
     },
   };
+  const mbti = [
+    'ENFJ',
+    'ENFP',
+    'ENTJ',
+    'ENTP',
+    'ESFJ',
+    'ESFP',
+    'ESTJ',
+    'ESTP',
+    'INFJ',
+    'INFP',
+    'INTJ',
+    'INTP',
+    'ISFJ',
+    'ISFP',
+    'ISTJ',
+    'ISTP',
+  ];
+  const sex = ['남자', '여자'];
 
   return (
     <SubmitFormContainer>
@@ -38,6 +57,8 @@ const SubmitFormPage = () => {
         {mockData.form.options.map(({ id, title, type }) => (
           <FormItem id={id} title={title} type={type as 'TEXT'} />
         ))}
+        <FormItem id={3} title="MBTI" type="SELECT" options={mbti} />
+        <FormItem id={4} title="성별" type="RADIO" options={sex} />
         <SubmitButton>신청 폼 제출하기</SubmitButton>
       </FormWrapper>
     </SubmitFormContainer>
