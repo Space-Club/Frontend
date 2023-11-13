@@ -13,6 +13,7 @@ const PATH = {
     HOME: (clubId: string | number) => `/club/${clubId}/home`,
     EVENT: (clubId: string | number) => `/club/${clubId}/event`,
     MANAGE: (clubId: string | number) => `/club/${clubId}/manage`,
+    INVITE: (inviteCode: string) => `/clubs/invite/${inviteCode}`,
   },
   CREATE: '/create',
 
