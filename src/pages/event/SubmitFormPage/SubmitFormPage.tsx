@@ -29,6 +29,7 @@ const SubmitFormPage = () => {
       ],
     },
   };
+
   return (
     <SubmitFormContainer>
       <SubmitFormTitle>{mockData.event.title}</SubmitFormTitle>

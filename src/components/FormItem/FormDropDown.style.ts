@@ -43,6 +43,7 @@ const Option = styled.div`
   height: 2.5rem;
   padding-left: 0.5rem;
   line-height: 2.5rem;
+  background-color: white;
   cursor: pointer;
 
   &:hover {
