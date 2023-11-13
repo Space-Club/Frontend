@@ -16,14 +16,14 @@ const FormDropDown = ({ options }: FormDropDown) => {
   };
 
   const handleSelectClick = () => {
-    setIsDropDown(!isDropDown);
+    setIsDropDown((isDropDown) => !isDropDown);
   };
 
   return (
-    <FormDropDownContainer isDropDown={isDropDown}>
+    <FormDropDownContainer isRounded={isDropDown}>
       <Select onClick={handleSelectClick}>{selectedItem ? selectedItem : '선택'}</Select>
       {isDropDown && (
-        <DropDown isDropDown={isDropDown}>
+        <DropDown isRounded={isDropDown}>
           {options.map((option: string) => (
             <Option onClick={() => handleOptionClick(option)}>{option}</Option>
           ))}

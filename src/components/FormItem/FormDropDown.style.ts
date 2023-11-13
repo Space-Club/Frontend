@@ -1,7 +1,7 @@
 import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
-const FormDropDownContainer = styled.div<{ isDropDown: boolean }>`
+const FormDropDownContainer = styled.div<{ isRounded: boolean }>`
   display: flex;
   flex-direction: column;
   position: relative;
@@ -9,8 +9,8 @@ const FormDropDownContainer = styled.div<{ isDropDown: boolean }>`
   border: 1px solid;
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
-  border-bottom-left-radius: ${({ isDropDown }) => (isDropDown ? '' : '0.25rem')};
-  border-bottom-right-radius: ${({ isDropDown }) => (isDropDown ? '' : '0.25rem')};
+  border-bottom-left-radius: ${({ isRounded }) => (isRounded ? '' : '0.25rem')};
+  border-bottom-right-radius: ${({ isRounded }) => (isRounded ? '' : '0.25rem')};
 `;
 const Select = styled.div`
   display: flex;
@@ -26,14 +26,16 @@ const Select = styled.div`
     content: '▾';
   }
 `;
-const DropDown = styled.div<{ isDropDown: boolean }>`
+const DropDown = styled.div<{ isRounded: boolean }>`
   position: absolute;
   top: 2.5rem;
   left: -1px;
   width: 100%;
+  height: 10rem;
+  overflow: auto;
   border: 1px solid;
-  border-top-left-radius: ${({ isDropDown }) => (isDropDown ? '' : '0.25rem')};
-  border-top-right-radius: ${({ isDropDown }) => (isDropDown ? '' : '0.25rem')};
+  border-top-left-radius: ${({ isRounded }) => (isRounded ? '' : '0.25rem')};
+  border-top-right-radius: ${({ isRounded }) => (isRounded ? '' : '0.25rem')};
   border-bottom-left-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
   box-sizing: content-box;
