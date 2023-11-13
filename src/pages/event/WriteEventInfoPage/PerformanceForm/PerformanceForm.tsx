@@ -1,7 +1,7 @@
 import ImageForm from '@/components/ImageForm/ImageForm';
 import InputForm from '@/components/common/InputForm/InputForm';
 import TextAreaForm from '@/components/common/TextAreaForm/TextAreaForm';
-import { ERROR_MESSAGE } from '@/constants/toastMessage';
+import { ERROR_MESSAGE } from '@/constants/errorMessage';
 import useSubmitForm from '@/hooks/query/event/useSubmitForm';
 import { validateTimeCompare, validateTodayDate } from '@/utils/validate';
 
