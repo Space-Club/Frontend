@@ -30,7 +30,7 @@ const CheckBox = ({ onCheck, onUncheck, label, info }: CheckBoxProps) => {
     } else {
       onCheck();
     }
-    setIsChecked(!isChecked);
+    setIsChecked((isChecked) => !isChecked);
   };
 
   return (
