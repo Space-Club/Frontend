@@ -1,5 +1,6 @@
 import cancelEvent from '@/apis/event/cancelEvent';
-import { ERROR_MESSAGE, SUCCESS_MESSAGE } from '@/constants/errorMessage';
+import { ERROR_MESSAGE } from '@/constants/errorMessage';
+import { SUCCESS_MESSAGE } from '@/constants/successMessage';
 import useToast from '@/hooks/useToast';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
