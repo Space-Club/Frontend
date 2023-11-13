@@ -22,7 +22,6 @@ import {
 } from './ClubHomePage.style';
 
 const ClubHomePage = () => {
-  sessionStorage.clear();
   const { clubId } = useParams();
   if (!clubId) throw new Error('클럽 ID를 찾을 수 없습니다');
   //TODO: pathname에 따라 클럽홈/행사/관리 컴포넌트 보여주기

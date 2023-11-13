@@ -20,6 +20,7 @@ const useOauthLogin = ({ code }: OauthLoginRequest) => {
         setStorage('token', data.accessToken);
         if (returnPage) {
           navigate(returnPage);
+          sessionStorage.clear();
         }
         navigate(PATH.MAIN);
       }
