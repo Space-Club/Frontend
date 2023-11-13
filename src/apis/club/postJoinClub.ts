@@ -1,9 +1,9 @@
+import { GetClubRequest, JoinClubRequest } from '@/types/api/getClub';
+
 import { axiosClientWithAuth } from '../axiosClient';
 
-type JoinClubResponse = { clubId: string };
-
-const postJoinClub = async (inviteCode: string): Promise<JoinClubResponse> => {
-  const { data } = await axiosClientWithAuth.post(`clubs/invite/${inviteCode}`, {
+const postJoinClub = async ({ inviteCode }: JoinClubRequest) => {
+  const { data } = await axiosClientWithAuth.post<GetClubRequest>(`clubs/invite/${inviteCode}`, {
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
     },

@@ -10,4 +10,12 @@ interface GetClubResponse
     'coverImageUrl' | 'logoImageUrl' | 'info' | 'inviteUrl' | 'memberCount' | 'name'
   > {}
 
-export { GetClubRequest, GetClubResponse };
+interface JoinClubRequest {
+  inviteCode: string;
+}
+
+interface InviteClubResponse extends Pick<Club, 'name' | 'info' | 'logoImageUrl' | 'memberCount'> {
+  clubId: string;
+}
+
+export { GetClubRequest, GetClubResponse, JoinClubRequest, InviteClubResponse };

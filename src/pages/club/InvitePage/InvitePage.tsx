@@ -19,9 +19,9 @@ import {
 } from './InvitePage.style';
 
 const InvitePage = () => {
-  const { invitecode } = useParams();
+  const { inviteCode } = useParams() as { inviteCode: string };
   const { pathname } = useLocation();
-  const { inviteClubInfo } = useGetInviteClubInfoQuery(invitecode ?? '');
+  const { inviteClubInfo } = useGetInviteClubInfoQuery({ inviteCode });
   const { joinClub, isLoading } = useJoinClub();
   const navigate = useNavigate();
   const isLogin = Boolean(getStorage('token'));
@@ -33,8 +33,12 @@ const InvitePage = () => {
   const { name, info, logoImageUrl, memberCount } = inviteClubInfo;
 
   const handleClickJoinButton = () => {
-    sessionStorage.setItem('returnpage', pathname);
-    navigate(PATH.LOGIN);
+    if (isLogin) {
+      joinClub({ inviteCode });
+    } else {
+      sessionStorage.setItem('returnpage', pathname);
+      navigate(PATH.LOGIN);
+    }
   };
 
   return (
@@ -51,9 +55,7 @@ const InvitePage = () => {
             buttonText="가입하기"
             fontSize="smallTitle"
             isLoading={isLoading}
-            onClick={() => {
-              isLogin ? joinClub(invitecode ?? '') : handleClickJoinButton();
-            }}
+            onClick={handleClickJoinButton}
           />
         </InviteInfoWrapper>
       </LogoNInfoWrapper>
