@@ -1,40 +1,31 @@
-import Theme from '@/styles/Theme';
-import styled from '@emotion/styled';
-
-import { forwardRef } from 'react';
+import FormDropDown from './FormDropDown';
+import { Answer, FormItemContainer, Question } from './FormItem.style';
+import FormRadio from './FormRadio';
 
 interface FormItem {
   id: number;
   title: string;
+  type: 'TEXT' | 'SELECT' | 'RADIO' | 'NUMBER';
+  options?: string[];
 }
 
-const FormItemContainer = styled.div`
-  width: 60%;
-  margin: 0 auto;
-  padding: 1rem;
-  border-radius: 0.5rem;
-  background-color: white;
-`;
-const Question = styled.p`
-  margin-bottom: 1rem;
-  color: ${Theme.color.semiBlack};
-`;
-const Answer = styled.input`
-  width: 100%;
-  border: none;
-  outline: none;
-  border-bottom: 1px solid ${Theme.color.tSeparator};
-`;
-
-const FormItem = forwardRef<HTMLInputElement, FormItem>(({ id, title }, ref) => {
+const FormItem = ({ id, title, type, options }: FormItem) => {
   return (
     <FormItemContainer>
       <Question>
         {id}. {title}
       </Question>
-      <Answer ref={ref} />
+      {type === 'SELECT' ? (
+        <FormDropDown options={options!} />
+      ) : type === 'RADIO' ? (
+        <FormRadio options={options!} keyName={title} />
+      ) : type === 'NUMBER' ? (
+        <Answer type="number" />
+      ) : (
+        <Answer type="text" />
+      )}
     </FormItemContainer>
   );
-});
+};
 
 export default FormItem;
