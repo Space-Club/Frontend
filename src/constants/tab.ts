@@ -1,16 +1,33 @@
+import { PATH } from './path';
+
 enum TAB_CONSTANTS {
   PERFORMANCE = '공연',
   EVENT_SHOW = '행사',
   RECRUITMENT = '모집공고',
-  APPLY_PARTICIPATION = '참여신청한 행사',
+
+  APPLIED_EVENT = '참여 신청한 행사',
   BOOKMARKED_EVENT = '북마크한 행사',
+
   CLUB_HOME = '클럽 홈',
-  CLUB_PERFORMANCE = '클럽 행사',
-  CLUB_MANAGEMENT = '클럽 관리',
+  CLUB_EVENTS = '클럽 행사',
+  CLUB_MANAGE = '클럽 관리',
 }
 
-const CURRENT_MAIN_TAB_KEY = 'CURRENT_MAIN_TAB';
-const CURRENT_PROFILE_TAB_KEY = 'CURRENT_PROFILE_TAB';
-const CURRENT_CLUB_TAB_KEY = 'CURRENT_CLUB_TAB';
+const MAIN_TABS = [
+  { title: `${TAB_CONSTANTS.PERFORMANCE}`, link: `${PATH.MAIN}` },
+  { title: `${TAB_CONSTANTS.EVENT_SHOW}`, link: `${PATH.MAIN_EVENT}` },
+  { title: `${TAB_CONSTANTS.RECRUITMENT}`, link: `${PATH.MAIN_RECRUITMENT}` },
+];
 
-export { TAB_CONSTANTS, CURRENT_MAIN_TAB_KEY, CURRENT_PROFILE_TAB_KEY, CURRENT_CLUB_TAB_KEY };
+const PROFILE_TABS = [
+  { title: `${TAB_CONSTANTS.APPLIED_EVENT}`, link: `${PATH.PROFILE}` },
+  { title: `${TAB_CONSTANTS.BOOKMARKED_EVENT}`, link: `${PATH.BOOKMARK}` },
+];
+
+const CLUB_TABS = (clubId: string | number) => [
+  { title: `${TAB_CONSTANTS.CLUB_HOME}`, link: `${PATH.CLUB.HOME(clubId)}` },
+  { title: `${TAB_CONSTANTS.CLUB_EVENTS}`, link: `${PATH.CLUB.EVENT(clubId)}` },
+  { title: `${TAB_CONSTANTS.CLUB_MANAGE}`, link: `${PATH.CLUB.MANAGE(clubId)}` },
+];
+
+export { TAB_CONSTANTS, MAIN_TABS, PROFILE_TABS, CLUB_TABS };

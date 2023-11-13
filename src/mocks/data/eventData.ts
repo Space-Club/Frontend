@@ -1,6 +1,10 @@
-import { GetAllEventsResponse, GetMyEventResponse, getEventDetailResponse } from '@/types/event';
+import {
+  GetAllEventsResponse,
+  GetAppliedEventResponse,
+  getEventDetailResponse,
+} from '@/types/event';
 
-const myEvent: GetMyEventResponse = {
+const appliedEvent: GetAppliedEventResponse = {
   data: [
     {
       id: '1',
@@ -123,4 +127,4 @@ const eventDetail: getEventDetailResponse = {
   isManager: true,
 };
 
-export { myEvent, allEvents, eventDetail };
+export { appliedEvent, allEvents, eventDetail };

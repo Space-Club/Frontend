@@ -1,3 +1,4 @@
+import Button from '../common/Button/Button';
 import {
   BackgroundOverlay,
   ButtonWrapper,
@@ -13,7 +14,7 @@ interface AlertModalProps {
   confirmLabel?: string;
 }
 
-const AlertModal = ({ message, onClose, confirmLabel }: AlertModalProps) => {
+const AlertModal = ({ message, onClose, confirmLabel = '확인' }: AlertModalProps) => {
   return (
     <Portal>
       <BackgroundOverlay onClick={onClose} />
@@ -21,14 +22,13 @@ const AlertModal = ({ message, onClose, confirmLabel }: AlertModalProps) => {
         <ModalContentWrapper>
           <MessageStyled>{message}</MessageStyled>
           <ButtonWrapper>
-            <button
+            <Button
               type="button"
+              buttonText={confirmLabel}
               onClick={() => {
                 onClose && onClose();
               }}
-            >
-              {confirmLabel}
-            </button>
+            />
           </ButtonWrapper>
         </ModalContentWrapper>
       </ModalBaseContainer>

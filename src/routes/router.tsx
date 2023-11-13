@@ -8,7 +8,7 @@ import OauthRedirectPage from '@/pages/OauthRedirectPage';
 import ProfilePage from '@/pages/ProfilePage/ProfilePage';
 import RegisterPage from '@/pages/RegisterPage/RegisterPage';
 import ClubEventPage from '@/pages/club/ClubEventPage/ClubEventPage';
-import ClubHomePage from '@/pages/club/ClubHomePage';
+import ClubHomePage from '@/pages/club/ClubHomePage/ClubHomePage';
 import CreateClubPage from '@/pages/club/CreateClubPage/CreateClubPage';
 import ManageClubPage from '@/pages/club/ManageClubPage';
 import CheckFormPage from '@/pages/event/CheckFormPage';
@@ -44,10 +44,26 @@ const router = createBrowserRouter([
           {
             path: '',
             element: <MainPage />,
+            children: [
+              {
+                path: 'events',
+                element: <MainPage />,
+              },
+              {
+                path: 'recruitment',
+                element: <MainPage />,
+              },
+            ],
           },
           {
             path: 'profile',
             element: <ProfilePage />,
+            children: [
+              {
+                path: 'bookmark',
+                element: <ProfilePage />,
+              },
+            ],
           },
           {
             path: 'club/:clubId',
@@ -63,6 +79,24 @@ const router = createBrowserRouter([
               {
                 path: 'manage',
                 element: <ManageClubPage />,
+              },
+              {
+                path: '',
+                element: <FormLayout />,
+                children: [
+                  {
+                    path: 'choice',
+                    element: <ChoiceEventPage />,
+                  },
+                  {
+                    path: 'writeinfo',
+                    element: <WriteEventInfoPage />,
+                  },
+                  {
+                    path: 'writeform',
+                    element: <WriteEventFormPage />,
+                  },
+                ],
               },
             ],
           },
@@ -84,27 +118,6 @@ const router = createBrowserRouter([
               {
                 path: 'submitform',
                 element: <SubmitFormPage />,
-              },
-              {
-                path: '',
-                element: <FormLayout />,
-                children: [
-                  {
-                    path: 'choice',
-                    element: <ChoiceEventPage />,
-                  },
-                  {
-                    path: 'writeinfo',
-                    element: <WriteEventInfoPage />,
-                  },
-                  {
-                    path: 'writeform',
-                    element: <WriteEventFormPage />,
-                  },
-                ],
-              },
-              {
-                path: 'https://kauth.kakao.com/oauth',
               },
             ],
           },

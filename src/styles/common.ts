@@ -37,6 +37,14 @@ const ellipsisText = styled.p`
   white-space: nowrap;
 `;
 
+const ellipsisMultiLineText = styled.p`
+  text-overflow: ellipsis;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+`;
+
 const ellipsisTitle = styled.h1`
   text-overflow: ellipsis;
   overflow: hidden;
@@ -49,6 +57,11 @@ const twoLineTitle = styled.h1`
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   display: -webkit-box;
+`;
+
+const whiteGreyBox = styled.div`
+  background-color: ${Theme.color.tWhiteGrey};
+  border-radius: 1.3125rem;
 `;
 
 const sideBarScrollAreaStyled = styled.div`
@@ -90,4 +103,6 @@ export {
   sideBarScrollAreaStyled,
   twoLineTitle,
   memberManagerScrollAreaStyled,
+  whiteGreyBox,
+  ellipsisMultiLineText,
 };

@@ -9,15 +9,13 @@ interface Club {
   inviteUrl: string;
 }
 
-interface CreateClubFormValue extends Club {}
-
 interface CreateClubFormValue extends Pick<Club, 'name' | 'info'> {
   owner: string;
   image: FileList | null;
 }
 
 interface GetClubEventsRequest {
-  clubId: number;
+  clubId: number | string;
   pageNumber: number;
 }
 
@@ -39,10 +37,16 @@ interface getInviteLinkResponse {
   link: 'string'; // TODO 명세서 나올시 수정 필요;
 }
 
+interface Notice {
+  id: string;
+  notice: string;
+}
+
 export {
   getInviteLinkResponse,
   GetClubEventsRequest,
   GetClubEventsResponse,
   CreateClubFormValue,
   Club,
+  Notice,
 };

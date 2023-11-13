@@ -1,24 +1,15 @@
-import React, { HTMLAttributes } from 'react';
-
 import ButtonStyled from './Button.style';
 
-interface Button extends HTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   width?: string | number;
   height?: string | number;
   buttonText: string;
-  buttonType?: 'submit' | 'button' | 'reset';
+  outline?: boolean;
 }
 
-const Button = ({
-  buttonText,
-  buttonType = 'submit',
-  width = 6,
-  height = 2,
-  onClick,
-  ...props
-}: Button) => {
+const Button = ({ buttonText, width = 6, height = 2, outline, ...props }: ButtonProps) => {
   return (
-    <ButtonStyled type={buttonType} width={width} height={height} onClick={onClick} {...props}>
+    <ButtonStyled width={width} height={height} outline={outline} {...props}>
       {buttonText}
     </ButtonStyled>
   );
