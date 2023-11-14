@@ -3,20 +3,18 @@ import { useCallback, useMemo, useState } from 'react';
 import { PageButton, PaginationWrapper } from './Pagination.style';
 
 interface Pagination {
-  total: number;
-  limit: number;
-  pageLength?: number;
+  totalPages: number;
+  size?: number;
   onChangePage: (page: number) => void;
 }
 
-const Pagination = ({ total, limit, pageLength = 10, onChangePage }: Pagination) => {
+const Pagination = ({ totalPages, size = 10, onChangePage }: Pagination) => {
   const [page, setPage] = useState(0);
-  const totalPageNum = Math.ceil(total / limit);
 
-  const currentPageSize = Math.floor(page / pageLength);
+  const currentPageSize = Math.floor(page / size);
 
-  const startPage = currentPageSize * pageLength + 1;
-  const endPage = Math.min((currentPageSize + 1) * pageLength, totalPageNum);
+  const startPage = currentPageSize * size + 1;
+  const endPage = Math.min((currentPageSize + 1) * size, totalPages);
 
   const pageNumbers = useMemo(() => {
     return Array.from({ length: endPage - startPage + 1 }, (_, index) => startPage + index);
@@ -42,9 +40,9 @@ const Pagination = ({ total, limit, pageLength = 10, onChangePage }: Pagination)
     setPage(page + 1);
   }, [onChangePage, page]);
   const handleDoubleNextClick = useCallback(() => {
-    onChangePage(totalPageNum - 1);
-    setPage(totalPageNum - 1);
-  }, [onChangePage, totalPageNum]);
+    onChangePage(totalPages - 1);
+    setPage(totalPages - 1);
+  }, [onChangePage, totalPages]);
 
   return (
     <PaginationWrapper>
@@ -63,10 +61,10 @@ const Pagination = ({ total, limit, pageLength = 10, onChangePage }: Pagination)
           {value}
         </PageButton>
       ))}
-      <PageButton onClick={handleNextClick} disabled={page === totalPageNum - 1}>
+      <PageButton onClick={handleNextClick} disabled={page === totalPages - 1}>
         &gt;
       </PageButton>
-      <PageButton onClick={handleDoubleNextClick} disabled={page === totalPageNum - 1}>
+      <PageButton onClick={handleDoubleNextClick} disabled={page === totalPages - 1}>
         &gt;&gt;
       </PageButton>
     </PaginationWrapper>

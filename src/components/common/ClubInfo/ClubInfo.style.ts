@@ -10,22 +10,22 @@ const ClubInfoContainer = styled.div`
   margin-left: 1.3rem;
 `;
 
-const ClubNameWrapper = styled(ellipsisTitle)`
+const ClubNameWrapper = styled(ellipsisTitle)<{ reverse?: boolean }>`
   width: 100%;
   font-size: ${Theme.fontSize.largeTitle};
-  color: ${Theme.color.white};
+  color: ${({ reverse }) => (reverse ? `${Theme.color.black}` : `${Theme.color.white}`)};
 `;
 
-const ClubIntroductionWrapper = styled(twoLineTitle)`
+const ClubIntroductionWrapper = styled(twoLineTitle)<{ reverse?: boolean }>`
   width: 100%;
   font-size: ${Theme.fontSize.smallTitle};
-  color: ${Theme.color.tWhiteGrey};
+  color: ${({ reverse }) => (reverse ? `${Theme.color.textGrey}` : `${Theme.color.tWhiteGrey}`)};
 `;
 
-const ClubMemberCountWrapper = styled(ellipsisTitle)`
+const ClubMemberCountWrapper = styled(ellipsisTitle)<{ reverse?: boolean }>`
   width: 100%;
   font-size: ${Theme.fontSize.largeContent};
-  color: ${Theme.color.white};
+  color: ${({ reverse }) => (reverse ? `${Theme.color.semiBlack}` : `${Theme.color.white}`)};
 `;
 
 export { ClubInfoContainer, ClubNameWrapper, ClubIntroductionWrapper, ClubMemberCountWrapper };

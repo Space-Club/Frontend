@@ -1,6 +1,6 @@
 import { EventTag } from '@/types/event';
 
-import { EventStatusTagStyled } from './EventTag.style';
+import { EventStatusTagStyled } from './EventStatusTag.style';
 
 interface EventStateTagProps {
   eventTag: EventTag;
@@ -9,12 +9,12 @@ interface EventStateTagProps {
 const EventStatusTag = ({ eventTag, ...props }: EventStateTagProps) => {
   return (
     <EventStatusTagStyled
-      borderColor={eventTag.borderColor}
-      backgroundColor={eventTag.backgroundColor}
-      textColor={eventTag.textColor}
+      borderColor={eventTag?.borderColor ?? 'activeColor'}
+      backgroundColor={eventTag?.backgroundColor ?? 'gray'}
+      textColor={eventTag?.textColor ?? 'white'}
       {...props}
     >
-      {eventTag.title}
+      {eventTag?.title}
     </EventStatusTagStyled>
   );
 };

@@ -49,7 +49,7 @@ const ClubEventPage = () => {
         <ActiveButton
           buttonText={CREATE_EVENT.BUTTON_TEXT}
           fontSize="mediumTitle"
-          onClick={() => navigate(`${PATH.EVENT.CHOICE}`)}
+          onClick={() => navigate(`${PATH.CLUB.CHOICE(clubId)}`)}
         />
       </ButtonWrapper>
     </>

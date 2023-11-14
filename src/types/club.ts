@@ -7,6 +7,7 @@ interface Club {
   memberCount: string;
   coverImageUrl: string;
   inviteUrl: string;
+  reverse?: boolean;
 }
 
 interface CreateClubFormValue extends Pick<Club, 'name' | 'info'> {
