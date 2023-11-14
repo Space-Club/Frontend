@@ -13,6 +13,7 @@ const PATH = {
     HOME: (clubId: string | number) => `/club/${clubId}/home`,
     EVENT: (clubId: string | number) => `/club/${clubId}/event`,
     MANAGE: (clubId: string | number) => `/club/${clubId}/manage`,
+    CHOICE: (clubId: string) => `/club/${clubId}/choice`,
   },
   CREATE: '/create',
 
@@ -20,7 +21,6 @@ const PATH = {
     DETAIL: '/event/detail',
     CHECK_FORM: '/event/checkform',
     SUBMIT_FORM: '/event/submitform',
-    CHOICE: '/event/choice',
     WRITE_INFO: '/event/writeinfo',
     WRITE_FORM: '/event/writeform',
   },
