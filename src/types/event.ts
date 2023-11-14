@@ -114,4 +114,5 @@ export {
   eventTypeAPI,
   postPerformanceFormResponse,
   ProfileEventType,
+  EventStatus,
 };
