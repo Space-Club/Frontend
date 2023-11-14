@@ -31,6 +31,9 @@ const SubmitFormPage = () => {
   }
 
   const eventFormData = useEventFormQuery({ eventId });
+  const handleAnswer = (question: Question) => {
+    setForms([...forms, question]);
+  };
 
   const handleAnswer = (question: Question) => {
     const existingQuestionIndex = forms.findIndex((q) => q.optionId === question.optionId);
