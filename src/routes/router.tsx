@@ -105,14 +105,14 @@ const router = createBrowserRouter([
             element: <CreateClubPage />,
           },
           {
-            path: 'event',
+            path: 'event/:eventId',
             children: [
               {
-                path: 'detail/:eventId',
+                path: 'detail',
                 element: <EventDetailPage />,
               },
               {
-                path: 'checkform/:eventId',
+                path: 'checkform',
                 element: <CheckFormPage />,
               },
               {
