@@ -1,4 +1,5 @@
 import { FORM_STATUS_DROPDOWN_OPTIONS } from '@/constants/user';
+import useGetSubmittedFormsQuery from '@/hooks/query/event/useGetSubmittedFormsQuery';
 import { getEventStatusTag } from '@/utils/getEventStatusTag';
 
 import ApplyCancelButton from '../ApplyCancelButton/ApplyCancelButton';
@@ -12,7 +13,11 @@ import {
 } from './FormCategory.style';
 
 const FormCategory = () => {
-  const { formInfo, userForms } = submittedForms;
+  const { formInfo, userForms } = useGetSubmittedFormsQuery({ eventId: 1 });
+  if (!formInfo || !userForms) {
+    return <div>제출된 폼 정보 받아오기 실패</div>;
+  }
+
   const formLength = formInfo.count;
   const appliedState = ['요청', '상태', '취소'];
 
@@ -23,20 +28,20 @@ const FormCategory = () => {
         <FormsWrapper>
           <LineStyled>
             <LineItemStyled>순서</LineItemStyled>
-            {formInfo.optionTitles?.map((item) => {
-              return <LineItemStyled>{item}</LineItemStyled>;
+            {formInfo.optionsTitles?.map((item, index) => {
+              return <LineItemStyled key={index}>{item}</LineItemStyled>;
             })}
             {formInfo.managed &&
-              appliedState.map((item) => {
-                return <LineItemStyled>{item}</LineItemStyled>;
+              appliedState.map((item, index) => {
+                return <LineItemStyled key={index}>{item}</LineItemStyled>;
               })}
           </LineStyled>
           {userForms?.map((form, index) => {
             return (
-              <LineStyled>
-                <LineItemStyled>{formLength - index}</LineItemStyled>
-                {form.options.map((option) => {
-                  return <LineItemStyled>{option.content}</LineItemStyled>;
+              <LineStyled key={index}>
+                <LineItemStyled>{form.id}</LineItemStyled>
+                {form.options.map((option, index) => {
+                  return <LineItemStyled key={index}>{option.content}</LineItemStyled>;
                 })}
                 {formInfo.managed && (
                   <>
@@ -70,153 +75,3 @@ const FormCategory = () => {
 };
 
 export default FormCategory;
-
-const submittedForms = {
-  formInfo: {
-    count: 10,
-    optionTitles: ['이름', '연락처'],
-    managed: true,
-  },
-  userForms: [
-    {
-      id: 1,
-      options: [
-        {
-          title: '이름',
-          content: '박가네',
-        },
-        {
-          title: '연락처',
-          content: '010-1111-2222',
-        },
-      ],
-      applicationStatus: 'PENDING',
-    },
-    {
-      id: 2,
-      options: [
-        {
-          title: '이름',
-          content: '김가네',
-        },
-        {
-          title: '연락처',
-          content: '010-1111-2222',
-        },
-      ],
-      applicationStatus: 'CONFIRMED',
-    },
-    {
-      id: 3,
-      options: [
-        {
-          title: '이름',
-          content: '이가네',
-        },
-        {
-          title: '연락처',
-          content: '010-1111-2222',
-        },
-      ],
-      applicationStatus: 'CANCELED',
-    },
-    {
-      id: 4,
-      options: [
-        {
-          title: '이름',
-          content: '최가네',
-        },
-        {
-          title: '연락처',
-          content: '010-1111-2222',
-        },
-      ],
-      applicationStatus: 'CANCEL_REQUESTED',
-    },
-    {
-      id: 5,
-      options: [
-        {
-          title: '이름',
-          content: '송가네',
-        },
-        {
-          title: '연락처',
-          content: '010-1111-2222',
-        },
-      ],
-      applicationStatus: 'PENDING',
-    },
-    {
-      id: 6,
-      options: [
-        {
-          title: '이름',
-          content: '황가네',
-        },
-        {
-          title: '연락처',
-          content: '010-1111-2222',
-        },
-      ],
-      applicationStatus: 'PENDING',
-    },
-    {
-      id: 7,
-      options: [
-        {
-          title: '이름',
-          content: '권가네',
-        },
-        {
-          title: '연락처',
-          content: '010-1111-2222',
-        },
-      ],
-      applicationStatus: 'PENDING',
-    },
-    {
-      id: 8,
-      options: [
-        {
-          title: '이름',
-          content: '정가네',
-        },
-        {
-          title: '연락처',
-          content: '010-1111-2222',
-        },
-      ],
-      applicationStatus: 'PENDING',
-    },
-    {
-      id: 9,
-      options: [
-        {
-          title: '이름',
-          content: '그네',
-        },
-        {
-          title: '연락처',
-          content: '010-1111-2222',
-        },
-      ],
-      applicationStatus: 'PENDING',
-    },
-    {
-      id: 10,
-      options: [
-        {
-          title: '이름',
-          content: '가을이 가네',
-        },
-        {
-          title: '연락처',
-          content: '010-1111-2222',
-        },
-      ],
-      applicationStatus: 'PENDING',
-    },
-  ],
-};
