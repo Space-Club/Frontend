@@ -1,7 +1,7 @@
 import { FormInfo, UserForm } from '../forms';
 
 interface GetSubmittedFormsRequest {
-  eventId: string | number;
+  eventId: string;
 }
 
 interface GetSubmittedFormsResponse {

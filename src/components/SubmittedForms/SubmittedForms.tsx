@@ -1,11 +1,19 @@
 import useGetSubmittedFormsQuery from '@/hooks/query/event/useGetSubmittedFormsQuery';
 
+import { useParams } from 'react-router-dom';
+
 import Category from './Category/Category';
 import SubmittedForm from './SubmittedForm/SubmittedForm';
-import { FormLengthStyled, FormsWrapper, SubmittedFormsContainer } from './SubmittedForms.style';
+import {
+  FormLengthStyled,
+  FormsWrapper,
+  SubmittedFormsContainer,
+  SubmittedFormsWrapper,
+} from './SubmittedForms.style';
 
 const SubmittedForms = () => {
-  const { formInfo, userForms } = useGetSubmittedFormsQuery({ eventId: 1 });
+  const { eventId } = useParams() as { eventId: string };
+  const { formInfo, userForms } = useGetSubmittedFormsQuery({ eventId });
   if (!formInfo || !userForms) {
     return null;
   }
@@ -16,9 +24,9 @@ const SubmittedForms = () => {
   });
 
   return (
-    <>
+    <SubmittedFormsContainer>
       <FormLengthStyled>{`제출된 폼: ${formInfo.count}`}</FormLengthStyled>
-      <SubmittedFormsContainer>
+      <SubmittedFormsWrapper>
         <FormsWrapper>
           <Category optionTitles={formInfo.optionTitles} managed={formInfo.managed} />
           {sortedUserForms?.map((form, index) => {
@@ -35,8 +43,8 @@ const SubmittedForms = () => {
             );
           })}
         </FormsWrapper>
-      </SubmittedFormsContainer>
-    </>
+      </SubmittedFormsWrapper>
+    </SubmittedFormsContainer>
   );
 };
 
