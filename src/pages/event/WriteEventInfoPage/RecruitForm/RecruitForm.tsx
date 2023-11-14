@@ -71,30 +71,30 @@ const RecruitForm = () => {
         />
         {errors.title && <ErrorMessage>{errors.title.message as string}</ErrorMessage>}
         <InputForm
-          {...register('location')}
+          {...register('activityArea')}
           labelText="활동 위치"
           inputType="text"
           placeholder="온라인일 경우, 온라인이라고 기재"
         />
         <TextAreaForm
-          {...register('recruitTarget', {
+          {...register('recruitmentTarget', {
             maxLength: { value: 50, message: LENGTH(50) },
           })}
           labelText="모집 대상"
           rows={2}
         />
-        {errors.recruitTarget && (
-          <ErrorMessage>{errors.recruitTarget.message as string}</ErrorMessage>
+        {errors.recruitmentTarget && (
+          <ErrorMessage>{errors.recruitmentTarget.message as string}</ErrorMessage>
         )}
         <HalfInputForm
-          {...register('personnel', {
+          {...register('capacity', {
             max: { value: 999, message: `${PERSONNEL}` },
           })}
           labelText="모집 인원"
           inputType="number"
           placeholder="정수(1-n)"
         />
-        {errors.personnel && <ErrorMessage>{errors.personnel.message as string}</ErrorMessage>}
+        {errors.capacity && <ErrorMessage>{errors.capacity.message as string}</ErrorMessage>}
         <TwoInputContainer>
           <InputForm
             {...register('openDate', {
@@ -133,7 +133,7 @@ const RecruitForm = () => {
         />
         {errors.poster && <ErrorMessage>{errors.poster.message as string}</ErrorMessage>}
         <TextAreaForm
-          {...register('recruitContent', {
+          {...register('content', {
             required: `${REQUIRED_RECRUIT_CONTENT}`,
             maxLength: { value: 200, message: LENGTH(200) },
           })}
@@ -141,9 +141,7 @@ const RecruitForm = () => {
           required
           rows={10}
         />
-        {errors.recruitContent && (
-          <ErrorMessage>{errors.recruitContent.message as string}</ErrorMessage>
-        )}
+        {errors.content && <ErrorMessage>{errors.content.message as string}</ErrorMessage>}
       </ContentArea>
       <ButtonWrapper>
         <PrevButton type="button" onClick={() => navigate(-1)}>

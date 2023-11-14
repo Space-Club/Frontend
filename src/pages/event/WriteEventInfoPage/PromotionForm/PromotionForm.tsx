@@ -97,7 +97,7 @@ const PromotionForm = () => {
           inputType="number"
           placeholder="정수(0-n)"
         />
-        {errors.personnel && <ErrorMessage>{errors.personnel.message as string}</ErrorMessage>}
+        {errors.capacity && <ErrorMessage>{errors.capacity.message as string}</ErrorMessage>}
         <TwoInputContainer>
           <InputForm
             {...register('openDate', {

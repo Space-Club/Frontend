@@ -79,7 +79,7 @@ const ScheduleForm = () => {
               required: REQUIRED_ACTIVITY_START_TIME,
               validate: {
                 today: validateTodayDate,
-                compare: (value) => validateTimeCompare(value, watch('lastDate')),
+                compare: (value) => validateTimeCompare(value, watch('endDate')),
               },
             })}
             labelText="활동 시작 날짜"
@@ -87,7 +87,7 @@ const ScheduleForm = () => {
             inputType="datetime-local"
           />
           <InputForm
-            {...register('lastDate', {
+            {...register('endDate', {
               required: REQUIRED_ACTIVITY_LAST_TIME,
               validate: {
                 compare: (value) => validateTimeCompare(watch('startDate'), value),
@@ -98,10 +98,10 @@ const ScheduleForm = () => {
             inputType="datetime-local"
           />
         </TwoInputContainer>
-        {errors.startDate && errors.startDate.message !== errors.lastDate?.message && (
+        {errors.startDate && errors.startDate.message !== errors.endDate?.message && (
           <ErrorMessage>{errors.startDate.message as string}</ErrorMessage>
         )}
-        {errors.lastDate && <ErrorMessage>{errors.lastDate.message as string}</ErrorMessage>}
+        {errors.endDate && <ErrorMessage>{errors.endDate.message as string}</ErrorMessage>}
         <InputForm {...register('location')} labelText="장소" inputType="text" />
         <TwoInputContainer>
           <InputForm
@@ -113,7 +113,7 @@ const ScheduleForm = () => {
             placeholder="정수(1-n)"
           />
           <InputForm
-            {...register('cost', {
+            {...register('dues', {
               max: { value: 1000000, message: COST },
             })}
             labelText="회비"
@@ -121,8 +121,8 @@ const ScheduleForm = () => {
             placeholder="정수(0-n)"
           />
         </TwoInputContainer>
-        {errors.personnel && <ErrorMessage>{errors.personnel.message as string}</ErrorMessage>}
-        {errors.cost && <ErrorMessage>{errors.cost.message as string}</ErrorMessage>}
+        {errors.capacity && <ErrorMessage>{errors.capacity.message as string}</ErrorMessage>}
+        {errors.dues && <ErrorMessage>{errors.dues.message as string}</ErrorMessage>}
         <InputForm
           {...register('master', {
             required: REQUIRED_SCHEDULE_MASTER,
