@@ -32,7 +32,7 @@ const ChoiceEventPage = () => {
       exampleText: 'ex) 동아리 모집 공고',
       imgSrc: '/src/assets/image/headhunting.svg',
       color: `${Theme.color.indigo}`,
-      event: 'recruit',
+      event: 'recruitment',
     },
     clubSchedule: {
       title: '클럽 일정',
@@ -40,7 +40,7 @@ const ChoiceEventPage = () => {
       exampleText: ' ex) 연습실 사용 시간, 동아리 집회 시간',
       imgSrc: '/src/assets/image/project-management.svg',
       color: `${Theme.color.tGreen}`,
-      event: 'schedule',
+      event: 'club',
     },
   } as const;
 

@@ -21,9 +21,9 @@ const FormLayout = () => {
         setTitle('아래의 공연 정보를 입력해주세요.');
       } else if (eventType === 'promotion') {
         setTitle('아래의 행사 정보를 입력해주세요.');
-      } else if (eventType === 'recruit') {
+      } else if (eventType === 'recruitment') {
         setTitle('아래의 모집 공고를 입력해주세요.');
-      } else if (eventType === 'schedule') {
+      } else if (eventType === 'club') {
         setTitle('아래의 클럽 일정을 입력해주세요.');
       } else {
         throw new Error('잘못된 URL입니다.');

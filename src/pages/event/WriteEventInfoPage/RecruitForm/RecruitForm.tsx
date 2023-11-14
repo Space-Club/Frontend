@@ -3,8 +3,7 @@ import InputForm from '@/components/common/InputForm/InputForm';
 import TextAreaForm from '@/components/common/TextAreaForm/TextAreaForm';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
 import useSubmitForm from '@/hooks/query/event/useSubmitForm';
-import { eventQueryString } from '@/types/event';
-import eventTypeTransform from '@/utils/eventTypeTransform';
+import { eventTypeAPI } from '@/types/event';
 import { validateTimeCompare, validateTodayDate } from '@/utils/validate';
 
 import { useEffect, useState } from 'react';
@@ -58,8 +57,7 @@ const RecruitForm = () => {
   }, [watch('poster')]);
 
   const onRecruitSubmitForm = (data: FieldValues) => {
-    const eventQueryString = searchParmas[0].get('event') as eventQueryString;
-    const eventType = eventTypeTransform({ eventQueryString });
+    const eventType = searchParmas[0].get('event')?.toUpperCase() as eventTypeAPI;
     if (isSubmitLoading || !clubId) return;
     submitForm({ data, clubId, eventType });
   };

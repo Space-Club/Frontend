@@ -1,7 +1,6 @@
 import postPerformanceForm from '@/apis/event/postPerformanceForm';
 import { PATH } from '@/constants/path';
-import { eventQueryString } from '@/types/event';
-import eventTypeTransform from '@/utils/eventTypeTransform';
+import { eventTypeAPI } from '@/types/event';
 
 import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 
@@ -11,8 +10,7 @@ const useSubmitForm = () => {
   const navigate = useNavigate();
   const { clubId } = useParams();
   const searchParmas = useSearchParams();
-  const eventQueryString = searchParmas[0].get('event') as eventQueryString;
-  const eventType = eventTypeTransform({ eventQueryString });
+  const eventType = searchParmas[0].get('event')?.toUpperCase() as eventTypeAPI;
 
   const { mutate: submitForm, isLoading: isSubmitLoading } = useMutation(postPerformanceForm, {
     onSuccess: (data) => {
