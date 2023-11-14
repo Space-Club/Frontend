@@ -1,4 +1,5 @@
 import postPerformanceForm from '@/apis/event/postPerformanceForm';
+import { PATH } from '@/constants/path';
 import { eventQueryString } from '@/types/event';
 import eventTypeTransform from '@/utils/eventTypeTransform';
 
@@ -16,7 +17,7 @@ const useSubmitForm = () => {
   const { mutate: submitForm, isLoading: isSubmitLoading } = useMutation(postPerformanceForm, {
     onSuccess: (data) => {
       if (!clubId) throw new Error('clubId가 없습니다.');
-      navigate(`/club/${clubId}/writeform/${data.eventId}?event=${eventType}`);
+      navigate(PATH.CLUB.WRITE_FORM(clubId, data.eventId, eventType));
     },
     onError: (error) => {
       console.log(error);

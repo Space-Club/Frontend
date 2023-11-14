@@ -1,3 +1,5 @@
+import { eventTypeAPI } from '@/types/event';
+
 const PATH = {
   LOGIN: '/login',
   REGISTER: '/register',
@@ -13,6 +15,8 @@ const PATH = {
     HOME: (clubId: string | number) => `/club/${clubId}/home`,
     EVENT: (clubId: string | number) => `/club/${clubId}/event`,
     MANAGE: (clubId: string | number) => `/club/${clubId}/manage`,
+    WRITE_FORM: (clubId: string | number, eventId: string | number, eventType: eventTypeAPI) =>
+      `/club/${clubId}/writeform/${eventId}?event=${eventType}`,
   },
   CREATE: '/create',
 
