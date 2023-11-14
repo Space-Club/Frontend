@@ -6,7 +6,7 @@ import { createContext } from 'react';
 import { useState } from 'react';
 
 interface FormOptionContextProps {
-  selectedOptions: Pick<FormOption, 'title' | 'type' | 'visible'>[];
+  selectedOptions: FormOption[];
   description: string;
   isManaged: boolean;
   isSkip: boolean;

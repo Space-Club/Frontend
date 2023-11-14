@@ -1,4 +1,4 @@
-import { FormOption as FormOptionType } from '@/types/event';
+import { FormOption as FormOptionType } from '@/types/form';
 
 import { ChangeEvent } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
