@@ -6,6 +6,8 @@ import { EventType } from '@/types/event';
 
 import { useLocation, useParams } from 'react-router-dom';
 
+import { WriteEventPageContainer } from './WriteEventFormPage.style';
+
 const WriteEventFormPage = () => {
   const location = useLocation();
 
@@ -18,12 +20,12 @@ const WriteEventFormPage = () => {
   if (!eventId) throw new Error('eventId가 없습니다');
 
   return (
-    <>
-      <FormInformationEditor />
+    <WriteEventPageContainer>
       <FormCheckOptions />
+      <FormInformationEditor />
       <FormOptions />
       <FormOptionDropdown eventType={eventType as EventType} />
-    </>
+    </WriteEventPageContainer>
   );
 };
 

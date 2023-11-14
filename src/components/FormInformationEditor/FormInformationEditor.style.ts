@@ -10,6 +10,7 @@ const FormInformationEditorContainer = styled.div`
   border: 1px solid ${Theme.color.gray};
   border-radius: 1rem;
   padding: 0.94rem 1.64rem;
+  margin-bottom: 1rem;
 
   :focus {
     outline: none;
