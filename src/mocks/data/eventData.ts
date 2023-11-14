@@ -127,4 +127,25 @@ const eventDetail: getEventDetailResponse = {
   isManager: true,
 };
 
-export { appliedEvent, allEvents, eventDetail };
+const eventForm = {
+  event: {
+    title: '행사 제목',
+  },
+  form: {
+    description: '폼 정보',
+    options: [
+      {
+        id: 1,
+        title: '이름',
+        type: 'TEXT',
+      },
+      {
+        id: 2,
+        title: '연락처',
+        type: 'TEXT',
+      },
+    ],
+  },
+};
+
+export { appliedEvent, allEvents, eventDetail, eventForm };

@@ -2,7 +2,7 @@ import { HttpResponse, http } from 'msw';
 
 import { END_POINTS } from '@constants/api';
 
-import { allEvents, appliedEvent, eventDetail } from './data/eventData';
+import { allEvents, appliedEvent, eventDetail, eventForm } from './data/eventData';
 
 interface event {
   eventName: string;
@@ -60,6 +60,11 @@ const eventHandlers = [
     const { eventId } = params;
     console.log('bookmark', eventId);
     return new HttpResponse(null, { status: 200 });
+  }),
+  http.get('/events/:eventId/forms', async ({ params }) => {
+    const { eventId } = params;
+    console.log(eventId);
+    return HttpResponse.json(eventForm, { status: 200 });
   }),
 ];
 
