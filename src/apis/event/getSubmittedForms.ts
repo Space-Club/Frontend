@@ -1,9 +1,12 @@
 import { END_POINTS } from '@/constants/api';
+import { GetSubmittedFormsRequest, GetSubmittedFormsResponse } from '@/types/api/submittedForms';
 
 import { axiosClientWithAuth } from '../axiosClient';
 
-const getSubmittedForms = async ({ eventId = 1 }) => {
-  const { data } = await axiosClientWithAuth.get(END_POINTS.GET_SUBMITTED_FORMS({ eventId }));
+const getSubmittedForms = async ({ eventId = 1 }: GetSubmittedFormsRequest) => {
+  const { data } = await axiosClientWithAuth.get<GetSubmittedFormsResponse>(
+    END_POINTS.GET_SUBMITTED_FORMS({ eventId }),
+  );
 
   return data;
 };
