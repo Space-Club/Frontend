@@ -12,6 +12,7 @@ const ButtonStyled = styled.div<{ isCancelled: boolean }>`
   border: ${({ isCancelled }) => (isCancelled ? 'none' : `1px solid ${Theme.color.tSeparator}`)};
   border-radius: ${({ isCancelled }) => (isCancelled ? '0' : '0.3rem')};
   font-size: ${Theme.fontSize.tagText};
+  cursor: pointer;
 `;
 
 const ButtonTextStyled = styled.span`
