@@ -12,9 +12,24 @@ import {
   SubmittedFormsContainer,
 } from './FormCategory.style';
 
+const getEventStatusTag = (status: string) => {
+  switch (status) {
+    case 'PENDING':
+      return <EventStatusTag eventTag={MY_EVENTS_TAGS.pending} />;
+    case 'CONFIRMED':
+      return <EventStatusTag eventTag={MY_EVENTS_TAGS.confirmed} />;
+    case 'CANCELED':
+      return <EventStatusTag eventTag={MY_EVENTS_TAGS.cancelled} />;
+    case 'CANCEL_REQUESTED':
+      return <EventStatusTag eventTag={MY_EVENTS_TAGS.cancelRequested} />;
+    default:
+      return null; // 혹은 다른 기본값 처리
+  }
+};
+
 const FormCategory = () => {
-  const { data, formCategory, isMode } = submittedForms;
-  const formLength = data.length;
+  const { formInfo, userForms } = submittedForms;
+  const formLength = formInfo.count;
   const appliedState = ['요청', '상태', '취소'];
 
   return (
@@ -24,44 +39,40 @@ const FormCategory = () => {
         <FormsWrapper>
           <LineStyled>
             <LineItemStyled>순서</LineItemStyled>
-            {formCategory?.map((item) => {
+            {formInfo.optionTitles?.map((item) => {
               return <LineItemStyled>{item}</LineItemStyled>;
             })}
-            {isMode &&
+            {formInfo.managed &&
               appliedState.map((item) => {
                 return <LineItemStyled>{item}</LineItemStyled>;
               })}
           </LineStyled>
-          {data?.map((form, index) => {
+          {userForms?.map((form, index) => {
             return (
               <LineStyled>
                 <LineItemStyled>{formLength - index}</LineItemStyled>
-                {form.items.map((item) => {
-                  return <LineItemStyled>{item.content}</LineItemStyled>;
+                {form.options.map((option) => {
+                  return <LineItemStyled>{option.content}</LineItemStyled>;
                 })}
-                {isMode && (
+                {formInfo.managed && (
                   <>
-                    <LineItemStyled>
-                      {form.requestStatus === 'none' ? (
-                        ''
-                      ) : (
-                        <EventStatusTag
-                          eventTag={
-                            form.requestStatus === 'request'
-                              ? MY_EVENTS_TAGS.cancelRequested
-                              : MY_EVENTS_TAGS.cancelled
-                          }
-                        />
-                      )}
-                    </LineItemStyled>
+                    <LineItemStyled>{getEventStatusTag(form.applicationStatus)}</LineItemStyled>
                     <LineItemStyled>
                       <DropDown
                         options={FORM_STATUS_DROPDOWN_OPTIONS}
-                        selectedValue={form.managerCheckStatus ? '확인' : '선택'}
+                        selectedValue={
+                          form.applicationStatus === 'PENDING'
+                            ? 'SELECT'
+                            : form.applicationStatus === 'CONFIRM'
+                            ? 'CONFIRM'
+                            : 'SELECT'
+                        }
                       />
                     </LineItemStyled>
                     <LineItemStyled>
-                      <ApplyCancelButton isCancelled={form.cancelStatus} />
+                      <ApplyCancelButton
+                        isCancelled={form.applicationStatus === 'CANCELED' ? true : false}
+                      />
                     </LineItemStyled>
                   </>
                 )}
@@ -77,153 +88,151 @@ const FormCategory = () => {
 export default FormCategory;
 
 const submittedForms = {
-  data: [
+  formInfo: {
+    count: 10,
+    optionTitles: ['이름', '연락처'],
+    managed: true,
+  },
+  userForms: [
     {
-      username: '박씨',
-      phoneNumber: '010-1111-2222',
-      cancelStatus: true,
-      managerCheckStatus: true,
-      requestStatus: 'done',
-      items: [
+      id: 1,
+      options: [
         {
-          name: '이름',
-          content: '박씨',
+          title: '이름',
+          content: '박가네',
         },
         {
-          name: '연락처',
+          title: '연락처',
           content: '010-1111-2222',
         },
-        {
-          name: '나이',
-          content: 27,
-        },
-        {
-          name: '성별',
-          content: '여',
-        },
-        {
-          name: 'MBTI',
-          content: 'INTJ',
-        },
       ],
+      applicationStatus: 'PENDING',
     },
     {
-      username: '김씨',
-      phoneNumber: '010-2222-3333',
-      cancelStatus: false,
-      managerCheckStatus: false,
-      requestStatus: 'none',
-      items: [
+      id: 2,
+      options: [
         {
-          name: '이름',
-          content: '김씨',
+          title: '이름',
+          content: '김가네',
         },
         {
-          name: '연락처',
-          content: '010-2222-3333',
-        },
-        {
-          name: '나이',
-          content: 35,
-        },
-        {
-          name: '성별',
-          content: '남',
-        },
-        {
-          name: 'MBTI',
-          content: 'ENFP',
+          title: '연락처',
+          content: '010-1111-2222',
         },
       ],
+      applicationStatus: 'CONFIRMED',
     },
     {
-      username: '이씨',
-      phoneNumber: '010-3333-4444',
-      cancelStatus: false,
-      managerCheckStatus: true,
-      requestStatus: 'request',
-      items: [
+      id: 3,
+      options: [
         {
-          name: '이름',
-          content: '이씨',
+          title: '이름',
+          content: '이가네',
         },
         {
-          name: '연락처',
-          content: '010-3333-4444',
-        },
-        {
-          name: '나이',
-          content: 28,
-        },
-        {
-          name: '성별',
-          content: '여',
-        },
-        {
-          name: 'MBTI',
-          content: 'ISTP',
+          title: '연락처',
+          content: '010-1111-2222',
         },
       ],
+      applicationStatus: 'CANCELED',
     },
     {
-      username: '이씨',
-      phoneNumber: '010-3333-4444',
-      cancelStatus: false,
-      managerCheckStatus: true,
-      requestStatus: 'none',
-      items: [
+      id: 4,
+      options: [
         {
-          name: '이름',
-          content: '이씨',
+          title: '이름',
+          content: '최가네',
         },
         {
-          name: '연락처',
-          content: '010-3333-4444',
-        },
-        {
-          name: '나이',
-          content: 28,
-        },
-        {
-          name: '성별',
-          content: '여',
-        },
-        {
-          name: 'MBTI',
-          content: 'ISTP',
+          title: '연락처',
+          content: '010-1111-2222',
         },
       ],
+      applicationStatus: 'CANCEL_REQUESTED',
     },
     {
-      username: '이씨',
-      phoneNumber: '010-3333-4444',
-      cancelStatus: false,
-      managerCheckStatus: true,
-      requestStatus: 'none',
-      items: [
+      id: 5,
+      options: [
         {
-          name: '이름',
-          content: '이씨',
+          title: '이름',
+          content: '송가네',
         },
         {
-          name: '연락처',
-          content: '010-3333-4444',
-        },
-        {
-          name: '나이',
-          content: 28,
-        },
-        {
-          name: '성별',
-          content: '여',
-        },
-        {
-          name: 'MBTI',
-          content: 'ISTP',
+          title: '연락처',
+          content: '010-1111-2222',
         },
       ],
+      applicationStatus: 'PENDING',
+    },
+    {
+      id: 6,
+      options: [
+        {
+          title: '이름',
+          content: '황가네',
+        },
+        {
+          title: '연락처',
+          content: '010-1111-2222',
+        },
+      ],
+      applicationStatus: 'PENDING',
+    },
+    {
+      id: 7,
+      options: [
+        {
+          title: '이름',
+          content: '권가네',
+        },
+        {
+          title: '연락처',
+          content: '010-1111-2222',
+        },
+      ],
+      applicationStatus: 'PENDING',
+    },
+    {
+      id: 8,
+      options: [
+        {
+          title: '이름',
+          content: '정가네',
+        },
+        {
+          title: '연락처',
+          content: '010-1111-2222',
+        },
+      ],
+      applicationStatus: 'PENDING',
+    },
+    {
+      id: 9,
+      options: [
+        {
+          title: '이름',
+          content: '그네',
+        },
+        {
+          title: '연락처',
+          content: '010-1111-2222',
+        },
+      ],
+      applicationStatus: 'PENDING',
+    },
+    {
+      id: 10,
+      options: [
+        {
+          title: '이름',
+          content: '가을이 가네',
+        },
+        {
+          title: '연락처',
+          content: '010-1111-2222',
+        },
+      ],
+      applicationStatus: 'PENDING',
     },
   ],
-  formCategory: ['이름', '연락처', '나이', '성별', 'MBTI'],
-  isMode: true,
 };
