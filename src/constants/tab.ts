@@ -20,8 +20,8 @@ const MAIN_TABS = [
 ];
 
 const PROFILE_TABS = [
-  { title: `${TAB_CONSTANTS.APPLIED_EVENT}`, link: `${PATH.PROFILE}` },
-  { title: `${TAB_CONSTANTS.BOOKMARKED_EVENT}`, link: `${PATH.BOOKMARK}` },
+  { title: `${TAB_CONSTANTS.APPLIED_EVENT}`, link: `${PATH.PROFILE_APPLIED}` },
+  { title: `${TAB_CONSTANTS.BOOKMARKED_EVENT}`, link: `${PATH.PROFILE_BOOKMARK}` },
 ];
 
 const CLUB_TABS = (clubId: string | number) => [

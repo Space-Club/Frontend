@@ -1,25 +1,25 @@
 import { EventTags } from '@/types/event';
 
 const APPLIED_EVENTS_TAGS: EventTags = {
-  pending: {
+  PENDING: {
     title: '관리자 확인중',
     borderColor: 'tGreen',
     backgroundColor: 'tSemiGreen',
     textColor: 'white',
   },
-  confirmed: {
+  CONFIRMED: {
     title: '신청확정',
     borderColor: 'tPurple',
     backgroundColor: 'tSemiPurple',
     textColor: 'white',
   },
-  cancelled: {
+  CANCELLED: {
     title: '취소확정',
     borderColor: 'tBlue',
     backgroundColor: 'tSemiBlue',
     textColor: 'white',
   },
-  cancelRequested: {
+  CANCEL_REQUESTED: {
     title: '취소요청',
     borderColor: 'tPink',
     backgroundColor: 'tSemiPink',

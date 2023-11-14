@@ -1,11 +1,11 @@
 import { APPLIED_EVENTS_TAGS } from '@/constants/event';
 import { PATH } from '@/constants/path';
-import { EventTagKey } from '@/types/event';
+import { EventStatus } from '@/types/event';
 import { Event } from '@/types/event';
 
 import { useNavigate } from 'react-router-dom';
 
-import EventStatusTag from '../EventTag/EventTag';
+import EventStatusTag from '../EventStatusTag/EventStatusTag';
 import {
   AppliedEventTitleStyled,
   EventDescription,
@@ -16,7 +16,7 @@ import {
 interface AppliedEventInfoProps
   extends Pick<Event, 'title' | 'startDate' | 'location' | 'clubName'> {
   eventId: string;
-  eventTagKey: EventTagKey;
+  eventStatus: EventStatus;
 }
 
 const AppliedEventInfo = ({
@@ -25,13 +25,13 @@ const AppliedEventInfo = ({
   startDate,
   location,
   clubName,
-  eventTagKey,
+  eventStatus,
 }: AppliedEventInfoProps) => {
   const navigate = useNavigate();
   return (
     <EventInfoSection>
-      <EventStatusTag eventTag={APPLIED_EVENTS_TAGS[eventTagKey]} />
-      <AppliedEventTitleStyled onClick={() => navigate(PATH.EVENT.DETAIL + `${eventId}`)}>
+      <EventStatusTag eventTag={APPLIED_EVENTS_TAGS[eventStatus]} />
+      <AppliedEventTitleStyled onClick={() => navigate(PATH.EVENT.DETAIL(eventId))}>
         {title}
       </AppliedEventTitleStyled>
       <EventDescription>

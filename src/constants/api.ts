@@ -14,6 +14,7 @@ const END_POINTS = {
   GET_EVENT_DETAIL: '/events',
   ALL_EVENTS: '/events',
   POST_EVENT_APPLY: '/events/apply',
+  CANCEL_EVENT: ({ eventId }: { eventId: string }) => `/events/${eventId}/cancel`,
 
   CREATE_CLUB: '/clubs',
   INVITE_LINK: (clubId: string) => `/clubs/${clubId}/invite`,

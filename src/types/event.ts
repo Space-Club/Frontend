@@ -1,14 +1,14 @@
 import Theme from '@/styles/Theme';
 
-type EventTagKey =
-  | 'confirmed'
-  | 'pending'
-  | 'cancelled'
-  | 'cancelRequested'
-  | 'publicEvent'
-  | 'clubOnlyEvent';
+type EventStatus = 'CONFIRMED' | 'PENDING' | 'CANCEL_REQUESTED' | 'CANCELLED';
+
+type EventTagKey = 'publicEvent' | 'clubOnlyEvent' | EventStatus;
 
 type EventType = 'performance' | 'promotion' | 'recruitment' | 'clubSchedule';
+
+type FormType = 'RADIO' | 'TEXT' | 'SELECT' | 'NUMBER';
+
+type ProfileEventType = 'applied' | 'bookmark';
 
 interface EventTag {
   title: string;
@@ -30,32 +30,6 @@ interface Event {
   location: string;
   clubName: string;
   clubLogoImageUrl: string;
-}
-
-interface GetAppliedEventData {
-  id: string;
-  title: string;
-  clubName: string;
-  startDate: string;
-  location: string;
-  status: EventTagKey;
-  posterImageUrl: string;
-}
-
-interface GetAppliedEventResponse {
-  data: GetAppliedEventData[];
-  pageData: {
-    first: boolean;
-    last: boolean;
-    pageNumber: number;
-    size: number;
-    totalPages: number;
-    totalElements: number;
-  };
-}
-
-interface GetAppliedEventRequest {
-  pageNumber: number;
 }
 
 interface GetAllEventsRequest {
@@ -82,8 +56,6 @@ interface GetAllEventsResponse {
     totalElement: number;
   };
 }
-
-type FormType = 'RADIO' | 'TEXT' | 'SELECT' | 'NUMBER';
 
 interface FormOption {
   id: string;
@@ -125,8 +97,6 @@ export {
   getEventFormResponse,
   GetAllEventsRequest,
   GetAllEventsResponse,
-  GetAppliedEventRequest,
-  GetAppliedEventResponse,
   getEventDetailResponse,
   FormType,
   FormOption,
@@ -135,4 +105,6 @@ export {
   EventTagKey,
   EventType,
   EventTag,
+  ProfileEventType,
+  EventStatus,
 };

@@ -6,8 +6,8 @@ const PATH = {
   MAIN: '/',
   MAIN_EVENT: '/events',
   MAIN_RECRUITMENT: '/recruitment',
-  PROFILE: '/profile',
-  BOOKMARK: '/profile/bookmark',
+  PROFILE_APPLIED: '/profile/applied',
+  PROFILE_BOOKMARK: '/profile/bookmark',
 
   CLUB: {
     HOME: (clubId: string | number) => `/club/${clubId}/home`,
@@ -18,7 +18,7 @@ const PATH = {
   CREATE: '/create',
 
   EVENT: {
-    DETAIL: '/event/detail',
+    DETAIL: (eventId: string) => `/event/detail/${eventId}`,
     CHECK_FORM: '/event/checkform',
     SUBMIT_FORM: '/event/submitform',
     WRITE_INFO: '/event/writeinfo',

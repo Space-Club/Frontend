@@ -1,5 +1,5 @@
 import { END_POINTS } from '@/constants/api';
-import { GetAppliedEventRequest, GetAppliedEventResponse } from '@/types/event';
+import { GetAppliedEventRequest, GetAppliedEventResponse } from '@/types/api/getAppliedEvent';
 
 import { axiosClientWithAuth } from '../axiosClient';
 

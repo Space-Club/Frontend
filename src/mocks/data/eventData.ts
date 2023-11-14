@@ -1,8 +1,5 @@
-import {
-  GetAllEventsResponse,
-  GetAppliedEventResponse,
-  getEventDetailResponse,
-} from '@/types/event';
+import { GetAppliedEventResponse } from '@/types/api/getAppliedEvent';
+import { GetAllEventsResponse, getEventDetailResponse } from '@/types/event';
 
 const appliedEvent: GetAppliedEventResponse = {
   data: [
@@ -12,7 +9,7 @@ const appliedEvent: GetAppliedEventResponse = {
       clubName: 'test',
       startDate: '2021-10-10',
       location: 'test',
-      status: 'cancelRequested',
+      status: 'CANCELLED',
       posterImageUrl:
         'https://english.seoul.go.kr/wp-content/uploads/2022/09/working-seoul-poster-214x300.jpg',
     },
@@ -22,7 +19,7 @@ const appliedEvent: GetAppliedEventResponse = {
       clubName: 'test',
       startDate: '2021-10-10',
       location: 'test',
-      status: 'cancelled',
+      status: 'CANCELLED',
       posterImageUrl: 'https://www.europosters.ie/image/framed/750/115398_modenacerna.jpg',
     },
   ],
