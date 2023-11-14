@@ -107,12 +107,12 @@ const router = createBrowserRouter([
             path: 'event/:eventId',
             children: [
               {
-                path: '',
-                element: <EventDetailPage />,
-              },
-              {
                 path: 'forms',
                 element: <SubmittedFormsPage />,
+              },
+              {
+                path: 'detail',
+                element: <EventDetailPage />,
               },
               {
                 path: 'submitform',
