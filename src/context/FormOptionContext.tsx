@@ -7,11 +7,13 @@ import { useState } from 'react';
 
 interface FormOptionContextProps {
   selectedOptions: FormOption[];
+  description: string;
+  managed: boolean;
   appendOption: (options: FormOption) => void;
   deleteOption: (options: FormOption) => void;
   changeOptionTitle: (options: FormOption, title: string) => void;
-  description: string;
-  managed: boolean;
+  setManaged: (managed: boolean) => void;
+  setDescription: (description: string) => void;
 }
 
 interface FormContextOptionProviderProps {
@@ -20,17 +22,21 @@ interface FormContextOptionProviderProps {
 
 const FormOptionContext = createContext<FormOptionContextProps>({
   selectedOptions: [],
+  description: '',
+  managed: false,
   appendOption: () => {},
   deleteOption: () => {},
   changeOptionTitle: () => {},
-  description: '',
-  managed: false,
+  setManaged: () => {},
+  setDescription: () => {},
 });
 
 const FormOptionContextProvider = ({ children }: FormContextOptionProviderProps) => {
   const [selectedOptions, setSelectedOptions] = useState<FormOption[]>(
     Object.values(FORM_OPTION.defaultOption),
   );
+  const [managed, setManaged] = useState<boolean>(false);
+  const [description, setDescription] = useState<string>('');
 
   const { createToast } = useToast();
 
@@ -82,11 +88,13 @@ const FormOptionContextProvider = ({ children }: FormContextOptionProviderProps)
     <FormOptionContext.Provider
       value={{
         selectedOptions,
+        description,
+        managed,
         appendOption,
         deleteOption,
         changeOptionTitle,
-        description: '',
-        managed: false,
+        setManaged,
+        setDescription,
       }}
     >
       {children}
