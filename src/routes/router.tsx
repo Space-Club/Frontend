@@ -16,7 +16,7 @@ import ChoiceEventPage from '@/pages/event/ChoiceEventPage/ChoiceEventPage';
 import EventDetailPage from '@/pages/event/EventDetailPage/EventDetailPage';
 import SubmittedFormsPage from '@/pages/event/SubmittedFormsPage/SubmittedFormsPage';
 import SubmitFormPage from '@/pages/event/SubmitFormPage/SubmitFormPage';
-import SubmittedFormsPage from '@/pages/event/SubmittedFormsPage';
+import SubmittedFormsPage from '@/pages/event/SubmittedFormsPage/SubmittedFormsPage';
 import WriteEventFormPage from '@/pages/event/WriteEventFormPage';
 import WriteEventInfoPage from '@/pages/event/WriteEventInfoPage/WriteEventInfoPage';
 
