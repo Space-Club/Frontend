@@ -6,6 +6,10 @@ type EventTagKey = 'publicEvent' | 'clubOnlyEvent' | EventStatus;
 
 type EventType = 'performance' | 'promotion' | 'recruitment' | 'clubSchedule';
 
+type FormType = 'RADIO' | 'TEXT' | 'SELECT' | 'NUMBER';
+
+type ProfileEventType = 'applied' | 'bookmark';
+
 interface EventTag {
   title: string;
   borderColor: keyof typeof Theme.color;
@@ -53,8 +57,6 @@ interface GetAllEventsResponse {
   };
 }
 
-type FormType = 'RADIO' | 'TEXT' | 'SELECT' | 'NUMBER';
-
 interface FormOption {
   id: string;
   title: string;
@@ -77,12 +79,26 @@ interface getEventDetailResponse {
   isManager: boolean;
 }
 
-type ProfileEventType = 'applied' | 'bookmark';
+interface getEventFormResponse {
+  event: {
+    title: string;
+  };
+  form: {
+    description: string;
+    options: {
+      id: number;
+      title: string;
+      type: FormType;
+    }[];
+  };
+}
 
 export {
+  getEventFormResponse,
   GetAllEventsRequest,
   GetAllEventsResponse,
   getEventDetailResponse,
+  FormType,
   FormOption,
   Event,
   EventTags,
