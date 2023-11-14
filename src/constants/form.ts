@@ -1,4 +1,4 @@
-import { FormOption } from '@/types/event';
+import { FormOption } from '@/types/form';
 
 const NAME: FormOption = {
   id: 'name',

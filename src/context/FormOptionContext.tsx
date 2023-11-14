@@ -1,6 +1,6 @@
 import { FORM_OPTION } from '@/constants/form';
 import useToast from '@/hooks/useToast';
-import { FormOption } from '@/types/event';
+import { FormOption } from '@/types/form';
 
 import { createContext } from 'react';
 import { useState } from 'react';

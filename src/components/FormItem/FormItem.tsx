@@ -1,4 +1,4 @@
-import { FormType } from '@/types/event';
+import { FormType } from '@/types/form';
 
 import FormDropDown from './FormDropDown';
 import { AnswerStyled, FormItemContainer, QuestionStyled } from './FormItem.style';
