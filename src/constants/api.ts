@@ -12,6 +12,7 @@ const END_POINTS = {
   GET_APPLIED_EVENT: ({ page, size, sort }: { page: number; size: string; sort: string }) =>
     `users/events?page=${page}&size=${size}&sort=${sort}`,
   GET_EVENT_DETAIL: '/events',
+  GET_EVENT_FORM: (eventId: string) => `events/${eventId}/forms`,
   ALL_EVENTS: '/events',
   POST_EVENT_APPLY: '/events/apply',
 
