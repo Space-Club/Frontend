@@ -126,6 +126,11 @@ interface Question {
   content: string;
 }
 
+interface postEventApplyRequest {
+  eventId: string;
+  forms: Question[];
+}
+
 export {
   getEventFormResponse,
   GetAllEventsRequest,
@@ -141,4 +146,5 @@ export {
   EventType,
   EventTag,
   Question,
+  postEventApplyRequest,
 };
