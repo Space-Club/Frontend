@@ -1,18 +1,26 @@
+import { Question } from '@/types/event';
+
 import { useState } from 'react';
 
 import { DropDown, FormDropDownContainer, Option, Select } from './FormDropDown.style';
 
 interface FormDropDown {
   options: string[];
+  id: number;
+  onAnswer: (value: Question) => void;
 }
 
-const FormDropDown = ({ options }: FormDropDown) => {
+const FormDropDown = ({ options, id, onAnswer }: FormDropDown) => {
   const [isDropDown, setIsDropDown] = useState(false);
   const [selectedItem, setSelectedItem] = useState('');
 
   const handleOptionClick = (value: string) => {
     setSelectedItem(value);
     setIsDropDown(false);
+    onAnswer({
+      optionId: id,
+      content: value,
+    });
   };
 
   const handleSelectClick = () => {

@@ -1,3 +1,7 @@
+import { Question } from '@/types/event';
+
+import { ChangeEvent } from 'react';
+
 import {
   FormRadioContainer,
   FormRadioItemInput,
@@ -8,14 +12,28 @@ import {
 interface FormRadio {
   options: string[];
   keyName: string;
+  id: number;
+  onAnswer: (value: Question) => void;
 }
 
-const FormRadio = ({ options, keyName }: FormRadio) => {
+const FormRadio = ({ options, keyName, id, onAnswer }: FormRadio) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    onAnswer({
+      optionId: id,
+      content: e.target.value,
+    });
+  };
   return (
     <FormRadioContainer>
       {options.map((option) => (
         <FormRadioItemWrapper>
-          <FormRadioItemInput type="radio" name={keyName} id={option} value={option} />
+          <FormRadioItemInput
+            type="radio"
+            name={keyName}
+            id={option}
+            value={option}
+            onChange={handleChange}
+          />
           <FormRadioItemLabel htmlFor={option}>{option}</FormRadioItemLabel>
         </FormRadioItemWrapper>
       ))}

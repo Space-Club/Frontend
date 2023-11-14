@@ -121,6 +121,11 @@ interface getEventFormResponse {
   };
 }
 
+interface Question {
+  optionId: number;
+  content: string;
+}
+
 export {
   getEventFormResponse,
   GetAllEventsRequest,
@@ -135,4 +140,5 @@ export {
   EventTagKey,
   EventType,
   EventTag,
+  Question,
 };
