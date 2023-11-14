@@ -4,7 +4,7 @@ import InputForm from '@/components/common/InputForm/InputForm';
 import TextAreaForm from '@/components/common/TextAreaForm/TextAreaForm';
 import { CREATE_CLUB } from '@/constants/club';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
-import { useClub } from '@/hooks/query/club/useClub';
+import useClub from '@/hooks/query/club/useClub';
 import { CreateClubFormValue } from '@/types/club';
 
 import { ChangeEvent, useState } from 'react';

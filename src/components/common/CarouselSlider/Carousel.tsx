@@ -11,25 +11,28 @@ import {
 } from './Carousel.style';
 
 interface CarouselProps {
-  itemWidth: number;
   totalItem: number;
   children: React.ReactNode;
 }
 
-const Carousel = ({ itemWidth, totalItem, children }: CarouselProps) => {
-  const { goNext, goPrev, carouselRef, currentIndex } = useCarousel({ totalItem, itemWidth });
+const Carousel = ({ totalItem, children }: CarouselProps) => {
+  const { goNext, goPrev, carouselRef, currentIndex } = useCarousel({ totalItem });
 
   return (
-    <CarouselContainer itemWidth={itemWidth}>
-      <CarouselNextButton onClick={goNext}>
-        <GrFormNext size={30} />
-      </CarouselNextButton>
-      <CarouselPrevButton onClick={goPrev}>
-        <GrFormPrevious size={30} />
-      </CarouselPrevButton>
-      <CarouselCounterWrapper>
-        {currentIndex + 1} / {totalItem}
-      </CarouselCounterWrapper>
+    <CarouselContainer>
+      {totalItem !== 0 && (
+        <>
+          <CarouselNextButton onClick={goNext}>
+            <GrFormNext size={30} />
+          </CarouselNextButton>
+          <CarouselPrevButton onClick={goPrev}>
+            <GrFormPrevious size={30} />
+          </CarouselPrevButton>
+          <CarouselCounterWrapper>
+            {currentIndex + 1} / {totalItem}
+          </CarouselCounterWrapper>
+        </>
+      )}
       <CarouselRefWrapper ref={carouselRef}>{children}</CarouselRefWrapper>
     </CarouselContainer>
   );

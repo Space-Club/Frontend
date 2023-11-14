@@ -3,8 +3,9 @@ import styled from '@emotion/styled';
 import Theme from '@styles/Theme';
 
 const LogoCircleStyled = styled.div`
+  min-width: 28rem;
   width: 28rem;
-  height: 28rem;
+  min-height: 28rem;
   border-radius: 50%;
   background: linear-gradient(
     139deg,

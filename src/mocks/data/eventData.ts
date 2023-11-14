@@ -1,6 +1,7 @@
-import { GetAllEventsResponse, GetMyEventResponse, getEventDetailResponse } from '@/types/event';
+import { GetAppliedEventResponse } from '@/types/api/getAppliedEvent';
+import { GetAllEventsResponse, getEventDetailResponse } from '@/types/event';
 
-const myEvent: GetMyEventResponse = {
+const appliedEvent: GetAppliedEventResponse = {
   data: [
     {
       id: '1',
@@ -8,7 +9,7 @@ const myEvent: GetMyEventResponse = {
       clubName: 'test',
       startDate: '2021-10-10',
       location: 'test',
-      status: 'cancelRequested',
+      status: 'CANCELLED',
       posterImageUrl:
         'https://english.seoul.go.kr/wp-content/uploads/2022/09/working-seoul-poster-214x300.jpg',
     },
@@ -18,7 +19,7 @@ const myEvent: GetMyEventResponse = {
       clubName: 'test',
       startDate: '2021-10-10',
       location: 'test',
-      status: 'cancelled',
+      status: 'CANCELLED',
       posterImageUrl: 'https://www.europosters.ie/image/framed/750/115398_modenacerna.jpg',
     },
   ],
@@ -123,4 +124,4 @@ const eventDetail: getEventDetailResponse = {
   isManager: true,
 };
 
-export { myEvent, allEvents, eventDetail };
+export { appliedEvent, allEvents, eventDetail };

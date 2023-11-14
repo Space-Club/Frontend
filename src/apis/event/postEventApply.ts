@@ -1,12 +1,11 @@
 import { END_POINTS } from '@/constants/api';
-import { PostEventApplyRequest } from '@/types/api/postEventApply';
-import { GetMyEventResponse } from '@/types/event';
+import { PostEventApplyRequest, PostEventApplyResponse } from '@/types/api/postEventApply';
 
 import { axiosClientWithAuth } from '../axiosClient';
 
 const postEventApply = async ({ eventId }: PostEventApplyRequest) => {
-  const { data } = await axiosClientWithAuth.post<GetMyEventResponse>(
-    `${END_POINTS.GET_MY_EVENT}`,
+  const { data } = await axiosClientWithAuth.post<PostEventApplyResponse>(
+    `${END_POINTS.POST_EVENT_APPLY}`,
     {
       eventId,
     },

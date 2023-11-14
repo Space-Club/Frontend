@@ -5,12 +5,14 @@ import { getStorage, setStorage } from '@/utils/localStorage';
 
 const postUser = async ({ name, phoneNumber }: PostUserRequest) => {
   const userId = getStorage('userId');
+
   const { data } = await axiosClient.post<PostUserResponse>(END_POINTS.REGISTER, {
     name,
     phoneNumber,
     userId,
   });
   setStorage('token', data.accessToken);
+
   return data;
 };
 

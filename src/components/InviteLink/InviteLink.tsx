@@ -21,7 +21,7 @@ const InviteLink = () => {
         <SubTitle>링크의 유효기간은 {INVITE_LINK.VALID_TIME}시간입니다.</SubTitle>
       </TitleWrapper>
       <InputWrapper>
-        <ReadonlyInput value={data.invitationCode} readOnly />
+        <ReadonlyInput value={data.inviteLink} readOnly />
         <SubmitButton onClick={() => refetch()}>생성</SubmitButton>
       </InputWrapper>
     </InviteLinkContainer>

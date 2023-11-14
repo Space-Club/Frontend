@@ -7,7 +7,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { QUERY_KEY } from './useClubs';
 
-export const useClub = () => {
+const useClub = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
@@ -27,3 +27,5 @@ export const useClub = () => {
 
   return { createClub, isLoading };
 };
+
+export default useClub;

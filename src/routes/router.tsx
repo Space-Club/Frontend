@@ -10,11 +10,12 @@ import RegisterPage from '@/pages/RegisterPage/RegisterPage';
 import ClubEventPage from '@/pages/club/ClubEventPage/ClubEventPage';
 import ClubHomePage from '@/pages/club/ClubHomePage/ClubHomePage';
 import CreateClubPage from '@/pages/club/CreateClubPage/CreateClubPage';
+import InvitePage from '@/pages/club/InvitePage/InvitePage';
 import ManageClubPage from '@/pages/club/ManageClubPage';
 import ChoiceEventPage from '@/pages/event/ChoiceEventPage/ChoiceEventPage';
 import EventDetailPage from '@/pages/event/EventDetailPage/EventDetailPage';
-import SubmitFormPage from '@/pages/event/SubmitFormPage';
 import SubmittedFormsPage from '@/pages/event/SubmittedFormsPage/SubmittedFormsPage';
+import SubmitFormPage from '@/pages/event/SubmitFormPage/SubmitFormPage';
 import WriteEventFormPage from '@/pages/event/WriteEventFormPage';
 import WriteEventInfoPage from '@/pages/event/WriteEventInfoPage/WriteEventInfoPage';
 
@@ -38,15 +39,29 @@ const router = createBrowserRouter([
         element: <OauthRedirectPage />,
       },
       {
+        path: 'clubs/invite/:inviteCode',
+        element: <InvitePage />,
+      },
+      {
         path: '',
         element: <Layout />,
         children: [
           {
             path: '',
             element: <MainPage />,
+            children: [
+              {
+                path: 'events',
+                element: <MainPage />,
+              },
+              {
+                path: 'recruitment',
+                element: <MainPage />,
+              },
+            ],
           },
           {
-            path: 'profile',
+            path: 'profile/:category',
             element: <ProfilePage />,
           },
           {
@@ -63,6 +78,24 @@ const router = createBrowserRouter([
               {
                 path: 'manage',
                 element: <ManageClubPage />,
+              },
+              {
+                path: '',
+                element: <FormLayout />,
+                children: [
+                  {
+                    path: 'choice',
+                    element: <ChoiceEventPage />,
+                  },
+                  {
+                    path: 'writeinfo',
+                    element: <WriteEventInfoPage />,
+                  },
+                  {
+                    path: 'writeform/:eventId',
+                    element: <WriteEventFormPage />,
+                  },
+                ],
               },
             ],
           },
@@ -84,27 +117,6 @@ const router = createBrowserRouter([
               {
                 path: 'submitform',
                 element: <SubmitFormPage />,
-              },
-              {
-                path: '',
-                element: <FormLayout />,
-                children: [
-                  {
-                    path: 'choice',
-                    element: <ChoiceEventPage />,
-                  },
-                  {
-                    path: 'writeinfo',
-                    element: <WriteEventInfoPage />,
-                  },
-                  {
-                    path: 'writeform',
-                    element: <WriteEventFormPage />,
-                  },
-                ],
-              },
-              {
-                path: 'https://kauth.kakao.com/oauth',
               },
             ],
           },

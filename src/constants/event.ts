@@ -1,25 +1,25 @@
 import { EventTags } from '@/types/event';
 
-const MY_EVENTS_TAGS: EventTags = {
-  pending: {
+const APPLIED_EVENTS_TAGS: EventTags = {
+  PENDING: {
     title: '관리자 확인중',
     borderColor: 'tGreen',
     backgroundColor: 'tSemiGreen',
     textColor: 'white',
   },
-  confirmed: {
+  CONFIRMED: {
     title: '신청확정',
     borderColor: 'tPurple',
     backgroundColor: 'tSemiPurple',
     textColor: 'white',
   },
-  cancelled: {
+  CANCELLED: {
     title: '취소확정',
     borderColor: 'tBlue',
     backgroundColor: 'tSemiBlue',
     textColor: 'white',
   },
-  cancelRequested: {
+  CANCEL_REQUESTED: {
     title: '취소요청',
     borderColor: 'tPink',
     backgroundColor: 'tSemiPink',
@@ -39,8 +39,6 @@ const MY_EVENTS_TAGS: EventTags = {
   },
 };
 
-const MY_EVENTS_TABS = [{ title: '참여 신청한 행사' }, { title: '북마크한 행사' }];
-
 const EVENT_DETAIL = {
   date: '날짜',
   time: '시간',
@@ -56,4 +54,4 @@ const EVENT_DETAIL_BUTTON = {
   apply: '참여 신청하기',
 };
 
-export { MY_EVENTS_TAGS, MY_EVENTS_TABS, EVENT_DETAIL, EVENT_DETAIL_BUTTON };
+export { APPLIED_EVENTS_TAGS, EVENT_DETAIL, EVENT_DETAIL_BUTTON };

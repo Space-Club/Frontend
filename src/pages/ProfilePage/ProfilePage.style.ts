@@ -8,12 +8,12 @@ const ProfileBottomWrapper = styled.div`
   padding: 0 5.87rem;
 `;
 
-const MyEventTabContainer = styled.div`
+const AppliedEventTabContainer = styled.div`
   width: 100%;
   border-bottom: 1px solid ${Theme.color.tLine};
 `;
 
-const MyEventContainer = styled.div`
+const AppliedEventContainer = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;
@@ -27,4 +27,13 @@ const MyEventContainer = styled.div`
   }
 `;
 
-export { MyEventTabContainer, MyEventContainer, ProfileBottomWrapper };
+const AppliedEventPaginationWrapper = styled.div`
+  margin: 2.4rem 0;
+`;
+
+export {
+  AppliedEventTabContainer,
+  AppliedEventContainer,
+  ProfileBottomWrapper,
+  AppliedEventPaginationWrapper,
+};

@@ -1,10 +1,10 @@
-import { MY_EVENTS_TAGS } from '@/constants/event';
+import { APPLIED_EVENTS_TAGS } from '@/constants/event';
 import { getTimeStamp } from '@/utils/getTimeStamp';
 
 import { useNavigate } from 'react-router-dom';
 
 import Avatar from '../Avatar/Avatar';
-import EventStatusTag from '../EventTag/EventTag';
+import EventStatusTag from '../EventStatusTag/EventStatusTag';
 import Poster from '../Poster/Poster';
 import {
   ClubInfoWrapperStyle,
@@ -49,7 +49,7 @@ const EventCard = ({
       <Poster posterSrc={posterSrc} width={9.5}>
         {openStatus && (
           <EventStatusTag
-            eventTag={MY_EVENTS_TAGS[openStatus === 'ALL' ? 'publicEvent' : 'clubOnlyEvent']}
+            eventTag={APPLIED_EVENTS_TAGS[openStatus === 'ALL' ? 'publicEvent' : 'clubOnlyEvent']}
           />
         )}
       </Poster>

@@ -1,12 +1,14 @@
 import Theme from '@/styles/Theme';
 
-type EventTagKey =
-  | 'confirmed'
-  | 'pending'
-  | 'cancelled'
-  | 'cancelRequested'
-  | 'publicEvent'
-  | 'clubOnlyEvent';
+type EventStatus = 'CONFIRMED' | 'PENDING' | 'CANCEL_REQUESTED' | 'CANCELLED';
+
+type EventTagKey = 'publicEvent' | 'clubOnlyEvent' | EventStatus;
+
+type EventType = 'performance' | 'promotion' | 'recruitment' | 'clubSchedule';
+
+type FormType = 'RADIO' | 'TEXT' | 'SELECT' | 'NUMBER';
+
+type ProfileEventType = 'applied' | 'bookmark';
 
 interface EventTag {
   title: string;
@@ -28,34 +30,6 @@ interface Event {
   location: string;
   clubName: string;
   clubLogoImageUrl: string;
-}
-
-export { EventTagKey, EventTags, EventTag, Event };
-
-interface GetMyEventData {
-  id: string;
-  title: string;
-  clubName: string;
-  startDate: string;
-  location: string;
-  status: EventTagKey;
-  posterImageUrl: string;
-}
-
-interface GetMyEventResponse {
-  data: GetMyEventData[];
-  pageData: {
-    first: boolean;
-    last: boolean;
-    pageNumber: number;
-    size: number;
-    totalPages: number;
-    totalElements: number;
-  };
-}
-
-interface GetMyEventRequest {
-  pageNumber: number;
 }
 
 interface GetAllEventsRequest {
@@ -83,6 +57,13 @@ interface GetAllEventsResponse {
   };
 }
 
+interface FormOption {
+  id: string;
+  title: string;
+  type: FormType;
+  visible: boolean;
+}
+
 interface getEventDetailResponse {
   title: string;
   posterImageUrl: string;
@@ -98,10 +79,32 @@ interface getEventDetailResponse {
   isManager: boolean;
 }
 
+interface getEventFormResponse {
+  event: {
+    title: string;
+  };
+  form: {
+    description: string;
+    options: {
+      id: number;
+      title: string;
+      type: FormType;
+    }[];
+  };
+}
+
 export {
+  getEventFormResponse,
   GetAllEventsRequest,
   GetAllEventsResponse,
-  GetMyEventRequest,
-  GetMyEventResponse,
   getEventDetailResponse,
+  FormType,
+  FormOption,
+  Event,
+  EventTags,
+  EventTagKey,
+  EventType,
+  EventTag,
+  ProfileEventType,
+  EventStatus,
 };

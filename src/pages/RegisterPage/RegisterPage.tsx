@@ -1,35 +1,33 @@
-import postUser from '@/apis/users/postUser';
 import InputForm from '@/components/common/InputForm/InputForm';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
+import usePostUser from '@/hooks/query/user/usePostUser';
 import { validateName, validateNumber } from '@/utils/validate';
 
-import { FieldValues, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { ErrorMessage } from './RegisterPage.style';
 import { RegisterContainer, SubmitButton, Title } from './RegisterPage.style';
+
+interface RegisterFormValue {
+  name: string;
+  number: string;
+}
 
 const RegisterPage = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm();
+  } = useForm<RegisterFormValue>();
   const { REQUIRED_NAME, REQUIRED_NUMBER, NAME } = ERROR_MESSAGE.REGISTER;
-  const navigate = useNavigate();
+  const { registerUser } = usePostUser();
 
-  const onRegisterSubmitForm = async (data: FieldValues) => {
-    try {
-      const { name, number } = data;
-      await postUser({ name, phoneNumber: number });
-      navigate('/');
-    } catch {
-      throw new Error('폼을 제출하는데 실패했습니다.');
-    }
+  const onSubmit: SubmitHandler<RegisterFormValue> = ({ name, number }) => {
+    registerUser({ name, phoneNumber: number });
   };
 
   return (
-    <RegisterContainer onSubmit={handleSubmit(onRegisterSubmitForm)}>
+    <RegisterContainer onSubmit={handleSubmit(onSubmit)}>
       <Title>추가 정보를 입력해주세요</Title>
       <InputForm
         {...register('name', {

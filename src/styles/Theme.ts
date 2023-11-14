@@ -25,6 +25,7 @@ const color = {
   tActive: '#6433CD',
   tButton: '#775D98',
   tSeparator: '#CDCCCC',
+  textGrey: '#909090',
   tSemiWhite: '#EEE',
   tButtonWhite: '#F9F9F9',
   activeColor: '#6433CD',
