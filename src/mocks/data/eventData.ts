@@ -9,7 +9,7 @@ const appliedEvent: GetAppliedEventResponse = {
       clubName: 'test',
       startDate: '2021-10-10',
       location: 'test',
-      status: 'CANCELLED',
+      status: 'CANCELED',
       posterImageUrl:
         'https://english.seoul.go.kr/wp-content/uploads/2022/09/working-seoul-poster-214x300.jpg',
     },
@@ -19,7 +19,7 @@ const appliedEvent: GetAppliedEventResponse = {
       clubName: 'test',
       startDate: '2021-10-10',
       location: 'test',
-      status: 'CANCELLED',
+      status: 'CANCELED',
       posterImageUrl: 'https://www.europosters.ie/image/framed/750/115398_modenacerna.jpg',
     },
   ],
