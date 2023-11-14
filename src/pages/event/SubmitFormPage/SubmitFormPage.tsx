@@ -1,5 +1,9 @@
 import FormItem from '@/components/FormItem/FormItem';
+import SearchInputForm from '@/components/SearchInputForm/SearchInputForm';
+import Header from '@/components/common/Header/Header';
+import Tab from '@/components/common/Tab/Tab';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
+import { MAIN_TABS } from '@/constants/tab';
 import useEventApplyMutation from '@/hooks/query/event/useEventApplyMutation';
 import useEventFormQuery from '@/hooks/query/event/useEventFormQuery';
 import useToast from '@/hooks/useToast';
@@ -55,6 +59,10 @@ const SubmitFormPage = () => {
 
   return (
     <SubmitFormContainer>
+      <Header>
+        <SearchInputForm />
+        <Tab tabItems={MAIN_TABS} />
+      </Header>
       <SubmitFormTitle>{eventFormData?.event.title}</SubmitFormTitle>
       <SubmitFormContent>{eventFormData?.form.description}</SubmitFormContent>
       <FormWrapper>
