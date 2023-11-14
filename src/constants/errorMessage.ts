@@ -47,6 +47,9 @@ const ERROR_MESSAGE = {
 
     JOIN_FAILED: '클럽 가입에 실패했습니다. ',
   },
+  FORM: {
+    POST_OPTION: '서버에러로 인해 등록에 실패했습니다.',
+  },
 } as const;
 
 export { ERROR_MESSAGE };
