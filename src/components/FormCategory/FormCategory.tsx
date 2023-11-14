@@ -7,8 +7,13 @@ import SubmittedForm from './SubmittedForm';
 const FormCategory = () => {
   const { formInfo, userForms } = useGetSubmittedFormsQuery({ eventId: 1 });
   if (!formInfo || !userForms) {
-    return <div>제출된 폼 정보 받아오기 실패</div>;
+    return null;
   }
+  //#TODO: 신청받지 않은 form의 경우 데이터가 어떻게 오는지 확인하기
+
+  const sortedUserForms = userForms.sort((a, b) => {
+    return b.id - a.id;
+  });
 
   return (
     <>
@@ -16,11 +21,12 @@ const FormCategory = () => {
       <SubmittedFormsContainer>
         <FormsWrapper>
           <Category optionTitles={formInfo.optionTitles} managed={formInfo.managed} />
-          {userForms?.map((form, index) => {
+          {sortedUserForms?.map((form, index) => {
             return (
               <SubmittedForm
                 key={index}
                 index={index}
+                formLength={formInfo.count}
                 id={form.id}
                 options={form.options}
                 applicationStatus={form.applicationStatus}

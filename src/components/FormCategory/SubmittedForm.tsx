@@ -4,6 +4,7 @@ import { FormItemStyled, FormRowStyled, FormStyled } from './SubmittedForm.style
 interface SubmittedFormProps {
   index: number;
   id: number;
+  formLength: number;
   options: {
     title: string;
     content: string;
@@ -12,10 +13,17 @@ interface SubmittedFormProps {
   managed: boolean;
 }
 
-const SubmittedForm = ({ index, id, options, applicationStatus, managed }: SubmittedFormProps) => {
+const SubmittedForm = ({
+  index,
+  id,
+  formLength,
+  options,
+  applicationStatus,
+  managed,
+}: SubmittedFormProps) => {
   return (
     <FormStyled key={index}>
-      <FormRowStyled>{index + 1}</FormRowStyled>
+      <FormRowStyled>{formLength - index}</FormRowStyled>
       {options.map((option, index) => {
         return <FormItemStyled key={index}>{option.content}</FormItemStyled>;
       })}

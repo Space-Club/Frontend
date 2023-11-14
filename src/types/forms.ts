@@ -10,7 +10,7 @@ interface UserForm {
 }
 
 interface FormInfo {
-  count: string;
+  count: number;
   optionTitles: string[];
   managed: boolean;
 }

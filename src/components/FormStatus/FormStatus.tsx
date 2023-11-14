@@ -1,4 +1,4 @@
-import { FORM_STATUS_DROPDOWN_OPTIONS } from '@/constants/user';
+import { FORM_STATUS_DROPDOWN_OPTIONS } from '@/constants/form';
 import { getEventStatusTag } from '@/utils/getEventStatusTag';
 
 import ApplyCancelButton from '../ApplyCancelButton/ApplyCancelButton';
@@ -26,6 +26,7 @@ const FormStatus = ({ id, applicationStatus }: FormStatus) => {
               ? 'CONFIRM'
               : 'SELECT'
           }
+          // onChange={} : #TODO :선택값 바뀌면 mutation 호출
         />
       </FormStatusItemStyled>
       <FormStatusItemStyled>
