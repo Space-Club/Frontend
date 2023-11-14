@@ -124,8 +124,6 @@ interface getEventFormResponse {
   };
 }
 
-type eventQueryString = 'performance' | 'promotion' | 'recruit' | 'schedule';
-type eventTypeAPI = 'SHOW' | 'PROMOTION' | 'RECRUITMENT' | 'CLUB';
 interface postPerformanceFormResponse {
   eventId: string;
 }
