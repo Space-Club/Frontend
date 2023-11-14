@@ -107,6 +107,9 @@ interface getEventDetailResponse {
   isManager: boolean;
 }
 
+type eventQueryString = 'performance' | 'promotion' | 'recruit' | 'schedule';
+type eventTypeAPI = 'SHOW' | 'PROMOTION' | 'RECRUITMENT' | 'CLUB';
+
 export {
   GetAllEventsRequest,
   GetAllEventsResponse,
@@ -119,4 +122,6 @@ export {
   EventTagKey,
   EventType,
   EventTag,
+  eventQueryString,
+  eventTypeAPI,
 };

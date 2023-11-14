@@ -8,15 +8,15 @@ import ScheduleForm from './ScheduleForm/ScheduleForm';
 const WriteEventInfoPage = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
-  const sortValue = queryParams.get('event');
+  const eventType = queryParams.get('event');
 
-  if (sortValue === 'performance') {
+  if (eventType === 'performance') {
     return <PerformanceForm />;
-  } else if (sortValue === 'promotion') {
+  } else if (eventType === 'promotion') {
     return <PromotionForm />;
-  } else if (sortValue === 'recruit') {
+  } else if (eventType === 'recruit') {
     return <RecruitForm />;
-  } else if (sortValue === 'schedule') {
+  } else if (eventType === 'schedule') {
     return <ScheduleForm />;
   } else {
     throw new Error('잘못된 URL입니다.');
