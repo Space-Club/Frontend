@@ -12,7 +12,6 @@ const dataTransform = ({ data, eventType, clubId }: dataTransform) => {
   const { title, content, capacity, openDate, closeDate } = data;
 
   const commonData = {
-    category: eventType,
     clubId,
     eventInfo: {
       title,

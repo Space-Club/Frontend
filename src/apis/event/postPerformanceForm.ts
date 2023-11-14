@@ -21,6 +21,9 @@ const postPerformanceForm = async ({ data, eventType, clubId }: postPerformanceF
     headers: {
       'Content-Type': 'multipart/form-data',
     },
+    params: {
+      category: eventType,
+    },
   });
 };
 

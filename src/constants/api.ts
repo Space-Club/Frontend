@@ -8,7 +8,7 @@ const END_POINTS = {
   USER_IMAGE: '/users/images',
   MY_CLUB: '/users/clubs',
 
-  PERFORMANCE_FORM: '/events',
+  PERFORMANCE_FORM: '/event',
   GET_APPLIED_EVENT: ({ page, size, sort }: { page: number; size: string; sort: string }) =>
     `users/events?page=${page}&size=${size}&sort=${sort}`,
   GET_EVENT_DETAIL: '/events',

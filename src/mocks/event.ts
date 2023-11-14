@@ -22,19 +22,9 @@ const eventList: event[] = [];
 
 const eventHandlers = [
   http.post(END_POINTS.PERFORMANCE_FORM, async ({ request }) => {
-    const reader = request.body?.getReader();
-    let data = '';
+    const data = await request.json();
 
-    // eslint-disable-next-line no-constant-condition
-    while (true) {
-      const { done, value } = await reader!.read();
-
-      if (done) break;
-
-      data += new TextDecoder().decode(value);
-    }
-
-    eventList.push(JSON.parse(data));
+    eventList.push(data as event);
     return HttpResponse.json({ status: 201 });
   }),
 

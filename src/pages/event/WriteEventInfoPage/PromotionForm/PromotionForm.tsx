@@ -2,11 +2,14 @@ import ImageForm from '@/components/ImageForm/ImageForm';
 import InputForm from '@/components/common/InputForm/InputForm';
 import TextAreaForm from '@/components/common/TextAreaForm/TextAreaForm';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
+import useSubmitForm from '@/hooks/query/event/useSubmitForm';
+import { eventQueryString } from '@/types/event';
+import eventTypeTransform from '@/utils/eventTypeTransform';
 import { validateTimeCompare, validateTodayDate } from '@/utils/validate';
 
 import { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
 
 import {
   ButtonWrapper,
@@ -28,6 +31,9 @@ const PromotionForm = () => {
   } = useForm();
   const [imgFile, setImgFile] = useState('');
   const navigate = useNavigate();
+  const { clubId } = useParams();
+  const searchParmas = useSearchParams();
+  const { mutate: submitForm, isLoading: isSubmitLoading } = useSubmitForm();
 
   const {
     REQUIRED_EVENT_NAME,
@@ -54,8 +60,10 @@ const PromotionForm = () => {
   }, [watch('poster')]);
 
   const onPromotionSubmitForm = (data: FieldValues) => {
-    console.log(data);
-    // TODO: API 연결
+    const eventQueryString = searchParmas[0].get('event') as eventQueryString;
+    const eventType = eventTypeTransform({ eventQueryString });
+    if (isSubmitLoading || !clubId) return;
+    submitForm({ data, clubId, eventType });
   };
 
   return (
