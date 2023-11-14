@@ -110,12 +110,28 @@ interface getEventDetailResponse {
 type eventQueryString = 'performance' | 'promotion' | 'recruit' | 'schedule';
 type eventTypeAPI = 'SHOW' | 'PROMOTION' | 'RECRUITMENT' | 'CLUB';
 
+interface getEventFormResponse {
+  event: {
+    title: string;
+  };
+  form: {
+    description: string;
+    options: {
+      id: number;
+      title: string;
+      type: FormType;
+    }[];
+  };
+}
+
 export {
+  getEventFormResponse,
   GetAllEventsRequest,
   GetAllEventsResponse,
   GetAppliedEventRequest,
   GetAppliedEventResponse,
   getEventDetailResponse,
+  FormType,
   FormOption,
   Event,
   EventTags,
