@@ -33,7 +33,7 @@ const RecruitForm = () => {
   const navigate = useNavigate();
   const { clubId } = useParams();
   const searchParmas = useSearchParams();
-  const { mutate: submitForm, isLoading: isSubmitLoading } = useSubmitForm();
+  const { submitForm, isSubmitLoading } = useSubmitForm();
 
   const {
     REQUIRED_RECRUIT_NAME,

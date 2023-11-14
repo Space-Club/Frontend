@@ -33,7 +33,7 @@ const PromotionForm = () => {
   const navigate = useNavigate();
   const { clubId } = useParams();
   const searchParmas = useSearchParams();
-  const { mutate: submitForm, isLoading: isSubmitLoading } = useSubmitForm();
+  const { submitForm, isSubmitLoading } = useSubmitForm();
 
   const {
     REQUIRED_EVENT_NAME,
@@ -59,7 +59,7 @@ const PromotionForm = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watch('poster')]);
 
-  const onPromotionSubmitForm = (data: FieldValues) => {
+  const onPromotionSubmitForm = async (data: FieldValues) => {
     const eventQueryString = searchParmas[0].get('event') as eventQueryString;
     const eventType = eventTypeTransform({ eventQueryString });
     if (isSubmitLoading || !clubId) return;
