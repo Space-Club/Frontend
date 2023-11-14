@@ -13,8 +13,6 @@ const AppliedEvents = () => {
 
   if (!events || !pageData) return null;
 
-  console.log(events);
-
   const { totalPages, size } = pageData;
 
   const onChangePage = (page: number) => {
