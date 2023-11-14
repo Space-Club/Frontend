@@ -1,6 +1,11 @@
+<<<<<<< HEAD
 import { SUBMIT_FORM_OPTIONS } from '@/constants/form';
 import { Question } from '@/types/api/postApplyEvent';
 import { FormType } from '@/types/event';
+=======
+import { SUBMIT_FORM_OPTIONS } from '@/constants/event';
+import { FormType, Question } from '@/types/event';
+>>>>>>> 14e8093 (feat: 폼 제출 api 모킹 및 api 최종 구현 완료)
 
 import { ChangeEvent, useEffect, useState } from 'react';
 
@@ -26,6 +31,7 @@ const FormItem = ({ id, title, type, options, onAnswer }: FormItem) => {
     });
   };
 
+<<<<<<< HEAD
   const renderAnswer = () => {
     if (type === 'SELECT' && itemOptions) {
       return <FormDropDown options={itemOptions} id={id} onAnswer={onAnswer} />;
@@ -38,6 +44,8 @@ const FormItem = ({ id, title, type, options, onAnswer }: FormItem) => {
     }
   };
 
+=======
+>>>>>>> 14e8093 (feat: 폼 제출 api 모킹 및 api 최종 구현 완료)
   useEffect(() => {
     switch (title) {
       case 'MBTI':
@@ -54,7 +62,19 @@ const FormItem = ({ id, title, type, options, onAnswer }: FormItem) => {
       <QuestionStyled>
         {id}. {title}
       </QuestionStyled>
+<<<<<<< HEAD
       {renderAnswer()}
+=======
+      {type === 'SELECT' && itemOptions ? (
+        <FormDropDown options={itemOptions} id={id} onAnswer={onAnswer} />
+      ) : type === 'RADIO' && itemOptions ? (
+        <FormRadio options={itemOptions} keyName={title} id={id} onAnswer={onAnswer} />
+      ) : type === 'NUMBER' ? (
+        <AnswerStyled type="number" onBlur={handleChange} required />
+      ) : (
+        <AnswerStyled type="text" onBlur={handleChange} required />
+      )}
+>>>>>>> 14e8093 (feat: 폼 제출 api 모킹 및 api 최종 구현 완료)
     </FormItemContainer>
   );
 };
