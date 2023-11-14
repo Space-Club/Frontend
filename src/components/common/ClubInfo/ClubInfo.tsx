@@ -7,12 +7,17 @@ import {
   ClubNameWrapper,
 } from './ClubInfo.style';
 
-const ClubInfo = ({ info, name, memberCount }: Pick<Club, 'info' | 'name' | 'memberCount'>) => {
+const ClubInfo = ({
+  info,
+  name,
+  memberCount,
+  reverse,
+}: Pick<Club, 'info' | 'name' | 'memberCount' | 'reverse'>) => {
   return (
     <ClubInfoContainer>
-      <ClubNameWrapper>{name}</ClubNameWrapper>
-      <ClubIntroductionWrapper>{info}</ClubIntroductionWrapper>
-      <ClubMemberCountWrapper>멤버 {memberCount}명</ClubMemberCountWrapper>
+      <ClubNameWrapper reverse={reverse}>{name}</ClubNameWrapper>
+      <ClubIntroductionWrapper reverse={reverse}>{info}</ClubIntroductionWrapper>
+      <ClubMemberCountWrapper reverse={reverse}>멤버 {memberCount}명</ClubMemberCountWrapper>
     </ClubInfoContainer>
   );
 };

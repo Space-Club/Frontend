@@ -10,6 +10,7 @@ import RegisterPage from '@/pages/RegisterPage/RegisterPage';
 import ClubEventPage from '@/pages/club/ClubEventPage/ClubEventPage';
 import ClubHomePage from '@/pages/club/ClubHomePage/ClubHomePage';
 import CreateClubPage from '@/pages/club/CreateClubPage/CreateClubPage';
+import InvitePage from '@/pages/club/InvitePage/InvitePage';
 import ManageClubPage from '@/pages/club/ManageClubPage';
 import CheckFormPage from '@/pages/event/CheckFormPage';
 import ChoiceEventPage from '@/pages/event/ChoiceEventPage/ChoiceEventPage';
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
       {
         path: 'oauths/kakao/callback',
         element: <OauthRedirectPage />,
+      },
+      {
+        path: 'clubs/invite/:inviteCode',
+        element: <InvitePage />,
       },
       {
         path: '',

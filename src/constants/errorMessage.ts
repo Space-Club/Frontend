@@ -1,5 +1,6 @@
 const ERROR_MESSAGE = {
   REGISTER: {
+    FAILED: '가입에 실패했습니다',
     REQUIRED_NAME: '* 이름은 필수입니다.',
     REQUIRED_NUMBER: '* 번호는 필수입니다.',
 
@@ -43,6 +44,8 @@ const ERROR_MESSAGE = {
     MIN_LENGTH_INFO: '최소 두 글자 이상 작성해 주세요.',
     MAX_LENGTH_NAME: '12글자 이상 작성할 수 없습니다.',
     MAX_LENGTH_INFO: '25글자 이상 작성할 수 없습니다.',
+
+    JOIN_FAILED: '클럽 가입에 실패했습니다. ',
   },
 } as const;
 
