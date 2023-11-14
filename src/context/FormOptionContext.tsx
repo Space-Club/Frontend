@@ -8,12 +8,14 @@ import { useState } from 'react';
 interface FormOptionContextProps {
   selectedOptions: FormOption[];
   description: string;
-  managed: boolean;
+  isManaged: boolean;
+  isSkip: boolean;
   appendOption: (options: FormOption) => void;
   deleteOption: (options: FormOption) => void;
   changeOptionTitle: (options: FormOption, title: string) => void;
-  setManaged: (managed: boolean) => void;
   setDescription: (description: string) => void;
+  setIsManaged: (managed: boolean) => void;
+  setIsSkip: (skip: boolean) => void;
 }
 
 interface FormContextOptionProviderProps {
@@ -23,20 +25,23 @@ interface FormContextOptionProviderProps {
 const FormOptionContext = createContext<FormOptionContextProps>({
   selectedOptions: [],
   description: '',
-  managed: false,
+  isManaged: false,
+  isSkip: false,
   appendOption: () => {},
   deleteOption: () => {},
   changeOptionTitle: () => {},
-  setManaged: () => {},
+  setIsManaged: () => {},
   setDescription: () => {},
+  setIsSkip: () => {},
 });
 
 const FormOptionContextProvider = ({ children }: FormContextOptionProviderProps) => {
   const [selectedOptions, setSelectedOptions] = useState<FormOption[]>(
     Object.values(FORM_OPTION.defaultOption),
   );
-  const [managed, setManaged] = useState<boolean>(false);
+  const [isManaged, setIsManaged] = useState<boolean>(false);
   const [description, setDescription] = useState<string>('');
+  const [isSkip, setIsSkip] = useState<boolean>(false);
 
   const { createToast } = useToast();
 
@@ -51,7 +56,6 @@ const FormOptionContextProvider = ({ children }: FormContextOptionProviderProps)
       }),
     );
   };
-
   const changeOptionTitle = (option: FormOption, title: string) => {
     if (!validateOptionTitle(title)) return;
     setSelectedOptions((prev) =>
@@ -89,12 +93,14 @@ const FormOptionContextProvider = ({ children }: FormContextOptionProviderProps)
       value={{
         selectedOptions,
         description,
-        managed,
+        isManaged,
+        isSkip,
         appendOption,
         deleteOption,
         changeOptionTitle,
-        setManaged,
+        setIsManaged,
         setDescription,
+        setIsSkip,
       }}
     >
       {children}
