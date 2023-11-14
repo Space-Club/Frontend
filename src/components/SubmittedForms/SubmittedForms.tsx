@@ -1,10 +1,10 @@
 import useGetSubmittedFormsQuery from '@/hooks/query/event/useGetSubmittedFormsQuery';
 
 import Category from './Category';
-import { FormLengthStyled, FormsWrapper, SubmittedFormsContainer } from './FormCategory.style';
 import SubmittedForm from './SubmittedForm';
+import { FormLengthStyled, FormsWrapper, SubmittedFormsContainer } from './SubmittedForms.style';
 
-const FormCategory = () => {
+const SubmittedForms = () => {
   const { formInfo, userForms } = useGetSubmittedFormsQuery({ eventId: 1 });
   if (!formInfo || !userForms) {
     return null;
@@ -40,4 +40,4 @@ const FormCategory = () => {
   );
 };
 
-export default FormCategory;
+export default SubmittedForms;
