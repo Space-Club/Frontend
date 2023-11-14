@@ -1,4 +1,10 @@
+import { EventType } from './event';
+
 type FormType = 'RADIO' | 'TEXT' | 'SELECT' | 'NUMBER';
+
+type FormOptionButtonText = {
+  [key in EventType]: string;
+};
 
 interface FormOption {
   id: string;
@@ -7,4 +13,4 @@ interface FormOption {
   visible: boolean;
 }
 
-export { FormType, FormOption };
+export { FormType, FormOption, FormOptionButtonText };

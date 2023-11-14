@@ -1,4 +1,4 @@
-import { FormOption } from '@/types/form';
+import { FormOption, FormOptionButtonText } from '@/types/form';
 
 const NAME: FormOption = {
   id: 'name',
@@ -100,10 +100,18 @@ const FORM_OPTION = {
   },
 };
 
+const FORM_OPTION_BUTTON_TEXT: FormOptionButtonText = {
+  performance: '공연 생성하기',
+  promotion: '행사 생성하기',
+  recruitment: '모집공고 올리기',
+  clubSchedule: '일정 등록하기',
+};
+
 export {
   PERFORMANCE_FORM_OPTION,
   PROMOTION_FORM_OPTION,
   RECRUITMENT_FORM_OPTION,
   CLUB_SCHEDULE_FORM_OPTION,
   FORM_OPTION,
+  FORM_OPTION_BUTTON_TEXT,
 };

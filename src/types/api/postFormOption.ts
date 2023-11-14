@@ -4,7 +4,7 @@ interface PostFormOptionRequest {
   eventId: string;
   description: string;
   managed: boolean;
-  options: Pick<FormOption, 'title' | 'type' | 'visible'>;
+  options: Pick<FormOption, 'title' | 'type' | 'visible'>[];
 }
 
 interface PostFormOptionResponse {
