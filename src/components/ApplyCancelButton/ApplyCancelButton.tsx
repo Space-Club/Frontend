@@ -7,10 +7,11 @@ const ButtonStyled = styled.div<{ isCancelled: boolean }>`
   align-items: center;
   width: 3.3rem;
   height: 1.5rem;
-  font-size: ${Theme.fontSize.tagText};
   color: ${Theme.color.tSeparator};
+  background-color: ${Theme.color.white};
   border: ${({ isCancelled }) => (isCancelled ? 'none' : `1px solid ${Theme.color.tSeparator}`)};
   border-radius: ${({ isCancelled }) => (isCancelled ? '0' : '0.3rem')};
+  font-size: ${Theme.fontSize.tagText};
 `;
 
 const ButtonTextStyled = styled.span`

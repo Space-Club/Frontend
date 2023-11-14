@@ -6,12 +6,12 @@ interface Form {
 interface UserForm {
   id: number;
   options: Form[];
-  applicationStatus: string;
+  applicationStatus: 'PENDING' | 'CONFIRMED' | 'CANCELED' | 'CANCEL_REQUESTED';
 }
 
 interface FormInfo {
   count: string;
-  optionsTitles: string[];
+  optionTitles: string[];
   managed: boolean;
 }
 
