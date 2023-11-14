@@ -3,7 +3,7 @@ import { GetSubmittedFormsRequest, GetSubmittedFormsResponse } from '@/types/api
 
 import { axiosClientWithAuth } from '../axiosClient';
 
-const getSubmittedForms = async ({ eventId = 1 }: GetSubmittedFormsRequest) => {
+const getSubmittedForms = async ({ eventId }: GetSubmittedFormsRequest) => {
   const { data } = await axiosClientWithAuth.get<GetSubmittedFormsResponse>(
     END_POINTS.GET_SUBMITTED_FORMS({ eventId }),
   );

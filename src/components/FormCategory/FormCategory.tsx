@@ -1,9 +1,8 @@
-import { MY_EVENTS_TAGS } from '@/constants/event';
 import { FORM_STATUS_DROPDOWN_OPTIONS } from '@/constants/user';
+import { getEventStatusTag } from '@/utils/getEventStatusTag';
 
 import ApplyCancelButton from '../ApplyCancelButton/ApplyCancelButton';
 import DropDown from '../common/DropDown/DropDown';
-import EventStatusTag from '../common/EventTag/EventTag';
 import {
   FormLengthStyled,
   FormsWrapper,
@@ -11,21 +10,6 @@ import {
   LineStyled,
   SubmittedFormsContainer,
 } from './FormCategory.style';
-
-const getEventStatusTag = (status: string) => {
-  switch (status) {
-    case 'PENDING':
-      return <EventStatusTag eventTag={MY_EVENTS_TAGS.pending} />;
-    case 'CONFIRMED':
-      return <EventStatusTag eventTag={MY_EVENTS_TAGS.confirmed} />;
-    case 'CANCELED':
-      return <EventStatusTag eventTag={MY_EVENTS_TAGS.cancelled} />;
-    case 'CANCEL_REQUESTED':
-      return <EventStatusTag eventTag={MY_EVENTS_TAGS.cancelRequested} />;
-    default:
-      return null; // 혹은 다른 기본값 처리
-  }
-};
 
 const FormCategory = () => {
   const { formInfo, userForms } = submittedForms;
