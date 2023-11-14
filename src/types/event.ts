@@ -124,6 +124,9 @@ interface getEventFormResponse {
   };
 }
 
+type eventQueryString = 'performance' | 'promotion' | 'recruit' | 'schedule';
+type eventTypeAPI = 'SHOW' | 'PROMOTION' | 'RECRUITMENT' | 'CLUB';
+
 export {
   getEventFormResponse,
   GetAllEventsRequest,
