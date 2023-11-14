@@ -1,7 +1,7 @@
 import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
-import { CategoryItemStyled, CategoryRowStyled } from './Category.style';
+import { CategoryItemStyled, CategoryRowStyled } from '../Category/Category.style';
 
 const FormStyled = styled.div`
   display: flex;

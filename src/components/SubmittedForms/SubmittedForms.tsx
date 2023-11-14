@@ -1,7 +1,7 @@
 import useGetSubmittedFormsQuery from '@/hooks/query/event/useGetSubmittedFormsQuery';
 
-import Category from './Category';
-import SubmittedForm from './SubmittedForm';
+import Category from './Category/Category';
+import SubmittedForm from './SubmittedForm/SubmittedForm';
 import { FormLengthStyled, FormsWrapper, SubmittedFormsContainer } from './SubmittedForms.style';
 
 const SubmittedForms = () => {

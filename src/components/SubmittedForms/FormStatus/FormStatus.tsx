@@ -1,8 +1,8 @@
 import { FORM_STATUS_DROPDOWN_OPTIONS } from '@/constants/form';
 import { getEventStatusTag } from '@/utils/getEventStatusTag';
 
-import ApplyCancelButton from '../ApplyCancelButton/ApplyCancelButton';
-import DropDown from '../common/DropDown/DropDown';
+import ApplyCancelButton from '../../ApplyCancelButton/ApplyCancelButton';
+import DropDown from '../../common/DropDown/DropDown';
 import { FormStatusItemStyled } from './FormStatus.style';
 
 interface FormStatus {
