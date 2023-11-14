@@ -7,7 +7,7 @@ import { MAIN_TABS } from '@/constants/tab';
 import useEventApplyMutation from '@/hooks/query/event/useEventApplyMutation';
 import useEventFormQuery from '@/hooks/query/event/useEventFormQuery';
 import useToast from '@/hooks/useToast';
-import { Question } from '@/types/event';
+import { Question } from '@/types/forms';
 
 import { MouseEvent, useState } from 'react';
 import { useParams } from 'react-router-dom';
