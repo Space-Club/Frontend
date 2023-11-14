@@ -1,10 +1,10 @@
-import postEventApply from '@/apis/event/postEventApply';
+import postApplyEvent from '@/apis/event/postApplyEvent';
 
 import { useMutation } from '@tanstack/react-query';
 
 const useEventApplyMutation = () => {
   const { mutate: applyEvent } = useMutation({
-    mutationFn: postEventApply,
+    mutationFn: postApplyEvent,
   });
 
   return { applyEvent };

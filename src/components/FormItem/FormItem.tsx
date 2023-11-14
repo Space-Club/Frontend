@@ -1,6 +1,7 @@
+import { SUBMIT_FORM_OPTIONS } from '@/constants/event';
 import { FormType, Question } from '@/types/event';
 
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useEffect, useState } from 'react';
 
 import FormDropDown from './FormDropDown';
 import { AnswerStyled, FormItemContainer, QuestionStyled } from './FormItem.style';
@@ -15,6 +16,8 @@ interface FormItem {
 }
 
 const FormItem = ({ id, title, type, options, onAnswer }: FormItem) => {
+  const [itemOptions, setItemOptions] = useState<string[] | undefined>(options);
+
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     onAnswer({
       optionId: id,
@@ -22,19 +25,30 @@ const FormItem = ({ id, title, type, options, onAnswer }: FormItem) => {
     });
   };
 
+  useEffect(() => {
+    switch (title) {
+      case 'MBTI':
+        setItemOptions(SUBMIT_FORM_OPTIONS.MBTI);
+        break;
+      case '성별':
+        setItemOptions(SUBMIT_FORM_OPTIONS.GENDER);
+        break;
+    }
+  }, [title]);
+
   return (
     <FormItemContainer>
       <QuestionStyled>
         {id}. {title}
       </QuestionStyled>
-      {type === 'SELECT' && options ? (
-        <FormDropDown options={options} id={id} onAnswer={onAnswer} />
-      ) : type === 'RADIO' && options ? (
-        <FormRadio options={options} keyName={title} id={id} onAnswer={onAnswer} />
+      {type === 'SELECT' && itemOptions ? (
+        <FormDropDown options={itemOptions} id={id} onAnswer={onAnswer} />
+      ) : type === 'RADIO' && itemOptions ? (
+        <FormRadio options={itemOptions} keyName={title} id={id} onAnswer={onAnswer} />
       ) : type === 'NUMBER' ? (
-        <AnswerStyled type="number" onBlur={handleChange} />
+        <AnswerStyled type="number" onBlur={handleChange} required />
       ) : (
-        <AnswerStyled type="text" onBlur={handleChange} />
+        <AnswerStyled type="text" onBlur={handleChange} required />
       )}
     </FormItemContainer>
   );

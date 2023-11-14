@@ -66,6 +66,11 @@ const eventHandlers = [
     console.log(eventId);
     return HttpResponse.json(eventForm, { status: 200 });
   }),
+  http.post('/events/forms/applications', async ({ request }) => {
+    const data = await request.json();
+    console.log(data);
+    return new HttpResponse(null, { status: 201 });
+  }),
 ];
 
 export default eventHandlers;

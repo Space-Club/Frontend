@@ -117,6 +117,7 @@ interface getEventFormResponse {
       id: number;
       title: string;
       type: FormType;
+      option?: string[];
     }[];
   };
 }

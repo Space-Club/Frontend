@@ -42,6 +42,7 @@ const ERROR_MESSAGE = {
     MAX_LENGTH_NAME: '12글자 이상 작성할 수 없습니다.',
     MAX_LENGTH_INFO: '25글자 이상 작성할 수 없습니다.',
   },
+  FORM: '폼을 모두 완성해주세요.',
 } as const;
 
 export { ERROR_MESSAGE };

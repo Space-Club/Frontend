@@ -3,7 +3,11 @@ import { postEventApplyRequest } from '@/types/event';
 
 import { axiosClientWithAuth } from '../axiosClient';
 
-const postApplyEvent = async (data: postEventApplyRequest) => {
+const postApplyEvent = async ({ forms, eventId }: postEventApplyRequest) => {
+  const data = {
+    eventId,
+    forms,
+  };
   await axiosClientWithAuth.post(END_POINTS.EVENT_APPLY, data);
 };
 
