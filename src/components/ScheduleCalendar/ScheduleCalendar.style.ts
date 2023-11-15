@@ -38,11 +38,11 @@ const CalendarWrapper = styled.div`
   .react-calendar__tile:enabled:hover,
   .react-calendar__tile:enabled:focus,
   .react-calendar__tile--active {
-    background: ${Theme.color.tWhiteGrey};
+    background: ${Theme.color.calendarHover};
   }
 
   .react-calendar__tile--now {
-    background: ${Theme.color.calendarHover};
+    background: ${Theme.color.tWhiteGrey};
   }
   .react-calendar__tile--now:enabled:hover,
   .react-calendar__tile--now:enabled:focus {
@@ -51,8 +51,8 @@ const CalendarWrapper = styled.div`
 `;
 
 const Dot = styled.div`
-  width: 0.5rem;
-  height: 0.5rem;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background-color: ${Theme.color.activeColor};
 `;

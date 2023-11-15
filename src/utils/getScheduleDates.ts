@@ -1,8 +1,8 @@
-import { ScheduleCalendarProps } from '@/types/event';
+import { SchedulesProps } from '@/types/event';
 
 import { getDateRange } from './getDateRange';
 
-const getScheduleDates = ({ schedules }: ScheduleCalendarProps) => {
+const getScheduleDates = ({ schedules }: SchedulesProps) => {
   const scheduleDates: string[] = [];
   schedules?.forEach((schedule) => {
     const { startDateTime, endDateTime } = schedule;
