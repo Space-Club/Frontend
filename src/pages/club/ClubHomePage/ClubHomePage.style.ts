@@ -70,7 +70,7 @@ const ClubMemberWrapper = styled(memberManagerScrollAreaStyled)`
 
 const ClubHomeBottomWrapper = styled.section`
   height: 22rem;
-  background-color: antiquewhite; //TODO: 레이아웃 확인을 위한 배경 추후 삭제
+  padding-top: 1rem;
 `;
 
 export {

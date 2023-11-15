@@ -6,8 +6,8 @@ const SchedulesContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  flex: 1;
   min-width: 27rem;
-  width: fit-content;
   height: 31rem;
   border-radius: 1.3rem;
   background-color: ${Theme.color.tWhiteGrey};
@@ -30,6 +30,7 @@ const SchedulesWrapper = styled(sideBarScrollAreaStyled)`
   flex-direction: column;
   gap: 0.5rem;
   overflow-y: auto;
+  width: 95%;
   max-height: 25rem;
   height: 100%;
 `;

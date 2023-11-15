@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 
 const ScheduleContainer = styled.div`
   position: relative;
-  width: fit-content;
   min-width: 25rem;
+  width: 100%;
   height: fit-content;
   padding: 1.5rem;
   border-radius: 0.5rem;
