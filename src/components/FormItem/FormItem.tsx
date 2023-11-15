@@ -25,6 +25,18 @@ const FormItem = ({ id, title, type, options, onAnswer }: FormItem) => {
     });
   };
 
+  const renderAnswer = () => {
+    if (type === 'SELECT' && itemOptions) {
+      return <FormDropDown options={itemOptions} id={id} onAnswer={onAnswer} />;
+    } else if (type === 'RADIO' && itemOptions) {
+      return <FormRadio options={itemOptions} keyName={title} id={id} onAnswer={onAnswer} />;
+    } else if (type === 'NUMBER') {
+      return <AnswerStyled type="number" onBlur={handleChange} required />;
+    } else {
+      return <AnswerStyled type="text" onBlur={handleChange} required />;
+    }
+  };
+
   useEffect(() => {
     switch (title) {
       case 'MBTI':
@@ -41,15 +53,7 @@ const FormItem = ({ id, title, type, options, onAnswer }: FormItem) => {
       <QuestionStyled>
         {id}. {title}
       </QuestionStyled>
-      {type === 'SELECT' && itemOptions ? (
-        <FormDropDown options={itemOptions} id={id} onAnswer={onAnswer} />
-      ) : type === 'RADIO' && itemOptions ? (
-        <FormRadio options={itemOptions} keyName={title} id={id} onAnswer={onAnswer} />
-      ) : type === 'NUMBER' ? (
-        <AnswerStyled type="number" onBlur={handleChange} required />
-      ) : (
-        <AnswerStyled type="text" onBlur={handleChange} required />
-      )}
+      {renderAnswer()}
     </FormItemContainer>
   );
 };
