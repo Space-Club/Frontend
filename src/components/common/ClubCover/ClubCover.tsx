@@ -15,12 +15,19 @@ interface ClubCoverProps {
   isTransparent?: boolean;
   isEditable?: boolean;
   children?: React.ReactNode;
+  clubId?: string;
 }
 
-const ClubCover = ({ coverImageUrl, isTransparent, isEditable, children }: ClubCoverProps) => {
+const ClubCover = ({
+  coverImageUrl,
+  isTransparent,
+  isEditable,
+  children,
+  clubId,
+}: ClubCoverProps) => {
   const editInputRef = useRef<HTMLInputElement>(null);
 
-  const { editClubSetting } = useEditClubMutation();
+  const { editClub } = useEditClubMutation();
 
   const handleEditButtonClick = () => {
     if (editInputRef.current) {
@@ -29,8 +36,8 @@ const ClubCover = ({ coverImageUrl, isTransparent, isEditable, children }: ClubC
   };
 
   const handleEditInputChange = () => {
-    if (editInputRef.current && editInputRef.current.files) {
-      editClubSetting({ image: editInputRef.current.files[0] });
+    if (editInputRef.current && editInputRef.current.files && clubId) {
+      editClub({ image: editInputRef.current.files[0], clubId });
     }
   };
 

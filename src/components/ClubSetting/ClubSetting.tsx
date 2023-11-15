@@ -21,7 +21,7 @@ const ClubSetting = ({ clubId }: ClubSettingProps) => {
         profileImageSrc={clubInfo.logoImageUrl}
         isEditable
       />
-      <ClubCover coverImageUrl={clubInfo.logoImageUrl} isEditable />
+      <ClubCover coverImageUrl={clubInfo.logoImageUrl} clubId={clubId} isEditable />
       <ClubBanner clubId={clubId} />
     </>
   );

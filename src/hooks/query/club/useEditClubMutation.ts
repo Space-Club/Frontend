@@ -1,4 +1,4 @@
-import postCreateClub from '@/apis/club/postCreateClub';
+import editClubSetting from '@/apis/club/editClubSetting';
 import useToast from '@/hooks/useToast';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -9,8 +9,8 @@ const useEditClubMutation = () => {
   const queryClient = useQueryClient();
 
   const { createToast } = useToast();
-  const { mutate: editClubSetting, isLoading } = useMutation({
-    mutationFn: postCreateClub,
+  const { mutate: editClub, isLoading } = useMutation({
+    mutationFn: editClubSetting,
     onSuccess: () => {
       queryClient.invalidateQueries([QUERY_KEY.GET_CLUB]);
     },
@@ -19,7 +19,7 @@ const useEditClubMutation = () => {
     },
   });
 
-  return { editClubSetting, isLoading };
+  return { editClub, isLoading };
 };
 
 export default useEditClubMutation;
