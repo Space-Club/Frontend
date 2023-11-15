@@ -2,6 +2,8 @@ import ImageForm from '@/components/ImageForm/ImageForm';
 import InputForm from '@/components/common/InputForm/InputForm';
 import TextAreaForm from '@/components/common/TextAreaForm/TextAreaForm';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
+import useSubmitForm from '@/hooks/query/event/useSubmitForm';
+import { FormPage } from '@/types/event';
 import { validateTimeCompare, validateTodayDate } from '@/utils/validate';
 
 import { useEffect, useState } from 'react';
@@ -19,7 +21,7 @@ import {
   TwoInputContainer,
 } from '../WriteEventInfoPage.style';
 
-const PromotionForm = () => {
+const PromotionForm = ({ eventType, clubId }: FormPage) => {
   const {
     register,
     handleSubmit,
@@ -28,6 +30,7 @@ const PromotionForm = () => {
   } = useForm();
   const [imgFile, setImgFile] = useState('');
   const navigate = useNavigate();
+  const { submitForm, isSubmitLoading } = useSubmitForm({ eventType, clubId });
 
   const {
     REQUIRED_EVENT_NAME,
@@ -53,9 +56,9 @@ const PromotionForm = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watch('poster')]);
 
-  const onPromotionSubmitForm = (data: FieldValues) => {
-    console.log(data);
-    // TODO: API 연결
+  const onPromotionSubmitForm = async (data: FieldValues) => {
+    if (isSubmitLoading || !clubId) return;
+    submitForm({ data, clubId, eventType });
   };
 
   return (
@@ -97,7 +100,7 @@ const PromotionForm = () => {
           inputType="number"
           placeholder="정수(0-n)"
         />
-        {errors.personnel && <ErrorMessage>{errors.personnel.message as string}</ErrorMessage>}
+        {errors.capacity && <ErrorMessage>{errors.capacity.message as string}</ErrorMessage>}
         <TwoInputContainer>
           <InputForm
             {...register('openDate', {

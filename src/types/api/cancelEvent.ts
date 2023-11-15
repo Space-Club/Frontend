@@ -5,7 +5,7 @@ interface CancelEventRequest {
 }
 
 interface CancelEventResponse {
-  eventStatus: EventStatus;
+  applicationStatus: EventStatus;
 }
 
 export { CancelEventRequest, CancelEventResponse };

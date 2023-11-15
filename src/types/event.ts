@@ -1,8 +1,7 @@
 import Theme from '@/styles/Theme';
+import { FormType } from '@/types/form';
 
-import { FormType } from './form';
-
-type EventStatus = 'CONFIRMED' | 'PENDING' | 'CANCEL_REQUESTED' | 'CANCELLED';
+type EventStatus = 'CONFIRMED' | 'PENDING' | 'CANCEL_REQUESTED' | 'CANCELED';
 
 type EventTagKey = 'publicEvent' | 'clubOnlyEvent' | EventStatus;
 
@@ -72,6 +71,8 @@ interface getEventDetailResponse {
   isManager: boolean;
 }
 
+type eventTypeAPI = 'SHOW' | 'PROMOTION' | 'RECRUITMENT' | 'CLUB';
+
 interface getEventFormResponse {
   event: {
     title: string;
@@ -86,6 +87,15 @@ interface getEventFormResponse {
   };
 }
 
+interface postPerformanceFormResponse {
+  eventId: string;
+}
+
+interface FormPage {
+  eventType: eventTypeAPI;
+  clubId: string;
+}
+
 export {
   getEventFormResponse,
   GetAllEventsRequest,
@@ -96,6 +106,9 @@ export {
   EventTagKey,
   EventType,
   EventTag,
+  eventTypeAPI,
+  postPerformanceFormResponse,
   ProfileEventType,
   EventStatus,
+  FormPage,
 };

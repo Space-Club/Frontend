@@ -2,6 +2,8 @@ import ImageForm from '@/components/ImageForm/ImageForm';
 import InputForm from '@/components/common/InputForm/InputForm';
 import TextAreaForm from '@/components/common/TextAreaForm/TextAreaForm';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
+import useSubmitForm from '@/hooks/query/event/useSubmitForm';
+import { FormPage } from '@/types/event';
 import { validateTimeCompare, validateTodayDate } from '@/utils/validate';
 
 import { useEffect, useState } from 'react';
@@ -19,7 +21,7 @@ import {
   TwoInputContainer,
 } from '../WriteEventInfoPage.style';
 
-const RecruitForm = () => {
+const RecruitForm = ({ eventType, clubId }: FormPage) => {
   const {
     register,
     handleSubmit,
@@ -28,6 +30,7 @@ const RecruitForm = () => {
   } = useForm();
   const [imgFile, setImgFile] = useState('');
   const navigate = useNavigate();
+  const { submitForm, isSubmitLoading } = useSubmitForm({ eventType, clubId });
 
   const {
     REQUIRED_RECRUIT_NAME,
@@ -52,8 +55,8 @@ const RecruitForm = () => {
   }, [watch('poster')]);
 
   const onRecruitSubmitForm = (data: FieldValues) => {
-    console.log(data);
-    // TODO: API 연결
+    if (isSubmitLoading || !clubId) return;
+    submitForm({ data, clubId, eventType });
   };
 
   return (
@@ -71,30 +74,30 @@ const RecruitForm = () => {
         />
         {errors.title && <ErrorMessage>{errors.title.message as string}</ErrorMessage>}
         <InputForm
-          {...register('location')}
+          {...register('activityArea')}
           labelText="활동 위치"
           inputType="text"
           placeholder="온라인일 경우, 온라인이라고 기재"
         />
         <TextAreaForm
-          {...register('recruitTarget', {
+          {...register('recruitmentTarget', {
             maxLength: { value: 50, message: LENGTH(50) },
           })}
           labelText="모집 대상"
           rows={2}
         />
-        {errors.recruitTarget && (
-          <ErrorMessage>{errors.recruitTarget.message as string}</ErrorMessage>
+        {errors.recruitmentTarget && (
+          <ErrorMessage>{errors.recruitmentTarget.message as string}</ErrorMessage>
         )}
         <HalfInputForm
-          {...register('personnel', {
+          {...register('capacity', {
             max: { value: 999, message: `${PERSONNEL}` },
           })}
           labelText="모집 인원"
           inputType="number"
           placeholder="정수(1-n)"
         />
-        {errors.personnel && <ErrorMessage>{errors.personnel.message as string}</ErrorMessage>}
+        {errors.capacity && <ErrorMessage>{errors.capacity.message as string}</ErrorMessage>}
         <TwoInputContainer>
           <InputForm
             {...register('openDate', {
@@ -133,7 +136,7 @@ const RecruitForm = () => {
         />
         {errors.poster && <ErrorMessage>{errors.poster.message as string}</ErrorMessage>}
         <TextAreaForm
-          {...register('recruitContent', {
+          {...register('content', {
             required: `${REQUIRED_RECRUIT_CONTENT}`,
             maxLength: { value: 200, message: LENGTH(200) },
           })}
@@ -141,9 +144,7 @@ const RecruitForm = () => {
           required
           rows={10}
         />
-        {errors.recruitContent && (
-          <ErrorMessage>{errors.recruitContent.message as string}</ErrorMessage>
-        )}
+        {errors.content && <ErrorMessage>{errors.content.message as string}</ErrorMessage>}
       </ContentArea>
       <ButtonWrapper>
         <PrevButton type="button" onClick={() => navigate(-1)}>

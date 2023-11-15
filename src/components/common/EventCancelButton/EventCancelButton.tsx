@@ -5,8 +5,8 @@ import useModal from '@/hooks/useModal';
 import { EventCancelButtonStyled } from './EventCancelButton.style';
 
 interface EventCancelButtonProps extends React.HTMLAttributes<HTMLButtonElement> {
-  title: string;
   eventId: string;
+  title: string;
 }
 
 const EventCancelButton = ({ title, eventId, ...props }: EventCancelButtonProps) => {

@@ -8,13 +8,16 @@ const END_POINTS = {
   USER_IMAGE: '/users/images',
   MY_CLUB: '/users/clubs',
 
-  PERFORMANCE_FORM: '/events',
+  PERFORMANCE_FORM: '/event',
   GET_APPLIED_EVENT: ({ page, size, sort }: { page: number; size: string; sort: string }) =>
     `users/events?page=${page}&size=${size}&sort=${sort}`,
   GET_EVENT_DETAIL: '/events',
   ALL_EVENTS: '/events',
   POST_EVENT_APPLY: '/events/apply',
-  CANCEL_EVENT: ({ eventId }: { eventId: string }) => `/events/${eventId}/cancel`,
+  CANCEL_EVENT: ({ eventId }: { eventId: string }) => `/events/${eventId}/applications`,
+
+  GET_SUBMITTED_FORMS: ({ eventId }: { eventId: string | number }) =>
+    `events/${eventId}/forms/applications`,
 
   CREATE_CLUB: '/clubs',
   INVITE_LINK: (clubId: string) => `/clubs/${clubId}/invite`,

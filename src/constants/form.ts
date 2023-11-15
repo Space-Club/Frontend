@@ -1,4 +1,10 @@
+import { DropDownOption } from '@/components/common/DropDown/DropDown';
 import { FormOption, FormOptionButtonText } from '@/types/form';
+
+const FORM_STATUS_DROPDOWN_OPTIONS: DropDownOption[] = [
+  { value: 'SELECT', label: '선택' },
+  { value: 'CONFIRM', label: '확인' },
+];
 
 const NAME: FormOption = {
   id: 'name',
@@ -114,4 +120,5 @@ export {
   CLUB_SCHEDULE_FORM_OPTION,
   FORM_OPTION,
   FORM_OPTION_BUTTON_TEXT,
+  FORM_STATUS_DROPDOWN_OPTIONS,
 };
