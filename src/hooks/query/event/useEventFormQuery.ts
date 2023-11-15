@@ -2,13 +2,17 @@ import getEventForm from '@/apis/event/getEventForm';
 
 import { useQuery } from '@tanstack/react-query';
 
-interface useEventFormQuery {
+interface UseEventFormQuery {
   eventId: string;
 }
 
-const useEventFormQuery = ({ eventId }: useEventFormQuery) => {
+const QUERY_KEY = {
+  EVENT_FORM: 'EVENT_FORM',
+};
+
+const useEventFormQuery = ({ eventId }: UseEventFormQuery) => {
   const { data: eventFormData } = useQuery({
-    queryKey: ['EVENT_FORM', eventId],
+    queryKey: [QUERY_KEY, eventId],
     queryFn: () => getEventForm({ eventId }),
   });
 

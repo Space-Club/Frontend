@@ -1,5 +1,6 @@
 import { SUBMIT_FORM_OPTIONS } from '@/constants/event';
-import { FormType, Question } from '@/types/event';
+import { Question } from '@/types/api/postApplyEvent';
+import { FormType } from '@/types/event';
 
 import { ChangeEvent, useEffect, useState } from 'react';
 
