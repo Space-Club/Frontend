@@ -4,7 +4,7 @@ import { getTimeStamp } from '@/utils/getTimeStamp';
 import { useNavigate } from 'react-router-dom';
 
 import Avatar from '../Avatar/Avatar';
-import EventStatusTag from '../EventTag/EventTag';
+import EventStatusTag from '../EventStatusTag/EventStatusTag';
 import Poster from '../Poster/Poster';
 import {
   ClubInfoWrapperStyle,

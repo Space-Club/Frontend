@@ -16,9 +16,11 @@ const END_POINTS = {
   ALL_EVENTS: '/events',
   POST_EVENT_APPLY: '/events/apply',
   EVENT_APPLY: '/events/forms/applications',
+  CANCEL_EVENT: ({ eventId }: { eventId: string }) => `/events/${eventId}/cancel`,
 
   CREATE_CLUB: '/clubs',
   INVITE_LINK: (clubId: string) => `/clubs/${clubId}/invite`,
+  INVITE_CLUB_CODE: (inviteCode: string) => `/clubs/invete/${inviteCode}`,
   CLUB_MEMBERS: (clubId: string) => `/clubs/${clubId}/members`,
   CLUB_EVENTS: ({ clubId }: { clubId: number | string }) => `/clubs/${clubId}/events`,
   PATCH_MEMBER_ROLE: ({ clubId, memberId }: { clubId: string; memberId: string }) =>

@@ -1,5 +1,6 @@
 const ERROR_MESSAGE = {
   REGISTER: {
+    FAILED: '가입에 실패했습니다',
     REQUIRED_NAME: '* 이름은 필수입니다.',
     REQUIRED_NUMBER: '* 번호는 필수입니다.',
 
@@ -31,6 +32,8 @@ const ERROR_MESSAGE = {
     MAX_TICKET: '* 인당 최대 예매 가능 수는 999입니다.',
     START_TIME: '* 날짜는 오늘 이후로 설정해야 합니다.',
     LAST_TIME: '* 날짜는 시작 날짜 이후로 설정해야 합니다.',
+
+    CANCEL: '서버 에러로 인해 이벤트 취소에 실패했습니다.',
     ENTER_BOTH_SIDE: '* 날짜는 시작 및 마감 모두 설정해야 합니다.',
     LENGTH: (num: number) => `* 최대 ${num}자 이하여야 합니다.`,
   },
@@ -41,6 +44,8 @@ const ERROR_MESSAGE = {
     MIN_LENGTH_INFO: '최소 두 글자 이상 작성해 주세요.',
     MAX_LENGTH_NAME: '12글자 이상 작성할 수 없습니다.',
     MAX_LENGTH_INFO: '25글자 이상 작성할 수 없습니다.',
+
+    JOIN_FAILED: '클럽 가입에 실패했습니다. ',
   },
   FORM: '폼을 모두 완성해주세요.',
 } as const;

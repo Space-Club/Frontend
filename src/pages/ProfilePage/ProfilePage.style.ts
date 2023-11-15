@@ -27,4 +27,13 @@ const AppliedEventContainer = styled.div`
   }
 `;
 
-export { AppliedEventTabContainer, AppliedEventContainer, ProfileBottomWrapper };
+const AppliedEventPaginationWrapper = styled.div`
+  margin: 2.4rem 0;
+`;
+
+export {
+  AppliedEventTabContainer,
+  AppliedEventContainer,
+  ProfileBottomWrapper,
+  AppliedEventPaginationWrapper,
+};

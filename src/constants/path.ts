@@ -6,21 +6,21 @@ const PATH = {
   MAIN: '/',
   MAIN_EVENT: '/events',
   MAIN_RECRUITMENT: '/recruitment',
-  PROFILE: '/profile',
-  BOOKMARK: '/profile/bookmark',
+  PROFILE_APPLIED: '/profile/applied',
+  PROFILE_BOOKMARK: '/profile/bookmark',
 
   CLUB: {
     HOME: (clubId: string | number) => `/club/${clubId}/home`,
     EVENT: (clubId: string | number) => `/club/${clubId}/event`,
     MANAGE: (clubId: string | number) => `/club/${clubId}/manage`,
+    CHOICE: (clubId: string) => `/club/${clubId}/choice`,
   },
   CREATE: '/create',
 
   EVENT: {
-    DETAIL: '/event/detail',
+    DETAIL: (eventId: string) => `/event/detail/${eventId}`,
     CHECK_FORM: '/event/checkform',
     SUBMIT_FORM: '/event/submitform',
-    CHOICE: '/event/choice',
     WRITE_INFO: '/event/writeinfo',
     WRITE_FORM: '/event/writeform',
   },

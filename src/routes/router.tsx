@@ -10,6 +10,7 @@ import RegisterPage from '@/pages/RegisterPage/RegisterPage';
 import ClubEventPage from '@/pages/club/ClubEventPage/ClubEventPage';
 import ClubHomePage from '@/pages/club/ClubHomePage/ClubHomePage';
 import CreateClubPage from '@/pages/club/CreateClubPage/CreateClubPage';
+import InvitePage from '@/pages/club/InvitePage/InvitePage';
 import ManageClubPage from '@/pages/club/ManageClubPage';
 import CheckFormPage from '@/pages/event/CheckFormPage';
 import ChoiceEventPage from '@/pages/event/ChoiceEventPage/ChoiceEventPage';
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
         element: <OauthRedirectPage />,
       },
       {
+        path: 'clubs/invite/:inviteCode',
+        element: <InvitePage />,
+      },
+      {
         path: '',
         element: <Layout />,
         children: [
@@ -56,14 +61,8 @@ const router = createBrowserRouter([
             ],
           },
           {
-            path: 'profile',
+            path: 'profile/:category',
             element: <ProfilePage />,
-            children: [
-              {
-                path: 'bookmark',
-                element: <ProfilePage />,
-              },
-            ],
           },
           {
             path: 'club/:clubId',
@@ -93,7 +92,7 @@ const router = createBrowserRouter([
                     element: <WriteEventInfoPage />,
                   },
                   {
-                    path: 'writeform',
+                    path: 'writeform/:eventId',
                     element: <WriteEventFormPage />,
                   },
                 ],

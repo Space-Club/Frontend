@@ -1,4 +1,4 @@
-import { Event, EventTagKey } from '@/types/event';
+import { Event, EventStatus } from '@/types/event';
 
 import Poster from '@components/common/Poster/Poster';
 
@@ -13,7 +13,7 @@ import {
 interface AppliedEventCardProps
   extends Pick<Event, 'title' | 'posterImageUrl' | 'startDate' | 'location' | 'clubName'> {
   eventId: string;
-  eventTagKey: EventTagKey;
+  eventStatus: EventStatus;
 }
 
 const AppliedEventCard = ({
@@ -23,9 +23,11 @@ const AppliedEventCard = ({
   startDate,
   location,
   clubName,
-  eventTagKey,
+  eventStatus,
   ...props
 }: AppliedEventCardProps) => {
+  const isPossibleCancel = eventStatus === 'PENDING' || eventStatus === 'CONFIRMED';
+
   return (
     <AppliedEventCardContainer {...props}>
       <EventLeftSection>
@@ -36,11 +38,11 @@ const AppliedEventCard = ({
           startDate={startDate}
           location={location}
           clubName={clubName}
-          eventTagKey={eventTagKey}
+          eventStatus={eventStatus}
         />
       </EventLeftSection>
       <EventRightSection>
-        <EventCancelButton eventId={eventId} />
+        {isPossibleCancel && <EventCancelButton title={title} eventId={eventId} />}
       </EventRightSection>
     </AppliedEventCardContainer>
   );
