@@ -32,7 +32,7 @@ const SubmittedForms = () => {
           {sortedUserForms?.map((form, index) => {
             return (
               <SubmittedForm
-                key={index}
+                key={form.id}
                 index={index}
                 formLength={formInfo.count}
                 id={form.id}
