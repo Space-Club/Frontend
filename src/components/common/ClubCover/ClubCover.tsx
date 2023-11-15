@@ -1,4 +1,3 @@
-import useEditClubMutation from '@/hooks/query/club/useEditClubMutation';
 import { InvisibleInput } from '@/styles/common';
 
 import { useRef } from 'react';
@@ -16,6 +15,7 @@ interface ClubCoverProps {
   isEditable?: boolean;
   children?: React.ReactNode;
   clubId?: string;
+  onEdit?: (file: File) => void;
 }
 
 const ClubCover = ({
@@ -23,11 +23,9 @@ const ClubCover = ({
   isTransparent,
   isEditable,
   children,
-  clubId,
+  onEdit,
 }: ClubCoverProps) => {
   const editInputRef = useRef<HTMLInputElement>(null);
-
-  const { editClub } = useEditClubMutation();
 
   const handleEditButtonClick = () => {
     if (editInputRef.current) {
@@ -36,8 +34,8 @@ const ClubCover = ({
   };
 
   const handleEditInputChange = () => {
-    if (editInputRef.current && editInputRef.current.files && clubId) {
-      editClub({ image: editInputRef.current.files[0], clubId });
+    if (editInputRef.current && editInputRef.current.files && onEdit) {
+      onEdit(editInputRef.current.files[0]);
     }
   };
 

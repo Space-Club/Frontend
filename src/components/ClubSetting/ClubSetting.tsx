@@ -1,3 +1,4 @@
+import useEditClubMutation from '@/hooks/query/club/useEditClubMutation';
 import useGetClubQuery from '@/hooks/query/club/useGetClubQuery';
 
 import Avatar from '../common/Avatar/Avatar';
@@ -10,6 +11,15 @@ interface ClubSettingProps {
 
 const ClubSetting = ({ clubId }: ClubSettingProps) => {
   const { clubInfo } = useGetClubQuery({ clubId });
+  const { editClub } = useEditClubMutation();
+
+  const handleCoverImageEdit = (file: File) => {
+    editClub({ image: file, clubId });
+  };
+
+  // const handleAvatarImageEdit = (file: File) => {
+  //   editClub({ logoImage: file, clubId });
+  // };
 
   if (!clubInfo) return null;
 
@@ -20,9 +30,15 @@ const ClubSetting = ({ clubId }: ClubSettingProps) => {
         isClub={true}
         profileImageSrc={clubInfo.logoImageUrl}
         isEditable
+        // onEdit={handleImageEdit}
       />
-      <ClubCover coverImageUrl={clubInfo.logoImageUrl} clubId={clubId} isEditable />
-      <ClubBanner clubId={clubId} />
+      <ClubCover
+        coverImageUrl={clubInfo.logoImageUrl}
+        clubId={clubId}
+        isEditable
+        onEdit={handleCoverImageEdit}
+      />
+      <ClubBanner clubId={clubId} bannerSize="small" />
     </>
   );
 };
