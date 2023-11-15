@@ -44,11 +44,17 @@ const ERROR_MESSAGE = {
     MIN_LENGTH_INFO: '최소 두 글자 이상 작성해 주세요.',
     MAX_LENGTH_NAME: '12글자 이상 작성할 수 없습니다.',
     MAX_LENGTH_INFO: '25글자 이상 작성할 수 없습니다.',
+    VALIDATE_LENGTH_NAME: '클럽 이름은 2글자 이상 12글자 이하로 작성해주세요.',
+    VALIDATE_LENGTH_INFO: '클럽 소개는 2글자 이상 25글자 이하로 작성해주세요.',
 
     JOIN_FAILED: '클럽 가입에 실패했습니다. ',
   },
   FORM: {
     POST_OPTION: '서버에러로 인해 등록에 실패했습니다.',
+  },
+
+  COMMON: {
+    CURRENT_REF_ERROR: '할당된 current ref가 없습니다',
   },
 } as const;
 

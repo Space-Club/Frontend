@@ -1,6 +1,9 @@
+import { ERROR_MESSAGE } from '@/constants/errorMessage';
 import useEditClubMutation from '@/hooks/query/club/useEditClubMutation';
 import useGetClubQuery from '@/hooks/query/club/useGetClubQuery';
+import useToast from '@/hooks/useToast';
 import { PurpleButton } from '@/pages/event/EventDetailPage/EventDetailPage.style';
+import { validateClubInfo, validateClubName } from '@/utils/validate';
 
 import { useRef } from 'react';
 
@@ -16,6 +19,7 @@ interface ClubSettingProps {
 const ClubSetting = ({ clubId }: ClubSettingProps) => {
   const { clubInfo } = useGetClubQuery({ clubId });
   const { editClub } = useEditClubMutation();
+  const { createToast } = useToast();
 
   const clubNameInputRef = useRef<HTMLInputElement>(null);
   const clubInfoInputRef = useRef<HTMLInputElement>(null);
@@ -29,14 +33,22 @@ const ClubSetting = ({ clubId }: ClubSettingProps) => {
   // };
 
   const handleClubNameEdit = () => {
-    if (clubNameInputRef.current) {
+    if (!clubNameInputRef.current) throw new Error(ERROR_MESSAGE.COMMON.CURRENT_REF_ERROR);
+
+    if (validateClubName(clubNameInputRef.current.value)) {
       editClub({ name: clubNameInputRef.current.value, clubId });
+    } else {
+      createToast({ message: ERROR_MESSAGE.CLUB.VALIDATE_LENGTH_NAME, toastType: 'error' });
     }
   };
 
   const handleClubInfoEdit = () => {
-    if (clubInfoInputRef.current) {
+    if (!clubInfoInputRef.current) throw new Error(ERROR_MESSAGE.COMMON.CURRENT_REF_ERROR);
+
+    if (validateClubInfo(clubInfoInputRef.current.value)) {
       editClub({ info: clubInfoInputRef.current.value, clubId });
+    } else if (clubInfoInputRef.current) {
+      createToast({ message: ERROR_MESSAGE.CLUB.VALIDATE_LENGTH_INFO, toastType: 'error' });
     }
   };
 
