@@ -1,17 +1,21 @@
 import { FORM_OPTION } from '@/constants/form';
 import useToast from '@/hooks/useToast';
-import { FormOption } from '@/types/event';
+import { FormOption } from '@/types/form';
 
 import { createContext } from 'react';
 import { useState } from 'react';
 
 interface FormOptionContextProps {
   selectedOptions: FormOption[];
+  description: string;
+  isManaged: boolean;
+  isSkip: boolean;
   appendOption: (options: FormOption) => void;
   deleteOption: (options: FormOption) => void;
   changeOptionTitle: (options: FormOption, title: string) => void;
-  description: string;
-  managed: boolean;
+  setDescription: (description: string) => void;
+  setIsManaged: (managed: boolean) => void;
+  setIsSkip: (skip: boolean) => void;
 }
 
 interface FormContextOptionProviderProps {
@@ -20,17 +24,24 @@ interface FormContextOptionProviderProps {
 
 const FormOptionContext = createContext<FormOptionContextProps>({
   selectedOptions: [],
+  description: '',
+  isManaged: false,
+  isSkip: false,
   appendOption: () => {},
   deleteOption: () => {},
   changeOptionTitle: () => {},
-  description: '',
-  managed: false,
+  setIsManaged: () => {},
+  setDescription: () => {},
+  setIsSkip: () => {},
 });
 
 const FormOptionContextProvider = ({ children }: FormContextOptionProviderProps) => {
   const [selectedOptions, setSelectedOptions] = useState<FormOption[]>(
     Object.values(FORM_OPTION.defaultOption),
   );
+  const [isManaged, setIsManaged] = useState<boolean>(false);
+  const [description, setDescription] = useState<string>('');
+  const [isSkip, setIsSkip] = useState<boolean>(false);
 
   const { createToast } = useToast();
 
@@ -45,7 +56,6 @@ const FormOptionContextProvider = ({ children }: FormContextOptionProviderProps)
       }),
     );
   };
-
   const changeOptionTitle = (option: FormOption, title: string) => {
     if (!validateOptionTitle(title)) return;
     setSelectedOptions((prev) =>
@@ -82,11 +92,15 @@ const FormOptionContextProvider = ({ children }: FormContextOptionProviderProps)
     <FormOptionContext.Provider
       value={{
         selectedOptions,
+        description,
+        isManaged,
+        isSkip,
         appendOption,
         deleteOption,
         changeOptionTitle,
-        description: '',
-        managed: false,
+        setIsManaged,
+        setDescription,
+        setIsSkip,
       }}
     >
       {children}
