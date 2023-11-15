@@ -12,7 +12,7 @@ const QUERY_KEY = {
 
 const useEventFormQuery = ({ eventId }: UseEventFormQuery) => {
   const { data: eventFormData } = useQuery({
-    queryKey: [QUERY_KEY, eventId],
+    queryKey: [QUERY_KEY],
     queryFn: () => getEventForm({ eventId }),
   });
 
