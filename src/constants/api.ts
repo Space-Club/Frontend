@@ -16,8 +16,7 @@ const END_POINTS = {
   ALL_EVENTS: '/events',
   POST_EVENT_APPLY: '/events/apply',
   EVENT_APPLY: '/events/forms/applications',
-  CANCEL_EVENT: ({ eventId }: { eventId: string }) => `/events/${eventId}/cancel`,
-
+  CANCEL_EVENT: ({ eventId }: { eventId: string }) => `/events/${eventId}/applications`,
   GET_SUBMITTED_FORMS: ({ eventId }: { eventId: string | number }) =>
     `events/${eventId}/forms/applications`,
 
