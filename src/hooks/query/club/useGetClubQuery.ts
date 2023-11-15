@@ -3,7 +3,7 @@ import { GetClubRequest } from '@/types/api/getClub';
 
 import { useQuery } from '@tanstack/react-query';
 
-const QUERY_KEY = {
+export const QUERY_KEY = {
   GET_CLUB: 'GET_CLUB',
 };
 
