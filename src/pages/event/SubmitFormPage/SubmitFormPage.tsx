@@ -23,7 +23,7 @@ import {
 const SubmitFormPage = () => {
   const { eventId } = useParams();
   const [forms, setForms] = useState<Question[]>([]);
-  const { applyEvent } = useEventApplyMutation();
+  const { applyEvent, isApplyLoading } = useEventApplyMutation();
   const { createToast } = useToast();
 
   if (!eventId) {
@@ -60,8 +60,8 @@ const SubmitFormPage = () => {
       createToast({ message: ERROR_MESSAGE.FORM, toastType: 'error' });
       return;
     }
-    console.log(forms);
-    applyEvent({ forms, eventId });
+
+    if (!isApplyLoading) applyEvent({ forms, eventId });
   };
 
   return (

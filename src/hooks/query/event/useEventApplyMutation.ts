@@ -9,7 +9,7 @@ const useEventApplyMutation = () => {
   const navigate = useNavigate();
   const { createToast } = useToast();
 
-  const { mutate: applyEvent } = useMutation({
+  const { mutate: applyEvent, isLoading: isApplyLoading } = useMutation({
     mutationFn: postApplyEvent,
     onSuccess: () => {
       createToast({ message: '성공적으로 신청되었습니다.', toastType: 'success' });
@@ -17,7 +17,7 @@ const useEventApplyMutation = () => {
     },
   });
 
-  return { applyEvent };
+  return { applyEvent, isApplyLoading };
 };
 
 export default useEventApplyMutation;
