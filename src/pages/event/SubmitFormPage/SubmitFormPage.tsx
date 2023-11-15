@@ -36,25 +36,18 @@ const SubmitFormPage = () => {
     const existingQuestionIndex = forms.findIndex((q) => q.optionId === question.optionId);
 
     if (existingQuestionIndex !== -1) {
-      setForms((prevForms) => {
-        const newForms = [...prevForms];
-        newForms[existingQuestionIndex] = question;
-        return newForms;
-      });
-    } else {
-      setForms((prevForms) => [...prevForms, question]);
-    }
-  };
-
-  const handleAnswer = (question: Question) => {
-    const existingQuestionIndex = forms.findIndex((q) => q.optionId === question.optionId);
-
-    if (existingQuestionIndex !== -1) {
-      setForms((prevForms) => {
-        const newForms = [...prevForms];
-        newForms[existingQuestionIndex] = question;
-        return newForms;
-      });
+      if (question.content === '') {
+        setForms((prevForms) => {
+          const newForm = prevForms.filter((answer) => answer.optionId !== question.optionId);
+          return newForm;
+        });
+      } else {
+        setForms((prevForms) => {
+          const newForms = [...prevForms];
+          newForms[existingQuestionIndex] = question;
+          return newForms;
+        });
+      }
     } else {
       setForms((prevForms) => [...prevForms, question]);
     }
@@ -67,7 +60,7 @@ const SubmitFormPage = () => {
       createToast({ message: ERROR_MESSAGE.FORM, toastType: 'error' });
       return;
     }
-
+    console.log(forms);
     applyEvent({ forms, eventId });
   };
 
