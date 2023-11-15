@@ -1,6 +1,7 @@
 import ClubMember from '@/components/ClubMember/ClubMember';
 import ClubNotices from '@/components/ClubNotices/ClubNotices';
 import CreateNoticeButton from '@/components/CreateNoticeButton/CreateNoticeButton';
+import Schedule from '@/components/Schedule/Schedule';
 import ClubBanner from '@/components/common/ClubBanner/ClubBanner';
 import Header from '@/components/common/Header/Header';
 import Tab from '@/components/common/Tab/Tab';
@@ -54,7 +55,9 @@ const ClubHomePage = () => {
             </ClubMemberWrapper>
           </ClubMemberTextedWrapper>
         </ClubMiddleWrapper>
-        <ClubHomeBottomWrapper></ClubHomeBottomWrapper>
+        <ClubHomeBottomWrapper>
+          <Schedule />
+        </ClubHomeBottomWrapper>
       </ClubHomePageContainer>
     </>
   );
