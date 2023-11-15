@@ -3,6 +3,7 @@ import InputForm from '@/components/common/InputForm/InputForm';
 import TextAreaForm from '@/components/common/TextAreaForm/TextAreaForm';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
 import useSubmitForm from '@/hooks/query/event/useSubmitForm';
+import { FormPage } from '@/types/event';
 import { validateTimeCompare, validateTodayDate } from '@/utils/validate';
 
 import { useEffect, useState } from 'react';
@@ -20,7 +21,7 @@ import {
   TwoInputContainer,
 } from '../WriteEventInfoPage.style';
 
-const PerformanceForm = () => {
+const PerformanceForm = ({ eventType, clubId }: FormPage) => {
   const {
     register,
     handleSubmit,
@@ -29,7 +30,7 @@ const PerformanceForm = () => {
   } = useForm();
   const [imgFile, setImgFile] = useState('');
   const navigate = useNavigate();
-  const { mutate: submitForm, isLoading: isSubmitLoading } = useSubmitForm();
+  const { submitForm, isSubmitLoading } = useSubmitForm({ eventType, clubId });
 
   const {
     REQUIRED_SHOW_NAME,
@@ -59,9 +60,9 @@ const PerformanceForm = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watch('poster')]);
 
-  const onPerformanceSubmitForm = (data: FieldValues) => {
-    if (isSubmitLoading) return;
-    submitForm({ data });
+  const onPerformanceSubmitForm = async (data: FieldValues) => {
+    if (isSubmitLoading || !clubId) return;
+    submitForm({ data, clubId, eventType });
   };
 
   return (

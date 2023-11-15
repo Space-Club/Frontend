@@ -1,19 +1,24 @@
 import postPerformanceForm from '@/apis/event/postPerformanceForm';
+import { PATH } from '@/constants/path';
+import { FormPage } from '@/types/event';
+
+import { useNavigate } from 'react-router-dom';
 
 import { useMutation } from '@tanstack/react-query';
 
-const useSubmitForm = () => {
-  const mutation = useMutation(postPerformanceForm, {
+const useSubmitForm = ({ eventType, clubId }: FormPage) => {
+  const navigate = useNavigate();
+
+  const { mutate: submitForm, isLoading: isSubmitLoading } = useMutation(postPerformanceForm, {
     onSuccess: (data) => {
-      console.log(data);
-      // TODO 구현 예정
+      navigate(PATH.CLUB.WRITE_FORM(clubId, data.eventId, eventType));
     },
     onError: (error) => {
       console.log(error);
       // TODO 구현 예정
     },
   });
-  return mutation;
+  return { submitForm, isSubmitLoading };
 };
 
 export default useSubmitForm;
