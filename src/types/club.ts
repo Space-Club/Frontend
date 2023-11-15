@@ -11,7 +11,7 @@ interface Club {
 }
 
 interface CreateClubFormValue {
-  image: FileList | null;
+  image: File;
   name?: string;
   info?: string;
 }

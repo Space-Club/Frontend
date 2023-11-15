@@ -14,7 +14,7 @@ const postCreateClub = async ({ name, info, image }: CreateClubFormValue) => {
   }
 
   if (image) {
-    formData.append('logoImage', image[0]);
+    formData.append('logoImage', image);
   }
 
   const { headers } = await axiosClientWithAuth.post(END_POINTS.CREATE_CLUB, formData, {
