@@ -18,6 +18,9 @@ const END_POINTS = {
   EVENT_APPLY: '/events/forms/applications',
   CANCEL_EVENT: ({ eventId }: { eventId: string }) => `/events/${eventId}/cancel`,
 
+  GET_SUBMITTED_FORMS: ({ eventId }: { eventId: string | number }) =>
+    `events/${eventId}/forms/applications`,
+
   CREATE_CLUB: '/clubs',
   INVITE_LINK: (clubId: string) => `/clubs/${clubId}/invite`,
   INVITE_CLUB_CODE: (inviteCode: string) => `/clubs/invete/${inviteCode}`,
