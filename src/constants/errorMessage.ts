@@ -47,6 +47,7 @@ const ERROR_MESSAGE = {
 
     JOIN_FAILED: '클럽 가입에 실패했습니다. ',
   },
+  FORM: '폼을 모두 완성해주세요.',
 } as const;
 
 export { ERROR_MESSAGE };
