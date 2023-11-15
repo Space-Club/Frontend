@@ -2,8 +2,8 @@ import { FORM_OPTION } from '@/constants/form';
 import useToast from '@/hooks/useToast';
 import { FormOption } from '@/types/form';
 
-import { createContext } from 'react';
-import { useState } from 'react';
+import { createContext, useCallback } from 'react';
+import { useMemo, useState } from 'react';
 
 interface FormOptionContextProps {
   selectedOptions: FormOption[];
@@ -45,18 +45,19 @@ const FormOptionContextProvider = ({ children }: FormContextOptionProviderProps)
 
   const { createToast } = useToast();
 
-  const appendOption = (option: FormOption) => {
+  const appendOption = useCallback((option: FormOption) => {
     setSelectedOptions((prev) => [...prev, option]);
-  };
+  }, []);
 
-  const deleteOption = (option: FormOption) => {
+  const deleteOption = useCallback((option: FormOption) => {
     setSelectedOptions((prev) =>
       prev.filter((prevOption) => {
         return prevOption.id !== option.id;
       }),
     );
-  };
-  const changeOptionTitle = (option: FormOption, title: string) => {
+  }, []);
+
+  const changeOptionTitle = useCallback((option: FormOption, title: string) => {
     if (!validateOptionTitle(title)) return;
     setSelectedOptions((prev) =>
       prev.map((prevOption) => {
@@ -66,7 +67,7 @@ const FormOptionContextProvider = ({ children }: FormContextOptionProviderProps)
         return prevOption;
       }),
     );
-  };
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const validateOptionTitle = (title: string) => {
     if (title === '') {
@@ -88,24 +89,23 @@ const FormOptionContextProvider = ({ children }: FormContextOptionProviderProps)
     return true;
   };
 
-  return (
-    <FormOptionContext.Provider
-      value={{
-        selectedOptions,
-        description,
-        isManaged,
-        isSkip,
-        appendOption,
-        deleteOption,
-        changeOptionTitle,
-        setIsManaged,
-        setDescription,
-        setIsSkip,
-      }}
-    >
-      {children}
-    </FormOptionContext.Provider>
+  const contextValue = useMemo(
+    () => ({
+      selectedOptions,
+      description,
+      isManaged,
+      isSkip,
+      appendOption,
+      deleteOption,
+      changeOptionTitle,
+      setIsManaged,
+      setDescription,
+      setIsSkip,
+    }),
+    [selectedOptions, description, isManaged, isSkip], // eslint-disable-line react-hooks/exhaustive-deps
   );
+
+  return <FormOptionContext.Provider value={contextValue}>{children}</FormOptionContext.Provider>;
 };
 
 export { FormOptionContextProvider, FormOptionContext };
