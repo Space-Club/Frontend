@@ -14,15 +14,15 @@ const useCancelEventMutation = () => {
   const { mutate: requestCancel } = useMutation({
     mutationFn: cancelEvent,
     onSuccess: ({ eventStatus }) => {
-      if (eventStatus === 'CANCELLED') {
-        createToast({ message: SUCCESS_MESSAGE.EVENT.CANCELLED, toastType: 'success' });
+      if (eventStatus === 'CANCELED') {
+        createToast({ message: SUCCESS_MESSAGE.EVENT.CANCELED, toastType: 'success' });
       } else if (eventStatus === 'CANCEL_REQUESTED') {
         createToast({
           message: SUCCESS_MESSAGE.EVENT.CANCEL_REQUESTED,
           toastType: 'success',
         });
       } else {
-        throw new Error('취소 요청 후 이벤트 상태가 CANCEL_REQUESTED 또는 CANCELLED가 아닙니다');
+        throw new Error('취소 요청 후 이벤트 상태가 CANCEL_REQUESTED 또는 CANCELED가 아닙니다');
       }
 
       queryClient.invalidateQueries([QUERY_KEY.APPLIED_EVENT]);

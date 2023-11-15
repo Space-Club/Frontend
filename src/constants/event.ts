@@ -13,7 +13,7 @@ const APPLIED_EVENTS_TAGS: EventTags = {
     backgroundColor: 'tSemiPurple',
     textColor: 'white',
   },
-  CANCELLED: {
+  CANCELED: {
     title: '취소확정',
     borderColor: 'tBlue',
     backgroundColor: 'tSemiBlue',

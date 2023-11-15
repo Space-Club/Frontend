@@ -1,9 +1,9 @@
 import { ButtonStyled, ButtonTextStyled } from './ApplyCancelButton.style';
 
-const ApplyCancelButton = ({ isCancelled }: { isCancelled: boolean }) => {
+const ApplyCancelButton = ({ isCanceled: isCanceled }: { isCanceled: boolean }) => {
   return (
-    <ButtonStyled isCancelled={isCancelled}>
-      <ButtonTextStyled>{isCancelled ? '취소처리 되었습니다. ' : '취소하기'}</ButtonTextStyled>
+    <ButtonStyled isCanceled={isCanceled}>
+      <ButtonTextStyled>{isCanceled ? '취소처리 되었습니다. ' : '취소하기'}</ButtonTextStyled>
     </ButtonStyled>
   );
 };

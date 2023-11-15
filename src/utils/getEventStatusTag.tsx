@@ -8,7 +8,7 @@ const getEventStatusTag = (status: string) => {
     case 'CONFIRMED':
       return <EventStatusTag eventTag={APPLIED_EVENTS_TAGS.CONFIRMED} />;
     case 'CANCELED':
-      return <EventStatusTag eventTag={APPLIED_EVENTS_TAGS.CANCELLED} />;
+      return <EventStatusTag eventTag={APPLIED_EVENTS_TAGS.CANCELED} />;
     case 'CANCEL_REQUESTED':
       return <EventStatusTag eventTag={APPLIED_EVENTS_TAGS.CANCEL_REQUESTED} />;
     default:
