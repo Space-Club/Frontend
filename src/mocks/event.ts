@@ -2,7 +2,7 @@ import { HttpResponse, http } from 'msw';
 
 import { END_POINTS } from '@constants/api';
 
-import { allEvents, appliedEvent, eventDetail } from './data/eventData';
+import { allEvents, appliedEvent, eventDetail, eventForm } from './data/eventData';
 
 const eventHandlers = [
   http.post(`${END_POINTS.PERFORMANCE_FORM}`, async () => {
@@ -31,6 +31,16 @@ const eventHandlers = [
     const { eventId } = params;
     console.log('bookmark', eventId);
     return new HttpResponse(null, { status: 200 });
+  }),
+  http.get('/events/:eventId/forms', async ({ params }) => {
+    const { eventId } = params;
+    console.log(eventId);
+    return HttpResponse.json(eventForm, { status: 200 });
+  }),
+  http.post('/events/forms/applications', async ({ request }) => {
+    const data = await request.json();
+    console.log(data);
+    return new HttpResponse(null, { status: 201 });
   }),
 ];
 

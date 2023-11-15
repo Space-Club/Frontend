@@ -15,4 +15,14 @@ interface FormInfo {
   managed: boolean;
 }
 
-export { Form, UserForm, FormInfo };
+interface Question {
+  optionId: number;
+  content: string;
+}
+
+interface postEventApplyRequest {
+  eventId: string;
+  forms: Question[];
+}
+
+export { Form, UserForm, FormInfo, Question, postEventApplyRequest };
