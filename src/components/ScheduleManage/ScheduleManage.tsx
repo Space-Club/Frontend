@@ -1,12 +1,17 @@
 import useClubSchedulesQuery from '@/hooks/query/event/useClubSchedulesQuery';
 
+import { useParams } from 'react-router-dom';
+
 import ScheduleCalendar from '../ScheduleCalendar/ScheduleCalendar';
 import Schedules from '../Schedules/Schedules';
 import { ScheduleManageContainer } from './ScheduleManage.style';
 
 const ScheduleManage = () => {
-  const { schedules } = useClubSchedulesQuery({ clubId: '1' });
-  console.log(schedules);
+  const { clubId } = useParams() as { clubId: string };
+  const { data } = useClubSchedulesQuery({ clubId });
+  if (!data) {
+    return null;
+  }
 
   return (
     <ScheduleManageContainer>

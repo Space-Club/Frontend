@@ -13,7 +13,7 @@ const useClubSchedulesQuery = ({ clubId }: GetClubSchedulesRequest) => {
     staleTime: SCHEDULES_STALE_TIME,
   });
 
-  return { schedules: data };
+  return { data };
 };
 
 export default useClubSchedulesQuery;

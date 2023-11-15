@@ -41,6 +41,10 @@ interface Schedule {
   profileImageUrl: string;
 }
 
+interface ScheduleCalendarProps {
+  schedules?: Schedule[];
+}
+
 interface GetAllEventsRequest {
   pageNumber: number;
 }
@@ -131,4 +135,5 @@ export {
   EventStatus,
   FormPage,
   Schedule,
+  ScheduleCalendarProps,
 };
