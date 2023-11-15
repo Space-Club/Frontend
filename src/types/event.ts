@@ -44,7 +44,7 @@ interface Schedule {
   profileImageUrl: string;
 }
 
-interface ScheduleCalendarProps {
+interface SchedulesProps {
   schedules?: Schedule[];
 }
 
