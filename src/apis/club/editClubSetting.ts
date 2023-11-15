@@ -17,7 +17,7 @@ const editClubSetting = async ({ name, info, image, clubId }: EditClubSettingReq
     formData.append('logoImage', image);
   }
 
-  const { headers } = await axiosClientWithAuth.post<EditClubSettingResponse>(
+  const { headers } = await axiosClientWithAuth.patch<EditClubSettingResponse>(
     END_POINTS.EDIT_CLUB_SETTING({ clubId }),
     formData,
     {
