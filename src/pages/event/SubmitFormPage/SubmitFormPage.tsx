@@ -49,6 +49,7 @@ const SubmitFormPage = () => {
         });
       }
     } else {
+      if (question.content === '') return;
       setForms((prevForms) => [...prevForms, question]);
     }
   };
