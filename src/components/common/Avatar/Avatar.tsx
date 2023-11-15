@@ -1,6 +1,8 @@
+import { InvisibleInput } from '@/styles/common';
 import { AvatarSize } from '@/types/user';
 import { getAvatarSize } from '@/utils/getAvatarSize';
 
+import { useRef } from 'react';
 import { AiFillEdit } from 'react-icons/ai';
 import { BiSolidUserCircle } from 'react-icons/bi';
 import { IoPeopleCircleSharp } from 'react-icons/io5';
@@ -18,11 +20,32 @@ interface AvatarProps extends React.HTMLAttributes<HTMLDivElement> {
   isEditable?: boolean;
   isClub?: boolean;
   pointer?: boolean;
+  onEdit?: (file: File) => void;
 }
 
-const Avatar = ({ avatarSize, profileImageSrc, isEditable, isClub, pointer }: AvatarProps) => {
+const Avatar = ({
+  avatarSize,
+  profileImageSrc,
+  isEditable,
+  isClub,
+  pointer,
+  onEdit,
+}: AvatarProps) => {
   const defaultIconSize = getAvatarSize(avatarSize);
   const editIconSize = isEditable ? (avatarSize === 'large' ? '3rem' : '1rem') : undefined;
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleEditButtonClick = () => {
+    if (inputRef.current) {
+      inputRef.current.click();
+    }
+  };
+
+  const handleInputChange = () => {
+    if (inputRef.current && inputRef.current.files && onEdit) {
+      onEdit(inputRef.current.files[0]);
+    }
+  };
 
   return (
     <div>
@@ -44,9 +67,12 @@ const Avatar = ({ avatarSize, profileImageSrc, isEditable, isClub, pointer }: Av
           </DefaultImageStyled>
         )}
         {isEditable && (
-          <EditButtonStyled avatarSize={avatarSize}>
-            <AiFillEdit size={editIconSize} />
-          </EditButtonStyled>
+          <>
+            <InvisibleInput onChange={handleInputChange} ref={inputRef} type="file" />
+            <EditButtonStyled onClick={handleEditButtonClick} avatarSize={avatarSize}>
+              <AiFillEdit size={editIconSize} />
+            </EditButtonStyled>
+          </>
         )}
       </AvatarContainerStyled>
     </div>

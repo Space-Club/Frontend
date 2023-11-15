@@ -29,7 +29,9 @@ const ClubCover = ({ coverImageUrl, isTransparent, isEditable, children }: ClubC
   };
 
   const handleEditInputChange = () => {
-    editClubSetting({ image: editInputRef.current?.files ?? null });
+    if (editInputRef.current && editInputRef.current.files) {
+      editClubSetting({ image: editInputRef.current.files[0] });
+    }
   };
 
   return (
