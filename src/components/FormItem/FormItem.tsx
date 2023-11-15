@@ -1,4 +1,4 @@
-import { SUBMIT_FORM_OPTIONS } from '@/constants/event';
+import { SUBMIT_FORM_OPTIONS } from '@/constants/form';
 import { Question } from '@/types/api/postApplyEvent';
 import { FormType } from '@/types/event';
 

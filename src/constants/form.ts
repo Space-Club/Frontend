@@ -106,6 +106,28 @@ const FORM_OPTION = {
   },
 };
 
+const SUBMIT_FORM_OPTIONS = {
+  MBTI: [
+    'ENFJ',
+    'ENFP',
+    'ENTJ',
+    'ENTP',
+    'ESFJ',
+    'ESFP',
+    'ESTJ',
+    'ESTP',
+    'INFJ',
+    'INFP',
+    'INTJ',
+    'INTP',
+    'ISFJ',
+    'ISFP',
+    'ISTJ',
+    'ISTP',
+  ],
+  GENDER: ['남', '여'],
+};
+
 export {
   PERFORMANCE_FORM_OPTION,
   PROMOTION_FORM_OPTION,
@@ -113,4 +135,5 @@ export {
   CLUB_SCHEDULE_FORM_OPTION,
   FORM_OPTION,
   FORM_STATUS_DROPDOWN_OPTIONS,
+  SUBMIT_FORM_OPTIONS,
 };
