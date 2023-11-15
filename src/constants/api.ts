@@ -20,9 +20,6 @@ const END_POINTS = {
   GET_SUBMITTED_FORMS: ({ eventId }: { eventId: string | number }) =>
     `events/${eventId}/forms/applications`,
 
-  GET_SUBMITTED_FORMS: ({ eventId }: { eventId: string | number }) =>
-    `events/${eventId}/forms/applications`,
-
   CREATE_CLUB: '/clubs',
   INVITE_LINK: (clubId: string) => `/clubs/${clubId}/invite`,
   INVITE_CLUB_CODE: (inviteCode: string) => `/clubs/invete/${inviteCode}`,
