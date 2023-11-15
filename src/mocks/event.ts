@@ -4,38 +4,9 @@ import { END_POINTS } from '@constants/api';
 
 import { allEvents, appliedEvent, eventDetail, eventForm } from './data/eventData';
 
-interface event {
-  eventName: string;
-  startTime: Date;
-  personnel: number;
-  const: number;
-  bankName: string;
-  account: string;
-  maxTicket: number;
-  formStartTime: Date;
-  formLastTime: Date;
-  poster: File;
-  eventContent: string;
-}
-
-const eventList: event[] = [];
-
 const eventHandlers = [
-  http.post(END_POINTS.PERFORMANCE_FORM, async ({ request }) => {
-    const reader = request.body?.getReader();
-    let data = '';
-
-    // eslint-disable-next-line no-constant-condition
-    while (true) {
-      const { done, value } = await reader!.read();
-
-      if (done) break;
-
-      data += new TextDecoder().decode(value);
-    }
-
-    eventList.push(JSON.parse(data));
-    return HttpResponse.json({ status: 201 });
+  http.post(`${END_POINTS.PERFORMANCE_FORM}`, async () => {
+    return HttpResponse.json({ eventId: '1' }, { status: 201 });
   }),
 
   http.get(`${END_POINTS.GET_APPLIED_EVENT}?page=$1size=10&sort=id,startDate`, async () => {

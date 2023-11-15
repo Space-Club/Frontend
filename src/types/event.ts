@@ -79,6 +79,8 @@ interface getEventDetailResponse {
   isManager: boolean;
 }
 
+type eventTypeAPI = 'SHOW' | 'PROMOTION' | 'RECRUITMENT' | 'CLUB';
+
 interface getEventFormResponse {
   event: {
     title: string;
@@ -94,14 +96,13 @@ interface getEventFormResponse {
   };
 }
 
-interface Question {
-  optionId: number;
-  content: string;
+interface postPerformanceFormResponse {
+  eventId: string;
 }
 
-interface postEventApplyRequest {
-  eventId: string;
-  forms: Question[];
+interface FormPage {
+  eventType: eventTypeAPI;
+  clubId: string;
 }
 
 export {
@@ -116,8 +117,9 @@ export {
   EventTagKey,
   EventType,
   EventTag,
-  Question,
-  postEventApplyRequest,
+  eventTypeAPI,
+  postPerformanceFormResponse,
   ProfileEventType,
   EventStatus,
+  FormPage,
 };
