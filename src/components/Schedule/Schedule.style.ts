@@ -17,12 +17,13 @@ const ScheduleTitleStyled = styled.div`
 `;
 
 const ScheduleContentWrapper = styled.div`
-  margin-top: 1rem;
+  margin-top: 0.5rem;
 `;
 
-const ScheduleContentStyled = styled.div`
+const ScheduleContentStyled = styled.span`
   color: ${Theme.color.textGrey};
   font-size: ${Theme.fontSize.mediumContent};
+  cursor: pointer;
 `;
 
 const WriterInfoWrapper = styled.div`
