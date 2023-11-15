@@ -1,4 +1,4 @@
-import usePostBookmarkMutation from '@/hooks/query/event/usePostBookmarkMutation';
+import usePatchBookmarkMutation from '@/hooks/query/event/usePatchBookmarkMutation';
 
 import { HTMLAttributes, useState } from 'react';
 import { FaBookmark, FaRegBookmark } from 'react-icons/fa';
@@ -20,11 +20,12 @@ const BookMark = ({
   ...props
 }: BookMark) => {
   const [bookmarkPaint, setBookmarkPaint] = useState(false);
-  const { postBookmarkMutate } = usePostBookmarkMutation({ eventId });
+  const { patchBookmarkMutate, isBookmarkLoading } = usePatchBookmarkMutation({ bookmarkPaint });
 
   const handleBookmarkClick = async () => {
-    postBookmarkMutate();
-    setBookmarkPaint(!bookmarkPaint);
+    if (isBookmarkLoading) return;
+    patchBookmarkMutate({ eventId, bookmark: !bookmarkPaint });
+    setBookmarkPaint((prevPaint) => !prevPaint);
   };
 
   return (

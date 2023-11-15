@@ -27,10 +27,12 @@ const eventHandlers = [
     console.log('deleteId', eventId);
     return new HttpResponse(null, { status: 204 });
   }),
-  http.post(`${END_POINTS.BOOK_MARK}/:eventId`, async ({ params }) => {
+  http.post(`/users/events/:eventId`, async ({ request, params }) => {
     const { eventId } = params;
-    console.log('bookmark', eventId);
-    return new HttpResponse(null, { status: 200 });
+    const data = await request.json();
+    console.log('bookmark', eventId, data);
+
+    return HttpResponse.json({ bookmark: true }, { status: 200 });
   }),
   http.get('/events/:eventId/forms', async ({ params }) => {
     const { eventId } = params;
