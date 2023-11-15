@@ -1,11 +1,11 @@
 import useEditClubMutation from '@/hooks/query/club/useEditClubMutation';
+import { InvisibleInput } from '@/styles/common';
 
 import { useRef } from 'react';
 
 import {
   ClubCoverContainer,
   ClubCoverEditButtonStyled,
-  ClubCoverEditInput,
   ClubCoverImage,
   ClubCoverTransparent,
 } from './ClubCover.style';
@@ -34,11 +34,11 @@ const ClubCover = ({ coverImageUrl, isTransparent, isEditable, children }: ClubC
 
   return (
     <ClubCoverContainer>
-      <ClubCoverEditInput
+      <InvisibleInput
         onChange={handleEditInputChange}
         ref={editInputRef}
         type="file"
-      ></ClubCoverEditInput>
+      ></InvisibleInput>
       <ClubCoverImage src={coverImageUrl} />
       {isTransparent && <ClubCoverTransparent />}
       {isEditable && (

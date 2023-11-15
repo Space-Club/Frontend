@@ -31,14 +31,4 @@ const ClubCoverEditButtonStyled = styled(PurpleButton)`
   font-size: 0.875rem;
 `;
 
-const ClubCoverEditInput = styled.input`
-  display: none;
-`;
-
-export {
-  ClubCoverContainer,
-  ClubCoverImage,
-  ClubCoverTransparent,
-  ClubCoverEditButtonStyled,
-  ClubCoverEditInput,
-};
+export { ClubCoverContainer, ClubCoverImage, ClubCoverTransparent, ClubCoverEditButtonStyled };
