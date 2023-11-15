@@ -3,12 +3,12 @@ import InputForm from '@/components/common/InputForm/InputForm';
 import TextAreaForm from '@/components/common/TextAreaForm/TextAreaForm';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
 import useSubmitForm from '@/hooks/query/event/useSubmitForm';
-import { eventTypeAPI } from '@/types/event';
+import { FormPage } from '@/types/event';
 import { validateTimeCompare, validateTodayDate } from '@/utils/validate';
 
 import { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import {
   ButtonWrapper,
@@ -21,7 +21,7 @@ import {
   TwoInputContainer,
 } from '../WriteEventInfoPage.style';
 
-const PerformanceForm = () => {
+const PerformanceForm = ({ eventType, clubId }: FormPage) => {
   const {
     register,
     handleSubmit,
@@ -30,9 +30,7 @@ const PerformanceForm = () => {
   } = useForm();
   const [imgFile, setImgFile] = useState('');
   const navigate = useNavigate();
-  const { clubId } = useParams();
-  const searchParmas = useSearchParams();
-  const { submitForm, isSubmitLoading } = useSubmitForm();
+  const { submitForm, isSubmitLoading } = useSubmitForm({ eventType, clubId });
 
   const {
     REQUIRED_SHOW_NAME,
@@ -63,7 +61,6 @@ const PerformanceForm = () => {
   }, [watch('poster')]);
 
   const onPerformanceSubmitForm = async (data: FieldValues) => {
-    const eventType = searchParmas[0].get('event')?.toUpperCase() as eventTypeAPI;
     if (isSubmitLoading || !clubId) return;
     submitForm({ data, clubId, eventType });
   };

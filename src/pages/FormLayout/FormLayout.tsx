@@ -17,7 +17,7 @@ const FormLayout = () => {
     if (path.endsWith('/choice')) {
       setTitle('행사의 분류를 선택하세요.');
     } else if (path.endsWith('/writeinfo')) {
-      if (eventType === 'performance') {
+      if (eventType === 'show') {
         setTitle('아래의 공연 정보를 입력해주세요.');
       } else if (eventType === 'promotion') {
         setTitle('아래의 행사 정보를 입력해주세요.');

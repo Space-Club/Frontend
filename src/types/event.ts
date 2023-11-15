@@ -99,6 +99,11 @@ interface postPerformanceFormResponse {
   eventId: string;
 }
 
+interface FormPage {
+  eventType: eventTypeAPI;
+  clubId: string;
+}
+
 export {
   getEventFormResponse,
   GetAllEventsRequest,
@@ -115,4 +120,5 @@ export {
   postPerformanceFormResponse,
   ProfileEventType,
   EventStatus,
+  FormPage,
 };

@@ -1,20 +1,16 @@
 import postPerformanceForm from '@/apis/event/postPerformanceForm';
 import { PATH } from '@/constants/path';
-import { eventTypeAPI } from '@/types/event';
+import { FormPage } from '@/types/event';
 
-import { useNavigate, useParams, useSearchParams } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { useMutation } from '@tanstack/react-query';
 
-const useSubmitForm = () => {
+const useSubmitForm = ({ eventType, clubId }: FormPage) => {
   const navigate = useNavigate();
-  const { clubId } = useParams();
-  const searchParmas = useSearchParams();
-  const eventType = searchParmas[0].get('event')?.toUpperCase() as eventTypeAPI;
 
   const { mutate: submitForm, isLoading: isSubmitLoading } = useMutation(postPerformanceForm, {
     onSuccess: (data) => {
-      if (!clubId) throw new Error('clubId가 없습니다.');
       navigate(PATH.CLUB.WRITE_FORM(clubId, data.eventId, eventType));
     },
     onError: (error) => {
