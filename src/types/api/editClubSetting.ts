@@ -1,6 +1,7 @@
 interface EditClubSettingRequest {
   clubId: string;
-  image?: File;
+  logoImage?: File;
+  coverImage?: File;
   name?: string;
   info?: string;
 }

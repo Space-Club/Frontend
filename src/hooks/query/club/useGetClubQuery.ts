@@ -10,7 +10,7 @@ export const QUERY_KEY = {
 const useGetClubQuery = ({ clubId }: GetClubRequest) => {
   const { data: clubInfo, refetch } = useQuery({
     queryFn: () => getClub({ clubId }),
-    queryKey: [QUERY_KEY],
+    queryKey: [QUERY_KEY.GET_CLUB],
   });
   return { clubInfo, refetch };
 };

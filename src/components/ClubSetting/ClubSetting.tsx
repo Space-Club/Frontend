@@ -17,20 +17,20 @@ interface ClubSettingProps {
 }
 
 const ClubSetting = ({ clubId }: ClubSettingProps) => {
-  const { clubInfo } = useGetClubQuery({ clubId });
-  const { editClub } = useEditClubMutation();
   const { createToast } = useToast();
+  const { editClub } = useEditClubMutation();
+  const { clubInfo } = useGetClubQuery({ clubId });
 
   const clubNameInputRef = useRef<HTMLInputElement>(null);
   const clubInfoInputRef = useRef<HTMLInputElement>(null);
 
   const handleCoverImageEdit = (file: File) => {
-    editClub({ image: file, clubId });
+    editClub({ coverImage: file, clubId });
   };
 
-  // const handleAvatarImageEdit = (file: File) => {
-  //   editClub({ logoImage: file, clubId });
-  // };
+  const handleAvatarImageEdit = (file: File) => {
+    editClub({ logoImage: file, clubId });
+  };
 
   const handleClubNameEdit = () => {
     if (!clubNameInputRef.current) throw new Error(ERROR_MESSAGE.COMMON.CURRENT_REF_ERROR);
@@ -53,22 +53,23 @@ const ClubSetting = ({ clubId }: ClubSettingProps) => {
   };
 
   if (!clubInfo) return null;
+  const { coverImageUrl, logoImageUrl, info, name } = clubInfo;
 
   return (
     <>
       <Avatar
         avatarSize="medium"
         isClub={true}
-        profileImageSrc={clubInfo.logoImageUrl}
+        profileImageSrc={logoImageUrl}
         isEditable
-        // onEdit={handleImageEdit}
+        onEdit={handleAvatarImageEdit}
       />
-      <InputForm ref={clubNameInputRef} labelText="클럽이름" inputType="text" />
+      <InputForm placeholder={name} ref={clubNameInputRef} labelText="클럽이름" inputType="text" />
       <PurpleButton onClick={handleClubNameEdit}>수정</PurpleButton>
-      <InputForm ref={clubInfoInputRef} labelText="클럽소개" inputType="text" />
+      <InputForm placeholder={info} ref={clubInfoInputRef} labelText="클럽소개" inputType="text" />
       <PurpleButton onClick={handleClubInfoEdit}>수정</PurpleButton>
       <ClubCover
-        coverImageUrl={clubInfo.logoImageUrl}
+        coverImageUrl={coverImageUrl}
         clubId={clubId}
         isEditable
         onEdit={handleCoverImageEdit}

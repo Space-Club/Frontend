@@ -2,7 +2,13 @@ import { axiosClientWithAuth } from '@/apis/axiosClient';
 import { END_POINTS } from '@/constants/api';
 import { EditClubSettingRequest, EditClubSettingResponse } from '@/types/api/editClubSetting';
 
-const editClubSetting = async ({ name, info, image, clubId }: EditClubSettingRequest) => {
+const editClubSetting = async ({
+  name,
+  info,
+  logoImage,
+  coverImage,
+  clubId,
+}: EditClubSettingRequest) => {
   const dataTransform = {
     name,
     info,
@@ -13,8 +19,12 @@ const editClubSetting = async ({ name, info, image, clubId }: EditClubSettingReq
     formData.append('request', blobRequest);
   }
 
-  if (image) {
-    formData.append('logoImage', image);
+  if (logoImage) {
+    formData.append('logoImage', logoImage);
+  }
+
+  if (coverImage) {
+    formData.append('coverImage', coverImage);
   }
 
   const { headers } = await axiosClientWithAuth.patch<EditClubSettingResponse>(
