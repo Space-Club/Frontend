@@ -12,7 +12,7 @@ const FormLengthStyled = styled.div`
 `;
 
 const SubmittedFormsWrapper = styled.div`
-  overflow-x: scroll;
+  overflow-x: auto;
   width: 100%;
 `;
 
