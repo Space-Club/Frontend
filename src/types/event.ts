@@ -32,6 +32,15 @@ interface Event {
   clubLogoImageUrl: string;
 }
 
+interface Schedule {
+  eventId: string;
+  title: string;
+  startDateTime: string;
+  endDateTime: string;
+  manager: string;
+  profileImageUrl: string;
+}
+
 interface GetAllEventsRequest {
   pageNumber: number;
 }
@@ -121,4 +130,5 @@ export {
   ProfileEventType,
   EventStatus,
   FormPage,
+  Schedule,
 };
