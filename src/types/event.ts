@@ -44,6 +44,10 @@ interface Schedule {
   profileImageUrl: string;
 }
 
+interface ScheduleCalendarProps {
+  schedules?: Schedule[];
+}
+
 interface BookmarkedEvent
   extends Pick<Event, 'id' | 'title' | 'location' | 'clubName' | 'posterImageUrl' | 'startDate'> {
   bookmark: boolean;

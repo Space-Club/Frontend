@@ -39,3 +39,32 @@ const ScheduleCalendar = ({ schedules }: SchedulesProps) => {
 };
 
 export default ScheduleCalendar;
+
+const DUMMY = {
+  schedules: [
+    {
+      eventId: '3',
+      title: '가나다',
+      startDateTime: '2023-10-24T23:41:30',
+      endDateTime: '2023-10-26T23:41:30',
+      manager: '행사 생성자 이름',
+      profileImageUrl: 'profileImageUrl',
+    },
+    {
+      eventId: '4',
+      title: '라마바',
+      startDateTime: '2023-10-26T23:41:30',
+      endDateTime: '2023-10-26T23:41:30',
+      manager: '행사 생성자 이름',
+      profileImageUrl: 'profileImageUrl',
+    },
+    {
+      eventId: '5',
+      title: '사아자',
+      startDateTime: '2023-10-27T23:41:30',
+      endDateTime: '2023-10-29T23:41:30',
+      manager: '행사 생성자 이름',
+      profileImageUrl: 'profileImageUrl',
+    },
+  ],
+};
