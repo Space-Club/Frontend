@@ -13,8 +13,8 @@ const APPLIED_EVENTS_TAGS: EventTags = {
     backgroundColor: 'tSemiPurple',
     textColor: 'white',
   },
-  CANCELLED: {
-    title: '취소확정',
+  CANCELED: {
+    title: '취소완료',
     borderColor: 'tBlue',
     backgroundColor: 'tSemiBlue',
     textColor: 'white',
@@ -54,4 +54,26 @@ const EVENT_DETAIL_BUTTON = {
   apply: '참여 신청하기',
 };
 
-export { APPLIED_EVENTS_TAGS, EVENT_DETAIL, EVENT_DETAIL_BUTTON };
+const SUBMIT_FORM_OPTIONS = {
+  MBTI: [
+    'ENFJ',
+    'ENFP',
+    'ENTJ',
+    'ENTP',
+    'ESFJ',
+    'ESFP',
+    'ESTJ',
+    'ESTP',
+    'INFJ',
+    'INFP',
+    'INTJ',
+    'INTP',
+    'ISFJ',
+    'ISFP',
+    'ISTJ',
+    'ISTP',
+  ],
+  GENDER: ['남', '여'],
+};
+
+export { APPLIED_EVENTS_TAGS, EVENT_DETAIL, EVENT_DETAIL_BUTTON, SUBMIT_FORM_OPTIONS };

@@ -9,7 +9,7 @@ const appliedEvent: GetAppliedEventResponse = {
       clubName: 'test',
       startDate: '2021-10-10',
       location: 'test',
-      status: 'CANCELLED',
+      status: 'CANCELED',
       posterImageUrl:
         'https://english.seoul.go.kr/wp-content/uploads/2022/09/working-seoul-poster-214x300.jpg',
     },
@@ -19,7 +19,7 @@ const appliedEvent: GetAppliedEventResponse = {
       clubName: 'test',
       startDate: '2021-10-10',
       location: 'test',
-      status: 'CANCELLED',
+      status: 'CANCELED',
       posterImageUrl: 'https://www.europosters.ie/image/framed/750/115398_modenacerna.jpg',
     },
   ],
@@ -124,4 +124,55 @@ const eventDetail: getEventDetailResponse = {
   isManager: true,
 };
 
-export { appliedEvent, allEvents, eventDetail };
+const eventForm = {
+  event: {
+    title: '행사 제목',
+  },
+  form: {
+    description: '폼 정보',
+    options: [
+      {
+        id: 1,
+        title: '이름',
+        type: 'TEXT',
+      },
+      {
+        id: 2,
+        title: '연락처',
+        type: 'TEXT',
+      },
+      {
+        id: 3,
+        title: '나이',
+        type: 'NUMBER',
+      },
+      {
+        id: 4,
+        title: '성별',
+        type: 'RADIO',
+      },
+      {
+        id: 5,
+        title: '학교/학과/재학여부',
+        type: 'TEXT',
+      },
+      {
+        id: 6,
+        title: 'MBTI',
+        type: 'SELECT',
+      },
+      {
+        id: 7,
+        title: '자기소개',
+        type: 'TEXT',
+      },
+      {
+        id: 8,
+        title: '입금자명',
+        type: 'TEXT',
+      },
+    ],
+  },
+};
+
+export { appliedEvent, allEvents, eventDetail, eventForm };

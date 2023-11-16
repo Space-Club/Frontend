@@ -1,4 +1,10 @@
+import { DropDownOption } from '@/components/common/DropDown/DropDown';
 import { FormOption, FormOptionButtonText } from '@/types/form';
+
+const FORM_STATUS_DROPDOWN_OPTIONS: DropDownOption[] = [
+  { value: 'SELECT', label: '선택' },
+  { value: 'CONFIRM', label: '확인' },
+];
 
 const NAME: FormOption = {
   id: 'name',
@@ -106,6 +112,27 @@ const FORM_OPTION_BUTTON_TEXT: FormOptionButtonText = {
   recruitment: '모집공고 올리기',
   clubSchedule: '일정 등록하기',
 };
+const SUBMIT_FORM_OPTIONS = {
+  MBTI: [
+    'ENFJ',
+    'ENFP',
+    'ENTJ',
+    'ENTP',
+    'ESFJ',
+    'ESFP',
+    'ESTJ',
+    'ESTP',
+    'INFJ',
+    'INFP',
+    'INTJ',
+    'INTP',
+    'ISFJ',
+    'ISFP',
+    'ISTJ',
+    'ISTP',
+  ],
+  GENDER: ['남', '여'],
+};
 
 export {
   PERFORMANCE_FORM_OPTION,
@@ -114,4 +141,6 @@ export {
   CLUB_SCHEDULE_FORM_OPTION,
   FORM_OPTION,
   FORM_OPTION_BUTTON_TEXT,
+  FORM_STATUS_DROPDOWN_OPTIONS,
+  SUBMIT_FORM_OPTIONS,
 };

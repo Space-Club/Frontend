@@ -1,5 +1,16 @@
 import FormItem from '@/components/FormItem/FormItem';
-import { getEventFormResponse } from '@/types/event';
+import SearchInputForm from '@/components/SearchInputForm/SearchInputForm';
+import Header from '@/components/common/Header/Header';
+import Tab from '@/components/common/Tab/Tab';
+import { ERROR_MESSAGE } from '@/constants/errorMessage';
+import { MAIN_TABS } from '@/constants/tab';
+import useEventApplyMutation from '@/hooks/query/event/useEventApplyMutation';
+import useEventFormQuery from '@/hooks/query/event/useEventFormQuery';
+import useToast from '@/hooks/useToast';
+import { Question } from '@/types/forms';
+
+import { MouseEvent, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 import {
   FormWrapper,
@@ -10,57 +21,63 @@ import {
 } from './SubmitFormPage.style';
 
 const SubmitFormPage = () => {
-  const mockData = {
-    event: {
-      title: '행사 제목',
-    },
-    form: {
-      description: '폼 정보',
-      options: [
-        {
-          id: 1,
-          title: '이름',
-          type: 'TEXT',
-        },
-        {
-          id: 2,
-          title: '연락처',
-          type: 'TEXT',
-        },
-      ],
-    },
-  } as getEventFormResponse;
-  const mbti = [
-    'ENFJ',
-    'ENFP',
-    'ENTJ',
-    'ENTP',
-    'ESFJ',
-    'ESFP',
-    'ESTJ',
-    'ESTP',
-    'INFJ',
-    'INFP',
-    'INTJ',
-    'INTP',
-    'ISFJ',
-    'ISFP',
-    'ISTJ',
-    'ISTP',
-  ]; // 임시 데이터
-  const gender = ['남자', '여자']; // 임시데이터
+  const { eventId } = useParams();
+  const [forms, setForms] = useState<Question[]>([]);
+  const { applyEvent, isApplyLoading } = useEventApplyMutation();
+  const { createToast } = useToast();
+
+  if (!eventId) {
+    throw new Error('eventId is null');
+  }
+
+  const eventFormData = useEventFormQuery({ eventId });
+
+  const handleAnswer = (question: Question) => {
+    const existingQuestionIndex = forms.findIndex((q) => q.optionId === question.optionId);
+
+    if (existingQuestionIndex !== -1) {
+      if (question.content === '') {
+        setForms((prevForms) => {
+          const newForm = prevForms.filter((answer) => answer.optionId !== question.optionId);
+          return newForm;
+        });
+      } else {
+        setForms((prevForms) => {
+          const newForms = [...prevForms];
+          newForms[existingQuestionIndex] = question;
+          return newForms;
+        });
+      }
+    } else {
+      if (question.content === '') return;
+      setForms((prevForms) => [...prevForms, question]);
+    }
+  };
+
+  const handleSubmitForm = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    if (eventFormData?.form.options.length !== forms.length) {
+      createToast({ message: ERROR_MESSAGE.FORM.COMPLETE, toastType: 'error' });
+      return;
+    }
+
+    if (!isApplyLoading) applyEvent({ forms, eventId });
+  };
 
   return (
     <SubmitFormContainer>
-      <SubmitFormTitle>{mockData.event.title}</SubmitFormTitle>
-      <SubmitFormContent>{mockData.form.description}</SubmitFormContent>
+      <Header>
+        <SearchInputForm />
+        <Tab tabItems={MAIN_TABS} />
+      </Header>
+      <SubmitFormTitle>{eventFormData?.event.title}</SubmitFormTitle>
+      <SubmitFormContent>{eventFormData?.form.description}</SubmitFormContent>
       <FormWrapper>
-        {mockData.form.options.map(({ id, title, type }) => (
-          <FormItem id={id} title={title} type={type} />
+        {eventFormData?.form.options.map(({ id, title, type, option }) => (
+          <FormItem id={id} title={title} type={type} options={option} onAnswer={handleAnswer} />
         ))}
-        <FormItem id={3} title="MBTI" type="SELECT" options={mbti} />
-        <FormItem id={4} title="성별" type="RADIO" options={gender} />
-        <SubmitButton>신청 폼 제출하기</SubmitButton>
+        <SubmitButton onClick={handleSubmitForm}>신청 폼 제출하기</SubmitButton>
       </FormWrapper>
     </SubmitFormContainer>
   );

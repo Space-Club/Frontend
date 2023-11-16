@@ -2,7 +2,7 @@ import Theme from '@/styles/Theme';
 
 import { FormType } from './form';
 
-type EventStatus = 'CONFIRMED' | 'PENDING' | 'CANCEL_REQUESTED' | 'CANCELLED';
+type EventStatus = 'CONFIRMED' | 'PENDING' | 'CANCEL_REQUESTED' | 'CANCELED';
 
 type EventTagKey = 'publicEvent' | 'clubOnlyEvent' | EventStatus;
 
@@ -72,6 +72,8 @@ interface getEventDetailResponse {
   isManager: boolean;
 }
 
+type eventTypeAPI = 'SHOW' | 'PROMOTION' | 'RECRUITMENT' | 'CLUB';
+
 interface getEventFormResponse {
   event: {
     title: string;
@@ -82,8 +84,18 @@ interface getEventFormResponse {
       id: number;
       title: string;
       type: FormType;
+      option?: string[];
     }[];
   };
+}
+
+interface postPerformanceFormResponse {
+  eventId: string;
+}
+
+interface FormPage {
+  eventType: eventTypeAPI;
+  clubId: string;
 }
 
 export {
@@ -96,6 +108,9 @@ export {
   EventTagKey,
   EventType,
   EventTag,
+  eventTypeAPI,
+  postPerformanceFormResponse,
   ProfileEventType,
   EventStatus,
+  FormPage,
 };
