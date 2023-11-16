@@ -2,7 +2,7 @@ import { forwardRef } from 'react';
 
 import { InputStyled, InputWrapper, LabelStyled, RequiredSquare } from './InputForm.style';
 
-interface InputForm {
+interface InputForm extends React.InputHTMLAttributes<HTMLInputElement> {
   labelText?: string;
   required?: boolean;
   inputType: 'date' | 'file' | 'number' | 'search' | 'tel' | 'text' | 'time' | 'datetime-local';
