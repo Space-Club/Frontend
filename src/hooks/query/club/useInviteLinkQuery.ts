@@ -1,4 +1,5 @@
 import postInviteLink from '@/apis/club/postInviteLink';
+import { SPACECLUB_BASE_URL } from '@/constants/api';
 
 import { useParams } from 'react-router-dom';
 
@@ -13,7 +14,9 @@ const useInviteLinkQuery = () => {
     },
   });
 
-  return { data, refetch };
+  const inviteLink = `${SPACECLUB_BASE_URL}` + data.inviteLink.split('/api/v1')[1];
+
+  return { inviteLink, refetch };
 };
 
 export default useInviteLinkQuery;
