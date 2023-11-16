@@ -7,7 +7,7 @@ export const QUERY_KEY = { CLUB_NOTICE: 'CLUB_NOTICE' };
 
 const useGetClubNoticeQuery = ({ clubId }: GetClubNoticeRequest) => {
   const { data } = useQuery({
-    queryKey: [QUERY_KEY.CLUB_NOTICE],
+    queryKey: [QUERY_KEY.CLUB_NOTICE, clubId],
     queryFn: () => getClubNotice({ clubId }),
   });
 
