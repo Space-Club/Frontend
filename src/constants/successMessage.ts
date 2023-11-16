@@ -6,6 +6,9 @@ const SUCCESS_MESSAGE = {
   FORM: {
     POST_OPTION: '등록을 완료했습니다!',
   },
+  CLUB: {
+    JOIN: '가입이 완료되었습니다.',
+  },
 } as const;
 
 export { SUCCESS_MESSAGE };
