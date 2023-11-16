@@ -1,5 +1,7 @@
 import Theme from '@/styles/Theme';
 
+import { PageData } from './common';
+
 type EventStatus = 'CONFIRMED' | 'PENDING' | 'CANCEL_REQUESTED' | 'CANCELED';
 
 type EventTagKey = 'publicEvent' | 'clubOnlyEvent' | EventStatus;
@@ -47,14 +49,7 @@ interface GetAllEventsResponse {
     clubName: string;
     clubImage: string;
   }[];
-  pageData: {
-    first: boolean;
-    last: boolean;
-    pageNumber: number;
-    size: number;
-    totalPage: number;
-    totalElement: number;
-  };
+  pageData: PageData;
 }
 
 interface FormOption {
