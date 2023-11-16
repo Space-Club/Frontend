@@ -40,6 +40,8 @@ const END_POINTS = {
     `/clubs/${clubId}/notices/${noticeId}`,
   DELETE_CLUB_NOTICE: ({ clubId, noticeId }: { clubId: string; noticeId: string }) =>
     `/clubs/${clubId}/notices/${noticeId}`,
+
+  POST_FORM_OPTION: `/events/forms`,
 } as const;
 
 export { SPACECLUB_BASE_URL, NETWORK_TIMEOUT, END_POINTS };
