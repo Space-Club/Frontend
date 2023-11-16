@@ -1,42 +1,36 @@
 import usePatchBookmarkMutation from '@/hooks/query/event/usePatchBookmarkMutation';
 
-import { HTMLAttributes, useState } from 'react';
+import { HTMLAttributes, forwardRef, useState } from 'react';
 import { FaBookmark, FaRegBookmark } from 'react-icons/fa';
 
-import { SemiPurpleButton } from './BookMark.style';
-
-interface BookMark extends HTMLAttributes<HTMLButtonElement> {
-  reverse?: boolean;
+interface BookMark extends HTMLAttributes<HTMLDivElement> {
+  bookmarked: boolean;
   size?: number;
   strokeWidth?: number;
   eventId: string;
 }
 
-const BookMark = ({
-  reverse = false,
-  size = 30,
-  strokeWidth = 10,
-  eventId,
-  ...props
-}: BookMark) => {
-  const [bookmarkPaint, setBookmarkPaint] = useState(false);
-  const { patchBookmarkMutate, isBookmarkLoading } = usePatchBookmarkMutation({ bookmarkPaint });
+const BookMark = forwardRef<HTMLDivElement, BookMark>(
+  ({ bookmarked, size = 30, strokeWidth = 10, eventId, ...props }, ref) => {
+    const [bookmarkPaint, setBookmarkPaint] = useState(bookmarked);
+    const { patchBookmarkMutate, isBookmarkLoading } = usePatchBookmarkMutation({ bookmarkPaint });
 
-  const handleBookmarkClick = async () => {
-    if (isBookmarkLoading) return;
-    patchBookmarkMutate({ eventId, bookmark: !bookmarkPaint });
-    setBookmarkPaint((prevPaint) => !prevPaint);
-  };
+    const handleBookmarkClick = async () => {
+      if (isBookmarkLoading) return;
+      patchBookmarkMutate({ eventId, bookmark: !bookmarkPaint });
+      setBookmarkPaint((prevPaint) => !prevPaint);
+    };
 
-  return (
-    <SemiPurpleButton reverse={reverse} onClick={handleBookmarkClick} {...props}>
-      {bookmarkPaint ? (
-        <FaBookmark size={size} strokeWidth={strokeWidth} />
-      ) : (
-        <FaRegBookmark size={size} strokeWidth={strokeWidth} />
-      )}
-    </SemiPurpleButton>
-  );
-};
+    return (
+      <div ref={ref} onClick={handleBookmarkClick} {...props}>
+        {bookmarkPaint ? (
+          <FaBookmark size={size} strokeWidth={strokeWidth} />
+        ) : (
+          <FaRegBookmark size={size} strokeWidth={strokeWidth} />
+        )}
+      </div>
+    );
+  },
+);
 
 export default BookMark;

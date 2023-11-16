@@ -1,6 +1,6 @@
 import ConfirmModal from '@/components/Modals/ConfirmModal';
+import { SemiPurpleButton } from '@/components/SemiPurpleButton/SemiPurpleButton.style';
 import BookMark from '@/components/common/BookMark/BookMark';
-import { SemiPurpleButton } from '@/components/common/BookMark/BookMark.style';
 import Poster from '@/components/common/Poster/Poster';
 import { EVENT_DETAIL, EVENT_DETAIL_BUTTON } from '@/constants/event';
 import { MODAL_BUTTON_TEXT, MODAL_TEXT } from '@/constants/modalMessage';
@@ -10,6 +10,7 @@ import usePostEventApplyMutation from '@/hooks/query/event/usePostEventApplyMuta
 import useModal from '@/hooks/useModal';
 import { getStorage } from '@/utils/localStorage';
 
+import { useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import {
@@ -26,6 +27,7 @@ import {
 } from './EventDetailPage.style';
 
 const EventDetailPage = () => {
+  const bookmarkRef = useRef<HTMLDivElement>(null);
   const { eventId } = useParams();
   const navigate = useNavigate();
   const { showModal, modalOpen, modalClose } = useModal();
@@ -123,7 +125,9 @@ const EventDetailPage = () => {
                   <SemiPurpleButton onClick={() => modalOpen()}>
                     {EVENT_DETAIL_BUTTON.apply}
                   </SemiPurpleButton>
-                  <BookMark reverse eventId={eventId} />
+                  <SemiPurpleButton reverse bold onClick={() => bookmarkRef.current?.click()}>
+                    <BookMark bookmarked={true!} eventId={eventId} ref={bookmarkRef} />
+                  </SemiPurpleButton>
                 </ButtonWrapper>
               )}
             </DetailContentWrapper>
