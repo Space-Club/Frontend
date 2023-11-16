@@ -30,8 +30,13 @@ const EventDetailPage = () => {
   const bookmarkRef = useRef<HTMLDivElement>(null);
   const { eventId } = useParams();
   const navigate = useNavigate();
-  const { showModal, modalOpen, modalClose } = useModal();
   const token = getStorage('token');
+
+  const {
+    showModal: showApplyModal,
+    modalOpen: applyModalOpen,
+    modalClose: applyModalClose,
+  } = useModal();
 
   if (!eventId) {
     throw new Error('eventId is null'); //TODO: eventId가 없을 때 처리
@@ -71,11 +76,11 @@ const EventDetailPage = () => {
     <div>
       {!isEventDetailLoading && (
         <>
-          {showModal && (
+          {showApplyModal && (
             <ConfirmModal //#TODO: Alert 모달이 더 잘 어울림
               message={MODAL_TEXT.EVENT_APPLY}
               confirmLabel={MODAL_BUTTON_TEXT.CONFIRM}
-              onClose={modalClose}
+              onClose={applyModalClose}
               onConfirm={() => applyEvent({ eventId })}
             />
           )}
@@ -122,11 +127,11 @@ const EventDetailPage = () => {
               </div>
               {!!token && (
                 <ButtonWrapper>
-                  <SemiPurpleButton onClick={() => modalOpen()}>
+                  <SemiPurpleButton onClick={() => applyModalOpen()}>
                     {EVENT_DETAIL_BUTTON.apply}
                   </SemiPurpleButton>
                   <SemiPurpleButton reverse bold onClick={() => bookmarkRef.current?.click()}>
-                    <BookMark bookmarked={true!} eventId={eventId} ref={bookmarkRef} />
+                    <BookMark bookmarked={false} eventId={eventId} ref={bookmarkRef} />
                   </SemiPurpleButton>
                 </ButtonWrapper>
               )}

@@ -22,13 +22,15 @@ const BookMark = forwardRef<HTMLDivElement, BookMark>(
     };
 
     return (
-      <div ref={ref} onClick={handleBookmarkClick} {...props}>
-        {bookmarkPaint ? (
-          <FaBookmark size={size} strokeWidth={strokeWidth} />
-        ) : (
-          <FaRegBookmark size={size} strokeWidth={strokeWidth} />
-        )}
-      </div>
+      <>
+        <div ref={ref} onClick={handleBookmarkClick} {...props}>
+          {bookmarkPaint ? (
+            <FaBookmark size={size} strokeWidth={strokeWidth} />
+          ) : (
+            <FaRegBookmark size={size} strokeWidth={strokeWidth} />
+          )}
+        </div>
+      </>
     );
   },
 );

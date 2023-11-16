@@ -12,8 +12,13 @@ const usePatchBookmarkMutation = ({ bookmarkPaint }: UsePatchBookmarkMutation) =
   const { mutate: patchBookmarkMutate, isLoading: isBookmarkLoading } = useMutation({
     mutationFn: patchEventBookmark,
     onSuccess: () => {
-      if (!bookmarkPaint) createToast({ message: '행사를 북마크했습니다.', toastType: 'info' });
-      else createToast({ message: '행사 북마크를 취소하셨습니다.', toastType: 'info' });
+      if (bookmarkPaint) createToast({ message: '행사를 북마크했습니다.', toastType: 'info' });
+      else createToast({ message: '행사 북마크를 취소했습니다.', toastType: 'info' });
+    },
+    onError: () => {
+      if (bookmarkPaint)
+        createToast({ message: '행사를 북마크에 실패했습니다.', toastType: 'error' });
+      else createToast({ message: '행사 북마크 취소에 실패했습니다.', toastType: 'error' });
     },
   });
 
