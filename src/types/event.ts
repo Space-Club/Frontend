@@ -1,12 +1,11 @@
 import Theme from '@/styles/Theme';
+import { FormType } from '@/types/form';
 
 type EventStatus = 'CONFIRMED' | 'PENDING' | 'CANCEL_REQUESTED' | 'CANCELED';
 
 type EventTagKey = 'publicEvent' | 'clubOnlyEvent' | EventStatus;
 
 type EventType = 'performance' | 'promotion' | 'recruitment' | 'clubSchedule';
-
-type FormType = 'RADIO' | 'TEXT' | 'SELECT' | 'NUMBER';
 
 type ProfileEventType = 'applied' | 'bookmark';
 
@@ -70,13 +69,6 @@ interface GetAllEventsResponse {
   };
 }
 
-interface FormOption {
-  id: string;
-  title: string;
-  type: FormType;
-  visible: boolean;
-}
-
 interface getEventDetailResponse {
   title: string;
   posterImageUrl: string;
@@ -123,8 +115,6 @@ export {
   GetAllEventsRequest,
   GetAllEventsResponse,
   getEventDetailResponse,
-  FormType,
-  FormOption,
   Event,
   EventTags,
   EventTagKey,

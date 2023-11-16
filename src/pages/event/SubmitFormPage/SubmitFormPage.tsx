@@ -58,7 +58,7 @@ const SubmitFormPage = () => {
     e.preventDefault();
 
     if (eventFormData?.form.options.length !== forms.length) {
-      createToast({ message: ERROR_MESSAGE.FORM, toastType: 'error' });
+      createToast({ message: ERROR_MESSAGE.FORM.COMPLETE, toastType: 'error' });
       return;
     }
 
