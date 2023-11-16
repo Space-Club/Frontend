@@ -1,6 +1,11 @@
 import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
+const EventDetailPageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
 const FormButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -52,6 +57,7 @@ const EventContent = styled.div`
 `;
 
 export {
+  EventDetailPageContainer,
   FormButtonWrapper,
   PurpleButton,
   UpdateDeleteWrapper,

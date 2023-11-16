@@ -1,9 +1,13 @@
 import ConfirmModal from '@/components/Modals/ConfirmModal';
+import SearchInputForm from '@/components/SearchInputForm/SearchInputForm';
 import { SemiPurpleButton } from '@/components/SemiPurpleButton/SemiPurpleButton.style';
 import BookMark from '@/components/common/BookMark/BookMark';
+import Header from '@/components/common/Header/Header';
 import Poster from '@/components/common/Poster/Poster';
+import Tab from '@/components/common/Tab/Tab';
 import { EVENT_DETAIL, EVENT_DETAIL_BUTTON } from '@/constants/event';
 import { MODAL_BUTTON_TEXT, MODAL_TEXT } from '@/constants/modalMessage';
+import { MAIN_TABS } from '@/constants/tab';
 import useDeleteEventMutation from '@/hooks/query/event/useDeleteEventMutation';
 import useEventDetailQuery from '@/hooks/query/event/useEventDetailQuery';
 import usePostEventApplyMutation from '@/hooks/query/event/usePostEventApplyMutation';
@@ -18,6 +22,7 @@ import {
   ContentLabel,
   DetailContentWrapper,
   EventContent,
+  EventDetailPageContainer,
   EventDetailWrapper,
   EventTitle,
   FormButtonWrapper,
@@ -43,10 +48,10 @@ const EventDetailPage = () => {
   }
 
   const { eventDetail, isEventDetailLoading } = useEventDetailQuery({ eventId });
-  const { deleteEventMutate } = useDeleteEventMutation({ eventId });
 
   const { applyEvent } = usePostEventApplyMutation();
   // TODO: 수정하기 버튼 클릭시, 게시물 수정 페이지로 이동
+  const { deleteEventMutate } = useDeleteEventMutation({ eventId });
 
   const {
     title,
@@ -73,7 +78,7 @@ const EventDetailPage = () => {
   };
 
   return (
-    <div>
+    <EventDetailPageContainer>
       {!isEventDetailLoading && (
         <>
           {showApplyModal && (
@@ -84,6 +89,10 @@ const EventDetailPage = () => {
               onConfirm={() => applyEvent({ eventId })}
             />
           )}
+          <Header>
+            <SearchInputForm />
+            <Tab tabItems={MAIN_TABS} />
+          </Header>
           {isManager && (
             <FormButtonWrapper>
               <PurpleButton onClick={() => navigate(`/checkform/${eventId}`)}>
@@ -140,7 +149,7 @@ const EventDetailPage = () => {
           <EventContent>{content}</EventContent>
         </>
       )}
-    </div>
+    </EventDetailPageContainer>
   );
 };
 
