@@ -1,4 +1,3 @@
-import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
 const PageContainer = styled.div`
@@ -14,15 +13,6 @@ const LogoNInfoWrapper = styled.div`
   gap: 5rem;
 `;
 
-const ClubInfoWrapper = styled.div`
-  display: flex;
-`;
-
-const MessageStyled = styled.p`
-  color: ${Theme.color.black};
-  font-size: ${Theme.fontSize.smallTitle};
-`;
-
 const InviteInfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -31,4 +21,4 @@ const InviteInfoWrapper = styled.div`
   gap: 2rem;
 `;
 
-export { PageContainer, LogoNInfoWrapper, ClubInfoWrapper, MessageStyled, InviteInfoWrapper };
+export { PageContainer, LogoNInfoWrapper, InviteInfoWrapper };
