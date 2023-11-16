@@ -3,8 +3,8 @@ interface PageData {
   last: boolean;
   pageNumber: number;
   size: number;
-  totalPage: number;
-  totalElement: number;
+  totalPages: number;
+  totalElements: number;
 }
 
 export { PageData };
