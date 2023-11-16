@@ -1,5 +1,5 @@
 import useSelectedDateContext from '@/hooks/useSelectedDateContext';
-import { SchedulesProps, Value } from '@/types/event';
+import { SchedulesProps } from '@/types/event';
 import { getScheduleDates } from '@/utils/getScheduleDates';
 import moment from 'moment';
 
