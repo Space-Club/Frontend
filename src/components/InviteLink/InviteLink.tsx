@@ -1,3 +1,4 @@
+import { SPACECLUB_BASE_URL } from '@/constants/api';
 import { INVITE_LINK } from '@/constants/club';
 import useInviteLinkQuery from '@/hooks/query/club/useInviteLinkQuery';
 
@@ -13,6 +14,10 @@ import {
 
 const InviteLink = () => {
   const { data, refetch } = useInviteLinkQuery();
+
+  const inviteLink = `${SPACECLUB_BASE_URL}` + data.inviteLink.split('/api/v1')[1];
+
+  console.log(inviteLink);
 
   return (
     <InviteLinkContainer>
