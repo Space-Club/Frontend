@@ -4,7 +4,7 @@ import useGetEventBookMarkQuery from '@/hooks/query/event/useGetEventBookMarkQue
 
 import { useState } from 'react';
 
-const BookedEvents = () => {
+const BookmarkedEvents = () => {
   const [currentPage, setCurrentPage] = useState(0);
 
   const { bookmarks, pageData } = useGetEventBookMarkQuery({
@@ -42,4 +42,4 @@ const BookedEvents = () => {
   );
 };
 
-export default BookedEvents;
+export default BookmarkedEvents;

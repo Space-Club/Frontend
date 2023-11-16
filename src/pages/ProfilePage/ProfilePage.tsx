@@ -7,7 +7,7 @@ import { ProfileEventType } from '@/types/event';
 import { useParams } from 'react-router-dom';
 
 import AppliedEvents from './AppliedEvents';
-import BookedEvents from './BookedEvents';
+import BookmarkedEvents from './BookmarkedEvents';
 import { AppliedEventTabContainer, ProfileBottomWrapper } from './ProfilePage.style';
 
 const ProfilePage = () => {
@@ -21,7 +21,7 @@ const ProfilePage = () => {
         <AppliedEventTabContainer>
           <Tab tabItems={PROFILE_TABS} />
         </AppliedEventTabContainer>
-        {category === 'applied' ? <AppliedEvents /> : <BookedEvents />}
+        {category === 'applied' ? <AppliedEvents /> : <BookmarkedEvents />}
       </ProfileBottomWrapper>
     </>
   );
