@@ -12,7 +12,7 @@ import { CalendarWrapper, Dot } from './ScheduleCalendar.style';
 export type ValuePiece = Date | null;
 export type Value = ValuePiece | [ValuePiece, ValuePiece];
 
-const ScheduleCalendar = ({ schedules = DUMMY.schedules }: SchedulesProps) => {
+const ScheduleCalendar = ({ schedules }: SchedulesProps) => {
   const { setSelectedDate } = useSelectedDateContext();
   const [value, setValue] = useState<Value>(new Date());
   const scheduleDates = getScheduleDates({ schedules });
@@ -45,64 +45,3 @@ const ScheduleCalendar = ({ schedules = DUMMY.schedules }: SchedulesProps) => {
 };
 
 export default ScheduleCalendar;
-
-const DUMMY = {
-  schedules: [
-    {
-      eventId: '3',
-      title: '가나다',
-      startDateTime: '2023-11-14T23:41:30',
-      endDateTime: '2023-11-16T23:41:30',
-      manager: '행사 생성자 이름',
-      profileImageUrl: 'profileImageUrl',
-    },
-    {
-      eventId: '4',
-      title: '라마바',
-      startDateTime: '2023-11-23T23:41:30',
-      endDateTime: '2023-11-24T23:41:30',
-      manager: '행사 생성자 이름',
-      profileImageUrl: 'profileImageUrl',
-    },
-    {
-      eventId: '5',
-      title: '사아자',
-      startDateTime: '2023-11-27T23:41:30',
-      endDateTime: '2023-11-29T23:41:30',
-      manager: '행사 생성자 이름',
-      profileImageUrl: 'profileImageUrl',
-    },
-    {
-      eventId: '6',
-      title: '사아자',
-      startDateTime: '2023-11-27T23:41:30',
-      endDateTime: '2023-11-29T23:41:30',
-      manager: '행사 생성자 이름',
-      profileImageUrl: 'profileImageUrl',
-    },
-    {
-      eventId: '7',
-      title: '사아자',
-      startDateTime: '2023-11-27T23:41:30',
-      endDateTime: '2023-11-29T23:41:30',
-      manager: '행사 생성자 이름',
-      profileImageUrl: 'profileImageUrl',
-    },
-    {
-      eventId: '8',
-      title: '사아자',
-      startDateTime: '2023-11-27T23:41:30',
-      endDateTime: '2023-11-29T23:41:30',
-      manager: '행사 생성자 이름',
-      profileImageUrl: 'profileImageUrl',
-    },
-    {
-      eventId: '9',
-      title: '사아자',
-      startDateTime: '2023-12-02T23:41:30',
-      endDateTime: '2023-12-02T23:41:30',
-      manager: '행사 생성자 이름',
-      profileImageUrl: 'profileImageUrl',
-    },
-  ],
-};

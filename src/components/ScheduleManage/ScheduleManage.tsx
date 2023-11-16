@@ -17,8 +17,8 @@ const ScheduleManage = () => {
   return (
     <SelectedDateContextProvider>
       <ScheduleManageContainer>
-        <ScheduleCalendar />
-        <Schedules />
+        <ScheduleCalendar schedules={data.schedules} />
+        <Schedules schedules={data.schedules} />
       </ScheduleManageContainer>
     </SelectedDateContextProvider>
   );
