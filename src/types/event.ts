@@ -35,19 +35,6 @@ interface Event {
   clubLogoImageUrl: string;
 }
 
-interface Schedule {
-  eventId: string;
-  title: string;
-  startDateTime: string;
-  endDateTime: string;
-  manager: string;
-  profileImageUrl: string;
-}
-
-interface SchedulesProps {
-  schedules?: Schedule[];
-}
-
 interface BookmarkedEvent
   extends Pick<Event, 'id' | 'title' | 'location' | 'clubName' | 'posterImageUrl' | 'startDate'> {
   bookmark: boolean;
