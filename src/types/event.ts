@@ -1,5 +1,6 @@
 import Theme from '@/styles/Theme';
 
+import { PageData } from './common';
 import { FormType } from './form';
 
 type EventStatus = 'CONFIRMED' | 'PENDING' | 'CANCEL_REQUESTED' | 'CANCELED';
@@ -9,6 +10,8 @@ type EventTagKey = 'publicEvent' | 'clubOnlyEvent' | EventStatus;
 type EventType = 'performance' | 'promotion' | 'recruitment' | 'clubSchedule';
 
 type ProfileEventType = 'applied' | 'bookmark';
+
+type eventTypeAPI = 'SHOW' | 'PROMOTION' | 'RECRUITMENT' | 'CLUB';
 
 interface EventTag {
   title: string;
@@ -30,6 +33,11 @@ interface Event {
   location: string;
   clubName: string;
   clubLogoImageUrl: string;
+}
+
+interface BookmarkedEvent
+  extends Pick<Event, 'id' | 'title' | 'location' | 'clubName' | 'posterImageUrl' | 'startDate'> {
+  bookmark: boolean;
 }
 
 interface Schedule {
@@ -60,14 +68,7 @@ interface GetAllEventsResponse {
     clubName: string;
     clubImage: string;
   }[];
-  pageData: {
-    first: boolean;
-    last: boolean;
-    pageNumber: number;
-    size: number;
-    totalPage: number;
-    totalElement: number;
-  };
+  pageData: PageData;
 }
 
 interface getEventDetailResponse {
@@ -84,8 +85,6 @@ interface getEventDetailResponse {
   content: string;
   isManager: boolean;
 }
-
-type eventTypeAPI = 'SHOW' | 'PROMOTION' | 'RECRUITMENT' | 'CLUB';
 
 interface getEventFormResponse {
   event: {
@@ -128,4 +127,5 @@ export {
   FormPage,
   Schedule,
   SchedulesProps,
+  BookmarkedEvent,
 };

@@ -15,7 +15,7 @@ const AppliedEvents = () => {
 
   const { totalPages, size } = pageData;
 
-  const onChangePage = (page: number) => {
+  const handleChangePage = (page: number) => {
     setCurrentPage(page);
   };
 
@@ -36,7 +36,7 @@ const AppliedEvents = () => {
         ))}
       </AppliedEventContainer>
       <AppliedEventPaginationWrapper>
-        <Pagination totalPages={totalPages} size={size} onChangePage={onChangePage} />
+        <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
       </AppliedEventPaginationWrapper>
     </>
   );

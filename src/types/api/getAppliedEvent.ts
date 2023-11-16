@@ -1,3 +1,4 @@
+import { PageData } from '../common';
 import { EventStatus } from '../event';
 
 interface GetAppliedEventData {
@@ -12,14 +13,7 @@ interface GetAppliedEventData {
 
 interface GetAppliedEventResponse {
   data: GetAppliedEventData[];
-  pageData: {
-    first: boolean;
-    last: boolean;
-    pageNumber: number;
-    size: number;
-    totalPages: number;
-    totalElements: number;
-  };
+  pageData: PageData;
 }
 
 interface GetAppliedEventRequest {
