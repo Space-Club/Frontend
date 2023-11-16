@@ -13,13 +13,13 @@ const usePostUser = () => {
     onSuccess: () => {
       createToast({ message: '가입이 완료되었습니다.', toastType: 'success' });
 
-      const returnPage = sessionStorage.getItem('returnpage');
+      const returnPage = localStorage.getItem('returnpage');
       if (returnPage) {
         navigate(returnPage);
-        sessionStorage.clear();
+        localStorage.removeItem('returnpage');
+      } else {
+        navigate('/');
       }
-
-      navigate('/');
     },
     onError: () => {
       createToast({ message: ERROR_MESSAGE.REGISTER.FAILED, toastType: 'error' });
