@@ -34,6 +34,11 @@ interface Event {
   clubLogoImageUrl: string;
 }
 
+interface BookmarkedEvent
+  extends Pick<Event, 'id' | 'title' | 'location' | 'clubName' | 'posterImageUrl' | 'startDate'> {
+  bookmark: boolean;
+}
+
 interface GetAllEventsRequest {
   pageNumber: number;
 }
@@ -117,4 +122,5 @@ export {
   ProfileEventType,
   EventStatus,
   FormPage,
+  BookmarkedEvent,
 };

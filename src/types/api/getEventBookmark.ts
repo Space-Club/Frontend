@@ -1,5 +1,5 @@
 import { PageData } from '../common';
-import { Event } from '../event';
+import { BookmarkedEvent } from '../event';
 
 interface GetEventBookmarkRequest {
   page: number;
@@ -8,10 +8,7 @@ interface GetEventBookmarkRequest {
 }
 
 interface GetEventBookmarkResponse {
-  data: {
-    id: string;
-    bookmark: boolean;
-  } & Pick<Event, 'title' | 'location' | 'clubName' | 'posterImageUrl' | 'startDate'>;
+  data: BookmarkedEvent[];
   pageData: PageData;
 }
 
