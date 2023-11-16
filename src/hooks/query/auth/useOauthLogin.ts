@@ -21,8 +21,9 @@ const useOauthLogin = ({ code }: OauthLoginRequest) => {
         if (returnPage) {
           navigate(returnPage);
           sessionStorage.clear();
-        }
+        } else {
         navigate(PATH.MAIN);
+        }
       }
     },
     onError: () => {
