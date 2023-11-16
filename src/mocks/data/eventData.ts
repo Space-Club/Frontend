@@ -104,8 +104,8 @@ const allEvents: GetAllEventsResponse = {
     last: true,
     pageNumber: 1,
     size: 10,
-    totalPage: 30,
-    totalElement: 2,
+    totalPages: 30,
+    totalElements: 2,
   },
 };
 
