@@ -17,9 +17,9 @@ const usePostUser = () => {
       if (returnPage) {
         navigate(returnPage);
         localStorage.removeItem('returnpage');
+      } else {
+        navigate('/');
       }
-
-      navigate('/');
     },
     onError: () => {
       createToast({ message: ERROR_MESSAGE.REGISTER.FAILED, toastType: 'error' });
