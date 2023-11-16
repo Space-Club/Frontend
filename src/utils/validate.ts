@@ -1,3 +1,9 @@
+import {
+  MAX_CLUB_INFO_LENGTH,
+  MAX_CLUB_NAME_LENGTH,
+  MIN_CLUB_INFO_LENGTH,
+  MIN_CLUB_NAME_LENGTH,
+} from '@/constants/club';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
 
 const { START_TIME, LAST_TIME } = ERROR_MESSAGE.EVENT;
@@ -44,4 +50,25 @@ const validateTimeCompare = (startTime: Date, lastTime: Date) => {
   return true;
 };
 
-export { validateName, validateNumber, validateTimeCompare, validateTodayDate };
+const validateClubName = (clubName: string) => {
+  if (clubName.length < MIN_CLUB_NAME_LENGTH || clubName.length > MAX_CLUB_NAME_LENGTH) {
+    return false;
+  }
+  return true;
+};
+
+const validateClubInfo = (clubInfo: string) => {
+  if (clubInfo.length < MIN_CLUB_INFO_LENGTH || clubInfo.length > MAX_CLUB_INFO_LENGTH) {
+    return false;
+  }
+  return true;
+};
+
+export {
+  validateName,
+  validateNumber,
+  validateTimeCompare,
+  validateTodayDate,
+  validateClubName,
+  validateClubInfo,
+};
