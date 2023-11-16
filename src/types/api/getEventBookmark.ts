@@ -1,3 +1,4 @@
+import { PageData } from '../common';
 import { Event } from '../event';
 
 interface GetEventBookmarkRequest {
@@ -6,9 +7,12 @@ interface GetEventBookmarkRequest {
   sort: 'id' | 'asc';
 }
 
-interface GetEventBookmarkResponse
-  extends Pick<Event, 'title' | 'location' | 'clubName' | 'posterImageUrl' | 'startDate'> {
-  bookmark: boolean;
+interface GetEventBookmarkResponse {
+  data: {
+    id: string;
+    bookmark: boolean;
+  } & Pick<Event, 'title' | 'location' | 'clubName' | 'posterImageUrl' | 'startDate'>;
+  pageData: PageData;
 }
 
 export { GetEventBookmarkRequest, GetEventBookmarkResponse };

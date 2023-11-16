@@ -8,12 +8,15 @@ const QUERY_KEY = {
 };
 
 const useGetEventBookMarkQuery = ({ page, size, sort }: GetEventBookmarkRequest) => {
-  const { data: bookmarks } = useQuery({
+  const { data } = useQuery({
     queryFn: () => getEventBookmark({ page, size, sort }),
     queryKey: [QUERY_KEY.GET_EVENT_BOOKMARK, { page, size, sort }],
   });
 
-  return { bookmarks };
+  const bookmarks = data?.data;
+  const pageData = data?.pageData;
+
+  return { bookmarks, pageData };
 };
 
 export default useGetEventBookMarkQuery;
