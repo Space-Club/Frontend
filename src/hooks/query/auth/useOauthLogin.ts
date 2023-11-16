@@ -21,8 +21,9 @@ const useOauthLogin = ({ code }: OauthLoginRequest) => {
         if (returnPage) {
           navigate(returnPage);
           localStorage.removeItem('returnpage');
-        }
+        } else {
         navigate(PATH.MAIN);
+        }
       }
     },
     onError: () => {
