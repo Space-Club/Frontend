@@ -71,6 +71,7 @@ interface getEventDetailResponse {
   closeTime: string;
   content: string;
   isManager: boolean;
+  bookmarked: boolean;
 }
 
 interface getEventFormResponse {

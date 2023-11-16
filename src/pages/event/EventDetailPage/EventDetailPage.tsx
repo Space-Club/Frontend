@@ -1,6 +1,6 @@
 import ConfirmModal from '@/components/Modals/ConfirmModal';
+import { SemiPurpleButton } from '@/components/SemiPurpleButton/SemiPurpleButton.style';
 import BookMark from '@/components/common/BookMark/BookMark';
-import { SemiPurpleButton } from '@/components/common/BookMark/BookMark.style';
 import Poster from '@/components/common/Poster/Poster';
 import { EVENT_DETAIL, EVENT_DETAIL_BUTTON } from '@/constants/event';
 import { MODAL_BUTTON_TEXT, MODAL_TEXT } from '@/constants/modalMessage';
@@ -10,6 +10,7 @@ import usePostEventApplyMutation from '@/hooks/query/event/usePostEventApplyMuta
 import useModal from '@/hooks/useModal';
 import { getStorage } from '@/utils/localStorage';
 
+import { useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import {
@@ -26,10 +27,16 @@ import {
 } from './EventDetailPage.style';
 
 const EventDetailPage = () => {
+  const bookmarkRef = useRef<HTMLDivElement>(null);
   const { eventId } = useParams();
   const navigate = useNavigate();
-  const { showModal, modalOpen, modalClose } = useModal();
   const token = getStorage('token');
+
+  const {
+    showModal: showApplyModal,
+    modalOpen: applyModalOpen,
+    modalClose: applyModalClose,
+  } = useModal();
 
   if (!eventId) {
     throw new Error('eventId is null'); //TODO: eventId가 없을 때 처리
@@ -69,11 +76,11 @@ const EventDetailPage = () => {
     <div>
       {!isEventDetailLoading && (
         <>
-          {showModal && (
+          {showApplyModal && (
             <ConfirmModal //#TODO: Alert 모달이 더 잘 어울림
               message={MODAL_TEXT.EVENT_APPLY}
               confirmLabel={MODAL_BUTTON_TEXT.CONFIRM}
-              onClose={modalClose}
+              onClose={applyModalClose}
               onConfirm={() => applyEvent({ eventId })}
             />
           )}
@@ -120,10 +127,12 @@ const EventDetailPage = () => {
               </div>
               {!!token && (
                 <ButtonWrapper>
-                  <SemiPurpleButton onClick={() => modalOpen()}>
+                  <SemiPurpleButton onClick={() => applyModalOpen()}>
                     {EVENT_DETAIL_BUTTON.apply}
                   </SemiPurpleButton>
-                  <BookMark reverse eventId={eventId} />
+                  <SemiPurpleButton reverse bold onClick={() => bookmarkRef.current?.click()}>
+                    <BookMark bookmarked={false} eventId={eventId} ref={bookmarkRef} />
+                  </SemiPurpleButton>
                 </ButtonWrapper>
               )}
             </DetailContentWrapper>

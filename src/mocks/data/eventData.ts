@@ -122,6 +122,7 @@ const eventDetail: getEventDetailResponse = {
   clubName: '연어',
   posterImageUrl: '/src/assets/image/headhunting.svg',
   isManager: true,
+  bookmarked: true,
 };
 
 const eventForm = {
