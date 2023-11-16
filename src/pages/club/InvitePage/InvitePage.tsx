@@ -23,7 +23,7 @@ const InvitePage = () => {
     if (isLogin) {
       joinClub({ inviteCode });
     } else {
-      sessionStorage.setItem('returnpage', pathname);
+      localStorage.setItem('returnpage', pathname);
       navigate(PATH.LOGIN);
     }
   };
