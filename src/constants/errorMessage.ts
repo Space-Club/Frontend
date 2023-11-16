@@ -49,6 +49,7 @@ const ERROR_MESSAGE = {
   },
   FORM: {
     POST_OPTION: '서버에러로 인해 등록에 실패했습니다.',
+    COMPLETE: '폼을 모두 완성해주세요.',
   },
 } as const;
 

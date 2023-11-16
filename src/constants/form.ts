@@ -112,6 +112,27 @@ const FORM_OPTION_BUTTON_TEXT: FormOptionButtonText = {
   recruitment: '모집공고 올리기',
   clubSchedule: '일정 등록하기',
 };
+const SUBMIT_FORM_OPTIONS = {
+  MBTI: [
+    'ENFJ',
+    'ENFP',
+    'ENTJ',
+    'ENTP',
+    'ESFJ',
+    'ESFP',
+    'ESTJ',
+    'ESTP',
+    'INFJ',
+    'INFP',
+    'INTJ',
+    'INTP',
+    'ISFJ',
+    'ISFP',
+    'ISTJ',
+    'ISTP',
+  ],
+  GENDER: ['남', '여'],
+};
 
 export {
   PERFORMANCE_FORM_OPTION,
@@ -121,4 +142,5 @@ export {
   FORM_OPTION,
   FORM_OPTION_BUTTON_TEXT,
   FORM_STATUS_DROPDOWN_OPTIONS,
+  SUBMIT_FORM_OPTIONS,
 };
