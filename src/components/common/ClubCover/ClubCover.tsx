@@ -1,19 +1,58 @@
-import { ClubCoverContainer, ClubCoverImage, ClubCoverTransparent } from './ClubCover.style';
+import { InvisibleInput } from '@/styles/common';
+
+import { useRef } from 'react';
+
+import {
+  ClubCoverContainer,
+  ClubCoverEditButtonStyled,
+  ClubCoverImage,
+  ClubCoverTransparent,
+} from './ClubCover.style';
 
 interface ClubCoverProps {
   coverImageUrl: string;
   isTransparent?: boolean;
   isEditable?: boolean;
   children?: React.ReactNode;
+  clubId?: string;
+  onEdit?: (file: File) => void;
 }
 
-//TODO: 배경 변경 API 명세 나오면 구현하기
-const ClubCover = ({ coverImageUrl, isTransparent, isEditable, children }: ClubCoverProps) => {
+const ClubCover = ({
+  coverImageUrl,
+  isTransparent,
+  isEditable,
+  children,
+  onEdit,
+}: ClubCoverProps) => {
+  const editInputRef = useRef<HTMLInputElement>(null);
+
+  const handleEditButtonClick = () => {
+    if (editInputRef.current) {
+      editInputRef.current.click();
+    }
+  };
+
+  const handleEditInputChange = () => {
+    if (editInputRef.current && editInputRef.current.files && onEdit) {
+      onEdit(editInputRef.current.files[0]);
+    }
+  };
+
   return (
     <ClubCoverContainer>
+      <InvisibleInput
+        onChange={handleEditInputChange}
+        ref={editInputRef}
+        type="file"
+      ></InvisibleInput>
       <ClubCoverImage src={coverImageUrl} />
       {isTransparent && <ClubCoverTransparent />}
-      {isEditable && <button>변경하기</button>}
+      {isEditable && (
+        <ClubCoverEditButtonStyled onClick={handleEditButtonClick}>
+          클럽배경 변경
+        </ClubCoverEditButtonStyled>
+      )}
       {children}
     </ClubCoverContainer>
   );

@@ -8,8 +8,8 @@ export const QUERY_KEY = {
 
 const useClubs = () => {
   const { data, isLoading } = useQuery({
-    queryKey: [QUERY_KEY.MY_CLUB],
     queryFn: () => getMyClubs(),
+    queryKey: [QUERY_KEY.MY_CLUB],
     staleTime: 1000 * 60,
   });
 

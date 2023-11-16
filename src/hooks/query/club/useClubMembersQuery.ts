@@ -9,7 +9,7 @@ export const QUERY_KEY = {
 
 const useClubMembersQuery = ({ clubId }: GetClubMembersRequest) => {
   const { data: clubMembers } = useQuery({
-    queryKey: [QUERY_KEY],
+    queryKey: [QUERY_KEY, clubId],
     queryFn: () => getClubMembers({ clubId }),
   });
 

@@ -64,6 +64,10 @@ const whiteGreyBox = styled.div`
   border-radius: 1.3125rem;
 `;
 
+const InvisibleInput = styled.input`
+  display: none;
+`;
+
 const sideBarScrollAreaStyled = styled.div`
   &::-webkit-scrollbar {
     width: 0.3rem;
@@ -93,6 +97,20 @@ const memberManagerScrollAreaStyled = styled.div`
   }
 `;
 
+const textAreaScrollBar = styled.textarea`
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: ${Theme.color.tSemiPurple};
+    border: 1px solid ${Theme.color.tPurple};
+    border-radius: 0.75rem;
+  }
+  &::-webkit-scrollbar-track {
+    display: none;
+  }
+`;
+
 export {
   EventTitleStyled,
   EventDateStyled,
@@ -105,4 +123,6 @@ export {
   memberManagerScrollAreaStyled,
   whiteGreyBox,
   ellipsisMultiLineText,
+  textAreaScrollBar,
+  InvisibleInput,
 };

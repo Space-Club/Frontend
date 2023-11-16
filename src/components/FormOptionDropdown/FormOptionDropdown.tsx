@@ -1,7 +1,7 @@
 import { FORM_OPTION } from '@/constants/form';
 import { FormOptionContext } from '@/context/FormOptionContext';
-import { FormOption } from '@/types/event';
 import { EventType } from '@/types/event';
+import { FormOption } from '@/types/form';
 import generateUniqueId from '@/utils/generateUniqueId';
 
 import { useEffect, useRef, useState } from 'react';

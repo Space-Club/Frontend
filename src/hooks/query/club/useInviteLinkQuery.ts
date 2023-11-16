@@ -13,7 +13,9 @@ const useInviteLinkQuery = () => {
     },
   });
 
-  return { data, refetch };
+  const inviteLink = 'https://spaceclub.vercel.app' + data.inviteLink.split('/api/v1')[1];
+
+  return { inviteLink, refetch };
 };
 
 export default useInviteLinkQuery;
