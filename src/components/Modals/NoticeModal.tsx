@@ -36,7 +36,7 @@ const NoticeModal = ({
   content,
   ...props
 }: NoticeModalProps) => {
-  const noticeContentRef = useRef<HTMLDivElement>(null);
+  const noticeContentRef = useRef<HTMLTextAreaElement>(null);
 
   const [isEdit, setIsEdit] = useState(isNew && isManager);
 
@@ -78,7 +78,7 @@ const NoticeModal = ({
   };
 
   const getValidNotice = () => {
-    const notice = noticeContentRef.current?.innerText;
+    const notice = noticeContentRef.current?.value;
     if (!notice) {
       createToast({ message: '공지사항을 입력해주세요', toastType: 'error' });
       return;
@@ -120,9 +120,12 @@ const NoticeModal = ({
             </NoticeButtonStyled>
           )}
         </NoticeModalHeaderWrapper>
-        <NoticeContentWrapper ref={noticeContentRef} contentEditable={isEdit} {...props}>
-          {content}
-        </NoticeContentWrapper>
+        <NoticeContentWrapper
+          ref={noticeContentRef}
+          disabled={!isEdit}
+          defaultValue={content}
+          {...props}
+        />
         <NoticeModalHeaderWrapper />
       </NoticeModalContainer>
     </Portal>
