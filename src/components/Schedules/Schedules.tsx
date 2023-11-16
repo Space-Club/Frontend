@@ -4,7 +4,7 @@ import { SchedulesProps } from '@/types/event';
 import { filterSchedulesBySelectedDate } from '@/utils/getSchedules';
 import moment from 'moment';
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import Schedule from '../Schedule/Schedule';
 import {
@@ -19,11 +19,17 @@ import {
 
 const Schedules = ({ schedules }: SchedulesProps) => {
   const { selectedDate } = useSelectedDateContext();
+  const { clubId } = useParams();
+
+  if (!clubId) {
+    throw new Error('there is not clubId');
+  }
   const navigate = useNavigate();
 
   const selectedDateFormatted = moment(`${selectedDate}`).format('YYYY-MM-DD');
   const selectedDateSchedules = filterSchedulesBySelectedDate(selectedDateFormatted, schedules);
 
+  //#TODO: 관리자가 아닐 경우에 행사 생성하기 보여주지 말기
   return (
     <SchedulesContainer>
       <SchedulesHeaderWrapper>
@@ -33,7 +39,9 @@ const Schedules = ({ schedules }: SchedulesProps) => {
       {!selectedDateSchedules.length ? (
         <NoScheduleWrapper>
           <NoScheduleMessageStyled>해당 날짜에 행사가 없습니다! </NoScheduleMessageStyled>
-          <LinkMessageStyled onClick={() => navigate(PATH.CREATE)}>행사 생성하기</LinkMessageStyled>
+          <LinkMessageStyled onClick={() => navigate(PATH.CLUB.CHOICE(clubId))}>
+            행사 생성하기
+          </LinkMessageStyled>
         </NoScheduleWrapper>
       ) : (
         <SchedulesWrapper>
