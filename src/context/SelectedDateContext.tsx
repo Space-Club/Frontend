@@ -1,4 +1,4 @@
-import { Value } from '@/components/ScheduleCalendar/ScheduleCalendar';
+import { Value } from '@/types/event';
 
 import { PropsWithChildren, createContext, useState } from 'react';
 

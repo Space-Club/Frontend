@@ -1,5 +1,5 @@
 import useSelectedDateContext from '@/hooks/useSelectedDateContext';
-import { SchedulesProps } from '@/types/event';
+import { SchedulesProps, Value } from '@/types/event';
 import { getScheduleDates } from '@/utils/getScheduleDates';
 import moment from 'moment';
 
@@ -7,9 +7,6 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
 import { CalendarWrapper, Dot } from './ScheduleCalendar.style';
-
-export type ValuePiece = Date | null;
-export type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 const ScheduleCalendar = ({ schedules }: SchedulesProps) => {
   const { selectedDate, setSelectedDate } = useSelectedDateContext();

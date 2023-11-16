@@ -123,6 +123,9 @@ interface FormPage {
   clubId: string;
 }
 
+type ValuePiece = Date | null;
+type Value = ValuePiece | [ValuePiece, ValuePiece];
+
 export {
   getEventFormResponse,
   GetAllEventsRequest,
@@ -140,5 +143,7 @@ export {
   FormPage,
   Schedule,
   SchedulesProps,
+  ValuePiece,
+  Value,
   BookmarkedEvent,
 };
