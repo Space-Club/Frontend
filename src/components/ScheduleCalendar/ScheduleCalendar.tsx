@@ -20,7 +20,7 @@ const ScheduleCalendar = ({ schedules }: SchedulesProps) => {
     if (scheduleDates.find((day) => day === moment(date).format('YYYY-MM-DD'))) {
       contents.push(<Dot />);
     }
-    return <div>{contents}</div>;
+    return <>{contents}</>;
   };
 
   return (
