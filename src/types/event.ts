@@ -12,6 +12,8 @@ type FormType = 'RADIO' | 'TEXT' | 'SELECT' | 'NUMBER';
 
 type ProfileEventType = 'applied' | 'bookmark';
 
+type eventTypeAPI = 'SHOW' | 'PROMOTION' | 'RECRUITMENT' | 'CLUB';
+
 interface EventTag {
   title: string;
   borderColor: keyof typeof Theme.color;
@@ -78,8 +80,6 @@ interface getEventDetailResponse {
   content: string;
   isManager: boolean;
 }
-
-type eventTypeAPI = 'SHOW' | 'PROMOTION' | 'RECRUITMENT' | 'CLUB';
 
 interface getEventFormResponse {
   event: {
