@@ -37,7 +37,7 @@ const NoticeButtonStyled = styled(PurpleButton)`
   margin-left: 0.3rem;
 `;
 
-const NoticeContentWrapper = styled.div`
+const NoticeContentWrapper = styled.textarea`
   min-height: 20rem;
   min-width: 40rem;
   padding: 1.5rem 2.6rem;
