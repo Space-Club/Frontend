@@ -12,9 +12,9 @@ const ScheduleCalendar = ({ schedules }: SchedulesProps) => {
   const { selectedDate, setSelectedDate } = useSelectedDateContext();
   const scheduleDates = getScheduleDates({ schedules });
 
-  const addContent = ({ date }: { date: Date }) => {
+  const addContent = ({ date: targetDate }: { date: Date }) => {
     const contents = [];
-    if (scheduleDates.find((day) => day === moment(date).format('YYYY-MM-DD'))) {
+    if (scheduleDates.find((day) => day === moment(targetDate).format('YYYY-MM-DD'))) {
       contents.push(<Dot />);
     }
     return <>{contents}</>;
