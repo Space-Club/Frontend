@@ -13,7 +13,7 @@ interface DeleteMemberButtonProps extends React.HTMLAttributes<HTMLButtonElement
 const DeleteMemberButton = ({ memberId, clubId, children, ...props }: DeleteMemberButtonProps) => {
   const { withdrawMember } = useDeleteMemberMutation();
   const { showModal, modalOpen, modalClose } = useModal();
-
+  //TODO:마지막 관리자 탈퇴 시도 시, 토스트 띄우기 / role 정렬 부탁하기
   return (
     <>
       {showModal && (

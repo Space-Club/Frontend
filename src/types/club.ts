@@ -10,9 +10,10 @@ interface Club {
   reverse?: boolean;
 }
 
-interface CreateClubFormValue extends Pick<Club, 'name' | 'info'> {
-  owner: string;
-  image: FileList | null;
+interface CreateClubFormValue {
+  image: File | null;
+  name?: string;
+  info?: string;
 }
 
 interface GetClubEventsRequest {

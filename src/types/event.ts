@@ -1,5 +1,6 @@
 import Theme from '@/styles/Theme';
-import { FormType } from '@/types/form';
+
+import { FormType } from './form';
 
 type EventStatus = 'CONFIRMED' | 'PENDING' | 'CANCEL_REQUESTED' | 'CANCELED';
 

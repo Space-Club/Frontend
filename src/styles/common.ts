@@ -64,6 +64,10 @@ const whiteGreyBox = styled.div`
   border-radius: 1.3125rem;
 `;
 
+const InvisibleInput = styled.input`
+  display: none;
+`;
+
 const sideBarScrollAreaStyled = styled.div`
   &::-webkit-scrollbar {
     width: 0.3rem;
@@ -105,4 +109,5 @@ export {
   memberManagerScrollAreaStyled,
   whiteGreyBox,
   ellipsisMultiLineText,
+  InvisibleInput,
 };
