@@ -42,7 +42,7 @@ interface Schedule {
 }
 
 interface SchedulesProps {
-  schedules?: Schedule[];
+  schedules: Schedule[];
 }
 
 interface GetAllEventsRequest {

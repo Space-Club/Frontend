@@ -1,3 +1,4 @@
+import { SelectedDateContextProvider } from '@/context/SelectedDateContext';
 import useClubSchedulesQuery from '@/hooks/query/event/useClubSchedulesQuery';
 
 import { useParams } from 'react-router-dom';
@@ -14,10 +15,12 @@ const ScheduleManage = () => {
   }
 
   return (
-    <ScheduleManageContainer>
-      <ScheduleCalendar />
-      <Schedules />
-    </ScheduleManageContainer>
+    <SelectedDateContextProvider>
+      <ScheduleManageContainer>
+        <ScheduleCalendar />
+        <Schedules />
+      </ScheduleManageContainer>
+    </SelectedDateContextProvider>
   );
 };
 
