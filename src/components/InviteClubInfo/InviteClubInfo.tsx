@@ -1,8 +1,8 @@
 import useGetInviteClubInfoQuery from '@/hooks/query/club/useGetInviteClubInfoQuery';
-import { ClubInfoWrapper, MessageStyled } from '@/pages/club/InvitePage/InvitePage.style';
 
 import Avatar from '../common/Avatar/Avatar';
 import ClubInfo from '../common/ClubInfo/ClubInfo';
+import { ClubInfoWrapper, MessageStyled } from './InviteClubInfo.style';
 
 const InviteClubInfo = ({ inviteCode }: { inviteCode: string }) => {
   const { inviteClubInfo, isLoading } = useGetInviteClubInfoQuery({ inviteCode });
