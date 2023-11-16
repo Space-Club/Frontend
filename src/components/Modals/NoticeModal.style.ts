@@ -1,6 +1,6 @@
 import { PurpleButton } from '@/pages/event/EventDetailPage/EventDetailPage.style';
 import Theme from '@/styles/Theme';
-import { ellipsisTitle } from '@/styles/common';
+import { ellipsisTitle, textAreaScrollBar } from '@/styles/common';
 import styled from '@emotion/styled';
 
 import { ModalBaseContainer } from './Modal.style';
@@ -37,7 +37,7 @@ const NoticeButtonStyled = styled(PurpleButton)`
   margin-left: 0.3rem;
 `;
 
-const NoticeContentWrapper = styled.textarea`
+const NoticeContentWrapper = styled(textAreaScrollBar)`
   min-height: 20rem;
   min-width: 40rem;
   padding: 1.5rem 2.6rem;
