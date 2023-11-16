@@ -13,10 +13,10 @@ const usePostUser = () => {
     onSuccess: () => {
       createToast({ message: '가입이 완료되었습니다.', toastType: 'success' });
 
-      const returnPage = localStorage.getItem('returnpage');
+      const returnPage = sessionStorage.getItem('returnpage');
       if (returnPage) {
         navigate(returnPage);
-        localStorage.removeItem('returnpage');
+        sessionStorage.clear();
       }
 
       navigate('/');
