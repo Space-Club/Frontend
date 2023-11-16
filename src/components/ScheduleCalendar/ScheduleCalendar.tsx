@@ -3,7 +3,6 @@ import { SchedulesProps } from '@/types/event';
 import { getScheduleDates } from '@/utils/getScheduleDates';
 import moment from 'moment';
 
-import { useEffect, useState } from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 
@@ -13,8 +12,7 @@ export type ValuePiece = Date | null;
 export type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 const ScheduleCalendar = ({ schedules }: SchedulesProps) => {
-  const { setSelectedDate } = useSelectedDateContext();
-  const [value, setValue] = useState<Value>(new Date());
+  const { selectedDate, setSelectedDate } = useSelectedDateContext();
   const scheduleDates = getScheduleDates({ schedules });
 
   const addContent = ({ date }: { date: Date }) => {
@@ -25,16 +23,12 @@ const ScheduleCalendar = ({ schedules }: SchedulesProps) => {
     return <div>{contents}</div>;
   };
 
-  useEffect(() => {
-    setSelectedDate(value);
-  }, [value, setSelectedDate]);
-
   return (
     <CalendarWrapper>
       <Calendar
         locale="ko"
-        onChange={setValue}
-        value={value}
+        onChange={setSelectedDate}
+        value={selectedDate}
         next2Label={null}
         prev2Label={null}
         formatDay={(locale, date) => moment(date).format('D')}
