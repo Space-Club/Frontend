@@ -1,6 +1,7 @@
 import postJoinClub from '@/apis/club/postJoinClub';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
 import { PATH } from '@/constants/path';
+import { SUCCESS_MESSAGE } from '@/constants/successMessage';
 import useToast from '@/hooks/useToast';
 
 import { useNavigate } from 'react-router-dom';
@@ -17,7 +18,7 @@ const useJoinClub = () => {
   const { mutate: joinClub, isLoading } = useMutation(postJoinClub, {
     onSuccess: (data) => {
       queryClient.invalidateQueries([QUERY_KEY.MY_CLUB]);
-      createToast({ message: '클럽 가입이 완료되었습니다.', toastType: 'success' });
+      createToast({ message: SUCCESS_MESSAGE.CLUB.JOIN, toastType: 'success' });
       navigate(PATH.CLUB.HOME(data.clubId));
     },
     onError: () => {
