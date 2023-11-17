@@ -20,12 +20,13 @@ import {
 
 interface EventProps {
   eventId: string;
-  posterSrc: string;
+  posterSrc?: string;
   eventTitle: string;
-  eventDate: string;
-  eventTime: string;
-  eventPlace: string;
-  clubImageSrc?: string;
+  eventDate?: string | null;
+  eventTime?: string | null;
+  formEndTime?: string | null;
+  eventPlace?: string | null;
+  clubImageSrc?: string | null;
   clubName: string;
   openStatus?: string;
 }
@@ -36,13 +37,14 @@ const EventCard = ({
   eventTitle,
   eventDate,
   eventTime,
+  formEndTime,
   eventPlace,
   clubImageSrc,
   clubName,
   openStatus,
 }: EventProps) => {
   const navigate = useNavigate();
-  const timeStamp = getTimeStamp(eventTime);
+  const timeStamp = getTimeStamp(eventTime ?? formEndTime);
 
   return (
     <ContainerStyled onClick={() => navigate(`/event/detail/${eventId}`)}>
@@ -56,7 +58,7 @@ const EventCard = ({
       <EventInfoWrapper>
         <div>
           <TitleStyled>{eventTitle}</TitleStyled>
-          <EventDateStyled>{eventDate}</EventDateStyled>
+          <EventDateStyled>{eventDate ?? `모집마감: ${formEndTime}`}</EventDateStyled>
           <EventTimeStyled>{timeStamp}</EventTimeStyled>
         </div>
         <EventFooterWrapper>
