@@ -1,6 +1,11 @@
-import React from 'react';
+import { PromotionDetailResponse } from '@/types/api/getEventDetail';
 
-const PromotionDetail = () => {
+interface PromotionDetail {
+  data: PromotionDetailResponse;
+}
+
+const PromotionDetail = ({ data }: PromotionDetail) => {
+  console.log(data);
   return <div></div>;
 };
 

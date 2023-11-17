@@ -2,6 +2,12 @@ interface getEventDetailRequest {
   eventId: string;
 }
 
+type getEventDetailResponse =
+  | ShowDetailResponse
+  | PromotionDetailResponse
+  | RecruitmentDetailResponse
+  | ClubDetailResponse;
+
 interface ShowDetailResponse {
   id: number;
   title: string;
@@ -10,7 +16,7 @@ interface ShowDetailResponse {
   startDate: string;
   startTime: string;
   location: string;
-  dues: number;
+  cost: number;
   clubName: string;
   clubLogoImageUrl: string;
   formOpenDate: string;
@@ -88,6 +94,7 @@ interface ClubDetailResponse {
 
 export {
   getEventDetailRequest,
+  getEventDetailResponse,
   ShowDetailResponse,
   PromotionDetailResponse,
   RecruitmentDetailResponse,

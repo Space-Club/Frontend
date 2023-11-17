@@ -1,6 +1,11 @@
-import React from 'react';
+import { RecruitmentDetailResponse } from '@/types/api/getEventDetail';
 
-const RecruitmentDetail = () => {
+interface RecruitmentDetail {
+  data: RecruitmentDetailResponse;
+}
+
+const RecruitmentDetail = ({ data }: RecruitmentDetail) => {
+  console.log(data);
   return <div></div>;
 };
 

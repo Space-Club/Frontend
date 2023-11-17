@@ -5,31 +5,25 @@ import BookMark from '@/components/common/BookMark/BookMark';
 import Header from '@/components/common/Header/Header';
 import Poster from '@/components/common/Poster/Poster';
 import Tab from '@/components/common/Tab/Tab';
-import { EVENT_DETAIL, EVENT_DETAIL_BUTTON } from '@/constants/event';
+import { EVENT_DETAIL_BUTTON } from '@/constants/event';
 import { MODAL_BUTTON_TEXT, MODAL_TEXT } from '@/constants/modalMessage';
 import { MAIN_TABS } from '@/constants/tab';
 import useDeleteEventMutation from '@/hooks/query/event/useDeleteEventMutation';
 import useEventDetailQuery from '@/hooks/query/event/useEventDetailQuery';
 import usePostEventApplyMutation from '@/hooks/query/event/usePostEventApplyMutation';
 import useModal from '@/hooks/useModal';
-import { ShowDetailResponse } from '@/types/api/getEventDetail';
 import { getStorage } from '@/utils/localStorage';
 
 import { useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import ClubDetail from './CategoryDetail/ClubDetail';
-import PromotionDetail from './CategoryDetail/PromotionDetail';
-import RecruitmentDetail from './CategoryDetail/RecruitmentDetail';
-import ShowDetail from './CategoryDetail/ShowDetail';
+import CategoryDetailForm from './CategoryDetail/CategoryDetailForm';
 import {
   ButtonWrapper,
-  ContentLabel,
   DetailContentWrapper,
   EventContent,
   EventDetailPageContainer,
   EventDetailWrapper,
-  EventTitle,
   FormButtonWrapper,
   PurpleButton,
   UpdateDeleteWrapper,
@@ -57,19 +51,7 @@ const EventDetailPage = () => {
   // TODO: 수정하기 버튼 클릭시, 게시물 수정 페이지로 이동
   const { deleteEventMutate } = useDeleteEventMutation({ eventId });
 
-  const {
-    eventCategory,
-    isManager,
-    posterImageUrl,
-    title,
-    content,
-    formOpenDate,
-    formOpenTime,
-    formCloseDate,
-    formCloseTime,
-    clubName,
-    clubLogoImageUrl,
-  } = eventDetail ?? {};
+  const { isManager, posterImageUrl, content } = eventDetail ?? {};
 
   const handleEventDelete = async () => {
     const confirmed = window.confirm('정말로 행사를 삭제하시겠습니까?'); // TODO 모달로 변경
@@ -77,19 +59,6 @@ const EventDetailPage = () => {
     if (confirmed) {
       deleteEventMutate();
       navigate(-1);
-    }
-  };
-
-  const renderCategory = () => {
-    switch (eventCategory) {
-      case 'SHOW':
-        return <ShowDetail data={eventDetail as ShowDetailResponse} />;
-      case 'PROMOTION':
-        return <PromotionDetail />;
-      case 'RECRUITMENT':
-        return <RecruitmentDetail />;
-      case 'CLUB':
-        return <ClubDetail />;
     }
   };
 
@@ -125,21 +94,7 @@ const EventDetailPage = () => {
           <EventDetailWrapper>
             <Poster posterSrc={posterImageUrl ? posterImageUrl : ''} width={23} />
             <DetailContentWrapper>
-              <EventTitle>{title}</EventTitle>
-              {renderCategory()}
-              <div>
-                <ContentLabel>{EVENT_DETAIL.applicationPeriod}</ContentLabel>
-                <div>
-                  {formOpenDate}, {formOpenTime} - {formCloseDate}, {formCloseTime}
-                </div>
-              </div>
-              <div>
-                <ContentLabel>{EVENT_DETAIL.organizer}</ContentLabel>
-                <div>
-                  {clubLogoImageUrl}
-                  {clubName}
-                </div>
-              </div>
+              <CategoryDetailForm data={eventDetail!} />
               {!!token && (
                 <ButtonWrapper>
                   <SemiPurpleButton onClick={() => applyModalOpen()}>
