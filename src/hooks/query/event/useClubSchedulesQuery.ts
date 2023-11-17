@@ -4,13 +4,11 @@ import { GetClubSchedulesRequest } from '@/types/api/getClubSchedules';
 import { useQuery } from '@tanstack/react-query';
 
 export const QUERY_KEY = { CLUB_SCHEDULES: 'CLUB_SCHEDULES' };
-const SCHEDULES_STALE_TIME = 1000 * 60;
 
 const useClubSchedulesQuery = ({ clubId }: GetClubSchedulesRequest) => {
   const { data } = useQuery({
-    queryKey: [QUERY_KEY.CLUB_SCHEDULES],
+    queryKey: [QUERY_KEY.CLUB_SCHEDULES, clubId],
     queryFn: () => getClubSchedules({ clubId }),
-    staleTime: SCHEDULES_STALE_TIME,
   });
 
   return { data };
