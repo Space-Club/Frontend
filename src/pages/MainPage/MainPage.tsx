@@ -2,26 +2,43 @@ import SearchInputForm from '@/components/SearchInputForm/SearchInputForm';
 import Banner from '@/components/common/Banner/Banner';
 import EventCard from '@/components/common/EventCard/EventCard';
 import Header from '@/components/common/Header/Header';
+import Pagination from '@/components/common/Pagination/Pagination';
 import Tab from '@/components/common/Tab/Tab';
 import { MAIN_TABS } from '@/constants/tab';
 import useAllEventsQuery from '@/hooks/query/event/useAllEventsQuery';
 
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import {
   BannerWrapperStyled,
   ContentContainerStyled,
   EventCardWrapperStyled,
+  PaginationWrapper,
 } from './MainPage.style';
 
 const MainPage = () => {
   const { pathname } = useLocation();
+  const [currentPage, setCurrentPage] = useState(0);
 
-  const { events } = useAllEventsQuery({
-    pageNumber: 1,
+  const { events, pageData } = useAllEventsQuery({
+    pageNumber: currentPage,
     category: pathname === '/' ? 'SHOW' : pathname === '/events' ? 'PROMOTION' : 'RECRUITMENT',
     sort: 'id',
   });
+
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [pathname]);
+
+  if (!pageData) {
+    return null;
+  }
+  const { totalPages, size } = pageData;
+
+  const handleChangePage = (page: number) => {
+    setCurrentPage(page);
+  };
 
   return (
     <>
@@ -41,6 +58,7 @@ const MainPage = () => {
                 posterSrc={event.posterImageUrl}
                 eventTitle={event.title}
                 eventDate={event.startDate}
+                formEndTime={event.formEndDate}
                 eventTime={event.startTime}
                 eventPlace={event.location}
                 clubName={event.clubName}
@@ -48,6 +66,9 @@ const MainPage = () => {
             );
           })}
         </EventCardWrapperStyled>
+        <PaginationWrapper>
+          <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
+        </PaginationWrapper>
       </ContentContainerStyled>
     </>
   );

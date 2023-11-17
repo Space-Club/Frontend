@@ -20,4 +20,8 @@ const EventCardWrapperStyled = styled.div`
   margin-bottom: 5%;
 `;
 
-export { ContentContainerStyled, BannerWrapperStyled, EventCardWrapperStyled };
+const PaginationWrapper = styled.div`
+  padding: 2rem 0 5rem 0;
+`;
+
+export { ContentContainerStyled, BannerWrapperStyled, EventCardWrapperStyled, PaginationWrapper };
