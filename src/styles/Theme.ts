@@ -15,6 +15,7 @@ const color = {
   tSemiGreen: '#B6D0BE',
   tPurple: '#7B5BA5',
   tSemiPurple: '#AC99C5',
+  calendarHover: '#E0D6F5',
   tPink: '#B28FB9',
   tSemiPink: '#CDB8D1',
   tBlue: '#4B6184',

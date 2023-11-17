@@ -40,6 +40,19 @@ interface BookmarkedEvent
   bookmark: boolean;
 }
 
+interface Schedule {
+  eventId: string;
+  title: string;
+  startDateTime: string;
+  endDateTime: string;
+  manager: string;
+  profileImageUrl: string;
+}
+
+interface SchedulesProps {
+  schedules: Schedule[];
+}
+
 interface GetAllEventsRequest {
   pageNumber: number;
 }
@@ -98,6 +111,9 @@ interface FormPage {
   clubId: string;
 }
 
+type ValuePiece = Date | null;
+type Value = ValuePiece | [ValuePiece, ValuePiece];
+
 export {
   getEventFormResponse,
   GetAllEventsRequest,
@@ -113,5 +129,9 @@ export {
   ProfileEventType,
   EventStatus,
   FormPage,
+  Schedule,
+  SchedulesProps,
+  ValuePiece,
+  Value,
   BookmarkedEvent,
 };

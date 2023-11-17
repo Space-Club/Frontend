@@ -28,6 +28,7 @@ const END_POINTS = {
   PATCH_MEMBER_ROLE: ({ clubId, memberId }: { clubId: string; memberId: string }) =>
     `/clubs/${clubId}/members/${memberId}`,
   EDIT_CLUB_SETTING: ({ clubId }: { clubId: string }) => `/clubs/${clubId}`,
+  CLUB_SCHEDULES: ({ clubId }: { clubId: string }) => `/clubs/${clubId}/schedules`,
 
   DELETE_MEMBER: ({ clubId, memberId }: { clubId: string; memberId: string }) =>
     `/clubs/${clubId}/members/${memberId}`,
