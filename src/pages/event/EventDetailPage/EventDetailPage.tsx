@@ -12,11 +12,16 @@ import useDeleteEventMutation from '@/hooks/query/event/useDeleteEventMutation';
 import useEventDetailQuery from '@/hooks/query/event/useEventDetailQuery';
 import usePostEventApplyMutation from '@/hooks/query/event/usePostEventApplyMutation';
 import useModal from '@/hooks/useModal';
+import { ShowDetailResponse } from '@/types/api/getEventDetail';
 import { getStorage } from '@/utils/localStorage';
 
 import { useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
+import ClubDetail from './CategoryDetail/ClubDetail';
+import PromotionDetail from './CategoryDetail/PromotionDetail';
+import RecruitmentDetail from './CategoryDetail/RecruitmentDetail';
+import ShowDetail from './CategoryDetail/ShowDetail';
 import {
   ButtonWrapper,
   ContentLabel,
@@ -27,7 +32,6 @@ import {
   EventTitle,
   FormButtonWrapper,
   PurpleButton,
-  TwoContentWrapper,
   UpdateDeleteWrapper,
 } from './EventDetailPage.style';
 
@@ -54,18 +58,17 @@ const EventDetailPage = () => {
   const { deleteEventMutate } = useDeleteEventMutation({ eventId });
 
   const {
+    eventCategory,
+    isManager,
+    posterImageUrl,
     title,
     content,
-    posterImageUrl,
-    startDate,
-    startTime,
-    location,
-    openDate,
-    openTime,
-    closeDate,
-    closeTime,
+    formOpenDate,
+    formOpenTime,
+    formCloseDate,
+    formCloseTime,
     clubName,
-    isManager,
+    clubLogoImageUrl,
   } = eventDetail ?? {};
 
   const handleEventDelete = async () => {
@@ -74,6 +77,19 @@ const EventDetailPage = () => {
     if (confirmed) {
       deleteEventMutate();
       navigate(-1);
+    }
+  };
+
+  const renderCategory = () => {
+    switch (eventCategory) {
+      case 'SHOW':
+        return <ShowDetail data={eventDetail as ShowDetailResponse} />;
+      case 'PROMOTION':
+        return <PromotionDetail />;
+      case 'RECRUITMENT':
+        return <RecruitmentDetail />;
+      case 'CLUB':
+        return <ClubDetail />;
     }
   };
 
@@ -110,29 +126,19 @@ const EventDetailPage = () => {
             <Poster posterSrc={posterImageUrl ? posterImageUrl : ''} width={23} />
             <DetailContentWrapper>
               <EventTitle>{title}</EventTitle>
-              <TwoContentWrapper>
-                <div>
-                  <ContentLabel>{EVENT_DETAIL.date}</ContentLabel>
-                  <div>{startDate}</div>
-                </div>
-                <div>
-                  <ContentLabel>{EVENT_DETAIL.time}</ContentLabel>
-                  <div>{startTime}</div>
-                </div>
-              </TwoContentWrapper>
-              <div>
-                <ContentLabel>{EVENT_DETAIL.location}</ContentLabel>
-                <div>{location}</div>
-              </div>
+              {renderCategory()}
               <div>
                 <ContentLabel>{EVENT_DETAIL.applicationPeriod}</ContentLabel>
                 <div>
-                  {openDate}, {openTime} - {closeDate}, {closeTime}
+                  {formOpenDate}, {formOpenTime} - {formCloseDate}, {formCloseTime}
                 </div>
               </div>
               <div>
                 <ContentLabel>{EVENT_DETAIL.organizer}</ContentLabel>
-                <div>{clubName}</div>
+                <div>
+                  {clubLogoImageUrl}
+                  {clubName}
+                </div>
               </div>
               {!!token && (
                 <ButtonWrapper>
