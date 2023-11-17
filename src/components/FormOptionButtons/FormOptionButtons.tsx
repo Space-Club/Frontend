@@ -12,7 +12,7 @@ import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import ConfirmModal from '../Modals/ConfirmModal';
-import { FormOptionButtonStyled } from './FormOptionButton.style';
+import { FormOptionButtonStyled } from './FormOptionButtons.style';
 
 interface FormOptionButtonProps {
   eventId: string;
