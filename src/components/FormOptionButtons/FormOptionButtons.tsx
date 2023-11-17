@@ -1,10 +1,8 @@
 import { MODAL_TEXT } from '@/constants/modalMessage';
 import { PATH } from '@/constants/path';
-import { SUCCESS_MESSAGE } from '@/constants/successMessage';
 import { FormOptionContext } from '@/context/FormOptionContext';
 import usePostFormOptionMutation from '@/hooks/query/form/usePostFormOptionMutation';
 import useModal from '@/hooks/useModal';
-import useToast from '@/hooks/useToast';
 
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -23,8 +21,7 @@ interface FormOptionButtonProps {
 const FormOptionButtons = ({ eventId }: FormOptionButtonProps) => {
   const { selectedOptions, description, isManaged } = useContext(FormOptionContext);
   const { postOption } = usePostFormOptionMutation({ eventId });
-  const { showModal, modalClose } = useModal();
-  const { createToast } = useToast();
+  const { showModal, modalClose, modalOpen } = useModal();
   const navigate = useNavigate();
 
   const handleFormOptionButtonClick = () => {
@@ -36,12 +33,12 @@ const FormOptionButtons = ({ eventId }: FormOptionButtonProps) => {
     });
   };
 
+  const handleSkipButtonClick = () => {
+    modalOpen();
+  };
+
   const onModalConfirm = () => {
     modalClose();
-    createToast({
-      message: SUCCESS_MESSAGE.FORM.POST_OPTION,
-      toastType: 'success',
-    });
     navigate(PATH.EVENT.DETAIL(eventId));
   };
 
@@ -50,12 +47,12 @@ const FormOptionButtons = ({ eventId }: FormOptionButtonProps) => {
       {showModal && (
         <ConfirmModal
           message={MODAL_TEXT.FORM_OPTION_SKIP_CONFIRM}
-          confirmLabel={'폼 추가하기'}
+          confirmLabel={'건너뛰기'}
           onConfirm={onModalConfirm}
           onClose={modalClose}
         />
       )}
-      <FormSkipButtonStyled>건너뛰기</FormSkipButtonStyled>
+      <FormSkipButtonStyled onClick={handleSkipButtonClick}>건너뛰기</FormSkipButtonStyled>
       <FormOptionButtonStyled onClick={handleFormOptionButtonClick}>
         폼 추가하기
       </FormOptionButtonStyled>
