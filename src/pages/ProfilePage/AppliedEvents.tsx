@@ -4,7 +4,7 @@ import useAppliedEventQuery from '@/hooks/query/event/useAppliedEventQuery';
 
 import { useState } from 'react';
 
-import { AppliedEventContainer, AppliedEventPaginationWrapper } from './ProfilePage.style';
+import { AppliedEventContainer } from './AppliedEvents.style';
 
 const AppliedEvents = () => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -35,9 +35,7 @@ const AppliedEvents = () => {
           />
         ))}
       </AppliedEventContainer>
-      <AppliedEventPaginationWrapper>
-        <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
-      </AppliedEventPaginationWrapper>
+      <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
     </>
   );
 };

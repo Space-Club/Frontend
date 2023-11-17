@@ -13,27 +13,8 @@ const AppliedEventTabContainer = styled.div`
   border-bottom: 1px solid ${Theme.color.tLine};
 `;
 
-const AppliedEventContainer = styled.div`
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  align-items: center;
-
-  & > * {
-    padding: 1.53rem 0;
-  }
-  & > *:not(:last-of-type) {
-    border-bottom: 1px solid ${Theme.color.tSeparator};
-  }
-`;
-
 const AppliedEventPaginationWrapper = styled.div`
   margin: 2.4rem 0;
 `;
 
-export {
-  AppliedEventTabContainer,
-  AppliedEventContainer,
-  ProfileBottomWrapper,
-  AppliedEventPaginationWrapper,
-};
+export { AppliedEventTabContainer, ProfileBottomWrapper, AppliedEventPaginationWrapper };
