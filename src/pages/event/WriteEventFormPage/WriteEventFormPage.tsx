@@ -1,6 +1,6 @@
 import FormCheckOptions from '@/components/FormCheckOptions/FormCheckOptions';
 import FormInformationEditor from '@/components/FormInformationEditor/FormInformationEditor';
-import FormOptionButton from '@/components/FormOptionButtons/FormOptionButtons';
+import FormOptionButtons from '@/components/FormOptionButtons/FormOptionButtons';
 import FormOptionDropdown from '@/components/FormOptionDropdown/FormOptionDropdown';
 import FormOptions from '@/components/FormOptions/FormOptions';
 import { EventType } from '@/types/event';
@@ -26,7 +26,7 @@ const WriteEventFormPage = () => {
       <FormInformationEditor />
       <FormOptions />
       <FormOptionDropdown eventType={eventType} />
-      <FormOptionButton eventId={eventId} eventType={eventType} />
+      <FormOptionButtons eventId={eventId} eventType={eventType} />
     </WriteEventPageContainer>
   );
 };

@@ -12,14 +12,18 @@ import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import ConfirmModal from '../Modals/ConfirmModal';
-import { FormOptionButtonStyled } from './FormOptionButtons.style';
+import {
+  FormOptionButtonStyled,
+  FormOptionButtonsContainer,
+  FormSkipButtonStyled,
+} from './FormOptionButtons.style';
 
 interface FormOptionButtonProps {
   eventId: string;
   eventType: EventType;
 }
 
-const FormOptionButton = ({ eventId, eventType }: FormOptionButtonProps) => {
+const FormOptionButtons = ({ eventId, eventType }: FormOptionButtonProps) => {
   const { selectedOptions, description, isManaged, isSkip } = useContext(FormOptionContext);
   const { postOption } = usePostFormOptionMutation({ eventId });
   const { showModal, modalClose, modalOpen } = useModal();
@@ -50,7 +54,7 @@ const FormOptionButton = ({ eventId, eventType }: FormOptionButtonProps) => {
   };
 
   return (
-    <>
+    <FormOptionButtonsContainer>
       {showModal && (
         <ConfirmModal
           message={MODAL_TEXT.FORM_OPTION_SKIP_CONFIRM}
@@ -59,11 +63,12 @@ const FormOptionButton = ({ eventId, eventType }: FormOptionButtonProps) => {
           onClose={modalClose}
         />
       )}
+      <FormSkipButtonStyled>건너뛰기</FormSkipButtonStyled>
       <FormOptionButtonStyled onClick={handleFormOptionButtonClick}>
         {FORM_OPTION_BUTTON_TEXT[eventType]}
       </FormOptionButtonStyled>
-    </>
+    </FormOptionButtonsContainer>
   );
 };
 
-export default FormOptionButton;
+export default FormOptionButtons;
