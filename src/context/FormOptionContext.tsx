@@ -9,13 +9,11 @@ interface FormOptionContextProps {
   selectedOptions: FormOption[];
   description: string;
   isManaged: boolean;
-  isSkip: boolean;
   appendOption: (options: FormOption) => void;
   deleteOption: (options: FormOption) => void;
   changeOptionTitle: (options: FormOption, title: string) => void;
   setDescription: (description: string) => void;
   setIsManaged: (managed: boolean) => void;
-  setIsSkip: (skip: boolean) => void;
 }
 
 interface FormContextOptionProviderProps {
@@ -26,13 +24,11 @@ const FormOptionContext = createContext<FormOptionContextProps>({
   selectedOptions: [],
   description: '',
   isManaged: false,
-  isSkip: false,
   appendOption: () => {},
   deleteOption: () => {},
   changeOptionTitle: () => {},
   setIsManaged: () => {},
   setDescription: () => {},
-  setIsSkip: () => {},
 });
 
 const FormOptionContextProvider = ({ children }: FormContextOptionProviderProps) => {
@@ -41,7 +37,6 @@ const FormOptionContextProvider = ({ children }: FormContextOptionProviderProps)
   );
   const [isManaged, setIsManaged] = useState<boolean>(false);
   const [description, setDescription] = useState<string>('');
-  const [isSkip, setIsSkip] = useState<boolean>(false);
 
   const { createToast } = useToast();
 
@@ -94,15 +89,13 @@ const FormOptionContextProvider = ({ children }: FormContextOptionProviderProps)
       selectedOptions,
       description,
       isManaged,
-      isSkip,
       appendOption,
       deleteOption,
       changeOptionTitle,
       setIsManaged,
       setDescription,
-      setIsSkip,
     }),
-    [selectedOptions, description, isManaged, isSkip], // eslint-disable-line react-hooks/exhaustive-deps
+    [selectedOptions, description, isManaged], // eslint-disable-line react-hooks/exhaustive-deps
   );
 
   return <FormOptionContext.Provider value={contextValue}>{children}</FormOptionContext.Provider>;

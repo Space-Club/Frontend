@@ -24,24 +24,19 @@ interface FormOptionButtonProps {
 }
 
 const FormOptionButtons = ({ eventId, eventType }: FormOptionButtonProps) => {
-  const { selectedOptions, description, isManaged, isSkip } = useContext(FormOptionContext);
+  const { selectedOptions, description, isManaged } = useContext(FormOptionContext);
   const { postOption } = usePostFormOptionMutation({ eventId });
-  const { showModal, modalClose, modalOpen } = useModal();
+  const { showModal, modalClose } = useModal();
   const { createToast } = useToast();
   const navigate = useNavigate();
 
   const handleFormOptionButtonClick = () => {
-    if (isSkip) {
-      modalOpen();
-      return;
-    } else {
-      postOption({
-        eventId,
-        description,
-        managed: isManaged,
-        options: selectedOptions,
-      });
-    }
+    postOption({
+      eventId,
+      description,
+      managed: isManaged,
+      options: selectedOptions,
+    });
   };
 
   const onModalConfirm = () => {
