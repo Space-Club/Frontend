@@ -42,18 +42,22 @@ interface BookmarkedEvent
 
 interface GetAllEventsRequest {
   pageNumber: number;
+  category: string;
+  sort: string;
 }
 
 interface GetAllEventsResponse {
   data: {
     id: string;
     title: string;
-    poster: string;
+    posterImageUrl: string;
     startDate: string;
     startTime: string;
+    formEndDate: string;
+    formEndTime: string;
     location: string;
     clubName: string;
-    clubImage: string;
+    clubLogoImageUrl: string;
   }[];
   pageData: PageData;
 }

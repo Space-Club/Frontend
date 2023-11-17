@@ -6,6 +6,8 @@ import Tab from '@/components/common/Tab/Tab';
 import { MAIN_TABS } from '@/constants/tab';
 import useAllEventsQuery from '@/hooks/query/event/useAllEventsQuery';
 
+import { useLocation } from 'react-router-dom';
+
 import {
   BannerWrapperStyled,
   ContentContainerStyled,
@@ -13,8 +15,13 @@ import {
 } from './MainPage.style';
 
 const MainPage = () => {
-  const { events } = useAllEventsQuery({ pageNumber: 1 });
-  //TODO: pathname에 따라서 행사 불러오기 혹은 컴포넌트 불러오기
+  const { pathname } = useLocation();
+
+  const { events } = useAllEventsQuery({
+    pageNumber: 1,
+    category: pathname === '/' ? 'SHOW' : pathname === '/events' ? 'PROMOTION' : 'RECRUITMENT',
+    sort: 'id',
+  });
 
   return (
     <>
@@ -31,7 +38,7 @@ const MainPage = () => {
             return (
               <EventCard
                 eventId={event.id}
-                posterSrc={event.poster}
+                posterSrc={event.posterImageUrl}
                 eventTitle={event.title}
                 eventDate={event.startDate}
                 eventTime={event.startTime}

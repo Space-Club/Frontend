@@ -5,10 +5,10 @@ import { useQuery } from '@tanstack/react-query';
 
 const QUERY_KEY = { ALL_EVENTS: 'ALL_EVENTS' };
 
-const useAllEventsQuery = ({ pageNumber }: GetAllEventsRequest) => {
+const useAllEventsQuery = ({ pageNumber, category, sort }: GetAllEventsRequest) => {
   const { data: allEvents } = useQuery({
     queryKey: [QUERY_KEY.ALL_EVENTS],
-    queryFn: () => getAllEvents({ pageNumber }),
+    queryFn: () => getAllEvents({ pageNumber, category, sort }),
   });
 
   const { data, pageData } = allEvents ?? {};
