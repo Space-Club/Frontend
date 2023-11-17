@@ -13,7 +13,6 @@ const useDeleteMemberMutation = () => {
     mutationFn: deleteMember,
     onSuccess: () => {
       queryClient.invalidateQueries([QUERY_KEY.GET_CLUB_MEMBERS]);
-      createToast({ message: '멤버를 삭제했습니다.', toastType: 'success' });
     },
     onError: () => {
       createToast({ message: '멤버를 삭제하는 데 실패했습니다. ', toastType: 'error' });
