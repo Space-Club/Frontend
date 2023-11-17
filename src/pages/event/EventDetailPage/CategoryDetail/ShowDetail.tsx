@@ -28,10 +28,12 @@ const ShowDetail = ({ data }: ShowDetail) => {
           <ContentLabel>{EVENT_DETAIL.location}</ContentLabel>
           <div>{location}</div>
         </div>
-        <div>
-          <ContentLabel>{EVENT_DETAIL.cost}</ContentLabel>
-          <div>{cost.toLocaleString()}원</div>
-        </div>
+        {cost && (
+          <div>
+            <ContentLabel>{EVENT_DETAIL.cost}</ContentLabel>
+            <div>{cost.toLocaleString()}원</div>
+          </div>
+        )}
       </TwoContentWrapper>
     </Fragment>
   );
