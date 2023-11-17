@@ -26,7 +26,7 @@ const WriteEventFormPage = () => {
       <FormInformationEditor />
       <FormOptions />
       <FormOptionDropdown eventType={eventType} />
-      <FormOptionButtons eventId={eventId} eventType={eventType} />
+      <FormOptionButtons eventId={eventId} />
     </WriteEventPageContainer>
   );
 };

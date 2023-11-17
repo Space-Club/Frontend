@@ -1,4 +1,3 @@
-import { FORM_OPTION_BUTTON_TEXT } from '@/constants/form';
 import { MODAL_TEXT } from '@/constants/modalMessage';
 import { PATH } from '@/constants/path';
 import { SUCCESS_MESSAGE } from '@/constants/successMessage';
@@ -6,7 +5,6 @@ import { FormOptionContext } from '@/context/FormOptionContext';
 import usePostFormOptionMutation from '@/hooks/query/form/usePostFormOptionMutation';
 import useModal from '@/hooks/useModal';
 import useToast from '@/hooks/useToast';
-import { EventType } from '@/types/event';
 
 import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -20,10 +18,9 @@ import {
 
 interface FormOptionButtonProps {
   eventId: string;
-  eventType: EventType;
 }
 
-const FormOptionButtons = ({ eventId, eventType }: FormOptionButtonProps) => {
+const FormOptionButtons = ({ eventId }: FormOptionButtonProps) => {
   const { selectedOptions, description, isManaged } = useContext(FormOptionContext);
   const { postOption } = usePostFormOptionMutation({ eventId });
   const { showModal, modalClose } = useModal();
@@ -53,14 +50,14 @@ const FormOptionButtons = ({ eventId, eventType }: FormOptionButtonProps) => {
       {showModal && (
         <ConfirmModal
           message={MODAL_TEXT.FORM_OPTION_SKIP_CONFIRM}
-          confirmLabel={FORM_OPTION_BUTTON_TEXT[eventType]}
+          confirmLabel={'폼 추가하기'}
           onConfirm={onModalConfirm}
           onClose={modalClose}
         />
       )}
       <FormSkipButtonStyled>건너뛰기</FormSkipButtonStyled>
       <FormOptionButtonStyled onClick={handleFormOptionButtonClick}>
-        {FORM_OPTION_BUTTON_TEXT[eventType]}
+        폼 추가하기
       </FormOptionButtonStyled>
     </FormOptionButtonsContainer>
   );

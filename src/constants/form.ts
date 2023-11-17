@@ -1,5 +1,5 @@
 import { DropDownOption } from '@/components/common/DropDown/DropDown';
-import { FormOption, FormOptionButtonText } from '@/types/form';
+import { FormOption } from '@/types/form';
 
 const FORM_STATUS_DROPDOWN_OPTIONS: DropDownOption[] = [
   { value: 'SELECT', label: '선택' },
@@ -106,12 +106,6 @@ const FORM_OPTION = {
   },
 };
 
-const FORM_OPTION_BUTTON_TEXT: FormOptionButtonText = {
-  performance: '공연 생성하기',
-  promotion: '행사 생성하기',
-  recruitment: '모집공고 올리기',
-  clubSchedule: '일정 등록하기',
-};
 const SUBMIT_FORM_OPTIONS = {
   MBTI: [
     'ENFJ',
@@ -140,7 +134,6 @@ export {
   RECRUITMENT_FORM_OPTION,
   CLUB_SCHEDULE_FORM_OPTION,
   FORM_OPTION,
-  FORM_OPTION_BUTTON_TEXT,
   FORM_STATUS_DROPDOWN_OPTIONS,
   SUBMIT_FORM_OPTIONS,
 };
