@@ -1,5 +1,6 @@
 import { EVENT_DETAIL } from '@/constants/event';
 import { getEventDetailResponse } from '@/types/api/getEventDetail';
+import { transDate, transTime } from '@/utils/timeTransform';
 
 import { ContentLabel, EventTitle } from '../EventDetailPage.style';
 import ClubDetail from './ClubDetail';
@@ -19,7 +20,6 @@ const CategoryDetailForm = ({ data }: CategoryDetailForm) => {
     formOpenTime,
     formCloseDate,
     formCloseTime,
-    clubLogoImageUrl,
     clubName,
   } = data;
 
@@ -43,15 +43,13 @@ const CategoryDetailForm = ({ data }: CategoryDetailForm) => {
       <div>
         <ContentLabel>{EVENT_DETAIL.applicationPeriod}</ContentLabel>
         <div>
-          {formOpenDate}, {formOpenTime} - {formCloseDate}, {formCloseTime}
+          {transDate(formOpenDate)} {transTime(formOpenTime)} ~ {transDate(formCloseDate)}{' '}
+          {transTime(formCloseTime)}까지
         </div>
       </div>
       <div>
         <ContentLabel>{EVENT_DETAIL.organizer}</ContentLabel>
-        <div>
-          {clubLogoImageUrl}
-          {clubName}
-        </div>
+        {clubName}
       </div>
     </>
   );

@@ -43,7 +43,8 @@ const EVENT_DETAIL = {
   date: '날짜',
   time: '시간',
   location: '장소',
-  applicationPeriod: '참여신청 가능기간',
+  cost: '비용',
+  applicationPeriod: '참여 신청 가능기간',
   organizer: '주최자',
 };
 

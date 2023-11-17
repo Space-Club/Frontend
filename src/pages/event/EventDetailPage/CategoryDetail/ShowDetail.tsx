@@ -1,5 +1,6 @@
 import { EVENT_DETAIL } from '@/constants/event';
 import { ShowDetailResponse } from '@/types/api/getEventDetail';
+import { transDate, transTime } from '@/utils/timeTransform';
 
 import { Fragment } from 'react';
 
@@ -10,24 +11,28 @@ interface ShowDetail {
 }
 
 const ShowDetail = ({ data }: ShowDetail) => {
-  const { startDate, startTime, location } = data;
+  const { startDate, startTime, location, cost } = data;
 
   return (
     <Fragment>
       <TwoContentWrapper>
         <div>
           <ContentLabel>{EVENT_DETAIL.date}</ContentLabel>
-          <div>{startDate}</div>
+          <div>{transDate(startDate)}</div>
         </div>
         <div>
           <ContentLabel>{EVENT_DETAIL.time}</ContentLabel>
-          <div>{startTime}</div>
+          <div>{transTime(startTime)}</div>
+        </div>
+        <div>
+          <ContentLabel>{EVENT_DETAIL.location}</ContentLabel>
+          <div>{location}</div>
+        </div>
+        <div>
+          <ContentLabel>{EVENT_DETAIL.cost}</ContentLabel>
+          <div>{cost.toLocaleString()}원</div>
         </div>
       </TwoContentWrapper>
-      <div>
-        <ContentLabel>{EVENT_DETAIL.location}</ContentLabel>
-        <div>{location}</div>
-      </div>
     </Fragment>
   );
 };

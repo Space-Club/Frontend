@@ -48,7 +48,7 @@ const Avatar = ({
   };
 
   return (
-    <div>
+    <>
       <AvatarContainerStyled>
         {profileImageSrc ? (
           <ProfileImageStyled
@@ -75,7 +75,7 @@ const Avatar = ({
           </>
         )}
       </AvatarContainerStyled>
-    </div>
+    </>
   );
 };
 
