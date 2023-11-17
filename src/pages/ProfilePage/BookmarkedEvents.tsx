@@ -4,6 +4,8 @@ import useGetEventBookMarkQuery from '@/hooks/query/event/useGetEventBookMarkQue
 
 import { useState } from 'react';
 
+import { BookmarkedEventsContainer } from './BookmarkedEvents.style';
+
 const BookmarkedEvents = () => {
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -23,20 +25,22 @@ const BookmarkedEvents = () => {
 
   return (
     <>
-      {bookmarks.map((bookmark) => {
-        return (
-          <BookmarkedCard
-            key={bookmark.id}
-            id={bookmark.id}
-            title={bookmark.title}
-            location={bookmark.location}
-            clubName={bookmark.clubName}
-            posterImageUrl={bookmark.posterImageUrl}
-            startDate={bookmark.startDate}
-            bookmark={bookmark.bookmark}
-          />
-        );
-      })}
+      <BookmarkedEventsContainer>
+        {bookmarks.map((bookmark) => {
+          return (
+            <BookmarkedCard
+              key={bookmark.id}
+              id={bookmark.id}
+              title={bookmark.title}
+              location={bookmark.location}
+              clubName={bookmark.clubName}
+              posterImageUrl={bookmark.posterImageUrl}
+              startDate={bookmark.startDate}
+              bookmark={bookmark.bookmark}
+            />
+          );
+        })}
+      </BookmarkedEventsContainer>
       <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
     </>
   );
