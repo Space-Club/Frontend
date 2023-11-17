@@ -37,7 +37,7 @@ interface PromotionDetailResponse {
   posterImageUrl: string;
   startDate: string;
   startTime: string;
-  location: string;
+  activityArea: string;
   formOpenDate: string;
   formOpenTime: string;
   formCloseDate: string;
@@ -57,13 +57,15 @@ interface RecruitmentDetailResponse {
   content: string;
   posterImageUrl: string;
   recruitmentTarget: string;
-  activityArea: string;
-  clubName: string;
-  clubLogoImageUrl: string;
+  startDate: string;
+  startTime: string;
+  location: string;
   formOpenDate: string;
   formOpenTime: string;
   formCloseDate: string;
   formCloseTime: string;
+  clubName: string;
+  clubLogoImageUrl: string;
   isBookmarked: boolean;
   applicants: number;
   capacity: number;
@@ -78,7 +80,10 @@ interface ClubDetailResponse {
   posterImageUrl: string;
   startDate: string;
   startTime: string;
+  endDate: string;
+  endTime: string;
   location: string;
+  dues: number;
   formOpenDate: string;
   formOpenTime: string;
   formCloseDate: string;

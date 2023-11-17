@@ -46,6 +46,10 @@ const EVENT_DETAIL = {
   cost: '비용',
   applicationPeriod: '참여 신청 가능기간',
   organizer: '주최자',
+  recruitTarget: '모집 대상',
+  recruitCapacity: '모집 인원',
+  activityLocation: '활동 위치',
+  schedule: '일정',
 };
 
 const EVENT_DETAIL_BUTTON = {
