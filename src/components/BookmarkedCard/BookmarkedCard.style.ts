@@ -5,6 +5,17 @@ import styled from '@emotion/styled';
 const BookmarkedCardContainer = styled.div`
   display: flex;
   width: 20rem;
+  position: relative;
+  //세퍼레이터 추가
+  ::after {
+    content: '';
+    position: absolute;
+    width: 90%;
+    height: 100%;
+    border-bottom: 1px solid ${Theme.color.tSeparator};
+    top: 1rem;
+    right: 5%;
+  }
 `;
 
 const BookmarkedTitleStyled = styled.h3`
