@@ -9,7 +9,6 @@ import { ScheduleManageContainer } from './ScheduleManage.style';
 
 const ScheduleManage = () => {
   const { clubId } = useParams() as { clubId: string };
-  console.log(clubId);
   const { data } = useClubSchedulesQuery({ clubId });
   if (!data) {
     return null;
