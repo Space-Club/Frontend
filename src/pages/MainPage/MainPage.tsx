@@ -21,15 +21,18 @@ const MainPage = () => {
   const { pathname } = useLocation();
   const [currentPage, setCurrentPage] = useState(0);
 
-  const { events, pageData } = useAllEventsQuery({
-    pageNumber: currentPage,
-    category: pathname === '/' ? 'SHOW' : pathname === '/events' ? 'PROMOTION' : 'RECRUITMENT',
-    sort: 'id',
-  });
-
   useEffect(() => {
     setCurrentPage(0);
   }, [pathname]);
+
+  const { events, pageData } = useAllEventsQuery(
+    {
+      pageNumber: currentPage,
+      category: pathname === '/' ? 'SHOW' : pathname === '/events' ? 'PROMOTION' : 'RECRUITMENT',
+      sort: 'id', //#TODO: 정렬방법 수정하기
+    },
+    pathname,
+  );
 
   if (!pageData) {
     return null;
