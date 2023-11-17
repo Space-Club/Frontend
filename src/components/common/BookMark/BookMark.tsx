@@ -1,13 +1,14 @@
 import usePatchBookmarkMutation from '@/hooks/query/event/usePatchBookmarkMutation';
+import Theme from '@/styles/Theme';
 
 import { HTMLAttributes, forwardRef, useState } from 'react';
 import { FaBookmark, FaRegBookmark } from 'react-icons/fa';
 
 interface BookMark extends HTMLAttributes<HTMLDivElement> {
   bookmarked: boolean;
+  eventId: string;
   size?: number;
   strokeWidth?: number;
-  eventId: string;
 }
 
 const BookMark = forwardRef<HTMLDivElement, BookMark>(
@@ -25,9 +26,9 @@ const BookMark = forwardRef<HTMLDivElement, BookMark>(
       <>
         <div ref={ref} onClick={handleBookmarkClick} {...props}>
           {bookmarkPaint ? (
-            <FaBookmark size={size} strokeWidth={strokeWidth} />
+            <FaBookmark size={size} color={Theme.color.tSemiActive} strokeWidth={strokeWidth} />
           ) : (
-            <FaRegBookmark size={size} strokeWidth={strokeWidth} />
+            <FaRegBookmark size={size} color={Theme.color.tSemiActive} strokeWidth={strokeWidth} />
           )}
         </div>
       </>

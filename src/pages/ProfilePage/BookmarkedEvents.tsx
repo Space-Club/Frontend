@@ -1,4 +1,4 @@
-import BookmarkedEventCard from '@/components/BookmarkedEventCard/BookmarkedEventCard';
+import BookmarkedCard from '@/components/BookmarkedCard/BookmarkedCard';
 import Pagination from '@/components/common/Pagination/Pagination';
 import useGetEventBookMarkQuery from '@/hooks/query/event/useGetEventBookMarkQuery';
 
@@ -25,7 +25,7 @@ const BookmarkedEvents = () => {
     <>
       {bookmarks.map((bookmark) => {
         return (
-          <BookmarkedEventCard
+          <BookmarkedCard
             key={bookmark.id}
             id={bookmark.id}
             title={bookmark.title}

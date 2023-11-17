@@ -11,13 +11,13 @@ import {
 } from './BookmarkedCard.style';
 
 const BookmarkedCard = ({
-  id: eventId, //eslint-disable-line
+  id: eventId,
   title,
   location,
   clubName,
   posterImageUrl,
   startDate,
-  bookmark, //eslint-disable-line
+  bookmark,
 }: BookmarkedEvent) => {
   return (
     <BookmarkedCardContainer>
