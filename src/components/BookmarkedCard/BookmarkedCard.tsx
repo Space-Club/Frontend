@@ -25,7 +25,7 @@ const BookmarkedCard = ({
       <BookmarkedInfoWrapper>
         <BookmarkedTitleStyled>{title}</BookmarkedTitleStyled>
         <BookmarkedInfoLine>
-          날씨 <BookmarkedInfoStyled>{startDate}</BookmarkedInfoStyled>
+          날짜 <BookmarkedInfoStyled>{startDate}</BookmarkedInfoStyled>
         </BookmarkedInfoLine>
         <BookmarkedInfoLine>
           장소<BookmarkedInfoStyled>{location}</BookmarkedInfoStyled>
