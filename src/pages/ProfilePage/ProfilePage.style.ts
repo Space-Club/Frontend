@@ -27,6 +27,16 @@ const AppliedEventContainer = styled.div`
   }
 `;
 
+const EmptyEventWrapper = styled.div`
+  width: 100%;
+  height: 20rem;
+  color: ${Theme.color.gray};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 3.2rem 0;
+`;
+
 const AppliedEventPaginationWrapper = styled.div`
   margin: 2.4rem 0;
 `;
@@ -36,4 +46,5 @@ export {
   AppliedEventContainer,
   ProfileBottomWrapper,
   AppliedEventPaginationWrapper,
+  EmptyEventWrapper,
 };

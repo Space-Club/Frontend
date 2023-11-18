@@ -4,6 +4,8 @@ import useGetEventBookMarkQuery from '@/hooks/query/event/useGetEventBookMarkQue
 
 import { useState } from 'react';
 
+import { EmptyEventWrapper } from './ProfilePage.style';
+
 const BookmarkedEvents = () => {
   const [currentPage, setCurrentPage] = useState(0);
 
@@ -23,20 +25,25 @@ const BookmarkedEvents = () => {
 
   return (
     <>
-      {bookmarks.map((bookmark) => {
-        return (
-          <BookmarkedEventCard
-            key={bookmark.id}
-            id={bookmark.id}
-            title={bookmark.title}
-            location={bookmark.location}
-            clubName={bookmark.clubName}
-            posterImageUrl={bookmark.posterImageUrl}
-            startDate={bookmark.startDate}
-            bookmark={bookmark.bookmark}
-          />
-        );
-      })}
+      {bookmarks ? (
+        bookmarks.map((bookmark) => {
+          return (
+            <BookmarkedEventCard
+              key={bookmark.id}
+              id={bookmark.id}
+              title={bookmark.title}
+              location={bookmark.location}
+              clubName={bookmark.clubName}
+              posterImageUrl={bookmark.posterImageUrl}
+              startDate={bookmark.startDate}
+              bookmark={bookmark.bookmark}
+            />
+          );
+        })
+      ) : (
+        <EmptyEventWrapper>북마크한 행사가 없습니다</EmptyEventWrapper>
+      )}
+
       <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
     </>
   );
