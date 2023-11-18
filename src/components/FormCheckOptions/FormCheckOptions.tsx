@@ -7,7 +7,7 @@ import CheckBox from '../common/CheckBox/CheckBox';
 import { FormCheckOptionsContainer } from './FormCheckOptions.style';
 
 const FormCheckOptions = () => {
-  const { setIsManaged, setIsSkip } = useContext(FormOptionContext);
+  const { setIsManaged } = useContext(FormOptionContext);
 
   return (
     <FormCheckOptionsContainer>
@@ -20,15 +20,6 @@ const FormCheckOptions = () => {
           setIsManaged(false);
         }}
         info={MODAL_TEXT.MANAGE_INFO}
-      />
-      <CheckBox
-        label="신청자의 정보는 받지 않겠습니다"
-        onCheck={() => {
-          setIsSkip(true);
-        }}
-        onUncheck={() => {
-          setIsSkip(false);
-        }}
       />
     </FormCheckOptionsContainer>
   );

@@ -23,7 +23,7 @@ const PATH = {
   CREATE: '/create',
 
   EVENT: {
-    DETAIL: (eventId: string) => `/event/detail/${eventId}`,
+    DETAIL: (eventId: string) => `/event/${eventId}`,
     CHECK_FORM: '/event/checkform',
     SUBMIT_FORM: '/event/submitform',
     WRITE_FORM: '/event/writeform',
