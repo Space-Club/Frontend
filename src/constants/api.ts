@@ -8,6 +8,8 @@ const END_POINTS = {
   USER_IMAGE: '/users/images',
   MY_CLUB: '/users/clubs',
 
+  PATCH_PROFILE_IMAGE: '/users/images',
+
   PERFORMANCE_FORM: '/event',
   GET_APPLIED_EVENT: ({ page, size, sort }: { page: number; size: string; sort: string }) =>
     `users/events?page=${page}&size=${size}&sort=${sort}`,
