@@ -3,9 +3,9 @@ import { GetSubmittedFormsRequest, GetSubmittedFormsResponse } from '@/types/api
 
 import { axiosClientWithAuth } from '../axiosClient';
 
-const getSubmittedForms = async ({ eventId }: GetSubmittedFormsRequest) => {
+const getSubmittedForms = async ({ eventId, pageNumber }: GetSubmittedFormsRequest) => {
   const { data } = await axiosClientWithAuth.get<GetSubmittedFormsResponse>(
-    END_POINTS.GET_SUBMITTED_FORMS({ eventId }),
+    `${END_POINTS.GET_SUBMITTED_FORMS({ eventId })}?page=${pageNumber}&size=3&sort=id,desc`,
   );
 
   return data;
