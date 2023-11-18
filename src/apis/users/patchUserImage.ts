@@ -1,14 +1,13 @@
 import { END_POINTS } from '@/constants/api';
-import { PatchClubNoticeResponse } from '@/types/api/patchClubNotice';
-import { PatchProfileImageRequest } from '@/types/api/patchProfileImage';
+import { PatchUserImageRequest, PatchUserImageResponse } from '@/types/api/patchUserImage';
 
 import { axiosClientWithAuth } from '../axiosClient';
 
-const patchProfileImage = async ({ userImage }: PatchProfileImageRequest) => {
+const patchUserImage = async ({ userImage }: PatchUserImageRequest) => {
   const formData = new FormData();
   formData.append('userImage', userImage);
 
-  await axiosClientWithAuth.patch<PatchClubNoticeResponse>(
+  await axiosClientWithAuth.patch<PatchUserImageResponse>(
     END_POINTS.PATCH_PROFILE_IMAGE,
     formData,
     {
@@ -19,4 +18,4 @@ const patchProfileImage = async ({ userImage }: PatchProfileImageRequest) => {
   );
 };
 
-export default patchProfileImage;
+export default patchUserImage;
