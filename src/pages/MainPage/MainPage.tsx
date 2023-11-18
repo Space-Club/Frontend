@@ -2,19 +2,46 @@ import SearchInputForm from '@/components/SearchInputForm/SearchInputForm';
 import Banner from '@/components/common/Banner/Banner';
 import EventCard from '@/components/common/EventCard/EventCard';
 import Header from '@/components/common/Header/Header';
+import Pagination from '@/components/common/Pagination/Pagination';
 import Tab from '@/components/common/Tab/Tab';
 import { MAIN_TABS } from '@/constants/tab';
 import useAllEventsQuery from '@/hooks/query/event/useAllEventsQuery';
+
+import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import {
   BannerWrapperStyled,
   ContentContainerStyled,
   EventCardWrapperStyled,
+  PaginationWrapper,
 } from './MainPage.style';
 
 const MainPage = () => {
-  const { events } = useAllEventsQuery({ pageNumber: 1 });
-  //TODO: pathname에 따라서 행사 불러오기 혹은 컴포넌트 불러오기
+  const { pathname } = useLocation();
+  const [currentPage, setCurrentPage] = useState(0);
+
+  useEffect(() => {
+    setCurrentPage(0);
+  }, [pathname]);
+
+  const { events, pageData } = useAllEventsQuery(
+    {
+      pageNumber: currentPage,
+      category: pathname === '/' ? 'SHOW' : pathname === '/events' ? 'PROMOTION' : 'RECRUITMENT',
+      sort: 'id', //#TODO: 정렬방법 수정하기
+    },
+    pathname,
+  );
+
+  if (!pageData) {
+    return null;
+  }
+  const { totalPages, size } = pageData;
+
+  const handleChangePage = (page: number) => {
+    setCurrentPage(page);
+  };
 
   return (
     <>
@@ -31,9 +58,10 @@ const MainPage = () => {
             return (
               <EventCard
                 eventId={event.id}
-                posterSrc={event.poster}
+                posterSrc={event.posterImageUrl}
                 eventTitle={event.title}
                 eventDate={event.startDate}
+                formEndTime={event.formEndDate}
                 eventTime={event.startTime}
                 eventPlace={event.location}
                 clubName={event.clubName}
@@ -41,6 +69,9 @@ const MainPage = () => {
             );
           })}
         </EventCardWrapperStyled>
+        <PaginationWrapper>
+          <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
+        </PaginationWrapper>
       </ContentContainerStyled>
     </>
   );

@@ -3,9 +3,9 @@ import { GetAllEventsRequest, GetAllEventsResponse } from '@/types/event';
 
 import { axiosClient } from '../axiosClient';
 
-const getAllEvents = async ({ pageNumber }: GetAllEventsRequest) => {
+const getAllEvents = async ({ pageNumber, category, sort }: GetAllEventsRequest) => {
   const { data } = await axiosClient.get<GetAllEventsResponse>(
-    `${END_POINTS.ALL_EVENTS}?page=${pageNumber}&size=3&sort=id,asc`,
+    `${END_POINTS.ALL_EVENTS}?category=${category}&page=${pageNumber}&size=18&sort=${sort},asc`,
   );
   return data;
 };

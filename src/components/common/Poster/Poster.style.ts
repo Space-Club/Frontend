@@ -1,3 +1,4 @@
+import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
 const PosterAreaStyled = styled.div<{ width: number }>`
@@ -6,6 +7,10 @@ const PosterAreaStyled = styled.div<{ width: number }>`
   min-width: ${({ width }) => width + 'rem'};
   height: ${({ width }) => width * 1.4 + 'rem'};
   display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${Theme.color.tSemiPurple};
+  background-color: ${Theme.color.tWhiteGrey};
   overflow: hidden;
 `;
 
