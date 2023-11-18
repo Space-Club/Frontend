@@ -5,6 +5,7 @@ import useGetEventBookMarkQuery from '@/hooks/query/event/useGetEventBookMarkQue
 import { useState } from 'react';
 
 import { BookmarkedEventsContainer } from './BookmarkedEvents.style';
+import { EmptyEventWrapper } from './ProfilePage.style';
 
 const BookmarkedEvents = () => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -41,6 +42,7 @@ const BookmarkedEvents = () => {
           );
         })}
       </BookmarkedEventsContainer>
+      {!bookmarks ?? <EmptyEventWrapper>북마크한 행사가 없습니다</EmptyEventWrapper>}
       <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
     </>
   );

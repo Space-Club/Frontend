@@ -4,6 +4,7 @@ import BookMark from '../common/BookMark/BookMark';
 import Poster from '../common/Poster/Poster';
 import {
   BookmarkedCardContainer,
+  BookmarkedInfoLabelStyled,
   BookmarkedInfoLine,
   BookmarkedInfoStyled,
   BookmarkedInfoWrapper,
@@ -25,13 +26,16 @@ const BookmarkedCard = ({
       <BookmarkedInfoWrapper>
         <BookmarkedTitleStyled>{title}</BookmarkedTitleStyled>
         <BookmarkedInfoLine>
-          날짜 <BookmarkedInfoStyled>{startDate}</BookmarkedInfoStyled>
+          <BookmarkedInfoLabelStyled>날짜</BookmarkedInfoLabelStyled>
+          <BookmarkedInfoStyled>{startDate}</BookmarkedInfoStyled>
         </BookmarkedInfoLine>
         <BookmarkedInfoLine>
-          장소<BookmarkedInfoStyled>{location}</BookmarkedInfoStyled>
+          <BookmarkedInfoLabelStyled>장소</BookmarkedInfoLabelStyled>
+          <BookmarkedInfoStyled>{location}</BookmarkedInfoStyled>
         </BookmarkedInfoLine>
         <BookmarkedInfoLine>
-          주최<BookmarkedInfoStyled>{clubName}</BookmarkedInfoStyled>
+          <BookmarkedInfoLabelStyled>주최</BookmarkedInfoLabelStyled>
+          <BookmarkedInfoStyled>{clubName}</BookmarkedInfoStyled>
         </BookmarkedInfoLine>
       </BookmarkedInfoWrapper>
       <BookMark bookmarked={bookmark} eventId={eventId} />

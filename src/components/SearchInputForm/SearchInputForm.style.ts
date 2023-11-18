@@ -13,6 +13,7 @@ const SearchBarStyled = styled.div`
   display: flex;
   align-items: center;
   width: 90%;
+  max-width: 40rem;
   height: 50%;
   border: 0.05rem solid ${Theme.color.lineColor};
   border-radius: 1rem;

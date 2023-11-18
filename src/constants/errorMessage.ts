@@ -48,6 +48,7 @@ const ERROR_MESSAGE = {
     VALIDATE_LENGTH_INFO: '클럽 소개는 2글자 이상 25글자 이하로 작성해주세요.',
 
     JOIN_FAILED: '클럽 가입에 실패했습니다. ',
+    CREATE_FAILED: '클럽 개설에 실패했습니다. ',
   },
   FORM: {
     POST_OPTION: '서버에러로 인해 등록에 실패했습니다.',

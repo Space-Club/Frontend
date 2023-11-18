@@ -40,20 +40,37 @@ interface BookmarkedEvent
   bookmark: boolean;
 }
 
+interface Schedule {
+  eventId: string;
+  title: string;
+  startDateTime: string;
+  endDateTime: string;
+  manager: string;
+  profileImageUrl: string;
+}
+
+interface SchedulesProps {
+  schedules: Schedule[];
+}
+
 interface GetAllEventsRequest {
   pageNumber: number;
+  category: string;
+  sort: string;
 }
 
 interface GetAllEventsResponse {
   data: {
     id: string;
     title: string;
-    poster: string;
+    posterImageUrl: string;
     startDate: string;
     startTime: string;
+    formEndDate: string;
+    formEndTime: string;
     location: string;
     clubName: string;
-    clubImage: string;
+    clubLogoImageUrl: string;
   }[];
   pageData: PageData;
 }
@@ -98,6 +115,9 @@ interface FormPage {
   clubId: string;
 }
 
+type ValuePiece = Date | null;
+type Value = ValuePiece | [ValuePiece, ValuePiece];
+
 export {
   getEventFormResponse,
   GetAllEventsRequest,
@@ -113,5 +133,9 @@ export {
   ProfileEventType,
   EventStatus,
   FormPage,
+  Schedule,
+  SchedulesProps,
+  ValuePiece,
+  Value,
   BookmarkedEvent,
 };

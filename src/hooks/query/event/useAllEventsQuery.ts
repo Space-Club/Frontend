@@ -3,12 +3,21 @@ import { GetAllEventsRequest } from '@/types/event';
 
 import { useQuery } from '@tanstack/react-query';
 
-const QUERY_KEY = { ALL_EVENTS: 'ALL_EVENTS' };
+export const QUERY_KEY = { SHOW: 'SHOW', PROMOTION: 'PROMOTION', RECRUITMENT: 'RECRUITMENT' };
 
-const useAllEventsQuery = ({ pageNumber }: GetAllEventsRequest) => {
+const useAllEventsQuery = (
+  { pageNumber, category, sort }: GetAllEventsRequest,
+  pathname: string,
+) => {
   const { data: allEvents } = useQuery({
-    queryKey: [QUERY_KEY.ALL_EVENTS],
-    queryFn: () => getAllEvents({ pageNumber }),
+    queryKey: [
+      pathname === '/'
+        ? QUERY_KEY.SHOW
+        : pathname === '/events'
+        ? QUERY_KEY.PROMOTION
+        : QUERY_KEY.RECRUITMENT,
+    ],
+    queryFn: () => getAllEvents({ pageNumber, category, sort }),
   });
 
   const { data, pageData } = allEvents ?? {};

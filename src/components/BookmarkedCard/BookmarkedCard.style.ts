@@ -16,24 +16,27 @@ const BookmarkedTitleStyled = styled.h3`
 
 const BookmarkedInfoStyled = styled(ellipsisText)`
   color: ${Theme.color.semiBlack};
-  margin-left: 0.2rem;
   font-size: 1rem;
   font-weight: 400;
 `;
 
 const BookmarkedInfoLine = styled.div`
   display: flex;
-  font-size: 1.125rem;
-  font-weight: 400;
   margin-bottom: 0.1rem;
 `;
 
 const BookmarkedInfoWrapper = styled.div`
-  width: 10rem;
+  width: 12rem;
+  overflow: hidden;
+
   padding: 1rem;
   display: flex;
-  flex-grow: 1;
   flex-direction: column;
+`;
+
+const BookmarkedInfoLabelStyled = styled.p`
+  color: ${Theme.color.black};
+  font-size: 1rem;
 `;
 
 export {
@@ -42,4 +45,5 @@ export {
   BookmarkedTitleStyled,
   BookmarkedInfoStyled,
   BookmarkedInfoLine,
+  BookmarkedInfoLabelStyled,
 };

@@ -3,7 +3,6 @@ import { Club } from '../club';
 interface GetClubRequest {
   clubId: string;
 }
-
 interface GetClubResponse
   extends Pick<
     Club,
