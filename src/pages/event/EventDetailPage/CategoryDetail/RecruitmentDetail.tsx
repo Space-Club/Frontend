@@ -11,9 +11,19 @@ interface RecruitmentDetail {
 
 const RecruitmentDetail = ({ data }: RecruitmentDetail) => {
   const { recruitmentTarget, capacity, location } = data;
+
+  const calculateItem = (recruitmentTarget: string, capacity: number, location: string) => {
+    if (recruitmentTarget && capacity && location) return 3;
+    else if (recruitmentTarget && capacity) return 2;
+    else if (recruitmentTarget && location) return 2;
+    else if (capacity && location) return 2;
+    else if (recruitmentTarget || capacity || location) return 1;
+    else return 0;
+  };
+
   return (
     <Fragment>
-      <TwoContentWrapper>
+      <TwoContentWrapper itemLength={calculateItem(recruitmentTarget, capacity, location)}>
         {recruitmentTarget && (
           <div>
             <ContentLabel>{EVENT_DETAIL.recruitTarget}</ContentLabel>

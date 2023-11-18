@@ -15,7 +15,7 @@ const ShowDetail = ({ data }: ShowDetail) => {
 
   return (
     <Fragment>
-      <TwoContentWrapper>
+      <TwoContentWrapper itemLength={3}>
         <div>
           <ContentLabel>{EVENT_DETAIL.date}</ContentLabel>
           <div>{transDate(startDate)}</div>

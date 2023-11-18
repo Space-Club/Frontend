@@ -13,7 +13,7 @@ interface BookMark extends HTMLAttributes<HTMLDivElement> {
 const BookMark = forwardRef<HTMLDivElement, BookMark>(
   ({ bookmarked, size = 30, strokeWidth = 10, eventId, ...props }, ref) => {
     const [bookmarkPaint, setBookmarkPaint] = useState(bookmarked);
-    console.log(bookmarked);
+
     const { patchBookmarkMutate, isBookmarkLoading } = usePatchBookmarkMutation({ bookmarkPaint });
 
     const handleBookmarkClick = async () => {

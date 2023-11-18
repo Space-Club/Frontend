@@ -12,9 +12,16 @@ interface ClubDetail {
 
 const ClubDetail = ({ data }: ClubDetail) => {
   const { startDate, startTime, endDate, endTime, dues, location } = data;
+
+  const calculateItem = (dues: number, location: string) => {
+    if (dues && location) return 3;
+    else if (dues || location) return 2;
+    else return 1;
+  };
+
   return (
     <Fragment>
-      <TwoContentWrapper>
+      <TwoContentWrapper itemLength={calculateItem(dues, location)}>
         <div>
           <ContentLabel>{EVENT_DETAIL.schedule}</ContentLabel>
           {transDate(startDate)} {transTime(startTime)} ~ {transDate(endDate)} {transTime(endTime)}

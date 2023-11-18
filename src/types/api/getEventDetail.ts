@@ -28,6 +28,7 @@ interface ShowDetailResponse {
   capacity: number;
   isManager: boolean;
   eventCategory: 'SHOW';
+  maxTicketCount: number; // TODO: 명세서 나올 시, 변수 명 변경 필요
 }
 
 interface PromotionDetailResponse {

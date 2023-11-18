@@ -45,9 +45,9 @@ const DetailContentWrapper = styled.div`
 const EventTitle = styled.div`
   font-size: ${Theme.fontSize.largeTitle};
 `;
-const TwoContentWrapper = styled.div`
-  display: grid;
-  grid-template-rows: repeat(2, 1fr);
+const TwoContentWrapper = styled.div<{ itemLength: number }>`
+  display: ${({ itemLength }) => (itemLength === 0 ? 'none' : 'grid')};
+  grid-template-rows: ${({ itemLength }) => (itemLength > 2 ? 'repeat(2, 1fr)' : 'repeat(1, 1fr)')};
   grid-template-columns: repeat(2, 1fr);
   gap: 3rem;
 `;

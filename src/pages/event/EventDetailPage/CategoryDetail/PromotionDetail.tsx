@@ -14,7 +14,7 @@ const PromotionDetail = ({ data }: PromotionDetail) => {
   const { startDate, startTime, activityArea } = data;
   return (
     <Fragment>
-      <TwoContentWrapper>
+      <TwoContentWrapper itemLength={3}>
         <div>
           <ContentLabel>{EVENT_DETAIL.date}</ContentLabel>
           <div>{transDate(startDate)}</div>

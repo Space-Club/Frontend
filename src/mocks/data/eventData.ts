@@ -128,10 +128,11 @@ const eventDetail: ShowDetailResponse = {
   formCloseDate: '2023-10-24',
   formCloseTime: '23:41:30',
   isBookmarked: true,
-  applicants: 10,
-  capacity: 100,
+  applicants: 999,
+  capacity: 1000,
   isManager: true,
   eventCategory: 'SHOW',
+  maxTicketCount: 5, // TODO: 명세서 나올 시, 변수 명 변경 필요
 };
 
 const eventForm = {

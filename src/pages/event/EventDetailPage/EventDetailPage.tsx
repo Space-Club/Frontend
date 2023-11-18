@@ -1,22 +1,21 @@
-import ConfirmModal from '@/components/Modals/ConfirmModal';
 import SearchInputForm from '@/components/SearchInputForm/SearchInputForm';
 import BookMark from '@/components/common/BookMark/BookMark';
-import DropDown from '@/components/common/DropDown/DropDown';
 import Header from '@/components/common/Header/Header';
 import Poster from '@/components/common/Poster/Poster';
 import Tab from '@/components/common/Tab/Tab';
 import { EVENT_DETAIL_BUTTON } from '@/constants/event';
-import { MODAL_BUTTON_TEXT, MODAL_TEXT } from '@/constants/modalMessage';
 import { MAIN_TABS } from '@/constants/tab';
 import useDeleteEventMutation from '@/hooks/query/event/useDeleteEventMutation';
 import useEventDetailQuery from '@/hooks/query/event/useEventDetailQuery';
-import usePostEventApplyMutation from '@/hooks/query/event/usePostEventApplyMutation';
 import useModal from '@/hooks/useModal';
+import { ShowDetailResponse } from '@/types/api/getEventDetail';
 import { getStorage } from '@/utils/localStorage';
 
 import { useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
+import ApplyEventModal from './ApplyModal/ApplyEventModal';
+import ApplyShowModal from './ApplyModal/ApplyShowModal';
 import CategoryDetailForm from './CategoryDetail/CategoryDetailForm';
 import {
   ApplicantButton,
@@ -52,11 +51,10 @@ const EventDetailPage = () => {
 
   const { eventDetail, isEventDetailLoading } = useEventDetailQuery({ eventId });
 
-  const { applyEvent } = usePostEventApplyMutation();
   // TODO: 수정하기 버튼 클릭시, 게시물 수정 페이지로 이동
   const { deleteEventMutate } = useDeleteEventMutation({ eventId });
 
-  const { isManager, posterImageUrl, content, applicants, capacity, isBookmarked } =
+  const { isManager, posterImageUrl, content, applicants, capacity, isBookmarked, eventCategory } =
     eventDetail ?? {};
 
   const handleEventDelete = async () => {
@@ -69,28 +67,24 @@ const EventDetailPage = () => {
   };
 
   //TODO: form이 있을 경우, 폼 작성 페이지로, 없을 경우 바로 신청시키기
-  //TODO: 공연이 아닐 경우에는 장수 선택이 없어야함. 이에 대한 예외처리
   return (
     <EventDetailPageContainer>
       {!isEventDetailLoading && (
         <>
-          {showApplyModal && (
-            <ConfirmModal
-              message={MODAL_TEXT.EVENT_APPLY}
-              confirmLabel={MODAL_BUTTON_TEXT.CONFIRM}
-              onClose={applyModalClose}
-              onConfirm={() => applyEvent({ eventId })}
-              children={
-                <DropDown
-                  options={[
-                    { label: '1장', value: 1 },
-                    { label: '2장', value: 2 },
-                  ]}
-                  selectedValue={1}
-                />
-              }
-            />
-          )}
+          {showApplyModal &&
+            (eventCategory === 'SHOW' ? (
+              <ApplyShowModal
+                eventId={eventId}
+                eventDetail={eventDetail as ShowDetailResponse}
+                applyModalClose={applyModalClose}
+              />
+            ) : (
+              <ApplyEventModal
+                eventId={eventId}
+                eventDetail={eventDetail!}
+                applyModalClose={applyModalClose}
+              />
+            ))}
           <Header>
             <SearchInputForm />
             <Tab tabItems={MAIN_TABS} />
