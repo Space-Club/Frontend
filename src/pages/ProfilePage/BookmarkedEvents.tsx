@@ -1,9 +1,10 @@
-import BookmarkedEventCard from '@/components/BookmarkedEventCard/BookmarkedEventCard';
+import BookmarkedCard from '@/components/BookmarkedCard/BookmarkedCard';
 import Pagination from '@/components/common/Pagination/Pagination';
 import useGetEventBookMarkQuery from '@/hooks/query/event/useGetEventBookMarkQuery';
 
 import { useState } from 'react';
 
+import { BookmarkedEventsContainer } from './BookmarkedEvents.style';
 import { EmptyEventWrapper } from './ProfilePage.style';
 
 const BookmarkedEvents = () => {
@@ -25,10 +26,10 @@ const BookmarkedEvents = () => {
 
   return (
     <>
-      {bookmarks ? (
-        bookmarks.map((bookmark) => {
+      <BookmarkedEventsContainer>
+        {bookmarks.map((bookmark) => {
           return (
-            <BookmarkedEventCard
+            <BookmarkedCard
               key={bookmark.id}
               id={bookmark.id}
               title={bookmark.title}
@@ -39,11 +40,9 @@ const BookmarkedEvents = () => {
               bookmark={bookmark.bookmark}
             />
           );
-        })
-      ) : (
-        <EmptyEventWrapper>북마크한 행사가 없습니다</EmptyEventWrapper>
-      )}
-
+        })}
+      </BookmarkedEventsContainer>
+      {!bookmarks ?? <EmptyEventWrapper>북마크한 행사가 없습니다</EmptyEventWrapper>}
       <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
     </>
   );

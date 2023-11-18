@@ -4,11 +4,8 @@ import useAppliedEventQuery from '@/hooks/query/event/useAppliedEventQuery';
 
 import { useState } from 'react';
 
-import {
-  AppliedEventContainer,
-  AppliedEventPaginationWrapper,
-  EmptyEventWrapper,
-} from './ProfilePage.style';
+import { AppliedEventContainer } from './AppliedEvents.style';
+import { EmptyEventWrapper } from './ProfilePage.style';
 
 const AppliedEvents = () => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -43,9 +40,7 @@ const AppliedEvents = () => {
           <EmptyEventWrapper>신청한 행사가 없습니다.</EmptyEventWrapper>
         )}
       </AppliedEventContainer>
-      <AppliedEventPaginationWrapper>
-        <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
-      </AppliedEventPaginationWrapper>
+      <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
     </>
   );
 };
