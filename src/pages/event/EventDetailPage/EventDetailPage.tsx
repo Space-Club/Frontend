@@ -67,6 +67,9 @@ const EventDetailPage = () => {
   };
 
   //TODO: form이 있을 경우, 폼 작성 페이지로, 없을 경우 바로 신청시키기
+  //TODO: 인당 예매수가 API명세서가 나오면 그에 따른 변수명 변경
+  //TODO: API 명세서 나오면, 신청 API 연결
+
   return (
     <EventDetailPageContainer>
       {!isEventDetailLoading && (
