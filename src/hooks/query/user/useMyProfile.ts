@@ -9,7 +9,7 @@ interface useMyProfile {
   setValue: UseFormSetValue<FieldValues>;
 }
 
-const QUERY_KEY = {
+export const QUERY_KEY = {
   MY_PROFILE: 'MY_PROFILE',
   ID: getStorage('token'),
 };
