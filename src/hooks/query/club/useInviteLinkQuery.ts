@@ -4,9 +4,11 @@ import { useParams } from 'react-router-dom';
 
 import { useQuery } from '@tanstack/react-query';
 
+export const QUERY_KEY = { INVITE_LINK: 'INVITE_LINK' };
+
 const useInviteLinkQuery = () => {
   const { clubId = '' } = useParams();
-  const { data, refetch } = useQuery(['inviteLink'], () => postInviteLink({ clubId }), {
+  const { data, refetch } = useQuery([QUERY_KEY.INVITE_LINK], () => postInviteLink({ clubId }), {
     enabled: false,
     initialData: {
       inviteLink: '',

@@ -15,10 +15,10 @@ const useEditClubMutation = () => {
     onSuccess: () => {
       queryClient.invalidateQueries([GET_CLUB_KEY.GET_CLUB]);
       queryClient.invalidateQueries([CLUBS_KEY.MY_CLUB]);
-      createToast({ message: '동아리 정보 수정사항이 적용되었습니다', toastType: 'success' });
+      createToast({ message: '수정사항이 적용되었습니다', toastType: 'success' });
     },
     onError: () => {
-      createToast({ message: '동아리 정보 수정에 실패했습니다', toastType: 'error' });
+      createToast({ message: '수정에 실패했습니다', toastType: 'error' });
     },
   });
 

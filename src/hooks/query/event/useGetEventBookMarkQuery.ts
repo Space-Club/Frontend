@@ -3,7 +3,7 @@ import { GetEventBookmarkRequest } from '@/types/api/getEventBookmark';
 
 import { useQuery } from '@tanstack/react-query';
 
-const QUERY_KEY = {
+export const QUERY_KEY = {
   GET_EVENT_BOOKMARK: 'getEventBookmark',
 };
 

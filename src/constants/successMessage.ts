@@ -8,6 +8,7 @@ const SUCCESS_MESSAGE = {
   },
   CLUB: {
     JOIN: '가입이 완료되었습니다.',
+    CREATE: '클럽이 개설되었습니다.',
   },
 } as const;
 
