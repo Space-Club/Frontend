@@ -6,12 +6,13 @@ import { QUERY_KEY } from './useMyProfile';
 
 const usePatchUserImageMutation = () => {
   const queryClient = useQueryClient();
-  useMutation({
+  const { mutate: editUserImage } = useMutation({
     mutationFn: patchUserImage,
     onSuccess: () => {
       queryClient.invalidateQueries([QUERY_KEY.MY_PROFILE]);
     },
   });
+  return { editUserImage };
 };
 
 export default usePatchUserImageMutation;

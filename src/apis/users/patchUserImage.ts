@@ -6,7 +6,6 @@ import { axiosClientWithAuth } from '../axiosClient';
 const patchUserImage = async ({ userImage }: PatchUserImageRequest) => {
   const formData = new FormData();
   formData.append('userImage', userImage);
-
   await axiosClientWithAuth.patch<PatchUserImageResponse>(
     END_POINTS.PATCH_PROFILE_IMAGE,
     formData,
