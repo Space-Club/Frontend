@@ -4,14 +4,14 @@ import { OptionStyled, SelectStyled } from './DropDown.style';
 
 export interface DropDownOption {
   label: string;
-  value: string;
+  value: string | number;
   fontColor?: keyof typeof Theme.color;
 }
 
 interface DropDownProps extends React.SelectHTMLAttributes<HTMLSelectElement> {
   backgroundColor?: keyof typeof Theme.color;
   options: DropDownOption[];
-  selectedValue: string;
+  selectedValue: string | number;
   children?: React.ReactNode;
 }
 

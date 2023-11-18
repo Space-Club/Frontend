@@ -18,7 +18,7 @@ export const axiosClientWithAuth = axios.create({
     'Content-Type': 'application/json',
     Authorization: `Bearer ${getStorage('token')}`,
   },
-  //baseURL: 'https://spaceclub.site/api/v1',
+  baseURL: 'https://spaceclub.site/api/v1',
   withCredentials: true,
   timeout: NETWORK_TIMEOUT,
 });
