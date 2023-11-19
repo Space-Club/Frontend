@@ -1,8 +1,8 @@
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
 import useMyProfile from '@/hooks/query/user/useMyProfile';
+import usePatchUserImageMutation from '@/hooks/query/user/usePatchUserImageMutation';
 import { validateName, validateNumber } from '@/utils/validate';
 
-import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 
 import Avatar from '../common/Avatar/Avatar';
@@ -11,17 +11,19 @@ import { EditButton, InfoWrapper, ProfileContainer } from './Profile.style';
 
 const Profile = () => {
   const { register, setValue } = useForm();
-  const { data, refetch } = useMyProfile({ setValue });
-  // TODO : 정보수정하기 버튼
-  useEffect(() => {
-    refetch();
-  }, [refetch]);
+  const { editUserImage } = usePatchUserImageMutation();
+  const { data } = useMyProfile({ setValue });
 
   const { REQUIRED_NAME, REQUIRED_NUMBER, NAME } = ERROR_MESSAGE.REGISTER;
 
   return (
     <ProfileContainer>
-      <Avatar avatarSize="large" isEditable profileImageSrc={data?.profileImageUrl} />
+      <Avatar
+        avatarSize="large"
+        isEditable
+        profileImageSrc={data?.profileImageUrl}
+        onEdit={(file) => editUserImage({ userImage: file })}
+      />
       <InfoWrapper>
         <EditButton buttonText="정보 수정하기" />
         <InputForm
