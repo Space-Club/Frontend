@@ -1,15 +1,11 @@
 import { END_POINTS } from '@/constants/api';
-import { getEventDetailResponse } from '@/types/event';
+import { getEventDetailRequest, getEventDetailResponse } from '@/types/api/getEventDetail';
 
 import { axiosClientWithAuth } from '../axiosClient';
 
-interface getEventDetail {
-  id: string;
-}
-
-const getEventDetail = async ({ id }: getEventDetail) => {
+const getEventDetail = async ({ eventId }: getEventDetailRequest) => {
   const { data } = await axiosClientWithAuth.get<getEventDetailResponse>(
-    `${END_POINTS.GET_EVENT_DETAIL}/${id}`,
+    `${END_POINTS.GET_EVENT_DETAIL}/${eventId}`,
   );
 
   return data;

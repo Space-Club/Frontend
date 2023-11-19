@@ -75,22 +75,6 @@ interface GetAllEventsResponse {
   pageData: PageData;
 }
 
-interface getEventDetailResponse {
-  title: string;
-  posterImageUrl: string;
-  startDate: string;
-  startTime: string;
-  location: string;
-  clubName: string;
-  openDate: string;
-  openTime: string;
-  closeDate: string;
-  closeTime: string;
-  content: string;
-  isManager: boolean;
-  bookmarked: boolean;
-}
-
 interface getEventFormResponse {
   event: {
     title: string;
@@ -122,7 +106,6 @@ export {
   getEventFormResponse,
   GetAllEventsRequest,
   GetAllEventsResponse,
-  getEventDetailResponse,
   Event,
   EventTags,
   EventTagKey,

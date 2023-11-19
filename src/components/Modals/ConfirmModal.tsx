@@ -1,5 +1,7 @@
 import { MODAL_BUTTON_TEXT } from '@/constants/modalMessage';
 
+import { ReactNode } from 'react';
+
 import Button from '../common/Button/Button';
 import {
   BackgroundOverlay,
@@ -13,6 +15,7 @@ import Portal from './Portal';
 interface ConfirmModalProps {
   message?: string;
   confirmLabel?: string;
+  children?: ReactNode;
   onClose?: () => void;
   onConfirm?: () => void;
 }
@@ -20,6 +23,7 @@ interface ConfirmModalProps {
 const ConfirmModal = ({
   message,
   confirmLabel = '확인',
+  children,
   onClose,
   onConfirm,
 }: ConfirmModalProps) => {
@@ -29,6 +33,7 @@ const ConfirmModal = ({
       <ModalBaseContainer>
         <ModalContentWrapper>
           <MessageStyled>{message}</MessageStyled>
+          {children && children}
           <ButtonWrapper>
             <Button type="button" buttonText={MODAL_BUTTON_TEXT.CANCEL} outline onClick={onClose} />
             <Button

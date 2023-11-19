@@ -1,6 +1,17 @@
+import { SemiPurpleButton } from '@/components/SemiPurpleButton/SemiPurpleButton.style';
 import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
+const EventDetailPageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+`;
+const ContentWrapper = styled.div`
+  width: 100%;
+  max-width: 65rem;
+  margin: 1rem auto;
+`;
 const FormButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -32,26 +43,57 @@ const DetailContentWrapper = styled.div`
   margin-left: 3rem;
 `;
 const EventTitle = styled.div`
-  font-size: 2rem;
+  font-size: ${Theme.fontSize.largeTitle};
 `;
-const TwoContentWrapper = styled.div`
-  display: flex;
-  gap: 10rem;
+const TwoContentWrapper = styled.div<{ itemLength: number }>`
+  display: ${({ itemLength }) => (itemLength === 0 ? 'none' : 'grid')};
+  grid-template-rows: ${({ itemLength }) => (itemLength > 2 ? 'repeat(2, 1fr)' : 'repeat(1, 1fr)')};
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3rem;
 `;
 const ContentLabel = styled.div`
-  font-size: 1.5rem;
+  font-size: ${Theme.fontSize.mediumTitle};
+  margin-right: 0.5rem;
 `;
 const ButtonWrapper = styled.div`
   display: flex;
-  gap: 0.5rem;
   justify-content: flex-end;
+  height: 4rem;
 `;
-const EventContent = styled.div`
+
+const ApplicantButton = styled(SemiPurpleButton)<{ capacity: boolean }>`
+  display: ${({ capacity }) => (capacity ? 'block' : 'none')};
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  padding: 0 1rem;
+
+  &:hover {
+    cursor: revert;
+  }
+`;
+const ApplyButton = styled(SemiPurpleButton)<{ capacity: boolean }>`
+  width: 30%;
+  border-top-left-radius: ${({ capacity }) => capacity && '0'};
+  border-bottom-left-radius: ${({ capacity }) => capacity && '0'};
+  font-size: ${Theme.fontSize.mediumContent};
+`;
+const BookmarkButton = styled(SemiPurpleButton)`
+  margin-left: 0.5rem;
+  padding: 0 1.5rem;
+`;
+
+const EventContentWrapper = styled.div`
   width: 100%;
   margin-top: 2rem;
 `;
+const EventContentTitle = styled.div`
+  font-size: ${Theme.fontSize.largeTitle};
+  margin-bottom: 0.5rem;
+`;
 
 export {
+  ContentWrapper,
+  EventDetailPageContainer,
   FormButtonWrapper,
   PurpleButton,
   UpdateDeleteWrapper,
@@ -61,5 +103,9 @@ export {
   TwoContentWrapper,
   ContentLabel,
   ButtonWrapper,
-  EventContent,
+  ApplicantButton,
+  ApplyButton,
+  BookmarkButton,
+  EventContentWrapper,
+  EventContentTitle,
 };

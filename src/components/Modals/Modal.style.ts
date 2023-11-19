@@ -35,6 +35,7 @@ const ModalContentWrapper = styled.div`
 `;
 
 const MessageStyled = styled.p`
+  text-align: center;
   font-size: ${Theme.fontSize.mediumContent};
 `;
 

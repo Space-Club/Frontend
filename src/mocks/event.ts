@@ -19,7 +19,8 @@ const eventHandlers = [
 
   http.get(`${END_POINTS.GET_EVENT_DETAIL}/:eventId`, async ({ params }) => {
     const { eventId } = params;
-    console.log('id', eventId);
+    console.log(eventId);
+
     return HttpResponse.json(eventDetail, { status: 201 });
   }),
   http.delete(`${END_POINTS.GET_EVENT_DETAIL}/:eventId`, async ({ params }) => {
