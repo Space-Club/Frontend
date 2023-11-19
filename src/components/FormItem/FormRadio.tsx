@@ -26,7 +26,7 @@ const FormRadio = ({ options, keyName, id, onAnswer }: FormRadio) => {
   return (
     <FormRadioContainer>
       {options.map((option) => (
-        <FormRadioItemWrapper>
+        <FormRadioItemWrapper key={option}>
           <FormRadioItemInput
             type="radio"
             name={keyName}

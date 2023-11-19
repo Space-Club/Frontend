@@ -76,7 +76,14 @@ const SubmitFormPage = () => {
       <SubmitFormContent>{eventFormData?.form.description}</SubmitFormContent>
       <FormWrapper>
         {eventFormData?.form.options.map(({ id, title, type, option }) => (
-          <FormItem id={id} title={title} type={type} options={option} onAnswer={handleAnswer} />
+          <FormItem
+            key={id}
+            id={id}
+            title={title}
+            type={type}
+            options={option}
+            onAnswer={handleAnswer}
+          />
         ))}
         <SubmitButton onClick={handleSubmitForm}>신청 폼 제출하기</SubmitButton>
       </FormWrapper>
