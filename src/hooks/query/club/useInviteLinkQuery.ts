@@ -15,9 +15,13 @@ const useInviteLinkQuery = () => {
     },
   });
 
-  const inviteLink = 'https://spaceclub.vercel.app' + data.inviteLink.split('/api/v1')[1];
-
-  return { inviteLink, refetch };
+  if (data.inviteLink) {
+    const inviteLink = 'https://spaceclub.vercel.app' + data.inviteLink.split('/api/v1')[1];
+    return { inviteLink, refetch };
+  } else {
+    const inviteLink = '오른쪽 버튼을 눌러 초대링크를 생성해보세요!';
+    return { inviteLink, refetch };
+  }
 };
 
 export default useInviteLinkQuery;

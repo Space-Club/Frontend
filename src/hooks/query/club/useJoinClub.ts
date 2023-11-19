@@ -21,7 +21,9 @@ const useJoinClub = () => {
       createToast({ message: SUCCESS_MESSAGE.CLUB.JOIN, toastType: 'success' });
       navigate(PATH.CLUB.HOME(data.clubId));
     },
-    onError: () => {
+    onError: (error) => {
+      console.log(error);
+      //#TODO: error 코드 분리하기
       createToast({ message: ERROR_MESSAGE.CLUB.JOIN_FAILED, toastType: 'error' });
     },
   });
