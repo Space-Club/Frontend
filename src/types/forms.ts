@@ -22,7 +22,8 @@ interface Question {
 
 interface postEventApplyRequest {
   eventId: string;
-  forms: Question[];
+  ticketCount?: number | null;
+  forms?: Question[];
 }
 
 export { Form, UserForm, FormInfo, Question, postEventApplyRequest };

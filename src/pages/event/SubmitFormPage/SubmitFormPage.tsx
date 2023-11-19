@@ -4,13 +4,13 @@ import Header from '@/components/common/Header/Header';
 import Tab from '@/components/common/Tab/Tab';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
 import { MAIN_TABS } from '@/constants/tab';
-import useEventApplyMutation from '@/hooks/query/event/useEventApplyMutation';
 import useEventFormQuery from '@/hooks/query/event/useEventFormQuery';
+import usePostEventApplyMutation from '@/hooks/query/event/usePostEventApplyMutation';
 import useToast from '@/hooks/useToast';
 import { Question } from '@/types/forms';
 
 import { MouseEvent, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 import {
   FormWrapper,
@@ -23,13 +23,14 @@ import {
 const SubmitFormPage = () => {
   const { eventId } = useParams();
   const [forms, setForms] = useState<Question[]>([]);
-  const { applyEvent, isApplyLoading } = useEventApplyMutation();
+  const { state } = useLocation();
   const { createToast } = useToast();
 
   if (!eventId) {
     throw new Error('eventId is null');
   }
 
+  const { applyEvent, isApplyLoading } = usePostEventApplyMutation({ eventId });
   const eventFormData = useEventFormQuery({ eventId });
 
   const handleAnswer = (question: Question) => {
@@ -62,7 +63,7 @@ const SubmitFormPage = () => {
       return;
     }
 
-    if (!isApplyLoading) applyEvent({ forms, eventId });
+    if (!isApplyLoading) applyEvent({ forms, ticketCount: parseInt(state.ticketCount), eventId });
   };
 
   return (
