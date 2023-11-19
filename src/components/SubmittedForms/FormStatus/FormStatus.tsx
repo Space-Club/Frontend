@@ -6,7 +6,7 @@ import DropDown from '../../common/DropDown/DropDown';
 import { FormStatusItemStyled } from './FormStatus.style';
 
 interface FormStatus {
-  id: number;
+  id: string;
   applicationStatus: 'PENDING' | 'CONFIRMED' | 'CANCELED' | 'CANCEL_REQUESTED';
 }
 
