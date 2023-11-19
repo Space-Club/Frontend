@@ -61,8 +61,7 @@ const MainPage = () => {
                 posterSrc={event.posterImageUrl}
                 eventTitle={event.title}
                 eventDate={event.startDate}
-                formEndTime={event.formEndDate}
-                eventTime={event.startTime}
+                formCloseDate={event.formCloseDate}
                 eventPlace={event.location}
                 clubName={event.clubName}
               />

@@ -66,8 +66,8 @@ interface GetAllEventsResponse {
     posterImageUrl: string;
     startDate: string;
     startTime: string;
-    formEndDate: string;
-    formEndTime: string;
+    formCloseDate: string;
+    formCloseTime: string;
     location: string;
     clubName: string;
     clubLogoImageUrl: string;

@@ -1,5 +1,4 @@
 import { APPLIED_EVENTS_TAGS } from '@/constants/event';
-import { getTimeStamp } from '@/utils/getTimeStamp';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -13,7 +12,6 @@ import {
   EventDateStyled,
   EventFooterWrapper,
   EventInfoWrapper,
-  EventTimeStyled,
   PlaceStyled,
   TitleStyled,
 } from './EventCard.style';
@@ -24,7 +22,7 @@ interface EventProps {
   eventTitle: string;
   eventDate?: string | null;
   eventTime?: string | null;
-  formEndTime?: string | null;
+  formCloseDate?: string | null;
   eventPlace?: string | null;
   clubImageSrc?: string | null;
   clubName: string;
@@ -36,15 +34,13 @@ const EventCard = ({
   posterSrc,
   eventTitle,
   eventDate,
-  eventTime,
-  formEndTime,
+  formCloseDate,
   eventPlace,
   clubImageSrc,
   clubName,
   openStatus,
 }: EventProps) => {
   const navigate = useNavigate();
-  const timeStamp = getTimeStamp(eventTime ?? formEndTime);
 
   return (
     <ContainerStyled onClick={() => navigate(`/event/detail/${eventId}`)}>
@@ -58,8 +54,7 @@ const EventCard = ({
       <EventInfoWrapper>
         <div>
           <TitleStyled>{eventTitle}</TitleStyled>
-          <EventDateStyled>{eventDate ?? `모집마감: ${formEndTime}`}</EventDateStyled>
-          <EventTimeStyled>{timeStamp}</EventTimeStyled>
+          <EventDateStyled>{eventDate ?? `~${formCloseDate}`}</EventDateStyled>
         </div>
         <EventFooterWrapper>
           <PlaceStyled>{eventPlace}</PlaceStyled>
