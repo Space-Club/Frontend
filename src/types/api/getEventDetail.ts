@@ -8,93 +8,55 @@ type getEventDetailResponse =
   | RecruitmentDetailResponse
   | ClubDetailResponse;
 
-interface ShowDetailResponse {
+interface CommonDetailResponse {
   id: number;
   title: string;
   content: string;
   posterImageUrl: string;
+  formOpenDate: string;
+  formOpenTime: string;
+  formCloseDate: string;
+  formCloseTime: string;
+  clubName: string;
+  clubLogoImageUrl: string;
+  applicants: number;
+  capacity: number;
+  isBookmarked: boolean;
+  isManager: boolean;
+  hasForm: boolean;
+}
+
+interface ShowDetailResponse extends CommonDetailResponse {
   startDate: string;
   startTime: string;
   location: string;
   cost: number;
-  clubName: string;
-  clubLogoImageUrl: string;
-  formOpenDate: string;
-  formOpenTime: string;
-  formCloseDate: string;
-  formCloseTime: string;
-  isBookmarked: boolean;
-  applicants: number;
-  capacity: number;
-  isManager: boolean;
   eventCategory: 'SHOW';
-  maxTicketCount: number; // TODO: 명세서 나올 시, 변수 명 변경 필요
+  maxTicketCount: number;
 }
 
-interface PromotionDetailResponse {
-  id: number;
-  title: string;
-  content: string;
-  posterImageUrl: string;
+interface PromotionDetailResponse extends CommonDetailResponse {
   startDate: string;
   startTime: string;
   activityArea: string;
-  formOpenDate: string;
-  formOpenTime: string;
-  formCloseDate: string;
-  formCloseTime: string;
-  clubName: string;
-  clubLogoImageUrl: string;
-  isBookmarked: boolean;
-  applicants: number;
-  capacity: number;
-  isManager: boolean;
   eventCategory: 'PROMOTION';
 }
 
-interface RecruitmentDetailResponse {
-  id: number;
-  title: string;
-  content: string;
-  posterImageUrl: string;
+interface RecruitmentDetailResponse extends CommonDetailResponse {
   recruitmentTarget: string;
   startDate: string;
   startTime: string;
   location: string;
-  formOpenDate: string;
-  formOpenTime: string;
-  formCloseDate: string;
-  formCloseTime: string;
-  clubName: string;
-  clubLogoImageUrl: string;
-  isBookmarked: boolean;
-  applicants: number;
-  capacity: number;
-  isManager: boolean;
   eventCategory: 'RECRUITMENT';
 }
 
-interface ClubDetailResponse {
-  id: number;
-  title: string;
-  content: string;
-  posterImageUrl: string;
+interface ClubDetailResponse extends CommonDetailResponse {
   startDate: string;
   startTime: string;
   endDate: string;
   endTime: string;
   location: string;
   dues: number;
-  formOpenDate: string;
-  formOpenTime: string;
-  formCloseDate: string;
-  formCloseTime: string;
-  clubName: string;
-  clubLogoImageUrl: string;
-  isBookmarked: boolean;
-  applicants: number;
-  capacity: number;
-  isManager: boolean;
   eventCategory: 'CLUB';
 }
 

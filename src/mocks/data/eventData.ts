@@ -107,7 +107,8 @@ const eventDetail: ShowDetailResponse = {
   capacity: 1000,
   isManager: true,
   eventCategory: 'SHOW',
-  maxTicketCount: 5, // TODO: 명세서 나올 시, 변수 명 변경 필요
+  maxTicketCount: 5,
+  hasForm: true,
 };
 
 const eventForm = {

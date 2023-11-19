@@ -1,4 +1,4 @@
-import { Question } from '@/types/forms';
+import { Question } from '@/types/api/postApplyEvent';
 
 import { ChangeEvent } from 'react';
 
@@ -26,7 +26,7 @@ const FormRadio = ({ options, keyName, id, onAnswer }: FormRadio) => {
   return (
     <FormRadioContainer>
       {options.map((option) => (
-        <FormRadioItemWrapper>
+        <FormRadioItemWrapper key={option}>
           <FormRadioItemInput
             type="radio"
             name={keyName}

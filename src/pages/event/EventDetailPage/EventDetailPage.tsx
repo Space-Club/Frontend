@@ -1,9 +1,11 @@
+import ConfirmModal from '@/components/Modals/ConfirmModal';
 import SearchInputForm from '@/components/SearchInputForm/SearchInputForm';
 import BookMark from '@/components/common/BookMark/BookMark';
 import Header from '@/components/common/Header/Header';
 import Poster from '@/components/common/Poster/Poster';
 import Tab from '@/components/common/Tab/Tab';
 import { EVENT_DETAIL_BUTTON } from '@/constants/event';
+import { MODAL_TEXT } from '@/constants/modalMessage';
 import { MAIN_TABS } from '@/constants/tab';
 import useDeleteEventMutation from '@/hooks/query/event/useDeleteEventMutation';
 import useEventDetailQuery from '@/hooks/query/event/useEventDetailQuery';
@@ -67,7 +69,6 @@ const EventDetailPage = () => {
   };
 
   //TODO: form이 있을 경우, 폼 작성 페이지로, 없을 경우 바로 신청시키기
-  //TODO: 인당 예매수가 API명세서가 나오면 그에 따른 변수명 변경
   //TODO: API 명세서 나오면, 신청 API 연결
 
   return (
@@ -75,7 +76,13 @@ const EventDetailPage = () => {
       {!isEventDetailLoading && (
         <>
           {showApplyModal &&
-            (eventCategory === 'SHOW' ? (
+            (!token ? (
+              <ConfirmModal
+                message={MODAL_TEXT.LOGIN}
+                onClose={applyModalClose}
+                onConfirm={() => navigate('/login')}
+              />
+            ) : eventCategory === 'SHOW' ? (
               <ApplyShowModal
                 eventId={eventId}
                 eventDetail={eventDetail as ShowDetailResponse}
@@ -110,21 +117,19 @@ const EventDetailPage = () => {
               <Poster posterSrc={posterImageUrl ? posterImageUrl : ''} width={23} />
               <DetailContentWrapper>
                 <CategoryDetailForm data={eventDetail!} />
-                {!!token && (
-                  <ButtonWrapper>
-                    {capacity && (
-                      <ApplicantButton reverse capacity={!!capacity} disabled>
-                        {applicants}/{capacity}
-                      </ApplicantButton>
-                    )}
-                    <ApplyButton capacity={!!capacity} onClick={() => applyModalOpen()}>
-                      {EVENT_DETAIL_BUTTON.apply}
-                    </ApplyButton>
-                    <BookmarkButton reverse bold onClick={() => bookmarkRef.current?.click()}>
-                      <BookMark bookmarked={isBookmarked!} eventId={eventId} ref={bookmarkRef} />
-                    </BookmarkButton>
-                  </ButtonWrapper>
-                )}
+                <ButtonWrapper>
+                  {capacity && (
+                    <ApplicantButton reverse capacity={!!capacity} disabled>
+                      {applicants}/{capacity}
+                    </ApplicantButton>
+                  )}
+                  <ApplyButton capacity={!!capacity} onClick={() => applyModalOpen()}>
+                    {EVENT_DETAIL_BUTTON.apply}
+                  </ApplyButton>
+                  <BookmarkButton reverse bold onClick={() => bookmarkRef.current?.click()}>
+                    <BookMark bookmarked={isBookmarked!} eventId={eventId} ref={bookmarkRef} />
+                  </BookmarkButton>
+                </ButtonWrapper>
               </DetailContentWrapper>
             </EventDetailWrapper>
             <EventContentWrapper>

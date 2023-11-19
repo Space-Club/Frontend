@@ -1,4 +1,4 @@
-import { Question } from '@/types/forms';
+import { Question } from '@/types/api/postApplyEvent';
 
 import { useState } from 'react';
 
@@ -33,7 +33,9 @@ const FormDropDown = ({ options, id, onAnswer }: FormDropDown) => {
       {isDropDown && (
         <DropDown isRounded={isDropDown}>
           {options.map((option: string) => (
-            <Option onClick={() => handleOptionClick(option)}>{option}</Option>
+            <Option key={option} onClick={() => handleOptionClick(option)}>
+              {option}
+            </Option>
           ))}
         </DropDown>
       )}

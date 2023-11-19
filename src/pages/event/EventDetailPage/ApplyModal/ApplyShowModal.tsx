@@ -5,6 +5,7 @@ import usePostEventApplyMutation from '@/hooks/query/event/usePostEventApplyMuta
 import { ShowDetailResponse } from '@/types/api/getEventDetail';
 
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 interface ApplyShowModal {
   eventId: string;
@@ -14,8 +15,9 @@ interface ApplyShowModal {
 
 const ApplyShowModal = ({ eventId, eventDetail, applyModalClose }: ApplyShowModal) => {
   const [ticketCount, setTicketCount] = useState('1');
-  const { applyEvent } = usePostEventApplyMutation();
-  const { maxTicketCount } = eventDetail;
+  const navigate = useNavigate();
+  const { applyEvent } = usePostEventApplyMutation({ eventId });
+  const { maxTicketCount, hasForm } = eventDetail;
 
   const ticketList = Array.from({ length: maxTicketCount }, (_, index) => ({
     label: `${index + 1}장`,
@@ -27,7 +29,11 @@ const ApplyShowModal = ({ eventId, eventDetail, applyModalClose }: ApplyShowModa
       message={MODAL_TEXT.TICKET_APPLY}
       confirmLabel={MODAL_BUTTON_TEXT.CONFIRM}
       onClose={applyModalClose}
-      onConfirm={() => applyEvent({ eventId })}
+      onConfirm={() =>
+        hasForm
+          ? navigate('submitform', { state: { ticketCount } })
+          : applyEvent({ eventId, ticketCount: parseInt(ticketCount) })
+      }
       children={
         <DropDown
           options={ticketList}
