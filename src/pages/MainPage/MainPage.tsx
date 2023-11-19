@@ -29,7 +29,7 @@ const MainPage = () => {
     {
       pageNumber: currentPage,
       category: pathname === '/' ? 'SHOW' : pathname === '/events' ? 'PROMOTION' : 'RECRUITMENT',
-      sort: 'id', //#TODO: 정렬방법 수정하기
+      sort: pathname === '/recruitment' ? 'FormInfo.formCloseDateTime' : 'EventInfo.startDateTime',
     },
     pathname,
   );
