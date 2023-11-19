@@ -1,5 +1,5 @@
 import ConfirmModal from '@/components/Modals/ConfirmModal';
-import { MODAL_BUTTON_TEXT, MODAL_TEXT } from '@/constants/modalMessage';
+import { MODAL_TEXT } from '@/constants/modalMessage';
 import usePostEventApplyMutation from '@/hooks/query/event/usePostEventApplyMutation';
 import { getEventDetailResponse } from '@/types/api/getEventDetail';
 
@@ -14,7 +14,6 @@ const ApplyEventModal = ({ eventId, applyModalClose }: ApplyEventModal) => {
   return (
     <ConfirmModal
       message={MODAL_TEXT.EVENT_APPLY}
-      confirmLabel={MODAL_BUTTON_TEXT.CONFIRM}
       onClose={applyModalClose}
       onConfirm={() => applyEvent({ eventId })}
     />

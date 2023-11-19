@@ -1,4 +1,5 @@
 const MODAL_TEXT = {
+  LOGIN: '로그인이 필요합니다. 로그인을 하시겠습니까?',
   UNDONE: '저장되지 않은 수정사항이 있습니다.',
   TICKET_APPLY: '예매 장수를 선택해주세요.',
   EVENT_APPLY: '행사를 신청하시겠습니까?',
