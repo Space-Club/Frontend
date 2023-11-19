@@ -7,7 +7,7 @@ import { MAIN_TABS } from '@/constants/tab';
 import useEventFormQuery from '@/hooks/query/event/useEventFormQuery';
 import usePostEventApplyMutation from '@/hooks/query/event/usePostEventApplyMutation';
 import useToast from '@/hooks/useToast';
-import { Question } from '@/types/forms';
+import { Question } from '@/types/api/postApplyEvent';
 
 import { MouseEvent, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
@@ -63,7 +63,8 @@ const SubmitFormPage = () => {
       return;
     }
 
-    if (!isApplyLoading) applyEvent({ forms, ticketCount: parseInt(state.ticketCount), eventId });
+    if (!isApplyLoading)
+      applyEvent({ forms, ticketCount: state && parseInt(state.ticketCount), eventId });
   };
 
   return (

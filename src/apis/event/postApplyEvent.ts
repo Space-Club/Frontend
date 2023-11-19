@@ -1,5 +1,5 @@
 import { END_POINTS } from '@/constants/api';
-import { postEventApplyRequest } from '@/types/forms';
+import { postEventApplyRequest } from '@/types/api/postApplyEvent';
 
 import { axiosClientWithAuth } from '../axiosClient';
 

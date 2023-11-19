@@ -1,4 +1,4 @@
-import { Question } from '@/types/forms';
+import { Question } from '@/types/api/postApplyEvent';
 
 import { ChangeEvent } from 'react';
 
