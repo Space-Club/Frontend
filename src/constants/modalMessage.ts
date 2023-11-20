@@ -9,6 +9,7 @@ const MODAL_TEXT = {
   FORM_OPTION_SKIP_CONFIRM:
     '신청자의 정보를 받지 않으면 참여자의 정보를 볼 수 없어요! 그래도 진행하시겠어요?',
   DELETE_EVENT: '정말 행사를 삭제하시겠습니까?',
+  DELETE_CLUB: '정말 클럽을 삭제하시겠습니까?',
 };
 
 const MODAL_BUTTON_TEXT = {

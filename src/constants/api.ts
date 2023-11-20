@@ -22,6 +22,7 @@ const END_POINTS = {
     `events/${eventId}/forms/applications`,
 
   CREATE_CLUB: '/clubs',
+  DELETE_CLUB: (clubId: string) => `clubs/${clubId}`,
   INVITE_LINK: (clubId: string) => `/clubs/${clubId}/invite`,
   INVITE_CLUB_CODE: (inviteCode: string) => `/clubs/invite/${inviteCode}`,
   CLUB_MEMBERS: (clubId: string) => `/clubs/${clubId}/members`,

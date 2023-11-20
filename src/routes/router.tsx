@@ -11,7 +11,7 @@ import ClubEventPage from '@/pages/club/ClubEventPage/ClubEventPage';
 import ClubHomePage from '@/pages/club/ClubHomePage/ClubHomePage';
 import CreateClubPage from '@/pages/club/CreateClubPage/CreateClubPage';
 import InvitePage from '@/pages/club/InvitePage/InvitePage';
-import ManageClubPage from '@/pages/club/ManageClubPage';
+import ManageClubPage from '@/pages/club/ManageClubPage/ManageClubPage';
 import ChoiceEventPage from '@/pages/event/ChoiceEventPage/ChoiceEventPage';
 import EventDetailPage from '@/pages/event/EventDetailPage/EventDetailPage';
 import SubmitFormPage from '@/pages/event/SubmitFormPage/SubmitFormPage';
