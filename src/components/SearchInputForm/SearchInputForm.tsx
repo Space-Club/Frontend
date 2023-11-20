@@ -1,5 +1,5 @@
 import { PATH } from '@/constants/path';
-// import useSearchResultQuery from '@/hooks/query/event/useSearchResultQuery';
+import useSearchResultQuery from '@/hooks/query/event/useSearchResultQuery';
 import useDebounceValue from '@/hooks/useDebounce';
 
 import { useState } from 'react';
@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import SearchResult from '../SearchResult/SearchResult';
 import {
   IconContainerStyled,
+  NoResultStyled,
   SearchBarStyled,
   SearchInputContainerStyled,
   SearchInputStyled,
@@ -18,8 +19,9 @@ import {
 
 const SearchInputForm = () => {
   const [keyword, setKeyword] = useState('');
+  const [isFocused, setIsFocused] = useState(false);
   const debouncedKeyword = useDebounceValue(keyword, 1000);
-  // const { data } = useSearchResultQuery({ keyword: debouncedKeyword, page: 1 });
+  const { data } = useSearchResultQuery({ keyword: debouncedKeyword, page: 1 });
   const navigate = useNavigate();
 
   return (
@@ -30,30 +32,33 @@ const SearchInputForm = () => {
             placeholder="검색하기"
             value={keyword}
             onChange={(event) => setKeyword(event.target.value)}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
           />
           <IconContainerStyled onClick={() => navigate(`${PATH.SEARCH}/${debouncedKeyword}`)}>
             <CiSearch size="1.5rem" />
           </IconContainerStyled>
         </SearchBarStyled>
-        <SearchResultsWrapper>
-          <SearchTitleStyled>검색 결과</SearchTitleStyled>
-          <SearchResult
-            eventId="1"
-            eventTitle="연사모"
-            posterImageUrl="https://picsum.photos/200/300"
-            location="우리집"
-            eventStartDate="10101010"
-            clubName="연사모"
-          />
-          <SearchResult
-            eventId="1"
-            eventTitle="연사모asfjlsjflsf"
-            posterImageUrl="https://picsum.photos/200/300"
-            location="우리집asldfjals"
-            formEndDate="10101010"
-            clubName="연사모"
-          />
-        </SearchResultsWrapper>
+        {isFocused && (
+          <SearchResultsWrapper>
+            <SearchTitleStyled>{`"${debouncedKeyword}" 검색 결과`}</SearchTitleStyled>
+            {data?.length ? (
+              data.map((event) => (
+                <SearchResult
+                  key={event.id}
+                  eventId={event.id}
+                  eventTitle={event.eventInfo.title}
+                  posterImageUrl={event.eventInfo.posterImageUrl}
+                  location={event.eventInfo.location}
+                  formEndDate={event.formInfo.endDate}
+                  clubName={event.clubInfo.name}
+                />
+              ))
+            ) : (
+              <NoResultStyled>검색결과가 없습니다.</NoResultStyled>
+            )}
+          </SearchResultsWrapper>
+        )}
       </SearchInputContainerStyled>
     </>
   );

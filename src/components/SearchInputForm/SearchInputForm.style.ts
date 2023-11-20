@@ -1,4 +1,5 @@
 import Theme from '@/styles/Theme';
+import { sideBarScrollAreaStyled } from '@/styles/common';
 import styled from '@emotion/styled';
 
 const SearchInputContainerStyled = styled.div`
@@ -37,11 +38,13 @@ const IconContainerStyled = styled.div`
   cursor: pointer;
 `;
 
-const SearchResultsWrapper = styled.div`
+const SearchResultsWrapper = styled(sideBarScrollAreaStyled)`
   display: flex;
   flex-direction: column;
   max-width: 40rem;
   width: 90%;
+  height: 17rem;
+  overflow: auto;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -60,6 +63,12 @@ const SearchTitleStyled = styled.div`
   font-size: ${Theme.fontSize.smallContent};
 `;
 
+const NoResultStyled = styled.div`
+  padding-left: 1rem;
+  color: ${Theme.color.semiBlack};
+  font-size: ${Theme.fontSize.smallContent};
+`;
+
 export {
   SearchInputContainerStyled,
   SearchBarStyled,
@@ -67,4 +76,5 @@ export {
   IconContainerStyled,
   SearchTitleStyled,
   SearchResultsWrapper,
+  NoResultStyled,
 };
