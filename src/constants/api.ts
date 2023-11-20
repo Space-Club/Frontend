@@ -5,6 +5,7 @@ const NETWORK_TIMEOUT = 10000;
 const END_POINTS = {
   KAKAO_LOGIN: '/users/oauths',
   REGISTER: '/users',
+  DELETE_USER: '/users',
   USER_IMAGE: '/users/images',
   MY_CLUB: '/users/clubs',
 
