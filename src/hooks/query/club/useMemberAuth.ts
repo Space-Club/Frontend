@@ -11,7 +11,7 @@ const useMemberAuth = ({ clubId }: MemberAuthRequest) => {
     queryFn: () => getMemberAuth({ clubId }),
   });
 
-  return data;
+  return { data };
 };
 
 export default useMemberAuth;

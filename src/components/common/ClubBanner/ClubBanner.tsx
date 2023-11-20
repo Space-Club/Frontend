@@ -1,3 +1,4 @@
+import LeaveClubButton from '@/components/LeaveClubButton/LeaveClubButton';
 import useGetClubQuery from '@/hooks/query/club/useGetClubQuery';
 
 import Avatar from '../Avatar/Avatar';
@@ -24,6 +25,7 @@ const ClubBanner = ({ clubId, bannerSize = 'large' }: ClubBannerProps) => {
           <Avatar avatarSize="medium" isClub={true} profileImageSrc={logoImageUrl} />
           <ClubInfo info={info} name={name} memberCount={memberCount} />
         </ClubAvatarInfoWrapper>
+        <LeaveClubButton clubId={clubId} />
       </ClubCover>
     </ClubBannerContainer>
   );
