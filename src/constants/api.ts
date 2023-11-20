@@ -9,7 +9,7 @@ const END_POINTS = {
   MY_CLUB: '/users/clubs',
 
   PATCH_PROFILE_IMAGE: '/users/images',
-  PATCH_USER_INFO: 'users',
+  PATCH_USER_INFO: 'users/required-infos',
 
   PERFORMANCE_FORM: '/event',
   GET_APPLIED_EVENT: ({ page, size, sort }: { page: number; size: string; sort: string }) =>

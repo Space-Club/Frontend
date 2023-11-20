@@ -1,6 +1,7 @@
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
 import useMyProfile from '@/hooks/query/user/useMyProfile';
 import usePatchUserImageMutation from '@/hooks/query/user/usePatchUserImageMutation';
+import usePatchUserInfoMutation from '@/hooks/query/user/usePatchUserInfoMutation';
 import { PurpleButton } from '@/pages/event/EventDetailPage/EventDetailPage.style';
 import { validateName, validateNumber } from '@/utils/validate';
 
@@ -13,12 +14,21 @@ import { InfoWrapper, ProfileButtonsWrapper, ProfileContainer } from './Profile.
 
 const Profile = () => {
   const [isEdit, setIsEdit] = useState(false);
-  const { register, setValue } = useForm();
+  const { register, setValue, watch } = useForm();
   const { editUserImage } = usePatchUserImageMutation();
+  const { editUserInfo } = usePatchUserInfoMutation();
 
   const { data } = useMyProfile({ setValue });
 
   const { REQUIRED_NAME, REQUIRED_NUMBER, NAME } = ERROR_MESSAGE.REGISTER;
+
+  const handleInfoEditComplete = () => {
+    setIsEdit(false);
+    editUserInfo({
+      name: watch('username'),
+      phoneNumber: watch('phoneNumber'),
+    });
+  };
 
   return (
     <ProfileContainer>
@@ -33,7 +43,7 @@ const Profile = () => {
           {!isEdit ? (
             <PurpleButton onClick={() => setIsEdit(true)}>수정하기</PurpleButton>
           ) : (
-            <PurpleButton onClick={() => setIsEdit(false)}>저장</PurpleButton>
+            <PurpleButton onClick={handleInfoEditComplete}>저장</PurpleButton>
           )}
         </ProfileButtonsWrapper>
         <InputForm

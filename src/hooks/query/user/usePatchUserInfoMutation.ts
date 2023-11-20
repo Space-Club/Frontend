@@ -6,13 +6,13 @@ import { QUERY_KEY } from './useMyProfile';
 
 const usePatchUserInfoMutation = () => {
   const queryClient = useQueryClient();
-  const { mutate } = useMutation({
+  const { mutate: editUserInfo } = useMutation({
     mutationFn: patchUserInfo,
     onSuccess: () => {
       queryClient.invalidateQueries([QUERY_KEY.MY_PROFILE]);
     },
   });
-  return mutate;
+  return { editUserInfo };
 };
 
 export default usePatchUserInfoMutation;
