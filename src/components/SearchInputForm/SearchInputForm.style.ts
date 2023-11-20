@@ -33,6 +33,7 @@ const IconContainerStyled = styled.div`
   align-items: center;
   margin-right: 0.5rem;
   color: ${Theme.color.lineColor};
+  cursor: pointer;
 `;
 
 export { SearchInputContainerStyled, SearchBarStyled, SearchInputStyled, IconContainerStyled };
