@@ -29,7 +29,6 @@ const ScheduleContentStyled = styled.span`
 const WriterInfoWrapper = styled.div`
   display: flex;
   align-items: start;
-  gap: 0.3rem;
   position: absolute;
   right: 1rem;
   bottom: 0.5rem;

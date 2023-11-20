@@ -2,7 +2,6 @@ import { PATH } from '@/constants/path';
 
 import { useNavigate } from 'react-router-dom';
 
-import Avatar from '../common/Avatar/Avatar';
 import {
   ScheduleContainer,
   ScheduleContentStyled,
@@ -16,10 +15,9 @@ interface ScheduleProps {
   eventId: string;
   title: string;
   manager: string;
-  profileImageUrl: string;
 }
 
-const Schedule = ({ eventId, title, manager, profileImageUrl }: ScheduleProps) => {
+const Schedule = ({ eventId, title, manager }: ScheduleProps) => {
   const navigate = useNavigate();
 
   return (
@@ -31,7 +29,6 @@ const Schedule = ({ eventId, title, manager, profileImageUrl }: ScheduleProps) =
         </ScheduleContentStyled>
       </ScheduleContentWrapper>
       <WriterInfoWrapper>
-        <Avatar avatarSize="small" profileImageSrc={profileImageUrl} />
         <WriterNameStyled>{manager}</WriterNameStyled>
       </WriterInfoWrapper>
     </ScheduleContainer>
