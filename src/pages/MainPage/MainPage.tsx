@@ -29,7 +29,7 @@ const MainPage = () => {
     {
       pageNumber: currentPage,
       category: pathname === '/' ? 'SHOW' : pathname === '/events' ? 'PROMOTION' : 'RECRUITMENT',
-      sort: 'id', //#TODO: 정렬방법 수정하기
+      sort: pathname === '/recruitment' ? 'FormInfo.formCloseDateTime' : 'EventInfo.startDateTime',
     },
     pathname,
   );
@@ -61,8 +61,7 @@ const MainPage = () => {
                 posterSrc={event.posterImageUrl}
                 eventTitle={event.title}
                 eventDate={event.startDate}
-                formEndTime={event.formEndDate}
-                eventTime={event.startTime}
+                formCloseDate={event.formCloseDate}
                 eventPlace={event.location}
                 clubName={event.clubName}
               />
