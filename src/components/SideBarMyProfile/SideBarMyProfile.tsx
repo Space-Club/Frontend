@@ -10,9 +10,7 @@ const SideBarMyProfile = ({ profileImageUrl, ...props }: SideBarAvatarProps) => 
   return (
     <MyProfileStyled {...props}>
       {profileImageUrl ? (
-        <ProfileImageStyled>
-          <img src={profileImageUrl} alt="my profile image" />
-        </ProfileImageStyled>
+        <ProfileImageStyled src={profileImageUrl} alt="my profile image" />
       ) : (
         <BiSolidUserCircle size="4.6rem" style={{ fill: 'rgba(239, 239, 244, 0.50)' }} />
       )}
