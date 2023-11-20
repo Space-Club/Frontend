@@ -5,15 +5,9 @@ import { validateName, validateNumber } from '@/utils/validate';
 
 import { useForm } from 'react-hook-form';
 
-import DeleteUserButton from '../DeleteUserButton/DeleteUserButton';
 import Avatar from '../common/Avatar/Avatar';
 import InputForm from '../common/InputForm/InputForm';
-import {
-  DeleteUserButtonWrapper,
-  EditButton,
-  InfoWrapper,
-  ProfileContainer,
-} from './Profile.style';
+import { EditButton, InfoWrapper, ProfileContainer } from './Profile.style';
 
 const Profile = () => {
   const { register, setValue } = useForm();
@@ -45,9 +39,6 @@ const Profile = () => {
           {...register('phoneNumber', { required: REQUIRED_NUMBER, validate: validateNumber })}
           inputType="text"
         />
-        <DeleteUserButtonWrapper>
-          <DeleteUserButton />
-        </DeleteUserButtonWrapper>
       </InfoWrapper>
     </ProfileContainer>
   );

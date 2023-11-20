@@ -1,3 +1,4 @@
+import { MODAL_BUTTON_TEXT, MODAL_TEXT } from '@/constants/modalMessage';
 import useDeleteUserMutation from '@/hooks/query/user/useDeleteUserMutation';
 import useModal from '@/hooks/useModal';
 
@@ -15,7 +16,14 @@ const DeleteUserButton = () => {
 
   return (
     <>
-      {showModal && <ConfirmModal onClose={modalClose} onConfirm={handleWithdrawConfirm} />}
+      {showModal && (
+        <ConfirmModal
+          onClose={modalClose}
+          onConfirm={handleWithdrawConfirm}
+          message={MODAL_TEXT.DELETE_USER}
+          confirmLabel={MODAL_BUTTON_TEXT.DELETE_USER}
+        />
+      )}
       <DeleteUserButtonStyled onClick={() => modalOpen()}>탈퇴하기</DeleteUserButtonStyled>
     </>
   );

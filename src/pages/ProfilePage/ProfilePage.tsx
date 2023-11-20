@@ -1,3 +1,4 @@
+import DeleteUserButton from '@/components/DeleteUserButton/DeleteUserButton';
 import Profile from '@/components/Profile/Profile';
 import Header from '@/components/common/Header/Header';
 import Tab from '@/components/common/Tab/Tab';
@@ -8,14 +9,22 @@ import { useParams } from 'react-router-dom';
 
 import AppliedEvents from './AppliedEvents';
 import BookmarkedEvents from './BookmarkedEvents';
-import { AppliedEventTabContainer, ProfileBottomWrapper } from './ProfilePage.style';
+import {
+  AppliedEventTabContainer,
+  DeleteUserButtonWrapper,
+  ProfileBottomWrapper,
+} from './ProfilePage.style';
 
 const ProfilePage = () => {
   const { category } = useParams<{ category: ProfileEventType }>();
 
   return (
     <>
-      <Header />
+      <Header>
+        <DeleteUserButtonWrapper>
+          <DeleteUserButton />
+        </DeleteUserButtonWrapper>
+      </Header>
       <Profile />
       <ProfileBottomWrapper>
         <AppliedEventTabContainer>

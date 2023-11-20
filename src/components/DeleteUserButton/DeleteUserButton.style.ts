@@ -6,7 +6,7 @@ const DeleteUserButtonStyled = styled.button`
   height: 1.9rem;
   border-radius: 0.3125rem;
   color: ${Theme.color.white};
-  background-color: ${Theme.color.tRed};
+  background-color: ${Theme.color.gray};
   cursor: pointer;
   border: none;
 `;

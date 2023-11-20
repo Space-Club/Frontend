@@ -19,11 +19,4 @@ const EditButton = styled(Button)`
   align-self: flex-end;
 `;
 
-const DeleteUserButtonWrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  margin-top: 3rem;
-`;
-
-export { ProfileContainer, InfoWrapper, EditButton, DeleteUserButtonWrapper };
+export { ProfileContainer, InfoWrapper, EditButton };

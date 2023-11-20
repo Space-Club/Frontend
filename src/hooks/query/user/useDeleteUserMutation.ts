@@ -1,6 +1,7 @@
 import deleteUser from '@/apis/users/deleteUser';
 import { PATH } from '@/constants/path';
 import useToast from '@/hooks/useToast';
+import { deleteStorage } from '@/utils/localStorage';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -14,6 +15,7 @@ const useDeleteUserMutation = () => {
     mutationFn: deleteUser,
     onSuccess: () => {
       createToast({ message: '회원탈퇴가 완료되었습니다.', toastType: 'success' });
+      deleteStorage('token');
       navigate(PATH.LOGIN);
     },
   });
