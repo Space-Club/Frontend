@@ -16,7 +16,7 @@ const DeleteUserButton = () => {
   return (
     <>
       {showModal && <ConfirmModal onClose={modalClose} onConfirm={handleWithdrawConfirm} />}
-      <DeleteUserButtonStyled onClick={() => modalOpen()}>탈퇴하기</DeleteUserButtonStyled>;
+      <DeleteUserButtonStyled onClick={() => modalOpen()}>탈퇴하기</DeleteUserButtonStyled>
     </>
   );
 };
