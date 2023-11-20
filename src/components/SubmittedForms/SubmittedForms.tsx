@@ -19,10 +19,10 @@ const SubmittedForms = ({ formInfo, userForms }: { formInfo: FormInfo; userForms
           {userForms?.map((form, index) => {
             return (
               <SubmittedForm
-                key={form.id}
+                key={form.userId}
                 index={index}
                 formLength={formInfo.count}
-                id={form.id}
+                userId={form.userId}
                 options={form.options}
                 applicationStatus={form.applicationStatus}
                 managed={formInfo.managed}
