@@ -1,4 +1,4 @@
-import getMemberAuth from '@/apis/auth/getMemberAuth';
+import getMemberAuth from '@/apis/club/getMemberAuth';
 import { MemberAuthRequest } from '@/types/api/memberAuth';
 
 import { useQuery } from '@tanstack/react-query';
