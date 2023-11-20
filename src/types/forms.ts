@@ -4,7 +4,7 @@ interface Form {
 }
 
 interface UserForm {
-  id: string;
+  userId: string;
   options: Form[];
   applicationStatus: 'PENDING' | 'CONFIRMED' | 'CANCELED' | 'CANCEL_REQUESTED';
 }

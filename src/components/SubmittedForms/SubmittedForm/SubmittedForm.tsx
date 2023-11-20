@@ -6,7 +6,7 @@ import { FormItemStyled, FormRowStyled, FormStyled } from './SubmittedForm.style
 
 interface SubmittedFormProps {
   index: number;
-  id: string;
+  userId: string;
   formLength: number;
   options: {
     title: string;
@@ -18,7 +18,7 @@ interface SubmittedFormProps {
 
 const SubmittedForm = ({
   index,
-  id,
+  userId,
   formLength,
   options,
   applicationStatus,
@@ -35,7 +35,7 @@ const SubmittedForm = ({
         {options.map((option, index) => {
           return <FormItemStyled key={index}>{option.content}</FormItemStyled>;
         })}
-        {managed && <FormStatus id={id} applicationStatus={applicationStatus} />}
+        {managed && <FormStatus id={userId} applicationStatus={applicationStatus} />}
       </FormStyled>
     </>
   );

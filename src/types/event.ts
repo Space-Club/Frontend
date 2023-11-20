@@ -46,7 +46,6 @@ interface Schedule {
   startDateTime: string;
   endDateTime: string;
   manager: string;
-  profileImageUrl: string;
 }
 
 interface SchedulesProps {

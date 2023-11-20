@@ -52,7 +52,6 @@ const Schedules = ({ schedules }: SchedulesProps) => {
                 eventId={schedule.eventId}
                 title={schedule.title}
                 manager={schedule.manager}
-                profileImageUrl={schedule.profileImageUrl}
               />
             );
           })}
