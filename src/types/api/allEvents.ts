@@ -3,12 +3,13 @@ import { PageData } from '../common';
 import { EventInfo } from '../event';
 import { FormInfo } from '../form';
 
-interface SearchResultRequest {
-  keyword: string;
-  page: number;
+interface AllEventsRequest {
+  pageNumber: number;
+  category: string;
+  sort: string;
 }
 
-interface SearchResultResponse {
+interface AllEventsResponse {
   data: {
     id: string;
     eventInfo: EventInfo;
@@ -18,4 +19,4 @@ interface SearchResultResponse {
   pageData: PageData;
 }
 
-export { SearchResultRequest, SearchResultResponse };
+export { AllEventsRequest, AllEventsResponse };
