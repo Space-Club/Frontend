@@ -8,6 +8,7 @@ const MODAL_TEXT = {
   참여승인을 위해서 관리자의 확인이 필요한 경우 유용하게 쓸 수 있어요.`,
   FORM_OPTION_SKIP_CONFIRM:
     '신청자의 정보를 받지 않으면 참여자의 정보를 볼 수 없어요! 그래도 진행하시겠어요?',
+  DELETE_EVENT: '정말 행사를 삭제하시겠습니까?',
 };
 
 const MODAL_BUTTON_TEXT = {

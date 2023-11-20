@@ -46,6 +46,11 @@ const EventDetailPage = () => {
     modalOpen: applyModalOpen,
     modalClose: applyModalClose,
   } = useModal();
+  const {
+    showModal: deleteEventModal,
+    modalOpen: deleteModalOpen,
+    modalClose: deleteModalClose,
+  } = useModal();
 
   if (!eventId) {
     throw new Error('eventId is null'); //TODO: eventId가 없을 때 처리
@@ -60,16 +65,9 @@ const EventDetailPage = () => {
     eventDetail ?? {};
 
   const handleEventDelete = async () => {
-    const confirmed = window.confirm('정말로 행사를 삭제하시겠습니까?'); // TODO 모달로 변경
-
-    if (confirmed) {
-      deleteEventMutate();
-      navigate(-1);
-    }
+    deleteEventMutate();
+    navigate('/');
   };
-
-  //TODO: form이 있을 경우, 폼 작성 페이지로, 없을 경우 바로 신청시키기
-  //TODO: API 명세서 나오면, 신청 API 연결
 
   return (
     <EventDetailPageContainer>
@@ -95,6 +93,13 @@ const EventDetailPage = () => {
                 applyModalClose={applyModalClose}
               />
             ))}
+          {deleteEventModal && (
+            <ConfirmModal
+              message={MODAL_TEXT.DELETE_EVENT}
+              onClose={deleteModalClose}
+              onConfirm={handleEventDelete}
+            />
+          )}
           <Header>
             <SearchInputForm />
             <Tab tabItems={MAIN_TABS} />
@@ -107,7 +112,7 @@ const EventDetailPage = () => {
                 </PurpleButton>
                 <UpdateDeleteWrapper>
                   <PurpleButton reverse>{EVENT_DETAIL_BUTTON.edit}</PurpleButton>
-                  <PurpleButton onClick={handleEventDelete}>
+                  <PurpleButton onClick={deleteModalOpen}>
                     {EVENT_DETAIL_BUTTON.delete}
                   </PurpleButton>
                 </UpdateDeleteWrapper>
