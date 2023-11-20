@@ -8,7 +8,11 @@ import { useNavigate } from 'react-router-dom';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
+import { isAxiosError } from 'axios';
+
 import { QUERY_KEY } from './useClubs';
+
+type ResponseDataType = string;
 
 const useJoinClub = () => {
   const { createToast } = useToast();
@@ -22,9 +26,13 @@ const useJoinClub = () => {
       navigate(PATH.CLUB.HOME(data.clubId));
     },
     onError: (error) => {
-      console.log(error);
-      //#TODO: error 코드 분리하기
-      createToast({ message: ERROR_MESSAGE.CLUB.JOIN_FAILED, toastType: 'error' });
+      if (isAxiosError<ResponseDataType>(error)) {
+        const errorMessage = error.response?.data.split(':')[1];
+        createToast({
+          message: errorMessage ?? ERROR_MESSAGE.CLUB.JOIN_FAILED,
+          toastType: 'error',
+        });
+      }
     },
   });
 
