@@ -20,9 +20,15 @@ import {
 const SearchInputForm = () => {
   const [keyword, setKeyword] = useState('');
   const [isFocused, setIsFocused] = useState(false);
-  const debouncedKeyword = useDebounceValue(keyword, 1000);
+  const debouncedKeyword = useDebounceValue(keyword, 500);
   const { data } = useSearchResultQuery({ keyword: debouncedKeyword, page: 1 });
   const navigate = useNavigate();
+
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === 'Enter') {
+      navigate(`${PATH.SEARCH}/${debouncedKeyword}`);
+    }
+  };
 
   return (
     <>
@@ -34,6 +40,7 @@ const SearchInputForm = () => {
             onChange={(event) => setKeyword(event.target.value)}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setIsFocused(false)}
+            onKeyDown={(event) => handleKeyDown(event)}
           />
           <IconContainerStyled onClick={() => navigate(`${PATH.SEARCH}/${debouncedKeyword}`)}>
             <CiSearch size="1.5rem" />
