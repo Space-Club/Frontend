@@ -10,7 +10,7 @@ const useDeleteUserMutation = () => {
   const navigate = useNavigate();
   const { createToast } = useToast();
 
-  const { mutate } = useMutation({
+  const { mutate: withdrawService } = useMutation({
     mutationFn: deleteUser,
     onSuccess: () => {
       createToast({ message: '회원탈퇴가 완료되었습니다.', toastType: 'success' });
@@ -18,7 +18,7 @@ const useDeleteUserMutation = () => {
     },
   });
 
-  return { mutate };
+  return { withdrawService };
 };
 
 export default useDeleteUserMutation;
