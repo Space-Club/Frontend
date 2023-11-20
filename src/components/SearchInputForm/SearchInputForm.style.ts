@@ -6,6 +6,7 @@ const SearchInputContainerStyled = styled.div`
   justify-content: center;
   align-items: center;
   flex-grow: 1;
+  position: relative;
   height: 100%;
 `;
 
@@ -36,4 +37,34 @@ const IconContainerStyled = styled.div`
   cursor: pointer;
 `;
 
-export { SearchInputContainerStyled, SearchBarStyled, SearchInputStyled, IconContainerStyled };
+const SearchResultsWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 40rem;
+  width: 90%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 6%);
+  padding: 0.5rem 0;
+  border: 1px solid ${Theme.color.tWhiteGrey};
+  border-radius: 0.6rem;
+  background-color: white;
+  filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
+  z-index: 5;
+`;
+
+const SearchTitleStyled = styled.div`
+  padding: 1rem 1rem 0.5rem 1rem;
+  color: black;
+  font-size: ${Theme.fontSize.smallContent};
+`;
+
+export {
+  SearchInputContainerStyled,
+  SearchBarStyled,
+  SearchInputStyled,
+  IconContainerStyled,
+  SearchTitleStyled,
+  SearchResultsWrapper,
+};
