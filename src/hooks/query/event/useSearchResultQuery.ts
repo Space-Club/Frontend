@@ -12,8 +12,6 @@ const useSearchResultQuery = ({ keyword, page }: SearchResultRequest) => {
     enabled: !!keyword,
   });
 
-  console.log('data:', searchResultData);
-
   const { data, pageData } = searchResultData ?? {};
 
   return { data, pageData, isLoading };

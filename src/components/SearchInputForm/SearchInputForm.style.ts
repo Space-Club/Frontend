@@ -69,6 +69,13 @@ const NoResultStyled = styled.div`
   font-size: ${Theme.fontSize.smallContent};
 `;
 
+const MoreResultStyled = styled(NoResultStyled)`
+  cursor: pointer;
+  :hover {
+    background-color: ${Theme.color.calendarHover};
+  }
+`;
+
 export {
   SearchInputContainerStyled,
   SearchBarStyled,
@@ -77,4 +84,5 @@ export {
   SearchTitleStyled,
   SearchResultsWrapper,
   NoResultStyled,
+  MoreResultStyled,
 };
