@@ -33,6 +33,8 @@ const END_POINTS = {
     `events/${eventId}/forms/applications?page=${pageNumber}&size=20&sort=id,desc`,
   SEARCHES: ({ keyword, page }: { keyword: string; page: number }) =>
     `/events/searches?keyword=${keyword}&page=${page}&size=18&sort=id,desc`,
+  SUBMITTED_FORM_STATUS: ({ eventId }: { eventId: string }) =>
+    `/events/${eventId}/forms/applications-status`,
 
   CREATE_CLUB: '/clubs',
   DELETE_CLUB: (clubId: string) => `clubs/${clubId}`,
