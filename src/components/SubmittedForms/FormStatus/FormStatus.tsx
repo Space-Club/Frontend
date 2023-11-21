@@ -44,7 +44,11 @@ const FormStatus = ({ id, applicationStatus }: FormStatus) => {
         />
       </FormStatusItemStyled>
       <FormStatusItemStyled>
-        <ApplyCancelButton isCanceled={applicationStatus === 'CANCELED' ? true : false} />
+        <ApplyCancelButton
+          isCanceled={applicationStatus === 'CANCELED' ? true : false}
+          eventId={eventId}
+          formUserId={id}
+        />
       </FormStatusItemStyled>
     </>
   );
