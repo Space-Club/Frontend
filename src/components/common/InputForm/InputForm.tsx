@@ -8,10 +8,11 @@ interface InputForm extends React.InputHTMLAttributes<HTMLInputElement> {
   inputType: 'date' | 'file' | 'number' | 'search' | 'tel' | 'text' | 'time' | 'datetime-local';
   placeholder?: string;
   maxLength?: number;
+  editable?: boolean;
 }
 
 const InputForm = forwardRef<HTMLInputElement, InputForm>(
-  ({ labelText, required = false, inputType, placeholder, maxLength, ...props }, ref) => {
+  ({ labelText, required = false, inputType, placeholder, maxLength, editable, ...props }, ref) => {
     return (
       <InputWrapper>
         {labelText && (
@@ -26,6 +27,7 @@ const InputForm = forwardRef<HTMLInputElement, InputForm>(
           ref={ref}
           maxLength={maxLength}
           placeholder={placeholder}
+          disabled={!editable}
           {...props}
         />
       </InputWrapper>
