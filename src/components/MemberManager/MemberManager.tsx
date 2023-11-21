@@ -1,6 +1,6 @@
 import useClubMembersQuery from '@/hooks/query/club/useClubMembersQuery';
 import useClubId from '@/hooks/useClubId';
-import { LabelTitleStyled } from '@/styles/common';
+import { MediumTitleStyled } from '@/styles/common';
 
 import MemberManageItem from '../MemberManageItem/MemberManageItem';
 import { MemberManagerContainer } from './MemberManager.style';
@@ -11,7 +11,7 @@ const MemberManager = () => {
 
   return (
     <>
-      <LabelTitleStyled>멤버설정</LabelTitleStyled>
+      <MediumTitleStyled>멤버설정</MediumTitleStyled>
       <MemberManagerContainer>
         {clubMembers.map((clubMember) => {
           return (

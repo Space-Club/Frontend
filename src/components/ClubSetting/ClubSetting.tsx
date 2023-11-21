@@ -3,7 +3,7 @@ import useEditClubMutation from '@/hooks/query/club/useEditClubMutation';
 import useGetClubQuery from '@/hooks/query/club/useGetClubQuery';
 import useToast from '@/hooks/useToast';
 import { PurpleButton } from '@/pages/event/EventDetailPage/EventDetailPage.style';
-import { SmallTitleStyled } from '@/styles/common';
+import { MediumTitleStyled, SmallTitleStyled } from '@/styles/common';
 import { validateClubInfo, validateClubName } from '@/utils/validate';
 
 import { useRef } from 'react';
@@ -14,6 +14,7 @@ import ClubCover from '../common/ClubCover/ClubCover';
 import InputForm from '../common/InputForm/InputForm';
 import {
   ClubAvatarInfoEditWrapper,
+  ClubBannerPreviewWrapper,
   ClubCoverEditWrapper,
   ClubInfoEditWrapper,
   ClubInfoEditsWrapper,
@@ -64,6 +65,7 @@ const ClubSetting = ({ clubId }: ClubSettingProps) => {
 
   return (
     <>
+      <MediumTitleStyled>클럽설정</MediumTitleStyled>
       <ClubAvatarInfoEditWrapper>
         <Avatar
           avatarSize="medium"
@@ -101,8 +103,10 @@ const ClubSetting = ({ clubId }: ClubSettingProps) => {
           onEdit={handleCoverImageEdit}
         />
       </ClubCoverEditWrapper>
-      <SmallTitleStyled>미리보기</SmallTitleStyled>
-      <ClubBanner clubId={clubId} bannerSize="small" />
+      <ClubBannerPreviewWrapper>
+        <SmallTitleStyled>미리보기</SmallTitleStyled>
+        <ClubBanner clubId={clubId} bannerSize="small" />
+      </ClubBannerPreviewWrapper>
     </>
   );
 };

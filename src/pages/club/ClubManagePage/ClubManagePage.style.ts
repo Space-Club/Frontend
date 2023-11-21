@@ -2,17 +2,17 @@ import styled from '@emotion/styled';
 
 const ClubManagePageContainer = styled.div`
   display: flex;
+  margin: 2.3rem 0;
+  gap: 4rem;
   flex-wrap: wrap;
 `;
 
 const ClubManagePageLeftWrapper = styled.section`
   flex-grow: 3;
-  margin-top: 2.3rem;
 `;
 
 const ClubManagePageRightWrapper = styled.section`
   flex-grow: 4;
-  margin-top: 2.3rem;
 `;
 
 export { ClubManagePageLeftWrapper, ClubManagePageRightWrapper, ClubManagePageContainer };
