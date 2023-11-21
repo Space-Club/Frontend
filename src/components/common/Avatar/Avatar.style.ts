@@ -37,7 +37,8 @@ const EditButtonStyled = styled.div<{ avatarSize: AvatarSize }>`
   right: 8%;
   bottom: 5%;
   border-radius: 50%;
-  border: 1px solid ${Theme.color.tSemiPurple};
+  border: 1px solid ${Theme.color.idkGrey};
+  color: ${Theme.color.semiBlack};
   background-color: white;
   cursor: pointer;
 `;
