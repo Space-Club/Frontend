@@ -10,9 +10,7 @@ const TitleWrapper = styled.div`
   margin-bottom: 0.5rem;
   align-items: center;
 `;
-const Title = styled.div`
-  font-size: ${Theme.fontSize.mediumTitle};
-`;
+
 const SubTitle = styled.div`
   font-size: ${Theme.fontSize.smallContent};
   margin-left: 1rem;
@@ -43,12 +41,4 @@ const SubmitButton = styled.button`
   cursor: pointer;
 `;
 
-export {
-  InviteLinkContainer,
-  TitleWrapper,
-  Title,
-  SubTitle,
-  InputWrapper,
-  ReadonlyInput,
-  SubmitButton,
-};
+export { InviteLinkContainer, TitleWrapper, SubTitle, InputWrapper, ReadonlyInput, SubmitButton };

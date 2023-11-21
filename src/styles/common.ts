@@ -68,6 +68,11 @@ const InvisibleInput = styled.input`
   display: none;
 `;
 
+const LabelTitleStyled = styled.h1`
+  font-size: ${Theme.fontSize.mediumTitle};
+  font-weight: 700;
+`;
+
 const sideBarScrollAreaStyled = styled.div`
   &::-webkit-scrollbar {
     width: 0.3rem;
@@ -125,4 +130,5 @@ export {
   ellipsisMultiLineText,
   textAreaScrollBar,
   InvisibleInput,
+  LabelTitleStyled,
 };

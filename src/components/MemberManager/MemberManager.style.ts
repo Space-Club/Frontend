@@ -6,6 +6,7 @@ const MemberManagerContainer = styled(memberManagerScrollAreaStyled)`
   width: 26.3rem;
   min-height: 20rem;
   padding: 1.2rem;
+  margin: auto;
   background-color: ${Theme.color.tSemiWhite};
   display: flex;
   flex-direction: column;
