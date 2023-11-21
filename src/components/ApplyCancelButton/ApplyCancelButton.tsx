@@ -1,3 +1,4 @@
+import { MODAL_TEXT } from '@/constants/modalMessage';
 import useSubmittedFormStatusMutation from '@/hooks/query/form/useSubmittedFormStatusMutation';
 import useModal from '@/hooks/useModal';
 
@@ -18,7 +19,7 @@ const ApplyCancelButton = ({ isCanceled, eventId, formUserId }: ApplyCancelButto
     <>
       {showModal && (
         <ConfirmModal
-          message="제출된 폼을 취소 시키겠습니까?"
+          message={MODAL_TEXT.CANCELED_SUBMITTED_FORM}
           onConfirm={() => changeSubmittedFormStatus({ eventId, formUserId, status: 'CANCELED' })}
           onClose={modalClose}
         />
