@@ -28,6 +28,8 @@ const END_POINTS = {
   CANCEL_EVENT: ({ eventId }: { eventId: string }) => `/events/${eventId}/applications`,
   GET_SUBMITTED_FORMS: ({ eventId, pageNumber }: { eventId: string; pageNumber: number }) =>
     `events/${eventId}/forms/applications?page=${pageNumber}&size=20&sort=id,desc`,
+  SEARCHES: ({ keyword, page }: { keyword: string; page: number }) =>
+    `/events/searches?keyword=${keyword}&page=${page}&size=18&sort=id,desc`,
 
   CREATE_CLUB: '/clubs',
   INVITE_LINK: (clubId: string) => `/clubs/${clubId}/invite`,
