@@ -10,6 +10,8 @@ interface Club {
   reverse?: boolean;
 }
 
+interface ClubInfo extends Pick<Club, 'name' | 'logoImageUrl'> {}
+
 interface CreateClubFormValue {
   image: File | null;
   name?: string;
@@ -17,7 +19,7 @@ interface CreateClubFormValue {
 }
 
 interface GetClubEventsRequest {
-  clubId: number | string;
+  clubId: string;
   pageNumber: number;
 }
 
@@ -51,4 +53,5 @@ export {
   CreateClubFormValue,
   Club,
   Notice,
+  ClubInfo,
 };

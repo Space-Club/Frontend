@@ -18,17 +18,29 @@ const END_POINTS = {
     `users/events?page=${page}&size=${size}&sort=${sort}`,
   GET_EVENT_DETAIL: '/events',
   GET_EVENT_FORM: (eventId: string) => `/events/${eventId}/forms`,
-  ALL_EVENTS: '/events',
+  ALL_EVENTS: ({
+    category,
+    pageNumber,
+    sort,
+  }: {
+    category: string;
+    pageNumber: number;
+    sort: string;
+  }) => `events?category=${category}&page=${pageNumber}&size=18&sort=${sort},desc`,
   EVENT_APPLY: '/events/applications',
   CANCEL_EVENT: ({ eventId }: { eventId: string }) => `/events/${eventId}/applications`,
-  GET_SUBMITTED_FORMS: ({ eventId }: { eventId: string | number }) =>
-    `events/${eventId}/forms/applications`,
+  GET_SUBMITTED_FORMS: ({ eventId, pageNumber }: { eventId: string; pageNumber: number }) =>
+    `events/${eventId}/forms/applications?page=${pageNumber}&size=20&sort=id,desc`,
+  SEARCHES: ({ keyword, page }: { keyword: string; page: number }) =>
+    `/events/searches?keyword=${keyword}&page=${page}&size=18&sort=id,desc`,
 
   CREATE_CLUB: '/clubs',
+  DELETE_CLUB: (clubId: string) => `clubs/${clubId}`,
   INVITE_LINK: (clubId: string) => `/clubs/${clubId}/invite`,
   INVITE_CLUB_CODE: (inviteCode: string) => `/clubs/invite/${inviteCode}`,
   CLUB_MEMBERS: (clubId: string) => `/clubs/${clubId}/members`,
-  CLUB_EVENTS: ({ clubId }: { clubId: number | string }) => `/clubs/${clubId}/events`,
+  CLUB_EVENTS: ({ clubId, pageNumber }: { clubId: string; pageNumber: number }) =>
+    `/clubs/${clubId}/events?page=${pageNumber}&size=18&sort=id,desc`,
   PATCH_MEMBER_ROLE: ({ clubId, memberId }: { clubId: string; memberId: string }) =>
     `/clubs/${clubId}/members/${memberId}`,
   EDIT_CLUB_SETTING: ({ clubId }: { clubId: string }) => `/clubs/${clubId}`,

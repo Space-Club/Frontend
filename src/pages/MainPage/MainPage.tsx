@@ -58,12 +58,13 @@ const MainPage = () => {
             return (
               <EventCard
                 eventId={event.id}
-                posterSrc={event.posterImageUrl}
-                eventTitle={event.title}
-                eventDate={event.startDate}
-                formCloseDate={event.formCloseDate}
-                eventPlace={event.location}
-                clubName={event.clubName}
+                posterSrc={event.eventInfo.posterImageUrl}
+                eventTitle={event.eventInfo.title}
+                eventDate={event.eventInfo.startDate}
+                formCloseDate={event.formInfo.endDate}
+                eventPlace={event.eventInfo.location}
+                clubName={event.clubInfo.name}
+                clubImageSrc={event.clubInfo.logoImageUrl}
               />
             );
           })}
