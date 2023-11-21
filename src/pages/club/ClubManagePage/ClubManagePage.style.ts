@@ -1,3 +1,5 @@
+import Button from '@/components/common/Button/Button';
+import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
 const ClubManagePageContainer = styled.div`
@@ -15,4 +17,20 @@ const ClubManagePageRightWrapper = styled.section`
   flex-grow: 4;
 `;
 
-export { ClubManagePageLeftWrapper, ClubManagePageRightWrapper, ClubManagePageContainer };
+const DeleteButton = styled(Button)`
+  margin-top: 2rem;
+  color: ${Theme.color.tSeparator};
+  background-color: ${Theme.color.tWhiteGrey};
+
+  &:hover {
+    background-color: ${Theme.color.tSeparator};
+    color: ${Theme.color.tWhiteGrey};
+  }
+`;
+
+export {
+  ClubManagePageLeftWrapper,
+  ClubManagePageRightWrapper,
+  ClubManagePageContainer,
+  DeleteButton,
+};
