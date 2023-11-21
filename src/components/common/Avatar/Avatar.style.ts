@@ -31,13 +31,14 @@ const EditButtonStyled = styled.div<{ avatarSize: AvatarSize }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: ${({ avatarSize }) => (avatarSize === 'large' ? '4rem' : '1.5rem')};
-  height: ${({ avatarSize }) => (avatarSize === 'large' ? '4rem' : '1.5rem')};
+  width: ${({ avatarSize }) => (avatarSize === 'large' ? '2.5rem' : '1rem')};
+  height: ${({ avatarSize }) => (avatarSize === 'large' ? '2.5rem' : '1rem')};
   position: absolute;
-  right: 2%;
-  bottom: 2%;
+  right: 8%;
+  bottom: 5%;
   border-radius: 50%;
-  background-color: ${Theme.color.idkGrey};
+  border: 1px solid ${Theme.color.tSemiPurple};
+  background-color: white;
   cursor: pointer;
 `;
 

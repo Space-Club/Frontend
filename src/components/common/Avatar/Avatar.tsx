@@ -32,7 +32,7 @@ const Avatar = ({
   onEdit,
 }: AvatarProps) => {
   const defaultIconSize = getAvatarSize(avatarSize);
-  const editIconSize = isEditable ? (avatarSize === 'large' ? '3rem' : '1rem') : undefined;
+  const editIconSize = isEditable ? (avatarSize === 'large' ? '1.5rem' : '1rem') : undefined;
   const inputRef = useRef<HTMLInputElement>(null);
 
   const handleEditButtonClick = () => {
