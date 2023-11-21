@@ -25,8 +25,8 @@ const ClubBanner = ({ clubId, bannerSize = 'large' }: ClubBannerProps) => {
           <Avatar avatarSize="medium" isClub={true} profileImageSrc={logoImageUrl} />
           <ClubInfo info={info} name={name} memberCount={memberCount} />
         </ClubAvatarInfoWrapper>
-        <LeaveClubButton clubId={clubId} />
       </ClubCover>
+      <LeaveClubButton clubId={clubId} />
     </ClubBannerContainer>
   );
 };
