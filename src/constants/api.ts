@@ -31,6 +31,7 @@ const END_POINTS = {
     `/clubs/${clubId}/members/${memberId}`,
   EDIT_CLUB_SETTING: ({ clubId }: { clubId: string }) => `/clubs/${clubId}`,
   CLUB_SCHEDULES: ({ clubId }: { clubId: string }) => `/clubs/${clubId}/schedules`,
+  WITHDRAW_CLUB: ({ clubId }: { clubId: string }) => `/clubs/${clubId}/users`,
 
   DELETE_MEMBER: ({ clubId, memberId }: { clubId: string; memberId: string }) =>
     `/clubs/${clubId}/members/${memberId}`,

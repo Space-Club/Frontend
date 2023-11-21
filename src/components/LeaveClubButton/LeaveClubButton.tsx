@@ -1,9 +1,9 @@
 import useMemberAuth from '@/hooks/query/club/useMemberAuth';
+import useWithdrawClubMutation from '@/hooks/query/club/useWithdrawClubMutation';
+import useModal from '@/hooks/useModal';
 
-// import useDeleteMemberMutation from '@/hooks/query/user/useDeleteMemberMutation';
-// import useModal from '@/hooks/useModal';
-// import AlertModal from '../Modals/AlertModal';
-// import ConfirmModal from '../Modals/ConfirmModal';
+import AlertModal from '../Modals/AlertModal';
+import ConfirmModal from '../Modals/ConfirmModal';
 import { LeaveClubButtonStyled } from './LeaveClubButton.style';
 
 interface LeaveClubButtonProps {
@@ -12,8 +12,8 @@ interface LeaveClubButtonProps {
 
 const LeaveClubButton = ({ clubId }: LeaveClubButtonProps) => {
   const { data } = useMemberAuth({ clubId });
-  //   const { withdrawMember } = useDeleteMemberMutation();
-  //   const { showModal, modalOpen, modalClose } = useModal();
+  const { withdrawClubMutate } = useWithdrawClubMutation();
+  const { showModal, modalOpen, modalClose } = useModal();
   if (!data) {
     return null;
   }
@@ -22,7 +22,7 @@ const LeaveClubButton = ({ clubId }: LeaveClubButtonProps) => {
 
   return (
     <>
-      {/* {showModal &&
+      {showModal &&
         (isManager ? (
           <AlertModal
             message="클럽의 관리자는 탈퇴할 수 없습니다. 권한을 멤버로 바꿔주세요!"
@@ -32,11 +32,11 @@ const LeaveClubButton = ({ clubId }: LeaveClubButtonProps) => {
           <ConfirmModal
             message="클럽을 탈퇴하시겠습니까?"
             confirmLabel="탈퇴"
-            onConfirm={withdrawMember({ memberId, clubId })}
+            onConfirm={() => withdrawClubMutate({ clubId })}
             onClose={modalClose}
           />
-        ))} */}
-      <LeaveClubButtonStyled>탈퇴하기</LeaveClubButtonStyled>
+        ))}
+      <LeaveClubButtonStyled onClick={modalOpen}>탈퇴하기</LeaveClubButtonStyled>
     </>
   );
 };
