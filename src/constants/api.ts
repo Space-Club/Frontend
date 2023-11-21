@@ -36,7 +36,7 @@ const END_POINTS = {
   INVITE_CLUB_CODE: (inviteCode: string) => `/clubs/invite/${inviteCode}`,
   CLUB_MEMBERS: (clubId: string) => `/clubs/${clubId}/members`,
   CLUB_EVENTS: ({ clubId, pageNumber }: { clubId: string; pageNumber: number }) =>
-    `/clubs/${clubId}/events?page=${pageNumber}&size=18&sort=id,asc`,
+    `/clubs/${clubId}/events?page=${pageNumber}&size=18&sort=id,desc`,
   PATCH_MEMBER_ROLE: ({ clubId, memberId }: { clubId: string; memberId: string }) =>
     `/clubs/${clubId}/members/${memberId}`,
   EDIT_CLUB_SETTING: ({ clubId }: { clubId: string }) => `/clubs/${clubId}`,
