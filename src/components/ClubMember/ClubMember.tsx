@@ -10,11 +10,13 @@ interface ClubMemberProps {
 const ClubMember = ({ clubId }: ClubMemberProps) => {
   const { clubMembers } = useClubMembersQuery({ clubId });
 
+  if (!clubMembers) return null;
+
   return (
     <ClubMemberContainer>
       {clubMembers.map((clubMember) => (
         <ClubMemberAvatarWrapper key={clubMember.id}>
-          <Avatar avatarSize="normal" profileImageSrc={clubMember.image} />
+          <Avatar avatarSize="normal" profileImageSrc={clubMember.profileImageUrl} />
         </ClubMemberAvatarWrapper>
       ))}
     </ClubMemberContainer>
