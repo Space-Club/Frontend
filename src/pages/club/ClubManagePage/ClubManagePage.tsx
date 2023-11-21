@@ -8,6 +8,7 @@ import useGetClubQuery from '@/hooks/query/club/useGetClubQuery';
 
 import { useParams } from 'react-router-dom';
 
+import { TabWrapper } from '../ClubHomePage/ClubHomePage.style';
 import {
   ClubManagePageContainer,
   ClubManagePageLeftWrapper,
@@ -27,7 +28,9 @@ const ClubManagePage = () => {
   return (
     <>
       <Header>
-        <Tab tabItems={CLUB_TABS(clubId)} />
+        <TabWrapper>
+          <Tab tabItems={CLUB_TABS(clubId)} />
+        </TabWrapper>
       </Header>
       <ClubManagePageContainer>
         <ClubManagePageLeftWrapper>

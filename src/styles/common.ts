@@ -75,7 +75,7 @@ const MediumTitleStyled = styled.h2`
 
 const SmallTitleStyled = styled.h3`
   font-size: ${Theme.fontSize.smallTitle};
-  font-weight: 400;
+  font-weight: 700;
 `;
 
 const sideBarScrollAreaStyled = styled.div`

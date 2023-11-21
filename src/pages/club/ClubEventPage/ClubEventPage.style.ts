@@ -1,12 +1,5 @@
 import styled from '@emotion/styled';
 
-const HeaderElementWrapper = styled.div`
-  display: flex;
-  justify-content: end;
-  width: 100%;
-  height: 100%;
-`;
-
 const EventsContainer = styled.div`
   display: flex;
   justify-content: center;
@@ -21,4 +14,4 @@ const ButtonWrapper = styled.div`
   right: 5rem;
 `;
 
-export { HeaderElementWrapper, EventsContainer, ButtonWrapper };
+export { EventsContainer, ButtonWrapper };
