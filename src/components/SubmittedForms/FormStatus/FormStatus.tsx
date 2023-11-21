@@ -41,6 +41,7 @@ const FormStatus = ({ id, applicationStatus }: FormStatus) => {
               status: event.target.value as EventStatus,
             });
           }}
+          disabled={applicationStatus === 'CANCELED'}
         />
       </FormStatusItemStyled>
       <FormStatusItemStyled>
