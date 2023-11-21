@@ -1,7 +1,11 @@
 import useClubMembersQuery from '@/hooks/query/club/useClubMembersQuery';
 
 import Avatar from '../common/Avatar/Avatar';
-import { ClubMemberAvatarWrapper, ClubMemberContainer } from './ClubMember.style';
+import {
+  ClubMemberAvatarWrapper,
+  ClubMemberAvatarsWrapper,
+  ClubMemberContainer,
+} from './ClubMember.style';
 
 interface ClubMemberProps {
   clubId: string;
@@ -14,11 +18,13 @@ const ClubMember = ({ clubId }: ClubMemberProps) => {
 
   return (
     <ClubMemberContainer>
-      {clubMembers.map((clubMember) => (
-        <ClubMemberAvatarWrapper key={clubMember.id}>
-          <Avatar avatarSize="normal" profileImageSrc={clubMember.profileImageUrl} />
-        </ClubMemberAvatarWrapper>
-      ))}
+      <ClubMemberAvatarsWrapper>
+        {clubMembers.map((clubMember) => (
+          <ClubMemberAvatarWrapper key={clubMember.id}>
+            <Avatar avatarSize="normal" profileImageSrc={clubMember.profileImageUrl} />
+          </ClubMemberAvatarWrapper>
+        ))}
+      </ClubMemberAvatarsWrapper>
     </ClubMemberContainer>
   );
 };
