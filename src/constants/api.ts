@@ -8,6 +8,7 @@ const END_POINTS = {
   DELETE_USER: '/users',
   USER_IMAGE: '/users/images',
   MY_CLUB: '/users/clubs',
+  LOGOUT: '/users/logout',
 
   PATCH_PROFILE_IMAGE: '/users/images',
   PATCH_USER_INFO: 'users/required-infos',
