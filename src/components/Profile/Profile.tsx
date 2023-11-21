@@ -40,8 +40,9 @@ const Profile = () => {
       />
       <InfoWrapper>
         <ProfileButtonsWrapper>
+          <PurpleButton reverse>로그아웃</PurpleButton>
           {!isEdit ? (
-            <PurpleButton onClick={() => setIsEdit(true)}>수정하기</PurpleButton>
+            <PurpleButton onClick={() => setIsEdit(true)}>정보 수정하기</PurpleButton>
           ) : (
             <PurpleButton onClick={handleInfoEditComplete}>저장</PurpleButton>
           )}
