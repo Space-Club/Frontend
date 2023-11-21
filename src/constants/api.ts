@@ -5,10 +5,12 @@ const NETWORK_TIMEOUT = 10000;
 const END_POINTS = {
   KAKAO_LOGIN: '/users/oauths',
   REGISTER: '/users',
+  DELETE_USER: '/users',
   USER_IMAGE: '/users/images',
   MY_CLUB: '/users/clubs',
 
   PATCH_PROFILE_IMAGE: '/users/images',
+  PATCH_USER_INFO: 'users/required-infos',
 
   PERFORMANCE_FORM: '/event',
   GET_APPLIED_EVENT: ({ page, size, sort }: { page: number; size: string; sort: string }) =>
