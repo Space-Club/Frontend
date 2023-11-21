@@ -8,7 +8,8 @@ const HeaderContentWrapper = styled.div`
 
 const SubmittedFormsWrapper = styled.div`
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `;
 
 const PaginationWrapper = styled.div`

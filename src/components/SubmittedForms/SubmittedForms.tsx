@@ -12,9 +12,9 @@ import {
 const SubmittedForms = ({ formInfo, userForms }: { formInfo: FormInfo; userForms: UserForm[] }) => {
   return (
     <SubmittedFormsContainer>
-      <FormLengthStyled>{`제출된 폼: ${formInfo.count}`}</FormLengthStyled>
       <SubmittedFormsWrapper>
         <FormsWrapper>
+          <FormLengthStyled>{`제출된 폼: ${formInfo.count}`}</FormLengthStyled>
           <Category optionTitles={formInfo.optionTitles} managed={formInfo.managed} />
           {userForms?.map((form, index) => {
             return (
