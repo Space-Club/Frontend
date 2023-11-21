@@ -30,7 +30,7 @@ const ReadonlyInput = styled.input`
   box-sizing: border-box;
 `;
 const SubmitButton = styled.button`
-  background-color: ${Theme.color.activeColor};
+  background-color: ${Theme.color.tPurple};
   font-size: ${Theme.fontSize.smallContent};
   border: none;
   outline: none;
