@@ -3,12 +3,13 @@ import InputForm from '@/components/common/InputForm/InputForm';
 import TextAreaForm from '@/components/common/TextAreaForm/TextAreaForm';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
 import useSubmitForm from '@/hooks/query/event/useSubmitForm';
+import { ShowDetailResponse } from '@/types/api/getEventDetail';
 import { FormPage } from '@/types/event';
 import { validateTimeCompare, validateTodayDate } from '@/utils/validate';
 
 import { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import {
   ButtonWrapper,
@@ -25,12 +26,34 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
   const {
     register,
     handleSubmit,
+    setValue,
     watch,
     formState: { errors },
   } = useForm();
+  const { state } = useLocation();
   const [imgFile, setImgFile] = useState('');
   const navigate = useNavigate();
   const { submitForm, isSubmitLoading } = useSubmitForm({ eventType, clubId });
+
+  useEffect(() => {
+    if (state) {
+      const eventDetail: ShowDetailResponse = state.eventDetail;
+      if (eventDetail) {
+        setValue('title', eventDetail.title);
+        setValue('startDate', `${eventDetail.startDate}T${eventDetail.startTime}`);
+        setValue('location', eventDetail.location);
+        setValue('capacity', eventDetail.capacity);
+        setValue('cost', eventDetail.cost);
+        setValue('bankName', eventDetail.bankName);
+        setValue('accountNumber', eventDetail.bankAccountNumber);
+        setValue('maxTicketCount', eventDetail.maxTicketCount);
+        setValue('openDate', `${eventDetail.formOpenDate}T${eventDetail.formOpenTime}`);
+        setValue('closeDate', `${eventDetail.formCloseDate}T${eventDetail.formCloseTime}`);
+        setImgFile(eventDetail.posterImageUrl);
+        setValue('content', eventDetail.content);
+      }
+    }
+  }, [state, setValue]);
 
   const {
     REQUIRED_SHOW_NAME,

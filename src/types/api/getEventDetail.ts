@@ -17,6 +17,7 @@ interface CommonDetailResponse {
   formOpenTime: string;
   formCloseDate: string;
   formCloseTime: string;
+  clubId: string;
   clubName: string;
   clubLogoImageUrl: string;
   applicants: number;
@@ -33,6 +34,8 @@ interface ShowDetailResponse extends CommonDetailResponse {
   cost: number;
   eventCategory: 'SHOW';
   maxTicketCount: number;
+  bankName: string;
+  bankAccountNumber: string;
 }
 
 interface PromotionDetailResponse extends CommonDetailResponse {

@@ -61,8 +61,16 @@ const EventDetailPage = () => {
   // TODO: 수정하기 버튼 클릭시, 게시물 수정 페이지로 이동
   const { deleteEventMutate } = useDeleteEventMutation({ eventId });
 
-  const { isManager, posterImageUrl, content, applicants, capacity, isBookmarked, eventCategory } =
-    eventDetail ?? {};
+  const {
+    isManager,
+    posterImageUrl,
+    content,
+    applicants,
+    capacity,
+    isBookmarked,
+    eventCategory,
+    clubId,
+  } = eventDetail ?? {};
 
   const handleEventDelete = async () => {
     deleteEventMutate();
@@ -111,7 +119,18 @@ const EventDetailPage = () => {
                   {EVENT_DETAIL_BUTTON.showSubmitForm}
                 </PurpleButton>
                 <UpdateDeleteWrapper>
-                  <PurpleButton reverse>{EVENT_DETAIL_BUTTON.edit}</PurpleButton>
+                  <PurpleButton
+                    reverse
+                    onClick={() =>
+                      navigate(`/club/${clubId}/writeinfo?event=${eventCategory?.toLowerCase()}`, {
+                        state: {
+                          eventDetail,
+                        },
+                      })
+                    }
+                  >
+                    {EVENT_DETAIL_BUTTON.edit}
+                  </PurpleButton>
                   <PurpleButton onClick={deleteModalOpen}>
                     {EVENT_DETAIL_BUTTON.delete}
                   </PurpleButton>
