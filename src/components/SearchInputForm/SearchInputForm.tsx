@@ -31,6 +31,10 @@ const SearchInputForm = () => {
     }
   };
 
+  const handleInputClick = () => {
+    setIsFocused(!isFocused);
+  };
+
   return (
     <SearchInputContainerStyled>
       <SearchBarStyled>
@@ -38,8 +42,7 @@ const SearchInputForm = () => {
           placeholder="검색하기"
           value={keyword}
           onChange={(event) => setKeyword(event.target.value)}
-          onFocus={() => setIsFocused(true)}
-          onBlur={() => setIsFocused(false)}
+          onClick={() => handleInputClick()}
           onKeyDown={(event) => handleKeyDown(event)}
         />
         <IconContainerStyled onClick={() => navigate(`${PATH.SEARCH}/${debouncedKeyword}`)}>
