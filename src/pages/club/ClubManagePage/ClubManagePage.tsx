@@ -8,7 +8,7 @@ import useGetClubQuery from '@/hooks/query/club/useGetClubQuery';
 
 import { useParams } from 'react-router-dom';
 
-const ManageClubPage = () => {
+const ClubManagePage = () => {
   const { clubId } = useParams();
 
   if (!clubId) {
@@ -30,4 +30,4 @@ const ManageClubPage = () => {
   );
 };
 
-export default ManageClubPage;
+export default ClubManagePage;
