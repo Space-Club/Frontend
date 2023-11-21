@@ -20,8 +20,8 @@ import {
 const SearchInputForm = () => {
   const [keyword, setKeyword] = useState('');
   const [isFocused, setIsFocused] = useState(false);
-  const debouncedKeyword = useDebounceValue(keyword, 500);
-  const { data } = useSearchResultQuery({ keyword: debouncedKeyword, page: 1 });
+  const debouncedKeyword = useDebounceValue(keyword, 1000);
+  const { data } = useSearchResultQuery({ keyword: debouncedKeyword, page: 0 });
   const navigate = useNavigate();
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
