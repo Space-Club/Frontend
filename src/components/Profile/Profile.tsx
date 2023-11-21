@@ -53,12 +53,12 @@ const Profile = () => {
             maxLength: { value: 10, message: `${NAME}` },
             validate: validateName,
           })}
-          editable={isEdit}
+          disabled={!isEdit}
           inputType="text"
         />
         <InputForm
           {...register('phoneNumber', { required: REQUIRED_NUMBER, validate: validateNumber })}
-          editable={isEdit}
+          disabled={!isEdit}
           inputType="text"
         />
       </InfoWrapper>
