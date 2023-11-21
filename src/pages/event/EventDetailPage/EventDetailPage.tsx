@@ -53,12 +53,11 @@ const EventDetailPage = () => {
   } = useModal();
 
   if (!eventId) {
-    throw new Error('eventId is null'); //TODO: eventId가 없을 때 처리
+    throw new Error('eventId is null');
   }
 
   const { eventDetail, isEventDetailLoading } = useEventDetailQuery({ eventId });
 
-  // TODO: 수정하기 버튼 클릭시, 게시물 수정 페이지로 이동
   const { deleteEventMutate } = useDeleteEventMutation({ eventId });
 
   const {
@@ -69,7 +68,7 @@ const EventDetailPage = () => {
     capacity,
     isBookmarked,
     eventCategory,
-    clubId,
+    clubId = 6,
   } = eventDetail ?? {};
 
   const handleEventDelete = async () => {
@@ -125,6 +124,7 @@ const EventDetailPage = () => {
                       navigate(`/club/${clubId}/writeinfo?event=${eventCategory?.toLowerCase()}`, {
                         state: {
                           eventDetail,
+                          eventId,
                         },
                       })
                     }

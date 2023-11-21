@@ -96,6 +96,7 @@ interface postPerformanceFormResponse {
 interface FormPage {
   eventType: eventTypeAPI;
   clubId: string;
+  isEdit?: boolean;
 }
 
 type ValuePiece = Date | null;

@@ -33,25 +33,24 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
   const { state } = useLocation();
   const [imgFile, setImgFile] = useState('');
   const navigate = useNavigate();
-  const { submitForm, isSubmitLoading } = useSubmitForm({ eventType, clubId });
+  const { submitForm, isSubmitLoading } = useSubmitForm({ eventType, clubId, isEdit: !!state });
 
   useEffect(() => {
     if (state) {
       const eventDetail: ShowDetailResponse = state.eventDetail;
-      if (eventDetail) {
-        setValue('title', eventDetail.title);
-        setValue('startDate', `${eventDetail.startDate}T${eventDetail.startTime}`);
-        setValue('location', eventDetail.location);
-        setValue('capacity', eventDetail.capacity);
-        setValue('cost', eventDetail.cost);
-        setValue('bankName', eventDetail.bankName);
-        setValue('accountNumber', eventDetail.bankAccountNumber);
-        setValue('maxTicketCount', eventDetail.maxTicketCount);
-        setValue('openDate', `${eventDetail.formOpenDate}T${eventDetail.formOpenTime}`);
-        setValue('closeDate', `${eventDetail.formCloseDate}T${eventDetail.formCloseTime}`);
-        setImgFile(eventDetail.posterImageUrl);
-        setValue('content', eventDetail.content);
-      }
+
+      setValue('title', eventDetail.title);
+      setValue('startDate', `${eventDetail.startDate}T${eventDetail.startTime}`);
+      setValue('location', eventDetail.location);
+      setValue('capacity', eventDetail.capacity);
+      setValue('cost', eventDetail.cost);
+      setValue('bankName', eventDetail.bankName);
+      setValue('accountNumber', eventDetail.bankAccountNumber);
+      setValue('maxTicketCount', eventDetail.maxTicketCount);
+      setValue('openDate', `${eventDetail.formOpenDate}T${eventDetail.formOpenTime}`);
+      setValue('closeDate', `${eventDetail.formCloseDate}T${eventDetail.formCloseTime}`);
+      setImgFile(eventDetail.posterImageUrl);
+      setValue('content', eventDetail.content);
     }
   }, [state, setValue]);
 
@@ -85,7 +84,11 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
 
   const onPerformanceSubmitForm = async (data: FieldValues) => {
     if (isSubmitLoading || !clubId) return;
-    submitForm({ data, clubId, eventType });
+    if (state) {
+      submitForm({ data, clubId, eventType, eventId: state.eventId });
+    } else {
+      submitForm({ data, clubId, eventType });
+    }
   };
 
   return (
@@ -197,7 +200,7 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
       </ContentArea>
       <ContentArea>
         <ImageForm
-          {...register('poster', { required: `${REQUIRED_POSTER}` })}
+          {...register('poster', { required: state ? false : `${REQUIRED_POSTER}` })}
           imgFile={imgFile}
           labelText="포스터"
           required
@@ -219,7 +222,7 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
         <PrevButton type="button" onClick={() => navigate(-1)}>
           이전으로
         </PrevButton>
-        <SubmitButton type="submit">다음</SubmitButton>
+        <SubmitButton type="submit">{state ? '수정' : '다음'}</SubmitButton>
       </ButtonWrapper>
     </PerformanceFormContainer>
   );
