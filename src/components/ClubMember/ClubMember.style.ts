@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 
 const ClubMemberContainer = styled(memberManagerScrollAreaStyled)`
   height: 100%;
-  padding: 0.6rem 0.3rem 0 1rem;
+  padding: 0.6rem 0.3rem 0.6rem 1rem;
   overflow-y: auto;
   background-color: ${Theme.color.tWhiteGrey};
   border-radius: 1.3125rem;
