@@ -23,7 +23,7 @@ const ApplyCancelButton = ({ isCanceled, eventId, formUserId }: ApplyCancelButto
           onClose={modalClose}
         />
       )}
-      <ButtonStyled isCanceled={isCanceled} onClick={modalOpen}>
+      <ButtonStyled isCanceled={isCanceled} onClick={modalOpen} disabled={isCanceled}>
         <ButtonTextStyled>{isCanceled ? '취소처리 되었습니다. ' : '취소하기'}</ButtonTextStyled>
       </ButtonStyled>
     </>
