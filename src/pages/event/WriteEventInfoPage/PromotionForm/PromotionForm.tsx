@@ -124,7 +124,7 @@ const PromotionForm = ({ eventType, clubId }: FormPage) => {
         />
         {errors.capacity && <ErrorMessage>{errors.capacity.message as string}</ErrorMessage>}
         <TwoInputContainer>
-          <InputForm
+          <HalfInputForm
             {...register('openDate', {
               required: `${REQUIRED_FORM_START_TIME}`,
               validate: {
@@ -136,7 +136,7 @@ const PromotionForm = ({ eventType, clubId }: FormPage) => {
             required
             inputType="datetime-local"
           />
-          <InputForm
+          <HalfInputForm
             {...register('closeDate', {
               required: `${REQUIRED_FORM_LAST_TIME}`,
               validate: (value) => validateTimeCompare(watch('openDate'), value),

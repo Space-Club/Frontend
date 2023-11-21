@@ -13,7 +13,7 @@ interface InputForm extends React.InputHTMLAttributes<HTMLInputElement> {
 const InputForm = forwardRef<HTMLInputElement, InputForm>(
   ({ labelText, required = false, inputType, placeholder, maxLength, ...props }, ref) => {
     return (
-      <InputWrapper>
+      <InputWrapper {...props}>
         {labelText && (
           <LabelStyled htmlFor={labelText}>
             {labelText}
@@ -26,7 +26,6 @@ const InputForm = forwardRef<HTMLInputElement, InputForm>(
           ref={ref}
           maxLength={maxLength}
           placeholder={placeholder}
-          {...props}
         />
       </InputWrapper>
     );

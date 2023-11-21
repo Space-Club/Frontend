@@ -171,7 +171,7 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
           placeholder="정수(1-n)"
         />
         <TwoInputContainer>
-          <InputForm
+          <HalfInputForm
             {...register('openDate', {
               required: `${REQUIRED_FORM_START_TIME}`,
               validate: {
@@ -183,7 +183,7 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
             required
             inputType="datetime-local"
           />
-          <InputForm
+          <HalfInputForm
             {...register('closeDate', {
               required: `${REQUIRED_FORM_LAST_TIME}`,
               validate: (value) => validateTimeCompare(watch('openDate'), value),

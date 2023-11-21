@@ -15,6 +15,7 @@ import {
   ButtonWrapper,
   ContentArea,
   ErrorMessage,
+  HalfInputForm,
   PerformanceFormContainer,
   PrevButton,
   SubmitButton,
@@ -101,7 +102,7 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
         />
         {errors.title && <ErrorMessage>{errors.title.message as string}</ErrorMessage>}
         <TwoInputContainer>
-          <InputForm
+          <HalfInputForm
             {...register('startDate', {
               required: REQUIRED_ACTIVITY_START_TIME,
               validate: {
@@ -113,7 +114,7 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
             required
             inputType="datetime-local"
           />
-          <InputForm
+          <HalfInputForm
             {...register('endDate', {
               required: REQUIRED_ACTIVITY_LAST_TIME,
               validate: {
@@ -161,7 +162,7 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
         />
         {errors.master && <ErrorMessage>{errors.master.message as string}</ErrorMessage>}
         <TwoInputContainer>
-          <InputForm
+          <HalfInputForm
             {...register('openDate', {
               required: closeDate && ENTER_BOTH_SIDE,
               validate: {
@@ -172,7 +173,7 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
             labelText="신청 시작 날짜 및 시간"
             inputType="datetime-local"
           />
-          <InputForm
+          <HalfInputForm
             {...register('closeDate', {
               required: openDate && ENTER_BOTH_SIDE,
               validate: (value) => validateTimeCompare(watch('openDate'), value),
