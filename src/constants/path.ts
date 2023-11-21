@@ -10,6 +10,7 @@ const PATH = {
   MAIN_RECRUITMENT: '/recruitment',
   PROFILE_APPLIED: '/profile/applied',
   PROFILE_BOOKMARK: '/profile/bookmark',
+  SEARCH: '/search',
 
   CLUB: {
     HOME: (clubId: string | number) => `/club/${clubId}/home`,

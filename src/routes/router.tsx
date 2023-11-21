@@ -7,6 +7,7 @@ import NotFoundPage from '@/pages/NotFoundPage/NotFoundPage';
 import OauthRedirectPage from '@/pages/OauthRedirectPage';
 import ProfilePage from '@/pages/ProfilePage/ProfilePage';
 import RegisterPage from '@/pages/RegisterPage/RegisterPage';
+import SearchResultPage from '@/pages/SearchResultPage/SearchResultPage';
 import ClubEventPage from '@/pages/club/ClubEventPage/ClubEventPage';
 import ClubHomePage from '@/pages/club/ClubHomePage/ClubHomePage';
 import CreateClubPage from '@/pages/club/CreateClubPage/CreateClubPage';
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
                 element: <MainPage />,
               },
             ],
+          },
+          {
+            path: 'search/:keyword',
+            element: <SearchResultPage />,
           },
           {
             path: 'profile/:category',

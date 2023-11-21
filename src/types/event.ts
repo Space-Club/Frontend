@@ -1,6 +1,5 @@
 import Theme from '@/styles/Theme';
 
-import { PageData } from './common';
 import { FormType } from './form';
 
 type EventStatus = 'CONFIRMED' | 'PENDING' | 'CANCEL_REQUESTED' | 'CANCELED';
@@ -35,6 +34,14 @@ interface Event {
   clubLogoImageUrl: string;
 }
 
+interface EventInfo {
+  title: string;
+  posterImageUrl: string;
+  location: string;
+  startDate: string;
+  startTime: string;
+}
+
 interface BookmarkedEvent
   extends Pick<Event, 'id' | 'title' | 'location' | 'clubName' | 'posterImageUrl' | 'startDate'> {
   bookmark: boolean;
@@ -50,28 +57,6 @@ interface Schedule {
 
 interface SchedulesProps {
   schedules: Schedule[];
-}
-
-interface GetAllEventsRequest {
-  pageNumber: number;
-  category: string;
-  sort: string;
-}
-
-interface GetAllEventsResponse {
-  data: {
-    id: string;
-    title: string;
-    posterImageUrl: string;
-    startDate: string;
-    startTime: string;
-    formCloseDate: string;
-    formCloseTime: string;
-    location: string;
-    clubName: string;
-    clubLogoImageUrl: string;
-  }[];
-  pageData: PageData;
 }
 
 interface getEventFormResponse {
@@ -103,8 +88,6 @@ type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 export {
   getEventFormResponse,
-  GetAllEventsRequest,
-  GetAllEventsResponse,
   Event,
   EventTags,
   EventTagKey,
@@ -120,4 +103,5 @@ export {
   ValuePiece,
   Value,
   BookmarkedEvent,
+  EventInfo,
 };

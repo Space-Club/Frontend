@@ -1,4 +1,5 @@
 import Theme from '@/styles/Theme';
+import { sideBarScrollAreaStyled } from '@/styles/common';
 import styled from '@emotion/styled';
 
 const SearchInputContainerStyled = styled.div`
@@ -6,6 +7,7 @@ const SearchInputContainerStyled = styled.div`
   justify-content: center;
   align-items: center;
   flex-grow: 1;
+  position: relative;
   height: 100%;
 `;
 
@@ -33,6 +35,54 @@ const IconContainerStyled = styled.div`
   align-items: center;
   margin-right: 0.5rem;
   color: ${Theme.color.lineColor};
+  cursor: pointer;
 `;
 
-export { SearchInputContainerStyled, SearchBarStyled, SearchInputStyled, IconContainerStyled };
+const SearchResultsWrapper = styled(sideBarScrollAreaStyled)`
+  display: flex;
+  flex-direction: column;
+  max-width: 40rem;
+  width: 90%;
+  height: 17rem;
+  overflow: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 6%);
+  padding: 0.5rem 0;
+  border: 1px solid ${Theme.color.tWhiteGrey};
+  border-radius: 0.6rem;
+  background-color: white;
+  filter: drop-shadow(0px 2px 2px rgba(0, 0, 0, 0.25));
+  z-index: 5;
+`;
+
+const SearchTitleStyled = styled.div`
+  padding: 1rem 1rem 0.5rem 1rem;
+  color: black;
+  font-size: ${Theme.fontSize.smallContent};
+`;
+
+const NoResultStyled = styled.div`
+  padding-left: 1rem;
+  color: ${Theme.color.semiBlack};
+  font-size: ${Theme.fontSize.smallContent};
+`;
+
+const MoreResultStyled = styled(NoResultStyled)`
+  cursor: pointer;
+  :hover {
+    background-color: ${Theme.color.calendarHover};
+  }
+`;
+
+export {
+  SearchInputContainerStyled,
+  SearchBarStyled,
+  SearchInputStyled,
+  IconContainerStyled,
+  SearchTitleStyled,
+  SearchResultsWrapper,
+  NoResultStyled,
+  MoreResultStyled,
+};
