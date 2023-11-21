@@ -29,7 +29,7 @@ const MainPage = () => {
     {
       pageNumber: currentPage,
       category: pathname === '/' ? 'SHOW' : pathname === '/events' ? 'PROMOTION' : 'RECRUITMENT',
-      sort: 'id', //#TODO: 정렬방법 수정하기
+      sort: pathname === '/recruitment' ? 'FormInfo.formCloseDateTime' : 'EventInfo.startDateTime',
     },
     pathname,
   );
@@ -58,13 +58,13 @@ const MainPage = () => {
             return (
               <EventCard
                 eventId={event.id}
-                posterSrc={event.posterImageUrl}
-                eventTitle={event.title}
-                eventDate={event.startDate}
-                formEndTime={event.formEndDate}
-                eventTime={event.startTime}
-                eventPlace={event.location}
-                clubName={event.clubName}
+                posterSrc={event.eventInfo.posterImageUrl}
+                eventTitle={event.eventInfo.title}
+                eventDate={event.eventInfo.startDate}
+                formCloseDate={event.formInfo.endDate}
+                eventPlace={event.eventInfo.location}
+                clubName={event.clubInfo.name}
+                clubImageSrc={event.clubInfo.logoImageUrl}
               />
             );
           })}

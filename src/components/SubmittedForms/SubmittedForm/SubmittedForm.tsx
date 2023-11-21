@@ -1,9 +1,12 @@
+import FormDetailModal from '@/components/Modals/FormDetailModal/FormDetailModal';
+import useModal from '@/hooks/useModal';
+
 import FormStatus from '../FormStatus/FormStatus';
 import { FormItemStyled, FormRowStyled, FormStyled } from './SubmittedForm.style';
 
 interface SubmittedFormProps {
   index: number;
-  id: number;
+  userId: string;
   formLength: number;
   options: {
     title: string;
@@ -15,20 +18,26 @@ interface SubmittedFormProps {
 
 const SubmittedForm = ({
   index,
-  id,
+  userId,
   formLength,
   options,
   applicationStatus,
   managed,
 }: SubmittedFormProps) => {
+  const { showModal, modalOpen, modalClose } = useModal();
+  //#TODO: 제출된 시각 추가되면 넣기
+
   return (
-    <FormStyled key={index}>
-      <FormRowStyled>{formLength - index}</FormRowStyled>
-      {options.map((option, index) => {
-        return <FormItemStyled key={index}>{option.content}</FormItemStyled>;
-      })}
-      {managed && <FormStatus id={id} applicationStatus={applicationStatus} />}
-    </FormStyled>
+    <>
+      {showModal && <FormDetailModal onClose={modalClose} options={options} />}
+      <FormStyled key={index} onClick={modalOpen}>
+        <FormRowStyled>{formLength - index}</FormRowStyled>
+        {options.map((option, index) => {
+          return <FormItemStyled key={index}>{option.content}</FormItemStyled>;
+        })}
+        {managed && <FormStatus id={userId} applicationStatus={applicationStatus} />}
+      </FormStyled>
+    </>
   );
 };
 

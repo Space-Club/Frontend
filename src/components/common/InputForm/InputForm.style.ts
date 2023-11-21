@@ -21,13 +21,18 @@ const RequiredSquare = styled.span`
 const InputStyled = styled.input`
   width: 100%;
   height: 3rem;
-  border: none;
   outline: none;
   margin-top: 0.5rem;
   border: 1px solid ${Theme.color.tLine};
   border-radius: 1rem;
   padding-left: 1rem;
   box-sizing: border-box;
+
+  :disabled {
+    background-color: ${Theme.color.white};
+    color: ${Theme.color.black};
+    border: none;
+  }
 `;
 
 export { InputWrapper, LabelStyled, RequiredSquare, InputStyled };

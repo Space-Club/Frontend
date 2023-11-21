@@ -13,4 +13,11 @@ interface FormOption {
   visible: boolean;
 }
 
-export { FormType, FormOption, FormOptionButtonText };
+interface FormInfo {
+  startDate: string;
+  startTime: string;
+  endDate: string;
+  endTime: string;
+}
+
+export { FormType, FormOption, FormOptionButtonText, FormInfo };

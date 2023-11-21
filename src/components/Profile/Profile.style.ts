@@ -1,6 +1,5 @@
+import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
-
-import Button from '../common/Button/Button';
 
 const ProfileContainer = styled.div`
   display: flex;
@@ -8,15 +7,22 @@ const ProfileContainer = styled.div`
   align-items: center;
   width: 100%;
   margin: 4rem 0;
-  gap: 8rem;
+  gap: 4rem;
 `;
 const InfoWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 40%;
-`;
-const EditButton = styled(Button)`
-  align-self: flex-end;
+
+  input {
+    font-size: ${Theme.fontSize.mediumTitle};
+  }
 `;
 
-export { ProfileContainer, InfoWrapper, EditButton };
+const ProfileButtonsWrapper = styled.div`
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+`;
+
+export { ProfileContainer, InfoWrapper, ProfileButtonsWrapper };

@@ -14,7 +14,7 @@ const Pagination = ({ totalPages, size = 10, onChangePage }: Pagination) => {
   const currentPageSize = Math.floor(page / size);
 
   const startPage = currentPageSize * size + 1;
-  const endPage = Math.min((currentPageSize + 1) * size, totalPages);
+  const endPage = Math.min((currentPageSize + 1) * size, totalPages === 0 ? 1 : totalPages);
 
   const pageNumbers = useMemo(() => {
     return Array.from({ length: endPage - startPage + 1 }, (_, index) => startPage + index);
@@ -61,10 +61,16 @@ const Pagination = ({ totalPages, size = 10, onChangePage }: Pagination) => {
           {value}
         </PageButton>
       ))}
-      <PageButton onClick={handleNextClick} disabled={page === totalPages - 1}>
+      <PageButton
+        onClick={handleNextClick}
+        disabled={page === (totalPages === 0 ? 0 : totalPages - 1)}
+      >
         &gt;
       </PageButton>
-      <PageButton onClick={handleDoubleNextClick} disabled={page === totalPages - 1}>
+      <PageButton
+        onClick={handleDoubleNextClick}
+        disabled={page === (totalPages === 0 ? 0 : totalPages - 1)}
+      >
         &gt;&gt;
       </PageButton>
     </PaginationWrapper>
