@@ -26,8 +26,8 @@ const END_POINTS = {
   }) => `events?category=${category}&page=${pageNumber}&size=18&sort=${sort},desc`,
   EVENT_APPLY: '/events/applications',
   CANCEL_EVENT: ({ eventId }: { eventId: string }) => `/events/${eventId}/applications`,
-  GET_SUBMITTED_FORMS: ({ eventId }: { eventId: string | number }) =>
-    `events/${eventId}/forms/applications`,
+  GET_SUBMITTED_FORMS: ({ eventId, pageNumber }: { eventId: string; pageNumber: number }) =>
+    `events/${eventId}/forms/applications?page=${pageNumber}&size=20&sort=id,desc`,
 
   CREATE_CLUB: '/clubs',
   INVITE_LINK: (clubId: string) => `/clubs/${clubId}/invite`,
