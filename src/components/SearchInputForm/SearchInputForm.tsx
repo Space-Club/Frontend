@@ -71,7 +71,6 @@ const SearchInputForm = () => {
             <MoreResultStyled
               onClick={() => {
                 navigate(`${PATH.SEARCH}/${debouncedKeyword}`);
-                console.log('onClickMore');
               }}
             >
               검색결과 더 보러 가기
