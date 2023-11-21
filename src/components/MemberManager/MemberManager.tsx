@@ -8,6 +8,8 @@ const MemberManager = () => {
   const { clubId } = useClubId();
   const { clubMembers } = useClubMembersQuery({ clubId });
 
+  if (!clubMembers) return null;
+
   return (
     <MemberManagerContainer>
       {clubMembers.map((clubMember) => {
@@ -18,7 +20,7 @@ const MemberManager = () => {
             memberId={clubMember.id}
             role={clubMember.role}
             name={clubMember.name}
-            profileImageSrc={clubMember.image}
+            profileImageSrc={clubMember.profileImageUrl}
           />
         );
       })}
