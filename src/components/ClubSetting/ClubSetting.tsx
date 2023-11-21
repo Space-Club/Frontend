@@ -13,6 +13,7 @@ import ClubCover from '../common/ClubCover/ClubCover';
 import InputForm from '../common/InputForm/InputForm';
 import {
   ClubAvatarInfoEditWrapper,
+  ClubCoverEditWrapper,
   ClubInfoEditWrapper,
   ClubInfoEditsWrapper,
 } from './ClubSetting.style';
@@ -91,12 +92,14 @@ const ClubSetting = ({ clubId }: ClubSettingProps) => {
           </ClubInfoEditWrapper>
         </ClubInfoEditsWrapper>
       </ClubAvatarInfoEditWrapper>
-      <ClubCover
-        coverImageUrl={coverImageUrl}
-        clubId={clubId}
-        isEditable
-        onEdit={handleCoverImageEdit}
-      />
+      <ClubCoverEditWrapper>
+        <ClubCover
+          coverImageUrl={coverImageUrl}
+          clubId={clubId}
+          isEditable
+          onEdit={handleCoverImageEdit}
+        />
+      </ClubCoverEditWrapper>
       <ClubBanner clubId={clubId} bannerSize="small" />
     </>
   );

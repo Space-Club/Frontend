@@ -22,7 +22,10 @@ const ClubInfoEditWrapper = styled.div`
   }
 `;
 
-const ClubCoverEditWrapper = styled.div``;
+const ClubCoverEditWrapper = styled.div`
+  height: 9rem;
+  margin-top: 1rem;
+`;
 
 const ClubBannerPreviewWrapper = styled.div``;
 
