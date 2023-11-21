@@ -68,9 +68,14 @@ const InvisibleInput = styled.input`
   display: none;
 `;
 
-const LabelTitleStyled = styled.h1`
+const MediumTitleStyled = styled.h2`
   font-size: ${Theme.fontSize.mediumTitle};
   font-weight: 700;
+`;
+
+const SmallTitleStyled = styled.h3`
+  font-size: ${Theme.fontSize.smallTitle};
+  font-weight: 400;
 `;
 
 const sideBarScrollAreaStyled = styled.div`
@@ -130,5 +135,6 @@ export {
   ellipsisMultiLineText,
   textAreaScrollBar,
   InvisibleInput,
-  LabelTitleStyled,
+  MediumTitleStyled,
+  SmallTitleStyled,
 };

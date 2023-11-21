@@ -34,8 +34,8 @@ const ClubManagePage = () => {
           <MemberManager />
         </ClubManagePageLeftWrapper>
         <ClubManagePageRightWrapper>
-          <InviteLink />
           <ClubSetting clubId={clubId} />
+          <InviteLink />
         </ClubManagePageRightWrapper>
       </ClubManagePageContainer>
     </>

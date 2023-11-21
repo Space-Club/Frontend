@@ -3,6 +3,7 @@ import useEditClubMutation from '@/hooks/query/club/useEditClubMutation';
 import useGetClubQuery from '@/hooks/query/club/useGetClubQuery';
 import useToast from '@/hooks/useToast';
 import { PurpleButton } from '@/pages/event/EventDetailPage/EventDetailPage.style';
+import { SmallTitleStyled } from '@/styles/common';
 import { validateClubInfo, validateClubName } from '@/utils/validate';
 
 import { useRef } from 'react';
@@ -100,6 +101,7 @@ const ClubSetting = ({ clubId }: ClubSettingProps) => {
           onEdit={handleCoverImageEdit}
         />
       </ClubCoverEditWrapper>
+      <SmallTitleStyled>미리보기</SmallTitleStyled>
       <ClubBanner clubId={clubId} bannerSize="small" />
     </>
   );

@@ -24,7 +24,7 @@ const ClubInfoEditWrapper = styled.div`
 
 const ClubCoverEditWrapper = styled.div`
   height: 9rem;
-  margin-top: 1rem;
+  margin: 2.4rem 0;
 `;
 
 const ClubBannerPreviewWrapper = styled.div``;
