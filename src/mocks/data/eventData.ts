@@ -1,6 +1,6 @@
+import { AllEventsResponse } from '@/types/api/allEvents';
 import { GetAppliedEventResponse } from '@/types/api/getAppliedEvent';
 import { ShowDetailResponse } from '@/types/api/getEventDetail';
-import { GetAllEventsResponse } from '@/types/event';
 
 const appliedEvent: GetAppliedEventResponse = {
   data: [
@@ -34,45 +34,70 @@ const appliedEvent: GetAppliedEventResponse = {
   },
 };
 
-const allEvents: GetAllEventsResponse = {
+const allEvents: AllEventsResponse = {
   data: [
     {
       id: '1',
-      title: 'test1',
-      posterImageUrl:
-        'https://english.seoul.go.kr/wp-content/uploads/2022/09/working-seoul-poster-214x300.jpg',
-      startDate: '2021-10-10',
-      startTime: 'test',
-      formCloseDate: 'test',
-      formCloseTime: 'test',
-      location: 'test',
-      clubName: 'test',
-      clubLogoImageUrl: 'test',
+      eventInfo: {
+        title: 'test1',
+        posterImageUrl:
+          'https://english.seoul.go.kr/wp-content/uploads/2022/09/working-seoul-poster-214x300.jpg',
+        startDate: '2021-10-10',
+        startTime: 'test',
+        location: '',
+      },
+      formInfo: {
+        startDate: '',
+        startTime: '',
+        endDate: 'test',
+        endTime: 'test',
+      },
+      clubInfo: {
+        name: 'test',
+        logoImageUrl: 'test',
+      },
     },
     {
       id: '2',
-      title: 'test2',
-      posterImageUrl: 'https://www.europosters.ie/image/framed/750/115398_modenacerna.jpg',
-      startDate: '2021-10-10',
-      startTime: 'test',
-      formCloseDate: 'test',
-      formCloseTime: 'test',
-      location: 'test',
-      clubName: 'test',
-      clubLogoImageUrl: 'test',
+      eventInfo: {
+        title: 'test1',
+        posterImageUrl:
+          'https://english.seoul.go.kr/wp-content/uploads/2022/09/working-seoul-poster-214x300.jpg',
+        startDate: '2021-10-10',
+        startTime: 'test',
+        location: '',
+      },
+      formInfo: {
+        startDate: '',
+        startTime: '',
+        endDate: 'test',
+        endTime: 'test',
+      },
+      clubInfo: {
+        name: 'test',
+        logoImageUrl: 'test',
+      },
     },
     {
-      id: '1',
-      title: 'test1',
-      posterImageUrl:
-        'https://english.seoul.go.kr/wp-content/uploads/2022/09/working-seoul-poster-214x300.jpg',
-      startDate: '2021-10-10',
-      startTime: 'test',
-      formCloseDate: 'test',
-      formCloseTime: 'test',
-      location: 'test',
-      clubName: 'test',
-      clubLogoImageUrl: 'test',
+      id: '3',
+      eventInfo: {
+        title: 'test1',
+        posterImageUrl:
+          'https://english.seoul.go.kr/wp-content/uploads/2022/09/working-seoul-poster-214x300.jpg',
+        startDate: '2021-10-10',
+        startTime: 'test',
+        location: '',
+      },
+      formInfo: {
+        startDate: '',
+        startTime: '',
+        endDate: 'test',
+        endTime: 'test',
+      },
+      clubInfo: {
+        name: 'test',
+        logoImageUrl: 'test',
+      },
     },
   ],
   pageData: {
