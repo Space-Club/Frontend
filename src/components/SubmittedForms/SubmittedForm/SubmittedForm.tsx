@@ -25,15 +25,19 @@ const SubmittedForm = ({
   managed,
 }: SubmittedFormProps) => {
   const { showModal, modalOpen, modalClose } = useModal();
-  //#TODO: 제출된 시각 추가되면 넣기
+  //#TODO: 제출된 시각 추가되면 넣기=>순서 대신 제출된 시간을 보여주는 게 어떨까?
 
   return (
     <>
       {showModal && <FormDetailModal onClose={modalClose} options={options} />}
-      <FormStyled key={index} onClick={modalOpen}>
+      <FormStyled key={index}>
         <FormRowStyled>{formLength - index}</FormRowStyled>
         {options.map((option, index) => {
-          return <FormItemStyled key={index}>{option.content}</FormItemStyled>;
+          return (
+            <FormItemStyled onClick={modalOpen} key={index}>
+              {option.content}
+            </FormItemStyled>
+          );
         })}
         {managed && <FormStatus id={userId} applicationStatus={applicationStatus} />}
       </FormStyled>
