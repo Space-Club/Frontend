@@ -6,7 +6,7 @@ import { useQuery } from '@tanstack/react-query';
 export const QUERY_KEY = { SEARCH_RESULT: 'SEARCH_RESULT' };
 
 const useSearchResultQuery = ({ keyword, page }: SearchResultRequest) => {
-  const { data: searchResultData, isLoading } = useQuery({
+  const { data: searchResultData } = useQuery({
     queryKey: [QUERY_KEY.SEARCH_RESULT, keyword],
     queryFn: () => getSearchResult({ keyword, page }),
     enabled: !!keyword,
@@ -14,7 +14,7 @@ const useSearchResultQuery = ({ keyword, page }: SearchResultRequest) => {
 
   const { data, pageData } = searchResultData ?? {};
 
-  return { data, pageData, isLoading };
+  return { data, pageData };
 };
 
 export default useSearchResultQuery;

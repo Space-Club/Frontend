@@ -1,4 +1,5 @@
 import { APPLIED_EVENTS_TAGS } from '@/constants/event';
+import { PATH } from '@/constants/path';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -43,7 +44,7 @@ const EventCard = ({
   const navigate = useNavigate();
 
   return (
-    <ContainerStyled onClick={() => navigate(`/event/detail/${eventId}`)}>
+    <ContainerStyled onClick={() => navigate(PATH.EVENT.DETAIL(eventId))}>
       <Poster posterSrc={posterSrc} width={9.5}>
         {openStatus && (
           <EventStatusTag

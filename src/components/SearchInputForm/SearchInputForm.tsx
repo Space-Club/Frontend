@@ -65,7 +65,12 @@ const SearchInputForm = () => {
             <NoResultStyled>검색결과가 없습니다.</NoResultStyled>
           )}
           {pageData && pageData.totalPages > 0 && (
-            <MoreResultStyled onClick={() => navigate(`${PATH.SEARCH}/${debouncedKeyword}`)}>
+            <MoreResultStyled
+              onClick={() => {
+                navigate(`${PATH.SEARCH}/${debouncedKeyword}`);
+                console.log('onClickMore');
+              }}
+            >
               검색결과 더 보러 가기
             </MoreResultStyled>
           )}

@@ -41,7 +41,7 @@ const SearchResult = ({
       <Poster width={3} posterSrc={posterImageUrl} />
       <InfoWrapper>
         <TitleStyled>{eventTitle}</TitleStyled>
-        <InfoStyled>{eventStartDate ?? `~${formEndDate}`}</InfoStyled>
+        <InfoStyled>{eventStartDate ?? (formEndDate ? `~${formEndDate}` : '')}</InfoStyled>
         <InfoStyled>{location}</InfoStyled>
         <InfoStyled>{clubName}</InfoStyled>
       </InfoWrapper>
