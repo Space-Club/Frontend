@@ -1,5 +1,9 @@
 import { FORM_STATUS_DROPDOWN_OPTIONS } from '@/constants/form';
+import useSubmittedFormStatusMutation from '@/hooks/query/form/useSubmittedFormStatusMutation';
+import { EventStatus } from '@/types/event';
 import { getEventStatusTag } from '@/utils/getEventStatusTag';
+
+import { useParams } from 'react-router-dom';
 
 import ApplyCancelButton from '../../ApplyCancelButton/ApplyCancelButton';
 import DropDown from '../../common/DropDown/DropDown';
@@ -7,11 +11,15 @@ import { FormStatusItemStyled } from './FormStatus.style';
 
 interface FormStatus {
   id: string;
-  applicationStatus: 'PENDING' | 'CONFIRMED' | 'CANCELED' | 'CANCEL_REQUESTED';
+  applicationStatus: EventStatus;
 }
 
 const FormStatus = ({ id, applicationStatus }: FormStatus) => {
-  console.log(id); //#TODO: form id로 상태 변경 및 취소 요청
+  const { eventId } = useParams();
+  const { changeSubmittedFormStatus } = useSubmittedFormStatusMutation();
+  if (!eventId) {
+    return null;
+  }
 
   return (
     <>
@@ -21,12 +29,18 @@ const FormStatus = ({ id, applicationStatus }: FormStatus) => {
           options={FORM_STATUS_DROPDOWN_OPTIONS}
           selectedValue={
             applicationStatus === 'PENDING'
-              ? 'SELECT'
+              ? 'PENDING'
               : applicationStatus === 'CONFIRMED'
-              ? 'CONFIRM'
-              : 'SELECT'
+              ? 'CONFIRMED'
+              : 'PENDING'
           }
-          // onChange={} : #TODO :선택값 바뀌면 mutation 호출
+          onChange={(event) => {
+            changeSubmittedFormStatus({
+              eventId,
+              formUserId: id,
+              status: event.target.value as EventStatus,
+            });
+          }}
         />
       </FormStatusItemStyled>
       <FormStatusItemStyled>

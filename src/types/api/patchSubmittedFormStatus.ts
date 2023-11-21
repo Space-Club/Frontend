@@ -1,7 +1,9 @@
+import { EventStatus } from '../event';
+
 interface SubmittedFormStatusRequest {
   eventId: string;
   formUserId: string;
-  status: string; //CONFIRM, PENDING, ... 으로 바꿀까
+  status: EventStatus;
 }
 
 export { SubmittedFormStatusRequest };
