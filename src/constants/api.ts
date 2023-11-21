@@ -15,7 +15,15 @@ const END_POINTS = {
     `users/events?page=${page}&size=${size}&sort=${sort}`,
   GET_EVENT_DETAIL: '/events',
   GET_EVENT_FORM: (eventId: string) => `/events/${eventId}/forms`,
-  ALL_EVENTS: '/events',
+  ALL_EVENTS: ({
+    category,
+    pageNumber,
+    sort,
+  }: {
+    category: string;
+    pageNumber: number;
+    sort: string;
+  }) => `events?category=${category}&page=${pageNumber}&size=18&sort=${sort},desc`,
   EVENT_APPLY: '/events/applications',
   CANCEL_EVENT: ({ eventId }: { eventId: string }) => `/events/${eventId}/applications`,
   GET_SUBMITTED_FORMS: ({ eventId }: { eventId: string | number }) =>

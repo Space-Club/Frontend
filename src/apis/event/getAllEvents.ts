@@ -5,7 +5,7 @@ import { axiosClient } from '../axiosClient';
 
 const getAllEvents = async ({ pageNumber, category, sort }: AllEventsRequest) => {
   const { data } = await axiosClient.get<AllEventsResponse>(
-    `${END_POINTS.ALL_EVENTS}?category=${category}&page=${pageNumber}&size=18&sort=${sort},desc`,
+    END_POINTS.ALL_EVENTS({ category, pageNumber, sort }),
   );
   return data;
 };
