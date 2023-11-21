@@ -20,7 +20,9 @@ const useWithdrawClubMutation = () => {
       createToast({ message: '클럽 탈퇴가 완료되었습니다.', toastType: 'success' });
       navigate(PATH.MAIN);
     },
-    onError: () => {}, //#TODO: error 코드에 따라 토스트 메시지 다르게 보여주기
+    onError: () => {
+      createToast({ message: '클럽 탈퇴에 실패했습니다.', toastType: 'error' });
+    }, //#TODO: error 코드에 따라 토스트 메시지 다르게 보여주기
   });
 
   return { withdrawClubMutate };
