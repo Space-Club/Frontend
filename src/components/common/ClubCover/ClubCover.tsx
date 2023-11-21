@@ -5,13 +5,14 @@ import { useRef } from 'react';
 import {
   ClubCoverContainer,
   ClubCoverEditButtonStyled,
+  ClubCoverEmptyWrapper,
   ClubCoverImage,
   ClubCoverTransparent,
 } from './ClubCover.style';
 
 interface ClubCoverProps {
-  coverImageUrl: string;
   isTransparent?: boolean;
+  coverImageUrl?: string;
   isEditable?: boolean;
   children?: React.ReactNode;
   clubId?: string;
@@ -46,7 +47,11 @@ const ClubCover = ({
         ref={editInputRef}
         type="file"
       ></InvisibleInput>
-      <ClubCoverImage src={coverImageUrl} />
+      {coverImageUrl ? (
+        <ClubCoverImage src={coverImageUrl} />
+      ) : (
+        <ClubCoverEmptyWrapper>클럽 배경을 설정해주세요</ClubCoverEmptyWrapper>
+      )}
       {isTransparent && <ClubCoverTransparent />}
       {isEditable && (
         <ClubCoverEditButtonStyled onClick={handleEditButtonClick}>

@@ -15,6 +15,17 @@ const ClubCoverImage = styled.img`
   border-radius: 1rem;
 `;
 
+const ClubCoverEmptyWrapper = styled.div`
+  width: 100%;
+  height: 100%;
+  border-radius: 1rem;
+  border: 1px solid ${Theme.color.gray};
+  color: ${Theme.color.gray};
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
 const ClubCoverTransparent = styled.div`
   width: 100%;
   height: 100%;
@@ -31,4 +42,10 @@ const ClubCoverEditButtonStyled = styled(PurpleButton)`
   font-size: 0.875rem;
 `;
 
-export { ClubCoverContainer, ClubCoverImage, ClubCoverTransparent, ClubCoverEditButtonStyled };
+export {
+  ClubCoverContainer,
+  ClubCoverEmptyWrapper,
+  ClubCoverImage,
+  ClubCoverTransparent,
+  ClubCoverEditButtonStyled,
+};
