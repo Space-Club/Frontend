@@ -19,7 +19,7 @@ interface CreateClubFormValue {
 }
 
 interface GetClubEventsRequest {
-  clubId: number | string;
+  clubId: string;
   pageNumber: number;
 }
 
