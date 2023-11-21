@@ -50,15 +50,15 @@ const SearchInputForm = () => {
         <SearchResultsWrapper>
           <SearchTitleStyled>{`"${debouncedKeyword}" 검색 결과`}</SearchTitleStyled>
           {data?.length ? (
-            data.map((event) => (
+            data.map(({ id, eventInfo, formInfo, clubInfo }) => (
               <SearchResult
-                key={event.id}
-                eventId={event.id}
-                eventTitle={event.eventInfo.title}
-                posterImageUrl={event.eventInfo.posterImageUrl}
-                location={event.eventInfo.location}
-                formEndDate={event.formInfo.endDate}
-                clubName={event.clubInfo.name}
+                key={id}
+                eventId={id}
+                eventTitle={eventInfo.title}
+                posterImageUrl={eventInfo.posterImageUrl}
+                location={eventInfo.location}
+                formEndDate={formInfo.endDate}
+                clubName={clubInfo.name}
               />
             ))
           ) : (
