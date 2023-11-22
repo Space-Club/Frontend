@@ -6,7 +6,7 @@ interface Form {
 interface UserForm {
   userId: string;
   options: Form[];
-  applicationStatus: 'PENDING' | 'CONFIRMED' | 'CANCELED' | 'CANCEL_REQUESTED';
+  participationStatus: 'PENDING' | 'CONFIRMED' | 'CANCELED' | 'CANCEL_REQUESTED';
 }
 
 interface FormInfo {

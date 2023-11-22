@@ -11,10 +11,10 @@ import { FormStatusItemStyled } from './FormStatus.style';
 
 interface FormStatus {
   id: string;
-  applicationStatus: EventStatus;
+  participationStatus: EventStatus;
 }
 
-const FormStatus = ({ id, applicationStatus }: FormStatus) => {
+const FormStatus = ({ id, participationStatus }: FormStatus) => {
   const { eventId } = useParams();
   const { changeSubmittedFormStatus } = useSubmittedFormStatusMutation();
   if (!eventId) {
@@ -23,24 +23,24 @@ const FormStatus = ({ id, applicationStatus }: FormStatus) => {
 
   return (
     <>
-      <FormStatusItemStyled>{getEventStatusTag(applicationStatus)}</FormStatusItemStyled>
+      <FormStatusItemStyled>{getEventStatusTag(participationStatus)}</FormStatusItemStyled>
       <FormStatusItemStyled>
         <DropDown
           options={FORM_STATUS_DROPDOWN_OPTIONS}
-          selectedValue={applicationStatus === 'CONFIRMED' ? 'CONFIRMED' : 'PENDING'}
+          selectedValue={participationStatus === 'CONFIRMED' ? 'CONFIRMED' : 'PENDING'}
           onChange={(event) => {
             changeSubmittedFormStatus({
               eventId,
               formUserId: id,
-              status: event.target.value as EventStatus,
+              participationStatus: event.target.value as EventStatus,
             });
           }}
-          disabled={applicationStatus === 'CANCELED'}
+          disabled={participationStatus === 'CANCELED'}
         />
       </FormStatusItemStyled>
       <FormStatusItemStyled>
         <ApplyCancelButton
-          isCanceled={applicationStatus === 'CANCELED'}
+          isCanceled={participationStatus === 'CANCELED'}
           eventId={eventId}
           formUserId={id}
         />

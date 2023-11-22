@@ -24,7 +24,7 @@ const SubmittedForms = ({ formInfo, userForms }: { formInfo: FormInfo; userForms
                 formLength={formInfo.count}
                 userId={form.userId}
                 options={form.options}
-                applicationStatus={form.applicationStatus}
+                participationStatus={form.participationStatus}
                 managed={formInfo.managed}
               />
             );
