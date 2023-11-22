@@ -1,5 +1,6 @@
 import { INVITE_LINK } from '@/constants/club';
 import useInviteLinkQuery from '@/hooks/query/club/useInviteLinkQuery';
+import { MediumTitleStyled } from '@/styles/common';
 
 import {
   InputWrapper,
@@ -7,7 +8,6 @@ import {
   ReadonlyInput,
   SubTitle,
   SubmitButton,
-  Title,
   TitleWrapper,
 } from './InviteLink.style';
 
@@ -17,7 +17,7 @@ const InviteLink = () => {
   return (
     <InviteLinkContainer>
       <TitleWrapper>
-        <Title>초대 링크</Title>
+        <MediumTitleStyled>초대 링크</MediumTitleStyled>
         <SubTitle>링크의 유효기간은 {INVITE_LINK.VALID_TIME}시간입니다.</SubTitle>
       </TitleWrapper>
       <InputWrapper>

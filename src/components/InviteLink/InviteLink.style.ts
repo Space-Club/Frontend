@@ -10,9 +10,7 @@ const TitleWrapper = styled.div`
   margin-bottom: 0.5rem;
   align-items: center;
 `;
-const Title = styled.div`
-  font-size: ${Theme.fontSize.mediumTitle};
-`;
+
 const SubTitle = styled.div`
   font-size: ${Theme.fontSize.smallContent};
   margin-left: 1rem;
@@ -32,7 +30,7 @@ const ReadonlyInput = styled.input`
   box-sizing: border-box;
 `;
 const SubmitButton = styled.button`
-  background-color: ${Theme.color.activeColor};
+  background-color: ${Theme.color.tPurple};
   font-size: ${Theme.fontSize.smallContent};
   border: none;
   outline: none;
@@ -43,12 +41,4 @@ const SubmitButton = styled.button`
   cursor: pointer;
 `;
 
-export {
-  InviteLinkContainer,
-  TitleWrapper,
-  Title,
-  SubTitle,
-  InputWrapper,
-  ReadonlyInput,
-  SubmitButton,
-};
+export { InviteLinkContainer, TitleWrapper, SubTitle, InputWrapper, ReadonlyInput, SubmitButton };

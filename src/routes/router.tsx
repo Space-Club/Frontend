@@ -10,9 +10,9 @@ import RegisterPage from '@/pages/RegisterPage/RegisterPage';
 import SearchResultPage from '@/pages/SearchResultPage/SearchResultPage';
 import ClubEventPage from '@/pages/club/ClubEventPage/ClubEventPage';
 import ClubHomePage from '@/pages/club/ClubHomePage/ClubHomePage';
+import ClubManagePage from '@/pages/club/ClubManagePage/ClubManagePage';
 import CreateClubPage from '@/pages/club/CreateClubPage/CreateClubPage';
 import InvitePage from '@/pages/club/InvitePage/InvitePage';
-import ManageClubPage from '@/pages/club/ManageClubPage/ManageClubPage';
 import ChoiceEventPage from '@/pages/event/ChoiceEventPage/ChoiceEventPage';
 import EventDetailPage from '@/pages/event/EventDetailPage/EventDetailPage';
 import SubmitFormPage from '@/pages/event/SubmitFormPage/SubmitFormPage';
@@ -82,7 +82,7 @@ const router = createBrowserRouter([
               },
               {
                 path: 'manage',
-                element: <ManageClubPage />,
+                element: <ClubManagePage />,
               },
               {
                 path: '',

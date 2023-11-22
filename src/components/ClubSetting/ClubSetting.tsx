@@ -3,6 +3,7 @@ import useEditClubMutation from '@/hooks/query/club/useEditClubMutation';
 import useGetClubQuery from '@/hooks/query/club/useGetClubQuery';
 import useToast from '@/hooks/useToast';
 import { PurpleButton } from '@/pages/event/EventDetailPage/EventDetailPage.style';
+import { MediumTitleStyled, SmallTitleStyled } from '@/styles/common';
 import { validateClubInfo, validateClubName } from '@/utils/validate';
 
 import { useRef } from 'react';
@@ -11,6 +12,13 @@ import Avatar from '../common/Avatar/Avatar';
 import ClubBanner from '../common/ClubBanner/ClubBanner';
 import ClubCover from '../common/ClubCover/ClubCover';
 import InputForm from '../common/InputForm/InputForm';
+import {
+  ClubAvatarInfoEditWrapper,
+  ClubBannerPreviewWrapper,
+  ClubCoverEditWrapper,
+  ClubInfoEditWrapper,
+  ClubInfoEditsWrapper,
+} from './ClubSetting.style';
 
 interface ClubSettingProps {
   clubId: string;
@@ -57,24 +65,48 @@ const ClubSetting = ({ clubId }: ClubSettingProps) => {
 
   return (
     <>
-      <Avatar
-        avatarSize="medium"
-        isClub={true}
-        profileImageSrc={logoImageUrl}
-        isEditable
-        onEdit={handleAvatarImageEdit}
-      />
-      <InputForm placeholder={name} ref={clubNameInputRef} labelText="클럽이름" inputType="text" />
-      <PurpleButton onClick={handleClubNameEdit}>수정</PurpleButton>
-      <InputForm placeholder={info} ref={clubInfoInputRef} labelText="클럽소개" inputType="text" />
-      <PurpleButton onClick={handleClubInfoEdit}>수정</PurpleButton>
-      <ClubCover
-        coverImageUrl={coverImageUrl}
-        clubId={clubId}
-        isEditable
-        onEdit={handleCoverImageEdit}
-      />
-      <ClubBanner clubId={clubId} bannerSize="small" />
+      <MediumTitleStyled>클럽설정</MediumTitleStyled>
+      <ClubAvatarInfoEditWrapper>
+        <Avatar
+          avatarSize="medium"
+          isClub={true}
+          profileImageSrc={logoImageUrl}
+          isEditable
+          onEdit={handleAvatarImageEdit}
+        />
+        <ClubInfoEditsWrapper>
+          <ClubInfoEditWrapper>
+            <InputForm
+              placeholder={name}
+              ref={clubNameInputRef}
+              labelText="클럽이름"
+              inputType="text"
+            />
+            <PurpleButton onClick={handleClubNameEdit}>수정</PurpleButton>
+          </ClubInfoEditWrapper>
+          <ClubInfoEditWrapper>
+            <InputForm
+              placeholder={info}
+              ref={clubInfoInputRef}
+              labelText="클럽소개"
+              inputType="text"
+            />
+            <PurpleButton onClick={handleClubInfoEdit}>수정</PurpleButton>
+          </ClubInfoEditWrapper>
+        </ClubInfoEditsWrapper>
+      </ClubAvatarInfoEditWrapper>
+      <ClubCoverEditWrapper>
+        <ClubCover
+          coverImageUrl={coverImageUrl}
+          clubId={clubId}
+          isEditable
+          onEdit={handleCoverImageEdit}
+        />
+      </ClubCoverEditWrapper>
+      <ClubBannerPreviewWrapper>
+        <SmallTitleStyled>미리보기</SmallTitleStyled>
+        <ClubBanner clubId={clubId} bannerSize="small" />
+      </ClubBannerPreviewWrapper>
     </>
   );
 };

@@ -32,7 +32,6 @@ const MemberManageItem = ({
       <Avatar avatarSize="normal" profileImageSrc={profileImageSrc} />
       <MemberManageItemNameWrapper>{name}</MemberManageItemNameWrapper>
       <MemberManageItemButtonWrapper>
-        <DeleteMemberButton clubId={clubId} memberId={memberId} />
         <DropDown
           options={MEMBER_ROLE_DROPDOWN_OPTIONS}
           selectedValue={role}
@@ -40,6 +39,7 @@ const MemberManageItem = ({
             changeMemberRole({ memberId, clubId, role: event.target.value as MemberRole });
           }}
         />
+        <DeleteMemberButton clubId={clubId} memberId={memberId} />
       </MemberManageItemButtonWrapper>
     </MemberManageItemContainer>
   );

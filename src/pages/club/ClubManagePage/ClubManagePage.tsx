@@ -12,9 +12,15 @@ import useModal from '@/hooks/useModal';
 
 import { useParams } from 'react-router-dom';
 
-import { DeleteButton } from './ManageClubPage.style';
+import { TabWrapper } from '../ClubHomePage/ClubHomePage.style';
+import {
+  ClubManagePageContainer,
+  ClubManagePageLeftWrapper,
+  ClubManagePageRightWrapper,
+  DeleteButton,
+} from './ClubManagePage.style';
 
-const ManageClubPage = () => {
+const ClubManagePage = () => {
   const { clubId } = useParams();
   const {
     showModal: showDeleteModal,
@@ -41,14 +47,22 @@ const ManageClubPage = () => {
         />
       )}
       <Header>
-        <Tab tabItems={CLUB_TABS(clubId)} />
+        <TabWrapper>
+          <Tab tabItems={CLUB_TABS(clubId)} />
+        </TabWrapper>
       </Header>
-      <MemberManager />
-      <InviteLink />
-      <ClubSetting clubId={clubId} />
-      <DeleteButton type="button" buttonText="클럽 삭제하기" onClick={deleteModalOpen} />
+      <ClubManagePageContainer>
+        <ClubManagePageLeftWrapper>
+          <MemberManager />
+        </ClubManagePageLeftWrapper>
+        <ClubManagePageRightWrapper>
+          <ClubSetting clubId={clubId} />
+          <InviteLink />
+          <DeleteButton type="button" buttonText="클럽 삭제하기" onClick={deleteModalOpen} />
+        </ClubManagePageRightWrapper>
+      </ClubManagePageContainer>
     </>
   );
 };
 
-export default ManageClubPage;
+export default ClubManagePage;

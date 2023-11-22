@@ -11,7 +11,8 @@ import useClubEventsQuery from '@/hooks/query/club/useClubEventsQuery';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { ButtonWrapper, EventsContainer, HeaderElementWrapper } from './ClubEventPage.style';
+import { TabWrapper } from '../ClubHomePage/ClubHomePage.style';
+import { ButtonWrapper, EventsContainer } from './ClubEventPage.style';
 
 const ClubEventPage = () => {
   const navigate = useNavigate();
@@ -32,7 +33,7 @@ const ClubEventPage = () => {
   return (
     <>
       <Header>
-        <HeaderElementWrapper>
+        <TabWrapper>
           <Tab
             tabItems={[
               { title: `${TAB_CONSTANTS.CLUB_HOME}`, link: `${PATH.CLUB.HOME(clubId)}` },
@@ -40,7 +41,7 @@ const ClubEventPage = () => {
               { title: `${TAB_CONSTANTS.CLUB_MANAGE}`, link: `${PATH.CLUB.MANAGE(clubId)}` },
             ]}
           />
-        </HeaderElementWrapper>
+        </TabWrapper>
       </Header>
       <EventsContainer>
         {clubEvents?.map((clubEvent) => (

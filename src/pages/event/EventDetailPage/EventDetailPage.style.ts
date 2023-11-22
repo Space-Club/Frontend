@@ -19,6 +19,7 @@ const FormButtonWrapper = styled.div`
 `;
 const PurpleButton = styled.button<{ reverse?: boolean }>`
   outline: none;
+  min-width: max-content;
   background-color: ${({ reverse }) => (reverse ? 'white' : `${Theme.color.tButton}`)};
   color: ${({ reverse }) => (reverse ? `${Theme.color.tButton}` : 'white')};
   border: 1px solid ${Theme.color.tButton};
