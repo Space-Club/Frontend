@@ -3,7 +3,7 @@ import FormInformationEditor from '@/components/FormInformationEditor/FormInform
 import FormOptionButtons from '@/components/FormOptionButtons/FormOptionButtons';
 import FormOptionDropdown from '@/components/FormOptionDropdown/FormOptionDropdown';
 import FormOptions from '@/components/FormOptions/FormOptions';
-import { EventType } from '@/types/event';
+import { eventTypeAPI } from '@/types/event';
 
 import { useLocation, useParams } from 'react-router-dom';
 
@@ -14,7 +14,7 @@ const WriteEventFormPage = () => {
 
   const { clubId, eventId } = useParams();
   const queryParams = new URLSearchParams(location.search);
-  const eventType = queryParams.get('event') as EventType;
+  const eventType = queryParams.get('event') as eventTypeAPI;
 
   if (!eventType) throw new Error('event queryString이 잘못 되었습니다');
   if (!clubId) throw new Error('clubId가 없습니다.');

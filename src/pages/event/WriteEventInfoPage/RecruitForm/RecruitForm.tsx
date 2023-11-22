@@ -3,12 +3,14 @@ import InputForm from '@/components/common/InputForm/InputForm';
 import TextAreaForm from '@/components/common/TextAreaForm/TextAreaForm';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
 import useSubmitForm from '@/hooks/query/event/useSubmitForm';
+import { RecruitmentDetailResponse } from '@/types/api/getEventDetail';
 import { FormPage } from '@/types/event';
+import setFormValue from '@/utils/setFormValue';
 import { validateTimeCompare, validateTodayDate } from '@/utils/validate';
 
 import { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import {
   ButtonWrapper,
@@ -25,12 +27,24 @@ const RecruitForm = ({ eventType, clubId }: FormPage) => {
   const {
     register,
     handleSubmit,
+    setValue,
     watch,
     formState: { errors },
   } = useForm();
+  const { state } = useLocation();
   const [imgFile, setImgFile] = useState('');
   const navigate = useNavigate();
-  const { submitForm, isSubmitLoading } = useSubmitForm({ eventType, clubId });
+  const { submitForm, isSubmitLoading } = useSubmitForm({ eventType, clubId, isEdit: !!state });
+
+  useEffect(() => {
+    if (state) {
+      const eventDetail: RecruitmentDetailResponse = state.eventDetail;
+      setFormValue({ setValue, setImgFile, eventDetail });
+
+      setValue('activityArea', eventDetail.location);
+      setValue('recruitmentTarget', eventDetail.recruitmentTarget);
+    }
+  }, [state, setValue]);
 
   const {
     REQUIRED_RECRUIT_NAME,
@@ -56,7 +70,11 @@ const RecruitForm = ({ eventType, clubId }: FormPage) => {
 
   const onRecruitSubmitForm = (data: FieldValues) => {
     if (isSubmitLoading || !clubId) return;
-    submitForm({ data, clubId, eventType });
+    if (state) {
+      submitForm({ data, clubId, eventType, eventId: state.eventId });
+    } else {
+      submitForm({ data, clubId, eventType });
+    }
   };
 
   return (
@@ -110,6 +128,7 @@ const RecruitForm = ({ eventType, clubId }: FormPage) => {
             labelText="신청 시작 날짜 및 시간"
             required
             inputType="datetime-local"
+            containerWidth="50%"
           />
           <InputForm
             {...register('closeDate', {
@@ -119,6 +138,7 @@ const RecruitForm = ({ eventType, clubId }: FormPage) => {
             labelText="마감 시작 날짜 및 시간"
             required
             inputType="datetime-local"
+            containerWidth="50%"
           />
         </TwoInputContainer>
         {errors.openDate && errors.openDate.message !== errors.closeDate?.message && (
@@ -128,7 +148,7 @@ const RecruitForm = ({ eventType, clubId }: FormPage) => {
       </ContentArea>
       <ContentArea>
         <ImageForm
-          {...register('poster', { required: `${REQUIRED_POSTER}` })}
+          {...register('poster', { required: state ? false : `${REQUIRED_POSTER}` })}
           imgFile={imgFile}
           labelText="포스터"
           required
@@ -150,7 +170,7 @@ const RecruitForm = ({ eventType, clubId }: FormPage) => {
         <PrevButton type="button" onClick={() => navigate(-1)}>
           이전으로
         </PrevButton>
-        <SubmitButton type="submit">다음</SubmitButton>
+        <SubmitButton type="submit">{state ? '수정' : '다음'}</SubmitButton>
       </ButtonWrapper>
     </PerformanceFormContainer>
   );

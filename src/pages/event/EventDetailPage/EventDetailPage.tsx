@@ -6,6 +6,7 @@ import Poster from '@/components/common/Poster/Poster';
 import Tab from '@/components/common/Tab/Tab';
 import { EVENT_DETAIL_BUTTON } from '@/constants/event';
 import { MODAL_TEXT } from '@/constants/modalMessage';
+import { PATH } from '@/constants/path';
 import { MAIN_TABS } from '@/constants/tab';
 import useDeleteEventMutation from '@/hooks/query/event/useDeleteEventMutation';
 import useEventDetailQuery from '@/hooks/query/event/useEventDetailQuery';
@@ -53,16 +54,23 @@ const EventDetailPage = () => {
   } = useModal();
 
   if (!eventId) {
-    throw new Error('eventId is null'); //TODO: eventId가 없을 때 처리
+    throw new Error('eventId is null');
   }
 
   const { eventDetail, isEventDetailLoading } = useEventDetailQuery({ eventId });
 
-  // TODO: 수정하기 버튼 클릭시, 게시물 수정 페이지로 이동
   const { deleteEventMutate } = useDeleteEventMutation({ eventId });
 
-  const { isManager, posterImageUrl, content, applicants, capacity, isBookmarked, eventCategory } =
-    eventDetail ?? {};
+  const {
+    isManager,
+    posterImageUrl,
+    content,
+    applicants,
+    capacity,
+    isBookmarked,
+    eventCategory,
+    clubId = '6', // TODO: API 명세서 나올 시 기본 값 제거
+  } = eventDetail ?? {};
 
   const handleEventDelete = async () => {
     deleteEventMutate();
@@ -111,7 +119,19 @@ const EventDetailPage = () => {
                   {EVENT_DETAIL_BUTTON.showSubmitForm}
                 </PurpleButton>
                 <UpdateDeleteWrapper>
-                  <PurpleButton reverse>{EVENT_DETAIL_BUTTON.edit}</PurpleButton>
+                  <PurpleButton
+                    reverse
+                    onClick={() =>
+                      navigate(PATH.EVENT.EDIT_WRITE_INFO(clubId, eventCategory!), {
+                        state: {
+                          eventDetail,
+                          eventId,
+                        },
+                      })
+                    }
+                  >
+                    {EVENT_DETAIL_BUTTON.edit}
+                  </PurpleButton>
                   <PurpleButton onClick={deleteModalOpen}>
                     {EVENT_DETAIL_BUTTON.delete}
                   </PurpleButton>

@@ -6,7 +6,7 @@ type EventStatus = 'CONFIRMED' | 'PENDING' | 'CANCEL_REQUESTED' | 'CANCELED';
 
 type EventTagKey = 'publicEvent' | 'clubOnlyEvent' | EventStatus;
 
-type EventType = 'performance' | 'promotion' | 'recruitment' | 'clubSchedule';
+type EventType = 'show' | 'promotion' | 'recruitment' | 'club';
 
 type ProfileEventType = 'applied' | 'bookmark';
 
@@ -74,13 +74,10 @@ interface getEventFormResponse {
   };
 }
 
-interface postPerformanceFormResponse {
-  eventId: string;
-}
-
 interface FormPage {
   eventType: eventTypeAPI;
   clubId: string;
+  isEdit?: boolean;
 }
 
 type ValuePiece = Date | null;
@@ -94,7 +91,6 @@ export {
   EventType,
   EventTag,
   eventTypeAPI,
-  postPerformanceFormResponse,
   ProfileEventType,
   EventStatus,
   FormPage,

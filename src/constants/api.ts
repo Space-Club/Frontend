@@ -13,7 +13,7 @@ const END_POINTS = {
   PATCH_PROFILE_IMAGE: '/users/images',
   PATCH_USER_INFO: 'users/required-infos',
 
-  PERFORMANCE_FORM: '/event',
+  PERFORMANCE_FORM: '/events',
   GET_APPLIED_EVENT: ({ page, size, sort }: { page: number; size: string; sort: string }) =>
     `users/events?page=${page}&size=${size}&sort=${sort}`,
   GET_EVENT_DETAIL: '/events',
