@@ -33,7 +33,7 @@ const AppliedEvents = () => {
               startDate={event.startDate}
               location={event.location}
               clubName={event.clubName}
-              eventStatus={event.status}
+              eventStatus={event.participationStatus}
             />
           ))
         ) : (
