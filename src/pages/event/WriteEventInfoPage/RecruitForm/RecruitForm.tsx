@@ -117,7 +117,7 @@ const RecruitForm = ({ eventType, clubId }: FormPage) => {
         />
         {errors.capacity && <ErrorMessage>{errors.capacity.message as string}</ErrorMessage>}
         <TwoInputContainer>
-          <HalfInputForm
+          <InputForm
             {...register('openDate', {
               required: `${REQUIRED_FORM_START_TIME}`,
               validate: {
@@ -128,8 +128,9 @@ const RecruitForm = ({ eventType, clubId }: FormPage) => {
             labelText="신청 시작 날짜 및 시간"
             required
             inputType="datetime-local"
+            containerWidth="50%"
           />
-          <HalfInputForm
+          <InputForm
             {...register('closeDate', {
               required: `${REQUIRED_FORM_LAST_TIME}`,
               validate: (value) => validateTimeCompare(watch('openDate'), value),
@@ -137,6 +138,7 @@ const RecruitForm = ({ eventType, clubId }: FormPage) => {
             labelText="마감 시작 날짜 및 시간"
             required
             inputType="datetime-local"
+            containerWidth="50%"
           />
         </TwoInputContainer>
         {errors.openDate && errors.openDate.message !== errors.closeDate?.message && (

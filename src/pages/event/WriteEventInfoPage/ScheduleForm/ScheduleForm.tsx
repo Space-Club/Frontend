@@ -16,7 +16,6 @@ import {
   ButtonWrapper,
   ContentArea,
   ErrorMessage,
-  HalfInputForm,
   PerformanceFormContainer,
   PrevButton,
   SubmitButton,
@@ -98,7 +97,7 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
         />
         {errors.title && <ErrorMessage>{errors.title.message as string}</ErrorMessage>}
         <TwoInputContainer>
-          <HalfInputForm
+          <InputForm
             {...register('startDate', {
               required: REQUIRED_ACTIVITY_START_TIME,
               validate: {
@@ -109,8 +108,9 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
             labelText="활동 시작 날짜"
             required
             inputType="datetime-local"
+            containerWidth="50%"
           />
-          <HalfInputForm
+          <InputForm
             {...register('endDate', {
               required: REQUIRED_ACTIVITY_LAST_TIME,
               validate: {
@@ -120,6 +120,7 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
             labelText="활동 마감 날짜"
             required
             inputType="datetime-local"
+            containerWidth="50%"
           />
         </TwoInputContainer>
         {errors.startDate && errors.startDate.message !== errors.endDate?.message && (
@@ -158,7 +159,7 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
         />
         {errors.master && <ErrorMessage>{errors.master.message as string}</ErrorMessage>}
         <TwoInputContainer>
-          <HalfInputForm
+          <InputForm
             {...register('openDate', {
               required: closeDate && ENTER_BOTH_SIDE,
               validate: {
@@ -168,14 +169,16 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
             })}
             labelText="신청 시작 날짜 및 시간"
             inputType="datetime-local"
+            containerWidth="50%"
           />
-          <HalfInputForm
+          <InputForm
             {...register('closeDate', {
               required: openDate && ENTER_BOTH_SIDE,
               validate: (value) => validateTimeCompare(watch('openDate'), value),
             })}
             labelText="마감 시작 날짜 및 시간"
             inputType="datetime-local"
+            containerWidth="50%"
           />
         </TwoInputContainer>
         {errors.openDate && errors.openDate.message !== errors.closeDate?.message && (

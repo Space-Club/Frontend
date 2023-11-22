@@ -79,10 +79,12 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
   }, [watch('poster')]);
 
   const onPerformanceSubmitForm = async (data: FieldValues) => {
+    console.log(3);
     if (isSubmitLoading || !clubId) return;
     if (state) {
       submitForm({ data, clubId, eventType, eventId: state.eventId });
     } else {
+      console.log('2');
       submitForm({ data, clubId, eventType });
     }
   };
@@ -167,7 +169,7 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
           placeholder="정수(1-n)"
         />
         <TwoInputContainer>
-          <HalfInputForm
+          <InputForm
             {...register('openDate', {
               required: `${REQUIRED_FORM_START_TIME}`,
               validate: {
@@ -178,8 +180,9 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
             labelText="신청 시작 날짜 및 시간"
             required
             inputType="datetime-local"
+            containerWidth="50%"
           />
-          <HalfInputForm
+          <InputForm
             {...register('closeDate', {
               required: `${REQUIRED_FORM_LAST_TIME}`,
               validate: (value) => validateTimeCompare(watch('openDate'), value),
@@ -187,6 +190,7 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
             labelText="마감 시작 날짜 및 시간"
             required
             inputType="datetime-local"
+            containerWidth="50%"
           />
         </TwoInputContainer>
         {errors.openDate && errors.openDate.message !== errors.closeDate?.message && (
