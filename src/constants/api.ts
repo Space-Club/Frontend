@@ -40,7 +40,7 @@ const END_POINTS = {
   MEMBER_AUTH: (clubId: string) => `/clubs/${clubId}/users`,
   DELETE_CLUB: (clubId: string) => `clubs/${clubId}`,
   INVITE_LINK: (clubId: string) => `/clubs/${clubId}/invite`,
-  INVITE_CLUB_CODE: (inviteCode: string) => `/clubs/invite/${inviteCode}`,
+  INVITE_CLUB_CODE: (inviteCode: string) => `/clubs/invites/${inviteCode}`,
   CLUB_MEMBERS: (clubId: string) => `/clubs/${clubId}/members`,
   CLUB_EVENTS: ({ clubId, pageNumber }: { clubId: string; pageNumber: number }) =>
     `/clubs/${clubId}/events?page=${pageNumber}&size=18&sort=id,desc`,
