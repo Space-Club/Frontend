@@ -6,6 +6,7 @@ import Poster from '@/components/common/Poster/Poster';
 import Tab from '@/components/common/Tab/Tab';
 import { EVENT_DETAIL_BUTTON } from '@/constants/event';
 import { MODAL_TEXT } from '@/constants/modalMessage';
+import { PATH } from '@/constants/path';
 import { MAIN_TABS } from '@/constants/tab';
 import useDeleteEventMutation from '@/hooks/query/event/useDeleteEventMutation';
 import useEventDetailQuery from '@/hooks/query/event/useEventDetailQuery';
@@ -68,7 +69,7 @@ const EventDetailPage = () => {
     capacity,
     isBookmarked,
     eventCategory,
-    clubId = 6,
+    clubId = '6', // TODO: API 명세서 나올 시 기본 값 제거
   } = eventDetail ?? {};
 
   const handleEventDelete = async () => {
@@ -121,7 +122,7 @@ const EventDetailPage = () => {
                   <PurpleButton
                     reverse
                     onClick={() =>
-                      navigate(`/club/${clubId}/writeinfo?event=${eventCategory?.toLowerCase()}`, {
+                      navigate(PATH.EVENT.EDIT_WRITE_INFO(clubId, eventCategory!), {
                         state: {
                           eventDetail,
                           eventId,
