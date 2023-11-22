@@ -3,15 +3,7 @@ import styled from '@emotion/styled';
 
 const SubmittedFormsContainer = styled.div`
   width: 100%;
-  padding-top: 3rem;
-`;
-
-const FormLengthStyled = styled.div`
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  color: ${Theme.color.semiBlack};
-  font-size: ${Theme.fontSize.smallContent};
+  padding-top: 1rem;
 `;
 
 const SubmittedFormsWrapper = styled.div`
@@ -19,6 +11,15 @@ const SubmittedFormsWrapper = styled.div`
   justify-content: center;
   overflow-x: auto;
   width: 100%;
+  min-width: 40rem;
+`;
+
+const FormLengthStyled = styled.div`
+  display: flex;
+  justify-content: start;
+  width: 100%;
+  color: ${Theme.color.semiBlack};
+  font-size: ${Theme.fontSize.smallContent};
 `;
 
 const FormsWrapper = styled.div`

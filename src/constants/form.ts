@@ -2,8 +2,8 @@ import { DropDownOption } from '@/components/common/DropDown/DropDown';
 import { FormOption } from '@/types/form';
 
 const FORM_STATUS_DROPDOWN_OPTIONS: DropDownOption[] = [
-  { value: 'SELECT', label: '선택' },
-  { value: 'CONFIRM', label: '확인' },
+  { value: 'PENDING', label: '선택' },
+  { value: 'CONFIRMED', label: '확인' },
 ];
 
 const NAME: FormOption = {
