@@ -28,7 +28,7 @@ const END_POINTS = {
     sort: string;
   }) => `events?category=${category}&page=${pageNumber}&size=18&sort=${sort},desc`,
   EVENT_APPLY: '/events/applications',
-  CANCEL_EVENT: ({ eventId }: { eventId: string }) => `/events/${eventId}/applications`,
+  CANCEL_EVENT: ({ eventId }: { eventId: string }) => `/events/${eventId}/participate`,
   GET_SUBMITTED_FORMS: ({ eventId, pageNumber }: { eventId: string; pageNumber: number }) =>
     `events/${eventId}/forms/applications?page=${pageNumber}&size=20&sort=id,desc`,
   SEARCHES: ({ keyword, page }: { keyword: string; page: number }) =>
