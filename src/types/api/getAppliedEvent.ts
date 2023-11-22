@@ -7,7 +7,7 @@ interface GetAppliedEventData {
   clubName: string;
   startDate: string;
   location: string;
-  status: EventStatus;
+  participationStatus: EventStatus;
   posterImageUrl: string;
 }
 

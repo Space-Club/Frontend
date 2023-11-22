@@ -28,11 +28,13 @@ const END_POINTS = {
     sort: string;
   }) => `events?category=${category}&page=${pageNumber}&size=18&sort=${sort},desc`,
   EVENT_APPLY: '/events/applications',
-  CANCEL_EVENT: ({ eventId }: { eventId: string }) => `/events/${eventId}/applications`,
+  CANCEL_EVENT: ({ eventId }: { eventId: string }) => `/events/${eventId}/participate`,
   GET_SUBMITTED_FORMS: ({ eventId, pageNumber }: { eventId: string; pageNumber: number }) =>
     `events/${eventId}/forms/applications?page=${pageNumber}&size=20&sort=id,desc`,
   SEARCHES: ({ keyword, page }: { keyword: string; page: number }) =>
     `/events/searches?keyword=${keyword}&page=${page}&size=18&sort=id,desc`,
+  SUBMITTED_FORM_STATUS: ({ eventId }: { eventId: string }) =>
+    `/events/${eventId}/forms/applications-status`,
 
   CREATE_CLUB: '/clubs',
   MEMBER_AUTH: (clubId: string) => `/clubs/${clubId}/users`,

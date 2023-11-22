@@ -10,16 +10,14 @@ interface ClubHeaderProps {
 }
 
 const ClubHeader = ({ clubId }: ClubHeaderProps) => {
-  const { data } = useMemberAuth({ clubId });
+  const { role } = useMemberAuth({ clubId });
 
-  if (!data) return null;
+  if (!role) return null;
 
   return (
     <Header>
       <TabWrapper>
-        <Tab
-          tabItems={data.role === 'MANAGER' ? CLUB_MANAGER_TABS(clubId) : CLUB_MEMBER_TABS(clubId)}
-        />
+        <Tab tabItems={role === 'MANAGER' ? CLUB_MANAGER_TABS(clubId) : CLUB_MEMBER_TABS(clubId)} />
       </TabWrapper>
     </Header>
   );

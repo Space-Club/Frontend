@@ -79,7 +79,7 @@ const NoticeModal = ({
 
   const getValidNotice = () => {
     const notice = noticeContentRef.current?.value;
-    if (!notice) {
+    if (notice?.length === 0 || !notice) {
       createToast({ message: '공지사항을 입력해주세요', toastType: 'error' });
       return;
     }

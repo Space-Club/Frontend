@@ -1,38 +1,5 @@
 import { AllEventsResponse } from '@/types/api/allEvents';
-import { GetAppliedEventResponse } from '@/types/api/getAppliedEvent';
 import { ShowDetailResponse } from '@/types/api/getEventDetail';
-
-const appliedEvent: GetAppliedEventResponse = {
-  data: [
-    {
-      id: '1',
-      title: 'test1',
-      clubName: 'test',
-      startDate: '2021-10-10',
-      location: 'test',
-      status: 'CANCELED',
-      posterImageUrl:
-        'https://english.seoul.go.kr/wp-content/uploads/2022/09/working-seoul-poster-214x300.jpg',
-    },
-    {
-      id: '2',
-      title: 'test2',
-      clubName: 'test',
-      startDate: '2021-10-10',
-      location: 'test',
-      status: 'CANCELED',
-      posterImageUrl: 'https://www.europosters.ie/image/framed/750/115398_modenacerna.jpg',
-    },
-  ],
-  pageData: {
-    first: true,
-    last: true,
-    pageNumber: 1,
-    size: 10,
-    totalPages: 30,
-    totalElements: 2,
-  },
-};
 
 const allEvents: AllEventsResponse = {
   data: [
@@ -187,4 +154,4 @@ const eventForm = {
   },
 };
 
-export { appliedEvent, allEvents, eventDetail, eventForm };
+export { allEvents, eventDetail, eventForm };
