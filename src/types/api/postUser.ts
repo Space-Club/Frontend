@@ -5,6 +5,7 @@ interface PostUserRequest {
 
 interface PostUserResponse {
   userId: string;
+  refreshToken: string;
   accessToken: string;
 }
 

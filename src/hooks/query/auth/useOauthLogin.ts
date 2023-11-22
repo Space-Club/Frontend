@@ -18,11 +18,12 @@ const useOauthLogin = ({ code }: OauthLoginRequest) => {
         navigate(PATH.REGISTER);
       } else {
         setStorage('token', data.accessToken);
+        setStorage('refreshToken', data.refreshToken);
         if (returnPage) {
           navigate(returnPage);
           localStorage.removeItem('returnpage');
         } else {
-        navigate(PATH.MAIN);
+          navigate(PATH.MAIN);
         }
       }
     },
