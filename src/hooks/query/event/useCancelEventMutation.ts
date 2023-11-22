@@ -13,10 +13,10 @@ const useCancelEventMutation = () => {
 
   const { mutate: requestCancel } = useMutation({
     mutationFn: cancelEvent,
-    onSuccess: ({ applicationStatus }) => {
-      if (applicationStatus === 'CANCELED') {
+    onSuccess: ({ participationStatus }) => {
+      if (participationStatus === 'CANCELED') {
         createToast({ message: SUCCESS_MESSAGE.EVENT.CANCELED, toastType: 'success' });
-      } else if (applicationStatus === 'CANCEL_REQUESTED') {
+      } else if (participationStatus === 'CANCEL_REQUESTED') {
         createToast({
           message: SUCCESS_MESSAGE.EVENT.CANCEL_REQUESTED,
           toastType: 'success',
