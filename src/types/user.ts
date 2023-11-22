@@ -5,7 +5,7 @@ interface User {
 interface ClubMember {
   id: string;
   name: string;
-  image: string;
+  profileImageUrl: string;
   role: MemberRole;
 }
 

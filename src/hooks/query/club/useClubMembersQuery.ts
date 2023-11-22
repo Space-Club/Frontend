@@ -13,7 +13,7 @@ const useClubMembersQuery = ({ clubId }: GetClubMembersRequest) => {
     queryFn: () => getClubMembers({ clubId }),
   });
 
-  return clubMembers ? { clubMembers } : { clubMembers: [] };
+  return { clubMembers };
 };
 
 export default useClubMembersQuery;

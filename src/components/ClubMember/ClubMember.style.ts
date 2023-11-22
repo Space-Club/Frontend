@@ -3,23 +3,24 @@ import { memberManagerScrollAreaStyled } from '@/styles/common';
 import styled from '@emotion/styled';
 
 const ClubMemberContainer = styled(memberManagerScrollAreaStyled)`
-  width: 100%;
   height: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 1.5rem;
+  padding: 0.6rem 0.3rem 0.6rem 1rem;
   overflow-y: auto;
   background-color: ${Theme.color.tWhiteGrey};
   border-radius: 1.3125rem;
 `;
 
-const ClubMemberAvatarWrapper = styled.div`
+const ClubMemberAvatarsWrapper = styled.div`
   display: flex;
-  float: left;
-  justify-content: center;
-  align-items: center;
-  width: 4rem;
-  height: 50%;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 0.5rem;
 `;
 
-export { ClubMemberContainer, ClubMemberAvatarWrapper };
+const ClubMemberAvatarWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export { ClubMemberContainer, ClubMemberAvatarWrapper, ClubMemberAvatarsWrapper };
