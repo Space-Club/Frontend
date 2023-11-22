@@ -1,17 +1,14 @@
 import ActiveButton from '@/components/ActiveButton/ActiveButton';
+import ClubHeader from '@/components/ClubHeader/ClubHeader';
 import EventCard from '@/components/common/EventCard/EventCard';
-import Header from '@/components/common/Header/Header';
 import Pagination from '@/components/common/Pagination/Pagination';
-import Tab from '@/components/common/Tab/Tab';
 import { CREATE_EVENT } from '@/constants/club';
 import { PATH } from '@/constants/path';
-import { TAB_CONSTANTS } from '@/constants/tab';
 import useClubEventsQuery from '@/hooks/query/club/useClubEventsQuery';
 
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { TabWrapper } from '../ClubHomePage/ClubHomePage.style';
 import { ButtonWrapper, EventsContainer } from './ClubEventPage.style';
 
 const ClubEventPage = () => {
@@ -32,17 +29,7 @@ const ClubEventPage = () => {
 
   return (
     <>
-      <Header>
-        <TabWrapper>
-          <Tab
-            tabItems={[
-              { title: `${TAB_CONSTANTS.CLUB_HOME}`, link: `${PATH.CLUB.HOME(clubId)}` },
-              { title: `${TAB_CONSTANTS.CLUB_EVENTS}`, link: `${PATH.CLUB.EVENT(clubId)}` },
-              { title: `${TAB_CONSTANTS.CLUB_MANAGE}`, link: `${PATH.CLUB.MANAGE(clubId)}` },
-            ]}
-          />
-        </TabWrapper>
-      </Header>
+      <ClubHeader clubId={clubId}></ClubHeader>
       <EventsContainer>
         {clubEvents?.map((clubEvent) => (
           <EventCard

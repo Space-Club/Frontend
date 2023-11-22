@@ -1,18 +1,15 @@
+import ClubHeader from '@/components/ClubHeader/ClubHeader';
 import ClubSetting from '@/components/ClubSetting/ClubSetting';
 import InviteLink from '@/components/InviteLink/InviteLink';
 import MemberManager from '@/components/MemberManager/MemberManager';
 import ConfirmModal from '@/components/Modals/ConfirmModal';
-import Header from '@/components/common/Header/Header';
-import Tab from '@/components/common/Tab/Tab';
 import { MODAL_TEXT } from '@/constants/modalMessage';
-import { CLUB_TABS } from '@/constants/tab';
 import useDeleteClubMutation from '@/hooks/query/club/useDeleteClubMutation';
 import useGetClubQuery from '@/hooks/query/club/useGetClubQuery';
 import useModal from '@/hooks/useModal';
 
 import { useParams } from 'react-router-dom';
 
-import { TabWrapper } from '../ClubHomePage/ClubHomePage.style';
 import {
   ClubManagePageContainer,
   ClubManagePageLeftWrapper,
@@ -46,11 +43,7 @@ const ClubManagePage = () => {
           onConfirm={() => deleteClubMutate()}
         />
       )}
-      <Header>
-        <TabWrapper>
-          <Tab tabItems={CLUB_TABS(clubId)} />
-        </TabWrapper>
-      </Header>
+      <ClubHeader clubId={clubId} />
       <ClubManagePageContainer>
         <ClubManagePageLeftWrapper>
           <MemberManager />
