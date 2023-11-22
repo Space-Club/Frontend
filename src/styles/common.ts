@@ -78,6 +78,12 @@ const SmallTitleStyled = styled.h3`
   font-weight: 700;
 `;
 
+const TabWrapper = styled.div`
+  display: flex;
+  justify-content: end;
+  width: 100%;
+`;
+
 const sideBarScrollAreaStyled = styled.div`
   &::-webkit-scrollbar {
     width: 0.3rem;
@@ -136,5 +142,6 @@ export {
   textAreaScrollBar,
   InvisibleInput,
   MediumTitleStyled,
+  TabWrapper,
   SmallTitleStyled,
 };
