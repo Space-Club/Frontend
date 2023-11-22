@@ -27,13 +27,7 @@ const FormStatus = ({ id, applicationStatus }: FormStatus) => {
       <FormStatusItemStyled>
         <DropDown
           options={FORM_STATUS_DROPDOWN_OPTIONS}
-          selectedValue={
-            applicationStatus === 'PENDING'
-              ? 'PENDING'
-              : applicationStatus === 'CONFIRMED'
-              ? 'CONFIRMED'
-              : 'PENDING'
-          }
+          selectedValue={applicationStatus === 'CONFIRMED' ? 'CONFIRMED' : 'PENDING'}
           onChange={(event) => {
             changeSubmittedFormStatus({
               eventId,
@@ -46,7 +40,7 @@ const FormStatus = ({ id, applicationStatus }: FormStatus) => {
       </FormStatusItemStyled>
       <FormStatusItemStyled>
         <ApplyCancelButton
-          isCanceled={applicationStatus === 'CANCELED' ? true : false}
+          isCanceled={applicationStatus === 'CANCELED'}
           eventId={eventId}
           formUserId={id}
         />

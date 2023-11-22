@@ -32,13 +32,11 @@ const SubmittedForm = ({
       {showModal && <FormDetailModal onClose={modalClose} options={options} />}
       <FormStyled key={index}>
         <FormRowStyled>{formLength - index}</FormRowStyled>
-        {options.map((option, index) => {
-          return (
-            <FormItemStyled onClick={modalOpen} key={index}>
-              {option.content}
-            </FormItemStyled>
-          );
-        })}
+        {options.map((option, index) => (
+          <FormItemStyled onClick={modalOpen} key={index}>
+            {option.content}
+          </FormItemStyled>
+        ))}
         {managed && <FormStatus id={userId} applicationStatus={applicationStatus} />}
       </FormStyled>
     </>
