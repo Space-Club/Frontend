@@ -5,6 +5,7 @@ import { ERROR_MESSAGE } from '@/constants/errorMessage';
 import useSubmitForm from '@/hooks/query/event/useSubmitForm';
 import { ShowDetailResponse } from '@/types/api/getEventDetail';
 import { FormPage } from '@/types/event';
+import setFormValue from '@/utils/setFormValue';
 import { validateTimeCompare, validateTodayDate } from '@/utils/validate';
 
 import { useEffect, useState } from 'react';
@@ -38,19 +39,14 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
   useEffect(() => {
     if (state) {
       const eventDetail: ShowDetailResponse = state.eventDetail;
+      setFormValue({ setValue, setImgFile, eventDetail });
 
-      setValue('title', eventDetail.title);
       setValue('startDate', `${eventDetail.startDate}T${eventDetail.startTime}`);
       setValue('location', eventDetail.location);
-      setValue('capacity', eventDetail.capacity);
       setValue('cost', eventDetail.cost);
       setValue('bankName', eventDetail.bankName);
       setValue('accountNumber', eventDetail.bankAccountNumber);
       setValue('maxTicketCount', eventDetail.maxTicketCount);
-      setValue('openDate', `${eventDetail.formOpenDate}T${eventDetail.formOpenTime}`);
-      setValue('closeDate', `${eventDetail.formCloseDate}T${eventDetail.formCloseTime}`);
-      setImgFile(eventDetail.posterImageUrl);
-      setValue('content', eventDetail.content);
     }
   }, [state, setValue]);
 

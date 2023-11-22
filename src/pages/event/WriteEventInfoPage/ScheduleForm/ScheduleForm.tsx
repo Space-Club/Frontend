@@ -5,6 +5,7 @@ import { ERROR_MESSAGE } from '@/constants/errorMessage';
 import useSubmitForm from '@/hooks/query/event/useSubmitForm';
 import { ClubDetailResponse } from '@/types/api/getEventDetail';
 import { FormPage } from '@/types/event';
+import setFormValue from '@/utils/setFormValue';
 import { validateTimeCompare, validateTodayDate } from '@/utils/validate';
 
 import { useEffect, useState } from 'react';
@@ -38,19 +39,14 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
   useEffect(() => {
     if (state) {
       const eventDetail: ClubDetailResponse = state.eventDetail;
+      setFormValue({ setValue, setImgFile, eventDetail });
 
-      setValue('title', eventDetail.title);
       setValue('startDate', `${eventDetail.startDate}T${eventDetail.startTime}`);
       setValue('endDate', `${eventDetail.endDate}T${eventDetail.endTime}`);
       setValue('location', eventDetail.location);
-      setValue('capacity', eventDetail.capacity);
       setValue('dues', eventDetail.dues);
-      setValue('openDate', `${eventDetail.formOpenDate}T${eventDetail.formOpenTime}`);
-      setValue('closeDate', `${eventDetail.formCloseDate}T${eventDetail.formCloseTime}`);
-      setImgFile(eventDetail.posterImageUrl);
-      setValue('content', eventDetail.content);
     }
-  });
+  }, [state, setValue]);
 
   const {
     REQUIRED_SCHEDULE_NAME,

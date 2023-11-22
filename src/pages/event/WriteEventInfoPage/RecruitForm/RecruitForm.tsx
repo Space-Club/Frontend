@@ -5,6 +5,7 @@ import { ERROR_MESSAGE } from '@/constants/errorMessage';
 import useSubmitForm from '@/hooks/query/event/useSubmitForm';
 import { RecruitmentDetailResponse } from '@/types/api/getEventDetail';
 import { FormPage } from '@/types/event';
+import setFormValue from '@/utils/setFormValue';
 import { validateTimeCompare, validateTodayDate } from '@/utils/validate';
 
 import { useEffect, useState } from 'react';
@@ -38,17 +39,12 @@ const RecruitForm = ({ eventType, clubId }: FormPage) => {
   useEffect(() => {
     if (state) {
       const eventDetail: RecruitmentDetailResponse = state.eventDetail;
+      setFormValue({ setValue, setImgFile, eventDetail });
 
-      setValue('title', eventDetail.title);
       setValue('activityArea', eventDetail.location);
       setValue('recruitmentTarget', eventDetail.recruitmentTarget);
-      setValue('capacity', eventDetail.capacity);
-      setValue('openDate', `${eventDetail.formOpenDate}T${eventDetail.formOpenTime}`);
-      setValue('closeDate', `${eventDetail.formCloseDate}T${eventDetail.formCloseTime}`);
-      setImgFile(eventDetail.posterImageUrl);
-      setValue('content', eventDetail.content);
     }
-  });
+  }, [state, setValue]);
 
   const {
     REQUIRED_RECRUIT_NAME,

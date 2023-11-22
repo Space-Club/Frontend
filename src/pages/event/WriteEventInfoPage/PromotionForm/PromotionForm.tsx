@@ -5,6 +5,7 @@ import { ERROR_MESSAGE } from '@/constants/errorMessage';
 import useSubmitForm from '@/hooks/query/event/useSubmitForm';
 import { PromotionDetailResponse } from '@/types/api/getEventDetail';
 import { FormPage } from '@/types/event';
+import setFormValue from '@/utils/setFormValue';
 import { validateTimeCompare, validateTodayDate } from '@/utils/validate';
 
 import { useEffect, useState } from 'react';
@@ -38,17 +39,12 @@ const PromotionForm = ({ eventType, clubId }: FormPage) => {
   useEffect(() => {
     if (state) {
       const eventDetail: PromotionDetailResponse = state.eventDetail;
+      setFormValue({ setValue, setImgFile, eventDetail });
 
-      setValue('title', eventDetail.title);
       setValue('startDate', `${eventDetail.startDate}T${eventDetail.startTime}`);
       setValue('location', eventDetail.activityArea);
-      setValue('capacity', eventDetail.capacity);
-      setValue('openDate', `${eventDetail.formOpenDate}T${eventDetail.formOpenTime}`);
-      setValue('closeDate', `${eventDetail.formCloseDate}T${eventDetail.formCloseTime}`);
-      setImgFile(eventDetail.posterImageUrl);
-      setValue('content', eventDetail.content);
     }
-  });
+  }, [state, setValue]);
 
   const {
     REQUIRED_EVENT_NAME,
