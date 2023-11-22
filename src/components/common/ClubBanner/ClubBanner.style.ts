@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 const ClubBannerContainer = styled.div<{ bannerSize: string }>`
   width: 100%;
   height: ${({ bannerSize }) => (bannerSize === 'small' ? '8.8rem' : '10.8rem')};
+  position: relative;
 `;
 
 const ClubAvatarInfoWrapper = styled.div`

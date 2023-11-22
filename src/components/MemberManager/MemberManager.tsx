@@ -9,6 +9,8 @@ const MemberManager = () => {
   const { clubId } = useClubId();
   const { clubMembers } = useClubMembersQuery({ clubId });
 
+  if (!clubMembers) return null;
+
   return (
     <>
       <MediumTitleStyled>멤버설정</MediumTitleStyled>
@@ -21,7 +23,7 @@ const MemberManager = () => {
               memberId={clubMember.id}
               role={clubMember.role}
               name={clubMember.name}
-              profileImageSrc={clubMember.image}
+              profileImageSrc={clubMember.profileImageUrl}
             />
           );
         })}
