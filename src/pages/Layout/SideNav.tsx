@@ -35,6 +35,7 @@ const SideNav = () => {
               avatarSize="normal"
               profileImageSrc={club.logoImageUrl}
               isClub
+              pointer
               onClick={() => navigate(PATH.CLUB.HOME(club.id))}
             ></Avatar>
           </ClubLogoWrapper>
