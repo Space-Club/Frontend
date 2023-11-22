@@ -89,10 +89,6 @@ interface getEventFormResponse {
   };
 }
 
-interface postPerformanceFormResponse {
-  eventId: string;
-}
-
 interface FormPage {
   eventType: eventTypeAPI;
   clubId: string;
@@ -112,7 +108,6 @@ export {
   EventType,
   EventTag,
   eventTypeAPI,
-  postPerformanceFormResponse,
   ProfileEventType,
   EventStatus,
   FormPage,

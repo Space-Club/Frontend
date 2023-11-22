@@ -1,18 +1,17 @@
 import { axiosClientWithAuth } from '@/apis/axiosClient';
 import { END_POINTS } from '@/constants/api';
-import { eventTypeAPI, postPerformanceFormResponse } from '@/types/event';
+import {
+  postPerformanceFormRequest,
+  postPerformanceFormResponse,
+} from '@/types/api/postPerformanceForm';
 import dataTransform from '@/utils/dataTransform';
 
-import { FieldValues } from 'react-hook-form';
-
-interface postPerformanceForm {
-  data: FieldValues;
-  eventType: eventTypeAPI;
-  clubId: string;
-  eventId?: string;
-}
-
-const postPerformanceForm = async ({ data, eventType, clubId, eventId }: postPerformanceForm) => {
+const postPerformanceForm = async ({
+  data,
+  eventType,
+  clubId,
+  eventId,
+}: postPerformanceFormRequest) => {
   const requestData = dataTransform({ data, eventType, clubId, eventId });
   const formData = new FormData();
 
