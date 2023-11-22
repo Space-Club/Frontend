@@ -6,6 +6,7 @@ import ClubBanner from '@/components/common/ClubBanner/ClubBanner';
 import Header from '@/components/common/Header/Header';
 import Tab from '@/components/common/Tab/Tab';
 import { CLUB_TABS } from '@/constants/tab';
+import useMemberAuth from '@/hooks/query/club/useMemberAuth';
 
 import { useParams } from 'react-router-dom';
 
@@ -25,7 +26,10 @@ import {
 const ClubHomePage = () => {
   const { clubId } = useParams();
   if (!clubId) throw new Error('클럽 ID를 찾을 수 없습니다');
-  //TODO: pathname에 따라 클럽홈/행사/관리 컴포넌트 보여주기
+
+  const { role } = useMemberAuth({ clubId });
+
+  if (!role) return null;
 
   return (
     <>
@@ -42,7 +46,7 @@ const ClubHomePage = () => {
           <ClubNoticeTextedWrapper>
             <ClubNoticeTextStyled>
               공지사항
-              <CreateNoticeButton clubId={clubId} />
+              {role === 'MANAGER' && <CreateNoticeButton clubId={clubId} />}
             </ClubNoticeTextStyled>
             <ClubNoticeWrapper>
               <ClubNotices clubId={clubId} />
