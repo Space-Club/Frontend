@@ -31,6 +31,28 @@ const ClubWrapper = styled(sideBarScrollAreaStyled)`
   }
 `;
 
+const ClubLogoWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+
+  &:hover::after {
+    content: attr(data-name);
+    position: absolute;
+    bottom: -20%;
+    left: 50%;
+    padding: 0.1rem;
+    transform: translateX(-50%);
+    background: ${Theme.color.shadow};
+    color: ${Theme.color.tWhiteGrey};
+    border-radius: 0.25rem;
+    font-size: ${Theme.fontSize.tagText};
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+  }
+`;
+
 const CreateClubButtonStyled = styled.div`
   display: flex;
   justify-content: center;
@@ -77,4 +99,4 @@ const iconStyle = css`
   filter: drop-shadow(2px 3px 1px ${Theme.color.shadow});
 `;
 
-export { SidebarContainer, ClubWrapper, CreateClubButtonStyled, iconStyle };
+export { SidebarContainer, ClubWrapper, CreateClubButtonStyled, iconStyle, ClubLogoWrapper };
