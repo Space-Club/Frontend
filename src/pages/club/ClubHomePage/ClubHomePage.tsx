@@ -1,11 +1,9 @@
+import ClubHeader from '@/components/ClubHeader/ClubHeader';
 import ClubMember from '@/components/ClubMember/ClubMember';
 import ClubNotices from '@/components/ClubNotices/ClubNotices';
 import CreateNoticeButton from '@/components/CreateNoticeButton/CreateNoticeButton';
 import ScheduleManage from '@/components/ScheduleManage/ScheduleManage';
 import ClubBanner from '@/components/common/ClubBanner/ClubBanner';
-import Header from '@/components/common/Header/Header';
-import Tab from '@/components/common/Tab/Tab';
-import { CLUB_TABS } from '@/constants/tab';
 import useMemberAuth from '@/hooks/query/club/useMemberAuth';
 
 import { useParams } from 'react-router-dom';
@@ -20,7 +18,6 @@ import {
   ClubNoticeTextStyled,
   ClubNoticeTextedWrapper,
   ClubNoticeWrapper,
-  TabWrapper,
 } from './ClubHomePage.style';
 
 const ClubHomePage = () => {
@@ -33,11 +30,7 @@ const ClubHomePage = () => {
 
   return (
     <>
-      <Header>
-        <TabWrapper>
-          <Tab tabItems={CLUB_TABS(clubId)} />
-        </TabWrapper>
-      </Header>
+      <ClubHeader clubId={clubId} />
       <ClubHomePageContainer>
         <ClubHomeTopWrapper>
           <ClubBanner clubId={clubId} bannerSize="small" />

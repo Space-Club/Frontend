@@ -24,10 +24,15 @@ const PROFILE_TABS = [
   { title: `${TAB_CONSTANTS.BOOKMARKED_EVENT}`, link: `${PATH.PROFILE_BOOKMARK}` },
 ];
 
-const CLUB_TABS = (clubId: string | number) => [
+const CLUB_MEMBER_TABS = (clubId: string | number) => [
+  { title: `${TAB_CONSTANTS.CLUB_HOME}`, link: `${PATH.CLUB.HOME(clubId)}` },
+  { title: `${TAB_CONSTANTS.CLUB_EVENTS}`, link: `${PATH.CLUB.EVENT(clubId)}` },
+];
+
+const CLUB_MANAGER_TABS = (clubId: string | number) => [
   { title: `${TAB_CONSTANTS.CLUB_HOME}`, link: `${PATH.CLUB.HOME(clubId)}` },
   { title: `${TAB_CONSTANTS.CLUB_EVENTS}`, link: `${PATH.CLUB.EVENT(clubId)}` },
   { title: `${TAB_CONSTANTS.CLUB_MANAGE}`, link: `${PATH.CLUB.MANAGE(clubId)}` },
 ];
 
-export { TAB_CONSTANTS, MAIN_TABS, PROFILE_TABS, CLUB_TABS };
+export { TAB_CONSTANTS, MAIN_TABS, PROFILE_TABS, CLUB_MEMBER_TABS, CLUB_MANAGER_TABS };
