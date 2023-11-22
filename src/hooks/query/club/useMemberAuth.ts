@@ -7,11 +7,13 @@ export const QUERY_KEY = { MEMBER_AUTH: 'MEMBER_AUTH' };
 
 const useMemberAuth = ({ clubId }: MemberAuthRequest) => {
   const { data } = useQuery({
-    queryKey: [QUERY_KEY.MEMBER_AUTH],
+    queryKey: [QUERY_KEY.MEMBER_AUTH, clubId],
     queryFn: () => getMemberAuth({ clubId }),
   });
 
-  return { data };
+  const { role } = data ?? {};
+
+  return { role };
 };
 
 export default useMemberAuth;
