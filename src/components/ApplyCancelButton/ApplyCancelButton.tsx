@@ -20,7 +20,9 @@ const ApplyCancelButton = ({ isCanceled, eventId, formUserId }: ApplyCancelButto
       {showModal && (
         <ConfirmModal
           message={MODAL_TEXT.CANCELED_SUBMITTED_FORM}
-          onConfirm={() => changeSubmittedFormStatus({ eventId, formUserId, status: 'CANCELED' })}
+          onConfirm={() =>
+            changeSubmittedFormStatus({ eventId, formUserId, participationStatus: 'CANCELED' })
+          }
           onClose={modalClose}
         />
       )}

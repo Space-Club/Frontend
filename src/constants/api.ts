@@ -30,11 +30,11 @@ const END_POINTS = {
   EVENT_APPLY: '/events/applications',
   CANCEL_EVENT: ({ eventId }: { eventId: string }) => `/events/${eventId}/applications`,
   GET_SUBMITTED_FORMS: ({ eventId, pageNumber }: { eventId: string; pageNumber: number }) =>
-    `events/${eventId}/forms/applications?page=${pageNumber}&size=20&sort=id,desc`,
+    `events/${eventId}/forms/submit?page=${pageNumber}&size=20&sort=id,desc`,
   SEARCHES: ({ keyword, page }: { keyword: string; page: number }) =>
     `/events/searches?keyword=${keyword}&page=${page}&size=18&sort=id,desc`,
   SUBMITTED_FORM_STATUS: ({ eventId }: { eventId: string }) =>
-    `/events/${eventId}/forms/applications-status`,
+    `/events/${eventId}/forms/submit-status`,
 
   CREATE_CLUB: '/clubs',
   MEMBER_AUTH: (clubId: string) => `/clubs/${clubId}/users`,

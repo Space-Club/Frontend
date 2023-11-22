@@ -1,5 +1,6 @@
 import FormDetailModal from '@/components/Modals/FormDetailModal/FormDetailModal';
 import useModal from '@/hooks/useModal';
+import { EventStatus } from '@/types/event';
 
 import FormStatus from '../FormStatus/FormStatus';
 import { FormItemStyled, FormRowStyled, FormStyled } from './SubmittedForm.style';
@@ -12,7 +13,7 @@ interface SubmittedFormProps {
     title: string;
     content: string;
   }[];
-  applicationStatus: 'PENDING' | 'CONFIRMED' | 'CANCELED' | 'CANCEL_REQUESTED';
+  participationStatus: EventStatus;
   managed: boolean;
 }
 
@@ -21,7 +22,7 @@ const SubmittedForm = ({
   userId,
   formLength,
   options,
-  applicationStatus,
+  participationStatus,
   managed,
 }: SubmittedFormProps) => {
   const { showModal, modalOpen, modalClose } = useModal();
@@ -37,7 +38,7 @@ const SubmittedForm = ({
             {option.content}
           </FormItemStyled>
         ))}
-        {managed && <FormStatus id={userId} applicationStatus={applicationStatus} />}
+        {managed && <FormStatus id={userId} participationStatus={participationStatus} />}
       </FormStyled>
     </>
   );

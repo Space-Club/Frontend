@@ -6,11 +6,11 @@ import { axiosClientWithAuth } from '../axiosClient';
 const patchSubmittedFormStatus = async ({
   eventId,
   formUserId,
-  status,
+  participationStatus,
 }: SubmittedFormStatusRequest) => {
   await axiosClientWithAuth.patch(END_POINTS.SUBMITTED_FORM_STATUS({ eventId }), {
     formUserId,
-    status,
+    participationStatus,
   });
 };
 
