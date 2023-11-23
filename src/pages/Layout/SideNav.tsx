@@ -29,15 +29,16 @@ const SideNav = () => {
     <SidebarContainer>
       <ClubWrapper>
         {clubs?.map((club) => (
-          <ClubLogoWrapper data-name={club.name}>
-            <Avatar
-              key={club.id}
-              avatarSize="normal"
-              profileImageSrc={club.logoImageUrl}
-              isClub
-              pointer
-              onClick={() => navigate(PATH.CLUB.HOME(club.id))}
-            ></Avatar>
+          <ClubLogoWrapper key={club.id} data-name={club.name}>
+            <Link to={PATH.CLUB.HOME(club.id)}>
+              <Avatar
+                key={club.id}
+                avatarSize="normal"
+                profileImageSrc={club.logoImageUrl}
+                isClub
+                pointer
+              ></Avatar>
+            </Link>
           </ClubLogoWrapper>
         ))}
       </ClubWrapper>
