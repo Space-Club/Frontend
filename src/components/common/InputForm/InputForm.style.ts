@@ -27,11 +27,26 @@ const InputStyled = styled.input`
   border-radius: 1rem;
   padding-left: 1rem;
   box-sizing: border-box;
+  position: relative;
 
   :disabled {
     background-color: ${Theme.color.white};
     color: ${Theme.color.black};
     border: none;
+  }
+
+  &[type='datetime-local']::-webkit-datetime-edit {
+    -webkit-appearance: none;
+    padding-left: 1.5rem;
+    cursor: inherit;
+  }
+
+  &[type='datetime-local']::-webkit-calendar-picker-indicator {
+    position: absolute;
+    width: 100%;
+    //right: 0px;
+    background-color: rgba(0, 0, 0, 0);
+    color: rgba(0, 0, 0, 0);
   }
 `;
 

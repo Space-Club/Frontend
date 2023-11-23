@@ -25,17 +25,23 @@ const ERROR_MESSAGE = {
     REQUIRED_EVENT_CONTENT: '* 행사 내용 작성은 필수입니다.',
     REQUIRED_RECRUIT_CONTENT: '* 공고 내용 작성은 필수입니다.',
 
+    TITLE: '* 제목의 최대 길이는 30입니다.',
+    BANK_NAME: '* 은행명의 최대길이는 20입니다.',
+    ACCOUNT_NUMBER: '* 계좌 번호의 최대 길이는 30입니다.',
+    CONTENT: '내용의 최대 길이가 200입니다.',
+    LOCATION: '* 위치의 최대 길이는 30입니다.',
+    TARGET: '* 모집 대상의 최대 길이는 50입니다.',
+    MASTER: '* 일정 생성자의 최대 길이는 30입니다.',
+
     PERSONNEL: '* 정원은 1~999 사이의 숫자여야합니다.',
     COST: '* 비용의 최댓값은 100만원입니다.',
-    BANK_NAME: '* 은행명의 최대길이는 20입니다.',
-    ACCOUNT: '* 계좌 번호의 최대 길이는 30입니다.',
-    MAX_TICKET: '* 인당 최대 예매 가능 수는 999입니다.',
+    TICKET: '* 인당 예매 가능 수는 1~999입니다.',
+    MAX_YEAR: '* 최대 2099년까지 설정이 가능합니다.',
     START_TIME: '* 날짜는 오늘 이후로 설정해야 합니다.',
     LAST_TIME: '* 날짜는 시작 날짜 이후로 설정해야 합니다.',
 
     CANCEL: '서버 에러로 인해 이벤트 취소에 실패했습니다.',
     ENTER_BOTH_SIDE: '* 날짜는 시작 및 마감 모두 설정해야 합니다.',
-    LENGTH: (num: number) => `* 최대 ${num}자 이하여야 합니다.`,
   },
   CLUB: {
     REQUIRED_NAME: '클럽 이름을 작성해주세요.',
