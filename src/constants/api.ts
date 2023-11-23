@@ -6,7 +6,7 @@ const END_POINTS = {
   KAKAO_LOGIN: '/users/oauths',
   REGISTER: '/users',
   DELETE_USER: '/users',
-  USER_IMAGE: '/users/images',
+  MY_INFO: '/me/profile',
   MY_CLUB: '/users/clubs',
   LOGOUT: '/users/logout',
 

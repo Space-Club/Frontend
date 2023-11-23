@@ -4,13 +4,13 @@ import { useQuery } from '@tanstack/react-query';
 
 export const QUERY_KEY = { USER_IMAGE: 'USER_IMAGE' };
 
-const useUserImageQuery = () => {
+const useGetUserInfoQuery = () => {
   const { data, isLoading } = useQuery({
     queryKey: [QUERY_KEY.USER_IMAGE],
     queryFn: () => getUser(),
   });
 
-  return { userImage: data, isLoading };
+  return { userInfo: data, isLoading };
 };
 
-export default useUserImageQuery;
+export default useGetUserInfoQuery;
