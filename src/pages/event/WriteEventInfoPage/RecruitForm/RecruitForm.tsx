@@ -54,11 +54,9 @@ const RecruitForm = ({ eventType, clubId }: FormPage) => {
     REQUIRED_POSTER,
     REQUIRED_RECRUIT_CONTENT,
     PERSONNEL,
-    LOCATION,
-    TARGET,
     MAX_YEAR,
-    CONTENT,
     LAST_TIME,
+    MAX_LENGTH,
   } = ERROR_MESSAGE.EVENT;
 
   const { LIMIT_LENGTH, LIMIT_VALUE } = FORM_INFO_VALUE;
@@ -90,7 +88,10 @@ const RecruitForm = ({ eventType, clubId }: FormPage) => {
         <InputForm
           {...register('title', {
             required: `${REQUIRED_RECRUIT_NAME}`,
-            maxLength: LIMIT_LENGTH.TITLE_MAX,
+            maxLength: {
+              value: LIMIT_LENGTH.TITLE_MAX,
+              message: MAX_LENGTH('공고 제목', LIMIT_LENGTH.TITLE_MAX),
+            },
           })}
           labelText="공고 제목"
           required
@@ -100,7 +101,10 @@ const RecruitForm = ({ eventType, clubId }: FormPage) => {
         {errors.title && <ErrorMessage>{errors.title.message as string}</ErrorMessage>}
         <InputForm
           {...register('activityArea', {
-            maxLength: { value: LIMIT_LENGTH.LOCATION_MAX, message: LOCATION },
+            maxLength: {
+              value: LIMIT_LENGTH.LOCATION_MAX,
+              message: MAX_LENGTH('활동 위치', LIMIT_LENGTH.LOCATION_MAX),
+            },
           })}
           labelText="활동 위치"
           inputType="text"
@@ -111,7 +115,10 @@ const RecruitForm = ({ eventType, clubId }: FormPage) => {
         )}
         <TextAreaForm
           {...register('recruitmentTarget', {
-            maxLength: { value: LIMIT_LENGTH.TAGET_MAX, message: TARGET },
+            maxLength: {
+              value: LIMIT_LENGTH.TAGET_MAX,
+              message: MAX_LENGTH('모집 대상', LIMIT_LENGTH.TAGET_MAX),
+            },
           })}
           labelText="모집 대상"
           rows={2}
@@ -173,7 +180,10 @@ const RecruitForm = ({ eventType, clubId }: FormPage) => {
         <TextAreaForm
           {...register('content', {
             required: `${REQUIRED_RECRUIT_CONTENT}`,
-            maxLength: { value: LIMIT_LENGTH.CONTENT_MAX, message: CONTENT },
+            maxLength: {
+              value: LIMIT_LENGTH.CONTENT_MAX,
+              message: MAX_LENGTH('공고 내용', LIMIT_LENGTH.CONTENT_MAX),
+            },
           })}
           labelText="공고 내용"
           required

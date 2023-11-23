@@ -52,14 +52,12 @@ const PromotionForm = ({ eventType, clubId }: FormPage) => {
     REQUIRED_EVENT_START_TIME,
     REQUIRED_LOCATION,
     PERSONNEL,
-    TITLE,
     REQUIRED_FORM_START_TIME,
     REQUIRED_FORM_LAST_TIME,
     REQUIRED_POSTER,
     REQUIRED_EVENT_CONTENT,
     MAX_YEAR,
-    LOCATION,
-    CONTENT,
+    MAX_LENGTH,
     FORM_START_TIME,
     LAST_TIME,
   } = ERROR_MESSAGE.EVENT;
@@ -93,7 +91,10 @@ const PromotionForm = ({ eventType, clubId }: FormPage) => {
         <InputForm
           {...register('title', {
             required: `${REQUIRED_EVENT_NAME}`,
-            maxLength: { value: LIMIT_LENGTH.TITLE_MAX, message: TITLE },
+            maxLength: {
+              value: LIMIT_LENGTH.TITLE_MAX,
+              message: MAX_LENGTH('행사 이름', LIMIT_LENGTH.TITLE_MAX),
+            },
           })}
           labelText="행사 이름"
           required
@@ -119,7 +120,10 @@ const PromotionForm = ({ eventType, clubId }: FormPage) => {
         <InputForm
           {...register('location', {
             required: `${REQUIRED_LOCATION}`,
-            maxLength: { value: LIMIT_LENGTH.LOCATION_MAX, message: LOCATION },
+            maxLength: {
+              value: LIMIT_LENGTH.LOCATION_MAX,
+              message: MAX_LENGTH('행사 장소', LIMIT_LENGTH.LOCATION_MAX),
+            },
           })}
           labelText="행사 장소"
           required
@@ -180,7 +184,10 @@ const PromotionForm = ({ eventType, clubId }: FormPage) => {
         <TextAreaForm
           {...register('content', {
             required: `${REQUIRED_EVENT_CONTENT}`,
-            maxLength: { value: LIMIT_LENGTH.CONTENT_MAX, message: CONTENT },
+            maxLength: {
+              value: LIMIT_LENGTH.CONTENT_MAX,
+              message: MAX_LENGTH('행사 내용', LIMIT_LENGTH.CONTENT_MAX),
+            },
           })}
           labelText="행사 내용 작성"
           required

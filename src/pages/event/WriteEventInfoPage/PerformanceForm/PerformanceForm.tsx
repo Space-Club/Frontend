@@ -59,15 +59,11 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
     REQUIRED_FORM_LAST_TIME,
     REQUIRED_POSTER,
     REQUIRED_SHOW_CONTENT,
-    TITLE,
-    LOCATION,
     PERSONNEL,
     COST,
-    BANK_NAME,
-    ACCOUNT_NUMBER,
-    CONTENT,
     TICKET,
     MAX_YEAR,
+    MAX_LENGTH,
     FORM_START_TIME,
     LAST_TIME,
   } = ERROR_MESSAGE.EVENT;
@@ -103,7 +99,10 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
         <InputForm
           {...register('title', {
             required: `${REQUIRED_SHOW_NAME}`,
-            maxLength: { value: LIMIT_LENGTH.TITLE_MAX, message: TITLE },
+            maxLength: {
+              value: LIMIT_LENGTH.TITLE_MAX,
+              message: MAX_LENGTH('공연 이름', LIMIT_LENGTH.TAGET_MAX),
+            },
           })}
           labelText="공연 이름"
           required
@@ -128,7 +127,10 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
         <InputForm
           {...register('location', {
             required: `${REQUIRED_LOCATION}`,
-            maxLength: { value: LIMIT_LENGTH.LOCATION_MAX, message: LOCATION },
+            maxLength: {
+              value: LIMIT_LENGTH.LOCATION_MAX,
+              message: MAX_LENGTH('공연 장소', LIMIT_LENGTH.LOCATION_MAX),
+            },
           })}
           labelText="공연 장소"
           required
@@ -160,7 +162,10 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
         <TwoInputContainer>
           <InputForm
             {...register('bankName', {
-              maxLength: { value: LIMIT_LENGTH.BANK_NAME_MAX, message: `${BANK_NAME}` },
+              maxLength: {
+                value: LIMIT_LENGTH.BANK_NAME_MAX,
+                message: MAX_LENGTH('은행 이름', LIMIT_LENGTH.BANK_NAME_MAX),
+              },
             })}
             labelText="은행 명"
             inputType="text"
@@ -168,7 +173,10 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
           />
           <InputForm
             {...register('accountNumber', {
-              maxLength: { value: LIMIT_LENGTH.ACCOUNT_NUMBER_MAX, message: `${ACCOUNT_NUMBER}` },
+              maxLength: {
+                value: LIMIT_LENGTH.ACCOUNT_NUMBER_MAX,
+                message: MAX_LENGTH('계좌 번호', LIMIT_LENGTH.ACCOUNT_NUMBER_MAX),
+              },
             })}
             labelText="계좌 번호"
             inputType="text"
@@ -233,7 +241,10 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
         <TextAreaForm
           {...register('content', {
             required: `${REQUIRED_SHOW_CONTENT}`,
-            maxLength: { value: LIMIT_LENGTH.CONTENT_MAX, message: CONTENT },
+            maxLength: {
+              value: LIMIT_LENGTH.CONTENT_MAX,
+              message: MAX_LENGTH('공연 내용', LIMIT_LENGTH.CONTENT_MAX),
+            },
           })}
           labelText="공연 내용 작성"
           required

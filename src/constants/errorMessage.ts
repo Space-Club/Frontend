@@ -25,13 +25,7 @@ const ERROR_MESSAGE = {
     REQUIRED_EVENT_CONTENT: '* 행사 내용 작성은 필수입니다.',
     REQUIRED_RECRUIT_CONTENT: '* 공고 내용 작성은 필수입니다.',
 
-    TITLE: '* 제목의 최대 길이는 30입니다.',
-    BANK_NAME: '* 은행명의 최대길이는 20입니다.',
-    ACCOUNT_NUMBER: '* 계좌 번호의 최대 길이는 30입니다.',
-    CONTENT: '내용의 최대 길이가 200입니다.',
-    LOCATION: '* 위치의 최대 길이는 30입니다.',
-    TARGET: '* 모집 대상의 최대 길이는 50입니다.',
-    MASTER: '* 일정 생성자의 최대 길이는 30입니다.',
+    MAX_LENGTH: (text: string, length: number) => `* ${text}의 최대 길이는 ${length}입니다.`,
 
     PERSONNEL: '* 정원은 1~999 사이의 숫자여야합니다.',
     COST: '* 비용의 최댓값은 100만원입니다.',

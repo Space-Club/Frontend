@@ -53,14 +53,11 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
     REQUIRED_ACTIVITY_START_TIME,
     REQUIRED_ACTIVITY_LAST_TIME,
     REQUIRED_SCHEDULE_MASTER,
-    TITLE,
     PERSONNEL,
-    LOCATION,
     COST,
-    MASTER,
     ENTER_BOTH_SIDE,
     MAX_YEAR,
-    CONTENT,
+    MAX_LENGTH,
     FORM_START_TIME,
     LAST_TIME,
   } = ERROR_MESSAGE.EVENT;
@@ -97,7 +94,10 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
         <InputForm
           {...register('title', {
             required: REQUIRED_SCHEDULE_NAME,
-            maxLength: { value: LIMIT_LENGTH.TITLE_MAX, message: TITLE },
+            maxLength: {
+              value: LIMIT_LENGTH.TITLE_MAX,
+              message: MAX_LENGTH('일정 제목', LIMIT_LENGTH.TITLE_MAX),
+            },
           })}
           labelText="일정 제목"
           required
@@ -142,7 +142,10 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
         {errors.endDate && <ErrorMessage>{errors.endDate.message as string}</ErrorMessage>}
         <InputForm
           {...register('location', {
-            maxLength: { value: LIMIT_LENGTH.LOCATION_MAX, message: LOCATION },
+            maxLength: {
+              value: LIMIT_LENGTH.LOCATION_MAX,
+              message: MAX_LENGTH('장소', LIMIT_LENGTH.LOCATION_MAX),
+            },
           })}
           labelText="장소"
           inputType="text"
@@ -172,7 +175,10 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
         <InputForm
           {...register('master', {
             required: REQUIRED_SCHEDULE_MASTER,
-            maxLength: { value: LIMIT_LENGTH.MASTER_MAX, message: MASTER },
+            maxLength: {
+              value: LIMIT_LENGTH.MASTER_MAX,
+              message: MAX_LENGTH('일정 생성자', LIMIT_LENGTH.MASTER_MAX),
+            },
           })}
           labelText="일정 생성자"
           required
@@ -218,7 +224,10 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
         />
         <TextAreaForm
           {...register('content', {
-            maxLength: { value: LIMIT_LENGTH.CONTENT_MAX, message: CONTENT },
+            maxLength: {
+              value: LIMIT_LENGTH.CONTENT_MAX,
+              message: MAX_LENGTH('일정 안내', LIMIT_LENGTH.CONTENT_MAX),
+            },
           })}
           labelText="일정 안내"
           rows={10}
