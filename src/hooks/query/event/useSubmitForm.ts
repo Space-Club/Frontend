@@ -11,7 +11,7 @@ const useSubmitForm = ({ eventType, clubId }: FormPage) => {
 
   const { mutate: submitForm, isLoading: isSubmitLoading } = useMutation(postPerformanceForm, {
     onSuccess: (data) => {
-      navigate(PATH.CLUB.WRITE_FORM(clubId, data.eventId, eventType));
+      navigate(PATH.CLUB.WRITE_FORM_QUERY(clubId, data.eventId, eventType));
     },
     onError: (error) => {
       console.log(error);

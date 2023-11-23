@@ -19,8 +19,12 @@ const PATH = {
     MANAGE: (clubId: string | number) => `/club/${clubId}/manage`,
     CHOICE: (clubId: string) => `/club/${clubId}/choice`,
     WRITE_INFO: (clubId: string) => `/club/${clubId}/writeinfo`,
-    WRITE_FORM: (clubId: string | number, eventId: string | number, eventType: eventTypeAPI) =>
-      `/club/${clubId}/writeform/${eventId}?event=${eventType}`,
+    WRITE_FORM: `/club/:clubId/writeform/:eventId`,
+    WRITE_FORM_QUERY: (
+      clubId: string | number,
+      eventId: string | number,
+      eventType: eventTypeAPI,
+    ) => `/club/${clubId}/writeform/${eventId}?event=${eventType}`,
     INVITE: (inviteCode: string) => `clubs/invite/${inviteCode}`,
   },
   CREATE: '/create',
