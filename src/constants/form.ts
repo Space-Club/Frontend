@@ -96,10 +96,10 @@ const CLUB_SCHEDULE_FORM_OPTION = {
 };
 
 const FORM_OPTION = {
-  performance: PERFORMANCE_FORM_OPTION,
+  show: PERFORMANCE_FORM_OPTION,
   promotion: PROMOTION_FORM_OPTION,
   recruitment: RECRUITMENT_FORM_OPTION,
-  clubSchedule: CLUB_SCHEDULE_FORM_OPTION,
+  club: CLUB_SCHEDULE_FORM_OPTION,
   defaultOption: {
     NAME,
     PHONE_NUMBER,
