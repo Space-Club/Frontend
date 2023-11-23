@@ -1,15 +1,10 @@
 import { END_POINTS } from '@/constants/api';
+import { GetMyClubResponse } from '@/types/api/getClub';
 
 import { axiosClientWithAuth } from '../axiosClient';
 
-interface GetMyClub {
-  id: number;
-  logoImageUrl: string | null;
-  name: string;
-}
-
 const getMyClubs = async () => {
-  const { data } = await axiosClientWithAuth.get<GetMyClub[]>(`${END_POINTS.MY_CLUB}`);
+  const { data } = await axiosClientWithAuth.get<GetMyClubResponse[]>(`${END_POINTS.MY_CLUB}`);
 
   return data;
 };

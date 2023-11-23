@@ -10,7 +10,13 @@ import { FaPlusCircle } from 'react-icons/fa';
 import { IoMdHome, IoMdNotifications } from 'react-icons/io';
 import { Link, useNavigate } from 'react-router-dom';
 
-import { ClubWrapper, CreateClubButtonStyled, SidebarContainer, iconStyle } from './SideNav.style';
+import {
+  ClubLogoWrapper,
+  ClubWrapper,
+  CreateClubButtonStyled,
+  SidebarContainer,
+  iconStyle,
+} from './SideNav.style';
 
 const SideNav = () => {
   const { clubs } = useClubs();
@@ -23,22 +29,24 @@ const SideNav = () => {
     <SidebarContainer>
       <ClubWrapper>
         {clubs?.map((club) => (
-          <Link key={club.id} to={PATH.CLUB.HOME(club.id)}>
+          <ClubLogoWrapper data-name={club.name}>
             <Avatar
               key={club.id}
               avatarSize="normal"
               profileImageSrc={club.logoImageUrl}
               isClub
+              pointer
+              onClick={() => navigate(PATH.CLUB.HOME(club.id))}
             ></Avatar>
-          </Link>
+          </ClubLogoWrapper>
         ))}
       </ClubWrapper>
       {isLoginUser && (
         <CreateClubButtonStyled>
-          <FaPlusCircle size={'1rem'} onClick={() => navigate(`${PATH.CREATE}`)} />
+          <FaPlusCircle size={'1rem'} onClick={() => navigate(PATH.CREATE)} />
         </CreateClubButtonStyled>
       )}
-      <IoMdHome className={iconStyle} onClick={() => navigate('/')} />
+      <IoMdHome className={iconStyle} onClick={() => navigate(PATH.MAIN)} />
       <IoMdNotifications className={iconStyle} onClick={() => alert('알림페이지 준비 중')} />
       {isLoginUser ? (
         <Link to={PATH.PROFILE_APPLIED}>

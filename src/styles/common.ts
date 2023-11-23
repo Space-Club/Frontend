@@ -127,6 +127,23 @@ const textAreaScrollBar = styled.textarea`
   }
 `;
 
+const hoverBox = styled.div`
+  &:hover::after {
+    content: attr(data-name);
+    position: absolute;
+    bottom: -20%;
+    left: 50%;
+    padding: 0.1rem;
+    transform: translateX(-50%);
+    background: ${Theme.color.shadow};
+    color: ${Theme.color.tWhiteGrey};
+    border-radius: 0.25rem;
+    font-size: ${Theme.fontSize.tagText};
+    opacity: 1;
+    transition: opacity 0.2s ease-in-out;
+  }
+`;
+
 export {
   EventTitleStyled,
   EventDateStyled,
@@ -144,4 +161,5 @@ export {
   MediumTitleStyled,
   TabWrapper,
   SmallTitleStyled,
+  hoverBox,
 };

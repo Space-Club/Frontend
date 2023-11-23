@@ -17,4 +17,8 @@ interface InviteClubResponse extends Pick<Club, 'name' | 'info' | 'logoImageUrl'
   clubId: string;
 }
 
-export { GetClubRequest, GetClubResponse, JoinClubRequest, InviteClubResponse };
+interface GetMyClubResponse extends Pick<Club, 'logoImageUrl' | 'name'> {
+  id: string;
+}
+
+export { GetClubRequest, GetClubResponse, JoinClubRequest, InviteClubResponse, GetMyClubResponse };
