@@ -28,9 +28,9 @@ const SideNav = () => {
   return (
     <SidebarContainer>
       {isLoginUser && (
-        <CreateClubButtonStyled>
+        <CreateClubButtonStyled onClick={() => navigate(PATH.CREATE)}>
           클럽 생성
-          <FaPlusCircle size={'1rem'} onClick={() => navigate(PATH.CREATE)} />
+          <FaPlusCircle size={'1rem'} />
         </CreateClubButtonStyled>
       )}
       <ClubWrapper>
