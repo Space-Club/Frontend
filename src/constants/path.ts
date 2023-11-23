@@ -34,7 +34,8 @@ const PATH = {
     SUBMITTED_FORMS: (clubId: string, eventId: string) => `/club/${clubId}/event/${eventId}/forms`,
     SUBMIT_FORM: (eventId: string) => `/event/${eventId}/submitform`,
 
-    WRITE_FORM: '/event/writeform',
+    EDIT_WRITE_INFO: (clubId: string, eventCategory: eventTypeAPI) =>
+      `/club/${clubId}/writeinfo?event=${eventCategory?.toLowerCase()}`,
   },
 } as const;
 

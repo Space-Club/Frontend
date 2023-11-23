@@ -6,13 +6,14 @@ interface dataTransform {
   data: FieldValues;
   eventType: eventTypeAPI;
   clubId: string;
+  eventId?: string;
 }
 
-const dataTransform = ({ data, eventType, clubId }: dataTransform) => {
+const dataTransform = ({ data, eventType, clubId, eventId }: dataTransform) => {
   const { title, content, capacity, openDate, closeDate } = data;
 
   const commonData = {
-    clubId,
+    ...(eventId ? { eventId } : { clubId }),
     eventInfo: {
       title,
       content,

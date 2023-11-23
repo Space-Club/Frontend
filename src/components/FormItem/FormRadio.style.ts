@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 
 const FormRadioContainer = styled.div`
   display: flex;
+  flex-wrap: wrap;
   gap: 1rem;
 `;
 const FormRadioItemWrapper = styled.div`

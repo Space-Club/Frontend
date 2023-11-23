@@ -1,6 +1,6 @@
 import { FORM_OPTION } from '@/constants/form';
 import { FormOptionContext } from '@/context/FormOptionContext';
-import { EventType } from '@/types/event';
+import { eventTypeAPI } from '@/types/event';
 import { FormOption } from '@/types/form';
 import generateUniqueId from '@/utils/generateUniqueId';
 
@@ -10,7 +10,7 @@ import { useContext } from 'react';
 import { DropdownItemStyled, FormOptionDropdownContainer } from './FormOptionDropdown.style';
 
 interface FormOptionDropdownProps {
-  eventType: EventType;
+  eventType: eventTypeAPI;
 }
 
 const FormOptionDropdown = ({ eventType }: FormOptionDropdownProps) => {
