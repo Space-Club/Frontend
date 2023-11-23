@@ -10,7 +10,7 @@ const END_POINTS = {
   MY_CLUB: '/users/clubs',
   LOGOUT: '/users/logout',
 
-  PATCH_PROFILE_IMAGE: '/users/images',
+  PATCH_PROFILE_IMAGE: '/me/profile',
   PATCH_USER_INFO: 'users/required-infos',
 
   PERFORMANCE_FORM: '/events',
