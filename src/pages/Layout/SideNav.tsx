@@ -3,7 +3,7 @@ import SideBarMyProfile from '@/components/SideBarMyProfile/SideBarMyProfile';
 import Avatar from '@/components/common/Avatar/Avatar';
 import { PATH } from '@/constants/path';
 import useClubs from '@/hooks/query/club/useClubs';
-import useUserImageQuery from '@/hooks/query/user/useUserImageQuery';
+import useMyProfile from '@/hooks/query/user/useMyProfile';
 import { getStorage } from '@/utils/localStorage';
 
 import { FaPlusCircle } from 'react-icons/fa';
@@ -20,7 +20,7 @@ import {
 
 const SideNav = () => {
   const { clubs } = useClubs();
-  const { userImage } = useUserImageQuery();
+  const { data } = useMyProfile();
   const isLoginUser = Boolean(getStorage('token'));
 
   const navigate = useNavigate();
@@ -51,7 +51,7 @@ const SideNav = () => {
       <IoMdHome className={iconStyle} onClick={() => navigate(PATH.MAIN)} />
       {isLoginUser ? (
         <Link to={PATH.PROFILE_APPLIED}>
-          <SideBarMyProfile profileImageUrl={userImage?.profileImageUrl} />
+          <SideBarMyProfile profileImageUrl={data?.profileImageUrl} />
         </Link>
       ) : (
         <Link to={PATH.LOGIN} style={{ textDecoration: 'none' }}>
