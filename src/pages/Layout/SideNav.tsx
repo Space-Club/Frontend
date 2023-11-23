@@ -3,7 +3,7 @@ import SideBarMyProfile from '@/components/SideBarMyProfile/SideBarMyProfile';
 import Avatar from '@/components/common/Avatar/Avatar';
 import { PATH } from '@/constants/path';
 import useClubs from '@/hooks/query/club/useClubs';
-import useGetUserInfoQuery from '@/hooks/query/user/useUserImageQuery';
+import useMyProfile from '@/hooks/query/user/useMyProfile';
 import { getStorage } from '@/utils/localStorage';
 
 import { FaPlusCircle } from 'react-icons/fa';
@@ -20,7 +20,7 @@ import {
 
 const SideNav = () => {
   const { clubs } = useClubs();
-  const { userInfo } = useGetUserInfoQuery();
+  const { data } = useMyProfile();
   const isLoginUser = Boolean(getStorage('token'));
 
   const navigate = useNavigate();
@@ -50,7 +50,7 @@ const SideNav = () => {
       <IoMdNotifications className={iconStyle} onClick={() => alert('알림페이지 준비 중')} />
       {isLoginUser ? (
         <Link to={PATH.PROFILE_APPLIED}>
-          <SideBarMyProfile profileImageUrl={userInfo?.profileImageUrl} />
+          <SideBarMyProfile profileImageUrl={data?.profileImageUrl} />
         </Link>
       ) : (
         <Link to={PATH.LOGIN} style={{ textDecoration: 'none' }}>
