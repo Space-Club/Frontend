@@ -34,7 +34,7 @@ const END_POINTS = {
   SEARCHES: ({ keyword, page }: { keyword: string; page: number }) =>
     `/events/searches?keyword=${keyword}&page=${page}&size=18&sort=id,desc`,
   SUBMITTED_FORM_STATUS: ({ eventId }: { eventId: string }) =>
-    `/events/${eventId}/forms/submit-status`,
+    `/events/${eventId}/forms/submit`,
 
   CREATE_CLUB: '/clubs',
   MEMBER_AUTH: (clubId: string) => `/clubs/${clubId}/users`,
@@ -54,7 +54,7 @@ const END_POINTS = {
     `/clubs/${clubId}/members/${memberId}`,
   GET_BOOKMARK: ({ page, size, sort }: { page: number; size: number; sort: string }) =>
     `/users/bookmarked-events?page=${page}&size=${size}&sort=${sort}`,
-  BOOK_MARK: (eventId: string) => `/users/events/${eventId}`,
+  BOOK_MARK: (eventId: string) => `/me/events/${eventId}`,
   GET_CLUB: ({ clubId }: { clubId: string }) => `/clubs/${clubId}`,
   GET_USER_INFO: '/users/profiles',
 
