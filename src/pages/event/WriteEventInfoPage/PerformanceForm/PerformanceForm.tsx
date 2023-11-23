@@ -51,22 +51,8 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
     }
   }, [state, setValue]);
 
-  const {
-    REQUIRED_SHOW_NAME,
-    REQUIRED_SHOW_START_TIME,
-    REQUIRED_LOCATION,
-    REQUIRED_FORM_START_TIME,
-    REQUIRED_FORM_LAST_TIME,
-    REQUIRED_POSTER,
-    REQUIRED_SHOW_CONTENT,
-    PERSONNEL,
-    COST,
-    TICKET,
-    MAX_YEAR,
-    MAX_LENGTH,
-    FORM_START_TIME,
-    LAST_TIME,
-  } = ERROR_MESSAGE.EVENT;
+  const { PERSONNEL, COST, TICKET, MAX_YEAR, REQUIRED, MAX_LENGTH, FORM_START_TIME, LAST_TIME } =
+    ERROR_MESSAGE.EVENT;
 
   const { LIMIT_LENGTH, LIMIT_VALUE } = FORM_INFO_VALUE;
 
@@ -98,7 +84,7 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
       <ContentArea>
         <InputForm
           {...register('title', {
-            required: `${REQUIRED_SHOW_NAME}`,
+            required: REQUIRED('공연 이름은'),
             maxLength: {
               value: LIMIT_LENGTH.TITLE_MAX,
               message: MAX_LENGTH('공연 이름', LIMIT_LENGTH.TAGET_MAX),
@@ -112,7 +98,7 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
         {errors.title && <ErrorMessage>{errors.title.message as string}</ErrorMessage>}
         <HalfInputForm
           {...register('startDate', {
-            required: `${REQUIRED_SHOW_START_TIME}`,
+            required: REQUIRED('공연 시작 날짜는'),
             validate: {
               today: validateTodayDate,
               compare: (value) =>
@@ -126,7 +112,7 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
         {errors.startDate && <ErrorMessage>{errors.startDate.message as string}</ErrorMessage>}
         <InputForm
           {...register('location', {
-            required: `${REQUIRED_LOCATION}`,
+            required: REQUIRED('공연 장소는'),
             maxLength: {
               value: LIMIT_LENGTH.LOCATION_MAX,
               message: MAX_LENGTH('공연 장소', LIMIT_LENGTH.LOCATION_MAX),
@@ -157,7 +143,7 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
             placeholder="정수(0-n)"
           />
         </TwoInputContainer>
-        {errors.personnel && <ErrorMessage>{errors.personnel.message as string}</ErrorMessage>}
+        {errors.capacity && <ErrorMessage>{errors.capacity.message as string}</ErrorMessage>}
         {errors.cost && <ErrorMessage>{errors.cost.message as string}</ErrorMessage>}
         <TwoInputContainer>
           <InputForm
@@ -200,7 +186,7 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
         <TwoInputContainer>
           <InputForm
             {...register('openDate', {
-              required: `${REQUIRED_FORM_START_TIME}`,
+              required: REQUIRED('신청 시작 날짜는'),
               validate: {
                 today: validateTodayDate,
                 compare: (value) => validateTimeCompare(value, watch('closeDate'), LAST_TIME),
@@ -214,7 +200,7 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
           />
           <InputForm
             {...register('closeDate', {
-              required: `${REQUIRED_FORM_LAST_TIME}`,
+              required: REQUIRED('마감 시작 날짜는'),
               validate: (value) => validateTimeCompare(watch('openDate'), value, LAST_TIME),
               max: { value: LIMIT_VALUE.DATE_MAX, message: MAX_YEAR },
             })}
@@ -231,7 +217,7 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
       </ContentArea>
       <ContentArea>
         <ImageForm
-          {...register('poster', { required: state ? false : `${REQUIRED_POSTER}` })}
+          {...register('poster', { required: state ? false : REQUIRED('포스터는') })}
           imgFile={imgFile}
           labelText="포스터"
           required
@@ -240,7 +226,7 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
         {errors.poster && <ErrorMessage>{errors.poster.message as string}</ErrorMessage>}
         <TextAreaForm
           {...register('content', {
-            required: `${REQUIRED_SHOW_CONTENT}`,
+            required: REQUIRED('공연 내용은'),
             maxLength: {
               value: LIMIT_LENGTH.CONTENT_MAX,
               message: MAX_LENGTH('공연 내용', LIMIT_LENGTH.CONTENT_MAX),

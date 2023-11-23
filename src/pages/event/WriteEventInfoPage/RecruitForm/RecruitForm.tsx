@@ -47,17 +47,7 @@ const RecruitForm = ({ eventType, clubId }: FormPage) => {
     }
   }, [state, setValue]);
 
-  const {
-    REQUIRED_RECRUIT_NAME,
-    REQUIRED_FORM_START_TIME,
-    REQUIRED_FORM_LAST_TIME,
-    REQUIRED_POSTER,
-    REQUIRED_RECRUIT_CONTENT,
-    PERSONNEL,
-    MAX_YEAR,
-    LAST_TIME,
-    MAX_LENGTH,
-  } = ERROR_MESSAGE.EVENT;
+  const { PERSONNEL, MAX_YEAR, LAST_TIME, REQUIRED, MAX_LENGTH } = ERROR_MESSAGE.EVENT;
 
   const { LIMIT_LENGTH, LIMIT_VALUE } = FORM_INFO_VALUE;
 
@@ -87,7 +77,7 @@ const RecruitForm = ({ eventType, clubId }: FormPage) => {
       <ContentArea>
         <InputForm
           {...register('title', {
-            required: `${REQUIRED_RECRUIT_NAME}`,
+            required: REQUIRED('공고 제목은'),
             maxLength: {
               value: LIMIT_LENGTH.TITLE_MAX,
               message: MAX_LENGTH('공고 제목', LIMIT_LENGTH.TITLE_MAX),
@@ -139,7 +129,7 @@ const RecruitForm = ({ eventType, clubId }: FormPage) => {
         <TwoInputContainer>
           <InputForm
             {...register('openDate', {
-              required: `${REQUIRED_FORM_START_TIME}`,
+              required: REQUIRED('신청 시작 날짜는'),
               validate: {
                 today: validateTodayDate,
                 compare: (value) => validateTimeCompare(value, watch('closeDate'), LAST_TIME),
@@ -153,7 +143,7 @@ const RecruitForm = ({ eventType, clubId }: FormPage) => {
           />
           <InputForm
             {...register('closeDate', {
-              required: `${REQUIRED_FORM_LAST_TIME}`,
+              required: REQUIRED('마감 시작 날짜는'),
               validate: (value) => validateTimeCompare(watch('openDate'), value, LAST_TIME),
               max: { value: LIMIT_VALUE.DATE_MAX, message: MAX_YEAR },
             })}
@@ -170,7 +160,7 @@ const RecruitForm = ({ eventType, clubId }: FormPage) => {
       </ContentArea>
       <ContentArea>
         <ImageForm
-          {...register('poster', { required: state ? false : `${REQUIRED_POSTER}` })}
+          {...register('poster', { required: state ? false : REQUIRED('포스터는') })}
           imgFile={imgFile}
           labelText="포스터"
           required
@@ -179,7 +169,7 @@ const RecruitForm = ({ eventType, clubId }: FormPage) => {
         {errors.poster && <ErrorMessage>{errors.poster.message as string}</ErrorMessage>}
         <TextAreaForm
           {...register('content', {
-            required: `${REQUIRED_RECRUIT_CONTENT}`,
+            required: REQUIRED('공고 내용은'),
             maxLength: {
               value: LIMIT_LENGTH.CONTENT_MAX,
               message: MAX_LENGTH('공고 내용', LIMIT_LENGTH.CONTENT_MAX),

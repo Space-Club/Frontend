@@ -49,14 +49,11 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
   }, [state, setValue]);
 
   const {
-    REQUIRED_SCHEDULE_NAME,
-    REQUIRED_ACTIVITY_START_TIME,
-    REQUIRED_ACTIVITY_LAST_TIME,
-    REQUIRED_SCHEDULE_MASTER,
     PERSONNEL,
     COST,
     ENTER_BOTH_SIDE,
     MAX_YEAR,
+    REQUIRED,
     MAX_LENGTH,
     FORM_START_TIME,
     LAST_TIME,
@@ -93,7 +90,7 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
       <ContentArea>
         <InputForm
           {...register('title', {
-            required: REQUIRED_SCHEDULE_NAME,
+            required: REQUIRED('일정 제목은'),
             maxLength: {
               value: LIMIT_LENGTH.TITLE_MAX,
               message: MAX_LENGTH('일정 제목', LIMIT_LENGTH.TITLE_MAX),
@@ -108,7 +105,7 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
         <TwoInputContainer>
           <InputForm
             {...register('startDate', {
-              required: REQUIRED_ACTIVITY_START_TIME,
+              required: REQUIRED('활동 시작 날짜는'),
               validate: {
                 today: validateTodayDate,
                 compare: (value) => validateTimeCompare(value, watch('endDate'), LAST_TIME),
@@ -124,7 +121,7 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
           />
           <InputForm
             {...register('endDate', {
-              required: REQUIRED_ACTIVITY_LAST_TIME,
+              required: REQUIRED('활동 마감 날짜는'),
               validate: {
                 compare: (value) => validateTimeCompare(watch('startDate'), value, LAST_TIME),
               },
@@ -174,7 +171,7 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
         {errors.dues && <ErrorMessage>{errors.dues.message as string}</ErrorMessage>}
         <InputForm
           {...register('master', {
-            required: REQUIRED_SCHEDULE_MASTER,
+            required: REQUIRED('일정 생성자명은'),
             maxLength: {
               value: LIMIT_LENGTH.MASTER_MAX,
               message: MAX_LENGTH('일정 생성자', LIMIT_LENGTH.MASTER_MAX),
