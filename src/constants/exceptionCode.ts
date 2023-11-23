@@ -1,4 +1,4 @@
-const EXCEPTION_CODE = {
+const EXCEPTION_CODE_MESSAGE = {
   USER_NOT_FOUND: '존재하지 않는 유저입니다.',
   CLUB_NOT_FOUND: '존재하지 않는 클럽입니다.',
   NOTICE_NOT_FOUND: '존재하지 않는 공지사항입니다.',
@@ -25,4 +25,4 @@ const EXCEPTION_CODE = {
   DESERIALIZE_FAILURE: 'JSON 데이터를 변환하는데 실패했습니다.',
 };
 
-export { EXCEPTION_CODE };
+export { EXCEPTION_CODE_MESSAGE };

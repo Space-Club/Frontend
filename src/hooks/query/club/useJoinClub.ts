@@ -1,6 +1,6 @@
 import postJoinClub from '@/apis/club/postJoinClub';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
-import { EXCEPTION_CODE } from '@/constants/exceptionCode';
+import { EXCEPTION_CODE_MESSAGE } from '@/constants/exceptionCode';
 import { PATH } from '@/constants/path';
 import { SUCCESS_MESSAGE } from '@/constants/successMessage';
 import useToast from '@/hooks/useToast';
@@ -28,10 +28,16 @@ const useJoinClub = () => {
     },
     onError: (error) => {
       if (isAxiosError<ResponseDataType>(error)) {
-        const errorCode = error.response?.data;
-        console.log(errorCode);
+        const errorCode = error.response?.data.split(':')[1]; //#TODO: 추후 에러코드만 오면 바꾸기
+        const { INVITE_EXPIRED, INVITE_NOT_FOUND, CLUB_ALREADY_JOINED } = EXCEPTION_CODE_MESSAGE;
         createToast({
-          message: errorCode ? EXCEPTION_CODE[errorCode] : ERROR_MESSAGE.CLUB.JOIN_FAILED,
+          message: !errorCode
+            ? ERROR_MESSAGE.CLUB.JOIN_FAILED
+            : errorCode === CLUB_ALREADY_JOINED
+            ? CLUB_ALREADY_JOINED
+            : errorCode === INVITE_EXPIRED
+            ? INVITE_EXPIRED
+            : INVITE_NOT_FOUND,
           toastType: 'error',
         });
       }
