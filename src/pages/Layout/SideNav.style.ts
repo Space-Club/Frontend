@@ -1,5 +1,5 @@
 import Theme from '@/styles/Theme';
-import { sideBarScrollAreaStyled } from '@/styles/common';
+import { hoverBox, sideBarScrollAreaStyled } from '@/styles/common';
 import { css } from '@emotion/css';
 import styled from '@emotion/styled';
 
@@ -31,26 +31,11 @@ const ClubWrapper = styled(sideBarScrollAreaStyled)`
   }
 `;
 
-const ClubLogoWrapper = styled.div`
+const ClubLogoWrapper = styled(hoverBox)`
   display: flex;
   justify-content: center;
   width: 100%;
   position: relative;
-
-  &:hover::after {
-    content: attr(data-name);
-    position: absolute;
-    bottom: -20%;
-    left: 50%;
-    padding: 0.1rem;
-    transform: translateX(-50%);
-    background: ${Theme.color.shadow};
-    color: ${Theme.color.tWhiteGrey};
-    border-radius: 0.25rem;
-    font-size: ${Theme.fontSize.tagText};
-    opacity: 1;
-    transition: opacity 0.2s ease-in-out;
-  }
 `;
 
 const CreateClubButtonStyled = styled.div`
