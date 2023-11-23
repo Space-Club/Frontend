@@ -25,7 +25,7 @@ const ERROR_MESSAGE = {
     REQUIRED_EVENT_CONTENT: '* 행사 내용 작성은 필수입니다.',
     REQUIRED_RECRUIT_CONTENT: '* 공고 내용 작성은 필수입니다.',
 
-    PERSONNEL: '* 정원의 최댓값은 999입니다.',
+    PERSONNEL: '* 정원은 1~999 사이의 숫자여야합니다.',
     COST: '* 비용의 최댓값은 100만원입니다.',
     BANK_NAME: '* 은행명의 최대길이는 20입니다.',
     ACCOUNT: '* 계좌 번호의 최대 길이는 30입니다.',

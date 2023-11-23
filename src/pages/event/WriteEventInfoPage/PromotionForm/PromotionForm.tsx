@@ -112,6 +112,7 @@ const PromotionForm = ({ eventType, clubId }: FormPage) => {
         {errors.location && <ErrorMessage>{errors.location.message as string}</ErrorMessage>}
         <HalfInputForm
           {...register('capacity', {
+            min: { value: 1, message: `${PERSONNEL}` },
             max: { value: 999, message: `${PERSONNEL}` },
           })}
           labelText="정원"

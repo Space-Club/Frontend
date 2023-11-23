@@ -109,6 +109,7 @@ const RecruitForm = ({ eventType, clubId }: FormPage) => {
         )}
         <HalfInputForm
           {...register('capacity', {
+            min: { value: 1, message: `${PERSONNEL}` },
             max: { value: 999, message: `${PERSONNEL}` },
           })}
           labelText="모집 인원"
