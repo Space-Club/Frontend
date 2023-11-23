@@ -108,7 +108,9 @@ const EventDetailPage = () => {
           <ContentWrapper>
             {isManager && (
               <FormButtonWrapper>
-                <PurpleButton onClick={() => navigate(PATH.EVENT.SUBMITTED_FORMS(eventId))}>
+                <PurpleButton
+                  onClick={() => navigate(PATH.EVENT.SUBMITTED_FORMS('clubId', eventId))} //TODO: club id 가져와서 주소에 넣어주기
+                >
                   {EVENT_DETAIL_BUTTON.showSubmitForm}
                 </PurpleButton>
                 <UpdateDeleteWrapper>

@@ -19,7 +19,7 @@ const PATH = {
     MANAGE: (clubId: string | number) => `/club/${clubId}/manage`,
     CHOICE: (clubId: string) => `/club/${clubId}/choice`,
     WRITE_INFO: (clubId: string) => `/club/${clubId}/writeinfo`,
-    WRITE_FORM: `/club/:clubId/writeform/:eventId`,
+    WRITE_FORM: (clubId: string, eventId: string) => `/club/${clubId}/writeform/${eventId}`,
     WRITE_FORM_QUERY: (
       clubId: string | number,
       eventId: string | number,
@@ -31,7 +31,7 @@ const PATH = {
 
   EVENT: {
     DETAIL: (eventId: string) => `/event/${eventId}`,
-    SUBMITTED_FORMS: (eventId: string) => `/event/${eventId}/forms`,
+    SUBMITTED_FORMS: (clubId: string, eventId: string) => `/club/${clubId}/event/${eventId}/forms`,
     SUBMIT_FORM: (eventId: string) => `/event/${eventId}/submitform`,
 
     WRITE_FORM: '/event/writeform',
