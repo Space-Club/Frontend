@@ -6,6 +6,7 @@ import Poster from '@/components/common/Poster/Poster';
 import Tab from '@/components/common/Tab/Tab';
 import { EVENT_DETAIL_BUTTON } from '@/constants/event';
 import { MODAL_TEXT } from '@/constants/modalMessage';
+import { PATH } from '@/constants/path';
 import { MAIN_TABS } from '@/constants/tab';
 import useDeleteEventMutation from '@/hooks/query/event/useDeleteEventMutation';
 import useEventDetailQuery from '@/hooks/query/event/useEventDetailQuery';
@@ -107,7 +108,7 @@ const EventDetailPage = () => {
           <ContentWrapper>
             {isManager && (
               <FormButtonWrapper>
-                <PurpleButton onClick={() => navigate(`/checkform/${eventId}`)}>
+                <PurpleButton onClick={() => navigate(PATH.EVENT.SUBMITTED_FORMS(eventId))}>
                   {EVENT_DETAIL_BUTTON.showSubmitForm}
                 </PurpleButton>
                 <UpdateDeleteWrapper>
