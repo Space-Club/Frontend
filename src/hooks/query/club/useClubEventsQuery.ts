@@ -9,7 +9,7 @@ const CLUB_EVENTS_STALE_TIME = 1000 * 60;
 
 const useClubEventsQuery = ({ clubId, pageNumber }: GetClubEventsRequest) => {
   const { data: clubEvents } = useQuery({
-    queryKey: [QUERY_KEY.CLUB_EVENTS],
+    queryKey: [QUERY_KEY.CLUB_EVENTS, pageNumber],
     queryFn: () => getClubEvents({ clubId, pageNumber }),
     staleTime: CLUB_EVENTS_STALE_TIME,
   });

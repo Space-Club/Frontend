@@ -13,6 +13,7 @@ const useAllEventsQuery = ({ pageNumber, category, sort }: AllEventsRequest, pat
         : pathname === '/events'
         ? QUERY_KEY.PROMOTION
         : QUERY_KEY.RECRUITMENT,
+      pageNumber,
     ],
     queryFn: () => getAllEvents({ pageNumber, category, sort }),
   });
