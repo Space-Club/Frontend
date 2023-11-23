@@ -161,7 +161,7 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
             placeholder="은행명"
           />
           <InputForm
-            {...register('account_NUMBERNumber', {
+            {...register('accountNumber', {
               maxLength: { value: LIMIT_LENGTH.ACCOUNT_NUMBER_MAX, message: `${ACCOUNT_NUMBER}` },
             })}
             labelText="계좌 번호"
