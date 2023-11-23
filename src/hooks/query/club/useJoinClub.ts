@@ -1,5 +1,6 @@
 import postJoinClub from '@/apis/club/postJoinClub';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
+import { EXCEPTION_CODE } from '@/constants/exceptionCode';
 import { PATH } from '@/constants/path';
 import { SUCCESS_MESSAGE } from '@/constants/successMessage';
 import useToast from '@/hooks/useToast';
@@ -27,9 +28,10 @@ const useJoinClub = () => {
     },
     onError: (error) => {
       if (isAxiosError<ResponseDataType>(error)) {
-        const errorMessage = error.response?.data.split(':')[1];
+        const errorCode = error.response?.data;
+        console.log(errorCode);
         createToast({
-          message: errorMessage ?? ERROR_MESSAGE.CLUB.JOIN_FAILED,
+          message: errorCode ? EXCEPTION_CODE[errorCode] : ERROR_MESSAGE.CLUB.JOIN_FAILED,
           toastType: 'error',
         });
       }
