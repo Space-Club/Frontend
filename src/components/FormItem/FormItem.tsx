@@ -10,13 +10,14 @@ import FormRadio from './FormRadio';
 
 interface FormItem {
   id: number;
+  index: number;
   title: string;
   type: FormType;
   options?: string[];
   onAnswer: (value: Question) => void;
 }
 
-const FormItem = ({ id, title, type, options, onAnswer }: FormItem) => {
+const FormItem = ({ id, index, title, type, options, onAnswer }: FormItem) => {
   const [itemOptions, setItemOptions] = useState<string[] | undefined>(options);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -52,7 +53,7 @@ const FormItem = ({ id, title, type, options, onAnswer }: FormItem) => {
   return (
     <FormItemContainer>
       <QuestionStyled>
-        {id}. {title}
+        {index + 1}. {title}
       </QuestionStyled>
       {renderAnswer()}
     </FormItemContainer>
