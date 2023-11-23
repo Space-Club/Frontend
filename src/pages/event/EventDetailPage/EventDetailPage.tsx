@@ -115,7 +115,7 @@ const EventDetailPage = () => {
           <ContentWrapper>
             {isManager && (
               <FormButtonWrapper>
-                <PurpleButton onClick={() => navigate(`/checkform/${eventId}`)}>
+                <PurpleButton onClick={() => navigate('forms')}>
                   {EVENT_DETAIL_BUTTON.showSubmitForm}
                 </PurpleButton>
                 <UpdateDeleteWrapper>
