@@ -39,6 +39,7 @@ const ERROR_MESSAGE = {
     MAX_YEAR: '* 최대 2099년까지 설정이 가능합니다.',
     START_TIME: '* 날짜는 오늘 이후로 설정해야 합니다.',
     LAST_TIME: '* 마감 날짜는 시작 날짜 이후로 설정해야 합니다.',
+    FORM_START_TIME: (event: string) => `* ${event} 시작은 폼 마감일 이후로 설정해야 합니다.`,
 
     CANCEL: '서버 에러로 인해 이벤트 취소에 실패했습니다.',
     ENTER_BOTH_SIDE: '* 날짜는 시작 및 마감 모두 설정해야 합니다.',

@@ -61,6 +61,8 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
     ENTER_BOTH_SIDE,
     MAX_YEAR,
     CONTENT,
+    FORM_START_TIME,
+    LAST_TIME,
   } = ERROR_MESSAGE.EVENT;
 
   const { LIMIT_LENGTH, LIMIT_VALUE } = FORM_INFO_VALUE;
@@ -109,7 +111,9 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
               required: REQUIRED_ACTIVITY_START_TIME,
               validate: {
                 today: validateTodayDate,
-                compare: (value) => validateTimeCompare(value, watch('endDate')),
+                compare: (value) => validateTimeCompare(value, watch('endDate'), LAST_TIME),
+                compareForm: (value) =>
+                  validateTimeCompare(watch('closeDate'), value, FORM_START_TIME('활동')),
               },
               max: { value: LIMIT_VALUE.DATE_MAX, message: MAX_YEAR },
             })}
@@ -122,7 +126,7 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
             {...register('endDate', {
               required: REQUIRED_ACTIVITY_LAST_TIME,
               validate: {
-                compare: (value) => validateTimeCompare(watch('startDate'), value),
+                compare: (value) => validateTimeCompare(watch('startDate'), value, LAST_TIME),
               },
               max: { value: LIMIT_VALUE.DATE_MAX, message: MAX_YEAR },
             })}
@@ -181,7 +185,7 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
               required: closeDate && ENTER_BOTH_SIDE,
               validate: {
                 today: validateTodayDate,
-                compare: (value) => validateTimeCompare(value, watch('closeDate')),
+                compare: (value) => validateTimeCompare(value, watch('closeDate'), LAST_TIME),
               },
               max: { value: LIMIT_VALUE.DATE_MAX, message: MAX_YEAR },
             })}
@@ -192,7 +196,7 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
           <InputForm
             {...register('closeDate', {
               required: openDate && ENTER_BOTH_SIDE,
-              validate: (value) => validateTimeCompare(watch('openDate'), value),
+              validate: (value) => validateTimeCompare(watch('openDate'), value, LAST_TIME),
               max: { value: LIMIT_VALUE.DATE_MAX, message: MAX_YEAR },
             })}
             labelText="마감 시작 날짜 및 시간"

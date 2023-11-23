@@ -58,6 +58,7 @@ const RecruitForm = ({ eventType, clubId }: FormPage) => {
     TARGET,
     MAX_YEAR,
     CONTENT,
+    LAST_TIME,
   } = ERROR_MESSAGE.EVENT;
 
   const { LIMIT_LENGTH, LIMIT_VALUE } = FORM_INFO_VALUE;
@@ -134,7 +135,7 @@ const RecruitForm = ({ eventType, clubId }: FormPage) => {
               required: `${REQUIRED_FORM_START_TIME}`,
               validate: {
                 today: validateTodayDate,
-                compare: (value) => validateTimeCompare(value, watch('closeDate')),
+                compare: (value) => validateTimeCompare(value, watch('closeDate'), LAST_TIME),
               },
               max: { value: LIMIT_VALUE.DATE_MAX, message: MAX_YEAR },
             })}
@@ -146,7 +147,7 @@ const RecruitForm = ({ eventType, clubId }: FormPage) => {
           <InputForm
             {...register('closeDate', {
               required: `${REQUIRED_FORM_LAST_TIME}`,
-              validate: (value) => validateTimeCompare(watch('openDate'), value),
+              validate: (value) => validateTimeCompare(watch('openDate'), value, LAST_TIME),
               max: { value: LIMIT_VALUE.DATE_MAX, message: MAX_YEAR },
             })}
             labelText="마감 시작 날짜 및 시간"

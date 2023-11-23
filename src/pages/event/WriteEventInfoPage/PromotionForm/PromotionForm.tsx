@@ -60,6 +60,8 @@ const PromotionForm = ({ eventType, clubId }: FormPage) => {
     MAX_YEAR,
     LOCATION,
     CONTENT,
+    FORM_START_TIME,
+    LAST_TIME,
   } = ERROR_MESSAGE.EVENT;
 
   const { LIMIT_LENGTH, LIMIT_VALUE } = FORM_INFO_VALUE;
@@ -102,7 +104,11 @@ const PromotionForm = ({ eventType, clubId }: FormPage) => {
         <HalfInputForm
           {...register('startDate', {
             required: `${REQUIRED_EVENT_START_TIME}`,
-            validate: validateTodayDate,
+            validate: {
+              today: validateTodayDate,
+              compare: (value) =>
+                validateTimeCompare(watch('closeDate'), value, FORM_START_TIME('행사')),
+            },
             max: { value: LIMIT_VALUE.DATE_MAX, message: MAX_YEAR },
           })}
           labelText="행사 시작 날짜 및 시간"
@@ -136,7 +142,7 @@ const PromotionForm = ({ eventType, clubId }: FormPage) => {
               required: `${REQUIRED_FORM_START_TIME}`,
               validate: {
                 today: validateTodayDate,
-                compare: (value) => validateTimeCompare(value, watch('closeDate')),
+                compare: (value) => validateTimeCompare(value, watch('closeDate'), LAST_TIME),
               },
               max: { value: LIMIT_VALUE.DATE_MAX, message: MAX_YEAR },
             })}
@@ -148,7 +154,7 @@ const PromotionForm = ({ eventType, clubId }: FormPage) => {
           <InputForm
             {...register('closeDate', {
               required: `${REQUIRED_FORM_LAST_TIME}`,
-              validate: (value) => validateTimeCompare(watch('openDate'), value),
+              validate: (value) => validateTimeCompare(watch('openDate'), value, LAST_TIME),
               max: { value: LIMIT_VALUE.DATE_MAX, message: MAX_YEAR },
             })}
             labelText="마감 시작 날짜 및 시간"
