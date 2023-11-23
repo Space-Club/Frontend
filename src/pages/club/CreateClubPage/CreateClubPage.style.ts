@@ -1,14 +1,8 @@
 import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
-const HeaderContainerStyled = styled.div`
-  display: flex;
-  align-items: center;
-  width: 100%;
-  height: 20%;
-`;
-
 const TitleStyled = styled.h1`
+  padding: 2rem;
   font-size: ${Theme.fontSize.extraTitle};
 `;
 
@@ -16,10 +10,9 @@ const ContentWrapperStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  min-width: 30rem;
-  min-height: 17rem;
-  height: 60%;
+  flex-wrap: wrap;
   gap: 5%;
+  padding: 2rem;
 `;
 
 const ClubInfoWrapperStyled = styled.div`
@@ -40,6 +33,7 @@ const ButtonWrapperStyled = styled.div`
 const ImageSelectWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   gap: 1rem;
 `;
 
@@ -49,7 +43,6 @@ const ErrorMessageStyled = styled.span`
 `;
 
 export {
-  HeaderContainerStyled,
   TitleStyled,
   ContentWrapperStyled,
   ClubInfoWrapperStyled,

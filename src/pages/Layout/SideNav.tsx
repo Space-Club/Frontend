@@ -7,7 +7,7 @@ import useUserImageQuery from '@/hooks/query/user/useUserImageQuery';
 import { getStorage } from '@/utils/localStorage';
 
 import { FaPlusCircle } from 'react-icons/fa';
-import { IoMdHome, IoMdNotifications } from 'react-icons/io';
+import { IoMdHome } from 'react-icons/io';
 import { Link, useNavigate } from 'react-router-dom';
 
 import {
@@ -27,6 +27,12 @@ const SideNav = () => {
 
   return (
     <SidebarContainer>
+      {isLoginUser && (
+        <CreateClubButtonStyled onClick={() => navigate(PATH.CREATE)}>
+          클럽 생성
+          <FaPlusCircle size={'1rem'} />
+        </CreateClubButtonStyled>
+      )}
       <ClubWrapper>
         {clubs?.map((club) => (
           <ClubLogoWrapper data-name={club.name}>
@@ -38,17 +44,11 @@ const SideNav = () => {
                 isClub
                 pointer
               ></Avatar>
-          </Link>
+            </Link>
           </ClubLogoWrapper>
         ))}
       </ClubWrapper>
-      {isLoginUser && (
-        <CreateClubButtonStyled>
-          <FaPlusCircle size={'1rem'} onClick={() => navigate(PATH.CREATE)} />
-        </CreateClubButtonStyled>
-      )}
       <IoMdHome className={iconStyle} onClick={() => navigate(PATH.MAIN)} />
-      <IoMdNotifications className={iconStyle} onClick={() => alert('알림페이지 준비 중')} />
       {isLoginUser ? (
         <Link to={PATH.PROFILE_APPLIED}>
           <SideBarMyProfile profileImageUrl={userImage?.profileImageUrl} />

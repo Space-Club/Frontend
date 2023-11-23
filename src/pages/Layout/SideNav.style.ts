@@ -40,11 +40,14 @@ const ClubLogoWrapper = styled(hoverBox)`
 
 const CreateClubButtonStyled = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 0.2rem;
+  margin-top: 2rem;
   width: 4rem;
-  height: 1.625rem;
-  border-radius: 0.75rem;
+  height: 4rem;
+  border-radius: 50%;
   background: ${Theme.color.sidebarBackground};
   box-shadow: 0px 1px 4px 0px ${Theme.color.shadow};
   font-size: ${Theme.fontSize.tagText};
@@ -55,22 +58,6 @@ const CreateClubButtonStyled = styled.div`
   &:hover {
     transform: scale(1.1);
     transition: transform 0.3s ease-in-out;
-  }
-
-  &::before {
-    content: '클럽 생성';
-    position: absolute;
-    top: -100%;
-    background: ${Theme.color.shadow};
-    color: ${Theme.color.tWhiteGrey};
-    padding: 0.3rem;
-    border-radius: 0.25rem;
-    opacity: 0;
-    transition: opacity 0.2s ease-in-out;
-  }
-
-  &:hover::before {
-    opacity: 1;
   }
 `;
 

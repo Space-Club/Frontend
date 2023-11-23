@@ -15,7 +15,6 @@ import {
   ClubInfoWrapperStyled,
   ContentWrapperStyled,
   ErrorMessageStyled,
-  HeaderContainerStyled,
   ImageSelectWrapper,
   TitleStyled,
 } from './CreateClubPage.style';
@@ -53,9 +52,7 @@ const CreateClubPage = () => {
 
   return (
     <>
-      <HeaderContainerStyled>
-        <TitleStyled>{CREATE_CLUB.TITLE}</TitleStyled>
-      </HeaderContainerStyled>
+      <TitleStyled>{CREATE_CLUB.TITLE}</TitleStyled>
       <form onSubmit={handleSubmit(onSubmit)}>
         <ContentWrapperStyled>
           <ImageSelectWrapper>
@@ -111,7 +108,7 @@ const CreateClubPage = () => {
         <ButtonWrapperStyled>
           <ActiveButton
             buttonText={CREATE_CLUB.BUTTON}
-            fontSize="mediumTitle"
+            fontSize="mediumContent"
             isLoading={isLoading}
             disabled={isLoading}
           />
