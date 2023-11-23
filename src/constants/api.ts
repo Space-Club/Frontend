@@ -54,7 +54,7 @@ const END_POINTS = {
     `/clubs/${clubId}/members/${memberId}`,
   GET_BOOKMARK: ({ page, size, sort }: { page: number; size: number; sort: string }) =>
     `/users/bookmarked-events?page=${page}&size=${size}&sort=${sort}`,
-  BOOK_MARK: (eventId: string) => `/users/events/${eventId}`,
+  BOOK_MARK: (eventId: string) => `/me/events/${eventId}`,
   GET_CLUB: ({ clubId }: { clubId: string }) => `/clubs/${clubId}`,
   GET_USER_INFO: '/users/profiles',
 
