@@ -14,10 +14,10 @@ interface FormOption {
 }
 
 interface FormInfo {
-  startDate: string;
-  startTime: string;
-  endDate: string;
-  endTime: string;
+  openDate: string;
+  openTime: string;
+  closeDate: string;
+  closeTime: string;
 }
 
 export { FormType, FormOption, FormOptionButtonText, FormInfo };

@@ -1,5 +1,5 @@
 import { END_POINTS } from '@/constants/api';
-import { GetClubEventsRequest, GetClubEventsResponse } from '@/types/club';
+import { GetClubEventsRequest, GetClubEventsResponse } from '@/types/api/getClubEvents';
 
 import { axiosClientWithAuth } from '../axiosClient';
 
