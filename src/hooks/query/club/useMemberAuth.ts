@@ -1,6 +1,6 @@
 import getMemberAuth from '@/apis/club/getMemberAuth';
 import { MemberAuthRequest, MemberAuthResponse } from '@/types/api/memberAuth';
-import { HttpError } from '@/types/common';
+import { HttpException } from '@/types/common';
 
 import { useQuery } from '@tanstack/react-query';
 
@@ -15,7 +15,7 @@ const useMemberAuth = ({ clubId }: MemberAuthRequest) => {
     retry: 0,
   });
 
-  const httpError = error?.response?.data as HttpError;
+  const httpError = error?.response?.data as HttpException;
 
   return { role: data?.role, httpError, isError };
 };
