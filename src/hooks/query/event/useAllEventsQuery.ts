@@ -15,6 +15,7 @@ const useAllEventsQuery = ({ pageNumber, category, sort }: AllEventsRequest, pat
         : QUERY_KEY.RECRUITMENT,
     ],
     queryFn: () => getAllEvents({ pageNumber, category, sort }),
+    suspense: true,
   });
 
   const { data, pageData } = allEvents ?? {};
