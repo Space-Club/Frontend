@@ -11,6 +11,7 @@ const useGetEventBookMarkQuery = ({ page, size, sort }: GetEventBookmarkRequest)
   const { data } = useQuery({
     queryFn: () => getEventBookmark({ page, size, sort }),
     queryKey: [QUERY_KEY.GET_EVENT_BOOKMARK, { page, size, sort }],
+    suspense: true,
   });
 
   const bookmarks = data?.data;
