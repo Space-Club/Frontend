@@ -2,6 +2,7 @@ import ImageForm from '@/components/ImageForm/ImageForm';
 import InputForm from '@/components/common/InputForm/InputForm';
 import TextAreaForm from '@/components/common/TextAreaForm/TextAreaForm';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
+import { FORM_INFO_VALUE } from '@/constants/limitInputValue';
 import useSubmitForm from '@/hooks/query/event/useSubmitForm';
 import { ClubDetailResponse } from '@/types/api/getEventDetail';
 import { FormPage } from '@/types/event';
@@ -48,15 +49,17 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
   }, [state, setValue]);
 
   const {
-    REQUIRED_SCHEDULE_NAME,
-    REQUIRED_ACTIVITY_START_TIME,
-    REQUIRED_ACTIVITY_LAST_TIME,
-    REQUIRED_SCHEDULE_MASTER,
     PERSONNEL,
     COST,
     ENTER_BOTH_SIDE,
-    LENGTH,
+    MAX_YEAR,
+    REQUIRED,
+    MAX_LENGTH,
+    FORM_START_TIME,
+    LAST_TIME,
   } = ERROR_MESSAGE.EVENT;
+
+  const { LIMIT_LENGTH, LIMIT_VALUE } = FORM_INFO_VALUE;
 
   useEffect(() => {
     const imgSrc = watch('poster');
@@ -87,8 +90,11 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
       <ContentArea>
         <InputForm
           {...register('title', {
-            required: REQUIRED_SCHEDULE_NAME,
-            maxLength: 30,
+            required: REQUIRED('일정 제목은'),
+            maxLength: {
+              value: LIMIT_LENGTH.TITLE_MAX,
+              message: MAX_LENGTH('일정 제목', LIMIT_LENGTH.TITLE_MAX),
+            },
           })}
           labelText="일정 제목"
           required
@@ -99,11 +105,14 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
         <TwoInputContainer>
           <InputForm
             {...register('startDate', {
-              required: REQUIRED_ACTIVITY_START_TIME,
+              required: REQUIRED('활동 시작 날짜는'),
               validate: {
                 today: validateTodayDate,
-                compare: (value) => validateTimeCompare(value, watch('endDate')),
+                compare: (value) => validateTimeCompare(value, watch('endDate'), LAST_TIME),
+                compareForm: (value) =>
+                  validateTimeCompare(watch('closeDate'), value, FORM_START_TIME('활동')),
               },
+              max: { value: LIMIT_VALUE.DATE_MAX, message: MAX_YEAR },
             })}
             labelText="활동 시작 날짜"
             required
@@ -112,10 +121,11 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
           />
           <InputForm
             {...register('endDate', {
-              required: REQUIRED_ACTIVITY_LAST_TIME,
+              required: REQUIRED('활동 마감 날짜는'),
               validate: {
-                compare: (value) => validateTimeCompare(watch('startDate'), value),
+                compare: (value) => validateTimeCompare(watch('startDate'), value, LAST_TIME),
               },
+              max: { value: LIMIT_VALUE.DATE_MAX, message: MAX_YEAR },
             })}
             labelText="활동 마감 날짜"
             required
@@ -127,11 +137,21 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
           <ErrorMessage>{errors.startDate.message as string}</ErrorMessage>
         )}
         {errors.endDate && <ErrorMessage>{errors.endDate.message as string}</ErrorMessage>}
-        <InputForm {...register('location')} labelText="장소" inputType="text" />
+        <InputForm
+          {...register('location', {
+            maxLength: {
+              value: LIMIT_LENGTH.LOCATION_MAX,
+              message: MAX_LENGTH('장소', LIMIT_LENGTH.LOCATION_MAX),
+            },
+          })}
+          labelText="장소"
+          inputType="text"
+        />
         <TwoInputContainer>
           <InputForm
             {...register('capacity', {
-              max: { value: 999, message: PERSONNEL },
+              min: { value: LIMIT_VALUE.CAPACITY_MIN, message: PERSONNEL },
+              max: { value: LIMIT_VALUE.CAPACITY_MAX, message: PERSONNEL },
             })}
             labelText="정원"
             inputType="number"
@@ -139,7 +159,8 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
           />
           <InputForm
             {...register('dues', {
-              max: { value: 1000000, message: COST },
+              min: { value: LIMIT_VALUE.COST_MIN, message: COST },
+              max: { value: LIMIT_VALUE.COST_MAX, message: COST },
             })}
             labelText="회비"
             inputType="number"
@@ -148,24 +169,15 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
         </TwoInputContainer>
         {errors.capacity && <ErrorMessage>{errors.capacity.message as string}</ErrorMessage>}
         {errors.dues && <ErrorMessage>{errors.dues.message as string}</ErrorMessage>}
-        <InputForm
-          {...register('master', {
-            required: REQUIRED_SCHEDULE_MASTER,
-            maxLength: 30,
-          })}
-          labelText="일정 생성자"
-          required
-          inputType="text"
-        />
-        {errors.master && <ErrorMessage>{errors.master.message as string}</ErrorMessage>}
         <TwoInputContainer>
           <InputForm
             {...register('openDate', {
               required: closeDate && ENTER_BOTH_SIDE,
               validate: {
                 today: validateTodayDate,
-                compare: (value) => validateTimeCompare(value, watch('closeDate')),
+                compare: (value) => validateTimeCompare(value, watch('closeDate'), LAST_TIME),
               },
+              max: { value: LIMIT_VALUE.DATE_MAX, message: MAX_YEAR },
             })}
             labelText="신청 시작 날짜 및 시간"
             inputType="datetime-local"
@@ -174,7 +186,8 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
           <InputForm
             {...register('closeDate', {
               required: openDate && ENTER_BOTH_SIDE,
-              validate: (value) => validateTimeCompare(watch('openDate'), value),
+              validate: (value) => validateTimeCompare(watch('openDate'), value, LAST_TIME),
+              max: { value: LIMIT_VALUE.DATE_MAX, message: MAX_YEAR },
             })}
             labelText="마감 시작 날짜 및 시간"
             inputType="datetime-local"
@@ -195,7 +208,10 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
         />
         <TextAreaForm
           {...register('content', {
-            maxLength: { value: 200, message: LENGTH(200) },
+            maxLength: {
+              value: LIMIT_LENGTH.CONTENT_MAX,
+              message: MAX_LENGTH('일정 안내', LIMIT_LENGTH.CONTENT_MAX),
+            },
           })}
           labelText="일정 안내"
           rows={10}
