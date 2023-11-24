@@ -3,11 +3,13 @@ import ClubSetting from '@/components/ClubSetting/ClubSetting';
 import InviteLink from '@/components/InviteLink/InviteLink';
 import MemberManager from '@/components/MemberManager/MemberManager';
 import ConfirmModal from '@/components/Modals/ConfirmModal';
+import Spinner from '@/components/common/Spinner/Spinner';
 import { MODAL_TEXT } from '@/constants/modalMessage';
 import useDeleteClubMutation from '@/hooks/query/club/useDeleteClubMutation';
 import useGetClubQuery from '@/hooks/query/club/useGetClubQuery';
 import useModal from '@/hooks/useModal';
 
+import { Suspense } from 'react';
 import { useParams } from 'react-router-dom';
 
 import {
@@ -44,16 +46,18 @@ const ClubManagePage = () => {
         />
       )}
       <ClubHeader clubId={clubId} />
-      <ClubManagePageContainer>
-        <ClubManagePageLeftWrapper>
-          <MemberManager />
-        </ClubManagePageLeftWrapper>
-        <ClubManagePageRightWrapper>
-          <ClubSetting clubId={clubId} />
-          <InviteLink />
-          <DeleteButton type="button" buttonText="클럽 삭제하기" onClick={deleteModalOpen} />
-        </ClubManagePageRightWrapper>
-      </ClubManagePageContainer>
+      <Suspense fallback={<Spinner />}>
+        <ClubManagePageContainer>
+          <ClubManagePageLeftWrapper>
+            <MemberManager />
+          </ClubManagePageLeftWrapper>
+          <ClubManagePageRightWrapper>
+            <ClubSetting clubId={clubId} />
+            <InviteLink />
+            <DeleteButton type="button" buttonText="클럽 삭제하기" onClick={deleteModalOpen} />
+          </ClubManagePageRightWrapper>
+        </ClubManagePageContainer>
+      </Suspense>
     </>
   );
 };

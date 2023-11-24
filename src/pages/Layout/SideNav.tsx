@@ -38,7 +38,7 @@ const SideNav = () => {
                 isClub
                 pointer
               ></Avatar>
-          </Link>
+            </Link>
           </ClubLogoWrapper>
         ))}
       </ClubWrapper>
