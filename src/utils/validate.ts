@@ -6,7 +6,7 @@ import {
 } from '@/constants/club';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
 
-const { START_TIME, LAST_TIME } = ERROR_MESSAGE.EVENT;
+const { START_TIME } = ERROR_MESSAGE.EVENT;
 const { NAME, NUMBER } = ERROR_MESSAGE.REGISTER;
 
 const validateName = (input: string) => {
@@ -39,12 +39,12 @@ const validateTodayDate = (value: Date) => {
   return true;
 };
 
-const validateTimeCompare = (startTime: Date, lastTime: Date) => {
+const validateTimeCompare = (startTime: Date, lastTime: Date, errorMessage: string) => {
   const selectedTime = new Date(lastTime);
   const start = new Date(startTime);
 
   if (selectedTime < start) {
-    return LAST_TIME;
+    return errorMessage;
   }
 
   return true;

@@ -11,6 +11,7 @@ const useGetSubmittedFormsQuery = ({ eventId, pageNumber }: GetSubmittedFormsReq
     queryKey: [QUERY_KEY.SUBMITTED_FORMS],
     queryFn: () => getSubmittedForms({ eventId, pageNumber }),
     staleTime: FORMS_STALE_TIME,
+    suspense: true,
   });
 
   const { formInfo, userForms, pageData } = submittedForms ?? {};

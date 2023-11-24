@@ -9,6 +9,7 @@ const useClubSchedulesQuery = ({ clubId }: GetClubSchedulesRequest) => {
   const { data } = useQuery({
     queryKey: [QUERY_KEY.CLUB_SCHEDULES, clubId],
     queryFn: () => getClubSchedules({ clubId }),
+    suspense: true,
   });
 
   return { data };

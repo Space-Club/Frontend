@@ -11,6 +11,7 @@ const useAppliedEventQuery = ({ pageNumber }: GetAppliedEventRequest) => {
   const { data: appliedEvent } = useQuery({
     queryKey: [QUERY_KEY.APPLIED_EVENT, pageNumber],
     queryFn: () => getAppliedEvent({ pageNumber }),
+    suspense: true,
   });
 
   const { data, pageData } = appliedEvent ?? {};

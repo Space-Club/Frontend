@@ -2,6 +2,7 @@ import ImageForm from '@/components/ImageForm/ImageForm';
 import InputForm from '@/components/common/InputForm/InputForm';
 import TextAreaForm from '@/components/common/TextAreaForm/TextAreaForm';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
+import { FORM_INFO_VALUE } from '@/constants/limitInputValue';
 import useSubmitForm from '@/hooks/query/event/useSubmitForm';
 import { PromotionDetailResponse } from '@/types/api/getEventDetail';
 import { FormPage } from '@/types/event';
@@ -46,17 +47,10 @@ const PromotionForm = ({ eventType, clubId }: FormPage) => {
     }
   }, [state, setValue]);
 
-  const {
-    REQUIRED_EVENT_NAME,
-    REQUIRED_EVENT_START_TIME,
-    REQUIRED_LOCATION,
-    PERSONNEL,
-    REQUIRED_FORM_START_TIME,
-    REQUIRED_FORM_LAST_TIME,
-    REQUIRED_POSTER,
-    REQUIRED_EVENT_CONTENT,
-    LENGTH,
-  } = ERROR_MESSAGE.EVENT;
+  const { PERSONNEL, MAX_YEAR, REQUIRED, MAX_LENGTH, FORM_START_TIME, LAST_TIME } =
+    ERROR_MESSAGE.EVENT;
+
+  const { LIMIT_LENGTH, LIMIT_VALUE } = FORM_INFO_VALUE;
 
   useEffect(() => {
     const imgSrc = watch('poster');
@@ -84,8 +78,11 @@ const PromotionForm = ({ eventType, clubId }: FormPage) => {
       <ContentArea>
         <InputForm
           {...register('title', {
-            required: `${REQUIRED_EVENT_NAME}`,
-            maxLength: 30,
+            required: REQUIRED('행사 이름은'),
+            maxLength: {
+              value: LIMIT_LENGTH.TITLE_MAX,
+              message: MAX_LENGTH('행사 이름', LIMIT_LENGTH.TITLE_MAX),
+            },
           })}
           labelText="행사 이름"
           required
@@ -95,8 +92,13 @@ const PromotionForm = ({ eventType, clubId }: FormPage) => {
         {errors.title && <ErrorMessage>{errors.title.message as string}</ErrorMessage>}
         <HalfInputForm
           {...register('startDate', {
-            required: `${REQUIRED_EVENT_START_TIME}`,
-            validate: validateTodayDate,
+            required: REQUIRED('행사 시작 날짜는'),
+            validate: {
+              today: validateTodayDate,
+              compare: (value) =>
+                validateTimeCompare(watch('closeDate'), value, FORM_START_TIME('행사')),
+            },
+            max: { value: LIMIT_VALUE.DATE_MAX, message: MAX_YEAR },
           })}
           labelText="행사 시작 날짜 및 시간"
           required
@@ -104,7 +106,13 @@ const PromotionForm = ({ eventType, clubId }: FormPage) => {
         />
         {errors.startDate && <ErrorMessage>{errors.startDate.message as string}</ErrorMessage>}
         <InputForm
-          {...register('location', { required: `${REQUIRED_LOCATION}` })}
+          {...register('location', {
+            required: REQUIRED('행사 장소는'),
+            maxLength: {
+              value: LIMIT_LENGTH.LOCATION_MAX,
+              message: MAX_LENGTH('행사 장소', LIMIT_LENGTH.LOCATION_MAX),
+            },
+          })}
           labelText="행사 장소"
           required
           inputType="text"
@@ -112,7 +120,8 @@ const PromotionForm = ({ eventType, clubId }: FormPage) => {
         {errors.location && <ErrorMessage>{errors.location.message as string}</ErrorMessage>}
         <HalfInputForm
           {...register('capacity', {
-            max: { value: 999, message: `${PERSONNEL}` },
+            min: { value: LIMIT_VALUE.CAPACITY_MIN, message: `${PERSONNEL}` },
+            max: { value: LIMIT_VALUE.CAPACITY_MAX, message: `${PERSONNEL}` },
           })}
           labelText="정원"
           inputType="number"
@@ -122,11 +131,12 @@ const PromotionForm = ({ eventType, clubId }: FormPage) => {
         <TwoInputContainer>
           <InputForm
             {...register('openDate', {
-              required: `${REQUIRED_FORM_START_TIME}`,
+              required: REQUIRED('신청 시작 날짜는'),
               validate: {
                 today: validateTodayDate,
-                compare: (value) => validateTimeCompare(value, watch('closeDate')),
+                compare: (value) => validateTimeCompare(value, watch('closeDate'), LAST_TIME),
               },
+              max: { value: LIMIT_VALUE.DATE_MAX, message: MAX_YEAR },
             })}
             labelText="신청 시작 날짜 및 시간"
             required
@@ -135,8 +145,9 @@ const PromotionForm = ({ eventType, clubId }: FormPage) => {
           />
           <InputForm
             {...register('closeDate', {
-              required: `${REQUIRED_FORM_LAST_TIME}`,
-              validate: (value) => validateTimeCompare(watch('openDate'), value),
+              required: REQUIRED('마감 시작 날짜는'),
+              validate: (value) => validateTimeCompare(watch('openDate'), value, LAST_TIME),
+              max: { value: LIMIT_VALUE.DATE_MAX, message: MAX_YEAR },
             })}
             labelText="마감 시작 날짜 및 시간"
             required
@@ -151,7 +162,7 @@ const PromotionForm = ({ eventType, clubId }: FormPage) => {
       </ContentArea>
       <ContentArea>
         <ImageForm
-          {...register('poster', { required: state ? false : `${REQUIRED_POSTER}` })}
+          {...register('poster', { required: state ? false : REQUIRED('포스터는') })}
           imgFile={imgFile}
           labelText="포스터"
           required
@@ -160,8 +171,11 @@ const PromotionForm = ({ eventType, clubId }: FormPage) => {
         {errors.poster && <ErrorMessage>{errors.poster.message as string}</ErrorMessage>}
         <TextAreaForm
           {...register('content', {
-            required: `${REQUIRED_EVENT_CONTENT}`,
-            maxLength: { value: 200, message: LENGTH(200) },
+            required: REQUIRED('행사 내용은'),
+            maxLength: {
+              value: LIMIT_LENGTH.CONTENT_MAX,
+              message: MAX_LENGTH('행사 내용', LIMIT_LENGTH.CONTENT_MAX),
+            },
           })}
           labelText="행사 내용 작성"
           required

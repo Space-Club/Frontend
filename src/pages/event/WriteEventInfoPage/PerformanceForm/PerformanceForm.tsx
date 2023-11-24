@@ -2,6 +2,7 @@ import ImageForm from '@/components/ImageForm/ImageForm';
 import InputForm from '@/components/common/InputForm/InputForm';
 import TextAreaForm from '@/components/common/TextAreaForm/TextAreaForm';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
+import { FORM_INFO_VALUE } from '@/constants/limitInputValue';
 import useSubmitForm from '@/hooks/query/event/useSubmitForm';
 import { ShowDetailResponse } from '@/types/api/getEventDetail';
 import { FormPage } from '@/types/event';
@@ -50,21 +51,10 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
     }
   }, [state, setValue]);
 
-  const {
-    REQUIRED_SHOW_NAME,
-    REQUIRED_SHOW_START_TIME,
-    REQUIRED_LOCATION,
-    REQUIRED_FORM_START_TIME,
-    REQUIRED_FORM_LAST_TIME,
-    REQUIRED_POSTER,
-    REQUIRED_SHOW_CONTENT,
-    PERSONNEL,
-    COST,
-    BANK_NAME,
-    ACCOUNT,
-    MAX_TICKET,
-    LENGTH,
-  } = ERROR_MESSAGE.EVENT;
+  const { PERSONNEL, COST, TICKET, MAX_YEAR, REQUIRED, MAX_LENGTH, FORM_START_TIME, LAST_TIME } =
+    ERROR_MESSAGE.EVENT;
+
+  const { LIMIT_LENGTH, LIMIT_VALUE } = FORM_INFO_VALUE;
 
   useEffect(() => {
     const imgSrc = watch('poster');
@@ -94,8 +84,11 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
       <ContentArea>
         <InputForm
           {...register('title', {
-            required: `${REQUIRED_SHOW_NAME}`,
-            maxLength: 30,
+            required: REQUIRED('공연 이름은'),
+            maxLength: {
+              value: LIMIT_LENGTH.TITLE_MAX,
+              message: MAX_LENGTH('공연 이름', LIMIT_LENGTH.TAGET_MAX),
+            },
           })}
           labelText="공연 이름"
           required
@@ -105,8 +98,12 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
         {errors.title && <ErrorMessage>{errors.title.message as string}</ErrorMessage>}
         <HalfInputForm
           {...register('startDate', {
-            required: `${REQUIRED_SHOW_START_TIME}`,
-            validate: validateTodayDate,
+            required: REQUIRED('공연 시작 날짜는'),
+            validate: {
+              today: validateTodayDate,
+              compare: (value) =>
+                validateTimeCompare(watch('closeDate'), value, FORM_START_TIME('공연')),
+            },
           })}
           labelText="공연 시작 날짜 및 시간"
           required
@@ -114,7 +111,13 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
         />
         {errors.startDate && <ErrorMessage>{errors.startDate.message as string}</ErrorMessage>}
         <InputForm
-          {...register('location', { required: `${REQUIRED_LOCATION}` })}
+          {...register('location', {
+            required: REQUIRED('공연 장소는'),
+            maxLength: {
+              value: LIMIT_LENGTH.LOCATION_MAX,
+              message: MAX_LENGTH('공연 장소', LIMIT_LENGTH.LOCATION_MAX),
+            },
+          })}
           labelText="공연 장소"
           required
           inputType="text"
@@ -123,7 +126,8 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
         <TwoInputContainer>
           <InputForm
             {...register('capacity', {
-              max: { value: 999, message: `${PERSONNEL}` },
+              min: { value: LIMIT_VALUE.CAPACITY_MIN, message: `${PERSONNEL}` },
+              max: { value: LIMIT_VALUE.CAPACITY_MAX, message: `${PERSONNEL}` },
             })}
             labelText="정원"
             inputType="number"
@@ -131,19 +135,23 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
           />
           <InputForm
             {...register('cost', {
-              max: { value: 1000000, message: `${COST}` },
+              min: { value: LIMIT_VALUE.COST_MIN, message: `${COST}` },
+              max: { value: LIMIT_VALUE.COST_MAX, message: `${COST}` },
             })}
             labelText="비용"
             inputType="number"
             placeholder="정수(0-n)"
           />
         </TwoInputContainer>
-        {errors.personnel && <ErrorMessage>{errors.personnel.message as string}</ErrorMessage>}
+        {errors.capacity && <ErrorMessage>{errors.capacity.message as string}</ErrorMessage>}
         {errors.cost && <ErrorMessage>{errors.cost.message as string}</ErrorMessage>}
         <TwoInputContainer>
           <InputForm
             {...register('bankName', {
-              maxLength: { value: 20, message: `${BANK_NAME}` },
+              maxLength: {
+                value: LIMIT_LENGTH.BANK_NAME_MAX,
+                message: MAX_LENGTH('은행 이름', LIMIT_LENGTH.BANK_NAME_MAX),
+              },
             })}
             labelText="은행 명"
             inputType="text"
@@ -151,7 +159,10 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
           />
           <InputForm
             {...register('accountNumber', {
-              maxLength: { value: 30, message: `${ACCOUNT}` },
+              maxLength: {
+                value: LIMIT_LENGTH.ACCOUNT_NUMBER_MAX,
+                message: MAX_LENGTH('계좌 번호', LIMIT_LENGTH.ACCOUNT_NUMBER_MAX),
+              },
             })}
             labelText="계좌 번호"
             inputType="text"
@@ -162,20 +173,25 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
         {errors.account && <ErrorMessage>{errors.account.message as string}</ErrorMessage>}
         <HalfInputForm
           {...register('maxTicketCount', {
-            max: { value: 999, message: `${MAX_TICKET}` },
+            min: { value: LIMIT_VALUE.TICKET_COUNT_MIN, message: `${TICKET}` },
+            max: { value: LIMIT_VALUE.TICKET_COUNT_MAX, message: `${TICKET}` },
           })}
           labelText="인당 예매 가능 수"
           inputType="number"
           placeholder="정수(1-n)"
         />
+        {errors.maxTicketCount && (
+          <ErrorMessage>{errors.maxTicketCount.message as string}</ErrorMessage>
+        )}
         <TwoInputContainer>
           <InputForm
             {...register('openDate', {
-              required: `${REQUIRED_FORM_START_TIME}`,
+              required: REQUIRED('신청 시작 날짜는'),
               validate: {
                 today: validateTodayDate,
-                compare: (value) => validateTimeCompare(value, watch('closeDate')),
+                compare: (value) => validateTimeCompare(value, watch('closeDate'), LAST_TIME),
               },
+              max: { value: LIMIT_VALUE.DATE_MAX, message: MAX_YEAR },
             })}
             labelText="신청 시작 날짜 및 시간"
             required
@@ -184,8 +200,9 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
           />
           <InputForm
             {...register('closeDate', {
-              required: `${REQUIRED_FORM_LAST_TIME}`,
-              validate: (value) => validateTimeCompare(watch('openDate'), value),
+              required: REQUIRED('마감 시작 날짜는'),
+              validate: (value) => validateTimeCompare(watch('openDate'), value, LAST_TIME),
+              max: { value: LIMIT_VALUE.DATE_MAX, message: MAX_YEAR },
             })}
             labelText="마감 시작 날짜 및 시간"
             required
@@ -200,7 +217,7 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
       </ContentArea>
       <ContentArea>
         <ImageForm
-          {...register('poster', { required: state ? false : `${REQUIRED_POSTER}` })}
+          {...register('poster', { required: state ? false : REQUIRED('포스터는') })}
           imgFile={imgFile}
           labelText="포스터"
           required
@@ -209,8 +226,11 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
         {errors.poster && <ErrorMessage>{errors.poster.message as string}</ErrorMessage>}
         <TextAreaForm
           {...register('content', {
-            required: `${REQUIRED_SHOW_CONTENT}`,
-            maxLength: { value: 200, message: LENGTH(200) },
+            required: REQUIRED('공연 내용은'),
+            maxLength: {
+              value: LIMIT_LENGTH.CONTENT_MAX,
+              message: MAX_LENGTH('공연 내용', LIMIT_LENGTH.CONTENT_MAX),
+            },
           })}
           labelText="공연 내용 작성"
           required

@@ -19,6 +19,7 @@ const RequiredSquare = styled.span`
   border-radius: 50%;
 `;
 const InputStyled = styled.input`
+  position: relative;
   width: 100%;
   height: 3rem;
   outline: none;
@@ -32,6 +33,16 @@ const InputStyled = styled.input`
     background-color: ${Theme.color.white};
     color: ${Theme.color.black};
     border: none;
+  }
+
+  &[type='datetime-local']::-webkit-datetime-edit {
+    padding-left: 1.5rem;
+  }
+
+  &[type='datetime-local']::-webkit-calendar-picker-indicator {
+    position: absolute;
+    width: 100%;
+    cursor: pointer;
   }
 `;
 
