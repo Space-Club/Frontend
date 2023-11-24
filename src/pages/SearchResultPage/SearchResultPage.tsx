@@ -2,6 +2,7 @@ import SearchInputForm from '@/components/SearchInputForm/SearchInputForm';
 import EventCard from '@/components/common/EventCard/EventCard';
 import Header from '@/components/common/Header/Header';
 import Pagination from '@/components/common/Pagination/Pagination';
+import { PaginationWrapper } from '@/components/common/Pagination/Pagination.style';
 import Tab from '@/components/common/Tab/Tab';
 import { MAIN_TABS } from '@/constants/tab';
 import useSearchResultQuery from '@/hooks/query/event/useSearchResultQuery';
@@ -9,12 +10,7 @@ import useSearchResultQuery from '@/hooks/query/event/useSearchResultQuery';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import {
-  PaginationWrapper,
-  SearchMessageStyled,
-  SearchesContainer,
-  SearchesWrapper,
-} from './SearchResultPage.style';
+import { SearchMessageStyled, SearchesContainer, SearchesWrapper } from './SearchResultPage.style';
 
 const SearchResultPage = () => {
   const { keyword } = useParams();

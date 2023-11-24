@@ -3,6 +3,7 @@ import Banner from '@/components/common/Banner/Banner';
 import EventCard from '@/components/common/EventCard/EventCard';
 import Header from '@/components/common/Header/Header';
 import Pagination from '@/components/common/Pagination/Pagination';
+import { PaginationWrapper } from '@/components/common/Pagination/Pagination.style';
 import Tab from '@/components/common/Tab/Tab';
 import { MAIN_TABS } from '@/constants/tab';
 import useAllEventsQuery from '@/hooks/query/event/useAllEventsQuery';
@@ -14,7 +15,6 @@ import {
   BannerWrapperStyled,
   ContentContainerStyled,
   EventCardWrapperStyled,
-  PaginationWrapper,
 } from './MainPage.style';
 
 const MainPage = () => {

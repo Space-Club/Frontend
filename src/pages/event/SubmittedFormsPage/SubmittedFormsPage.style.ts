@@ -6,8 +6,4 @@ const SubmittedFormsWrapper = styled.div`
   align-items: center;
 `;
 
-const PaginationWrapper = styled.div`
-  padding: 2rem 0 5rem 0;
-`;
-
-export { SubmittedFormsWrapper, PaginationWrapper };
+export { SubmittedFormsWrapper };

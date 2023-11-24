@@ -2,6 +2,7 @@ import ActiveButton from '@/components/ActiveButton/ActiveButton';
 import ClubHeader from '@/components/ClubHeader/ClubHeader';
 import EventCard from '@/components/common/EventCard/EventCard';
 import Pagination from '@/components/common/Pagination/Pagination';
+import { PaginationWrapper } from '@/components/common/Pagination/Pagination.style';
 import { CREATE_EVENT } from '@/constants/club';
 import { PATH } from '@/constants/path';
 import useClubEventsQuery from '@/hooks/query/club/useClubEventsQuery';
@@ -48,7 +49,9 @@ const ClubEventPage = () => {
           <EmptyClubEvent>클럽에서 생성한 행사가 없습니다!</EmptyClubEvent>
         )}
       </EventsContainer>
-      <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
+      <PaginationWrapper>
+        <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
+      </PaginationWrapper>
       <ButtonWrapper>
         <ActiveButton
           buttonText={CREATE_EVENT.BUTTON_TEXT}

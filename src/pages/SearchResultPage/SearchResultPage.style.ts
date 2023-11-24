@@ -20,8 +20,4 @@ const SearchesWrapper = styled.div`
   margin-bottom: 5%;
 `;
 
-const PaginationWrapper = styled.div`
-  padding: 2rem 0 5rem 0;
-`;
-
-export { SearchesContainer, SearchMessageStyled, SearchesWrapper, PaginationWrapper };
+export { SearchesContainer, SearchMessageStyled, SearchesWrapper };

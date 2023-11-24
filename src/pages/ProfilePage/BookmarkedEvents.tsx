@@ -1,5 +1,6 @@
 import BookmarkedCard from '@/components/BookmarkedCard/BookmarkedCard';
 import Pagination from '@/components/common/Pagination/Pagination';
+import { PaginationWrapper } from '@/components/common/Pagination/Pagination.style';
 import useGetEventBookMarkQuery from '@/hooks/query/event/useGetEventBookMarkQuery';
 
 import { useState } from 'react';
@@ -43,7 +44,9 @@ const BookmarkedEvents = () => {
         })}
       </BookmarkedEventsContainer>
       {!bookmarks ?? <EmptyEventWrapper>북마크한 행사가 없습니다</EmptyEventWrapper>}
-      <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
+      <PaginationWrapper>
+        <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
+      </PaginationWrapper>
     </>
   );
 };

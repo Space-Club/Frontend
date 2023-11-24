@@ -1,5 +1,6 @@
 import AppliedEventCard from '@/components/common/AppliedEventCard/AppliedEventCard';
 import Pagination from '@/components/common/Pagination/Pagination';
+import { PaginationWrapper } from '@/components/common/Pagination/Pagination.style';
 import useAppliedEventQuery from '@/hooks/query/event/useAppliedEventQuery';
 
 import { useState } from 'react';
@@ -40,7 +41,9 @@ const AppliedEvents = () => {
           <EmptyEventWrapper>신청한 행사가 없습니다.</EmptyEventWrapper>
         )}
       </AppliedEventContainer>
-      <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
+      <PaginationWrapper>
+        <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
+      </PaginationWrapper>
     </>
   );
 };
