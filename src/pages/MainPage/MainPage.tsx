@@ -12,7 +12,7 @@ import { EventsWrapper } from '@/styles/common';
 import { Suspense, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { BannerWrapperStyled, ContentContainerStyled, PaginationWrapper } from './MainPage.style';
+import { BannerWrapperStyled, ContentContainerStyled } from './MainPage.style';
 
 const MainPage = () => {
   const { pathname } = useLocation();
@@ -67,9 +67,7 @@ const MainPage = () => {
               );
             })}
           </EventsWrapper>
-          <PaginationWrapper>
-            <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
-          </PaginationWrapper>
+          <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
         </ContentContainerStyled>
       </Suspense>
     </>

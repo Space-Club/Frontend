@@ -10,11 +10,7 @@ import { EventsWrapper } from '@/styles/common';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import {
-  PaginationWrapper,
-  SearchMessageStyled,
-  SearchesContainer,
-} from './SearchResultPage.style';
+import { SearchMessageStyled, SearchesContainer } from './SearchResultPage.style';
 
 const SearchResultPage = () => {
   const { keyword } = useParams();
@@ -48,13 +44,11 @@ const SearchResultPage = () => {
             />
           ))}
         </EventsWrapper>
-        <PaginationWrapper>
           <Pagination
             totalPages={totalPages}
             size={size}
             onChangePage={(page) => setCurrentPage(page)}
           />
-        </PaginationWrapper>
       </SearchesContainer>
     </>
   );

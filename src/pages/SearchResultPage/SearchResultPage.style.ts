@@ -13,8 +13,4 @@ const SearchMessageStyled = styled.div`
   font-size: ${Theme.fontSize.smallTitle};
 `;
 
-const PaginationWrapper = styled.div`
-  padding: 2rem 0 5rem 0;
-`;
-
-export { SearchesContainer, SearchMessageStyled, PaginationWrapper };
+export { SearchesContainer, SearchMessageStyled };
