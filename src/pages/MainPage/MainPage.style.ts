@@ -10,14 +10,16 @@ const BannerWrapperStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 5% 0;
+  margin: 2rem;
 `;
 
 const EventCardWrapperStyled = styled.div`
   display: flex;
+  justify-content: space-evenly;
   flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 5%;
+  gap: 1rem;
+  max-width: 70rem;
+  width: fit-content;
 `;
 
 const PaginationWrapper = styled.div`
