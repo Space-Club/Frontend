@@ -16,8 +16,9 @@ const SearchMessageStyled = styled.div`
 const SearchesWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 5%;
+  justify-content: space-evenly;
+  gap: 1rem;
+  max-width: 70rem;
 `;
 
 const PaginationWrapper = styled.div`
