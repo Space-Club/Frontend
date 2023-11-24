@@ -3,11 +3,11 @@ import SideBarMyProfile from '@/components/SideBarMyProfile/SideBarMyProfile';
 import Avatar from '@/components/common/Avatar/Avatar';
 import { PATH } from '@/constants/path';
 import useClubs from '@/hooks/query/club/useClubs';
-import useUserImageQuery from '@/hooks/query/user/useUserImageQuery';
+import useMyProfile from '@/hooks/query/user/useMyProfile';
 import { getStorage } from '@/utils/localStorage';
 
 import { FaPlusCircle } from 'react-icons/fa';
-import { IoMdHome, IoMdNotifications } from 'react-icons/io';
+import { IoMdHome } from 'react-icons/io';
 import { Link, useNavigate } from 'react-router-dom';
 
 import {
@@ -20,16 +20,22 @@ import {
 
 const SideNav = () => {
   const { clubs } = useClubs();
-  const { userImage } = useUserImageQuery();
+  const { data } = useMyProfile();
   const isLoginUser = Boolean(getStorage('token'));
 
   const navigate = useNavigate();
 
   return (
     <SidebarContainer>
+      {isLoginUser && (
+        <CreateClubButtonStyled onClick={() => navigate(PATH.CREATE)}>
+          클럽 생성
+          <FaPlusCircle size={'1rem'} />
+        </CreateClubButtonStyled>
+      )}
       <ClubWrapper>
         {clubs?.map((club) => (
-          <ClubLogoWrapper data-name={club.name}>
+          <ClubLogoWrapper key={club.id} data-name={club.name}>
             <Link to={PATH.CLUB.HOME(club.id)}>
               <Avatar
                 key={club.id}
@@ -42,16 +48,10 @@ const SideNav = () => {
           </ClubLogoWrapper>
         ))}
       </ClubWrapper>
-      {isLoginUser && (
-        <CreateClubButtonStyled>
-          <FaPlusCircle size={'1rem'} onClick={() => navigate(PATH.CREATE)} />
-        </CreateClubButtonStyled>
-      )}
       <IoMdHome className={iconStyle} onClick={() => navigate(PATH.MAIN)} />
-      <IoMdNotifications className={iconStyle} onClick={() => alert('알림페이지 준비 중')} />
       {isLoginUser ? (
         <Link to={PATH.PROFILE_APPLIED}>
-          <SideBarMyProfile profileImageUrl={userImage?.profileImageUrl} />
+          <SideBarMyProfile profileImageUrl={data?.profileImageUrl} />
         </Link>
       ) : (
         <Link to={PATH.LOGIN} style={{ textDecoration: 'none' }}>

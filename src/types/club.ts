@@ -1,5 +1,3 @@
-import { Event } from './event';
-
 interface Club {
   name: string;
   logoImageUrl: string;
@@ -18,25 +16,6 @@ interface CreateClubFormValue {
   info?: string;
 }
 
-interface GetClubEventsRequest {
-  clubId: string;
-  pageNumber: number;
-}
-
-type ClubEventType = Event & { openStatus: 'CLUB' | 'All' };
-
-interface GetClubEventsResponse {
-  data: ClubEventType[];
-  pageData: {
-    first: boolean;
-    last: boolean;
-    pageNumber: number;
-    size: number;
-    totalPages: number;
-    totalElement: number;
-  };
-}
-
 interface getInviteLinkResponse {
   link: 'string'; // TODO 명세서 나올시 수정 필요;
 }
@@ -46,12 +25,4 @@ interface Notice {
   notice: string;
 }
 
-export {
-  getInviteLinkResponse,
-  GetClubEventsRequest,
-  GetClubEventsResponse,
-  CreateClubFormValue,
-  Club,
-  Notice,
-  ClubInfo,
-};
+export { getInviteLinkResponse, CreateClubFormValue, Club, Notice, ClubInfo };

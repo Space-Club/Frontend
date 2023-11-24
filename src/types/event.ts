@@ -42,6 +42,8 @@ interface EventInfo {
   startTime: string;
 }
 
+type ClubEventInfo = EventInfo & { openStatus: 'ALL' | 'CLUB' };
+
 interface BookmarkedEvent
   extends Pick<Event, 'id' | 'title' | 'location' | 'clubName' | 'posterImageUrl' | 'startDate'> {
   bookmark: boolean;
@@ -88,6 +90,7 @@ export {
   Event,
   EventTags,
   EventTagKey,
+  ClubEventInfo,
   EventType,
   EventTag,
   eventTypeAPI,
