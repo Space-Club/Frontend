@@ -35,7 +35,7 @@ const SideNav = () => {
       )}
       <ClubWrapper>
         {clubs?.map((club) => (
-          <ClubLogoWrapper data-name={club.name}>
+          <ClubLogoWrapper key={club.id} data-name={club.name}>
             <Link to={PATH.CLUB.HOME(club.id)}>
               <Avatar
                 key={club.id}
