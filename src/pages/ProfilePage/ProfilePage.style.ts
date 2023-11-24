@@ -37,10 +37,6 @@ const EmptyEventWrapper = styled.div`
   padding: 3.2rem 0;
 `;
 
-const AppliedEventPaginationWrapper = styled.div`
-  margin: 2.4rem 0;
-`;
-
 const DeleteUserButtonWrapper = styled.div`
   display: flex;
   width: 100%;
@@ -52,7 +48,6 @@ export {
   AppliedEventTabContainer,
   AppliedEventContainer,
   ProfileBottomWrapper,
-  AppliedEventPaginationWrapper,
   EmptyEventWrapper,
   DeleteUserButtonWrapper,
 };

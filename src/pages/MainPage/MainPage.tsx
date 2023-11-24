@@ -15,7 +15,6 @@ import {
   BannerWrapperStyled,
   ContentContainerStyled,
   EventCardWrapperStyled,
-  PaginationWrapper,
 } from './MainPage.style';
 
 const MainPage = () => {
@@ -71,9 +70,7 @@ const MainPage = () => {
               );
             })}
           </EventCardWrapperStyled>
-          <PaginationWrapper>
             <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
-          </PaginationWrapper>
         </ContentContainerStyled>
       </Suspense>
     </>
