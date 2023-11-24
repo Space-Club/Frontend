@@ -6,7 +6,7 @@ import { PurpleButton } from '@/pages/event/EventDetailPage/EventDetailPage.styl
 import { MediumTitleStyled, SmallTitleStyled } from '@/styles/common';
 import { validateClubInfo, validateClubName } from '@/utils/validate';
 
-import { useRef } from 'react';
+import { useState } from 'react';
 
 import Avatar from '../common/Avatar/Avatar';
 import ClubBanner from '../common/ClubBanner/ClubBanner';
@@ -29,8 +29,14 @@ const ClubSetting = ({ clubId }: ClubSettingProps) => {
   const { editClub } = useEditClubMutation();
   const { clubInfo } = useGetClubQuery({ clubId });
 
-  const clubNameInputRef = useRef<HTMLInputElement>(null);
-  const clubInfoInputRef = useRef<HTMLInputElement>(null);
+  const [editedClubName, setEditedClubName] = useState(clubInfo?.name || '');
+  const [editedClubInfo, setEditedInfoName] = useState(clubInfo?.info || '');
+
+  if (!clubInfo) {
+    return null;
+  }
+
+  const { coverImageUrl, logoImageUrl } = clubInfo;
 
   const handleCoverImageEdit = (file: File) => {
     editClub({ coverImage: file, clubId });
@@ -41,27 +47,20 @@ const ClubSetting = ({ clubId }: ClubSettingProps) => {
   };
 
   const handleClubNameEdit = () => {
-    if (!clubNameInputRef.current) throw new Error(ERROR_MESSAGE.COMMON.CURRENT_REF_ERROR);
-
-    if (validateClubName(clubNameInputRef.current.value)) {
-      editClub({ name: clubNameInputRef.current.value, clubId });
+    if (validateClubName(editedClubName)) {
+      editClub({ name: editedClubName, clubId });
     } else {
       createToast({ message: ERROR_MESSAGE.CLUB.VALIDATE_LENGTH_NAME, toastType: 'error' });
     }
   };
 
   const handleClubInfoEdit = () => {
-    if (!clubInfoInputRef.current) throw new Error(ERROR_MESSAGE.COMMON.CURRENT_REF_ERROR);
-
-    if (validateClubInfo(clubInfoInputRef.current.value)) {
-      editClub({ info: clubInfoInputRef.current.value, clubId });
-    } else if (clubInfoInputRef.current) {
+    if (validateClubInfo(editedClubInfo)) {
+      editClub({ info: editedClubInfo, clubId });
+    } else {
       createToast({ message: ERROR_MESSAGE.CLUB.VALIDATE_LENGTH_INFO, toastType: 'error' });
     }
   };
-
-  if (!clubInfo) return null;
-  const { coverImageUrl, logoImageUrl, info, name } = clubInfo;
 
   return (
     <>
@@ -77,8 +76,8 @@ const ClubSetting = ({ clubId }: ClubSettingProps) => {
         <ClubInfoEditsWrapper>
           <ClubInfoEditWrapper>
             <InputForm
-              placeholder={name}
-              ref={clubNameInputRef}
+              onChange={(event) => setEditedClubName(event.target.value)}
+              value={editedClubName}
               labelText="클럽이름"
               inputType="text"
             />
@@ -86,8 +85,8 @@ const ClubSetting = ({ clubId }: ClubSettingProps) => {
           </ClubInfoEditWrapper>
           <ClubInfoEditWrapper>
             <InputForm
-              placeholder={info}
-              ref={clubInfoInputRef}
+              onChange={(event) => setEditedInfoName(event.target.value)}
+              value={editedClubInfo}
               labelText="클럽소개"
               inputType="text"
             />
