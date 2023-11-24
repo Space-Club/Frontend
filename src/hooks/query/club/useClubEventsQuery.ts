@@ -1,5 +1,5 @@
 import getClubEvents from '@/apis/club/getClubEvents';
-import { GetClubEventsRequest } from '@/types/club';
+import { GetClubEventsRequest } from '@/types/api/getClubEvents';
 
 import { useQuery } from '@tanstack/react-query';
 

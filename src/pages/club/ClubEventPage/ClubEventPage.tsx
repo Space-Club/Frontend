@@ -31,17 +31,17 @@ const ClubEventPage = () => {
     <>
       <ClubHeader clubId={clubId}></ClubHeader>
       <EventsContainer>
-        {clubEvents?.map((clubEvent) => (
+        {clubEvents?.map(({ id, eventInfo, formInfo, clubInfo }) => (
           <EventCard
-            eventId={clubEvent.id}
-            posterSrc={clubEvent.posterImageUrl}
-            eventTitle={clubEvent.title}
-            eventDate={clubEvent.startDate}
-            eventTime={clubEvent.startTime}
-            eventPlace={clubEvent.location}
-            clubImageSrc={clubEvent.clubLogoImageUrl}
-            clubName={clubEvent.clubName}
-            openStatus={clubEvent.openStatus}
+            eventId={id}
+            posterSrc={eventInfo.posterImageUrl}
+            eventTitle={eventInfo.title}
+            eventDate={eventInfo.startDate}
+            formCloseDate={formInfo.closeDate}
+            eventPlace={eventInfo.location}
+            clubImageSrc={clubInfo.logoImageUrl}
+            clubName={clubInfo.name}
+            openStatus={eventInfo.openStatus}
           />
         ))}
         {clubEvents?.length === 0 && (

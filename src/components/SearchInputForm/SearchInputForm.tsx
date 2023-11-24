@@ -60,7 +60,7 @@ const SearchInputForm = () => {
                 eventTitle={eventInfo.title}
                 posterImageUrl={eventInfo.posterImageUrl}
                 location={eventInfo.location}
-                formEndDate={formInfo.endDate}
+                formEndDate={formInfo.closeDate}
                 clubName={clubInfo.name}
               />
             ))
