@@ -169,19 +169,6 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
         </TwoInputContainer>
         {errors.capacity && <ErrorMessage>{errors.capacity.message as string}</ErrorMessage>}
         {errors.dues && <ErrorMessage>{errors.dues.message as string}</ErrorMessage>}
-        <InputForm
-          {...register('master', {
-            required: REQUIRED('일정 생성자명은'),
-            maxLength: {
-              value: LIMIT_LENGTH.MASTER_MAX,
-              message: MAX_LENGTH('일정 생성자', LIMIT_LENGTH.MASTER_MAX),
-            },
-          })}
-          labelText="일정 생성자"
-          required
-          inputType="text"
-        />
-        {errors.master && <ErrorMessage>{errors.master.message as string}</ErrorMessage>}
         <TwoInputContainer>
           <InputForm
             {...register('openDate', {

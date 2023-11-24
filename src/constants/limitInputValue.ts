@@ -6,7 +6,6 @@ const FORM_INFO_VALUE = {
     CONTENT_MAX: 200,
     LOCATION_MAX: 30,
     TAGET_MAX: 50,
-    MASTER_MAX: 30,
   },
   LIMIT_VALUE: {
     CAPACITY_MIN: 1,
