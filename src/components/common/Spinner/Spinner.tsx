@@ -1,11 +1,15 @@
-import { SpinnerStyled } from './Spinner.style';
+import { SpinnerStyled, SpinnerWrapper } from './Spinner.style';
 
 interface SpinnerProps {
   size?: number;
 }
 
 const Spinner = ({ size = 5 }: SpinnerProps) => {
-  return <SpinnerStyled size={size} />;
+  return (
+    <SpinnerWrapper>
+      <SpinnerStyled size={size} />
+    </SpinnerWrapper>
+  );
 };
 
 export default Spinner;

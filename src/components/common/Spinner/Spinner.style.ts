@@ -1,6 +1,14 @@
 import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
+const SpinnerWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+`;
+
 const SpinnerStyled = styled.div<{ size: number }>`
   width: ${({ size }) => `${size}rem`};
   height: ${({ size }) => `${size}rem`};
@@ -11,4 +19,4 @@ const SpinnerStyled = styled.div<{ size: number }>`
   animation: ${Theme.keyframe.spin} 2s linear infinite;
 `;
 
-export { SpinnerStyled };
+export { SpinnerStyled, SpinnerWrapper };
