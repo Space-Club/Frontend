@@ -6,7 +6,6 @@ const END_POINTS = {
   KAKAO_LOGIN: '/users/oauths',
   REGISTER: '/users',
   DELETE_USER: '/users',
-  USER_IMAGE: '/users/images',
   MY_CLUB: '/users/clubs',
   LOGOUT: '/users/logout',
 
@@ -55,7 +54,7 @@ const END_POINTS = {
     `/users/bookmarked-events?page=${page}&size=${size}&sort=${sort}`,
   BOOK_MARK: (eventId: string) => `/me/events/${eventId}`,
   GET_CLUB: ({ clubId }: { clubId: string }) => `/clubs/${clubId}`,
-  GET_USER_INFO: '/users/profiles',
+  GET_USER_INFO: '/me/profile',
 
   POST_CLUB_NOTICE: ({ clubId }: { clubId: string }) => `/clubs/${clubId}/notices`,
   GET_CLUB_NOTICE: ({ clubId }: { clubId: string }) => `/clubs/${clubId}/notices`,

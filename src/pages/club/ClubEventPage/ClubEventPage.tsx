@@ -9,7 +9,7 @@ import useClubEventsQuery from '@/hooks/query/club/useClubEventsQuery';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { ButtonWrapper, EventsContainer } from './ClubEventPage.style';
+import { ButtonWrapper, EmptyClubEvent, EventsContainer } from './ClubEventPage.style';
 
 const ClubEventPage = () => {
   const navigate = useNavigate();
@@ -31,25 +31,28 @@ const ClubEventPage = () => {
     <>
       <ClubHeader clubId={clubId}></ClubHeader>
       <EventsContainer>
-        {clubEvents?.map((clubEvent) => (
+        {clubEvents?.map(({ id, eventInfo, formInfo, clubInfo }) => (
           <EventCard
-            eventId={clubEvent.id}
-            posterSrc={clubEvent.posterImageUrl}
-            eventTitle={clubEvent.title}
-            eventDate={clubEvent.startDate}
-            eventTime={clubEvent.startTime}
-            eventPlace={clubEvent.location}
-            clubImageSrc={clubEvent.clubLogoImageUrl}
-            clubName={clubEvent.clubName}
-            openStatus={clubEvent.openStatus}
+            eventId={id}
+            posterSrc={eventInfo.posterImageUrl}
+            eventTitle={eventInfo.title}
+            eventDate={eventInfo.startDate}
+            formCloseDate={formInfo.closeDate}
+            eventPlace={eventInfo.location}
+            clubImageSrc={clubInfo.logoImageUrl}
+            clubName={clubInfo.name}
+            openStatus={eventInfo.openStatus}
           />
         ))}
+        {clubEvents?.length === 0 && (
+          <EmptyClubEvent>클럽에서 생성한 행사가 없습니다!</EmptyClubEvent>
+        )}
       </EventsContainer>
       <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
       <ButtonWrapper>
         <ActiveButton
           buttonText={CREATE_EVENT.BUTTON_TEXT}
-          fontSize="mediumTitle"
+          fontSize="mediumContent"
           onClick={() => navigate(`${PATH.CLUB.CHOICE(clubId)}`)}
         />
       </ButtonWrapper>
