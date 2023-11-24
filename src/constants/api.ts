@@ -51,7 +51,7 @@ const END_POINTS = {
   DELETE_MEMBER: ({ clubId, memberId }: { clubId: string; memberId: string }) =>
     `/clubs/${clubId}/members/${memberId}`,
   GET_BOOKMARK: ({ page, size, sort }: { page: number; size: number; sort: string }) =>
-    `/users/bookmarked-events?page=${page}&size=${size}&sort=${sort}`,
+    `/me/events/bookmark?page=${page}&size=${size}&sort=${sort}`,
   BOOK_MARK: (eventId: string) => `/me/events/${eventId}`,
   GET_CLUB: ({ clubId }: { clubId: string }) => `/clubs/${clubId}`,
   GET_USER_INFO: '/me/profile',
