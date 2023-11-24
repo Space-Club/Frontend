@@ -1,5 +1,5 @@
 import App from '@/App';
-import FormLayout from '@/pages/FormLayout/FormLayout';
+import { PATH } from '@/constants/path';
 import Layout from '@/pages/Layout/Layout';
 import LoginPage from '@/pages/LoginPage/LoginPage';
 import MainPage from '@/pages/MainPage/MainPage';
@@ -22,106 +22,61 @@ import WriteEventInfoPage from '@/pages/event/WriteEventInfoPage/WriteEventInfoP
 
 import { createBrowserRouter } from 'react-router-dom';
 
+import PrivateLogin from './PrivateLogin';
+import PrivateManager from './PrivateManager';
+import PrivateMember from './PrivateMember';
+
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: '',
     element: <App />,
     children: [
-      {
-        path: 'login',
-        element: <LoginPage />,
-      },
-      {
-        path: 'register',
-        element: <RegisterPage />,
-      },
-      {
-        path: 'oauths/kakao/callback',
-        element: <OauthRedirectPage />,
-      },
-      {
-        path: 'clubs/invite/:inviteCode',
-        element: <InvitePage />,
-      },
+      { path: PATH.LOGIN, element: <LoginPage /> },
+      { path: PATH.REGISTER, element: <RegisterPage /> },
+      { path: PATH.OAUTH_REDIRECT, element: <OauthRedirectPage /> },
+      { path: PATH.CLUB.INVITE(':inviteCode'), element: <InvitePage /> },
       {
         path: '',
         element: <Layout />,
         children: [
+          { path: PATH.MAIN, element: <MainPage /> },
+          { path: PATH.MAIN_EVENT, element: <MainPage /> },
+          { path: PATH.MAIN_RECRUITMENT, element: <MainPage /> },
+          { path: PATH.EVENT.DETAIL(':eventId'), element: <EventDetailPage /> },
+          { path: PATH.SEARCH(':keyword'), element: <SearchResultPage /> },
+
           {
-            path: '',
-            element: <MainPage />,
+            element: <PrivateLogin />,
             children: [
+              { path: PATH.PROFILE_APPLIED, element: <ProfilePage /> },
+              { path: PATH.PROFILE_BOOKMARK, element: <ProfilePage /> },
+              { path: PATH.CREATE, element: <CreateClubPage /> },
+              { path: PATH.EVENT.SUBMIT_FORM(':eventId'), element: <SubmitFormPage /> },
               {
-                path: 'events',
-                element: <MainPage />,
-              },
-              {
-                path: 'recruitment',
-                element: <MainPage />,
-              },
-            ],
-          },
-          {
-            path: 'search/:keyword',
-            element: <SearchResultPage />,
-          },
-          {
-            path: 'profile/:category',
-            element: <ProfilePage />,
-          },
-          {
-            path: 'club/:clubId',
-            children: [
-              {
-                path: 'home',
-                element: <ClubHomePage />,
-              },
-              {
-                path: 'event',
-                element: <ClubEventPage />,
-              },
-              {
-                path: 'manage',
-                element: <ClubManagePage />,
-              },
-              {
-                path: '',
-                element: <FormLayout />,
+                element: <PrivateMember />,
                 children: [
+                  { path: PATH.CLUB.HOME(':clubId'), element: <ClubHomePage /> },
+                  { path: PATH.CLUB.EVENT(':clubId'), element: <ClubEventPage /> },
                   {
-                    path: 'choice',
-                    element: <ChoiceEventPage />,
-                  },
-                  {
-                    path: 'writeinfo',
-                    element: <WriteEventInfoPage />,
-                  },
-                  {
-                    path: 'writeform/:eventId',
-                    element: <WriteEventFormPage />,
+                    element: <PrivateManager />,
+                    children: [
+                      { path: PATH.CLUB.MANAGE(':clubId'), element: <ClubManagePage /> },
+                      {
+                        path: PATH.CLUB.WRITE_FORM(':clubId', ':eventId'),
+                        element: <WriteEventFormPage />,
+                      },
+                      { path: PATH.CLUB.CHOICE(':clubId'), element: <ChoiceEventPage /> },
+                      {
+                        path: PATH.EVENT.SUBMITTED_FORMS(':clubId', ':eventId'),
+                        element: <SubmittedFormsPage />,
+                      },
+                      {
+                        path: PATH.CLUB.WRITE_INFO(':clubId'),
+                        element: <WriteEventInfoPage />,
+                      },
+                    ],
                   },
                 ],
-              },
-            ],
-          },
-          {
-            path: 'create',
-            element: <CreateClubPage />,
-          },
-          {
-            path: 'event/:eventId',
-            children: [
-              {
-                path: '',
-                element: <EventDetailPage />,
-              },
-              {
-                path: 'forms',
-                element: <SubmittedFormsPage />,
-              },
-              {
-                path: 'submitform',
-                element: <SubmitFormPage />,
               },
             ],
           },

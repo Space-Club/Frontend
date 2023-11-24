@@ -3,6 +3,7 @@ import FormInformationEditor from '@/components/FormInformationEditor/FormInform
 import FormOptionButtons from '@/components/FormOptionButtons/FormOptionButtons';
 import FormOptionDropdown from '@/components/FormOptionDropdown/FormOptionDropdown';
 import FormOptions from '@/components/FormOptions/FormOptions';
+import FormLayout from '@/pages/FormLayout/FormLayout';
 import { eventTypeAPI } from '@/types/event';
 
 import { useLocation, useParams } from 'react-router-dom';
@@ -21,13 +22,15 @@ const WriteEventFormPage = () => {
   if (!eventId) throw new Error('eventId가 없습니다');
 
   return (
-    <WriteEventPageContainer>
-      <FormCheckOptions />
-      <FormInformationEditor />
-      <FormOptions />
-      <FormOptionDropdown eventType={eventType} />
-      <FormOptionButtons eventId={eventId} />
-    </WriteEventPageContainer>
+    <FormLayout>
+      <WriteEventPageContainer>
+        <FormCheckOptions />
+        <FormInformationEditor />
+        <FormOptions />
+        <FormOptionDropdown eventType={eventType} />
+        <FormOptionButtons eventId={eventId} />
+      </WriteEventPageContainer>
+    </FormLayout>
   );
 };
 

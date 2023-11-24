@@ -4,6 +4,7 @@ interface OauthLoginRequest {
 
 interface OauthLoginResponse {
   accessToken: string;
+  refreshToken: string;
   userId: string;
 }
 

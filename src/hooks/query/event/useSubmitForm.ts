@@ -15,7 +15,7 @@ const useSubmitForm = ({ eventType, clubId, isEdit }: FormPage) => {
       if (isEdit) {
         navigate(-1);
       } else {
-        navigate(PATH.CLUB.WRITE_FORM(clubId, data.eventId, eventType));
+        navigate(PATH.CLUB.WRITE_FORM_QUERY(clubId, data.eventId, eventType));
       }
     },
     onError: (error) => {

@@ -12,6 +12,7 @@ const postUser = async ({ name, phoneNumber }: PostUserRequest) => {
     userId,
   });
   setStorage('token', data.accessToken);
+  setStorage('refreshToken', data.refreshToken);
 
   return data;
 };

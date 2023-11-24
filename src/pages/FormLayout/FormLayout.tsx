@@ -1,11 +1,11 @@
 import { FormOptionContextProvider } from '@/context/FormOptionContext';
 
-import { useEffect, useState } from 'react';
-import { Outlet, useLocation } from 'react-router-dom';
+import { PropsWithChildren, useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 
 import { Container, Content, Title } from './FormLayout.style';
 
-const FormLayout = () => {
+const FormLayout = ({ children }: PropsWithChildren) => {
   const [title, setTitle] = useState('');
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
@@ -39,9 +39,7 @@ const FormLayout = () => {
     <FormOptionContextProvider>
       <Container>
         <Title>{title}</Title>
-        <Content>
-          <Outlet />
-        </Content>
+        <Content>{children}</Content>
       </Container>
     </FormOptionContextProvider>
   );

@@ -16,7 +16,6 @@ interface FormOptionDropdownProps {
 const FormOptionDropdown = ({ eventType }: FormOptionDropdownProps) => {
   const [showDropdown, setShowDropdown] = useState(false);
   const { appendOption, selectedOptions } = useContext(FormOptionContext);
-
   const options = Object.values(FORM_OPTION[eventType]).filter(
     (option) => !selectedOptions.find((selectedOption) => selectedOption.title === option.title),
   );

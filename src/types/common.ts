@@ -7,4 +7,9 @@ interface PageData {
   totalElements: number;
 }
 
-export { PageData };
+interface HttpError {
+  exceptionName: string;
+  code: string;
+}
+
+export { PageData, HttpError };

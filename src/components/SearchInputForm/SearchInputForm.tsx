@@ -27,7 +27,7 @@ const SearchInputForm = () => {
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      navigate(`${PATH.SEARCH}/${keyword}`);
+      navigate(PATH.SEARCH(keyword));
     }
   };
 
@@ -45,7 +45,7 @@ const SearchInputForm = () => {
           onClick={() => handleInputClick()}
           onKeyDown={(event) => handleKeyDown(event)}
         />
-        <IconContainerStyled onClick={() => navigate(`${PATH.SEARCH}/${debouncedKeyword}`)}>
+        <IconContainerStyled onClick={() => navigate(PATH.SEARCH(debouncedKeyword))}>
           <CiSearch size="1.5rem" />
         </IconContainerStyled>
       </SearchBarStyled>
@@ -70,7 +70,7 @@ const SearchInputForm = () => {
           {pageData && pageData.totalPages > 0 && (
             <MoreResultStyled
               onClick={() => {
-                navigate(`${PATH.SEARCH}/${debouncedKeyword}`);
+                navigate(PATH.SEARCH(debouncedKeyword));
               }}
             >
               검색결과 더 보러 가기

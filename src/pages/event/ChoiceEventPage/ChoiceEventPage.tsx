@@ -1,5 +1,6 @@
 import ClassificationCard from '@/components/ClassificationCard/ClassificationCard';
 import { PATH } from '@/constants/path';
+import FormLayout from '@/pages/FormLayout/FormLayout';
 import Theme from '@/styles/Theme';
 
 import { useNavigate, useParams } from 'react-router-dom';
@@ -46,21 +47,23 @@ const ChoiceEventPage = () => {
   } as const;
 
   return (
-    <ChoiceEventContainer>
-      {Object.values(CHOICE_CONTENTS).map(
-        ({ title, content, exampleText, imgSrc, color, event }) => (
-          <ClassificationCard
-            key={title}
-            title={title}
-            content={content}
-            exampleText={exampleText}
-            imgSrc={imgSrc}
-            color={color}
-            onClick={() => navigate(`${PATH.CLUB.WRITE_INFO(clubId!)}?event=${event}`)}
-          />
-        ),
-      )}
-    </ChoiceEventContainer>
+    <FormLayout>
+      <ChoiceEventContainer>
+        {Object.values(CHOICE_CONTENTS).map(
+          ({ title, content, exampleText, imgSrc, color, event }) => (
+            <ClassificationCard
+              key={title}
+              title={title}
+              content={content}
+              exampleText={exampleText}
+              imgSrc={imgSrc}
+              color={color}
+              onClick={() => navigate(`${PATH.CLUB.WRITE_INFO(clubId!)}?event=${event}`)}
+            />
+          ),
+        )}
+      </ChoiceEventContainer>
+    </FormLayout>
   );
 };
 
