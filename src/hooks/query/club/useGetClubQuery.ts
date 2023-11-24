@@ -11,6 +11,7 @@ const useGetClubQuery = ({ clubId }: GetClubRequest) => {
   const { data: clubInfo, refetch } = useQuery({
     queryFn: () => getClub({ clubId }),
     queryKey: [QUERY_KEY.GET_CLUB, clubId],
+    suspense: true,
   });
   return { clubInfo, refetch };
 };

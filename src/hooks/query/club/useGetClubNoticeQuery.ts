@@ -9,6 +9,7 @@ const useGetClubNoticeQuery = ({ clubId }: GetClubNoticeRequest) => {
   const { data } = useQuery({
     queryKey: [QUERY_KEY.CLUB_NOTICE, clubId],
     queryFn: () => getClubNotice({ clubId }),
+    suspense: true,
   });
 
   return data ? { clubNotices: data.notices } : { clubNotices: [] };

@@ -11,6 +11,7 @@ const useClubMembersQuery = ({ clubId }: GetClubMembersRequest) => {
   const { data: clubMembers } = useQuery({
     queryKey: [QUERY_KEY, clubId],
     queryFn: () => getClubMembers({ clubId }),
+    suspense: true,
   });
 
   return { clubMembers };
