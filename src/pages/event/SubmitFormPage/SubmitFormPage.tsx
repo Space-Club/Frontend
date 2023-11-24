@@ -76,10 +76,11 @@ const SubmitFormPage = () => {
       <SubmitFormTitle>{eventFormData?.event.title}</SubmitFormTitle>
       <SubmitFormContent>{eventFormData?.form.description}</SubmitFormContent>
       <FormWrapper>
-        {eventFormData?.form.options.map(({ id, title, type, option }) => (
+        {eventFormData?.form.options.map(({ id, title, type, option }, index) => (
           <FormItem
             key={id}
             id={id}
+            index={index}
             title={title}
             type={type}
             options={option}

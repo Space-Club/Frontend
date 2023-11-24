@@ -21,13 +21,13 @@ import {
 const SearchInputForm = () => {
   const [keyword, setKeyword] = useState('');
   const [isFocused, setIsFocused] = useState(false);
-  const debouncedKeyword = useDebounceValue(keyword, 1000);
+  const debouncedKeyword = useDebounceValue(keyword, 300);
   const { data, pageData } = useSearchResultQuery({ keyword: debouncedKeyword, page: 0 });
   const navigate = useNavigate();
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter') {
-      navigate(PATH.SEARCH(debouncedKeyword));
+      navigate(PATH.SEARCH(keyword));
     }
   };
 
@@ -60,7 +60,7 @@ const SearchInputForm = () => {
                 eventTitle={eventInfo.title}
                 posterImageUrl={eventInfo.posterImageUrl}
                 location={eventInfo.location}
-                formEndDate={formInfo.endDate}
+                formEndDate={formInfo.closeDate}
                 clubName={clubInfo.name}
               />
             ))

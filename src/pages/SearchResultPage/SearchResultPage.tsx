@@ -40,7 +40,7 @@ const SearchResultPage = () => {
               eventId={event.id}
               eventTitle={event.eventInfo.title}
               eventDate={event.eventInfo.startDate}
-              formCloseDate={event.formInfo.endDate}
+              formCloseDate={event.formInfo.closeDate}
               posterSrc={event.eventInfo.posterImageUrl}
               eventPlace={event.eventInfo.location}
               clubName={event.clubInfo.name}
