@@ -14,11 +14,20 @@ const BannerWrapperStyled = styled.div`
 `;
 
 const EventCardWrapperStyled = styled.div`
-  display: flex;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  gap: 1rem;
-  max-width: 70rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+  justify-items: center;
+  align-items: center;
+  max-width: 75rem;
+
+  @media (max-width: 71rem) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 50rem) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 const PaginationWrapper = styled.div`
