@@ -11,16 +11,14 @@ import { validateTimeCompare, validateTodayDate } from '@/utils/validate';
 
 import { useEffect, useState } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 
+import NavigateButton from '../NavigateButton/NavigateButton';
 import {
-  ButtonWrapper,
   ContentArea,
   ErrorMessage,
   HalfInputForm,
   PerformanceFormContainer,
-  PrevButton,
-  SubmitButton,
   TwoInputContainer,
 } from '../WriteEventInfoPage.style';
 
@@ -34,7 +32,6 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
   } = useForm();
   const { state } = useLocation();
   const [imgFile, setImgFile] = useState('');
-  const navigate = useNavigate();
   const { submitForm, isSubmitLoading } = useSubmitForm({ eventType, clubId, isEdit: !!state });
 
   useEffect(() => {
@@ -238,12 +235,7 @@ const PerformanceForm = ({ eventType, clubId }: FormPage) => {
         />
         {errors.content && <ErrorMessage>{errors.content?.message as string}</ErrorMessage>}
       </ContentArea>
-      <ButtonWrapper>
-        <PrevButton type="button" onClick={() => navigate(-1)}>
-          이전으로
-        </PrevButton>
-        <SubmitButton type="submit">{state ? '수정' : '다음'}</SubmitButton>
-      </ButtonWrapper>
+      <NavigateButton submitButtonText={state ? '수정' : '다음'} />
     </PerformanceFormContainer>
   );
 };
