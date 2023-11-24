@@ -2,7 +2,6 @@ import SearchInputForm from '@/components/SearchInputForm/SearchInputForm';
 import SubmittedForms from '@/components/SubmittedForms/SubmittedForms';
 import Header from '@/components/common/Header/Header';
 import Pagination from '@/components/common/Pagination/Pagination';
-import { PaginationWrapper } from '@/components/common/Pagination/Pagination.style';
 import Tab from '@/components/common/Tab/Tab';
 import { MAIN_TABS } from '@/constants/tab';
 import useGetSubmittedFormsQuery from '@/hooks/query/event/useGetSubmittedFormsQuery';
@@ -38,9 +37,7 @@ const SubmittedFormsPage = () => {
       <SubmittedFormsWrapper>
         <SubmittedForms formInfo={formInfo} userForms={userForms} />
       </SubmittedFormsWrapper>
-      <PaginationWrapper>
-        <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
-      </PaginationWrapper>
+      <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
     </>
   );
 };

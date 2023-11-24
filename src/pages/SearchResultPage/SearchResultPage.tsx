@@ -2,7 +2,6 @@ import SearchInputForm from '@/components/SearchInputForm/SearchInputForm';
 import EventCard from '@/components/common/EventCard/EventCard';
 import Header from '@/components/common/Header/Header';
 import Pagination from '@/components/common/Pagination/Pagination';
-import { PaginationWrapper } from '@/components/common/Pagination/Pagination.style';
 import Tab from '@/components/common/Tab/Tab';
 import { MAIN_TABS } from '@/constants/tab';
 import useSearchResultQuery from '@/hooks/query/event/useSearchResultQuery';
@@ -44,13 +43,11 @@ const SearchResultPage = () => {
             />
           ))}
         </SearchesWrapper>
-        <PaginationWrapper>
-          <Pagination
-            totalPages={totalPages}
-            size={size}
-            onChangePage={(page) => setCurrentPage(page)}
-          />
-        </PaginationWrapper>
+        <Pagination
+          totalPages={totalPages}
+          size={size}
+          onChangePage={(page) => setCurrentPage(page)}
+        />
       </SearchesContainer>
     </>
   );
