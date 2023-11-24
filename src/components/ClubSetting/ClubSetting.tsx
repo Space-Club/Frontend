@@ -48,7 +48,7 @@ const ClubSetting = ({ clubId }: ClubSettingProps) => {
 
   const handleClubNameEdit = () => {
     if (validateClubName(editedClubName)) {
-      editClub({ name: editedClubName, clubId });
+      editClub({ name: editedClubName.trim(), clubId });
     } else {
       createToast({ message: ERROR_MESSAGE.CLUB.VALIDATE_LENGTH_NAME, toastType: 'error' });
     }
@@ -56,7 +56,7 @@ const ClubSetting = ({ clubId }: ClubSettingProps) => {
 
   const handleClubInfoEdit = () => {
     if (validateClubInfo(editedClubInfo)) {
-      editClub({ info: editedClubInfo, clubId });
+      editClub({ info: editedClubInfo.trim(), clubId });
     } else {
       createToast({ message: ERROR_MESSAGE.CLUB.VALIDATE_LENGTH_INFO, toastType: 'error' });
     }
