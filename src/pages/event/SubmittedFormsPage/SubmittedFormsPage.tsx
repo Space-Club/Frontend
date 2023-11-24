@@ -9,11 +9,7 @@ import useGetSubmittedFormsQuery from '@/hooks/query/event/useGetSubmittedFormsQ
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import {
-  HeaderContentWrapper,
-  PaginationWrapper,
-  SubmittedFormsWrapper,
-} from './SubmittedFormsPage.style';
+import { PaginationWrapper, SubmittedFormsWrapper } from './SubmittedFormsPage.style';
 
 const SubmittedFormsPage = () => {
   const { eventId } = useParams() as { eventId: string };
@@ -35,10 +31,8 @@ const SubmittedFormsPage = () => {
   return (
     <>
       <Header>
-        <HeaderContentWrapper>
-          <SearchInputForm />
-          <Tab tabItems={MAIN_TABS} />
-        </HeaderContentWrapper>
+        <SearchInputForm />
+        <Tab tabItems={MAIN_TABS} />
       </Header>
       <SubmittedFormsWrapper>
         <SubmittedForms formInfo={formInfo} userForms={userForms} />
