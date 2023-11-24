@@ -78,7 +78,7 @@ const PromotionForm = ({ eventType, clubId }: FormPage) => {
       <ContentArea>
         <InputForm
           {...register('title', {
-            required: REQUIRED('행사 이름는'),
+            required: REQUIRED('행사 이름은'),
             maxLength: {
               value: LIMIT_LENGTH.TITLE_MAX,
               message: MAX_LENGTH('행사 이름', LIMIT_LENGTH.TITLE_MAX),
