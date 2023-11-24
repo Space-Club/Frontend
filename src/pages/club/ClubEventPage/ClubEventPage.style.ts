@@ -3,9 +3,10 @@ import styled from '@emotion/styled';
 
 const EventsContainer = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-evenly;
   flex-wrap: wrap;
+  gap: 1rem;
+  max-width: 70rem;
   padding-top: 3rem;
 `;
 

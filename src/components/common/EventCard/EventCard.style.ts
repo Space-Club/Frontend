@@ -5,7 +5,6 @@ const ContainerStyled = styled.div`
   width: 20.3rem;
   height: 13.3rem;
   cursor: pointer;
-  border: 1px solid;
 `;
 
 const PosterAreaStyled = styled.div`

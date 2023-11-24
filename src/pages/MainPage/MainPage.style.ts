@@ -19,7 +19,6 @@ const EventCardWrapperStyled = styled.div`
   flex-wrap: wrap;
   gap: 1rem;
   max-width: 70rem;
-  width: fit-content;
 `;
 
 const PaginationWrapper = styled.div`
