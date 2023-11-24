@@ -13,16 +13,8 @@ const SearchMessageStyled = styled.div`
   font-size: ${Theme.fontSize.smallTitle};
 `;
 
-const SearchesWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  gap: 1rem;
-  max-width: 70rem;
-`;
-
 const PaginationWrapper = styled.div`
   padding: 2rem 0 5rem 0;
 `;
 
-export { SearchesContainer, SearchMessageStyled, SearchesWrapper, PaginationWrapper };
+export { SearchesContainer, SearchMessageStyled, PaginationWrapper };

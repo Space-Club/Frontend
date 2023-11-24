@@ -5,6 +5,7 @@ import Pagination from '@/components/common/Pagination/Pagination';
 import Tab from '@/components/common/Tab/Tab';
 import { MAIN_TABS } from '@/constants/tab';
 import useSearchResultQuery from '@/hooks/query/event/useSearchResultQuery';
+import { EventsWrapper } from '@/styles/common';
 
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -13,7 +14,6 @@ import {
   PaginationWrapper,
   SearchMessageStyled,
   SearchesContainer,
-  SearchesWrapper,
 } from './SearchResultPage.style';
 
 const SearchResultPage = () => {
@@ -33,7 +33,7 @@ const SearchResultPage = () => {
       </Header>
       <SearchMessageStyled>{`"${keyword}" 검색 결과`}</SearchMessageStyled>
       <SearchesContainer>
-        <SearchesWrapper>
+        <EventsWrapper>
           {data?.map((event) => (
             <EventCard
               key={event.id}
@@ -47,7 +47,7 @@ const SearchResultPage = () => {
               clubImageSrc={event.clubInfo.logoImageUrl}
             />
           ))}
-        </SearchesWrapper>
+        </EventsWrapper>
         <PaginationWrapper>
           <Pagination
             totalPages={totalPages}

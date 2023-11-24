@@ -6,16 +6,12 @@ import Pagination from '@/components/common/Pagination/Pagination';
 import Tab from '@/components/common/Tab/Tab';
 import { MAIN_TABS } from '@/constants/tab';
 import useAllEventsQuery from '@/hooks/query/event/useAllEventsQuery';
+import { EventsWrapper } from '@/styles/common';
 
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import {
-  BannerWrapperStyled,
-  ContentContainerStyled,
-  EventCardWrapperStyled,
-  PaginationWrapper,
-} from './MainPage.style';
+import { BannerWrapperStyled, ContentContainerStyled, PaginationWrapper } from './MainPage.style';
 
 const MainPage = () => {
   const { pathname } = useLocation();
@@ -53,7 +49,7 @@ const MainPage = () => {
         <BannerWrapperStyled>
           <Banner width={35} height={20} />
         </BannerWrapperStyled>
-        <EventCardWrapperStyled>
+        <EventsWrapper>
           {events?.map(({ id, eventInfo, formInfo, clubInfo }) => {
             return (
               <EventCard
@@ -68,7 +64,7 @@ const MainPage = () => {
               />
             );
           })}
-        </EventCardWrapperStyled>
+        </EventsWrapper>
         <PaginationWrapper>
           <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
         </PaginationWrapper>
