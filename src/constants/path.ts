@@ -3,7 +3,7 @@ import { eventTypeAPI } from '@/types/event';
 const PATH = {
   LOGIN: '/login',
   REGISTER: '/register',
-  OAUTH_REDIRECT: '/oauth/kakao/callback',
+  OAUTH_REDIRECT: '/oauths/kakao/callback',
 
   MAIN: '/',
   MAIN_EVENT: '/events',
