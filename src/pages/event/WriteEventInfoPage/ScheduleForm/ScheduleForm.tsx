@@ -1,4 +1,3 @@
-import ImageForm from '@/components/ImageForm/ImageForm';
 import InputForm from '@/components/common/InputForm/InputForm';
 import TextAreaForm from '@/components/common/TextAreaForm/TextAreaForm';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
@@ -9,10 +8,11 @@ import { FormPage } from '@/types/event';
 import setFormValue from '@/utils/setFormValue';
 import { validateTimeCompare, validateTodayDate } from '@/utils/validate';
 
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { FieldValues, useForm } from 'react-hook-form';
 import { useLocation } from 'react-router-dom';
 
+import ImageUploadInput from '../ImageUploadInput/ImageUploadInput';
 import NavigateButton from '../NavigateButton/NavigateButton';
 import {
   ContentArea,
@@ -30,13 +30,12 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
     formState: { errors },
   } = useForm({});
   const { state } = useLocation();
-  const [imgFile, setImgFile] = useState('');
   const { submitForm, isSubmitLoading } = useSubmitForm({ eventType, clubId, isEdit: !!state });
 
   useEffect(() => {
     if (state) {
       const eventDetail: ClubDetailResponse = state.eventDetail;
-      setFormValue({ setValue, setImgFile, eventDetail });
+      setFormValue({ setValue, eventDetail });
 
       setValue('startDate', `${eventDetail.startDate}T${eventDetail.startTime}`);
       setValue('endDate', `${eventDetail.endDate}T${eventDetail.endTime}`);
@@ -57,18 +56,6 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
   } = ERROR_MESSAGE.EVENT;
 
   const { LIMIT_LENGTH, LIMIT_VALUE } = FORM_INFO_VALUE;
-
-  useEffect(() => {
-    const imgSrc = watch('poster');
-    if (imgSrc[0]) {
-      const reader = new FileReader();
-      reader.readAsDataURL(imgSrc[0]);
-      reader.onload = () => {
-        setImgFile(reader.result as string);
-      };
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [watch('poster')]);
 
   const onScheduleSubmitForm = (data: FieldValues) => {
     if (isSubmitLoading || !clubId) return;
@@ -197,11 +184,12 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
         {errors.closeDate && <ErrorMessage>{errors.closeDate.message as string}</ErrorMessage>}
       </ContentArea>
       <ContentArea>
-        <ImageForm
-          {...register('poster')}
-          imgFile={imgFile}
-          labelText="포스터"
-          buttonText="이미지 선택하기"
+        <ImageUploadInput
+          register={register}
+          watch={watch}
+          errors={errors}
+          isRequired={false}
+          posterImageUrl={state?.eventDetail.imagePosterUrl}
         />
         <TextAreaForm
           {...register('content', {
