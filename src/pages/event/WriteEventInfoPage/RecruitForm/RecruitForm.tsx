@@ -2,62 +2,41 @@ import InputForm from '@/components/common/InputForm/InputForm';
 import TextAreaForm from '@/components/common/TextAreaForm/TextAreaForm';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
 import { FORM_INFO_VALUE } from '@/constants/limitInputValue';
-import useSubmitForm from '@/hooks/query/event/useSubmitForm';
 import { RecruitmentDetailResponse } from '@/types/api/getEventDetail';
-import { FormPage } from '@/types/event';
+import { ReactHookFormProps } from '@/types/event';
 import setFormValue from '@/utils/setFormValue';
 import { validateTimeCompare, validateTodayDate } from '@/utils/validate';
 
 import { useEffect } from 'react';
-import { FieldValues, useForm } from 'react-hook-form';
-import { useLocation } from 'react-router-dom';
 
 import ImageUploadInput from '../ImageUploadInput/ImageUploadInput';
-import NavigateButton from '../NavigateButton/NavigateButton';
 import {
   ContentArea,
   ErrorMessage,
   HalfInputForm,
-  PerformanceFormContainer,
   TwoInputContainer,
 } from '../WriteEventInfoPage.style';
 
-const RecruitForm = ({ eventType, clubId }: FormPage) => {
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    watch,
-    formState: { errors },
-  } = useForm();
-  const { state } = useLocation();
-  const { submitForm, isSubmitLoading } = useSubmitForm({ eventType, clubId, isEdit: !!state });
+interface RecruitForm extends ReactHookFormProps {
+  eventDetail: RecruitmentDetailResponse;
+}
 
+const RecruitForm = ({ register, setValue, watch, errors, eventDetail }: RecruitForm) => {
   useEffect(() => {
-    if (state) {
-      const eventDetail: RecruitmentDetailResponse = state.eventDetail;
+    if (eventDetail) {
       setFormValue({ setValue, eventDetail });
 
       setValue('activityArea', eventDetail.location);
       setValue('recruitmentTarget', eventDetail.recruitmentTarget);
     }
-  }, [state, setValue]);
+  }, [eventDetail, setValue]);
 
   const { PERSONNEL, MAX_YEAR, LAST_TIME, REQUIRED, MAX_LENGTH } = ERROR_MESSAGE.EVENT;
 
   const { LIMIT_LENGTH, LIMIT_VALUE } = FORM_INFO_VALUE;
 
-  const onRecruitSubmitForm = (data: FieldValues) => {
-    if (isSubmitLoading || !clubId) return;
-    if (state) {
-      submitForm({ data, clubId, eventType, eventId: state.eventId });
-    } else {
-      submitForm({ data, clubId, eventType });
-    }
-  };
-
   return (
-    <PerformanceFormContainer onSubmit={handleSubmit(onRecruitSubmitForm)}>
+    <>
       <ContentArea>
         <InputForm
           {...register('title', {
@@ -147,8 +126,8 @@ const RecruitForm = ({ eventType, clubId }: FormPage) => {
           register={register}
           watch={watch}
           errors={errors}
-          isRequired={state ? false : REQUIRED('포스터는')}
-          posterImageUrl={state?.eventDetail.imagePosterUrl}
+          isRequired={eventDetail ? false : REQUIRED('포스터는')}
+          posterImageUrl={eventDetail?.posterImageUrl}
         />
         <TextAreaForm
           {...register('content', {
@@ -164,8 +143,7 @@ const RecruitForm = ({ eventType, clubId }: FormPage) => {
         />
         {errors.content && <ErrorMessage>{errors.content.message as string}</ErrorMessage>}
       </ContentArea>
-      <NavigateButton submitButtonText={state ? '수정' : '다음'} />
-    </PerformanceFormContainer>
+    </>
   );
 };
 

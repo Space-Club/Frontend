@@ -2,7 +2,7 @@ import InputForm from '@/components/common/InputForm/InputForm';
 import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
-const PerformanceFormContainer = styled.form`
+const EventFormContainer = styled.form`
   display: flex;
   position: relative;
   width: 100%;
@@ -45,4 +45,4 @@ const ErrorMessage = styled.p`
   color: red;
 `;
 
-export { PerformanceFormContainer, ContentArea, TwoInputContainer, HalfInputForm, ErrorMessage };
+export { EventFormContainer, ContentArea, TwoInputContainer, HalfInputForm, ErrorMessage };
