@@ -1,5 +1,0 @@
-const ERROR_CODE = {
-  NOT_CLUB_MEMBER: 'NOT_CLUB_MEMBER',
-};
-
-export { ERROR_CODE };

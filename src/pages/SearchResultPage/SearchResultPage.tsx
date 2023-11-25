@@ -9,12 +9,7 @@ import useSearchResultQuery from '@/hooks/query/event/useSearchResultQuery';
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import {
-  PaginationWrapper,
-  SearchMessageStyled,
-  SearchesContainer,
-  SearchesWrapper,
-} from './SearchResultPage.style';
+import { SearchMessageStyled, SearchesContainer, SearchesWrapper } from './SearchResultPage.style';
 
 const SearchResultPage = () => {
   const { keyword } = useParams();
@@ -48,13 +43,11 @@ const SearchResultPage = () => {
             />
           ))}
         </SearchesWrapper>
-        <PaginationWrapper>
-          <Pagination
-            totalPages={totalPages}
-            size={size}
-            onChangePage={(page) => setCurrentPage(page)}
-          />
-        </PaginationWrapper>
+        <Pagination
+          totalPages={totalPages}
+          size={size}
+          onChangePage={(page) => setCurrentPage(page)}
+        />
       </SearchesContainer>
     </>
   );
