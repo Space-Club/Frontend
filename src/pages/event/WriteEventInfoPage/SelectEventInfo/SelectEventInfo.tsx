@@ -1,20 +1,28 @@
-import { EventType } from '@/types/event';
+import {
+  ClubDetailResponse,
+  PromotionDetailResponse,
+  RecruitmentDetailResponse,
+  ShowDetailResponse,
+  getEventDetailResponse,
+} from '@/types/api/getEventDetail';
+import { EventType, ReactHookFormProps } from '@/types/event';
 
 import PerformanceForm from '../PerformanceForm/PerformanceForm';
 import PromotionForm from '../PromotionForm/PromotionForm';
 import RecruitForm from '../RecruitForm/RecruitForm';
 import ScheduleForm from '../ScheduleForm/ScheduleForm';
 
-interface SelectEventInfo {
+interface SelectEventInfo extends ReactHookFormProps {
   eventQuery: EventType;
+  eventDetail?: getEventDetailResponse;
 }
 
-const SelectEventInfo = ({ eventQuery, ...props }: SelectEventInfo) => {
+const SelectEventInfo = ({ eventQuery, eventDetail, ...props }: SelectEventInfo) => {
   const formComponentMap = {
-    show: <PerformanceForm {...props} />,
-    promotion: <PromotionForm {...props} />,
-    recruitment: <RecruitForm {...props} />,
-    club: <ScheduleForm {...props} />,
+    show: <PerformanceForm eventDetail={eventDetail as ShowDetailResponse} {...props} />,
+    promotion: <PromotionForm eventDetail={eventDetail as PromotionDetailResponse} {...props} />,
+    recruitment: <RecruitForm eventDetail={eventDetail as RecruitmentDetailResponse} {...props} />,
+    club: <ScheduleForm eventDetail={eventDetail as ClubDetailResponse} {...props} />,
   };
 
   const selectedForm = formComponentMap[eventQuery];

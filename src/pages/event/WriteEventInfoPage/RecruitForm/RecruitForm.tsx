@@ -18,7 +18,7 @@ import {
 } from '../WriteEventInfoPage.style';
 
 interface RecruitForm extends ReactHookFormProps {
-  eventDetail: RecruitmentDetailResponse;
+  eventDetail?: RecruitmentDetailResponse;
 }
 
 const RecruitForm = ({ register, setValue, watch, errors, eventDetail }: RecruitForm) => {

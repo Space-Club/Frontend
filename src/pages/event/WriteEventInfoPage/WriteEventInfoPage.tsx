@@ -33,7 +33,6 @@ const WriteEventInfoPage = () => {
     setValue,
     watch,
     errors,
-    eventDetail: state?.eventDetail,
   };
 
   const { submitForm, isSubmitLoading } = useSubmitForm({
@@ -54,7 +53,7 @@ const WriteEventInfoPage = () => {
   return (
     <FormLayout>
       <EventFormContainer onSubmit={handleSubmit(onEventSubmitForm)}>
-        <SelectEventInfo eventQuery={eventQuery} {...infoProps} />
+        <SelectEventInfo eventQuery={eventQuery} eventDetail={state?.eventDetail} {...infoProps} />
         <NavigateButton submitButtonText={state ? '수정' : '다음'} />
       </EventFormContainer>
     </FormLayout>

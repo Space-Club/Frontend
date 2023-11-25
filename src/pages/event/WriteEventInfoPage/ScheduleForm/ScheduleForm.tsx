@@ -13,7 +13,7 @@ import ImageUploadInput from '../ImageUploadInput/ImageUploadInput';
 import { ContentArea, ErrorMessage, TwoInputContainer } from '../WriteEventInfoPage.style';
 
 interface ScheduleForm extends ReactHookFormProps {
-  eventDetail: ClubDetailResponse;
+  eventDetail?: ClubDetailResponse;
 }
 
 const ScheduleForm = ({ register, setValue, watch, errors, eventDetail }: ScheduleForm) => {
