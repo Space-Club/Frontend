@@ -51,14 +51,24 @@ const validateTimeCompare = (startTime: Date, lastTime: Date, errorMessage: stri
 };
 
 const validateClubName = (clubName: string) => {
-  if (clubName.length < MIN_CLUB_NAME_LENGTH || clubName.length > MAX_CLUB_NAME_LENGTH) {
+  const trimmedClubName = clubName.trim();
+
+  if (
+    trimmedClubName.length < MIN_CLUB_NAME_LENGTH ||
+    trimmedClubName.length > MAX_CLUB_NAME_LENGTH
+  ) {
     return false;
   }
   return true;
 };
 
 const validateClubInfo = (clubInfo: string) => {
-  if (clubInfo.length < MIN_CLUB_INFO_LENGTH || clubInfo.length > MAX_CLUB_INFO_LENGTH) {
+  const trimmedClubInfo = clubInfo.trim();
+
+  if (
+    trimmedClubInfo.length < MIN_CLUB_INFO_LENGTH ||
+    trimmedClubInfo.length > MAX_CLUB_INFO_LENGTH
+  ) {
     return false;
   }
   return true;
