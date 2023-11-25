@@ -42,7 +42,7 @@ const WriteEventInfoPage = () => {
     isEdit: !!state,
   });
 
-  const onPerformanceSubmitForm = async (data: FieldValues) => {
+  const onEventSubmitForm = async (data: FieldValues) => {
     if (isSubmitLoading || !clubId) return;
     if (state) {
       submitForm({ data, clubId, eventType, eventId: state.eventId });
@@ -53,7 +53,7 @@ const WriteEventInfoPage = () => {
 
   return (
     <FormLayout>
-      <EventFormContainer onSubmit={handleSubmit(onPerformanceSubmitForm)}>
+      <EventFormContainer onSubmit={handleSubmit(onEventSubmitForm)}>
         <SelectEventInfo eventQuery={eventQuery} {...infoProps} />
         <NavigateButton submitButtonText={state ? '수정' : '다음'} />
       </EventFormContainer>
