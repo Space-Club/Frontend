@@ -1,14 +1,11 @@
 import { END_POINTS } from '@/constants/api';
-import { getEventFormResponse } from '@/types/event';
+import { getEventDetailResponse } from '@/types/api/getEventDetail';
+import { getEventFormRequest } from '@/types/api/getEventForm';
 
 import { axiosClientWithAuth } from '../axiosClient';
 
-interface getEventForm {
-  eventId: string;
-}
-
-const getEventForm = async ({ eventId }: getEventForm) => {
-  const { data } = await axiosClientWithAuth.get<getEventFormResponse>(
+const getEventForm = async ({ eventId }: getEventFormRequest) => {
+  const { data } = await axiosClientWithAuth.get<getEventDetailResponse>(
     END_POINTS.GET_EVENT_FORM(eventId),
   );
 

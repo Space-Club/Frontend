@@ -1,7 +1,5 @@
 import Theme from '@/styles/Theme';
 
-import { FormType } from './form';
-
 type EventStatus = 'CONFIRMED' | 'PENDING' | 'CANCEL_REQUESTED' | 'CANCELED';
 
 type EventTagKey = 'publicEvent' | 'clubOnlyEvent' | EventStatus;
@@ -61,21 +59,6 @@ interface SchedulesProps {
   schedules: Schedule[];
 }
 
-interface getEventFormResponse {
-  event: {
-    title: string;
-  };
-  form: {
-    description: string;
-    options: {
-      id: number;
-      title: string;
-      type: FormType;
-      option?: string[];
-    }[];
-  };
-}
-
 interface FormPage {
   eventType: eventTypeAPI;
   clubId: string;
@@ -86,7 +69,6 @@ type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 export {
-  getEventFormResponse,
   Event,
   EventTags,
   EventTagKey,

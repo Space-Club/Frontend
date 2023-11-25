@@ -16,13 +16,9 @@ interface CreateClubFormValue {
   info?: string;
 }
 
-interface getInviteLinkResponse {
-  link: 'string'; // TODO 명세서 나올시 수정 필요;
-}
-
 interface Notice {
   id: string;
   notice: string;
 }
 
-export { getInviteLinkResponse, CreateClubFormValue, Club, Notice, ClubInfo };
+export { CreateClubFormValue, Club, Notice, ClubInfo };
