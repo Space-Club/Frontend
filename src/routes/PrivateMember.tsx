@@ -1,4 +1,4 @@
-import { ERROR_CODE } from '@/constants/error';
+import { EXCEPTION_CODE } from '@/constants/exceptionCode';
 import { PATH } from '@/constants/path';
 import useMemberAuth from '@/hooks/query/club/useMemberAuth';
 import useToast from '@/hooks/useToast';
@@ -15,7 +15,7 @@ const PrivateMember = ({ children }: PropsWithChildren) => {
 
   const { role, isError, httpError } = useMemberAuth({ clubId });
 
-  if (isError && httpError.code === ERROR_CODE.NOT_CLUB_MEMBER) {
+  if (isError && httpError.code === EXCEPTION_CODE.NOT_CLUB_MEMBER) {
     createToast({ message: '클럽의 멤버만 접근 가능합니다.', toastType: 'error' });
     navigate(PATH.MAIN);
   }

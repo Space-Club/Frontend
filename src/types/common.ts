@@ -1,3 +1,5 @@
+import { EXCEPTION_CODE } from '@/constants/exceptionCode';
+
 interface PageData {
   first: boolean;
   last: boolean;
@@ -7,9 +9,15 @@ interface PageData {
   totalElements: number;
 }
 
-interface HttpError {
+type ExceptionCode = (typeof EXCEPTION_CODE)[keyof typeof EXCEPTION_CODE];
+
+interface HttpException {
   exceptionName: string;
-  code: string;
+  code: ExceptionCode;
 }
 
-export { PageData, HttpError };
+type ExceptionCodeMessage = {
+  [key in ExceptionCode]: string;
+};
+
+export { PageData, HttpException, ExceptionCodeMessage };
