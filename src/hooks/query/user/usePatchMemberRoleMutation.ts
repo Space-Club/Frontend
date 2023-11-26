@@ -1,5 +1,5 @@
 import patchMemberRole from '@/apis/users/patchMemberRole';
-import { EXCEPTION_CODE } from '@/constants/exceptionCode';
+import { EXCEPTION_CODE, EXCEPTION_CODE_MESSAGE } from '@/constants/exceptionCode';
 import useToast from '@/hooks/useToast';
 import { HttpException } from '@/types/common';
 
@@ -20,7 +20,7 @@ const usePatchMemberRoleMutation = () => {
     },
     onError: (error: AxiosError<HttpException>) => {
       if (error.response?.data.code === EXCEPTION_CODE.CAN_NOT_SELF_DEGRADING) {
-        createToast({ message: '클럽에는 최소 한명의 관리자가 필요합니다', toastType: 'error' });
+        createToast({ message: EXCEPTION_CODE_MESSAGE.CAN_NOT_SELF_DEGRADING, toastType: 'error' });
         return;
       }
     },
