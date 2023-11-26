@@ -4,6 +4,8 @@ import axios from 'axios';
 
 import { NETWORK_TIMEOUT } from '@constants/api';
 
+import { handleTokenError } from './interceptor';
+
 const BASE_OPTION = {
   headers: {
     'Content-Type': 'application/json',
@@ -22,3 +24,5 @@ export const axiosClientWithAuth = axios.create({
     Authorization: `Bearer ${getStorage('token')}`,
   },
 });
+
+axiosClientWithAuth.interceptors.response.use((response) => response, handleTokenError);
