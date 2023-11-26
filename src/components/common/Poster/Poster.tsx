@@ -5,7 +5,7 @@ import { PosterAreaStyled, PosterStyled, TagStyled } from './Poster.style';
 interface PosterProps {
   posterSrc?: string;
   width?: number;
-  isEnded: boolean;
+  isEnded?: boolean;
   children?: React.ReactNode;
 }
 

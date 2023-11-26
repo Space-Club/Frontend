@@ -1,7 +1,7 @@
 import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
-const PosterAreaStyled = styled.div<{ width: number; isEnded: boolean }>`
+const PosterAreaStyled = styled.div<{ width: number; isEnded?: boolean }>`
   position: relative;
   width: ${({ width }) => width + 'rem'};
   min-width: ${({ width }) => width + 'rem'};
