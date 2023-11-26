@@ -3,12 +3,12 @@ interface Club {
   logoImageUrl: string;
   info: string;
   memberCount: string;
-  coverImageUrl: string;
+  coverImageUrl?: string;
   inviteUrl: string;
   reverse?: boolean;
 }
 
-interface ClubInfo extends Pick<Club, 'name' | 'logoImageUrl'> {}
+interface ClubInfo extends Pick<Club, 'name' | 'logoImageUrl' | 'coverImageUrl'> {}
 
 interface CreateClubFormValue {
   image: File | null;

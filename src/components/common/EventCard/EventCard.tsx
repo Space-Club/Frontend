@@ -21,31 +21,32 @@ interface EventProps {
   eventId: string;
   posterSrc?: string;
   eventTitle: string;
-  eventDate?: string | null;
-  eventTime?: string | null;
-  formCloseDate?: string | null;
-  eventPlace?: string | null;
-  clubImageSrc?: string | null;
+  location?: string;
+  startDate?: string;
+  endDate?: string;
+  clubLogoImageUrl?: string;
   clubName: string;
   openStatus?: string;
+  isEnded: boolean;
 }
 
 const EventCard = ({
   eventId,
   posterSrc,
   eventTitle,
-  eventDate,
-  formCloseDate,
-  eventPlace,
-  clubImageSrc,
+  startDate,
+  endDate,
+  location,
+  clubLogoImageUrl,
   clubName,
   openStatus,
+  isEnded,
 }: EventProps) => {
   const navigate = useNavigate();
 
   return (
     <ContainerStyled onClick={() => navigate(PATH.EVENT.DETAIL(eventId))}>
-      <Poster posterSrc={posterSrc} width={9.5}>
+      <Poster posterSrc={posterSrc} width={9.5} isEnded={isEnded}>
         {openStatus && (
           <EventStatusTag
             eventTag={APPLIED_EVENTS_TAGS[openStatus === 'ALL' ? 'publicEvent' : 'clubOnlyEvent']}
@@ -55,14 +56,12 @@ const EventCard = ({
       <EventInfoWrapper>
         <div>
           <TitleStyled>{eventTitle}</TitleStyled>
-          <EventDateStyled>
-            {eventDate ?? (formCloseDate ? `~${formCloseDate}` : '')}
-          </EventDateStyled>
+          <EventDateStyled>{startDate ?? (startDate ? `~${endDate}` : '')}</EventDateStyled>
         </div>
         <EventFooterWrapper>
-          <PlaceStyled>{eventPlace}</PlaceStyled>
+          <PlaceStyled>{location}</PlaceStyled>
           <ClubInfoWrapperStyle>
-            <Avatar avatarSize="small" profileImageSrc={clubImageSrc} isClub={true} />
+            <Avatar avatarSize="small" profileImageSrc={clubLogoImageUrl} isClub={true} />
             <ClubNameStyled>{clubName}</ClubNameStyled>
           </ClubInfoWrapperStyle>
         </EventFooterWrapper>
