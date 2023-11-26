@@ -10,7 +10,8 @@ interface RecruitmentDetail {
 }
 
 const RecruitmentDetail = ({ data }: RecruitmentDetail) => {
-  const { recruitmentTarget, capacity, location } = data;
+  const { eventInfo } = data;
+  const { recruitmentTarget, capacity, location } = eventInfo;
 
   const calculateItem = (recruitmentTarget: string, capacity: number, location: string) => {
     if (recruitmentTarget && capacity && location) return 3;

@@ -17,7 +17,8 @@ const ApplyShowModal = ({ eventId, eventDetail, applyModalClose }: ApplyShowModa
   const [ticketCount, setTicketCount] = useState('1');
   const navigate = useNavigate();
   const { applyEvent } = usePostEventApplyMutation({ eventId });
-  const { maxTicketCount, hasForm } = eventDetail;
+  const { ticketInfo, hasForm = true } = eventDetail; // TODO: hasForm 기본값 삭제
+  const { maxTicketCount } = ticketInfo;
 
   const ticketList = Array.from({ length: maxTicketCount }, (_, index) => ({
     label: `${index + 1}장`,

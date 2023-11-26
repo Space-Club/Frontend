@@ -11,7 +11,8 @@ interface ClubDetail {
 }
 
 const ClubDetail = ({ data }: ClubDetail) => {
-  const { startDate, startTime, endDate, endTime, dues, location } = data;
+  const { eventInfo } = data;
+  const { startDate, startTime, endDate, endTime, dues, location } = eventInfo;
 
   const calculateItem = (dues: number, location: string) => {
     if (dues && location) return 3;

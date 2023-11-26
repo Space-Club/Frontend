@@ -13,7 +13,7 @@ interface ApplyEventModal {
 
 const ApplyEventModal = ({ eventId, eventDetail, applyModalClose }: ApplyEventModal) => {
   const navigate = useNavigate();
-  const { hasForm } = eventDetail;
+  const { hasForm = true } = eventDetail; // TODO: hasForm 기본값 삭제
   const { applyEvent } = usePostEventApplyMutation({ eventId });
   return (
     <ConfirmModal

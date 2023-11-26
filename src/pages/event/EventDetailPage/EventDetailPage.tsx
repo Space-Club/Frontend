@@ -60,17 +60,12 @@ const EventDetailPage = () => {
   const { eventDetail, isEventDetailLoading } = useEventDetailQuery({ eventId });
 
   const { deleteEventMutate } = useDeleteEventMutation({ eventId });
-
-  const {
-    isManager,
-    posterImageUrl,
-    content,
-    applicants,
-    capacity,
-    isBookmarked,
-    eventCategory,
-    clubId = '6', // TODO: API 명세서 나올 시 기본 값 제거
-  } = eventDetail ?? {};
+  // TODO: clubName query 만들기
+  // TODO: isBookmarked query 만들기
+  // TODO: isManager query 만들기
+  // TODO: hasForm query 만들기
+  const { category, isManager = true, eventInfo, isBookmarked = false, clubId } = eventDetail ?? {}; // TODO: 기본값 삭제
+  const { content, applicants, capacity, posterImageUrl } = eventInfo ?? {};
 
   const handleEventDelete = async () => {
     deleteEventMutate();
@@ -88,7 +83,7 @@ const EventDetailPage = () => {
                 onClose={applyModalClose}
                 onConfirm={() => navigate('/login')}
               />
-            ) : eventCategory === 'SHOW' ? (
+            ) : category === 'SHOW' ? (
               <ApplyShowModal
                 eventId={eventId}
                 eventDetail={eventDetail as ShowDetailResponse}
@@ -116,7 +111,7 @@ const EventDetailPage = () => {
             {isManager && (
               <FormButtonWrapper>
                 <PurpleButton
-                  onClick={() => navigate(PATH.EVENT.SUBMITTED_FORMS('clubId', eventId))} //TODO: club id 가져와서 주소에 넣어주기
+                  onClick={() => navigate(PATH.EVENT.SUBMITTED_FORMS(clubId!, eventId))}
                 >
                   {EVENT_DETAIL_BUTTON.showSubmitForm}
                 </PurpleButton>
@@ -124,7 +119,7 @@ const EventDetailPage = () => {
                   <PurpleButton
                     reverse
                     onClick={() =>
-                      navigate(PATH.EVENT.EDIT_WRITE_INFO(clubId, eventCategory!), {
+                      navigate(PATH.EVENT.EDIT_WRITE_INFO(clubId!, category!), {
                         state: {
                           eventDetail,
                           eventId,

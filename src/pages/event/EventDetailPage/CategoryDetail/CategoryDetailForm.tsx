@@ -13,18 +13,11 @@ interface CategoryDetailForm {
 }
 
 const CategoryDetailForm = ({ data }: CategoryDetailForm) => {
-  const {
-    eventCategory,
-    title,
-    formOpenDate,
-    formOpenTime,
-    formCloseDate,
-    formCloseTime,
-    clubName,
-  } = data;
+  const { category, eventInfo, formInfo, clubName = '인재' } = data; // TODO: 클럽 네임 기본값 삭제
+  const { formOpenDate, formOpenTime, formCloseDate, formCloseTime } = formInfo;
 
   const renderCategory = () => {
-    switch (eventCategory) {
+    switch (category) {
       case 'SHOW':
         return <ShowDetail data={data} />;
       case 'PROMOTION':
@@ -38,7 +31,7 @@ const CategoryDetailForm = ({ data }: CategoryDetailForm) => {
 
   return (
     <>
-      <EventTitle>{title}</EventTitle>
+      <EventTitle>{eventInfo.title}</EventTitle>
       {renderCategory()}
       <div>
         <ContentLabel>{EVENT_DETAIL.applicationPeriod}</ContentLabel>
