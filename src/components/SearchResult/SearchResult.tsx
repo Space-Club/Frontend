@@ -17,9 +17,10 @@ interface SearchResultProps {
   eventTitle: string;
   posterImageUrl: string;
   location?: string;
-  eventStartDate?: string;
-  formEndDate?: string;
+  startDate?: string;
+  endDate?: string;
   clubName: string;
+  isEnded: boolean;
 }
 
 const SearchResult = ({
@@ -27,9 +28,10 @@ const SearchResult = ({
   eventTitle,
   posterImageUrl,
   location,
-  eventStartDate,
-  formEndDate,
+  startDate,
+  endDate,
   clubName,
+  isEnded,
 }: SearchResultProps) => {
   const navigate = useNavigate();
 
@@ -38,10 +40,10 @@ const SearchResult = ({
       <IconWrapper>
         <RiFileSearchFill size={20} />
       </IconWrapper>
-      <Poster width={3} posterSrc={posterImageUrl} />
+      <Poster width={3} posterSrc={posterImageUrl} isEnded={isEnded} />
       <InfoWrapper>
         <TitleStyled>{eventTitle}</TitleStyled>
-        <InfoStyled>{eventStartDate ?? (formEndDate ? `~${formEndDate}` : '')}</InfoStyled>
+        <InfoStyled>{startDate ?? (endDate ? `~${endDate}` : '')}</InfoStyled>
         <InfoStyled>{location}</InfoStyled>
         <InfoStyled>{clubName}</InfoStyled>
       </InfoWrapper>
