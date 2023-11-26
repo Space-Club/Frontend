@@ -1,13 +1,13 @@
-import patchUserInfo from '@/apis/users/patchUserInfo';
+import putUserInfo from '@/apis/users/putUserInfo';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { QUERY_KEY } from './useMyProfile';
 
-const usePatchUserInfoMutation = () => {
+const usePutUserInfoMutation = () => {
   const queryClient = useQueryClient();
   const { mutate: editUserInfo } = useMutation({
-    mutationFn: patchUserInfo,
+    mutationFn: putUserInfo,
     onSuccess: () => {
       queryClient.invalidateQueries([QUERY_KEY.MY_PROFILE]);
     },
@@ -15,4 +15,4 @@ const usePatchUserInfoMutation = () => {
   return { editUserInfo };
 };
 
-export default usePatchUserInfoMutation;
+export default usePutUserInfoMutation;

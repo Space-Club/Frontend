@@ -2,8 +2,8 @@ import { ERROR_MESSAGE } from '@/constants/errorMessage';
 import { MODAL_TEXT } from '@/constants/modalMessage';
 import useMyProfile from '@/hooks/query/user/useMyProfile';
 import usePatchUserImageMutation from '@/hooks/query/user/usePatchUserImageMutation';
-import usePatchUserInfoMutation from '@/hooks/query/user/usePatchUserInfoMutation';
 import usePostLogoutMutation from '@/hooks/query/user/usePostLogoutMutation';
+import usePutUserInfoMutation from '@/hooks/query/user/usePutUserInfoMutation';
 import useModal from '@/hooks/useModal';
 import { PurpleButton } from '@/pages/event/EventDetailPage/EventDetailPage.style';
 import { validateName, validateNumber } from '@/utils/validate';
@@ -22,7 +22,7 @@ const Profile = () => {
   const { logout } = usePostLogoutMutation();
   const { register, setValue, watch } = useForm();
   const { editUserImage } = usePatchUserImageMutation();
-  const { editUserInfo } = usePatchUserInfoMutation();
+  const { editUserInfo } = usePutUserInfoMutation();
 
   const { data } = useMyProfile({ setValue });
 
