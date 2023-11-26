@@ -1,18 +1,20 @@
-import patchUserInfo from '@/apis/users/patchUserInfo';
+import putUserInfo from '@/apis/users/putUserInfo';
+import { setStorage } from '@/utils/localStorage';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { QUERY_KEY } from './useMyProfile';
-
-const usePatchUserInfoMutation = () => {
+const usePutUserInfoMutation = () => {
   const queryClient = useQueryClient();
   const { mutate: editUserInfo } = useMutation({
-    mutationFn: patchUserInfo,
-    onSuccess: () => {
-      queryClient.invalidateQueries([QUERY_KEY.MY_PROFILE]);
+    mutationFn: putUserInfo,
+    onSuccess: ({ refreshToken, accessToken, userId }) => {
+      setStorage('refreshToken', refreshToken);
+      setStorage('token', accessToken);
+      setStorage('userId', userId);
+      queryClient.clear();
     },
   });
   return { editUserInfo };
 };
 
-export default usePatchUserInfoMutation;
+export default usePutUserInfoMutation;

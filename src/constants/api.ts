@@ -10,7 +10,7 @@ const END_POINTS = {
   LOGOUT: '/users/logout',
 
   PATCH_PROFILE_IMAGE: '/me/profile',
-  PATCH_USER_INFO: 'users/required-infos',
+  PUT_USER_INFO: 'me/profile',
 
   PERFORMANCE_FORM: '/events',
   GET_APPLIED_EVENT: ({ page, size, sort }: { page: number; size: string; sort: string }) =>
