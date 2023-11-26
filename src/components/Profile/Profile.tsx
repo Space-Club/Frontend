@@ -1,17 +1,15 @@
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
 import { MODAL_TEXT } from '@/constants/modalMessage';
-import { PATH } from '@/constants/path';
 import useMyProfile from '@/hooks/query/user/useMyProfile';
 import usePatchUserImageMutation from '@/hooks/query/user/usePatchUserImageMutation';
 import usePutUserInfoMutation from '@/hooks/query/user/usePutUserInfoMutation';
+import useLogout from '@/hooks/useLogout';
 import useModal from '@/hooks/useModal';
 import { PurpleButton } from '@/pages/event/EventDetailPage/EventDetailPage.style';
-import { deleteStorage } from '@/utils/localStorage';
 import { validateName, validateNumber } from '@/utils/validate';
 
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router-dom';
 
 import ConfirmModal from '../Modals/ConfirmModal';
 import Avatar from '../common/Avatar/Avatar';
@@ -24,7 +22,7 @@ const Profile = () => {
   const { register, setValue, watch } = useForm();
   const { editUserImage } = usePatchUserImageMutation();
   const { editUserInfo } = usePutUserInfoMutation();
-  const navigate = useNavigate();
+  const { logOut } = useLogout();
 
   const { data } = useMyProfile({ setValue });
 
@@ -40,8 +38,7 @@ const Profile = () => {
 
   const handleLogoutConfirm = () => {
     modalClose();
-    deleteStorage('token');
-    navigate(PATH.MAIN);
+    logOut();
   };
 
   return (
