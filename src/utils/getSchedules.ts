@@ -10,8 +10,8 @@ const isDateInRange = (selectedDate: string, startDateTime: string, endDateTime:
 
 const filterSchedulesBySelectedDate = (selectedDate: string, schedules: Schedule[]) => {
   return schedules?.filter((schedule) => {
-    const { startDateTime, endDateTime } = schedule;
-    return isDateInRange(selectedDate, startDateTime, endDateTime);
+    const { startDate, endDate } = schedule.eventInfo;
+    return isDateInRange(selectedDate, startDate, endDate);
   });
 };
 
