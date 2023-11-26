@@ -32,17 +32,18 @@ const ClubEventPage = () => {
     <>
       <ClubHeader clubId={clubId}></ClubHeader>
       <EventsWrapper>
-        {clubEvents?.map(({ id, eventInfo, formInfo, clubInfo }) => (
+        {clubEvents?.map(({ id, eventInfo, clubInfo }) => (
           <EventCard
             eventId={id}
             posterSrc={eventInfo.posterImageUrl}
             eventTitle={eventInfo.title}
-            eventDate={eventInfo.startDate}
-            formCloseDate={formInfo.closeDate}
-            eventPlace={eventInfo.location}
-            clubImageSrc={clubInfo.logoImageUrl}
+            startDate={eventInfo.startDate}
+            endDate={eventInfo.endDate}
+            location={eventInfo.location}
+            clubLogoImageUrl={clubInfo.logoImageUrl}
             clubName={clubInfo.name}
             openStatus={eventInfo.openStatus}
+            isEnded={eventInfo.isEnded}
           />
         ))}
         {clubEvents?.length === 0 && (
