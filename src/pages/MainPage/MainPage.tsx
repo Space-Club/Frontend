@@ -55,6 +55,7 @@ const MainPage = () => {
             {events?.map(({ id, eventInfo, clubInfo }) => {
               return (
                 <EventCard
+                  key={id}
                   eventId={id}
                   posterSrc={eventInfo.posterImageUrl}
                   eventTitle={eventInfo.title}
