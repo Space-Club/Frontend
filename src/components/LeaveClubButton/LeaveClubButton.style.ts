@@ -11,6 +11,7 @@ const LeaveClubButtonStyled = styled(SemiPurpleButton)`
   background-color: rgba(204, 204, 204, 0.7);
   border: 0;
   font-size: ${Theme.fontSize.tagText};
+  user-select: none;
 `;
 
 export { LeaveClubButtonStyled };

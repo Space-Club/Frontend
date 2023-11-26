@@ -21,6 +21,7 @@ const EventStatusTagStyled = styled.div<EventStatusTagStyledProps>`
   color: ${({ textColor }) => Theme.color[textColor]};
   background-color: ${({ backgroundColor }) => Theme.color[backgroundColor]};
   border: 1px solid ${({ borderColor }) => Theme.color[borderColor]};
+  user-select: none;
 `;
 
 export { EventStatusTagStyled };

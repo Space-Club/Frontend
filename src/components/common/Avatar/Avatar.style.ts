@@ -6,6 +6,7 @@ import styled from '@emotion/styled';
 const AvatarContainerStyled = styled.div`
   position: relative;
   display: inline-flex;
+  user-select: none;
 `;
 
 const ProfileImageStyled = styled.img<{ avatarSize: AvatarSize; pointer: boolean | undefined }>`
