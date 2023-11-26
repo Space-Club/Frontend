@@ -1,7 +1,7 @@
 import SearchInputForm from '@/components/SearchInputForm/SearchInputForm';
-import Banner from '@/components/common/Banner/Banner';
 import EventCard from '@/components/common/EventCard/EventCard';
 import Header from '@/components/common/Header/Header';
+import MainBanner from '@/components/common/MainBanner/MainBanner';
 import Pagination from '@/components/common/Pagination/Pagination';
 import Spinner from '@/components/common/Spinner/Spinner';
 import Tab from '@/components/common/Tab/Tab';
@@ -48,7 +48,7 @@ const MainPage = () => {
       </Header>
       <Suspense fallback={<Spinner />}>
         <ContentContainerStyled>
-          <Banner />
+          <MainBanner />
           <EventsWrapper>
             {events?.map(({ id, eventInfo, clubInfo }) => {
               return (

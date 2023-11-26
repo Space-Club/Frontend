@@ -4,15 +4,16 @@ import { EmptyEventWrapper } from '@/pages/ProfilePage/ProfilePage.style';
 import { useLocation } from 'react-router-dom';
 
 import Carousel from '../CarouselSlider/Carousel';
+import { ClubCoverTransparent } from '../ClubCover/ClubCover.style';
 import {
   BannerBottomTitleStyled,
   BannerContainerStyled,
   BannerImageStyled,
   BannerTopTitleStyled,
   BannerWrapperStyled,
-} from './Banner.style';
+} from './MainBanner.style';
 
-const Banner = () => {
+const MainBanner = () => {
   const { pathname } = useLocation();
 
   const { events } = useAllEventsQuery(
@@ -24,28 +25,30 @@ const Banner = () => {
     pathname,
   );
 
+  if (!events) return null;
+
+  const availableEvents = events?.filter((event) => !event.eventInfo.isEnded);
+
   return (
     <BannerContainerStyled>
-      {events ? (
-        <Carousel autoSlide totalItem={1}>
+      {availableEvents.length === 0 ? (
+        <EmptyEventWrapper>현재 신청 가능한 행사가 없습니다</EmptyEventWrapper>
+      ) : (
+        <Carousel autoSlide totalItem={availableEvents.length}>
           {events.map((event) => (
             <BannerWrapperStyled>
+              <ClubCoverTransparent />
               <BannerTopTitleStyled>{event.clubInfo.name}신입부원 모집 중</BannerTopTitleStyled>
               <BannerBottomTitleStyled>
-                ~{event.formInfo.closeDate} 신청 마감
+                ~{event.eventInfo.endDate} 신청 마감
               </BannerBottomTitleStyled>
-              <BannerImageStyled
-                src="https://picsum.photos/200/300"
-                alt="이 부분은 배너 기본 이미지를 생성 전까진 임시입니다"
-              />
+              <BannerImageStyled src={event.clubInfo.coverImageUrl} alt="클럽 커버 이미지" />
             </BannerWrapperStyled>
           ))}
         </Carousel>
-      ) : (
-        <EmptyEventWrapper>현재 신청 가능한 행사가 없습니다</EmptyEventWrapper>
       )}
     </BannerContainerStyled>
   );
 };
 
-export default Banner;
+export default MainBanner;
