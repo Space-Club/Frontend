@@ -27,7 +27,7 @@ const MainBanner = () => {
 
   if (!events) return null;
 
-  const availableEvents = events?.filter((event) => !event.eventInfo.isEnded);
+  const availableEvents = events?.filter(({ eventInfo }) => !eventInfo.isEnded);
 
   return (
     <BannerContainerStyled>
@@ -35,14 +35,14 @@ const MainBanner = () => {
         <EmptyEventWrapper>현재 신청 가능한 행사가 없습니다</EmptyEventWrapper>
       ) : (
         <Carousel autoSlide totalItem={availableEvents.length}>
-          {events.map((event) => (
+          {events.map(({ clubInfo, eventInfo }) => (
             <BannerWrapperStyled>
               <ClubCoverTransparent />
-              <BannerTopTitleStyled>{event.clubInfo.name}신입부원 모집 중</BannerTopTitleStyled>
-              <BannerBottomTitleStyled>
-                ~{event.eventInfo.endDate} 신청 마감
-              </BannerBottomTitleStyled>
-              <BannerImageStyled src={event.clubInfo.coverImageUrl} alt="클럽 커버 이미지" />
+              <BannerTopTitleStyled>{clubInfo.name}신입부원 모집 중</BannerTopTitleStyled>
+              <BannerBottomTitleStyled>~{eventInfo.endDate} 신청 마감</BannerBottomTitleStyled>
+              {clubInfo.coverImageUrl && (
+                <BannerImageStyled src={clubInfo.coverImageUrl} alt="클럽 커버 이미지" />
+              )}
             </BannerWrapperStyled>
           ))}
         </Carousel>
