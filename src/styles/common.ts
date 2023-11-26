@@ -84,6 +84,23 @@ const TabWrapper = styled.div`
   width: 100%;
 `;
 
+const EventsWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+  justify-items: center;
+  align-items: center;
+  max-width: 75rem;
+
+  @media (max-width: 71rem) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @media (max-width: 50rem) {
+    grid-template-columns: 1fr;
+  }
+`;
+
 const sideBarScrollAreaStyled = styled.div`
   &::-webkit-scrollbar {
     width: 0.3rem;
@@ -162,4 +179,5 @@ export {
   TabWrapper,
   SmallTitleStyled,
   hoverBox,
+  EventsWrapper,
 };

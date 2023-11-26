@@ -13,11 +13,4 @@ const SearchMessageStyled = styled.div`
   font-size: ${Theme.fontSize.smallTitle};
 `;
 
-const SearchesWrapper = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 5%;
-`;
-
-export { SearchesContainer, SearchMessageStyled, SearchesWrapper };
+export { SearchesContainer, SearchMessageStyled };

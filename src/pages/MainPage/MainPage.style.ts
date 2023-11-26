@@ -10,14 +10,7 @@ const BannerWrapperStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 5% 0;
+  margin: 2rem;
 `;
 
-const EventCardWrapperStyled = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin-bottom: 5%;
-`;
-
-export { ContentContainerStyled, BannerWrapperStyled, EventCardWrapperStyled };
+export { ContentContainerStyled, BannerWrapperStyled };

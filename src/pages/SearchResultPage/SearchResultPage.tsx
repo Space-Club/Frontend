@@ -5,11 +5,12 @@ import Pagination from '@/components/common/Pagination/Pagination';
 import Tab from '@/components/common/Tab/Tab';
 import { MAIN_TABS } from '@/constants/tab';
 import useSearchResultQuery from '@/hooks/query/event/useSearchResultQuery';
+import { EventsWrapper } from '@/styles/common';
 
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { SearchMessageStyled, SearchesContainer, SearchesWrapper } from './SearchResultPage.style';
+import { SearchMessageStyled, SearchesContainer } from './SearchResultPage.style';
 
 const SearchResultPage = () => {
   const { keyword } = useParams();
@@ -28,7 +29,7 @@ const SearchResultPage = () => {
       </Header>
       <SearchMessageStyled>{`"${keyword}" 검색 결과`}</SearchMessageStyled>
       <SearchesContainer>
-        <SearchesWrapper>
+        <EventsWrapper>
           {data?.map((event) => (
             <EventCard
               key={event.id}
@@ -42,12 +43,12 @@ const SearchResultPage = () => {
               clubImageSrc={event.clubInfo.logoImageUrl}
             />
           ))}
-        </SearchesWrapper>
-        <Pagination
-          totalPages={totalPages}
-          size={size}
-          onChangePage={(page) => setCurrentPage(page)}
-        />
+        </EventsWrapper>
+          <Pagination
+            totalPages={totalPages}
+            size={size}
+            onChangePage={(page) => setCurrentPage(page)}
+          />
       </SearchesContainer>
     </>
   );

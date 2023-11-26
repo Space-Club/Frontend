@@ -7,15 +7,12 @@ import Spinner from '@/components/common/Spinner/Spinner';
 import Tab from '@/components/common/Tab/Tab';
 import { MAIN_TABS } from '@/constants/tab';
 import useAllEventsQuery from '@/hooks/query/event/useAllEventsQuery';
+import { EventsWrapper } from '@/styles/common';
 
 import { Suspense, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import {
-  BannerWrapperStyled,
-  ContentContainerStyled,
-  EventCardWrapperStyled,
-} from './MainPage.style';
+import { BannerWrapperStyled, ContentContainerStyled } from './MainPage.style';
 
 const MainPage = () => {
   const { pathname } = useLocation();
@@ -54,7 +51,7 @@ const MainPage = () => {
           <BannerWrapperStyled>
             <Banner width={35} height={20} />
           </BannerWrapperStyled>
-          <EventCardWrapperStyled>
+          <EventsWrapper>
             {events?.map((event) => {
               return (
                 <EventCard
@@ -69,8 +66,8 @@ const MainPage = () => {
                 />
               );
             })}
-          </EventCardWrapperStyled>
-            <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
+          </EventsWrapper>
+          <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
         </ContentContainerStyled>
       </Suspense>
     </>
