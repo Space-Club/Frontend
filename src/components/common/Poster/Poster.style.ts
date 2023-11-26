@@ -13,8 +13,6 @@ const PosterAreaStyled = styled.div<{ width: number; isEnded?: boolean }>`
   background-color: ${Theme.color.tWhiteGrey};
   overflow: hidden;
 
-  user-select: none;
-
   &::before {
     content: '';
     position: absolute;

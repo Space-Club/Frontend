@@ -21,8 +21,6 @@ const EventInfoWrapper = styled.div`
   height: 100%;
   margin: 0 3%;
   word-break: break-all;
-
-  user-select: none;
 `;
 
 const TitleStyled = styled.div`
