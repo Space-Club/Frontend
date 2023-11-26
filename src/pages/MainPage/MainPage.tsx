@@ -52,17 +52,19 @@ const MainPage = () => {
             <Banner width={35} height={20} />
           </BannerWrapperStyled>
           <EventsWrapper>
-            {events?.map((event) => {
+            {events?.map(({ id, eventInfo, clubInfo }) => {
               return (
                 <EventCard
-                  eventId={event.id}
-                  posterSrc={event.eventInfo.posterImageUrl}
-                  eventTitle={event.eventInfo.title}
-                  eventDate={event.eventInfo.startDate}
-                  formCloseDate={event.formInfo.closeDate}
-                  eventPlace={event.eventInfo.location}
-                  clubName={event.clubInfo.name}
-                  clubImageSrc={event.clubInfo.logoImageUrl}
+                  key={id}
+                  eventId={id}
+                  posterSrc={eventInfo.posterImageUrl}
+                  eventTitle={eventInfo.title}
+                  startDate={eventInfo.startDate}
+                  endDate={eventInfo.endDate}
+                  location={eventInfo.location}
+                  isEnded={eventInfo.isEnded}
+                  clubName={clubInfo.name}
+                  clubLogoImageUrl={clubInfo.logoImageUrl}
                 />
               );
             })}

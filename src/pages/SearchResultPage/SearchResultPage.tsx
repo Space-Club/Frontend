@@ -30,25 +30,26 @@ const SearchResultPage = () => {
       <SearchMessageStyled>{`"${keyword}" 검색 결과`}</SearchMessageStyled>
       <SearchesContainer>
         <EventsWrapper>
-          {data?.map((event) => (
+          {data?.map(({ id, eventInfo, clubInfo }) => (
             <EventCard
-              key={event.id}
-              eventId={event.id}
-              eventTitle={event.eventInfo.title}
-              eventDate={event.eventInfo.startDate}
-              formCloseDate={event.formInfo.closeDate}
-              posterSrc={event.eventInfo.posterImageUrl}
-              eventPlace={event.eventInfo.location}
-              clubName={event.clubInfo.name}
-              clubImageSrc={event.clubInfo.logoImageUrl}
+              key={id}
+              eventId={id}
+              eventTitle={eventInfo.title}
+              startDate={eventInfo.startDate}
+              endDate={eventInfo.endDate}
+              posterSrc={eventInfo.posterImageUrl}
+              location={eventInfo.location}
+              clubName={clubInfo.name}
+              clubLogoImageUrl={clubInfo.logoImageUrl}
+              isEnded={eventInfo.isEnded}
             />
           ))}
         </EventsWrapper>
-          <Pagination
-            totalPages={totalPages}
-            size={size}
-            onChangePage={(page) => setCurrentPage(page)}
-          />
+        <Pagination
+          totalPages={totalPages}
+          size={size}
+          onChangePage={(page) => setCurrentPage(page)}
+        />
       </SearchesContainer>
     </>
   );

@@ -1,7 +1,6 @@
 import { ClubInfo } from '../club';
 import { PageData } from '../common';
 import { EventInfo } from '../event';
-import { FormInfo } from '../form';
 
 interface AllEventsRequest {
   pageNumber: number;
@@ -13,7 +12,6 @@ interface AllEventsResponse {
   data: {
     id: string;
     eventInfo: EventInfo;
-    formInfo: FormInfo;
     clubInfo: ClubInfo;
   }[];
   pageData: PageData;

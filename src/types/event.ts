@@ -40,6 +40,9 @@ interface EventInfo {
   location: string;
   startDate: string;
   startTime: string;
+  endDate: string;
+  endTime: string;
+  isEnded: boolean;
 }
 
 type ClubEventInfo = EventInfo & { openStatus: 'ALL' | 'CLUB' };
