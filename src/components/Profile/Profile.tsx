@@ -2,8 +2,8 @@ import { ERROR_MESSAGE } from '@/constants/errorMessage';
 import { MODAL_TEXT } from '@/constants/modalMessage';
 import useMyProfile from '@/hooks/query/user/useMyProfile';
 import usePatchUserImageMutation from '@/hooks/query/user/usePatchUserImageMutation';
-import usePatchUserInfoMutation from '@/hooks/query/user/usePatchUserInfoMutation';
-import usePostLogoutMutation from '@/hooks/query/user/usePostLogoutMutation';
+import usePutUserInfoMutation from '@/hooks/query/user/usePutUserInfoMutation';
+import useLogout from '@/hooks/useLogout';
 import useModal from '@/hooks/useModal';
 import { PurpleButton } from '@/pages/event/EventDetailPage/EventDetailPage.style';
 import { validateName, validateNumber } from '@/utils/validate';
@@ -19,10 +19,10 @@ import { InfoWrapper, ProfileButtonsWrapper, ProfileContainer } from './Profile.
 const Profile = () => {
   const [isEdit, setIsEdit] = useState(false);
   const { modalClose, modalOpen, showModal } = useModal();
-  const { logout } = usePostLogoutMutation();
   const { register, setValue, watch } = useForm();
   const { editUserImage } = usePatchUserImageMutation();
-  const { editUserInfo } = usePatchUserInfoMutation();
+  const { editUserInfo } = usePutUserInfoMutation();
+  const { logOut } = useLogout();
 
   const { data } = useMyProfile({ setValue });
 
@@ -37,8 +37,8 @@ const Profile = () => {
   };
 
   const handleLogoutConfirm = () => {
-    logout();
     modalClose();
+    logOut();
   };
 
   return (

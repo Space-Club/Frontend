@@ -1,7 +1,8 @@
+import { EXCEPTION_CODE } from '@/constants/exceptionCode';
 import { HttpException } from '@/types/common';
 import { getStorage } from '@/utils/localStorage';
 
-import { AxiosError } from 'axios';
+import { AxiosError, InternalAxiosRequestConfig } from 'axios';
 
 import { axiosClientWithAuth } from './axiosClient';
 
@@ -13,8 +14,23 @@ const handleTokenError = async (error: AxiosError<HttpException>) => {
     return Promise.reject(error);
   }
 
-  originalRequest.headers['Authorization'] = `Bearer ${refreshToken}`;
-  return axiosClientWithAuth(originalRequest);
+  originalRequest.headers.Authorization = `Bearer ${refreshToken}`;
+
+  if (error.response?.data.code === EXCEPTION_CODE.INVALID_ACCESS_TOKEN) {
+    return axiosClientWithAuth(originalRequest);
+  }
 };
 
-export { handleTokenError };
+const setToken = (config: InternalAxiosRequestConfig) => {
+  const token = getStorage('token');
+
+  if (!token) {
+    throw new Error('토큰이 없습니다.');
+  }
+
+  config.headers.Authorization = `Bearer ${token}`;
+
+  return config;
+};
+
+export { handleTokenError, setToken };
