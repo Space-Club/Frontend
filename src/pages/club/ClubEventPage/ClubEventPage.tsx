@@ -10,7 +10,7 @@ import { EventsWrapper } from '@/styles/common';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { ButtonWrapper, EmptyClubEvent } from './ClubEventPage.style';
+import { ButtonWrapper, ContentSpacer, EmptyClubEvent } from './ClubEventPage.style';
 
 const ClubEventPage = () => {
   const navigate = useNavigate();
@@ -31,6 +31,7 @@ const ClubEventPage = () => {
   return (
     <>
       <ClubHeader clubId={clubId}></ClubHeader>
+      <ContentSpacer />
       <EventsWrapper>
         {clubEvents?.map(({ id, eventInfo, clubInfo }) => (
           <EventCard
