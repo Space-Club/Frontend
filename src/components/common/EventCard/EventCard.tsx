@@ -56,7 +56,7 @@ const EventCard = ({
       <EventInfoWrapper>
         <div>
           <TitleStyled>{eventTitle}</TitleStyled>
-          <EventDateStyled>{startDate ?? (startDate ? `~${endDate}` : '')}</EventDateStyled>
+          <EventDateStyled>{endDate ? `~${endDate}` : startDate ? startDate : ''}</EventDateStyled>
         </div>
         <EventFooterWrapper>
           <PlaceStyled>{location}</PlaceStyled>
