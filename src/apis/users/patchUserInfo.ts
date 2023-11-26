@@ -4,7 +4,7 @@ import { PatchUserInfoRequest, PatchUserInfoResponse } from '@/types/api/patchUs
 import { axiosClientWithAuth } from '../axiosClient';
 
 const patchUserInfo = async ({ name, phoneNumber }: PatchUserInfoRequest) => {
-  await axiosClientWithAuth.patch<PatchUserInfoResponse>(END_POINTS.PATCH_USER_INFO, {
+  await axiosClientWithAuth.patch<PatchUserInfoResponse>(END_POINTS.REGISTER, {
     name,
     phoneNumber,
   });
