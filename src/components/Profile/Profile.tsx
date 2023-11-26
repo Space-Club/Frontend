@@ -1,15 +1,17 @@
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
 import { MODAL_TEXT } from '@/constants/modalMessage';
+import { PATH } from '@/constants/path';
 import useMyProfile from '@/hooks/query/user/useMyProfile';
 import usePatchUserImageMutation from '@/hooks/query/user/usePatchUserImageMutation';
-import usePostLogoutMutation from '@/hooks/query/user/usePostLogoutMutation';
 import usePutUserInfoMutation from '@/hooks/query/user/usePutUserInfoMutation';
 import useModal from '@/hooks/useModal';
 import { PurpleButton } from '@/pages/event/EventDetailPage/EventDetailPage.style';
+import { deleteStorage } from '@/utils/localStorage';
 import { validateName, validateNumber } from '@/utils/validate';
 
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
 
 import ConfirmModal from '../Modals/ConfirmModal';
 import Avatar from '../common/Avatar/Avatar';
@@ -19,10 +21,10 @@ import { InfoWrapper, ProfileButtonsWrapper, ProfileContainer } from './Profile.
 const Profile = () => {
   const [isEdit, setIsEdit] = useState(false);
   const { modalClose, modalOpen, showModal } = useModal();
-  const { logout } = usePostLogoutMutation();
   const { register, setValue, watch } = useForm();
   const { editUserImage } = usePatchUserImageMutation();
   const { editUserInfo } = usePutUserInfoMutation();
+  const navigate = useNavigate();
 
   const { data } = useMyProfile({ setValue });
 
@@ -37,8 +39,9 @@ const Profile = () => {
   };
 
   const handleLogoutConfirm = () => {
-    logout();
     modalClose();
+    deleteStorage('token');
+    navigate(PATH.MAIN);
   };
 
   return (
