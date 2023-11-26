@@ -12,7 +12,7 @@ import { EventsWrapper } from '@/styles/common';
 import { Suspense, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import { BannerWrapperStyled, ContentContainerStyled } from './MainPage.style';
+import { ContentContainerStyled } from './MainPage.style';
 
 const MainPage = () => {
   const { pathname } = useLocation();
@@ -48,9 +48,7 @@ const MainPage = () => {
       </Header>
       <Suspense fallback={<Spinner />}>
         <ContentContainerStyled>
-          <BannerWrapperStyled>
-            <Banner width={35} height={20} />
-          </BannerWrapperStyled>
+          <Banner />
           <EventsWrapper>
             {events?.map((event) => {
               return (

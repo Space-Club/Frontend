@@ -6,11 +6,4 @@ const ContentContainerStyled = styled.div`
   align-items: center;
 `;
 
-const BannerWrapperStyled = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 2rem;
-`;
-
-export { ContentContainerStyled, BannerWrapperStyled };
+export { ContentContainerStyled };
