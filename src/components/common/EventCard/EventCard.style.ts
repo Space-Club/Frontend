@@ -43,7 +43,7 @@ const EventFooterWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 20%;
+  height: 23%;
   margin-right: 3%;
 `;
 
