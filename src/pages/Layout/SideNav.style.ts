@@ -45,6 +45,8 @@ const CreateClubButtonStyled = styled.div`
   align-items: center;
   gap: 0.2rem;
   margin-top: 2rem;
+  min-width: 4rem;
+  min-height: 4rem;
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
