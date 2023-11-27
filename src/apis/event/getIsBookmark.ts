@@ -4,7 +4,7 @@ import { GetIsBookmarkRequest } from '@/types/api/getIsBookmark';
 import { axiosClientWithAuth } from '../axiosClient';
 
 const getIsBookmark = async ({ eventId }: GetIsBookmarkRequest) => {
-  const { data } = await axiosClientWithAuth.post<boolean>(`${END_POINTS.BOOK_MARK(eventId)}`);
+  const { data } = await axiosClientWithAuth.get<boolean>(`${END_POINTS.BOOK_MARK(eventId)}`);
 
   return data;
 };
