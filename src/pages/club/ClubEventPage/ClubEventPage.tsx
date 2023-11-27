@@ -35,6 +35,7 @@ const ClubEventPage = () => {
       <EventsWrapper>
         {clubEvents?.map(({ id, eventInfo, clubInfo }) => (
           <EventCard
+            key={id}
             eventId={id}
             posterSrc={eventInfo.posterImageUrl}
             eventTitle={eventInfo.title}
