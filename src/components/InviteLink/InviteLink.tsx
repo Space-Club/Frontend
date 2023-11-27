@@ -1,9 +1,10 @@
 import { INVITE_LINK } from '@/constants/club';
 import useGetInviteClub from '@/hooks/query/club/useGetInviteClub';
 import useInviteLinkQuery from '@/hooks/query/club/useInviteLinkMutation';
+import useToast from '@/hooks/useToast';
 import { MediumTitleStyled } from '@/styles/common';
 
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import {
@@ -18,7 +19,10 @@ import {
 
 const InviteLink = () => {
   const [inviteLinkValue, setInviteLinkValue] = useState('');
+  const inputRef = useRef<HTMLInputElement>(null);
   const { clubId } = useParams();
+  const { createToast } = useToast();
+
   const { inviteLink: newInviteLink, createInviteLink } = useInviteLinkQuery();
   if (!clubId) {
     throw new Error('해당 클럽 id는 존재하지 않습니다.');
@@ -41,6 +45,16 @@ const InviteLink = () => {
     setInviteLinkValue(validateInvite());
   }, [validateInvite]);
 
+  const handleCopyClick = () => {
+    if (inputRef && inputRef.current) {
+      const value = inputRef.current.value;
+      if (value[0] === '초') return null;
+
+      navigator.clipboard.writeText(value);
+      createToast({ message: '초대링크가 복사되었습니다.', toastType: 'info' });
+    }
+  };
+
   return (
     <InviteLinkContainer>
       <TitleWrapper>
@@ -48,8 +62,10 @@ const InviteLink = () => {
         <SubTitle>링크의 유효기간은 {INVITE_LINK.VALID_TIME}시간입니다.</SubTitle>
       </TitleWrapper>
       <InputWrapper>
-        <ReadonlyInput value={inviteLinkValue} readOnly />
-        <CopyButton type="button">복사</CopyButton>
+        <ReadonlyInput value={inviteLinkValue} ref={inputRef} readOnly />
+        <CopyButton type="button" onClick={() => handleCopyClick()}>
+          복사
+        </CopyButton>
         <SubmitButton onClick={() => createInviteLink()}>생성</SubmitButton>
       </InputWrapper>
     </InviteLinkContainer>
