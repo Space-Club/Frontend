@@ -37,8 +37,19 @@ const CreateClubPage = () => {
   const [previewImage, setPreviewImage] = useState<File | null>(null);
 
   const onSubmit: SubmitHandler<CreateClubFormValue> = (data) => {
-    const newData = previewImage ? { ...data, image: previewImage } : data;
+    const newData = previewImage
+      ? { ...data, name: data.name?.trim(), info: data.info?.trim(), image: previewImage }
+      : { ...data, name: data.name?.trim(), info: data.info?.trim() };
+
     createClub(newData);
+  };
+
+  const handleInputValueValidate = (value: string) => {
+    if (value.trim() === '') {
+      return '공백 문자만 입력할 수 없습니다.';
+    }
+
+    return true;
   };
 
   return (
@@ -67,6 +78,7 @@ const CreateClubPage = () => {
                   value: CREATE_CLUB.NAME_MAX_LENGTH,
                   message: ERROR_MESSAGE.CLUB.MAX_LENGTH_NAME,
                 },
+                validate: (value) => handleInputValueValidate(value ?? ''),
               })}
               inputType="text"
               placeholder={CREATE_CLUB.NAME_PLACEHOLDER}
@@ -84,6 +96,7 @@ const CreateClubPage = () => {
                   value: CREATE_CLUB.INFO_MAX_LENGTH,
                   message: ERROR_MESSAGE.CLUB.MAX_LENGTH_INFO,
                 },
+                validate: (value) => handleInputValueValidate(value ?? ''),
               })}
               rows={2}
               placeholder={CREATE_CLUB.INFO_PLACEHOLDER}
