@@ -5,10 +5,8 @@ import Poster from '@/components/common/Poster/Poster';
 import Tab from '@/components/common/Tab/Tab';
 import { MODAL_TEXT } from '@/constants/modalMessage';
 import { MAIN_TABS } from '@/constants/tab';
-import useGetClubQuery from '@/hooks/query/club/useGetClubQuery';
-import useMemberAuth from '@/hooks/query/club/useMemberAuth';
 import useDeleteEventMutation from '@/hooks/query/event/useDeleteEventMutation';
-import useEventDetailQuery from '@/hooks/query/event/useEventDetailQuery';
+import useEventDetailData from '@/hooks/query/event/useEventDetailData';
 import useEventFormQuery from '@/hooks/query/event/useEventFormQuery';
 import useModal from '@/hooks/useModal';
 import { ShowDetailResponse } from '@/types/api/getEventDetail';
@@ -50,21 +48,18 @@ const EventDetailPage = () => {
     throw new Error('eventId is null');
   }
 
-  const { eventDetail, isEventDetailLoading, isEventDetailSuccess } = useEventDetailQuery({
-    eventId,
-  });
-
   const { deleteEventMutate } = useDeleteEventMutation({ eventId });
 
-  const { category, eventInfo, clubId } = eventDetail ?? {};
+  const { eventDetail, isEventDetailLoading, isEventDetailSuccess, clubInfo, role, refetchAll } =
+    useEventDetailData({ eventId });
+
+  const { category, eventInfo } = eventDetail ?? {};
   const { content, posterImageUrl } = eventInfo ?? {};
 
   const { eventFormData } = useEventFormQuery({ eventId });
-  const { clubInfo, refetch: clubInfoRefetch } = useGetClubQuery({ clubId: '', isEnabled: false });
-  const { role, refetch: memberAuthRefetch } = useMemberAuth({ clubId: '', isEnabled: false });
+
   if (isEventDetailSuccess) {
-    clubInfoRefetch();
-    memberAuthRefetch();
+    refetchAll();
   }
 
   const handleEventDelete = async () => {
@@ -111,7 +106,7 @@ const EventDetailPage = () => {
           <ContentWrapper>
             {role === 'MANAGER' && (
               <ManagerButton
-                clubId={clubId!}
+                clubId={eventDetail?.clubId}
                 eventId={eventId}
                 eventDetail={eventDetail!}
                 deleteModalOpen={deleteModalOpen}
