@@ -9,7 +9,7 @@ import { ScheduleManageContainer } from './ScheduleManage.style';
 
 const ScheduleManage = () => {
   const { clubId } = useParams() as { clubId: string };
-  const { clubEvents } = useClubEventsQuery({ clubId, pageNumber: 0 });
+  const { clubEvents } = useClubEventsQuery({ clubId, isSchedule: true });
   if (!clubEvents) {
     return null;
   }
