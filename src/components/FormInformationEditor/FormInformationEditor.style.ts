@@ -1,11 +1,9 @@
 import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
-const FormInformationEditorContainer = styled.div`
+const FormInformationEditorContainer = styled.textarea`
   width: 100%;
-  height: fit-content;
   min-height: 6.25rem;
-  max-height: 12rem;
   overflow-y: auto;
   border: 1px solid ${Theme.color.gray};
   border-radius: 1rem;

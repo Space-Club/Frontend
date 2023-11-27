@@ -3,6 +3,10 @@ interface PatchUserInfoRequest {
   phoneNumber: string;
 }
 
-interface PatchUserInfoResponse {}
+interface PatchUserInfoResponse {
+  userId: string;
+  accessToken: string;
+  refreshToken: string;
+}
 
 export { PatchUserInfoRequest, PatchUserInfoResponse };

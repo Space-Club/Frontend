@@ -8,13 +8,13 @@ export const QUERY_KEY = { CLUB_EVENTS: 'CLUB_EVENTS' };
 const CLUB_EVENTS_STALE_TIME = 1000 * 60;
 
 const useClubEventsQuery = ({ clubId, pageNumber }: GetClubEventsRequest) => {
-  const { data: clubEvents } = useQuery({
+  const { data: events } = useQuery({
     queryKey: [QUERY_KEY.CLUB_EVENTS, pageNumber],
     queryFn: () => getClubEvents({ clubId, pageNumber }),
     staleTime: CLUB_EVENTS_STALE_TIME,
   });
 
-  const { data, pageData } = clubEvents ?? {};
+  const { data, pageData } = events ?? {};
 
   return { clubEvents: data, pageData };
 };

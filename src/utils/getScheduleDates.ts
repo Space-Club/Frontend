@@ -2,11 +2,11 @@ import { SchedulesProps } from '@/types/event';
 
 import { getDateRange } from './getDateRange';
 
-const getScheduleDates = ({ schedules }: SchedulesProps) => {
+const getScheduleDates = ({ clubEvents }: SchedulesProps) => {
   const scheduleDates: string[] = [];
-  schedules?.forEach((schedule) => {
-    const { startDateTime, endDateTime } = schedule;
-    const datesInRange = getDateRange(startDateTime, endDateTime);
+  clubEvents?.forEach((event) => {
+    const { startDate, endDate } = event.eventInfo;
+    const datesInRange = getDateRange(startDate, endDate);
     scheduleDates.push(...datesInRange);
   });
 

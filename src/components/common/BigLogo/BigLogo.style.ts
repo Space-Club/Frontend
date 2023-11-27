@@ -27,6 +27,7 @@ const LogoTextStyled = styled.h1`
   text-align: end;
   font-size: 6.25rem;
   font-family: 'LogoFont';
+  user-select: none;
 `;
 
 export { LogoCircleStyled, LogoTextStyled };

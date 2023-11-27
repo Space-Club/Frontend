@@ -20,7 +20,7 @@ const ClubMember = ({ clubId }: ClubMemberProps) => {
     <ClubMemberContainer>
       <ClubMemberAvatarsWrapper>
         {clubMembers.map((clubMember) => (
-          <ClubMemberAvatarWrapper key={clubMember.id}>
+          <ClubMemberAvatarWrapper key={clubMember.id} data-name={clubMember.name}>
             <Avatar avatarSize="normal" profileImageSrc={clubMember.profileImageUrl} />
           </ClubMemberAvatarWrapper>
         ))}

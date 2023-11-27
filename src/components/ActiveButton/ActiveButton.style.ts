@@ -11,6 +11,7 @@ const ButtonStyled = styled.button<{ fontSize: ActiveButtonProps['fontSize'] }>`
   color: white;
   font-size: ${(props) => getFontSize(props.fontSize)};
   cursor: pointer;
+  user-select: none;
 `;
 
 export { ButtonStyled };

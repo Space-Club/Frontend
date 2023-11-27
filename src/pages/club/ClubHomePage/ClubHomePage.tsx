@@ -36,7 +36,7 @@ const ClubHomePage = () => {
       <Suspense fallback={<Spinner />}>
         <ClubHomePageContainer>
           <ClubHomeTopWrapper>
-            <ClubBanner clubId={clubId} bannerSize="small" />
+            <ClubBanner leaveButton clubId={clubId} bannerSize="small" />
           </ClubHomeTopWrapper>
           <ClubMiddleWrapper>
             <ClubNoticeTextedWrapper>

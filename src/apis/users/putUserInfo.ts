@@ -3,11 +3,12 @@ import { PatchUserInfoRequest, PatchUserInfoResponse } from '@/types/api/patchUs
 
 import { axiosClientWithAuth } from '../axiosClient';
 
-const patchUserInfo = async ({ name, phoneNumber }: PatchUserInfoRequest) => {
-  await axiosClientWithAuth.patch<PatchUserInfoResponse>(END_POINTS.REGISTER, {
+const putUserInfo = async ({ name, phoneNumber }: PatchUserInfoRequest) => {
+  const { data } = await axiosClientWithAuth.put<PatchUserInfoResponse>(END_POINTS.PUT_USER_INFO, {
     name,
     phoneNumber,
   });
+  return data;
 };
 
-export default patchUserInfo;
+export default putUserInfo;
