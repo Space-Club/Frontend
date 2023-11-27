@@ -1,10 +1,8 @@
 import ConfirmModal from '@/components/Modals/ConfirmModal';
 import SearchInputForm from '@/components/SearchInputForm/SearchInputForm';
-import BookMark from '@/components/common/BookMark/BookMark';
 import Header from '@/components/common/Header/Header';
 import Poster from '@/components/common/Poster/Poster';
 import Tab from '@/components/common/Tab/Tab';
-import { EVENT_DETAIL_BUTTON } from '@/constants/event';
 import { MODAL_TEXT } from '@/constants/modalMessage';
 import { MAIN_TABS } from '@/constants/tab';
 import useGetClubQuery from '@/hooks/query/club/useGetClubQuery';
@@ -12,22 +10,16 @@ import useMemberAuth from '@/hooks/query/club/useMemberAuth';
 import useDeleteEventMutation from '@/hooks/query/event/useDeleteEventMutation';
 import useEventDetailQuery from '@/hooks/query/event/useEventDetailQuery';
 import useEventFormQuery from '@/hooks/query/event/useEventFormQuery';
-import useIsBookmarkQuery from '@/hooks/query/event/useIsBookmarkQuery';
 import useModal from '@/hooks/useModal';
 import { ShowDetailResponse } from '@/types/api/getEventDetail';
 import { getStorage } from '@/utils/localStorage';
 
-import { useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import ApplyEventModal from './ApplyModal/ApplyEventModal';
 import ApplyShowModal from './ApplyModal/ApplyShowModal';
 import CategoryDetailForm from './CategoryDetail/CategoryDetailForm';
 import {
-  ApplicantButton,
-  ApplyButton,
-  BookmarkButton,
-  ButtonWrapper,
   ContentWrapper,
   DetailContentWrapper,
   EventContentTitle,
@@ -36,9 +28,9 @@ import {
   EventDetailWrapper,
 } from './EventDetailPage.style';
 import ManagerButton from './ManagerButton/ManagerButton';
+import UserApplyButton from './UserApplyButton/UserApplyButton';
 
 const EventDetailPage = () => {
-  const bookmarkRef = useRef<HTMLDivElement>(null);
   const { eventId } = useParams();
   const navigate = useNavigate();
   const token = getStorage('token');
@@ -65,10 +57,9 @@ const EventDetailPage = () => {
   const { deleteEventMutate } = useDeleteEventMutation({ eventId });
 
   const { category, eventInfo, clubId } = eventDetail ?? {};
-  const { content, applicants, capacity, posterImageUrl } = eventInfo ?? {};
+  const { content, posterImageUrl } = eventInfo ?? {};
 
   const { eventFormData } = useEventFormQuery({ eventId });
-  const { isBookmarked } = useIsBookmarkQuery({ eventId });
   const { clubInfo, refetch: clubInfoRefetch } = useGetClubQuery({ clubId: '', isEnabled: false });
   const { role, refetch: memberAuthRefetch } = useMemberAuth({ clubId: '', isEnabled: false });
   if (isEventDetailSuccess) {
@@ -130,19 +121,11 @@ const EventDetailPage = () => {
               <Poster posterSrc={posterImageUrl ? posterImageUrl : ''} width={23} />
               <DetailContentWrapper>
                 <CategoryDetailForm data={eventDetail!} clubName={clubInfo?.name} />
-                <ButtonWrapper>
-                  {capacity && (
-                    <ApplicantButton reverse capacity={!!capacity} disabled>
-                      {applicants}/{capacity}
-                    </ApplicantButton>
-                  )}
-                  <ApplyButton capacity={!!capacity} onClick={() => applyModalOpen()}>
-                    {EVENT_DETAIL_BUTTON.apply}
-                  </ApplyButton>
-                  <BookmarkButton reverse bold onClick={() => bookmarkRef.current?.click()}>
-                    <BookMark bookmarked={isBookmarked!} eventId={eventId} ref={bookmarkRef} />
-                  </BookmarkButton>
-                </ButtonWrapper>
+                <UserApplyButton
+                  eventId={eventId}
+                  eventDetail={eventDetail!}
+                  applyModalOpen={applyModalOpen}
+                />
               </DetailContentWrapper>
             </EventDetailWrapper>
             <EventContentWrapper>

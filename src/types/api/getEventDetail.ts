@@ -24,10 +24,6 @@ interface CommonDetailResponse {
     formCloseDate: string;
     formCloseTime: string;
   };
-  clubName: string; // 다음 커밋에서 변경예정
-  isBookmarked: boolean; // 다음 커밋에서 변경예정
-  isManager: boolean; // 다음 커밋에서 변경예정
-  hasForm: boolean; // 다음 커밋에서 변경예정
 }
 
 interface ShowDetailResponse extends CommonDetailResponse {

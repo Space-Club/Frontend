@@ -1,0 +1,44 @@
+import BookMark from '@/components/common/BookMark/BookMark';
+import { EVENT_DETAIL_BUTTON } from '@/constants/event';
+import useIsBookmarkQuery from '@/hooks/query/event/useIsBookmarkQuery';
+import { getEventDetailResponse } from '@/types/api/getEventDetail';
+
+import { useRef } from 'react';
+
+import {
+  ApplicantButton,
+  ApplyButton,
+  BookmarkButton,
+  ButtonWrapper,
+} from '../EventDetailPage.style';
+
+interface UserApplyButton {
+  eventId: string;
+  eventDetail: getEventDetailResponse;
+  applyModalOpen: () => void;
+}
+
+const UserApplyButton = ({ eventId, eventDetail, applyModalOpen }: UserApplyButton) => {
+  const bookmarkRef = useRef<HTMLDivElement>(null);
+  const { isBookmarked } = useIsBookmarkQuery({ eventId });
+  const { eventInfo } = eventDetail ?? {};
+  const { capacity, applicants } = eventInfo ?? {};
+
+  return (
+    <ButtonWrapper>
+      {capacity && (
+        <ApplicantButton reverse capacity={!!capacity} disabled>
+          {applicants}/{capacity}
+        </ApplicantButton>
+      )}
+      <ApplyButton capacity={!!capacity} onClick={() => applyModalOpen()}>
+        {EVENT_DETAIL_BUTTON.apply}
+      </ApplyButton>
+      <BookmarkButton reverse bold onClick={() => bookmarkRef.current?.click()}>
+        <BookMark bookmarked={isBookmarked!} eventId={eventId} ref={bookmarkRef} />
+      </BookmarkButton>
+    </ButtonWrapper>
+  );
+};
+
+export default UserApplyButton;
