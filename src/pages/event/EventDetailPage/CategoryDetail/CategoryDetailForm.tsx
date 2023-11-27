@@ -10,10 +10,11 @@ import ShowDetail from './ShowDetail';
 
 interface CategoryDetailForm {
   data: getEventDetailResponse;
+  clubName?: string;
 }
 
-const CategoryDetailForm = ({ data }: CategoryDetailForm) => {
-  const { category, eventInfo, formInfo, clubName = '인재' } = data; // TODO: 클럽 네임 기본값 삭제
+const CategoryDetailForm = ({ data, clubName }: CategoryDetailForm) => {
+  const { category, eventInfo, formInfo } = data; // TODO: 클럽 네임 기본값 삭제
   const { formOpenDate, formOpenTime, formCloseDate, formCloseTime } = formInfo;
 
   const renderCategory = () => {

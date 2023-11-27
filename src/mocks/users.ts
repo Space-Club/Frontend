@@ -62,7 +62,7 @@ const userHandlers = [
   }),
 
   http.get(END_POINTS.GET_USER_INFO, async ({ request }) => {
-    const token = request.headers.get('Authorization');
+    const token = request.headers.get('Authorization')?.split(' ')[1];
 
     if (token === '123') {
       return HttpResponse.json(userInfo, { status: 200 });

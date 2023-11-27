@@ -7,11 +7,12 @@ export const QUERY_KEY = {
   GET_CLUB: 'GET_CLUB',
 };
 
-const useGetClubQuery = ({ clubId }: GetClubRequest) => {
+const useGetClubQuery = ({ clubId, isEnabled = true }: GetClubRequest) => {
   const { data: clubInfo, refetch } = useQuery({
     queryFn: () => getClub({ clubId }),
     queryKey: [QUERY_KEY.GET_CLUB, clubId],
     suspense: true,
+    enabled: isEnabled,
   });
   return { clubInfo, refetch };
 };

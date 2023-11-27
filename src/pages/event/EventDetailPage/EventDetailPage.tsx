@@ -8,6 +8,7 @@ import { EVENT_DETAIL_BUTTON } from '@/constants/event';
 import { MODAL_TEXT } from '@/constants/modalMessage';
 import { PATH } from '@/constants/path';
 import { MAIN_TABS } from '@/constants/tab';
+import useGetClubQuery from '@/hooks/query/club/useGetClubQuery';
 import useDeleteEventMutation from '@/hooks/query/event/useDeleteEventMutation';
 import useEventDetailQuery from '@/hooks/query/event/useEventDetailQuery';
 import useModal from '@/hooks/useModal';
@@ -57,7 +58,9 @@ const EventDetailPage = () => {
     throw new Error('eventId is null');
   }
 
-  const { eventDetail, isEventDetailLoading } = useEventDetailQuery({ eventId });
+  const { eventDetail, isEventDetailLoading, isEventDetailSuccess } = useEventDetailQuery({
+    eventId,
+  });
 
   const { deleteEventMutate } = useDeleteEventMutation({ eventId });
   // TODO: clubName query 만들기
@@ -66,6 +69,11 @@ const EventDetailPage = () => {
   // TODO: hasForm query 만들기
   const { category, isManager = true, eventInfo, isBookmarked = false, clubId } = eventDetail ?? {}; // TODO: 기본값 삭제
   const { content, applicants, capacity, posterImageUrl } = eventInfo ?? {};
+
+  const { clubInfo, refetch } = useGetClubQuery({ clubId: '', isEnabled: false });
+  if (isEventDetailSuccess) {
+    refetch();
+  }
 
   const handleEventDelete = async () => {
     deleteEventMutate();
@@ -138,7 +146,7 @@ const EventDetailPage = () => {
             <EventDetailWrapper>
               <Poster posterSrc={posterImageUrl ? posterImageUrl : ''} width={23} />
               <DetailContentWrapper>
-                <CategoryDetailForm data={eventDetail!} />
+                <CategoryDetailForm data={eventDetail!} clubName={clubInfo?.name} />
                 <ButtonWrapper>
                   {capacity && (
                     <ApplicantButton reverse capacity={!!capacity} disabled>
