@@ -29,16 +29,27 @@ const ReadonlyInput = styled.input`
   padding-left: 1rem;
   box-sizing: border-box;
 `;
-const SubmitButton = styled.button`
-  background-color: ${Theme.color.tPurple};
+const CopyButton = styled.button`
   font-size: ${Theme.fontSize.smallContent};
   border: none;
   outline: none;
-  margin-left: 1rem;
+  margin-left: 0.5rem;
   padding: 0.5rem 1rem;
-  color: white;
+  color: black;
   border-radius: 0.25rem;
   cursor: pointer;
 `;
+const SubmitButton = styled(CopyButton)`
+  background-color: ${Theme.color.tPurple};
+  color: white;
+`;
 
-export { InviteLinkContainer, TitleWrapper, SubTitle, InputWrapper, ReadonlyInput, SubmitButton };
+export {
+  InviteLinkContainer,
+  TitleWrapper,
+  SubTitle,
+  InputWrapper,
+  ReadonlyInput,
+  CopyButton,
+  SubmitButton,
+};
