@@ -6,7 +6,6 @@ import Poster from '@/components/common/Poster/Poster';
 import Tab from '@/components/common/Tab/Tab';
 import { EVENT_DETAIL_BUTTON } from '@/constants/event';
 import { MODAL_TEXT } from '@/constants/modalMessage';
-import { PATH } from '@/constants/path';
 import { MAIN_TABS } from '@/constants/tab';
 import useGetClubQuery from '@/hooks/query/club/useGetClubQuery';
 import useMemberAuth from '@/hooks/query/club/useMemberAuth';
@@ -35,10 +34,8 @@ import {
   EventContentWrapper,
   EventDetailPageContainer,
   EventDetailWrapper,
-  FormButtonWrapper,
-  PurpleButton,
-  UpdateDeleteWrapper,
 } from './EventDetailPage.style';
+import ManagerButton from './ManagerButton/ManagerButton';
 
 const EventDetailPage = () => {
   const bookmarkRef = useRef<HTMLDivElement>(null);
@@ -122,31 +119,12 @@ const EventDetailPage = () => {
           </Header>
           <ContentWrapper>
             {role === 'MANAGER' && (
-              <FormButtonWrapper>
-                <PurpleButton
-                  onClick={() => navigate(PATH.EVENT.SUBMITTED_FORMS(clubId!, eventId))}
-                >
-                  {EVENT_DETAIL_BUTTON.showSubmitForm}
-                </PurpleButton>
-                <UpdateDeleteWrapper>
-                  <PurpleButton
-                    reverse
-                    onClick={() =>
-                      navigate(PATH.EVENT.EDIT_WRITE_INFO(clubId!, category!), {
-                        state: {
-                          eventDetail,
-                          eventId,
-                        },
-                      })
-                    }
-                  >
-                    {EVENT_DETAIL_BUTTON.edit}
-                  </PurpleButton>
-                  <PurpleButton onClick={deleteModalOpen}>
-                    {EVENT_DETAIL_BUTTON.delete}
-                  </PurpleButton>
-                </UpdateDeleteWrapper>
-              </FormButtonWrapper>
+              <ManagerButton
+                clubId={clubId!}
+                eventId={eventId}
+                eventDetail={eventDetail!}
+                deleteModalOpen={deleteModalOpen}
+              />
             )}
             <EventDetailWrapper>
               <Poster posterSrc={posterImageUrl ? posterImageUrl : ''} width={23} />
