@@ -1,12 +1,8 @@
 import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
-const EventsContainer = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  padding-top: 3rem;
+const ContentSpacer = styled.div`
+  height: 1.3rem;
 `;
 
 const EmptyClubEvent = styled.div`
@@ -24,4 +20,4 @@ const ButtonWrapper = styled.div`
   right: 5rem;
 `;
 
-export { EventsContainer, ButtonWrapper, EmptyClubEvent };
+export { ContentSpacer, ButtonWrapper, EmptyClubEvent };

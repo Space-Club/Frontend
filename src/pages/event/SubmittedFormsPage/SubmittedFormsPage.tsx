@@ -2,18 +2,15 @@ import SearchInputForm from '@/components/SearchInputForm/SearchInputForm';
 import SubmittedForms from '@/components/SubmittedForms/SubmittedForms';
 import Header from '@/components/common/Header/Header';
 import Pagination from '@/components/common/Pagination/Pagination';
+import Spinner from '@/components/common/Spinner/Spinner';
 import Tab from '@/components/common/Tab/Tab';
 import { MAIN_TABS } from '@/constants/tab';
 import useGetSubmittedFormsQuery from '@/hooks/query/event/useGetSubmittedFormsQuery';
 
-import { useState } from 'react';
+import { Suspense, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import {
-  HeaderContentWrapper,
-  PaginationWrapper,
-  SubmittedFormsWrapper,
-} from './SubmittedFormsPage.style';
+import { SubmittedFormsWrapper } from './SubmittedFormsPage.style';
 
 const SubmittedFormsPage = () => {
   const { eventId } = useParams() as { eventId: string };
@@ -35,17 +32,15 @@ const SubmittedFormsPage = () => {
   return (
     <>
       <Header>
-        <HeaderContentWrapper>
-          <SearchInputForm />
-          <Tab tabItems={MAIN_TABS} />
-        </HeaderContentWrapper>
+        <SearchInputForm />
+        <Tab tabItems={MAIN_TABS} />
       </Header>
-      <SubmittedFormsWrapper>
-        <SubmittedForms formInfo={formInfo} userForms={userForms} />
-      </SubmittedFormsWrapper>
-      <PaginationWrapper>
-        <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
-      </PaginationWrapper>
+      <Suspense fallback={<Spinner />}>
+        <SubmittedFormsWrapper>
+          <SubmittedForms formInfo={formInfo} userForms={userForms} />
+        </SubmittedFormsWrapper>
+          <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
+      </Suspense>
     </>
   );
 };

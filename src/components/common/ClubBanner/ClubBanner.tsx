@@ -8,10 +8,11 @@ import { ClubAvatarInfoWrapper, ClubBannerContainer } from './ClubBanner.style';
 
 interface ClubBannerProps {
   clubId: string;
+  leaveButton?: boolean;
   bannerSize?: 'small' | 'large';
 }
 
-const ClubBanner = ({ clubId, bannerSize = 'large' }: ClubBannerProps) => {
+const ClubBanner = ({ clubId, bannerSize = 'large', leaveButton }: ClubBannerProps) => {
   const { clubInfo } = useGetClubQuery({ clubId });
 
   if (!clubInfo) return null;
@@ -26,7 +27,7 @@ const ClubBanner = ({ clubId, bannerSize = 'large' }: ClubBannerProps) => {
           <ClubInfo info={info} name={name} memberCount={memberCount} />
         </ClubAvatarInfoWrapper>
       </ClubCover>
-      <LeaveClubButton clubId={clubId} />
+      {leaveButton && <LeaveClubButton clubId={clubId} />}
     </ClubBannerContainer>
   );
 };

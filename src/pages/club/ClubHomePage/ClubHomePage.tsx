@@ -4,8 +4,10 @@ import ClubNotices from '@/components/ClubNotices/ClubNotices';
 import CreateNoticeButton from '@/components/CreateNoticeButton/CreateNoticeButton';
 import ScheduleManage from '@/components/ScheduleManage/ScheduleManage';
 import ClubBanner from '@/components/common/ClubBanner/ClubBanner';
+import Spinner from '@/components/common/Spinner/Spinner';
 import useMemberAuth from '@/hooks/query/club/useMemberAuth';
 
+import { Suspense } from 'react';
 import { useParams } from 'react-router-dom';
 
 import {
@@ -31,31 +33,33 @@ const ClubHomePage = () => {
   return (
     <>
       <ClubHeader clubId={clubId} />
-      <ClubHomePageContainer>
-        <ClubHomeTopWrapper>
-          <ClubBanner clubId={clubId} bannerSize="small" />
-        </ClubHomeTopWrapper>
-        <ClubMiddleWrapper>
-          <ClubNoticeTextedWrapper>
-            <ClubNoticeTextStyled>
-              공지사항
-              {role === 'MANAGER' && <CreateNoticeButton clubId={clubId} />}
-            </ClubNoticeTextStyled>
-            <ClubNoticeWrapper>
-              <ClubNotices clubId={clubId} />
-            </ClubNoticeWrapper>
-          </ClubNoticeTextedWrapper>
-          <ClubMemberTextedWrapper>
-            <ClubNoticeTextStyled>멤버</ClubNoticeTextStyled>
-            <ClubMemberWrapper>
-              <ClubMember clubId={clubId} />
-            </ClubMemberWrapper>
-          </ClubMemberTextedWrapper>
-        </ClubMiddleWrapper>
-        <ClubHomeBottomWrapper>
-          <ScheduleManage />
-        </ClubHomeBottomWrapper>
-      </ClubHomePageContainer>
+      <Suspense fallback={<Spinner />}>
+        <ClubHomePageContainer>
+          <ClubHomeTopWrapper>
+            <ClubBanner leaveButton clubId={clubId} bannerSize="small" />
+          </ClubHomeTopWrapper>
+          <ClubMiddleWrapper>
+            <ClubNoticeTextedWrapper>
+              <ClubNoticeTextStyled>
+                공지사항
+                {role === 'MANAGER' && <CreateNoticeButton clubId={clubId} />}
+              </ClubNoticeTextStyled>
+              <ClubNoticeWrapper>
+                <ClubNotices clubId={clubId} />
+              </ClubNoticeWrapper>
+            </ClubNoticeTextedWrapper>
+            <ClubMemberTextedWrapper>
+              <ClubNoticeTextStyled>멤버</ClubNoticeTextStyled>
+              <ClubMemberWrapper>
+                <ClubMember clubId={clubId} />
+              </ClubMemberWrapper>
+            </ClubMemberTextedWrapper>
+          </ClubMiddleWrapper>
+          <ClubHomeBottomWrapper>
+            <ScheduleManage />
+          </ClubHomeBottomWrapper>
+        </ClubHomePageContainer>
+      </Suspense>
     </>
   );
 };

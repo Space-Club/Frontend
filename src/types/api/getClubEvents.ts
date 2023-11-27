@@ -1,5 +1,3 @@
-import { FormInfo } from '@/types/form';
-
 import { ClubInfo } from '../club';
 import { PageData } from '../common';
 import { ClubEventInfo } from '../event';
@@ -13,8 +11,11 @@ interface GetClubEventsResponse {
   data: {
     id: string;
     eventInfo: ClubEventInfo;
-    formInfo: FormInfo;
     clubInfo: ClubInfo;
+    managerInfo: {
+      name: string;
+      profileImageUrl: string;
+    };
   }[];
   pageData: PageData;
 }

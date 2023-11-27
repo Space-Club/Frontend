@@ -1,5 +1,5 @@
 import { SelectedDateContextProvider } from '@/context/SelectedDateContext';
-import useClubSchedulesQuery from '@/hooks/query/event/useClubSchedulesQuery';
+import useClubEventsQuery from '@/hooks/query/club/useClubEventsQuery';
 
 import { useParams } from 'react-router-dom';
 
@@ -9,16 +9,16 @@ import { ScheduleManageContainer } from './ScheduleManage.style';
 
 const ScheduleManage = () => {
   const { clubId } = useParams() as { clubId: string };
-  const { data } = useClubSchedulesQuery({ clubId });
-  if (!data) {
+  const { clubEvents } = useClubEventsQuery({ clubId, pageNumber: 0 });
+  if (!clubEvents) {
     return null;
   }
 
   return (
     <SelectedDateContextProvider>
       <ScheduleManageContainer>
-        <ScheduleCalendar schedules={data.schedules} />
-        <Schedules schedules={data.schedules} />
+        <ScheduleCalendar clubEvents={clubEvents} />
+        <Schedules clubEvents={clubEvents} />
       </ScheduleManageContainer>
     </SelectedDateContextProvider>
   );

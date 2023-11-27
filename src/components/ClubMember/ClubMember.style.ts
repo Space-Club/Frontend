@@ -1,5 +1,5 @@
 import Theme from '@/styles/Theme';
-import { memberManagerScrollAreaStyled } from '@/styles/common';
+import { hoverBox, memberManagerScrollAreaStyled } from '@/styles/common';
 import styled from '@emotion/styled';
 
 const ClubMemberContainer = styled(memberManagerScrollAreaStyled)`
@@ -17,8 +17,9 @@ const ClubMemberAvatarsWrapper = styled.div`
   gap: 0.5rem;
 `;
 
-const ClubMemberAvatarWrapper = styled.div`
+const ClubMemberAvatarWrapper = styled(hoverBox)`
   display: flex;
+  position: relative;
   justify-content: center;
   align-items: center;
 `;

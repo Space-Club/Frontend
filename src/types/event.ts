@@ -8,6 +8,7 @@ import {
   UseFormWatch,
 } from 'react-hook-form';
 
+import { ClubInfo } from './club';
 import { FormType } from './form';
 
 type EventStatus = 'CONFIRMED' | 'PENDING' | 'CANCEL_REQUESTED' | 'CANCELED';
@@ -48,6 +49,9 @@ interface EventInfo {
   location: string;
   startDate: string;
   startTime: string;
+  endDate: string;
+  endTime: string;
+  isEnded: boolean;
 }
 
 type ClubEventInfo = EventInfo & { openStatus: 'ALL' | 'CLUB' };
@@ -58,15 +62,17 @@ interface BookmarkedEvent
 }
 
 interface Schedule {
-  eventId: string;
-  title: string;
-  startDateTime: string;
-  endDateTime: string;
-  manager: string;
+  id: string;
+  eventInfo: ClubEventInfo;
+  clubInfo: ClubInfo;
+  managerInfo: {
+    name: string;
+    profileImageUrl: string;
+  };
 }
 
 interface SchedulesProps {
-  schedules: Schedule[];
+  clubEvents: Schedule[];
 }
 
 interface getEventFormResponse {
@@ -112,11 +118,11 @@ export {
   ProfileEventType,
   EventStatus,
   FormPage,
-  Schedule,
   SchedulesProps,
   ValuePiece,
   Value,
   BookmarkedEvent,
   EventInfo,
   ReactHookFormProps,
+  Schedule,
 };

@@ -4,15 +4,11 @@ const ContainerStyled = styled.div`
   display: flex;
   width: 20.3rem;
   height: 13.3rem;
-  font-family: 'MainThin';
-  margin-bottom: 5%;
   cursor: pointer;
 `;
 
 const PosterAreaStyled = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
   object-fit: cover;
 `;
 
