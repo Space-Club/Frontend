@@ -9,8 +9,11 @@ import { MODAL_TEXT } from '@/constants/modalMessage';
 import { PATH } from '@/constants/path';
 import { MAIN_TABS } from '@/constants/tab';
 import useGetClubQuery from '@/hooks/query/club/useGetClubQuery';
+import useMemberAuth from '@/hooks/query/club/useMemberAuth';
 import useDeleteEventMutation from '@/hooks/query/event/useDeleteEventMutation';
 import useEventDetailQuery from '@/hooks/query/event/useEventDetailQuery';
+import useEventFormQuery from '@/hooks/query/event/useEventFormQuery';
+import useIsBookmarkQuery from '@/hooks/query/event/useIsBookmarkQuery';
 import useModal from '@/hooks/useModal';
 import { ShowDetailResponse } from '@/types/api/getEventDetail';
 import { getStorage } from '@/utils/localStorage';
@@ -63,16 +66,17 @@ const EventDetailPage = () => {
   });
 
   const { deleteEventMutate } = useDeleteEventMutation({ eventId });
-  // TODO: clubName query 만들기
-  // TODO: isBookmarked query 만들기
-  // TODO: isManager query 만들기
-  // TODO: hasForm query 만들기
-  const { category, isManager = true, eventInfo, isBookmarked = false, clubId } = eventDetail ?? {}; // TODO: 기본값 삭제
+
+  const { category, eventInfo, clubId } = eventDetail ?? {};
   const { content, applicants, capacity, posterImageUrl } = eventInfo ?? {};
 
-  const { clubInfo, refetch } = useGetClubQuery({ clubId: '', isEnabled: false });
+  const { eventFormData } = useEventFormQuery({ eventId });
+  const { isBookmarked } = useIsBookmarkQuery({ eventId });
+  const { clubInfo, refetch: clubInfoRefetch } = useGetClubQuery({ clubId: '', isEnabled: false });
+  const { role, refetch: memberAuthRefetch } = useMemberAuth({ clubId: '', isEnabled: false });
   if (isEventDetailSuccess) {
-    refetch();
+    clubInfoRefetch();
+    memberAuthRefetch();
   }
 
   const handleEventDelete = async () => {
@@ -95,12 +99,13 @@ const EventDetailPage = () => {
               <ApplyShowModal
                 eventId={eventId}
                 eventDetail={eventDetail as ShowDetailResponse}
+                hasForm={!!eventFormData?.form}
                 applyModalClose={applyModalClose}
               />
             ) : (
               <ApplyEventModal
                 eventId={eventId}
-                eventDetail={eventDetail!}
+                hasForm={!!eventFormData?.form}
                 applyModalClose={applyModalClose}
               />
             ))}
@@ -116,7 +121,7 @@ const EventDetailPage = () => {
             <Tab tabItems={MAIN_TABS} />
           </Header>
           <ContentWrapper>
-            {isManager && (
+            {role === 'MANAGER' && (
               <FormButtonWrapper>
                 <PurpleButton
                   onClick={() => navigate(PATH.EVENT.SUBMITTED_FORMS(clubId!, eventId))}

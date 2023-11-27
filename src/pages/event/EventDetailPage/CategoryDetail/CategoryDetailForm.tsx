@@ -14,7 +14,7 @@ interface CategoryDetailForm {
 }
 
 const CategoryDetailForm = ({ data, clubName }: CategoryDetailForm) => {
-  const { category, eventInfo, formInfo } = data; // TODO: 클럽 네임 기본값 삭제
+  const { category, eventInfo, formInfo } = data;
   const { formOpenDate, formOpenTime, formCloseDate, formCloseTime } = formInfo;
 
   const renderCategory = () => {
