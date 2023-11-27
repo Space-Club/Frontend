@@ -1,16 +1,15 @@
 import BookMark from '@/components/common/BookMark/BookMark';
 import { EVENT_DETAIL_BUTTON } from '@/constants/event';
 import useIsBookmarkQuery from '@/hooks/query/event/useIsBookmarkQuery';
-import { getEventDetailResponse } from '@/types/api/getEventDetail';
-
-import { useRef } from 'react';
-
 import {
   ApplicantButton,
   ApplyButton,
   BookmarkButton,
   ButtonWrapper,
-} from '../EventDetailPage.style';
+} from '@/pages/event/EventDetailPage/EventDetailPage.style';
+import { getEventDetailResponse } from '@/types/api/getEventDetail';
+
+import { useRef } from 'react';
 
 interface UserApplyButton {
   eventId: string;

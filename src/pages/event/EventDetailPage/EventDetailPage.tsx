@@ -1,7 +1,9 @@
+import ManagerButton from '@/components/ManagerButton/ManagerButton';
 import ApplyEventModal from '@/components/Modals/ApplyModal/ApplyEventModal';
 import ApplyShowModal from '@/components/Modals/ApplyModal/ApplyShowModal';
 import ConfirmModal from '@/components/Modals/ConfirmModal';
 import SearchInputForm from '@/components/SearchInputForm/SearchInputForm';
+import UserApplyButton from '@/components/UserApplyButton/UserApplyButton';
 import Header from '@/components/common/Header/Header';
 import Poster from '@/components/common/Poster/Poster';
 import Tab from '@/components/common/Tab/Tab';
@@ -25,8 +27,6 @@ import {
   EventDetailPageContainer,
   EventDetailWrapper,
 } from './EventDetailPage.style';
-import ManagerButton from './ManagerButton/ManagerButton';
-import UserApplyButton from './UserApplyButton/UserApplyButton';
 
 const EventDetailPage = () => {
   const { eventId } = useParams();
