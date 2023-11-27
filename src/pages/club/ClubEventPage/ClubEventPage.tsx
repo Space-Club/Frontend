@@ -5,11 +5,12 @@ import Pagination from '@/components/common/Pagination/Pagination';
 import { CREATE_EVENT } from '@/constants/club';
 import { PATH } from '@/constants/path';
 import useClubEventsQuery from '@/hooks/query/club/useClubEventsQuery';
+import { EventsWrapper } from '@/styles/common';
 
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { ButtonWrapper, EmptyClubEvent, EventsContainer } from './ClubEventPage.style';
+import { ButtonWrapper, ContentSpacer, EmptyClubEvent } from './ClubEventPage.style';
 
 const ClubEventPage = () => {
   const navigate = useNavigate();
@@ -30,24 +31,26 @@ const ClubEventPage = () => {
   return (
     <>
       <ClubHeader clubId={clubId}></ClubHeader>
-      <EventsContainer>
-        {clubEvents?.map(({ id, eventInfo, formInfo, clubInfo }) => (
+      <ContentSpacer />
+      <EventsWrapper>
+        {clubEvents?.map(({ id, eventInfo, clubInfo }) => (
           <EventCard
             eventId={id}
             posterSrc={eventInfo.posterImageUrl}
             eventTitle={eventInfo.title}
-            eventDate={eventInfo.startDate}
-            formCloseDate={formInfo.closeDate}
-            eventPlace={eventInfo.location}
-            clubImageSrc={clubInfo.logoImageUrl}
+            startDate={eventInfo.startDate}
+            endDate={eventInfo.endDate}
+            location={eventInfo.location}
+            clubLogoImageUrl={clubInfo.logoImageUrl}
             clubName={clubInfo.name}
             openStatus={eventInfo.openStatus}
+            isEnded={eventInfo.isEnded}
           />
         ))}
         {clubEvents?.length === 0 && (
           <EmptyClubEvent>클럽에서 생성한 행사가 없습니다!</EmptyClubEvent>
         )}
-      </EventsContainer>
+      </EventsWrapper>
       <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
       <ButtonWrapper>
         <ActiveButton

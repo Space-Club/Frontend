@@ -8,9 +8,9 @@ import 'react-calendar/dist/Calendar.css';
 
 import { CalendarWrapper, Dot } from './ScheduleCalendar.style';
 
-const ScheduleCalendar = ({ schedules }: SchedulesProps) => {
+const ScheduleCalendar = ({ clubEvents }: SchedulesProps) => {
   const { selectedDate, setSelectedDate } = useSelectedDateContext();
-  const scheduleDates = getScheduleDates({ schedules });
+  const scheduleDates = getScheduleDates({ clubEvents });
 
   const addContent = ({ date: targetDate }: { date: Date }) => {
     const contents = [];

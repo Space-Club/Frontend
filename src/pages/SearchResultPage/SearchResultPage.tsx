@@ -5,11 +5,12 @@ import Pagination from '@/components/common/Pagination/Pagination';
 import Tab from '@/components/common/Tab/Tab';
 import { MAIN_TABS } from '@/constants/tab';
 import useSearchResultQuery from '@/hooks/query/event/useSearchResultQuery';
+import { EventsWrapper } from '@/styles/common';
 
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { SearchMessageStyled, SearchesContainer, SearchesWrapper } from './SearchResultPage.style';
+import { SearchMessageStyled, SearchesContainer } from './SearchResultPage.style';
 
 const SearchResultPage = () => {
   const { keyword } = useParams();
@@ -28,21 +29,22 @@ const SearchResultPage = () => {
       </Header>
       <SearchMessageStyled>{`"${keyword}" 검색 결과`}</SearchMessageStyled>
       <SearchesContainer>
-        <SearchesWrapper>
-          {data?.map((event) => (
+        <EventsWrapper>
+          {data?.map(({ id, eventInfo, clubInfo }) => (
             <EventCard
-              key={event.id}
-              eventId={event.id}
-              eventTitle={event.eventInfo.title}
-              eventDate={event.eventInfo.startDate}
-              formCloseDate={event.formInfo.closeDate}
-              posterSrc={event.eventInfo.posterImageUrl}
-              eventPlace={event.eventInfo.location}
-              clubName={event.clubInfo.name}
-              clubImageSrc={event.clubInfo.logoImageUrl}
+              key={id}
+              eventId={id}
+              eventTitle={eventInfo.title}
+              startDate={eventInfo.startDate}
+              endDate={eventInfo.endDate}
+              posterSrc={eventInfo.posterImageUrl}
+              location={eventInfo.location}
+              clubName={clubInfo.name}
+              clubLogoImageUrl={clubInfo.logoImageUrl}
+              isEnded={eventInfo.isEnded}
             />
           ))}
-        </SearchesWrapper>
+        </EventsWrapper>
         <Pagination
           totalPages={totalPages}
           size={size}

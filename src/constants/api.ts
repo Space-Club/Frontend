@@ -10,7 +10,7 @@ const END_POINTS = {
   LOGOUT: '/users/logout',
 
   PATCH_PROFILE_IMAGE: '/me/profile',
-  PATCH_USER_INFO: 'users/required-infos',
+  PUT_USER_INFO: '/me/profile',
 
   PERFORMANCE_FORM: '/events',
   GET_APPLIED_EVENT: ({ page, size, sort }: { page: number; size: string; sort: string }) =>
@@ -25,13 +25,13 @@ const END_POINTS = {
     category: string;
     pageNumber: number;
     sort: string;
-  }) => `events?category=${category}&page=${pageNumber}&size=18&sort=${sort},desc`,
+  }) => `events?category=${category}&page=${pageNumber}&size=12&sort=${sort},desc`,
   EVENT_APPLY: '/events/participate',
   CANCEL_EVENT: ({ eventId }: { eventId: string }) => `/events/${eventId}/participate`,
   GET_SUBMITTED_FORMS: ({ eventId, pageNumber }: { eventId: string; pageNumber: number }) =>
     `events/${eventId}/forms/submit?page=${pageNumber}&size=20&sort=id,desc`,
   SEARCHES: ({ keyword, page }: { keyword: string; page: number }) =>
-    `/events/searches?keyword=${keyword}&page=${page}&size=18&sort=id,desc`,
+    `/events/searches?keyword=${keyword}&page=${page}&size=12&sort=id,desc`,
   SUBMITTED_FORM_STATUS: ({ eventId }: { eventId: string }) => `/events/${eventId}/forms/submit`,
 
   CREATE_CLUB: '/clubs',
@@ -41,7 +41,7 @@ const END_POINTS = {
   INVITE_CLUB_CODE: (inviteCode: string) => `/clubs/invites/${inviteCode}`,
   CLUB_MEMBERS: (clubId: string) => `/clubs/${clubId}/members`,
   CLUB_EVENTS: ({ clubId, pageNumber }: { clubId: string; pageNumber: number }) =>
-    `/clubs/${clubId}/events?page=${pageNumber}&size=18&sort=id,desc`,
+    `/clubs/${clubId}/events?page=${pageNumber}&size=12&sort=id,desc`,
   PATCH_MEMBER_ROLE: ({ clubId, memberId }: { clubId: string; memberId: string }) =>
     `/clubs/${clubId}/members/${memberId}`,
   EDIT_CLUB_SETTING: ({ clubId }: { clubId: string }) => `/clubs/${clubId}`,
@@ -51,7 +51,7 @@ const END_POINTS = {
   DELETE_MEMBER: ({ clubId, memberId }: { clubId: string; memberId: string }) =>
     `/clubs/${clubId}/members/${memberId}`,
   GET_BOOKMARK: ({ page, size, sort }: { page: number; size: number; sort: string }) =>
-    `/users/bookmarked-events?page=${page}&size=${size}&sort=${sort}`,
+    `/me/events/bookmark?page=${page}&size=${size}&sort=${sort}`,
   BOOK_MARK: (eventId: string) => `/me/events/${eventId}`,
   GET_CLUB: ({ clubId }: { clubId: string }) => `/clubs/${clubId}`,
   GET_USER_INFO: '/me/profile',

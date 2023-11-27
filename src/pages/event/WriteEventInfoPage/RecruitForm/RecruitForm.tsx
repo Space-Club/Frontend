@@ -1,79 +1,42 @@
-import ImageForm from '@/components/ImageForm/ImageForm';
 import InputForm from '@/components/common/InputForm/InputForm';
 import TextAreaForm from '@/components/common/TextAreaForm/TextAreaForm';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
 import { FORM_INFO_VALUE } from '@/constants/limitInputValue';
-import useSubmitForm from '@/hooks/query/event/useSubmitForm';
 import { RecruitmentDetailResponse } from '@/types/api/getEventDetail';
-import { FormPage } from '@/types/event';
+import { ReactHookFormProps } from '@/types/event';
 import setFormValue from '@/utils/setFormValue';
 import { validateTimeCompare, validateTodayDate } from '@/utils/validate';
 
-import { useEffect, useState } from 'react';
-import { FieldValues, useForm } from 'react-hook-form';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
+import ImageUploadInput from '../ImageUploadInput/ImageUploadInput';
 import {
-  ButtonWrapper,
   ContentArea,
   ErrorMessage,
   HalfInputForm,
-  PerformanceFormContainer,
-  PrevButton,
-  SubmitButton,
   TwoInputContainer,
 } from '../WriteEventInfoPage.style';
 
-const RecruitForm = ({ eventType, clubId }: FormPage) => {
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    watch,
-    formState: { errors },
-  } = useForm();
-  const { state } = useLocation();
-  const [imgFile, setImgFile] = useState('');
-  const navigate = useNavigate();
-  const { submitForm, isSubmitLoading } = useSubmitForm({ eventType, clubId, isEdit: !!state });
+interface RecruitForm extends ReactHookFormProps {
+  eventDetail?: RecruitmentDetailResponse;
+}
 
+const RecruitForm = ({ register, setValue, watch, errors, eventDetail }: RecruitForm) => {
   useEffect(() => {
-    if (state) {
-      const eventDetail: RecruitmentDetailResponse = state.eventDetail;
-      setFormValue({ setValue, setImgFile, eventDetail });
+    if (eventDetail) {
+      setFormValue({ setValue, eventDetail });
 
       setValue('activityArea', eventDetail.location);
       setValue('recruitmentTarget', eventDetail.recruitmentTarget);
     }
-  }, [state, setValue]);
+  }, [eventDetail, setValue]);
 
   const { PERSONNEL, MAX_YEAR, LAST_TIME, REQUIRED, MAX_LENGTH } = ERROR_MESSAGE.EVENT;
 
   const { LIMIT_LENGTH, LIMIT_VALUE } = FORM_INFO_VALUE;
 
-  useEffect(() => {
-    const imgSrc = watch('poster');
-    if (imgSrc[0]) {
-      const reader = new FileReader();
-      reader.readAsDataURL(imgSrc[0]);
-      reader.onload = () => {
-        setImgFile(reader.result as string);
-      };
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [watch('poster')]);
-
-  const onRecruitSubmitForm = (data: FieldValues) => {
-    if (isSubmitLoading || !clubId) return;
-    if (state) {
-      submitForm({ data, clubId, eventType, eventId: state.eventId });
-    } else {
-      submitForm({ data, clubId, eventType });
-    }
-  };
-
   return (
-    <PerformanceFormContainer onSubmit={handleSubmit(onRecruitSubmitForm)}>
+    <>
       <ContentArea>
         <InputForm
           {...register('title', {
@@ -159,14 +122,13 @@ const RecruitForm = ({ eventType, clubId }: FormPage) => {
         {errors.closeDate && <ErrorMessage>{errors.closeDate.message as string}</ErrorMessage>}
       </ContentArea>
       <ContentArea>
-        <ImageForm
-          {...register('poster', { required: state ? false : REQUIRED('포스터는') })}
-          imgFile={imgFile}
-          labelText="포스터"
-          required
-          buttonText="이미지 선택하기"
+        <ImageUploadInput
+          register={register}
+          watch={watch}
+          errors={errors}
+          isRequired={eventDetail ? false : REQUIRED('포스터는')}
+          posterImageUrl={eventDetail?.posterImageUrl}
         />
-        {errors.poster && <ErrorMessage>{errors.poster.message as string}</ErrorMessage>}
         <TextAreaForm
           {...register('content', {
             required: REQUIRED('공고 내용은'),
@@ -181,13 +143,7 @@ const RecruitForm = ({ eventType, clubId }: FormPage) => {
         />
         {errors.content && <ErrorMessage>{errors.content.message as string}</ErrorMessage>}
       </ContentArea>
-      <ButtonWrapper>
-        <PrevButton type="button" onClick={() => navigate(-1)}>
-          이전으로
-        </PrevButton>
-        <SubmitButton type="submit">{state ? '수정' : '다음'}</SubmitButton>
-      </ButtonWrapper>
-    </PerformanceFormContainer>
+    </>
   );
 };
 

@@ -17,7 +17,7 @@ import {
   SchedulesWrapper,
 } from './Schedules.style';
 
-const Schedules = ({ schedules }: SchedulesProps) => {
+const Schedules = ({ clubEvents }: SchedulesProps) => {
   const { selectedDate } = useSelectedDateContext();
   const { clubId } = useParams();
 
@@ -27,7 +27,7 @@ const Schedules = ({ schedules }: SchedulesProps) => {
   const navigate = useNavigate();
 
   const selectedDateFormatted = moment(`${selectedDate}`).format('YYYY-MM-DD');
-  const selectedDateSchedules = filterSchedulesBySelectedDate(selectedDateFormatted, schedules);
+  const selectedDateSchedules = filterSchedulesBySelectedDate(selectedDateFormatted, clubEvents);
 
   //#TODO: 관리자가 아닐 경우에 행사 생성하기 보여주지 말기
   return (
@@ -45,13 +45,14 @@ const Schedules = ({ schedules }: SchedulesProps) => {
         </NoScheduleWrapper>
       ) : (
         <SchedulesWrapper>
-          {selectedDateSchedules.map((schedule) => {
+          {selectedDateSchedules.map(({ id, eventInfo, managerInfo }) => {
             return (
               <Schedule
-                key={schedule.eventId}
-                eventId={schedule.eventId}
-                title={schedule.title}
-                manager={schedule.manager}
+                key={id}
+                eventId={id}
+                title={eventInfo.title}
+                manager={managerInfo.name}
+                managerProfileImageUrl={managerInfo.profileImageUrl}
               />
             );
           })}

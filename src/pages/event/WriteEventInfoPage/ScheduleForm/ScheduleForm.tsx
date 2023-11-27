@@ -1,52 +1,32 @@
-import ImageForm from '@/components/ImageForm/ImageForm';
 import InputForm from '@/components/common/InputForm/InputForm';
 import TextAreaForm from '@/components/common/TextAreaForm/TextAreaForm';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
 import { FORM_INFO_VALUE } from '@/constants/limitInputValue';
-import useSubmitForm from '@/hooks/query/event/useSubmitForm';
 import { ClubDetailResponse } from '@/types/api/getEventDetail';
-import { FormPage } from '@/types/event';
+import { ReactHookFormProps } from '@/types/event';
 import setFormValue from '@/utils/setFormValue';
 import { validateTimeCompare, validateTodayDate } from '@/utils/validate';
 
-import { useEffect, useState } from 'react';
-import { FieldValues, useForm } from 'react-hook-form';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
-import {
-  ButtonWrapper,
-  ContentArea,
-  ErrorMessage,
-  PerformanceFormContainer,
-  PrevButton,
-  SubmitButton,
-  TwoInputContainer,
-} from '../WriteEventInfoPage.style';
+import ImageUploadInput from '../ImageUploadInput/ImageUploadInput';
+import { ContentArea, ErrorMessage, TwoInputContainer } from '../WriteEventInfoPage.style';
 
-const ScheduleForm = ({ eventType, clubId }: FormPage) => {
-  const {
-    register,
-    handleSubmit,
-    setValue,
-    watch,
-    formState: { errors },
-  } = useForm({});
-  const { state } = useLocation();
-  const [imgFile, setImgFile] = useState('');
-  const navigate = useNavigate();
-  const { submitForm, isSubmitLoading } = useSubmitForm({ eventType, clubId, isEdit: !!state });
+interface ScheduleForm extends ReactHookFormProps {
+  eventDetail?: ClubDetailResponse;
+}
 
+const ScheduleForm = ({ register, setValue, watch, errors, eventDetail }: ScheduleForm) => {
   useEffect(() => {
-    if (state) {
-      const eventDetail: ClubDetailResponse = state.eventDetail;
-      setFormValue({ setValue, setImgFile, eventDetail });
+    if (eventDetail) {
+      setFormValue({ setValue, eventDetail });
 
       setValue('startDate', `${eventDetail.startDate}T${eventDetail.startTime}`);
       setValue('endDate', `${eventDetail.endDate}T${eventDetail.endTime}`);
       setValue('location', eventDetail.location);
       setValue('dues', eventDetail.dues);
     }
-  }, [state, setValue]);
+  }, [eventDetail, setValue]);
 
   const {
     PERSONNEL,
@@ -61,32 +41,11 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
 
   const { LIMIT_LENGTH, LIMIT_VALUE } = FORM_INFO_VALUE;
 
-  useEffect(() => {
-    const imgSrc = watch('poster');
-    if (imgSrc[0]) {
-      const reader = new FileReader();
-      reader.readAsDataURL(imgSrc[0]);
-      reader.onload = () => {
-        setImgFile(reader.result as string);
-      };
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [watch('poster')]);
-
-  const onScheduleSubmitForm = (data: FieldValues) => {
-    if (isSubmitLoading || !clubId) return;
-    if (state) {
-      submitForm({ data, clubId, eventType, eventId: state.eventId });
-    } else {
-      submitForm({ data, clubId, eventType });
-    }
-  };
-
   const openDate = watch('openDate');
   const closeDate = watch('closeDate');
 
   return (
-    <PerformanceFormContainer onSubmit={handleSubmit(onScheduleSubmitForm)}>
+    <>
       <ContentArea>
         <InputForm
           {...register('title', {
@@ -200,11 +159,12 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
         {errors.closeDate && <ErrorMessage>{errors.closeDate.message as string}</ErrorMessage>}
       </ContentArea>
       <ContentArea>
-        <ImageForm
-          {...register('poster')}
-          imgFile={imgFile}
-          labelText="포스터"
-          buttonText="이미지 선택하기"
+        <ImageUploadInput
+          register={register}
+          watch={watch}
+          errors={errors}
+          isRequired={false}
+          posterImageUrl={eventDetail?.posterImageUrl}
         />
         <TextAreaForm
           {...register('content', {
@@ -218,13 +178,7 @@ const ScheduleForm = ({ eventType, clubId }: FormPage) => {
         />
         {errors.content && <ErrorMessage>{errors.content.message as string}</ErrorMessage>}
       </ContentArea>
-      <ButtonWrapper>
-        <PrevButton type="button" onClick={() => navigate(-1)}>
-          이전으로
-        </PrevButton>
-        <SubmitButton type="submit">{state ? '수정' : '다음'}</SubmitButton>
-      </ButtonWrapper>
-    </PerformanceFormContainer>
+    </>
   );
 };
 

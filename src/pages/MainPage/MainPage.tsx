@@ -7,15 +7,12 @@ import Spinner from '@/components/common/Spinner/Spinner';
 import Tab from '@/components/common/Tab/Tab';
 import { MAIN_TABS } from '@/constants/tab';
 import useAllEventsQuery from '@/hooks/query/event/useAllEventsQuery';
+import { EventsWrapper } from '@/styles/common';
 
 import { Suspense, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
-import {
-  BannerWrapperStyled,
-  ContentContainerStyled,
-  EventCardWrapperStyled,
-} from './MainPage.style';
+import { BannerWrapperStyled, ContentContainerStyled } from './MainPage.style';
 
 const MainPage = () => {
   const { pathname } = useLocation();
@@ -54,23 +51,25 @@ const MainPage = () => {
           <BannerWrapperStyled>
             <Banner width={35} height={20} />
           </BannerWrapperStyled>
-          <EventCardWrapperStyled>
-            {events?.map((event) => {
+          <EventsWrapper>
+            {events?.map(({ id, eventInfo, clubInfo }) => {
               return (
                 <EventCard
-                  eventId={event.id}
-                  posterSrc={event.eventInfo.posterImageUrl}
-                  eventTitle={event.eventInfo.title}
-                  eventDate={event.eventInfo.startDate}
-                  formCloseDate={event.formInfo.closeDate}
-                  eventPlace={event.eventInfo.location}
-                  clubName={event.clubInfo.name}
-                  clubImageSrc={event.clubInfo.logoImageUrl}
+                  key={id}
+                  eventId={id}
+                  posterSrc={eventInfo.posterImageUrl}
+                  eventTitle={eventInfo.title}
+                  startDate={eventInfo.startDate}
+                  endDate={eventInfo.endDate}
+                  location={eventInfo.location}
+                  isEnded={eventInfo.isEnded}
+                  clubName={clubInfo.name}
+                  clubLogoImageUrl={clubInfo.logoImageUrl}
                 />
               );
             })}
-          </EventCardWrapperStyled>
-            <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
+          </EventsWrapper>
+          <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
         </ContentContainerStyled>
       </Suspense>
     </>
