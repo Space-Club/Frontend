@@ -25,13 +25,13 @@ const END_POINTS = {
     category: string;
     pageNumber: number;
     sort: string;
-  }) => `events?category=${category}&page=${pageNumber}&size=12&sort=${sort},desc`,
+  }) => `events?category=${category}&page=${pageNumber}&size=12&sort=${sort},asc`,
   EVENT_APPLY: '/events/participate',
   CANCEL_EVENT: ({ eventId }: { eventId: string }) => `/events/${eventId}/participate`,
   GET_SUBMITTED_FORMS: ({ eventId, pageNumber }: { eventId: string; pageNumber: number }) =>
     `events/${eventId}/forms/submit?page=${pageNumber}&size=20&sort=id,desc`,
   SEARCHES: ({ keyword, page }: { keyword: string; page: number }) =>
-    `/events/searches?keyword=${keyword}&page=${page}&size=12&sort=id,desc`,
+    `/events/searches?keyword=${keyword}&page=${page}&size=12&sort=id,asc`,
   SUBMITTED_FORM_STATUS: ({ eventId }: { eventId: string }) => `/events/${eventId}/forms/submit`,
 
   CREATE_CLUB: '/clubs',
@@ -41,7 +41,7 @@ const END_POINTS = {
   INVITE_CLUB_CODE: (inviteCode: string) => `/clubs/invites/${inviteCode}`,
   CLUB_MEMBERS: (clubId: string) => `/clubs/${clubId}/members`,
   CLUB_EVENTS: ({ clubId, pageNumber }: { clubId: string; pageNumber: number }) =>
-    `/clubs/${clubId}/events?page=${pageNumber}&size=12&sort=id,desc`,
+    `/clubs/${clubId}/events?page=${pageNumber}&size=12&sort=id,asc`,
   PATCH_MEMBER_ROLE: ({ clubId, memberId }: { clubId: string; memberId: string }) =>
     `/clubs/${clubId}/members/${memberId}`,
   EDIT_CLUB_SETTING: ({ clubId }: { clubId: string }) => `/clubs/${clubId}`,
