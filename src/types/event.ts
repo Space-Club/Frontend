@@ -75,21 +75,6 @@ interface SchedulesProps {
   clubEvents: Schedule[];
 }
 
-interface getEventFormResponse {
-  event: {
-    title: string;
-  };
-  form: {
-    description: string;
-    options: {
-      id: number;
-      title: string;
-      type: FormType;
-      option?: string[];
-    }[];
-  };
-}
-
 interface FormPage {
   eventType: eventTypeAPI;
   clubId: string;
@@ -107,7 +92,6 @@ interface ReactHookFormProps {
 }
 
 export {
-  getEventFormResponse,
   Event,
   EventTags,
   EventTagKey,
