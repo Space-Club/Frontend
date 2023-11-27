@@ -23,12 +23,6 @@ const EventInfoWrapper = styled.div`
   word-break: break-all;
 `;
 
-const TitleStyled = styled.div`
-  padding-bottom: 3%;
-  font-family: 'MainBold';
-  font-size: 1.5rem;
-`;
-
 const EventDateStyled = styled.div`
   padding-bottom: 2%;
   font-size: 1rem;
@@ -67,7 +61,6 @@ export {
   ContainerStyled,
   PosterAreaStyled,
   EventInfoWrapper,
-  TitleStyled,
   EventDateStyled,
   EventTimeStyled,
   EventFooterWrapper,
