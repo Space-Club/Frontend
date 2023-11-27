@@ -1,4 +1,4 @@
-import { eventTypeAPI } from '@/types/event';
+import { ProfileEventType, eventTypeAPI } from '@/types/event';
 
 const PATH = {
   LOGIN: '/login',
@@ -8,7 +8,7 @@ const PATH = {
   MAIN: '/',
   MAIN_EVENT: '/events',
   MAIN_RECRUITMENT: '/recruitment',
-  PROFILE: '/profile:category',
+  PROFILE: (category: ProfileEventType | ':category') => `/profile/${category}`,
   PROFILE_APPLIED: '/profile/applied',
   PROFILE_BOOKMARK: '/profile/bookmark',
   SEARCH: (keyword: string) => `/search/${keyword}`,
