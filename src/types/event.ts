@@ -1,5 +1,13 @@
 import Theme from '@/styles/Theme';
 
+import {
+  FieldErrors,
+  FieldValues,
+  UseFormRegister,
+  UseFormSetValue,
+  UseFormWatch,
+} from 'react-hook-form';
+
 import { ClubInfo } from './club';
 import { FormType } from './form';
 
@@ -91,6 +99,13 @@ interface FormPage {
 type ValuePiece = Date | null;
 type Value = ValuePiece | [ValuePiece, ValuePiece];
 
+interface ReactHookFormProps {
+  register: UseFormRegister<FieldValues>;
+  setValue: UseFormSetValue<FieldValues>;
+  watch: UseFormWatch<FieldValues>;
+  errors: FieldErrors<FieldValues>;
+}
+
 export {
   getEventFormResponse,
   Event,
@@ -108,5 +123,6 @@ export {
   Value,
   BookmarkedEvent,
   EventInfo,
+  ReactHookFormProps,
   Schedule,
 };
