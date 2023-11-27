@@ -53,6 +53,11 @@ const Profile = () => {
     setIsEdit(true);
   };
 
+  const handleLogoutStart = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    modalOpen();
+  };
+
   return (
     <>
       {showModal && (
@@ -72,11 +77,13 @@ const Profile = () => {
         <InfoWrapper>
           <form onSubmit={handleSubmit(handleInfoEditComplete)}>
             <ProfileButtonsWrapper>
-              <PurpleButton reverse onClick={modalOpen}>
-                로그아웃
-              </PurpleButton>
               {!isEdit ? (
-                <PurpleButton onClick={handleInfoEditStart}>정보 수정하기</PurpleButton>
+                <>
+                  <PurpleButton reverse onClick={handleLogoutStart}>
+                    로그아웃
+                  </PurpleButton>
+                  <PurpleButton onClick={handleInfoEditStart}>정보 수정하기</PurpleButton>
+                </>
               ) : (
                 <PurpleButton>저장</PurpleButton>
               )}
