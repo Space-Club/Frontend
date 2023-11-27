@@ -7,7 +7,7 @@ import { ERROR_MESSAGE } from '@/constants/errorMessage';
 import useClub from '@/hooks/query/club/useClub';
 import { CreateClubFormValue } from '@/types/club';
 
-import { ChangeEvent, useState } from 'react';
+import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import {
@@ -28,7 +28,7 @@ const CreateClubPage = () => {
     defaultValues: {
       name: '',
       info: '',
-      image: null,
+      image: undefined,
     },
     mode: 'onChange',
   });
@@ -37,17 +37,8 @@ const CreateClubPage = () => {
   const [previewImage, setPreviewImage] = useState<File | null>(null);
 
   const onSubmit: SubmitHandler<CreateClubFormValue> = (data) => {
-    createClub(data);
-  };
-
-  const handleChangeImage = (event: ChangeEvent<HTMLInputElement>) => {
-    const imageFile = event.target.files;
-
-    if (!imageFile || imageFile.length < 0) {
-      return;
-    }
-
-    setPreviewImage(imageFile[0]);
+    const newData = previewImage ? { ...data, image: previewImage } : data;
+    createClub(newData);
   };
 
   return (
@@ -60,12 +51,8 @@ const CreateClubPage = () => {
               avatarSize="large"
               isClub={true}
               profileImageSrc={previewImage ? `${URL.createObjectURL(previewImage)}` : ''}
-            />
-            <input
-              type="file"
-              accept="image/*"
-              {...register('image')}
-              onChange={handleChangeImage}
+              isEditable
+              onEdit={(file) => setPreviewImage(file)}
             />
           </ImageSelectWrapper>
           <ClubInfoWrapperStyled>
