@@ -8,7 +8,7 @@ interface postInviteLink {
 }
 
 const postInviteLink = async ({ clubId }: postInviteLink) => {
-  const { data } = await axiosClientWithAuth.post<postInviteLinkResponse>(
+  const { headers } = await axiosClientWithAuth.post<postInviteLinkResponse>(
     `${END_POINTS.INVITE_LINK(clubId)}`,
     null,
     {
@@ -18,7 +18,7 @@ const postInviteLink = async ({ clubId }: postInviteLink) => {
     },
   );
 
-  return data;
+  return headers;
 };
 
 export default postInviteLink;
