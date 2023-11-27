@@ -54,6 +54,12 @@ const CreateClubPage = () => {
     return true;
   };
 
+  const handleKeyPress = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+    }
+  };
+
   return (
     <PageContainer>
       <TitleStyled>{CREATE_CLUB.TITLE}</TitleStyled>
@@ -104,6 +110,7 @@ const CreateClubPage = () => {
                 rows={2}
                 placeholder={CREATE_CLUB.INFO_PLACEHOLDER}
                 maxLength={CREATE_CLUB.INFO_MAX_LENGTH}
+                onKeyDown={handleKeyPress}
               />
               <ErrorMessageStyled>{errors?.info ? errors.info.message : ''}</ErrorMessageStyled>
             </ClubInfoWrapperStyled>
