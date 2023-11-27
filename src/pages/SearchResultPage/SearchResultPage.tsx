@@ -44,6 +44,8 @@ const SearchResultPage = () => {
               isEnded={eventInfo.isEnded}
             />
           ))}
+          {data?.length === 0 && <div>검색결과가 없습니다.</div>}
+          {/* #TODO: CommonEmptyEventStyle로 바꿔주기 */}
         </EventsWrapper>
         <Pagination
           totalPages={totalPages}

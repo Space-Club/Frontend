@@ -2,7 +2,7 @@ import { PATH } from '@/constants/path';
 import useSearchResultQuery from '@/hooks/query/event/useSearchResultQuery';
 import useDebounceValue from '@/hooks/useDebounce';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CiSearch } from 'react-icons/ci';
 import { useNavigate } from 'react-router-dom';
 
@@ -19,11 +19,25 @@ import {
 } from './SearchInputForm.style';
 
 const SearchInputForm = () => {
+  const searchInputRef = useRef<HTMLDivElement>(null);
   const [keyword, setKeyword] = useState('');
   const [isFocused, setIsFocused] = useState(false);
   const debouncedKeyword = useDebounceValue(keyword, 300);
   const { data, pageData } = useSearchResultQuery({ keyword: debouncedKeyword, page: 0 });
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleDocumentClick = (event: MouseEvent) => {
+      if (searchInputRef.current && !searchInputRef.current.contains(event.target as Node)) {
+        setIsFocused(false);
+      }
+    };
+    document.addEventListener('click', handleDocumentClick);
+
+    return () => {
+      document.removeEventListener('click', handleDocumentClick);
+    };
+  }, []);
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === 'Enter' && debouncedKeyword.trim() !== '') {
@@ -31,19 +45,15 @@ const SearchInputForm = () => {
     }
   };
 
-  const handleInputClick = () => {
-    setIsFocused(!isFocused);
-  };
-
   return (
-    <SearchInputContainerStyled>
+    <SearchInputContainerStyled ref={searchInputRef}>
       <SearchBarStyled>
         <SearchInputStyled
           placeholder="검색하기"
           value={keyword}
           onChange={(event) => setKeyword(event.target.value)}
-          onClick={() => handleInputClick()}
           onKeyDown={(event) => handleKeyDown(event)}
+          onFocus={() => setIsFocused(true)}
         />
         <IconContainerStyled
           onClick={() => {
