@@ -24,10 +24,13 @@ interface RecruitForm extends ReactHookFormProps {
 const RecruitForm = ({ register, setValue, watch, errors, eventDetail }: RecruitForm) => {
   useEffect(() => {
     if (eventDetail) {
+      const { eventInfo } = eventDetail;
+      const { location, recruitmentTarget } = eventInfo;
+
       setFormValue({ setValue, eventDetail });
 
-      setValue('activityArea', eventDetail.location);
-      setValue('recruitmentTarget', eventDetail.recruitmentTarget);
+      setValue('activityArea', location);
+      setValue('recruitmentTarget', recruitmentTarget);
     }
   }, [eventDetail, setValue]);
 
@@ -127,7 +130,7 @@ const RecruitForm = ({ register, setValue, watch, errors, eventDetail }: Recruit
           watch={watch}
           errors={errors}
           isRequired={eventDetail ? false : REQUIRED('포스터는')}
-          posterImageUrl={eventDetail?.posterImageUrl}
+          posterImageUrl={eventDetail?.eventInfo.posterImageUrl}
         />
         <TextAreaForm
           {...register('content', {
