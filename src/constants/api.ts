@@ -42,10 +42,11 @@ const END_POINTS = {
   CLUB_MEMBERS: (clubId: string) => `/clubs/${clubId}/members`,
   CLUB_EVENTS: ({ clubId, pageNumber }: { clubId: string; pageNumber: number }) =>
     `/clubs/${clubId}/events?page=${pageNumber}&size=12&sort=id,desc`,
+  CLUB_SCHEDULES: ({ clubId }: { clubId: string }) => `/clubs/${clubId}/events?page=0&sort=id,desc`,
+
   PATCH_MEMBER_ROLE: ({ clubId, memberId }: { clubId: string; memberId: string }) =>
     `/clubs/${clubId}/members/${memberId}`,
   EDIT_CLUB_SETTING: ({ clubId }: { clubId: string }) => `/clubs/${clubId}`,
-  CLUB_SCHEDULES: ({ clubId }: { clubId: string }) => `/clubs/${clubId}/schedules`,
   WITHDRAW_CLUB: ({ clubId }: { clubId: string }) => `/clubs/${clubId}/users`,
 
   DELETE_MEMBER: ({ clubId, memberId }: { clubId: string; memberId: string }) =>
