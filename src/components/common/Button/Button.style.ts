@@ -16,6 +16,8 @@ const ButtonStyled = styled.button<{
   border-radius: 0.25rem;
   box-sizing: border-box;
   cursor: pointer;
+
+  user-select: none;
 `;
 
 export default ButtonStyled;

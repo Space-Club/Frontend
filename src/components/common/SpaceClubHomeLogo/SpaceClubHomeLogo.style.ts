@@ -7,6 +7,7 @@ const ContainerStyled = styled.div`
   align-items: center;
   width: 10rem;
   height: 4rem;
+  user-select: none;
 `;
 
 const LogoCircleStyled = styled.div`
