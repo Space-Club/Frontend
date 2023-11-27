@@ -1,3 +1,5 @@
+import ApplyEventModal from '@/components/Modals/ApplyModal/ApplyEventModal';
+import ApplyShowModal from '@/components/Modals/ApplyModal/ApplyShowModal';
 import ConfirmModal from '@/components/Modals/ConfirmModal';
 import SearchInputForm from '@/components/SearchInputForm/SearchInputForm';
 import Header from '@/components/common/Header/Header';
@@ -14,8 +16,6 @@ import { getStorage } from '@/utils/localStorage';
 
 import { useNavigate, useParams } from 'react-router-dom';
 
-import ApplyEventModal from './ApplyModal/ApplyEventModal';
-import ApplyShowModal from './ApplyModal/ApplyShowModal';
 import CategoryDetailForm from './CategoryDetail/CategoryDetailForm';
 import {
   ContentWrapper,
