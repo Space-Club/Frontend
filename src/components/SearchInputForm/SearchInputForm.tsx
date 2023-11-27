@@ -26,8 +26,8 @@ const SearchInputForm = () => {
   const navigate = useNavigate();
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
-      navigate(PATH.SEARCH(keyword));
+    if (event.key === 'Enter' && debouncedKeyword.trim() !== '') {
+      navigate(PATH.SEARCH(debouncedKeyword));
     }
   };
 
@@ -45,7 +45,13 @@ const SearchInputForm = () => {
           onClick={() => handleInputClick()}
           onKeyDown={(event) => handleKeyDown(event)}
         />
-        <IconContainerStyled onClick={() => navigate(PATH.SEARCH(debouncedKeyword))}>
+        <IconContainerStyled
+          onClick={() => {
+            if (debouncedKeyword.trim() !== '') {
+              navigate(PATH.SEARCH(keyword));
+            }
+          }}
+        >
           <CiSearch size="1.5rem" />
         </IconContainerStyled>
       </SearchBarStyled>
@@ -69,7 +75,7 @@ const SearchInputForm = () => {
           ) : (
             <NoResultStyled>검색결과가 없습니다.</NoResultStyled>
           )}
-          {pageData && pageData.totalPages > 0 && (
+          {pageData && pageData.totalPages > 1 && (
             <MoreResultStyled
               onClick={() => {
                 navigate(PATH.SEARCH(debouncedKeyword));
