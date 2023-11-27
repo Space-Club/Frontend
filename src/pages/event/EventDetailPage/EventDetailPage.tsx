@@ -6,7 +6,7 @@ import Tab from '@/components/common/Tab/Tab';
 import { MODAL_TEXT } from '@/constants/modalMessage';
 import { MAIN_TABS } from '@/constants/tab';
 import useDeleteEventMutation from '@/hooks/query/event/useDeleteEventMutation';
-import useEventDetailData from '@/hooks/query/event/useEventDetailData';
+import useEventDetailQuery from '@/hooks/query/event/useEventDetailQuery';
 import useEventFormQuery from '@/hooks/query/event/useEventFormQuery';
 import useModal from '@/hooks/useModal';
 import { ShowDetailResponse } from '@/types/api/getEventDetail';
@@ -48,19 +48,16 @@ const EventDetailPage = () => {
     throw new Error('eventId is null');
   }
 
-  const { deleteEventMutate } = useDeleteEventMutation({ eventId });
+  const { eventDetail, isEventDetailLoading } = useEventDetailQuery({
+    eventId,
+  });
 
-  const { eventDetail, isEventDetailLoading, isEventDetailSuccess, clubInfo, role, refetchAll } =
-    useEventDetailData({ eventId });
+  const { deleteEventMutate } = useDeleteEventMutation({ eventId });
 
   const { category, eventInfo } = eventDetail ?? {};
   const { content, posterImageUrl } = eventInfo ?? {};
 
   const { eventFormData } = useEventFormQuery({ eventId });
-
-  if (isEventDetailSuccess) {
-    refetchAll();
-  }
 
   const handleEventDelete = async () => {
     deleteEventMutate();
@@ -104,18 +101,15 @@ const EventDetailPage = () => {
             <Tab tabItems={MAIN_TABS} />
           </Header>
           <ContentWrapper>
-            {role === 'MANAGER' && (
-              <ManagerButton
-                clubId={eventDetail?.clubId}
-                eventId={eventId}
-                eventDetail={eventDetail!}
-                deleteModalOpen={deleteModalOpen}
-              />
-            )}
+            <ManagerButton
+              eventId={eventId}
+              eventDetail={eventDetail!}
+              deleteModalOpen={deleteModalOpen}
+            />
             <EventDetailWrapper>
               <Poster posterSrc={posterImageUrl ? posterImageUrl : ''} width={23} />
               <DetailContentWrapper>
-                <CategoryDetailForm data={eventDetail!} clubName={clubInfo?.name} />
+                <CategoryDetailForm data={eventDetail!} />
                 <UserApplyButton
                   eventId={eventId}
                   eventDetail={eventDetail!}

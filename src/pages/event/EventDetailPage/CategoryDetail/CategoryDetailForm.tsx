@@ -10,11 +10,10 @@ import ShowDetail from './ShowDetail';
 
 interface CategoryDetailForm {
   data: getEventDetailResponse;
-  clubName?: string;
 }
 
-const CategoryDetailForm = ({ data, clubName }: CategoryDetailForm) => {
-  const { category, eventInfo, formInfo } = data;
+const CategoryDetailForm = ({ data }: CategoryDetailForm) => {
+  const { category, clubInfo, eventInfo, formInfo } = data;
   const { formOpenDate, formOpenTime, formCloseDate, formCloseTime } = formInfo;
 
   const renderCategory = () => {
@@ -43,7 +42,7 @@ const CategoryDetailForm = ({ data, clubName }: CategoryDetailForm) => {
       </div>
       <div>
         <ContentLabel>{EVENT_DETAIL.organizer}</ContentLabel>
-        {clubName}
+        {clubInfo.clubName}
       </div>
     </>
   );

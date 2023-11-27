@@ -2,4 +2,6 @@ interface GetIsBookmarkRequest {
   eventId: string;
 }
 
-export { GetIsBookmarkRequest };
+type GetIsBookmarkResponse = boolean;
+
+export { GetIsBookmarkRequest, GetIsBookmarkResponse };

@@ -10,7 +10,10 @@ type getEventDetailResponse =
 
 interface CommonDetailResponse {
   id: number;
-  clubId: string;
+  clubInfo: {
+    clubId: string;
+    clubName: string;
+  };
   eventInfo: {
     title: string;
     content: string;

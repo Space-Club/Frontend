@@ -14,6 +14,7 @@ interface UseMemberAuth {
 }
 
 const useMemberAuth = ({ clubId, isEnabled = true }: UseMemberAuth) => {
+  if (!clubId) null;
   const { data, error, isError, refetch } = useQuery<MemberAuthResponse, AxiosError>({
     queryKey: [QUERY_KEY.MEMBER_AUTH, clubId],
     queryFn: () => getMemberAuth({ clubId }),
