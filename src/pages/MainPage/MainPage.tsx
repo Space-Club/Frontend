@@ -3,13 +3,12 @@ import Banner from '@/components/common/Banner/Banner';
 import EventCard from '@/components/common/EventCard/EventCard';
 import Header from '@/components/common/Header/Header';
 import Pagination from '@/components/common/Pagination/Pagination';
-import Spinner from '@/components/common/Spinner/Spinner';
 import Tab from '@/components/common/Tab/Tab';
 import { MAIN_TABS } from '@/constants/tab';
 import useAllEventsQuery from '@/hooks/query/event/useAllEventsQuery';
 import { EventsWrapper } from '@/styles/common';
 
-import { Suspense, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
 import { BannerWrapperStyled, ContentContainerStyled } from './MainPage.style';
@@ -46,32 +45,30 @@ const MainPage = () => {
         <SearchInputForm />
         <Tab tabItems={MAIN_TABS} />
       </Header>
-      <Suspense fallback={<Spinner />}>
-        <ContentContainerStyled>
-          <BannerWrapperStyled>
-            <Banner width={35} height={20} />
-          </BannerWrapperStyled>
-          <EventsWrapper>
-            {events?.map(({ id, eventInfo, clubInfo }) => {
-              return (
-                <EventCard
-                  key={id}
-                  eventId={id}
-                  posterSrc={eventInfo.posterImageUrl}
-                  eventTitle={eventInfo.title}
-                  startDate={eventInfo.startDate}
-                  endDate={eventInfo.endDate}
-                  location={eventInfo.location}
-                  isEnded={eventInfo.isEnded}
-                  clubName={clubInfo.name}
-                  clubLogoImageUrl={clubInfo.logoImageUrl}
-                />
-              );
-            })}
-          </EventsWrapper>
-          <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
-        </ContentContainerStyled>
-      </Suspense>
+      <ContentContainerStyled>
+        <BannerWrapperStyled>
+          <Banner width={35} height={20} />
+        </BannerWrapperStyled>
+        <EventsWrapper>
+          {events?.map(({ id, eventInfo, clubInfo }) => {
+            return (
+              <EventCard
+                key={id}
+                eventId={id}
+                posterSrc={eventInfo.posterImageUrl}
+                eventTitle={eventInfo.title}
+                startDate={eventInfo.startDate}
+                endDate={eventInfo.endDate}
+                location={eventInfo.location}
+                isEnded={eventInfo.isEnded}
+                clubName={clubInfo.name}
+                clubLogoImageUrl={clubInfo.logoImageUrl}
+              />
+            );
+          })}
+        </EventsWrapper>
+        <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
+      </ContentContainerStyled>
     </>
   );
 };
