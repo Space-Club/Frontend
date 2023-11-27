@@ -13,9 +13,11 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import {
   ButtonWrapperStyled,
   ClubInfoWrapperStyled,
+  ContentContainer,
   ContentWrapperStyled,
   ErrorMessageStyled,
   ImageSelectWrapper,
+  PageContainer,
   TitleStyled,
 } from './CreateClubPage.style';
 
@@ -53,58 +55,60 @@ const CreateClubPage = () => {
   };
 
   return (
-    <>
+    <PageContainer>
       <TitleStyled>{CREATE_CLUB.TITLE}</TitleStyled>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <ContentWrapperStyled>
-          <ImageSelectWrapper>
-            <Avatar
-              avatarSize="large"
-              isClub={true}
-              profileImageSrc={previewImage ? `${URL.createObjectURL(previewImage)}` : ''}
-              isEditable
-              onEdit={(file) => setPreviewImage(file)}
-            />
-          </ImageSelectWrapper>
-          <ClubInfoWrapperStyled>
-            <InputForm
-              {...register('name', {
-                required: ERROR_MESSAGE.CLUB.REQUIRED_NAME,
-                minLength: {
-                  value: CREATE_CLUB.NAME_MIN_LENGTH,
-                  message: ERROR_MESSAGE.CLUB.MIN_LENGTH_NAME,
-                },
-                maxLength: {
-                  value: CREATE_CLUB.NAME_MAX_LENGTH,
-                  message: ERROR_MESSAGE.CLUB.MAX_LENGTH_NAME,
-                },
-                validate: (value) => handleInputValueValidate(value ?? ''),
-              })}
-              inputType="text"
-              placeholder={CREATE_CLUB.NAME_PLACEHOLDER}
-              maxLength={CREATE_CLUB.NAME_MAX_LENGTH}
-            />
-            <ErrorMessageStyled>{errors?.name ? errors.name.message : ''}</ErrorMessageStyled>
-            <TextAreaForm
-              {...register('info', {
-                required: ERROR_MESSAGE.CLUB.REQUIRED_INFO,
-                minLength: {
-                  value: CREATE_CLUB.INFO_MIN_LENGTH,
-                  message: ERROR_MESSAGE.CLUB.MIN_LENGTH_INFO,
-                },
-                maxLength: {
-                  value: CREATE_CLUB.INFO_MAX_LENGTH,
-                  message: ERROR_MESSAGE.CLUB.MAX_LENGTH_INFO,
-                },
-                validate: (value) => handleInputValueValidate(value ?? ''),
-              })}
-              rows={2}
-              placeholder={CREATE_CLUB.INFO_PLACEHOLDER}
-              maxLength={CREATE_CLUB.INFO_MAX_LENGTH}
-            />
-            <ErrorMessageStyled>{errors?.info ? errors.info.message : ''}</ErrorMessageStyled>
-          </ClubInfoWrapperStyled>
-        </ContentWrapperStyled>
+        <ContentContainer>
+          <ContentWrapperStyled>
+            <ImageSelectWrapper>
+              <Avatar
+                avatarSize="large"
+                isClub={true}
+                profileImageSrc={previewImage ? `${URL.createObjectURL(previewImage)}` : ''}
+                isEditable
+                onEdit={(file) => setPreviewImage(file)}
+              />
+            </ImageSelectWrapper>
+            <ClubInfoWrapperStyled>
+              <InputForm
+                {...register('name', {
+                  required: ERROR_MESSAGE.CLUB.REQUIRED_NAME,
+                  minLength: {
+                    value: CREATE_CLUB.NAME_MIN_LENGTH,
+                    message: ERROR_MESSAGE.CLUB.MIN_LENGTH_NAME,
+                  },
+                  maxLength: {
+                    value: CREATE_CLUB.NAME_MAX_LENGTH,
+                    message: ERROR_MESSAGE.CLUB.MAX_LENGTH_NAME,
+                  },
+                  validate: (value) => handleInputValueValidate(value ?? ''),
+                })}
+                inputType="text"
+                placeholder={CREATE_CLUB.NAME_PLACEHOLDER}
+                maxLength={CREATE_CLUB.NAME_MAX_LENGTH}
+              />
+              <ErrorMessageStyled>{errors?.name ? errors.name.message : ''}</ErrorMessageStyled>
+              <TextAreaForm
+                {...register('info', {
+                  required: ERROR_MESSAGE.CLUB.REQUIRED_INFO,
+                  minLength: {
+                    value: CREATE_CLUB.INFO_MIN_LENGTH,
+                    message: ERROR_MESSAGE.CLUB.MIN_LENGTH_INFO,
+                  },
+                  maxLength: {
+                    value: CREATE_CLUB.INFO_MAX_LENGTH,
+                    message: ERROR_MESSAGE.CLUB.MAX_LENGTH_INFO,
+                  },
+                  validate: (value) => handleInputValueValidate(value ?? ''),
+                })}
+                rows={2}
+                placeholder={CREATE_CLUB.INFO_PLACEHOLDER}
+                maxLength={CREATE_CLUB.INFO_MAX_LENGTH}
+              />
+              <ErrorMessageStyled>{errors?.info ? errors.info.message : ''}</ErrorMessageStyled>
+            </ClubInfoWrapperStyled>
+          </ContentWrapperStyled>
+        </ContentContainer>
         <ButtonWrapperStyled>
           <ActiveButton
             buttonText={CREATE_CLUB.BUTTON}
@@ -114,7 +118,7 @@ const CreateClubPage = () => {
           />
         </ButtonWrapperStyled>
       </form>
-    </>
+    </PageContainer>
   );
 };
 
