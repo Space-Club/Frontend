@@ -1,10 +1,7 @@
 import styled from '@emotion/styled';
 
-const FormStatusItemStyled = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 6rem;
-`;
+import { ManageTitleStyled } from '../Category/Category.style';
+
+const FormStatusItemStyled = styled(ManageTitleStyled)``;
 
 export { FormStatusItemStyled };

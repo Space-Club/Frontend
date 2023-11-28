@@ -25,7 +25,7 @@ const ManageTitleStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 6rem;
+  min-width: 6rem;
 `;
 
 export { CategoryStyled, CategoryRowStyled, CategoryItemStyled, ManageTitleStyled };
