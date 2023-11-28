@@ -7,6 +7,8 @@ import { ModalBaseContainer } from './Modal.style';
 
 const NoticeModalContainer = styled(ModalBaseContainer)`
   display: flex;
+  height: 70vh;
+  width: 60vw;
   flex-direction: column;
   padding: 0;
   transform: translate(-50%, -50%);
@@ -38,9 +40,10 @@ const NoticeButtonStyled = styled(PurpleButton)`
 `;
 
 const NoticeContentWrapper = styled(textAreaScrollBar)`
-  min-height: 20rem;
-  min-width: 40rem;
+  height: 100%;
   padding: 1.5rem 2.6rem;
+  resize: none;
+  overflow-y: auto;
   background-color: ${Theme.color.white};
   &:focus {
     outline: none;
