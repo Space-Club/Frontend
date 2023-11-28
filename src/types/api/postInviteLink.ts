@@ -1,5 +1,5 @@
 interface postInviteLinkResponse {
-  inviteLink: 'string';
+  Location: 'string';
 }
 
 export { postInviteLinkResponse };
