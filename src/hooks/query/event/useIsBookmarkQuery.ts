@@ -3,7 +3,7 @@ import { GetIsBookmarkRequest } from '@/types/api/getIsBookmark';
 
 import { useQuery } from '@tanstack/react-query';
 
-const QUERY_KEY = { GET_IS_EVNET: 'GET_IS_EVNET' };
+export const QUERY_KEY = { GET_IS_EVNET: 'GET_IS_EVNET' };
 
 const useIsBookmarkQuery = ({ eventId }: GetIsBookmarkRequest) => {
   const { data: isBookmarked } = useQuery({
