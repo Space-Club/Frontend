@@ -5,6 +5,8 @@ const SearchesContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-between;
+  height: 80vh;
 `;
 
 const SearchMessageStyled = styled.div`
