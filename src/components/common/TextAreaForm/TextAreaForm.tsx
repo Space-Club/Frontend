@@ -3,7 +3,7 @@ import { forwardRef } from 'react';
 import { RequiredSquare } from '../InputForm/InputForm.style';
 import { InputWrapper, LabelStyled, TextAreaStyled } from './TextAreaForm.style';
 
-interface TextAreaForm {
+interface TextAreaForm extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
   labelText?: string;
   required?: boolean;
   rows: number;
