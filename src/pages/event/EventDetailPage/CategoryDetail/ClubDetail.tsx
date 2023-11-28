@@ -31,7 +31,7 @@ const ClubDetail = ({ data }: ClubDetail) => {
         {dues && (
           <div>
             <ContentLabel>{EVENT_DETAIL.cost}</ContentLabel>
-            <div>{dues}</div>
+            <div>{dues}원</div>
           </div>
         )}
         {location && (
