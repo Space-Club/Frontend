@@ -89,6 +89,8 @@ const PromotionForm = ({ register, setValue, watch, errors, eventDetail }: Promo
           labelText="정원"
           inputType="number"
           placeholder="정수(0-n)"
+          min={LIMIT_VALUE.CAPACITY_MIN}
+          max={LIMIT_VALUE.CAPACITY_MAX}
         />
         {errors.capacity && <ErrorMessage>{errors.capacity.message as string}</ErrorMessage>}
         <TwoInputContainer>

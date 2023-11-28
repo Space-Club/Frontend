@@ -93,6 +93,8 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
             labelText="정원"
             inputType="number"
             placeholder="정수(1-n)"
+            min={LIMIT_VALUE.CAPACITY_MIN}
+            max={LIMIT_VALUE.CAPACITY_MAX}
           />
           <InputForm
             {...register('cost', {
@@ -102,6 +104,8 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
             labelText="비용"
             inputType="number"
             placeholder="정수(0-n)"
+            min={LIMIT_VALUE.CAPACITY_MIN}
+            max={LIMIT_VALUE.CAPACITY_MAX}
           />
         </TwoInputContainer>
         {errors.capacity && <ErrorMessage>{errors.capacity.message as string}</ErrorMessage>}
@@ -140,6 +144,8 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
           labelText="인당 예매 가능 수"
           inputType="number"
           placeholder="정수(1-n)"
+          min={LIMIT_VALUE.TICKET_COUNT_MIN}
+          max={LIMIT_VALUE.TICKET_COUNT_MAX}
         />
         {errors.maxTicketCount && (
           <ErrorMessage>{errors.maxTicketCount.message as string}</ErrorMessage>

@@ -24,9 +24,9 @@ const InputStyled = styled.input`
   height: 3rem;
   outline: none;
   margin-top: 0.5rem;
+  padding: 0 1rem;
   border: 1px solid ${Theme.color.tLine};
   border-radius: 1rem;
-  padding-left: 1rem;
   box-sizing: border-box;
 
   :disabled {
@@ -43,6 +43,10 @@ const InputStyled = styled.input`
     position: absolute;
     width: 100%;
     cursor: pointer;
+  }
+
+  &[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
   }
 `;
 

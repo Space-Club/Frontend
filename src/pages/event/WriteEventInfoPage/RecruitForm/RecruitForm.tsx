@@ -87,6 +87,8 @@ const RecruitForm = ({ register, setValue, watch, errors, eventDetail }: Recruit
           labelText="모집 인원"
           inputType="number"
           placeholder="정수(1-n)"
+          min={LIMIT_VALUE.CAPACITY_MIN}
+          max={LIMIT_VALUE.CAPACITY_MAX}
         />
         {errors.capacity && <ErrorMessage>{errors.capacity.message as string}</ErrorMessage>}
         <TwoInputContainer>
