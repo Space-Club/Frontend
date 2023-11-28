@@ -5,7 +5,7 @@ import { FORM_INFO_VALUE } from '@/constants/limitInputValue';
 import { ClubDetailResponse } from '@/types/api/getEventDetail';
 import { ReactHookFormProps } from '@/types/event';
 import setFormValue from '@/utils/setFormValue';
-import { validateTimeCompare, validateTodayDate } from '@/utils/validate';
+import { validateTimeCompare, validateTodayDate, validateTrim } from '@/utils/validate';
 
 import { useEffect } from 'react';
 
@@ -54,6 +54,7 @@ const ScheduleForm = ({ register, setValue, watch, errors, eventDetail }: Schedu
               value: LIMIT_LENGTH.TITLE_MAX,
               message: MAX_LENGTH('일정 제목', LIMIT_LENGTH.TITLE_MAX),
             },
+            validate: (value) => validateTrim(value),
           })}
           labelText="일정 제목"
           required
@@ -102,6 +103,7 @@ const ScheduleForm = ({ register, setValue, watch, errors, eventDetail }: Schedu
               value: LIMIT_LENGTH.LOCATION_MAX,
               message: MAX_LENGTH('장소', LIMIT_LENGTH.LOCATION_MAX),
             },
+            validate: (value) => validateTrim(value),
           })}
           labelText="장소"
           inputType="text"
@@ -178,6 +180,7 @@ const ScheduleForm = ({ register, setValue, watch, errors, eventDetail }: Schedu
               value: LIMIT_LENGTH.CONTENT_MAX,
               message: MAX_LENGTH('일정 안내', LIMIT_LENGTH.CONTENT_MAX),
             },
+            validate: (value) => validateTrim(value),
           })}
           labelText="일정 안내"
           rows={10}
