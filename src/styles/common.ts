@@ -155,11 +155,12 @@ const textAreaScrollBar = styled.textarea`
 const hoverBox = styled.div`
   &:hover::after {
     content: attr(data-name);
+    white-space: nowrap;
     position: absolute;
-    bottom: -20%;
+    top: 100%;
     left: 50%;
     padding: 0.1rem;
-    transform: translateX(-50%);
+    transform: translateX(-50%) translateY(-50%);
     background: ${Theme.color.shadow};
     color: ${Theme.color.tWhiteGrey};
     border-radius: 0.25rem;
