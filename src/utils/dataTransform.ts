@@ -16,7 +16,7 @@ const dataTransform = ({ data, eventType, clubId, eventId }: dataTransform) => {
     ...(eventId ? { eventId } : { clubId }),
     eventInfo: {
       title,
-      content: content.trim(),
+      content: content.trim() || null,
       capacity: parseInt(capacity),
     },
     formInfo: {
@@ -35,15 +35,15 @@ const dataTransform = ({ data, eventType, clubId, eventId }: dataTransform) => {
           ...commonData.eventInfo,
           startDate: data.startDate.split('T')[0],
           startTime: data.startDate.split('T')[1],
-          location: data.location,
+          location: data.location || null,
         },
         ticketInfo: {
           cost: parseInt(data.cost),
           maxTicketCount: parseInt(data.maxTicketCount),
         },
         bankInfo: {
-          name: data.bankName,
-          accountNumber: data.accountNumber,
+          name: data.bankName || null,
+          accountNumber: data.accountNumber || null,
         },
       };
 
@@ -54,7 +54,7 @@ const dataTransform = ({ data, eventType, clubId, eventId }: dataTransform) => {
           ...commonData.eventInfo,
           startDate: data.startDate.split('T')[0],
           startTime: data.startDate.split('T')[1],
-          location: data.location,
+          location: data.location || null,
         },
       };
 
@@ -63,8 +63,8 @@ const dataTransform = ({ data, eventType, clubId, eventId }: dataTransform) => {
         ...commonData,
         eventInfo: {
           ...commonData.eventInfo,
-          activityArea: data.activityArea,
-          recruitmentTarget: data.recruitmentTarget,
+          activityArea: data.activityArea || null,
+          recruitmentTarget: data.recruitmentTarget || null,
         },
       };
 
@@ -77,7 +77,7 @@ const dataTransform = ({ data, eventType, clubId, eventId }: dataTransform) => {
           startTime: data.startDate.split('T')[1],
           endDate: data.endDate.split('T')[0],
           endTime: data.endDate.split('T')[1],
-          location: data.location,
+          location: data.location || null,
           dues: parseInt(data.dues),
         },
       };
