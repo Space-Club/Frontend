@@ -95,6 +95,7 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
             placeholder="정수(1-n)"
             min={LIMIT_VALUE.CAPACITY_MIN}
             max={LIMIT_VALUE.CAPACITY_MAX}
+            unit="명"
           />
           <InputForm
             {...register('cost', {
@@ -106,6 +107,7 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
             placeholder="정수(0-n)"
             min={LIMIT_VALUE.CAPACITY_MIN}
             max={LIMIT_VALUE.CAPACITY_MAX}
+            unit="원"
           />
         </TwoInputContainer>
         {errors.capacity && <ErrorMessage>{errors.capacity.message as string}</ErrorMessage>}
@@ -146,6 +148,8 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
           placeholder="정수(1-n)"
           min={LIMIT_VALUE.TICKET_COUNT_MIN}
           max={LIMIT_VALUE.TICKET_COUNT_MAX}
+          unit="매"
+          isHalf={true}
         />
         {errors.maxTicketCount && (
           <ErrorMessage>{errors.maxTicketCount.message as string}</ErrorMessage>

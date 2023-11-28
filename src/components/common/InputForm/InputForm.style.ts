@@ -1,7 +1,7 @@
 import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
-const InputWrapper = styled.div`
+const InputContainer = styled.div`
   width: 100%;
 `;
 const LabelStyled = styled.label`
@@ -17,6 +17,9 @@ const RequiredSquare = styled.span`
   height: 0.3rem;
   background-color: ${Theme.color.tButton};
   border-radius: 50%;
+`;
+const InputWrapper = styled.div`
+  position: relative;
 `;
 const InputStyled = styled.input`
   position: relative;
@@ -45,9 +48,20 @@ const InputStyled = styled.input`
     cursor: pointer;
   }
 
+  &[type='number'] {
+    padding-right: 2rem;
+  }
+
   &[type='number']::-webkit-inner-spin-button {
     -webkit-appearance: none;
   }
 `;
+const InputUnit = styled.span<{ isHalf?: boolean }>`
+  position: absolute;
+  top: calc(50% - 0.3rem);
+  right: ${({ isHalf }) => (isHalf ? 'calc(50% + 1rem)' : '1rem')};
+  font-size: 0.8rem;
+  color: ${Theme.color.semiBlack};
+`;
 
-export { InputWrapper, LabelStyled, RequiredSquare, InputStyled };
+export { InputContainer, LabelStyled, RequiredSquare, InputWrapper, InputStyled, InputUnit };
