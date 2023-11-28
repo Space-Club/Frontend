@@ -19,12 +19,15 @@ interface ScheduleForm extends ReactHookFormProps {
 const ScheduleForm = ({ register, setValue, watch, errors, eventDetail }: ScheduleForm) => {
   useEffect(() => {
     if (eventDetail) {
+      const { eventInfo } = eventDetail;
+      const { startDate, startTime, endDate, endTime, location, dues } = eventInfo;
+
       setFormValue({ setValue, eventDetail });
 
-      setValue('startDate', `${eventDetail.startDate}T${eventDetail.startTime}`);
-      setValue('endDate', `${eventDetail.endDate}T${eventDetail.endTime}`);
-      setValue('location', eventDetail.location);
-      setValue('dues', eventDetail.dues);
+      setValue('startDate', `${startDate}T${startTime}`);
+      setValue('endDate', `${endDate}T${endTime}`);
+      setValue('location', location);
+      setValue('dues', dues);
     }
   }, [eventDetail, setValue]);
 
@@ -164,7 +167,7 @@ const ScheduleForm = ({ register, setValue, watch, errors, eventDetail }: Schedu
           watch={watch}
           errors={errors}
           isRequired={false}
-          posterImageUrl={eventDetail?.posterImageUrl}
+          posterImageUrl={eventDetail?.eventInfo.posterImageUrl}
         />
         <TextAreaForm
           {...register('content', {

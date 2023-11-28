@@ -11,7 +11,9 @@ interface ShowDetail {
 }
 
 const ShowDetail = ({ data }: ShowDetail) => {
-  const { startDate, startTime, location, cost } = data;
+  const { eventInfo, ticketInfo } = data;
+  const { startDate, startTime, location } = eventInfo;
+  const { cost } = ticketInfo;
 
   return (
     <Fragment>

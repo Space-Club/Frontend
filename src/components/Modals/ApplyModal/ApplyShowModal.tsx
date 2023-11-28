@@ -10,14 +10,16 @@ import { useNavigate } from 'react-router-dom';
 interface ApplyShowModal {
   eventId: string;
   eventDetail: ShowDetailResponse;
+  hasForm: boolean;
   applyModalClose: () => void;
 }
 
-const ApplyShowModal = ({ eventId, eventDetail, applyModalClose }: ApplyShowModal) => {
+const ApplyShowModal = ({ eventId, eventDetail, hasForm, applyModalClose }: ApplyShowModal) => {
   const [ticketCount, setTicketCount] = useState('1');
   const navigate = useNavigate();
   const { applyEvent } = usePostEventApplyMutation({ eventId });
-  const { maxTicketCount, hasForm } = eventDetail;
+  const { ticketInfo } = eventDetail;
+  const { maxTicketCount } = ticketInfo;
 
   const ticketList = Array.from({ length: maxTicketCount }, (_, index) => ({
     label: `${index + 1}장`,

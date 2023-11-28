@@ -8,11 +8,15 @@ interface setFormValue {
 }
 
 const setFormValue = ({ setValue, eventDetail }: setFormValue) => {
-  setValue('title', eventDetail.title);
-  setValue('capacity', eventDetail.capacity);
-  setValue('openDate', `${eventDetail.formOpenDate}T${eventDetail.formOpenTime}`);
-  setValue('closeDate', `${eventDetail.formCloseDate}T${eventDetail.formCloseTime}`);
-  setValue('content', eventDetail.content);
+  const { eventInfo, formInfo } = eventDetail;
+  const { title, content, capacity } = eventInfo;
+  const { openDate, openTime, closeDate, closeTime } = formInfo;
+
+  setValue('title', title);
+  setValue('capacity', capacity);
+  setValue('openDate', `${openDate}T${openTime}`);
+  setValue('closeDate', `${closeDate}T${closeTime}`);
+  setValue('content', content);
 };
 
 export default setFormValue;

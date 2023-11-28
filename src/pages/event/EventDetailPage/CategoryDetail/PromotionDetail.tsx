@@ -11,7 +11,8 @@ interface PromotionDetail {
 }
 
 const PromotionDetail = ({ data }: PromotionDetail) => {
-  const { startDate, startTime, activityArea } = data;
+  const { eventInfo } = data;
+  const { startDate, startTime, activityArea } = eventInfo;
   return (
     <Fragment>
       <TwoContentWrapper itemLength={3}>

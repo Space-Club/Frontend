@@ -13,18 +13,11 @@ interface CategoryDetailForm {
 }
 
 const CategoryDetailForm = ({ data }: CategoryDetailForm) => {
-  const {
-    eventCategory,
-    title,
-    formOpenDate,
-    formOpenTime,
-    formCloseDate,
-    formCloseTime,
-    clubName,
-  } = data;
+  const { category, clubInfo, eventInfo, formInfo } = data;
+  const { openDate, openTime, closeDate, closeTime } = formInfo;
 
   const renderCategory = () => {
-    switch (eventCategory) {
+    switch (category) {
       case 'SHOW':
         return <ShowDetail data={data} />;
       case 'PROMOTION':
@@ -38,18 +31,18 @@ const CategoryDetailForm = ({ data }: CategoryDetailForm) => {
 
   return (
     <>
-      <EventTitle>{title}</EventTitle>
+      <EventTitle>{eventInfo.title}</EventTitle>
       {renderCategory()}
       <div>
         <ContentLabel>{EVENT_DETAIL.applicationPeriod}</ContentLabel>
         <div>
-          {transDate(formOpenDate)} {transTime(formOpenTime)} ~ {transDate(formCloseDate)}{' '}
-          {transTime(formCloseTime)}까지
+          {transDate(openDate)} {transTime(openTime)} ~ {transDate(closeDate)}{' '}
+          {transTime(closeTime)}까지
         </div>
       </div>
       <div>
         <ContentLabel>{EVENT_DETAIL.organizer}</ContentLabel>
-        {clubName}
+        {clubInfo.clubName}
       </div>
     </>
   );

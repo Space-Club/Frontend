@@ -24,10 +24,13 @@ interface PromotionForm extends ReactHookFormProps {
 const PromotionForm = ({ register, setValue, watch, errors, eventDetail }: PromotionForm) => {
   useEffect(() => {
     if (eventDetail) {
+      const { eventInfo } = eventDetail;
+      const { startDate, startTime, activityArea } = eventInfo;
+
       setFormValue({ setValue, eventDetail });
 
-      setValue('startDate', `${eventDetail.startDate}T${eventDetail.startTime}`);
-      setValue('location', eventDetail.activityArea);
+      setValue('startDate', `${startDate}T${startTime}`);
+      setValue('location', activityArea);
     }
   }, [eventDetail, setValue]);
 
@@ -129,7 +132,7 @@ const PromotionForm = ({ register, setValue, watch, errors, eventDetail }: Promo
           watch={watch}
           errors={errors}
           isRequired={eventDetail ? false : REQUIRED('포스터는')}
-          posterImageUrl={eventDetail?.posterImageUrl}
+          posterImageUrl={eventDetail?.eventInfo.posterImageUrl}
         />
         <TextAreaForm
           {...register('content', {
