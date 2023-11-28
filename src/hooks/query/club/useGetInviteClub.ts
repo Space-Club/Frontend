@@ -1,5 +1,6 @@
 import getInviteLink from '@/apis/club/getInviteLink';
 import { getInviteLinkRequest } from '@/types/api/getInviteLink';
+import transInviteLink from '@/utils/transInviteLink';
 
 import { useQuery } from '@tanstack/react-query';
 
@@ -13,7 +14,7 @@ const useGetInviteClub = ({ clubId }: getInviteLinkRequest) => {
 
   if (data?.inviteLink) {
     const inviteLinkData = {
-      inviteLink: 'https://spaceclub.vercel.app' + data.inviteLink.split('/api/v1')[1],
+      inviteLink: transInviteLink(data.inviteLink),
       isExpired: data.isExpired,
     };
     return { inviteLinkData };

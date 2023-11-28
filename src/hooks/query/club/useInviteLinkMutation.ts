@@ -1,4 +1,5 @@
 import postInviteLink from '@/apis/club/postInviteLink';
+import transInviteLink from '@/utils/transInviteLink';
 
 import { useParams } from 'react-router-dom';
 
@@ -13,7 +14,7 @@ const useInviteLinkMutation = () => {
   });
 
   if (data?.Location) {
-    const inviteLink = 'https://spaceclub.vercel.app' + data.Location.split('/api/v1')[1];
+    const inviteLink = transInviteLink(data.Location);
     return { inviteLink, createInviteLink };
   } else {
     const inviteLink = '오른쪽 버튼을 눌러 초대링크를 생성해보세요!';

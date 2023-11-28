@@ -1,6 +1,8 @@
 import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
+import { MdContentCopy } from 'react-icons/md';
+
 const InviteLinkContainer = styled.div`
   width: 100%;
   box-sizing: border-box;
@@ -27,21 +29,23 @@ const ReadonlyInput = styled.input`
   border: 1px solid ${Theme.color.tLine};
   border-radius: 1rem;
   padding-left: 1rem;
+  padding-right: 2rem;
   box-sizing: border-box;
 `;
-const CopyButton = styled.button`
+const CopyButton = styled(MdContentCopy)`
+  position: relative;
+  right: 2rem;
+  cursor: pointer;
+`;
+const SubmitButton = styled.button`
+  background-color: ${Theme.color.tPurple};
   font-size: ${Theme.fontSize.smallContent};
   border: none;
   outline: none;
-  margin-left: 0.5rem;
   padding: 0.5rem 1rem;
-  color: black;
+  color: white;
   border-radius: 0.25rem;
   cursor: pointer;
-`;
-const SubmitButton = styled(CopyButton)`
-  background-color: ${Theme.color.tPurple};
-  color: white;
 `;
 
 export {

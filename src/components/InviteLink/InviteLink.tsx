@@ -19,6 +19,7 @@ import {
 
 const InviteLink = () => {
   const [inviteLinkValue, setInviteLinkValue] = useState('');
+  const [placeholder, setPlaceholder] = useState(INVITE_LINK.MESSAGE.NEW_CREATE);
   const inputRef = useRef<HTMLInputElement>(null);
   const { clubId } = useParams();
   const { createToast } = useToast();
@@ -32,9 +33,14 @@ const InviteLink = () => {
   const { inviteLink, isExpired } = inviteLinkData ?? {};
 
   const validateInvite = useCallback(() => {
-    if (isExpired) return '초대링크가 만료되었습니다. 새로운 초대링크를 생성해주세요.';
-    else if (inviteLink) return inviteLink;
-    else return '초대링크 생성하기';
+    if (isExpired) {
+      setPlaceholder(INVITE_LINK.MESSAGE.EXPIRED);
+      return '';
+    } else if (inviteLink) return inviteLink;
+    else {
+      setPlaceholder(INVITE_LINK.MESSAGE.NEW_CREATE);
+      return '';
+    }
   }, [inviteLink, isExpired]);
 
   useEffect(() => {
@@ -48,10 +54,11 @@ const InviteLink = () => {
   const handleCopyClick = () => {
     if (inputRef && inputRef.current) {
       const value = inputRef.current.value;
-      if (value[0] === '초') return null;
 
-      navigator.clipboard.writeText(value);
-      createToast({ message: '초대링크가 복사되었습니다.', toastType: 'info' });
+      if (value) {
+        navigator.clipboard.writeText(value);
+        createToast({ message: '초대링크가 복사되었습니다.', toastType: 'info' });
+      }
     }
   };
 
@@ -62,10 +69,8 @@ const InviteLink = () => {
         <SubTitle>링크의 유효기간은 {INVITE_LINK.VALID_TIME}시간입니다.</SubTitle>
       </TitleWrapper>
       <InputWrapper>
-        <ReadonlyInput value={inviteLinkValue} ref={inputRef} readOnly />
-        <CopyButton type="button" onClick={() => handleCopyClick()}>
-          복사
-        </CopyButton>
+        <ReadonlyInput placeholder={placeholder} value={inviteLinkValue} ref={inputRef} readOnly />
+        <CopyButton onClick={() => handleCopyClick()}>복사</CopyButton>
         <SubmitButton onClick={() => createInviteLink()}>생성</SubmitButton>
       </InputWrapper>
     </InviteLinkContainer>
