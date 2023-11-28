@@ -51,6 +51,7 @@ const SearchResultPage = () => {
           totalPages={totalPages}
           size={size}
           onChangePage={(page) => setCurrentPage(page)}
+          currentPage={currentPage}
         />
       </SearchesContainer>
     </>
