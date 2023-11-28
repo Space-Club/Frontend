@@ -14,7 +14,8 @@ const DeleteMemberButtonStyled = styled.button`
   outline: none;
   transition: all 0.1s ease-in-out;
 
-  :hover {
+  :hover,
+  :active {
     background-color: ${Theme.color.tRed};
     color: ${Theme.color.tButtonWhite};
   }
