@@ -28,21 +28,10 @@ const ScheduleForm = ({ register, setValue, watch, errors, eventDetail }: Schedu
     }
   }, [eventDetail, setValue]);
 
-  const {
-    PERSONNEL,
-    COST,
-    ENTER_BOTH_SIDE,
-    MAX_YEAR,
-    REQUIRED,
-    MAX_LENGTH,
-    FORM_START_TIME,
-    LAST_TIME,
-  } = ERROR_MESSAGE.EVENT;
+  const { PERSONNEL, COST, MAX_YEAR, REQUIRED, MAX_LENGTH, FORM_START_TIME, LAST_TIME } =
+    ERROR_MESSAGE.EVENT;
 
   const { LIMIT_LENGTH, LIMIT_VALUE } = FORM_INFO_VALUE;
-
-  const openDate = watch('openDate');
-  const closeDate = watch('closeDate');
 
   return (
     <>
@@ -139,7 +128,7 @@ const ScheduleForm = ({ register, setValue, watch, errors, eventDetail }: Schedu
         <TwoInputContainer>
           <InputForm
             {...register('openDate', {
-              required: closeDate && ENTER_BOTH_SIDE,
+              required: REQUIRED('신청 시작 날짜는'),
               validate: {
                 today: validateTodayDate,
                 compare: (value) => validateTimeCompare(value, watch('closeDate'), LAST_TIME),
@@ -147,16 +136,18 @@ const ScheduleForm = ({ register, setValue, watch, errors, eventDetail }: Schedu
               max: { value: LIMIT_VALUE.DATE_MAX, message: MAX_YEAR },
             })}
             labelText="신청 시작 날짜 및 시간"
+            required
             inputType="datetime-local"
             containerWidth="50%"
           />
           <InputForm
             {...register('closeDate', {
-              required: openDate && ENTER_BOTH_SIDE,
+              required: REQUIRED('마감 시작 날짜는'),
               validate: (value) => validateTimeCompare(watch('openDate'), value, LAST_TIME),
               max: { value: LIMIT_VALUE.DATE_MAX, message: MAX_YEAR },
             })}
             labelText="마감 시작 날짜 및 시간"
+            required
             inputType="datetime-local"
             containerWidth="50%"
           />
