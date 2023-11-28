@@ -5,7 +5,7 @@ import Pagination from '@/components/common/Pagination/Pagination';
 import Tab from '@/components/common/Tab/Tab';
 import { MAIN_TABS } from '@/constants/tab';
 import useSearchResultQuery from '@/hooks/query/event/useSearchResultQuery';
-import { EventsWrapper } from '@/styles/common';
+import { CommonEmptyEventsWrapper, EventsWrapper } from '@/styles/common';
 
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -44,9 +44,10 @@ const SearchResultPage = () => {
               isEnded={eventInfo.isEnded}
             />
           ))}
-          {data?.length === 0 && <div>검색결과가 없습니다.</div>}
-          {/* #TODO: CommonEmptyEventStyle로 바꿔주기 */}
         </EventsWrapper>
+        {data?.length === 0 && (
+          <CommonEmptyEventsWrapper>검색결과가 없습니다.</CommonEmptyEventsWrapper>
+        )}
         <Pagination
           totalPages={totalPages}
           size={size}
