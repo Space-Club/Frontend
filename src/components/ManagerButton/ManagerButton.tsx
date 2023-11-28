@@ -15,7 +15,7 @@ interface ManagerButton {
   eventDetail: getEventDetailResponse;
   deleteModalOpen: () => void;
 }
-//{role === 'MANAGER' && (
+
 const ManagerButton = ({ eventId, eventDetail, deleteModalOpen }: ManagerButton) => {
   const { clubInfo } = eventDetail;
   const { clubId } = clubInfo;

@@ -11,7 +11,6 @@ import { MODAL_TEXT } from '@/constants/modalMessage';
 import { MAIN_TABS } from '@/constants/tab';
 import useDeleteEventMutation from '@/hooks/query/event/useDeleteEventMutation';
 import useEventDetailQuery from '@/hooks/query/event/useEventDetailQuery';
-import useEventFormQuery from '@/hooks/query/event/useEventFormQuery';
 import useModal from '@/hooks/useModal';
 import { ShowDetailResponse } from '@/types/api/getEventDetail';
 import { getStorage } from '@/utils/localStorage';
@@ -54,10 +53,8 @@ const EventDetailPage = () => {
 
   const { deleteEventMutate } = useDeleteEventMutation({ eventId });
 
-  const { category, eventInfo } = eventDetail ?? {};
+  const { category, hasForm, eventInfo } = eventDetail ?? {};
   const { content, posterImageUrl } = eventInfo ?? {};
-
-  const { eventFormData } = useEventFormQuery({ eventId });
 
   const handleEventDelete = async () => {
     deleteEventMutate();
@@ -79,13 +76,13 @@ const EventDetailPage = () => {
               <ApplyShowModal
                 eventId={eventId}
                 eventDetail={eventDetail as ShowDetailResponse}
-                hasForm={!!eventFormData?.form}
+                hasForm={hasForm!}
                 applyModalClose={applyModalClose}
               />
             ) : (
               <ApplyEventModal
                 eventId={eventId}
-                hasForm={!!eventFormData?.form}
+                hasForm={hasForm!}
                 applyModalClose={applyModalClose}
               />
             ))}
