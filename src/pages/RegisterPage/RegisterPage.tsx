@@ -8,7 +8,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { ErrorMessage } from './RegisterPage.style';
 import { RegisterContainer, SubmitButton, Title } from './RegisterPage.style';
 
-interface RegisterFormValue {
+export interface RegisterFormValue {
   name: string;
   number: string;
 }
