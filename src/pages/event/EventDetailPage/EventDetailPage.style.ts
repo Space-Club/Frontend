@@ -77,6 +77,10 @@ const ApplyButton = styled(SemiPurpleButton)<{ capacity: boolean }>`
   border-top-left-radius: ${({ capacity }) => capacity && '0'};
   border-bottom-left-radius: ${({ capacity }) => capacity && '0'};
   font-size: ${Theme.fontSize.mediumContent};
+
+  &:disabled {
+    cursor: revert;
+  }
 `;
 const BookmarkButton = styled(SemiPurpleButton)`
   margin-left: 0.5rem;
