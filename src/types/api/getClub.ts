@@ -2,6 +2,7 @@ import { Club } from '../club';
 
 interface GetClubRequest {
   clubId: string;
+  isEnabled?: boolean;
 }
 interface GetClubResponse
   extends Pick<

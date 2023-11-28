@@ -10,57 +10,72 @@ type getEventDetailResponse =
 
 interface CommonDetailResponse {
   id: number;
-  title: string;
-  content: string;
-  posterImageUrl: string;
-  formOpenDate: string;
-  formOpenTime: string;
-  formCloseDate: string;
-  formCloseTime: string;
-  clubId: string;
-  clubName: string;
-  clubLogoImageUrl: string;
-  applicants: number;
-  capacity: number;
-  isBookmarked: boolean;
-  isManager: boolean;
   hasForm: boolean;
+  clubInfo: {
+    clubId: string;
+    clubName: string;
+  };
+  eventInfo: {
+    title: string;
+    content: string;
+    applicants: number;
+    capacity: number;
+    posterImageUrl: string;
+  };
+  formInfo: {
+    openDate: string;
+    openTime: string;
+    closeDate: string;
+    closeTime: string;
+  };
 }
 
 interface ShowDetailResponse extends CommonDetailResponse {
-  startDate: string;
-  startTime: string;
-  location: string;
-  cost: number;
-  eventCategory: 'SHOW';
-  maxTicketCount: number;
-  bankName: string;
-  bankAccountNumber: string;
+  category: 'SHOW';
+  eventInfo: CommonDetailResponse['eventInfo'] & {
+    startDate: string;
+    startTime: string;
+    location: string;
+  };
+  ticketInfo: {
+    cost: number;
+    maxTicketCount: number;
+  };
+  bankInfo: {
+    bankName: string;
+    bankAccountNumber: string;
+  };
 }
 
 interface PromotionDetailResponse extends CommonDetailResponse {
-  startDate: string;
-  startTime: string;
-  activityArea: string;
-  eventCategory: 'PROMOTION';
+  category: 'PROMOTION';
+  eventInfo: CommonDetailResponse['eventInfo'] & {
+    startDate: string;
+    startTime: string;
+    activityArea: string;
+  };
 }
 
 interface RecruitmentDetailResponse extends CommonDetailResponse {
-  recruitmentTarget: string;
-  startDate: string;
-  startTime: string;
-  location: string;
-  eventCategory: 'RECRUITMENT';
+  category: 'RECRUITMENT';
+  eventInfo: CommonDetailResponse['eventInfo'] & {
+    startDate: string;
+    startTime: string;
+    location: string;
+    recruitmentTarget: string;
+  };
 }
 
 interface ClubDetailResponse extends CommonDetailResponse {
-  startDate: string;
-  startTime: string;
-  endDate: string;
-  endTime: string;
-  location: string;
-  dues: number;
-  eventCategory: 'CLUB';
+  category: 'CLUB';
+  eventInfo: CommonDetailResponse['eventInfo'] & {
+    startDate: string;
+    startTime: string;
+    endDate: string;
+    endTime: string;
+    dues: number;
+    location: string;
+  };
 }
 
 export {

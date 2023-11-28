@@ -24,14 +24,19 @@ interface PerformanceForm extends ReactHookFormProps {
 const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: PerformanceForm) => {
   useEffect(() => {
     if (eventDetail) {
+      const { eventInfo, ticketInfo, bankInfo } = eventDetail;
+      const { startDate, startTime, location } = eventInfo;
+      const { maxTicketCount, cost } = ticketInfo;
+      const { bankName, bankAccountNumber } = bankInfo;
+
       setFormValue({ setValue, eventDetail });
 
-      setValue('startDate', `${eventDetail.startDate}T${eventDetail.startTime}`);
-      setValue('location', eventDetail.location);
-      setValue('cost', eventDetail.cost);
-      setValue('bankName', eventDetail.bankName);
-      setValue('accountNumber', eventDetail.bankAccountNumber);
-      setValue('maxTicketCount', eventDetail.maxTicketCount);
+      setValue('startDate', `${startDate}T${startTime}`);
+      setValue('location', location);
+      setValue('cost', cost);
+      setValue('bankName', bankName);
+      setValue('accountNumber', bankAccountNumber);
+      setValue('maxTicketCount', maxTicketCount);
     }
   }, [eventDetail, setValue]);
 
@@ -182,7 +187,7 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
           watch={watch}
           errors={errors}
           isRequired={eventDetail ? false : REQUIRED('포스터는')}
-          posterImageUrl={eventDetail?.posterImageUrl}
+          posterImageUrl={eventDetail?.eventInfo.posterImageUrl}
         />
         <TextAreaForm
           {...register('content', {

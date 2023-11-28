@@ -5,11 +5,13 @@ import usePatchUserImageMutation from '@/hooks/query/user/usePatchUserImageMutat
 import usePutUserInfoMutation from '@/hooks/query/user/usePutUserInfoMutation';
 import useLogout from '@/hooks/useLogout';
 import useModal from '@/hooks/useModal';
+import { RegisterFormValue } from '@/pages/RegisterPage/RegisterPage';
+import { ErrorMessage } from '@/pages/RegisterPage/RegisterPage.style';
 import { PurpleButton } from '@/pages/event/EventDetailPage/EventDetailPage.style';
 import { validateName, validateNumber } from '@/utils/validate';
 
 import { useState } from 'react';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 import ConfirmModal from '../Modals/ConfirmModal';
 import Avatar from '../common/Avatar/Avatar';
@@ -19,7 +21,12 @@ import { InfoWrapper, ProfileButtonsWrapper, ProfileContainer } from './Profile.
 const Profile = () => {
   const [isEdit, setIsEdit] = useState(false);
   const { modalClose, modalOpen, showModal } = useModal();
-  const { register, setValue, watch } = useForm();
+  const {
+    register,
+    setValue,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<RegisterFormValue>();
   const { editUserImage } = usePatchUserImageMutation();
   const { editUserInfo } = usePutUserInfoMutation();
   const { logOut } = useLogout();
@@ -28,17 +35,27 @@ const Profile = () => {
 
   const { REQUIRED_NAME, REQUIRED_NUMBER, NAME } = ERROR_MESSAGE.REGISTER;
 
-  const handleInfoEditComplete = () => {
-    setIsEdit(false);
+  const handleInfoEditComplete: SubmitHandler<RegisterFormValue> = ({ name, number }) => {
     editUserInfo({
-      name: watch('username'),
-      phoneNumber: watch('phoneNumber'),
+      name,
+      phoneNumber: number,
     });
+    setIsEdit(false);
   };
 
   const handleLogoutConfirm = () => {
     modalClose();
     logOut();
+  };
+
+  const handleInfoEditStart = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    setIsEdit(true);
+  };
+
+  const handleLogoutStart = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    modalOpen();
   };
 
   return (
@@ -58,31 +75,37 @@ const Profile = () => {
           onEdit={(file) => editUserImage({ userImage: file })}
         />
         <InfoWrapper>
-          <ProfileButtonsWrapper>
-            <PurpleButton reverse onClick={modalOpen}>
-              로그아웃
-            </PurpleButton>
-            {!isEdit ? (
-              <PurpleButton onClick={() => setIsEdit(true)}>정보 수정하기</PurpleButton>
-            ) : (
-              <PurpleButton onClick={handleInfoEditComplete}>저장</PurpleButton>
-            )}
-          </ProfileButtonsWrapper>
-          <InputForm
-            {...register('username', {
-              required: REQUIRED_NAME,
-              minLength: { value: 2, message: `${NAME}` },
-              maxLength: { value: 10, message: `${NAME}` },
-              validate: validateName,
-            })}
-            disabled={!isEdit}
-            inputType="text"
-          />
-          <InputForm
-            {...register('phoneNumber', { required: REQUIRED_NUMBER, validate: validateNumber })}
-            disabled={!isEdit}
-            inputType="text"
-          />
+          <form onSubmit={handleSubmit(handleInfoEditComplete)}>
+            <ProfileButtonsWrapper>
+              {!isEdit ? (
+                <>
+                  <PurpleButton reverse onClick={handleLogoutStart}>
+                    로그아웃
+                  </PurpleButton>
+                  <PurpleButton onClick={handleInfoEditStart}>정보 수정하기</PurpleButton>
+                </>
+              ) : (
+                <PurpleButton>저장</PurpleButton>
+              )}
+            </ProfileButtonsWrapper>
+            <InputForm
+              {...register('name', {
+                required: REQUIRED_NAME,
+                minLength: { value: 2, message: `${NAME}` },
+                maxLength: { value: 10, message: `${NAME}` },
+                validate: validateName,
+              })}
+              disabled={!isEdit}
+              inputType="text"
+            />
+            {errors.name && <ErrorMessage>{errors.name?.message as string}</ErrorMessage>}
+            <InputForm
+              {...register('number', { required: REQUIRED_NUMBER, validate: validateNumber })}
+              disabled={!isEdit}
+              inputType="text"
+            />
+            {errors.number && <ErrorMessage>{errors.number?.message as string}</ErrorMessage>}
+          </form>
         </InfoWrapper>
       </ProfileContainer>
     </>

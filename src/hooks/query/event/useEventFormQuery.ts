@@ -16,7 +16,7 @@ const useEventFormQuery = ({ eventId }: UseEventFormQuery) => {
     queryFn: () => getEventForm({ eventId }),
   });
 
-  return eventFormData;
+  return { eventFormData };
 };
 
 export default useEventFormQuery;

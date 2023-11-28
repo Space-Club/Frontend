@@ -1,12 +1,13 @@
 import getMyProfileInfo from '@/apis/users/getMyProfileInfo';
+import { RegisterFormValue } from '@/pages/RegisterPage/RegisterPage';
 import { getStorage } from '@/utils/localStorage';
 
-import { FieldValues, UseFormSetValue } from 'react-hook-form';
+import { UseFormSetValue } from 'react-hook-form';
 
 import { useQuery } from '@tanstack/react-query';
 
 interface useMyProfile {
-  setValue?: UseFormSetValue<FieldValues>;
+  setValue?: UseFormSetValue<RegisterFormValue>;
 }
 
 export const QUERY_KEY = {
@@ -20,8 +21,8 @@ const useMyProfile = ({ setValue }: useMyProfile = {}) => {
     queryFn: () => getMyProfileInfo(),
     onSuccess: ({ username, phoneNumber }) => {
       if (setValue) {
-        setValue('username', username);
-        setValue('phoneNumber', phoneNumber);
+        setValue('name', username);
+        setValue('number', phoneNumber);
       }
     },
   });

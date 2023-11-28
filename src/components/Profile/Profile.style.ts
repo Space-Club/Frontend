@@ -16,6 +16,8 @@ const InfoWrapper = styled.div`
 
   input {
     font-size: ${Theme.fontSize.mediumTitle};
+    margin-top: 0.3rem;
+    margin-bottom: 0;
   }
 `;
 
@@ -23,6 +25,7 @@ const ProfileButtonsWrapper = styled.div`
   display: flex;
   gap: 0.5rem;
   justify-content: flex-end;
+  margin-bottom: 0.5rem;
 `;
 
 export { ProfileContainer, InfoWrapper, ProfileButtonsWrapper };

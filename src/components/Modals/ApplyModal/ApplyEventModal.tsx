@@ -1,20 +1,19 @@
 import ConfirmModal from '@/components/Modals/ConfirmModal';
 import { MODAL_TEXT } from '@/constants/modalMessage';
 import usePostEventApplyMutation from '@/hooks/query/event/usePostEventApplyMutation';
-import { getEventDetailResponse } from '@/types/api/getEventDetail';
 
 import { useNavigate } from 'react-router-dom';
 
 interface ApplyEventModal {
   eventId: string;
-  eventDetail: getEventDetailResponse;
+  hasForm: boolean;
   applyModalClose: () => void;
 }
 
-const ApplyEventModal = ({ eventId, eventDetail, applyModalClose }: ApplyEventModal) => {
+const ApplyEventModal = ({ eventId, hasForm, applyModalClose }: ApplyEventModal) => {
   const navigate = useNavigate();
-  const { hasForm } = eventDetail;
   const { applyEvent } = usePostEventApplyMutation({ eventId });
+
   return (
     <ConfirmModal
       message={MODAL_TEXT.EVENT_APPLY}
