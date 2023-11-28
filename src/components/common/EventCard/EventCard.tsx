@@ -1,5 +1,6 @@
 import { APPLIED_EVENTS_TAGS } from '@/constants/event';
 import { PATH } from '@/constants/path';
+import { EventTitleStyled } from '@/styles/common';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -14,7 +15,6 @@ import {
   EventFooterWrapper,
   EventInfoWrapper,
   PlaceStyled,
-  TitleStyled,
 } from './EventCard.style';
 
 interface EventProps {
@@ -55,8 +55,10 @@ const EventCard = ({
       </Poster>
       <EventInfoWrapper>
         <div>
-          <TitleStyled>{eventTitle}</TitleStyled>
-          <EventDateStyled>{endDate ? `~${endDate}` : startDate ? startDate : ''}</EventDateStyled>
+          <EventTitleStyled>{eventTitle}</EventTitleStyled>
+          <EventDateStyled>
+            {endDate ? `마감: ${endDate}` : startDate ? startDate : ''}
+          </EventDateStyled>
         </div>
         <EventFooterWrapper>
           <PlaceStyled>{location}</PlaceStyled>

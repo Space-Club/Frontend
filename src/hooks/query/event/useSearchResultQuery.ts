@@ -7,7 +7,7 @@ export const QUERY_KEY = { SEARCH_RESULT: 'SEARCH_RESULT' };
 
 const useSearchResultQuery = ({ keyword, page }: SearchResultRequest) => {
   const { data: searchResultData } = useQuery({
-    queryKey: [QUERY_KEY.SEARCH_RESULT, keyword],
+    queryKey: [QUERY_KEY.SEARCH_RESULT, keyword, page],
     queryFn: () => getSearchResult({ keyword, page }),
     enabled: !!keyword,
   });

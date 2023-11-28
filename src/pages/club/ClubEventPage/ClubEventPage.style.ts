@@ -5,12 +5,20 @@ const ContentSpacer = styled.div`
   height: 1.3rem;
 `;
 
+const ContentContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  height: 100%;
+`;
+
 const EmptyClubEvent = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 50vh;
-  color: ${Theme.color.semiBlack};
+  width: 100%;
+  height: 60vh;
   font-size: ${Theme.fontSize.mediumContent};
 `;
 
@@ -20,4 +28,4 @@ const ButtonWrapper = styled.div`
   right: 5rem;
 `;
 
-export { ContentSpacer, ButtonWrapper, EmptyClubEvent };
+export { ContentContainer, ContentSpacer, ButtonWrapper, EmptyClubEvent };
