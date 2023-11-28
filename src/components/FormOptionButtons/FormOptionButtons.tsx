@@ -47,12 +47,13 @@ const FormOptionButtons = ({ eventId }: FormOptionButtonProps) => {
       {showModal && (
         <ConfirmModal
           message={MODAL_TEXT.FORM_OPTION_SKIP_CONFIRM}
-          confirmLabel={'건너뛰기'}
           onConfirm={onModalConfirm}
           onClose={modalClose}
         />
       )}
-      <FormSkipButtonStyled onClick={handleSkipButtonClick}>건너뛰기</FormSkipButtonStyled>
+      <FormSkipButtonStyled reverse onClick={handleSkipButtonClick}>
+        건너뛰기
+      </FormSkipButtonStyled>
       <FormOptionButtonStyled onClick={handleFormOptionButtonClick}>
         폼 추가하기
       </FormOptionButtonStyled>
