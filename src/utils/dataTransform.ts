@@ -16,7 +16,7 @@ const dataTransform = ({ data, eventType, clubId, eventId }: dataTransform) => {
     ...(eventId ? { eventId } : { clubId }),
     eventInfo: {
       title,
-      content,
+      content: content.trim(),
       capacity: parseInt(capacity),
     },
     formInfo: {
