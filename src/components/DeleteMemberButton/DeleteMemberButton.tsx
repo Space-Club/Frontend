@@ -18,13 +18,14 @@ const DeleteMemberButton = ({ memberId, clubId, children, ...props }: DeleteMemb
       {showModal && (
         <ConfirmModal
           message={MODAL_TEXT.DELETE_MEMBER}
-          confirmLabel="탈퇴"
+          confirmLabel="확인"
           onConfirm={() => withdrawMember({ memberId, clubId })}
           onClose={modalClose}
         />
       )}
       <DeleteMemberButtonStyled onClick={modalOpen} {...props}>
-        탈퇴{children}
+        내보내기
+        {children}
       </DeleteMemberButtonStyled>
     </>
   );
