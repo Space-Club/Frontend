@@ -1,3 +1,4 @@
+import ManageInfo from '@/assets/image/manageInfo.png';
 import AlertModal from '@/components/Modals/AlertModal';
 import useModal from '@/hooks/useModal';
 import Theme from '@/styles/Theme';
@@ -10,6 +11,8 @@ import {
   CheckBoxInfoWrapper,
   CheckBoxInputStyled,
   CheckBoxLabelStyled,
+  ManageInfoImg,
+  ManageInfoImgWrapper,
 } from './CheckBox.style';
 
 interface CheckBoxProps {
@@ -35,7 +38,13 @@ const CheckBox = ({ onCheck, onUncheck, label, info }: CheckBoxProps) => {
 
   return (
     <>
-      {showModal && <AlertModal message={info} onClose={modalClose} />}
+      {showModal && (
+        <AlertModal message={info} onClose={modalClose}>
+          <ManageInfoImgWrapper>
+            <ManageInfoImg src={ManageInfo} />
+          </ManageInfoImgWrapper>
+        </AlertModal>
+      )}
       <CheckBoxContainer>
         {info && (
           <CheckBoxInfoWrapper onClick={modalOpen}>

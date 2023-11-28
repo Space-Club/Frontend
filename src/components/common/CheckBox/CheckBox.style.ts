@@ -24,6 +24,20 @@ const CheckBoxLabelStyled = styled.label`
   margin-right: 0.3rem;
 `;
 
+const ManageInfoImgWrapper = styled.div``;
+
+const ManageInfoImg = styled.img`
+  width: 100%;
+  height: 100%;
+`;
+
 const CheckBoxInputStyled = styled.input``;
 
-export { CheckBoxContainer, CheckBoxInfoWrapper, CheckBoxLabelStyled, CheckBoxInputStyled };
+export {
+  CheckBoxContainer,
+  CheckBoxInfoWrapper,
+  CheckBoxLabelStyled,
+  CheckBoxInputStyled,
+  ManageInfoImgWrapper,
+  ManageInfoImg,
+};
