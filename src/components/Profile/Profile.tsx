@@ -88,7 +88,6 @@ const Profile = () => {
                 <PurpleButton>저장</PurpleButton>
               )}
             </ProfileButtonsWrapper>
-            {errors.name && <ErrorMessage>{errors.name?.message as string}</ErrorMessage>}
             <InputForm
               {...register('name', {
                 required: REQUIRED_NAME,
@@ -99,12 +98,13 @@ const Profile = () => {
               disabled={!isEdit}
               inputType="text"
             />
-            {errors.number && <ErrorMessage>{errors.number?.message as string}</ErrorMessage>}
+            {errors.name && <ErrorMessage>{errors.name?.message as string}</ErrorMessage>}
             <InputForm
               {...register('number', { required: REQUIRED_NUMBER, validate: validateNumber })}
               disabled={!isEdit}
               inputType="text"
             />
+            {errors.number && <ErrorMessage>{errors.number?.message as string}</ErrorMessage>}
           </form>
         </InfoWrapper>
       </ProfileContainer>
