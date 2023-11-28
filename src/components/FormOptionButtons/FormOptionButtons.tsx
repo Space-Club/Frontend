@@ -23,6 +23,7 @@ const FormOptionButtons = ({ eventId }: FormOptionButtonProps) => {
   const { postOption } = usePostFormOptionMutation({ eventId });
   const { showModal, modalClose, modalOpen } = useModal();
   const navigate = useNavigate();
+  const isEmpty = selectedOptions.length === 0;
 
   const handleFormOptionButtonClick = () => {
     postOption({
@@ -51,10 +52,14 @@ const FormOptionButtons = ({ eventId }: FormOptionButtonProps) => {
           onClose={modalClose}
         />
       )}
-      <FormSkipButtonStyled reverse onClick={handleSkipButtonClick}>
+      <FormSkipButtonStyled isEmpty={isEmpty} onClick={handleSkipButtonClick}>
         건너뛰기
       </FormSkipButtonStyled>
-      <FormOptionButtonStyled onClick={handleFormOptionButtonClick}>
+      <FormOptionButtonStyled
+        isEmpty={isEmpty}
+        disabled={isEmpty}
+        onClick={handleFormOptionButtonClick}
+      >
         폼 추가하기
       </FormOptionButtonStyled>
     </FormOptionButtonsContainer>
