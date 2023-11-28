@@ -21,10 +21,9 @@ const SubmittedForms = ({ formInfo, userForms }: { formInfo: FormInfo; userForms
               <SubmittedForm
                 key={form.userId}
                 index={index}
-                formLength={formInfo.count}
                 userId={form.userId}
                 options={form.options}
-                participationStatus={form.participationStatus}
+                participation={form.participation}
                 managed={formInfo.managed}
               />
             );

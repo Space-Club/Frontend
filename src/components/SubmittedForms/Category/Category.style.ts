@@ -11,7 +11,7 @@ const CategoryStyled = styled.div`
 `;
 
 const CategoryRowStyled = styled.div`
-  width: 4rem;
+  min-width: 10rem;
 `;
 
 const CategoryItemStyled = styled.div`

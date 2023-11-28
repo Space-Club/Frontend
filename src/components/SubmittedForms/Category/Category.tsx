@@ -15,7 +15,7 @@ const Category = ({ optionTitles, managed }: CategoryProps) => {
 
   return (
     <CategoryStyled>
-      <CategoryRowStyled>순서</CategoryRowStyled>
+      <CategoryRowStyled>제출시간</CategoryRowStyled>
       {optionTitles.map((title, index) => {
         return <CategoryItemStyled key={index}>{title}</CategoryItemStyled>;
       })}

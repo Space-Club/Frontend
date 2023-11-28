@@ -17,6 +17,8 @@ const FormStyled = styled.div`
 
 const FormRowStyled = styled(CategoryRowStyled)``;
 
-const FormItemStyled = styled(CategoryItemStyled)``;
+const FormItemStyled = styled(CategoryItemStyled)`
+  cursor: pointer;
+`;
 
 export { FormStyled, FormRowStyled, FormItemStyled };

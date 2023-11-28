@@ -8,37 +8,32 @@ import { FormItemStyled, FormRowStyled, FormStyled } from './SubmittedForm.style
 interface SubmittedFormProps {
   index: number;
   userId: string;
-  formLength: number;
   options: {
     title: string;
     content: string;
   }[];
-  participationStatus: EventStatus;
+  participation: {
+    status: EventStatus;
+    dateTime: string;
+  };
   managed: boolean;
 }
 
-const SubmittedForm = ({
-  index,
-  userId,
-  formLength,
-  options,
-  participationStatus,
-  managed,
-}: SubmittedFormProps) => {
+const SubmittedForm = ({ index, userId, options, participation, managed }: SubmittedFormProps) => {
   const { showModal, modalOpen, modalClose } = useModal();
-  //#TODO: 제출된 시각 추가되면 넣기=>순서 대신 제출된 시간을 보여주는 게 어떨까?
+  const { status, dateTime } = participation;
 
   return (
     <>
-      {showModal && <FormDetailModal onClose={modalClose} options={options} />}
+      {showModal && <FormDetailModal onClose={modalClose} options={options} dateTime={dateTime} />}
       <FormStyled key={index}>
-        <FormRowStyled>{formLength - index}</FormRowStyled>
+        <FormRowStyled>{participation.dateTime}</FormRowStyled>
         {options.map((option, index) => (
           <FormItemStyled onClick={modalOpen} key={index}>
             {option.content}
           </FormItemStyled>
         ))}
-        {managed && <FormStatus id={userId} participationStatus={participationStatus} />}
+        {managed && <FormStatus id={userId} participationStatus={status} />}
       </FormStyled>
     </>
   );

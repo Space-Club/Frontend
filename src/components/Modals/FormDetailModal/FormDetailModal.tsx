@@ -2,19 +2,20 @@ import { FormItemContainer, QuestionStyled } from '@/components/FormItem/FormIte
 
 import { BackgroundOverlay } from '../Modal.style';
 import Portal from '../Portal';
-import { FormDetailModalContainer } from './FormDetailModal.style';
+import { FormDetailModalContainer, SubmittedFormDetailTitleStyled } from './FormDetailModal.style';
 
 interface FormDetailModalProps {
   onClose: () => void;
   options: { title: string; content: string }[];
+  dateTime: string;
 }
 
-const FormDetailModal = ({ onClose, options }: FormDetailModalProps) => {
-  //#TODO: api response로 제출된 시각 추가해주면 상단에 넣기
+const FormDetailModal = ({ onClose, options, dateTime }: FormDetailModalProps) => {
   return (
     <Portal>
       <BackgroundOverlay onClick={onClose}>
         <FormDetailModalContainer>
+          <SubmittedFormDetailTitleStyled>{dateTime}</SubmittedFormDetailTitleStyled>
           {options.map((option, index) => {
             return (
               <FormItemContainer key={index}>
