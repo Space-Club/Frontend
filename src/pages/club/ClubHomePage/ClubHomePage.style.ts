@@ -62,16 +62,10 @@ const ClubMemberWrapper = styled(memberManagerScrollAreaStyled)`
   overflow-y: auto;
 `;
 
-const ClubHomeBottomWrapper = styled.section`
-  height: 22rem;
-  padding-top: 1rem;
-`;
-
 export {
   ClubHomePageContainer,
   ClubHomeTopWrapper,
   ClubNoticeWrapper,
-  ClubHomeBottomWrapper,
   ClubMiddleWrapper,
   ClubMemberWrapper,
   ClubNoticeTextStyled,

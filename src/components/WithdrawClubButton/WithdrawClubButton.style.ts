@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 
 import { SemiPurpleButton } from '../SemiPurpleButton/SemiPurpleButton.style';
 
-const LeaveClubButtonStyled = styled(SemiPurpleButton)`
+const WithdrawClubButtonStyled = styled(SemiPurpleButton)`
   position: absolute;
   top: 1rem;
   right: 1rem;
@@ -14,4 +14,4 @@ const LeaveClubButtonStyled = styled(SemiPurpleButton)`
   user-select: none;
 `;
 
-export { LeaveClubButtonStyled };
+export { WithdrawClubButtonStyled };
