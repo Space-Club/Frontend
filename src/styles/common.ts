@@ -101,6 +101,14 @@ const EventsWrapper = styled.div`
   }
 `;
 
+const CommonEmptyEventsWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  color: ${Theme.color.gray};
+`;
+
 const sideBarScrollAreaStyled = styled.div`
   &::-webkit-scrollbar {
     width: 0.3rem;
@@ -180,4 +188,5 @@ export {
   SmallTitleStyled,
   hoverBox,
   EventsWrapper,
+  CommonEmptyEventsWrapper,
 };

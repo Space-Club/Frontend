@@ -1,9 +1,28 @@
 import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
+const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+`;
+
 const TitleStyled = styled.h1`
-  padding: 2rem;
+  display: flex;
+  align-items: center;
+  height: 8rem;
+  padding: 0 4rem;
   font-size: ${Theme.fontSize.extraTitle};
+`;
+
+const ContentContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 80vh;
 `;
 
 const ContentWrapperStyled = styled.div`
@@ -12,6 +31,7 @@ const ContentWrapperStyled = styled.div`
   align-items: center;
   flex-wrap: wrap;
   gap: 5%;
+  width: 100%;
   padding: 2rem;
 `;
 
@@ -43,7 +63,9 @@ const ErrorMessageStyled = styled.span`
 `;
 
 export {
+  PageContainer,
   TitleStyled,
+  ContentContainer,
   ContentWrapperStyled,
   ClubInfoWrapperStyled,
   ButtonWrapperStyled,

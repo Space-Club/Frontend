@@ -17,6 +17,10 @@ const CREATE_EVENT = {
 
 const INVITE_LINK = {
   VALID_TIME: 48,
+  MESSAGE: {
+    NEW_CREATE: '초대링크를 생성해보세요.',
+    EXPIRED: '초대링크가 만료되었습니다. 새로운 초대링크를 생성해주세요.',
+  },
 };
 
 const MIN_CLUB_NAME_LENGTH = 2;

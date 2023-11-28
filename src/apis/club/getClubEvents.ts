@@ -3,9 +3,11 @@ import { GetClubEventsRequest, GetClubEventsResponse } from '@/types/api/getClub
 
 import { axiosClientWithAuth } from '../axiosClient';
 
-const getClubEvents = async ({ clubId, pageNumber }: GetClubEventsRequest) => {
+const getClubEvents = async ({ clubId, pageNumber = 0, isSchedule }: GetClubEventsRequest) => {
   const { data } = await axiosClientWithAuth.get<GetClubEventsResponse>(
-    END_POINTS.CLUB_EVENTS({ clubId, pageNumber }),
+    isSchedule
+      ? END_POINTS.CLUB_SCHEDULES({ clubId })
+      : END_POINTS.CLUB_EVENTS({ clubId, pageNumber }),
   );
   return data;
 };

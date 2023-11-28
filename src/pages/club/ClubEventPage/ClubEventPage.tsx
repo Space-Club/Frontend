@@ -5,12 +5,17 @@ import Pagination from '@/components/common/Pagination/Pagination';
 import { CREATE_EVENT } from '@/constants/club';
 import { PATH } from '@/constants/path';
 import useClubEventsQuery from '@/hooks/query/club/useClubEventsQuery';
-import { EventsWrapper } from '@/styles/common';
+import { CommonEmptyEventsWrapper, EventsWrapper } from '@/styles/common';
 
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { ButtonWrapper, ContentSpacer, EmptyClubEvent } from './ClubEventPage.style';
+import {
+  ButtonWrapper,
+  ContentContainer,
+  ContentSpacer,
+  EmptyClubEvent,
+} from './ClubEventPage.style';
 
 const ClubEventPage = () => {
   const navigate = useNavigate();
@@ -32,27 +37,31 @@ const ClubEventPage = () => {
     <>
       <ClubHeader clubId={clubId}></ClubHeader>
       <ContentSpacer />
-      <EventsWrapper>
-        {clubEvents?.map(({ id, eventInfo, clubInfo }) => (
-          <EventCard
-            key={id}
-            eventId={id}
-            posterSrc={eventInfo.posterImageUrl}
-            eventTitle={eventInfo.title}
-            startDate={eventInfo.startDate}
-            endDate={eventInfo.endDate}
-            location={eventInfo.location}
-            clubLogoImageUrl={clubInfo.logoImageUrl}
-            clubName={clubInfo.name}
-            openStatus={eventInfo.openStatus}
-            isEnded={eventInfo.isEnded}
-          />
-        ))}
+      <ContentContainer>
+        <EventsWrapper>
+          {clubEvents?.map(({ id, eventInfo, clubInfo }) => (
+            <EventCard
+              key={id}
+              eventId={id}
+              posterSrc={eventInfo.posterImageUrl}
+              eventTitle={eventInfo.title}
+              startDate={eventInfo.startDate}
+              endDate={eventInfo.endDate}
+              location={eventInfo.location}
+              clubLogoImageUrl={clubInfo.logoImageUrl}
+              clubName={clubInfo.name}
+              openStatus={eventInfo.openStatus}
+              isEnded={eventInfo.isEnded}
+            />
+          ))}
+        </EventsWrapper>
         {clubEvents?.length === 0 && (
-          <EmptyClubEvent>클럽에서 생성한 행사가 없습니다!</EmptyClubEvent>
+          <CommonEmptyEventsWrapper>
+            <EmptyClubEvent>클럽에서 생성한 행사가 없습니다!</EmptyClubEvent>
+          </CommonEmptyEventsWrapper>
         )}
-      </EventsWrapper>
-      <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
+        <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
+      </ContentContainer>
       <ButtonWrapper>
         <ActiveButton
           buttonText={CREATE_EVENT.BUTTON_TEXT}
