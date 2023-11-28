@@ -14,7 +14,7 @@ interface CategoryDetailForm {
 
 const CategoryDetailForm = ({ data }: CategoryDetailForm) => {
   const { category, clubInfo, eventInfo, formInfo } = data;
-  const { formOpenDate, formOpenTime, formCloseDate, formCloseTime } = formInfo;
+  const { openDate, openTime, closeDate, closeTime } = formInfo;
 
   const renderCategory = () => {
     switch (category) {
@@ -36,8 +36,8 @@ const CategoryDetailForm = ({ data }: CategoryDetailForm) => {
       <div>
         <ContentLabel>{EVENT_DETAIL.applicationPeriod}</ContentLabel>
         <div>
-          {transDate(formOpenDate)} {transTime(formOpenTime)} ~ {transDate(formCloseDate)}{' '}
-          {transTime(formCloseTime)}까지
+          {transDate(openDate)} {transTime(openTime)} ~ {transDate(closeDate)}{' '}
+          {transTime(closeTime)}까지
         </div>
       </div>
       <div>

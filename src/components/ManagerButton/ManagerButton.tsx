@@ -1,11 +1,14 @@
 import { EVENT_DETAIL_BUTTON } from '@/constants/event';
 import { PATH } from '@/constants/path';
 import useMemberAuth from '@/hooks/query/club/useMemberAuth';
+import {
+  FormButtonWrapper,
+  PurpleButton,
+  UpdateDeleteWrapper,
+} from '@/pages/event/EventDetailPage/EventDetailPage.style';
 import { getEventDetailResponse } from '@/types/api/getEventDetail';
 
 import { useNavigate } from 'react-router-dom';
-
-import { FormButtonWrapper, PurpleButton, UpdateDeleteWrapper } from '../EventDetailPage.style';
 
 interface ManagerButton {
   eventId: string;

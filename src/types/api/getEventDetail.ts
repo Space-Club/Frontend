@@ -22,10 +22,10 @@ interface CommonDetailResponse {
     posterImageUrl: string;
   };
   formInfo: {
-    formOpenDate: string;
-    formOpenTime: string;
-    formCloseDate: string;
-    formCloseTime: string;
+    openDate: string;
+    openTime: string;
+    closeDate: string;
+    closeTime: string;
   };
 }
 
