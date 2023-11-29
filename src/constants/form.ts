@@ -58,13 +58,13 @@ const INTRODUCE: FormOption = {
   id: 'introduce',
   title: '자기소개',
   type: 'TEXT',
-  predefined: false,
+  predefined: true,
 } as const;
 const MOTIVATION: FormOption = {
   id: 'motivation',
   title: '지원동기',
   type: 'TEXT',
-  predefined: false,
+  predefined: true,
 } as const;
 
 const PERFORMANCE_FORM_OPTION = {

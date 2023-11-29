@@ -10,7 +10,7 @@ const FormOptionContainer = styled.div<{ isDisabled: boolean }>`
   max-width: 40rem;
   border: 1px solid ${Theme.color.gray};
   border-radius: 0.3125rem;
-  padding: 0.5rem 1.2rem;
+  padding: 0.7rem 1.2rem;
   margin-bottom: 0.5rem;
 `;
 
@@ -20,7 +20,7 @@ const FormOptionTitleStyled = styled.p`
 
 const FormOptionCustomTextareaStyled = styled(textAreaScrollBar)`
   width: 100%;
-  font-size: ${Theme.fontSize.smallContent};
+  font-size: ${Theme.fontSize.mediumContent};
   border: none;
   resize: none;
   background-color: white;
