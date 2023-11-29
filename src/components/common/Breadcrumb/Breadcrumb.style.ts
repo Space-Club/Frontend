@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 const BreadcrumbContainer = styled.div`
   display: flex;
   padding: 1rem 0 2rem 0;
-  gap: 0.5rem;
 `;
 
 const CrumbStyled = styled.span`
@@ -15,6 +14,7 @@ const CrumbStyled = styled.span`
 
   &:not(:last-of-type)::after {
     content: '>';
+    padding: 0 0.5rem;
     cursor: default;
   }
 `;

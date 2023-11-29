@@ -4,6 +4,7 @@ import {
   WRITE_APPLY_FORM_BREADCRUMB,
 } from '@/constants/breadcrumb';
 import useEventDetailQuery from '@/hooks/query/event/useEventDetailQuery';
+import { BreadcrumbItem } from '@/types/breadcrumb';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -13,11 +14,6 @@ interface BreadcrumbProps {
   eventId: string;
   pageType: 'eventDetail' | 'submittedForms' | 'writeApplyForm';
 }
-
-type BreadcrumbItem = {
-  title: string;
-  link: string;
-};
 
 const Breadcrumb = ({ eventId, pageType }: BreadcrumbProps) => {
   const navigate = useNavigate();
