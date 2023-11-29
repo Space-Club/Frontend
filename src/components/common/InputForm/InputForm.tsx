@@ -35,6 +35,11 @@ const InputForm = forwardRef<HTMLInputElement, InputForm>(
     },
     ref,
   ) => {
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+      if (inputType === 'datetime-local') {
+        event.preventDefault();
+      }
+    };
     return (
       <InputContainer style={{ width: containerWidth }}>
         {labelText && (
@@ -50,6 +55,7 @@ const InputForm = forwardRef<HTMLInputElement, InputForm>(
             ref={ref}
             maxLength={maxLength}
             placeholder={placeholder}
+            onKeyDown={handleKeyDown}
             {...props}
           />
           {unit && <InputUnit isHalf={!!isHalf}>{unit}</InputUnit>}
