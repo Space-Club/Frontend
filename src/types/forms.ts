@@ -1,3 +1,5 @@
+import { EventStatus } from './event';
+
 interface Form {
   title: string;
   content: string; //#TODO: boolean일 수도 있음 (체크박스?)
@@ -6,7 +8,10 @@ interface Form {
 interface UserForm {
   userId: string;
   options: Form[];
-  participationStatus: 'PENDING' | 'CONFIRMED' | 'CANCELED' | 'CANCEL_REQUESTED';
+  participation: {
+    status: EventStatus;
+    dateTime: string;
+  };
 }
 
 interface FormInfo {

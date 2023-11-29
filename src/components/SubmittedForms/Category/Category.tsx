@@ -1,5 +1,6 @@
 import {
   CategoryItemStyled,
+  CategoryNthStyled,
   CategoryRowStyled,
   CategoryStyled,
   ManageTitleStyled,
@@ -15,7 +16,8 @@ const Category = ({ optionTitles, managed }: CategoryProps) => {
 
   return (
     <CategoryStyled>
-      <CategoryRowStyled>순서</CategoryRowStyled>
+      <CategoryNthStyled>순서</CategoryNthStyled>
+      <CategoryRowStyled>제출시간</CategoryRowStyled>
       {optionTitles.map((title, index) => {
         return <CategoryItemStyled key={index}>{title}</CategoryItemStyled>;
       })}

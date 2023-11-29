@@ -3,42 +3,47 @@ import useModal from '@/hooks/useModal';
 import { EventStatus } from '@/types/event';
 
 import FormStatus from '../FormStatus/FormStatus';
-import { FormItemStyled, FormRowStyled, FormStyled } from './SubmittedForm.style';
+import { FormItemStyled, FormNthStyled, FormRowStyled, FormStyled } from './SubmittedForm.style';
 
 interface SubmittedFormProps {
   index: number;
-  userId: string;
   formLength: number;
+  userId: string;
   options: {
     title: string;
     content: string;
   }[];
-  participationStatus: EventStatus;
+  participation: {
+    status: EventStatus;
+    dateTime: string;
+  };
   managed: boolean;
 }
 
 const SubmittedForm = ({
   index,
-  userId,
   formLength,
+  userId,
   options,
-  participationStatus,
+  participation,
   managed,
 }: SubmittedFormProps) => {
   const { showModal, modalOpen, modalClose } = useModal();
-  //#TODO: 제출된 시각 추가되면 넣기=>순서 대신 제출된 시간을 보여주는 게 어떨까?
+  const { status, dateTime } = participation;
+  const nthForm = formLength - index;
 
   return (
     <>
-      {showModal && <FormDetailModal onClose={modalClose} options={options} />}
+      {showModal && <FormDetailModal onClose={modalClose} options={options} nthForm={nthForm} />}
       <FormStyled key={index}>
-        <FormRowStyled>{formLength - index}</FormRowStyled>
+        <FormNthStyled>{nthForm}</FormNthStyled>
+        <FormRowStyled>{dateTime}</FormRowStyled>
         {options.map((option, index) => (
           <FormItemStyled onClick={modalOpen} key={index}>
             {option.content}
           </FormItemStyled>
         ))}
-        {managed && <FormStatus id={userId} participationStatus={participationStatus} />}
+        {managed && <FormStatus id={userId} participationStatus={status} />}
       </FormStyled>
     </>
   );

@@ -2,6 +2,11 @@ import Theme from '@/styles/Theme';
 import { memberManagerScrollAreaStyled } from '@/styles/common';
 import styled from '@emotion/styled';
 
+const SubmittedFormDetailTitleStyled = styled.h1`
+  color: black;
+  font-size: ${Theme.fontSize.smallTitle};
+`;
+
 const FormDetailModalContainer = styled(memberManagerScrollAreaStyled)`
   display: flex;
   flex-direction: column;
@@ -21,4 +26,4 @@ const FormDetailModalContainer = styled(memberManagerScrollAreaStyled)`
   overflow: auto;
 `;
 
-export { FormDetailModalContainer };
+export { SubmittedFormDetailTitleStyled, FormDetailModalContainer };
