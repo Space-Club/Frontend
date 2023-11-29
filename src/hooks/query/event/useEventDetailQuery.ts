@@ -3,7 +3,7 @@ import { getEventDetailRequest } from '@/types/api/getEventDetail';
 
 import { useQuery } from '@tanstack/react-query';
 
-const QUERY_KEY = { EVENT_DETAIL: 'EVENT_DETAIL' };
+export const QUERY_KEY = { EVENT_DETAIL: 'EVENT_DETAIL' };
 
 const useEventDetailQuery = ({ eventId }: getEventDetailRequest) => {
   const {

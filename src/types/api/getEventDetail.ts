@@ -21,12 +21,14 @@ interface CommonDetailResponse {
     applicants: number;
     capacity: number;
     posterImageUrl: string;
+    isEnded: boolean;
   };
   formInfo: {
     openDate: string;
     openTime: string;
     closeDate: string;
     closeTime: string;
+    isAbleToApply: boolean;
   };
 }
 

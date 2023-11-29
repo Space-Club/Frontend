@@ -56,11 +56,6 @@ const EventDetailPage = () => {
   const { category, hasForm, eventInfo } = eventDetail ?? {};
   const { content, posterImageUrl } = eventInfo ?? {};
 
-  const handleEventDelete = async () => {
-    deleteEventMutate();
-    navigate('/');
-  };
-
   return (
     <EventDetailPageContainer>
       {!isEventDetailLoading && (
@@ -90,7 +85,7 @@ const EventDetailPage = () => {
             <ConfirmModal
               message={MODAL_TEXT.DELETE_EVENT}
               onClose={deleteModalClose}
-              onConfirm={handleEventDelete}
+              onConfirm={() => deleteEventMutate()}
             />
           )}
           <Header>
