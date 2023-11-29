@@ -17,7 +17,13 @@ import ConfirmModal from '../Modals/ConfirmModal';
 import ProfileImageDeleteButton from '../ProfileImageDeleteButton/ProfileImageDeleteButton';
 import Avatar from '../common/Avatar/Avatar';
 import InputForm from '../common/InputForm/InputForm';
-import { InfoWrapper, ProfileButtonsWrapper, ProfileContainer } from './Profile.style';
+import {
+  AvatarWrapper,
+  InfoWrapper,
+  ProfileButtonsWrapper,
+  ProfileContainer,
+  ProfileFormStyled,
+} from './Profile.style';
 
 const Profile = () => {
   const [isEdit, setIsEdit] = useState(false);
@@ -69,15 +75,36 @@ const Profile = () => {
         />
       )}
       <ProfileContainer>
-        <Avatar
-          avatarSize="large"
-          isEditable
-          profileImageSrc={data?.profileImageUrl}
-          onEdit={(file) => editUserImage({ userImage: file })}
-        />
-        <ProfileImageDeleteButton />
+        <AvatarWrapper>
+          <Avatar
+            avatarSize="large"
+            isEditable
+            profileImageSrc={data?.profileImageUrl}
+            onEdit={(file) => editUserImage({ userImage: file })}
+          />
+          <ProfileImageDeleteButton />
+        </AvatarWrapper>
         <InfoWrapper>
-          <form onSubmit={handleSubmit(handleInfoEditComplete)}>
+          <ProfileFormStyled onSubmit={handleSubmit(handleInfoEditComplete)}>
+            <div>
+              <InputForm
+                {...register('name', {
+                  required: REQUIRED_NAME,
+                  minLength: { value: 2, message: `${NAME}` },
+                  maxLength: { value: 10, message: `${NAME}` },
+                  validate: validateName,
+                })}
+                disabled={!isEdit}
+                inputType="text"
+              />
+              {errors.name && <ErrorMessage>{errors.name?.message as string}</ErrorMessage>}
+              <InputForm
+                {...register('number', { required: REQUIRED_NUMBER, validate: validateNumber })}
+                disabled={!isEdit}
+                inputType="text"
+              />
+              {errors.number && <ErrorMessage>{errors.number?.message as string}</ErrorMessage>}
+            </div>
             <ProfileButtonsWrapper>
               {!isEdit ? (
                 <>
@@ -90,24 +117,7 @@ const Profile = () => {
                 <PurpleButton>저장</PurpleButton>
               )}
             </ProfileButtonsWrapper>
-            <InputForm
-              {...register('name', {
-                required: REQUIRED_NAME,
-                minLength: { value: 2, message: `${NAME}` },
-                maxLength: { value: 10, message: `${NAME}` },
-                validate: validateName,
-              })}
-              disabled={!isEdit}
-              inputType="text"
-            />
-            {errors.name && <ErrorMessage>{errors.name?.message as string}</ErrorMessage>}
-            <InputForm
-              {...register('number', { required: REQUIRED_NUMBER, validate: validateNumber })}
-              disabled={!isEdit}
-              inputType="text"
-            />
-            {errors.number && <ErrorMessage>{errors.number?.message as string}</ErrorMessage>}
-          </form>
+          </ProfileFormStyled>
         </InfoWrapper>
       </ProfileContainer>
     </>
