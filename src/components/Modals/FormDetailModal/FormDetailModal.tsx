@@ -15,7 +15,7 @@ const FormDetailModal = ({ onClose, options, dateTime }: FormDetailModalProps) =
     <Portal>
       <BackgroundOverlay onClick={onClose}>
         <FormDetailModalContainer>
-          <SubmittedFormDetailTitleStyled>{dateTime}</SubmittedFormDetailTitleStyled>
+          <SubmittedFormDetailTitleStyled>{`제출시간: ${dateTime}`}</SubmittedFormDetailTitleStyled>
           {options.map((option, index) => {
             return (
               <FormItemContainer key={index}>
