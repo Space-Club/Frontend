@@ -4,7 +4,7 @@ import useToast from '@/hooks/useToast';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { QUERY_KEY as GET_EVENT_BOOKMARKS_QUERY_KEY } from './useGetEventBookMarkQuery';
-import { QUERY_KEY as GET_IS_BOOKMARK_QUERY_KEY } from './useIsBookmarkQuery';
+import { QUERY_KEY as GET_IS_BOOKMARK_QUERY_KEY } from './useIsBookmarkedQuery';
 
 interface UsePatchBookmarkMutation {
   bookmarkPaint: boolean;

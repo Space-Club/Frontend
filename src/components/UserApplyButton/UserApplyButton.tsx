@@ -1,6 +1,6 @@
 import BookMark from '@/components/common/BookMark/BookMark';
 import { EVENT_DETAIL_BUTTON } from '@/constants/event';
-import useIsBookmarkQuery from '@/hooks/query/event/useIsBookmarkQuery';
+import useIsBookmarkQuery from '@/hooks/query/event/useIsBookmarkedQuery';
 import {
   ApplicantButton,
   ApplyButton,

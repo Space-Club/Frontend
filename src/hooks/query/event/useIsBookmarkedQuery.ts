@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 
 export const QUERY_KEY = { GET_IS_BOOKMARKED: 'GET_IS_BOOKMARKED' };
 
-const useIsBookmarkQuery = ({ eventId }: GetIsBookmarkRequest) => {
+const useIsBookmarkedQuery = ({ eventId }: GetIsBookmarkRequest) => {
   const { data: isBookmarked } = useQuery({
     queryFn: () => getIsBookmark({ eventId }),
     queryKey: [QUERY_KEY, eventId],
@@ -14,4 +14,4 @@ const useIsBookmarkQuery = ({ eventId }: GetIsBookmarkRequest) => {
   return { isBookmarked };
 };
 
-export default useIsBookmarkQuery;
+export default useIsBookmarkedQuery;
