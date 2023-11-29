@@ -14,6 +14,7 @@ import { useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import ConfirmModal from '../Modals/ConfirmModal';
+import ProfileImageDeleteButton from '../ProfileImageDeleteButton/ProfileImageDeleteButton';
 import Avatar from '../common/Avatar/Avatar';
 import InputForm from '../common/InputForm/InputForm';
 import { InfoWrapper, ProfileButtonsWrapper, ProfileContainer } from './Profile.style';
@@ -74,6 +75,7 @@ const Profile = () => {
           profileImageSrc={data?.profileImageUrl}
           onEdit={(file) => editUserImage({ userImage: file })}
         />
+        <ProfileImageDeleteButton />
         <InfoWrapper>
           <form onSubmit={handleSubmit(handleInfoEditComplete)}>
             <ProfileButtonsWrapper>
