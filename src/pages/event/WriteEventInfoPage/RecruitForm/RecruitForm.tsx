@@ -5,7 +5,7 @@ import { FORM_INFO_VALUE } from '@/constants/limitInputValue';
 import { RecruitmentDetailResponse } from '@/types/api/getEventDetail';
 import { ReactHookFormProps } from '@/types/event';
 import setFormValue from '@/utils/setFormValue';
-import { validateTimeCompare, validateTodayDate } from '@/utils/validate';
+import { validateTimeCompare, validateTodayDate, validateTrim } from '@/utils/validate';
 
 import { useEffect } from 'react';
 
@@ -48,6 +48,7 @@ const RecruitForm = ({ register, setValue, watch, errors, eventDetail }: Recruit
               value: LIMIT_LENGTH.TITLE_MAX,
               message: MAX_LENGTH('공고 제목', LIMIT_LENGTH.TITLE_MAX),
             },
+            validate: (value) => validateTrim(value),
           })}
           labelText="공고 제목"
           required
@@ -61,6 +62,7 @@ const RecruitForm = ({ register, setValue, watch, errors, eventDetail }: Recruit
               value: LIMIT_LENGTH.LOCATION_MAX,
               message: MAX_LENGTH('활동 위치', LIMIT_LENGTH.LOCATION_MAX),
             },
+            validate: (value) => validateTrim(value),
           })}
           labelText="활동 위치"
           inputType="text"
@@ -75,6 +77,7 @@ const RecruitForm = ({ register, setValue, watch, errors, eventDetail }: Recruit
               value: LIMIT_LENGTH.TAGET_MAX,
               message: MAX_LENGTH('모집 대상', LIMIT_LENGTH.TAGET_MAX),
             },
+            validate: (value) => validateTrim(value),
           })}
           labelText="모집 대상"
           rows={2}
@@ -90,6 +93,10 @@ const RecruitForm = ({ register, setValue, watch, errors, eventDetail }: Recruit
           labelText="모집 인원"
           inputType="number"
           placeholder="정수(1-n)"
+          min={LIMIT_VALUE.CAPACITY_MIN}
+          max={LIMIT_VALUE.CAPACITY_MAX}
+          unit="명"
+          isHalf={true}
         />
         {errors.capacity && <ErrorMessage>{errors.capacity.message as string}</ErrorMessage>}
         <TwoInputContainer>
@@ -139,6 +146,7 @@ const RecruitForm = ({ register, setValue, watch, errors, eventDetail }: Recruit
               value: LIMIT_LENGTH.CONTENT_MAX,
               message: MAX_LENGTH('공고 내용', LIMIT_LENGTH.CONTENT_MAX),
             },
+            validate: (value) => validateTrim(value),
           })}
           labelText="공고 내용"
           required

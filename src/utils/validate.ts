@@ -6,8 +6,14 @@ import {
 } from '@/constants/club';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
 
+const { TRIM } = ERROR_MESSAGE.COMMON;
 const { START_TIME } = ERROR_MESSAGE.EVENT;
 const { NAME, NUMBER } = ERROR_MESSAGE.REGISTER;
+
+const validateTrim = (input: string) => {
+  if (!input.trim() && input.length > 0) return TRIM;
+  else return true;
+};
 
 const validateName = (input: string) => {
   const regex = /^[가-힣ㄱ-ㅎㅏ-ㅣ]+$/;
@@ -75,6 +81,7 @@ const validateClubInfo = (clubInfo: string) => {
 };
 
 export {
+  validateTrim,
   validateName,
   validateNumber,
   validateTimeCompare,

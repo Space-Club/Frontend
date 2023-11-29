@@ -5,7 +5,7 @@ import { FORM_INFO_VALUE } from '@/constants/limitInputValue';
 import { PromotionDetailResponse } from '@/types/api/getEventDetail';
 import { ReactHookFormProps } from '@/types/event';
 import setFormValue from '@/utils/setFormValue';
-import { validateTimeCompare, validateTodayDate } from '@/utils/validate';
+import { validateTimeCompare, validateTodayDate, validateTrim } from '@/utils/validate';
 
 import { useEffect } from 'react';
 
@@ -49,6 +49,7 @@ const PromotionForm = ({ register, setValue, watch, errors, eventDetail }: Promo
               value: LIMIT_LENGTH.TITLE_MAX,
               message: MAX_LENGTH('행사 이름', LIMIT_LENGTH.TITLE_MAX),
             },
+            validate: (value) => validateTrim(value),
           })}
           labelText="행사 이름"
           required
@@ -78,6 +79,7 @@ const PromotionForm = ({ register, setValue, watch, errors, eventDetail }: Promo
               value: LIMIT_LENGTH.LOCATION_MAX,
               message: MAX_LENGTH('행사 장소', LIMIT_LENGTH.LOCATION_MAX),
             },
+            validate: (value) => validateTrim(value),
           })}
           labelText="행사 장소"
           required
@@ -92,6 +94,10 @@ const PromotionForm = ({ register, setValue, watch, errors, eventDetail }: Promo
           labelText="정원"
           inputType="number"
           placeholder="정수(0-n)"
+          min={LIMIT_VALUE.CAPACITY_MIN}
+          max={LIMIT_VALUE.CAPACITY_MAX}
+          unit="명"
+          isHalf={true}
         />
         {errors.capacity && <ErrorMessage>{errors.capacity.message as string}</ErrorMessage>}
         <TwoInputContainer>
@@ -141,6 +147,7 @@ const PromotionForm = ({ register, setValue, watch, errors, eventDetail }: Promo
               value: LIMIT_LENGTH.CONTENT_MAX,
               message: MAX_LENGTH('행사 내용', LIMIT_LENGTH.CONTENT_MAX),
             },
+            validate: (value) => validateTrim(value),
           })}
           labelText="행사 내용 작성"
           required

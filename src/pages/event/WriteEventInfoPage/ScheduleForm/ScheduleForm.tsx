@@ -5,7 +5,7 @@ import { FORM_INFO_VALUE } from '@/constants/limitInputValue';
 import { ClubDetailResponse } from '@/types/api/getEventDetail';
 import { ReactHookFormProps } from '@/types/event';
 import setFormValue from '@/utils/setFormValue';
-import { validateTimeCompare, validateTodayDate } from '@/utils/validate';
+import { validateTimeCompare, validateTodayDate, validateTrim } from '@/utils/validate';
 
 import { useEffect } from 'react';
 
@@ -31,21 +31,10 @@ const ScheduleForm = ({ register, setValue, watch, errors, eventDetail }: Schedu
     }
   }, [eventDetail, setValue]);
 
-  const {
-    PERSONNEL,
-    COST,
-    ENTER_BOTH_SIDE,
-    MAX_YEAR,
-    REQUIRED,
-    MAX_LENGTH,
-    FORM_START_TIME,
-    LAST_TIME,
-  } = ERROR_MESSAGE.EVENT;
+  const { PERSONNEL, COST, MAX_YEAR, REQUIRED, MAX_LENGTH, FORM_START_TIME, LAST_TIME } =
+    ERROR_MESSAGE.EVENT;
 
   const { LIMIT_LENGTH, LIMIT_VALUE } = FORM_INFO_VALUE;
-
-  const openDate = watch('openDate');
-  const closeDate = watch('closeDate');
 
   return (
     <>
@@ -57,6 +46,7 @@ const ScheduleForm = ({ register, setValue, watch, errors, eventDetail }: Schedu
               value: LIMIT_LENGTH.TITLE_MAX,
               message: MAX_LENGTH('일정 제목', LIMIT_LENGTH.TITLE_MAX),
             },
+            validate: (value) => validateTrim(value),
           })}
           labelText="일정 제목"
           required
@@ -105,6 +95,7 @@ const ScheduleForm = ({ register, setValue, watch, errors, eventDetail }: Schedu
               value: LIMIT_LENGTH.LOCATION_MAX,
               message: MAX_LENGTH('장소', LIMIT_LENGTH.LOCATION_MAX),
             },
+            validate: (value) => validateTrim(value),
           })}
           labelText="장소"
           inputType="text"
@@ -118,6 +109,9 @@ const ScheduleForm = ({ register, setValue, watch, errors, eventDetail }: Schedu
             labelText="정원"
             inputType="number"
             placeholder="정수(1-n)"
+            min={LIMIT_VALUE.CAPACITY_MIN}
+            max={LIMIT_VALUE.CAPACITY_MAX}
+            unit="명"
           />
           <InputForm
             {...register('dues', {
@@ -127,6 +121,9 @@ const ScheduleForm = ({ register, setValue, watch, errors, eventDetail }: Schedu
             labelText="회비"
             inputType="number"
             placeholder="정수(0-n)"
+            min={LIMIT_VALUE.COST_MIN}
+            max={LIMIT_VALUE.COST_MAX}
+            unit="원"
           />
         </TwoInputContainer>
         {errors.capacity && <ErrorMessage>{errors.capacity.message as string}</ErrorMessage>}
@@ -134,7 +131,7 @@ const ScheduleForm = ({ register, setValue, watch, errors, eventDetail }: Schedu
         <TwoInputContainer>
           <InputForm
             {...register('openDate', {
-              required: closeDate && ENTER_BOTH_SIDE,
+              required: REQUIRED('신청 시작 날짜는'),
               validate: {
                 today: validateTodayDate,
                 compare: (value) => validateTimeCompare(value, watch('closeDate'), LAST_TIME),
@@ -142,16 +139,18 @@ const ScheduleForm = ({ register, setValue, watch, errors, eventDetail }: Schedu
               max: { value: LIMIT_VALUE.DATE_MAX, message: MAX_YEAR },
             })}
             labelText="신청 시작 날짜 및 시간"
+            required
             inputType="datetime-local"
             containerWidth="50%"
           />
           <InputForm
             {...register('closeDate', {
-              required: openDate && ENTER_BOTH_SIDE,
+              required: REQUIRED('마감 시작 날짜는'),
               validate: (value) => validateTimeCompare(watch('openDate'), value, LAST_TIME),
               max: { value: LIMIT_VALUE.DATE_MAX, message: MAX_YEAR },
             })}
             labelText="마감 시작 날짜 및 시간"
+            required
             inputType="datetime-local"
             containerWidth="50%"
           />
@@ -175,6 +174,7 @@ const ScheduleForm = ({ register, setValue, watch, errors, eventDetail }: Schedu
               value: LIMIT_LENGTH.CONTENT_MAX,
               message: MAX_LENGTH('일정 안내', LIMIT_LENGTH.CONTENT_MAX),
             },
+            validate: (value) => validateTrim(value),
           })}
           labelText="일정 안내"
           rows={10}

@@ -1,7 +1,7 @@
 import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
-const InputWrapper = styled.div`
+const InputContainer = styled.div`
   width: 100%;
 `;
 const LabelStyled = styled.label`
@@ -18,15 +18,18 @@ const RequiredSquare = styled.span`
   background-color: ${Theme.color.tButton};
   border-radius: 50%;
 `;
+const InputWrapper = styled.div`
+  position: relative;
+`;
 const InputStyled = styled.input`
   position: relative;
   width: 100%;
   height: 3rem;
   outline: none;
   margin-top: 0.5rem;
+  padding: 0 1rem;
   border: 1px solid ${Theme.color.tLine};
   border-radius: 1rem;
-  padding-left: 1rem;
   box-sizing: border-box;
 
   :disabled {
@@ -44,6 +47,21 @@ const InputStyled = styled.input`
     width: 100%;
     cursor: pointer;
   }
+
+  &[type='number'] {
+    padding-right: 2rem;
+  }
+
+  &[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+  }
+`;
+const InputUnit = styled.span<{ isHalf?: boolean }>`
+  position: absolute;
+  top: calc(50% - 0.3rem);
+  right: ${({ isHalf }) => (isHalf ? 'calc(50% + 1rem)' : '1rem')};
+  font-size: 0.8rem;
+  color: ${Theme.color.semiBlack};
 `;
 
-export { InputWrapper, LabelStyled, RequiredSquare, InputStyled };
+export { InputContainer, LabelStyled, RequiredSquare, InputWrapper, InputStyled, InputUnit };

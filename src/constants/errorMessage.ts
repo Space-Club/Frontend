@@ -42,6 +42,7 @@ const ERROR_MESSAGE = {
 
   COMMON: {
     CURRENT_REF_ERROR: '할당된 current ref가 없습니다',
+    TRIM: '공백으로만 이루어질 수 없습니다.',
   },
 } as const;
 
