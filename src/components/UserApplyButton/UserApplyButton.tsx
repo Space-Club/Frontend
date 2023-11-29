@@ -24,7 +24,7 @@ const UserApplyButton = ({ eventId, eventDetail, applyModalOpen }: UserApplyButt
   const { capacity, applicants, isEnded } = eventInfo ?? {};
   const { isAbleToApply } = formInfo ?? {};
 
-  const checkApplyButtonText = () => {
+  const getApplyButtonText = () => {
     if (hasAlreadyApplied) {
       return EVENT_DETAIL_BUTTON.apply.completed;
     } else if (category !== 'RECRUITMENT' && applicants >= capacity) {
@@ -42,7 +42,7 @@ const UserApplyButton = ({ eventId, eventDetail, applyModalOpen }: UserApplyButt
         <ApplicantButton
           reverse
           capacity={!!capacity}
-          isDisabled={checkApplyButtonText() !== EVENT_DETAIL_BUTTON.apply.possible}
+          isDisabled={getApplyButtonText() !== EVENT_DETAIL_BUTTON.apply.possible}
           disabled
         >
           {applicants}/{capacity}
@@ -50,10 +50,10 @@ const UserApplyButton = ({ eventId, eventDetail, applyModalOpen }: UserApplyButt
       )}
       <ApplyButton
         capacity={Boolean(capacity)}
-        disabled={checkApplyButtonText() !== EVENT_DETAIL_BUTTON.apply.possible}
+        disabled={getApplyButtonText() !== EVENT_DETAIL_BUTTON.apply.possible}
         onClick={() => applyModalOpen()}
       >
-        {checkApplyButtonText()}
+        {getApplyButtonText()}
       </ApplyButton>
       <BookmarkButton reverse bold onClick={() => bookmarkRef.current?.click()}>
         <BookMark bookmarked={isBookmarked!} eventId={eventId} ref={bookmarkRef} />
