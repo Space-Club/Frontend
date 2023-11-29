@@ -67,7 +67,12 @@ const MainPage = () => {
             );
           })}
         </EventsWrapper>
-        <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
+        <Pagination
+          totalPages={totalPages}
+          size={size}
+          onChangePage={handleChangePage}
+          currentPage={currentPage}
+        />
       </ContentContainerStyled>
     </>
   );

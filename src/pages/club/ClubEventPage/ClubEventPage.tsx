@@ -60,7 +60,12 @@ const ClubEventPage = () => {
             <EmptyClubEvent>클럽에서 생성한 행사가 없습니다!</EmptyClubEvent>
           </CommonEmptyEventsWrapper>
         )}
-        <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
+        <Pagination
+          totalPages={totalPages}
+          size={size}
+          onChangePage={handleChangePage}
+          currentPage={currentPage}
+        />
       </ContentContainer>
       <ButtonWrapper>
         <ActiveButton

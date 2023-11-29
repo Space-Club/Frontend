@@ -6,10 +6,11 @@ interface Pagination {
   totalPages: number;
   size?: number;
   onChangePage: (page: number) => void;
+  currentPage: number;
 }
 
-const Pagination = ({ totalPages, size = 10, onChangePage }: Pagination) => {
-  const [page, setPage] = useState(0);
+const Pagination = ({ totalPages, size = 10, onChangePage, currentPage }: Pagination) => {
+  const [page, setPage] = useState(currentPage);
 
   const currentPageSize = Math.floor(page / size);
 

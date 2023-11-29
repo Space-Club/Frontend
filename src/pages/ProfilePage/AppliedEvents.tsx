@@ -40,7 +40,12 @@ const AppliedEvents = () => {
           <EmptyEventWrapper>신청한 행사가 없습니다.</EmptyEventWrapper>
         )}
       </AppliedEventContainer>
-      <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
+      <Pagination
+        totalPages={totalPages}
+        size={size}
+        onChangePage={handleChangePage}
+        currentPage={currentPage}
+      />
     </>
   );
 };

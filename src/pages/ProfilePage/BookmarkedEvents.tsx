@@ -43,7 +43,12 @@ const BookmarkedEvents = () => {
         })}
       </BookmarkedEventsContainer>
       {!bookmarks ?? <EmptyEventWrapper>북마크한 행사가 없습니다</EmptyEventWrapper>}
-      <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
+      <Pagination
+        totalPages={totalPages}
+        size={size}
+        onChangePage={handleChangePage}
+        currentPage={currentPage}
+      />
     </>
   );
 };

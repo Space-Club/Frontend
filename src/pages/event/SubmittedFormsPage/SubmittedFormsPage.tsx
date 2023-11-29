@@ -37,7 +37,12 @@ const SubmittedFormsPage = () => {
       <SubmittedFormsWrapper>
         <SubmittedForms formInfo={formInfo} userForms={userForms} />
       </SubmittedFormsWrapper>
-      <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
+      <Pagination
+        totalPages={totalPages}
+        size={size}
+        onChangePage={handleChangePage}
+        currentPage={currentPage}
+      />
     </>
   );
 };
