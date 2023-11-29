@@ -13,7 +13,6 @@ const FormOptions = () => {
     event: React.FormEvent<HTMLTextAreaElement>,
   ) => {
     changeOptionTitle(option, event.currentTarget.value);
-    console.log(option);
   };
 
   return (
