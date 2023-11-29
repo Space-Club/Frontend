@@ -6,7 +6,6 @@ import ConfirmModal from '@/components/Modals/ConfirmModal';
 import Spinner from '@/components/common/Spinner/Spinner';
 import { MODAL_TEXT } from '@/constants/modalMessage';
 import useDeleteClubMutation from '@/hooks/query/club/useDeleteClubMutation';
-import useGetClubQuery from '@/hooks/query/club/useGetClubQuery';
 import useModal from '@/hooks/useModal';
 
 import { Suspense } from 'react';
@@ -32,9 +31,6 @@ const ClubManagePage = () => {
   }
 
   const { deleteClubMutate } = useDeleteClubMutation({ clubId });
-
-  const { clubInfo } = useGetClubQuery({ clubId });
-  if (!clubInfo) return null;
 
   return (
     <>

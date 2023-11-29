@@ -13,6 +13,7 @@ const useGetClubQuery = ({ clubId, isEnabled = true }: GetClubRequest) => {
     queryFn: () => getClub({ clubId }),
     queryKey: [QUERY_KEY.GET_CLUB, clubId],
     enabled: isEnabled,
+    suspense: true,
   });
   return { clubInfo, refetch };
 };
