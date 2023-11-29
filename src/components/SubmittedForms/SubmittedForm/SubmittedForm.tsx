@@ -36,6 +36,7 @@ const SubmittedForm = ({
     <>
       {showModal && <FormDetailModal onClose={modalClose} options={options} nthForm={nthForm} />}
       <FormStyled key={index}>
+        <FormItemStyled>{nthForm}</FormItemStyled>
         <FormRowStyled>{dateTime}</FormRowStyled>
         {options.map((option, index) => (
           <FormItemStyled onClick={modalOpen} key={index}>
