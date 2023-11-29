@@ -1,9 +1,11 @@
 import ActiveButton from '@/components/ActiveButton/ActiveButton';
 import ClubEvents from '@/components/ClubEvents/ClubEvents';
 import ClubHeader from '@/components/ClubHeader/ClubHeader';
+import Spinner from '@/components/common/Spinner/Spinner';
 import { CREATE_EVENT } from '@/constants/club';
 import { PATH } from '@/constants/path';
 
+import { Suspense } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { ButtonWrapper, ContentContainer, ContentSpacer } from './ClubEventPage.style';
@@ -17,9 +19,11 @@ const ClubEventPage = () => {
     <>
       <ClubHeader clubId={clubId}></ClubHeader>
       <ContentSpacer />
-      <ContentContainer>
-        <ClubEvents clubId={clubId} />
-      </ContentContainer>
+      <Suspense fallback={<Spinner />}>
+        <ContentContainer>
+          <ClubEvents clubId={clubId} />
+        </ContentContainer>
+      </Suspense>
       <ButtonWrapper>
         <ActiveButton
           buttonText={CREATE_EVENT.BUTTON_TEXT}
