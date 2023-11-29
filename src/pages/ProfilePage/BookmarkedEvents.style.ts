@@ -3,8 +3,8 @@ import styled from '@emotion/styled';
 
 const BookmarkedEventsContainer = styled.div`
   width: 100%;
-  margin-top: 4rem;
   display: grid;
+  padding: 1.53rem 0;
   grid-template-columns: 1fr 1fr 1fr;
   grid-gap: 4rem 3rem;
   justify-items: center;

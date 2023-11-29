@@ -26,23 +26,26 @@ const BookmarkedEvents = () => {
 
   return (
     <>
-      <BookmarkedEventsContainer>
-        {bookmarks.map((bookmark) => {
-          return (
-            <BookmarkedCard
-              key={bookmark.id}
-              id={bookmark.id}
-              title={bookmark.title}
-              location={bookmark.location}
-              clubName={bookmark.clubName}
-              posterImageUrl={bookmark.posterImageUrl}
-              startDate={bookmark.startDate}
-              bookmark={bookmark.bookmark}
-            />
-          );
-        })}
-      </BookmarkedEventsContainer>
-      {!bookmarks ?? <EmptyEventWrapper>북마크한 행사가 없습니다</EmptyEventWrapper>}
+      {bookmarks.length !== 0 ? (
+        <BookmarkedEventsContainer>
+          {bookmarks.map((bookmark) => {
+            return (
+              <BookmarkedCard
+                key={bookmark.id}
+                id={bookmark.id}
+                title={bookmark.title}
+                location={bookmark.location}
+                clubName={bookmark.clubName}
+                posterImageUrl={bookmark.posterImageUrl}
+                startDate={bookmark.startDate}
+                bookmark={bookmark.bookmark}
+              />
+            );
+          })}
+        </BookmarkedEventsContainer>
+      ) : (
+        <EmptyEventWrapper>북마크한 행사가 없습니다</EmptyEventWrapper>
+      )}
       <Pagination
         totalPages={totalPages}
         size={size}

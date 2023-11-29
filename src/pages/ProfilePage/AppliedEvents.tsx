@@ -23,7 +23,7 @@ const AppliedEvents = () => {
   return (
     <>
       <AppliedEventContainer>
-        {events ? (
+        {events.length !== 0 ? (
           events.map((event) => (
             <AppliedEventCard
               key={event.id}
