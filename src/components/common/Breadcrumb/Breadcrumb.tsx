@@ -1,10 +1,5 @@
-import {
-  EVENT_DETAIL_BREADCRUMB,
-  SUBMITTED_FORMS_BREADCRUMB,
-  WRITE_APPLY_FORM_BREADCRUMB,
-} from '@/constants/breadcrumb';
 import useEventDetailQuery from '@/hooks/query/event/useEventDetailQuery';
-import { BreadcrumbItem } from '@/types/breadcrumb';
+import { getBreadcrumbs } from '@/utils/getBreadcrumb';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -23,21 +18,14 @@ const Breadcrumb = ({ eventId, pageType }: BreadcrumbProps) => {
   }
 
   const { category, eventInfo, clubInfo } = eventDetail;
-  let crumbs: BreadcrumbItem[] | null = [];
 
-  switch (pageType) {
-    case 'eventDetail':
-      crumbs = EVENT_DETAIL_BREADCRUMB(category, eventId, eventInfo.title);
-      break;
-    case 'submittedForms':
-      crumbs = SUBMITTED_FORMS_BREADCRUMB(category, eventId, clubInfo.clubId, eventInfo.title);
-      break;
-    case 'writeApplyForm':
-      crumbs = WRITE_APPLY_FORM_BREADCRUMB(category, eventId, eventInfo.title);
-      break;
-    default:
-      break;
-  }
+  const crumbs = getBreadcrumbs({
+    category,
+    eventId,
+    title: eventInfo.title,
+    clubId: clubInfo.clubId,
+    pageType,
+  });
 
   return (
     <BreadcrumbContainer>
