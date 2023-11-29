@@ -65,7 +65,7 @@ const FormOptionContextProvider = ({ children }: FormContextOptionProviderProps)
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const validateOptionTitle = (title: string) => {
-    if (title === '') {
+    if (title.trim().length === 0) {
       createToast({
         message: '제목을 입력해주세요.',
         toastType: 'error',
