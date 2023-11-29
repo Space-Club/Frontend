@@ -7,15 +7,15 @@ import { FormDetailModalContainer, SubmittedFormDetailTitleStyled } from './Form
 interface FormDetailModalProps {
   onClose: () => void;
   options: { title: string; content: string }[];
-  dateTime: string;
+  nthForm: number;
 }
 
-const FormDetailModal = ({ onClose, options, dateTime }: FormDetailModalProps) => {
+const FormDetailModal = ({ onClose, options, nthForm }: FormDetailModalProps) => {
   return (
     <Portal>
       <BackgroundOverlay onClick={onClose}>
         <FormDetailModalContainer>
-          <SubmittedFormDetailTitleStyled>{`제출시간: ${dateTime}`}</SubmittedFormDetailTitleStyled>
+          <SubmittedFormDetailTitleStyled>{`${nthForm}번째 폼`}</SubmittedFormDetailTitleStyled>
           {options.map((option, index) => {
             return (
               <FormItemContainer key={index}>

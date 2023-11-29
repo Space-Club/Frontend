@@ -20,6 +20,7 @@ const SubmittedForms = ({ formInfo, userForms }: { formInfo: FormInfo; userForms
             return (
               <SubmittedForm
                 key={form.userId}
+                formLength={formInfo.count}
                 index={index}
                 userId={form.userId}
                 options={form.options}

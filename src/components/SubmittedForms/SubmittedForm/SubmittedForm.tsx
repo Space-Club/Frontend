@@ -7,6 +7,7 @@ import { FormItemStyled, FormRowStyled, FormStyled } from './SubmittedForm.style
 
 interface SubmittedFormProps {
   index: number;
+  formLength: number;
   userId: string;
   options: {
     title: string;
@@ -19,15 +20,23 @@ interface SubmittedFormProps {
   managed: boolean;
 }
 
-const SubmittedForm = ({ index, userId, options, participation, managed }: SubmittedFormProps) => {
+const SubmittedForm = ({
+  index,
+  formLength,
+  userId,
+  options,
+  participation,
+  managed,
+}: SubmittedFormProps) => {
   const { showModal, modalOpen, modalClose } = useModal();
   const { status, dateTime } = participation;
+  const nthForm = formLength - index;
 
   return (
     <>
-      {showModal && <FormDetailModal onClose={modalClose} options={options} dateTime={dateTime} />}
+      {showModal && <FormDetailModal onClose={modalClose} options={options} nthForm={nthForm} />}
       <FormStyled key={index}>
-        <FormRowStyled>{participation.dateTime}</FormRowStyled>
+        <FormRowStyled>{dateTime}</FormRowStyled>
         {options.map((option, index) => (
           <FormItemStyled onClick={modalOpen} key={index}>
             {option.content}
