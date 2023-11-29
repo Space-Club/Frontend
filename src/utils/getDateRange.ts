@@ -1,6 +1,6 @@
 const getDateRange = (start: string, end: string | null) => {
   if (!end) {
-    return [new Date(start).toISOString().split('T')[0]];
+    return [start];
   }
 
   const startDate = new Date(start);
