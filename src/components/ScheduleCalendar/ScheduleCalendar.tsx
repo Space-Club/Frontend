@@ -23,6 +23,7 @@ const ScheduleCalendar = ({ clubEvents }: SchedulesProps) => {
   return (
     <CalendarWrapper>
       <Calendar
+        calendarType="US"
         locale="ko"
         onChange={setSelectedDate}
         value={selectedDate}

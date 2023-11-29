@@ -5,18 +5,25 @@ import Pagination from '@/components/common/Pagination/Pagination';
 import { CREATE_EVENT } from '@/constants/club';
 import { PATH } from '@/constants/path';
 import useClubEventsQuery from '@/hooks/query/club/useClubEventsQuery';
-import { EventsWrapper } from '@/styles/common';
+import useMemberAuth from '@/hooks/query/club/useMemberAuth';
+import { CommonEmptyEventsWrapper, EventsWrapper } from '@/styles/common';
 
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { ButtonWrapper, ContentSpacer, EmptyClubEvent } from './ClubEventPage.style';
+import {
+  ButtonWrapper,
+  ContentContainer,
+  ContentSpacer,
+  EmptyClubEvent,
+} from './ClubEventPage.style';
 
 const ClubEventPage = () => {
   const navigate = useNavigate();
   const [currentPage, setCurrentPage] = useState(0);
   const { clubId } = useParams();
   if (!clubId) throw new Error('클럽 ID를 찾을 수 없습니다');
+  const { role } = useMemberAuth({ clubId });
   const { clubEvents, pageData } = useClubEventsQuery({ clubId, pageNumber: currentPage });
   if (!pageData) {
     return null;
@@ -32,33 +39,45 @@ const ClubEventPage = () => {
     <>
       <ClubHeader clubId={clubId}></ClubHeader>
       <ContentSpacer />
-      <EventsWrapper>
-        {clubEvents?.map(({ id, eventInfo, clubInfo }) => (
-          <EventCard
-            eventId={id}
-            posterSrc={eventInfo.posterImageUrl}
-            eventTitle={eventInfo.title}
-            startDate={eventInfo.startDate}
-            endDate={eventInfo.endDate}
-            location={eventInfo.location}
-            clubLogoImageUrl={clubInfo.logoImageUrl}
-            clubName={clubInfo.name}
-            openStatus={eventInfo.openStatus}
-            isEnded={eventInfo.isEnded}
-          />
-        ))}
+      <ContentContainer>
+        <EventsWrapper>
+          {clubEvents?.map(({ id, eventInfo, clubInfo }) => (
+            <EventCard
+              key={id}
+              eventId={id}
+              posterSrc={eventInfo.posterImageUrl}
+              eventTitle={eventInfo.title}
+              startDate={eventInfo.startDate}
+              endDate={eventInfo.endDate}
+              location={eventInfo.location}
+              clubLogoImageUrl={clubInfo.logoImageUrl}
+              clubName={clubInfo.name}
+              openStatus={eventInfo.openStatus}
+              isEnded={eventInfo.isEnded}
+            />
+          ))}
+        </EventsWrapper>
         {clubEvents?.length === 0 && (
-          <EmptyClubEvent>클럽에서 생성한 행사가 없습니다!</EmptyClubEvent>
+          <CommonEmptyEventsWrapper>
+            <EmptyClubEvent>클럽에서 생성한 행사가 없습니다!</EmptyClubEvent>
+          </CommonEmptyEventsWrapper>
         )}
-      </EventsWrapper>
-      <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
-      <ButtonWrapper>
-        <ActiveButton
-          buttonText={CREATE_EVENT.BUTTON_TEXT}
-          fontSize="mediumContent"
-          onClick={() => navigate(`${PATH.CLUB.CHOICE(clubId)}`)}
+        <Pagination
+          totalPages={totalPages}
+          size={size}
+          onChangePage={handleChangePage}
+          currentPage={currentPage}
         />
-      </ButtonWrapper>
+      </ContentContainer>
+      {role === 'MANAGER' && (
+        <ButtonWrapper>
+          <ActiveButton
+            buttonText={CREATE_EVENT.BUTTON_TEXT}
+            fontSize="mediumContent"
+            onClick={() => navigate(`${PATH.CLUB.CHOICE(clubId)}`)}
+          />
+        </ButtonWrapper>
+      )}
     </>
   );
 };

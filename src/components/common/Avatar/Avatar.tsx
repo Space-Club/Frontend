@@ -68,7 +68,12 @@ const Avatar = ({
         )}
         {isEditable && (
           <>
-            <InvisibleInput onChange={handleInputChange} ref={inputRef} type="file" />
+            <InvisibleInput
+              onChange={handleInputChange}
+              ref={inputRef}
+              type="file"
+              accept=".jpg, .jpeg, .png .heic"
+            />
             <EditButtonStyled onClick={handleEditButtonClick} avatarSize={avatarSize}>
               <AiFillEdit size={editIconSize} />
             </EditButtonStyled>

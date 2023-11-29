@@ -11,7 +11,7 @@ const SubmittedFormsWrapper = styled.div`
   justify-content: center;
   overflow-x: auto;
   width: 100%;
-  min-width: 40rem;
+  min-width: 30rem;
 `;
 
 const FormLengthStyled = styled.div`

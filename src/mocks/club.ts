@@ -20,7 +20,7 @@ const clubHandlers = [
     const token = auth?.split(' ')[1];
 
     if (token !== '123') {
-      return new HttpResponse(null, { status: 401 });
+      //return new HttpResponse(null, { status: 401 });
     }
     return HttpResponse.json(club, { status: 200 });
   }),

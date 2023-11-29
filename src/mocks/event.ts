@@ -2,9 +2,15 @@ import { HttpResponse, http } from 'msw';
 
 import { END_POINTS } from '@constants/api';
 
+import { eventDetailMockData } from './data/eventData';
+
 const eventHandlers = [
   http.post(`${END_POINTS.PERFORMANCE_FORM}`, async () => {
     return HttpResponse.json({ eventId: '1' }, { status: 201 });
+  }),
+
+  http.get(`${END_POINTS.GET_EVENT_DETAIL}/:eventId`, async () => {
+    return HttpResponse.json(eventDetailMockData, { status: 200 });
   }),
 
   http.delete(`${END_POINTS.GET_EVENT_DETAIL}/:eventId`, async ({ params }) => {

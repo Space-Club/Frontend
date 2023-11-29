@@ -48,8 +48,7 @@ const router = createBrowserRouter([
           {
             element: <PrivateLogin />,
             children: [
-              { path: PATH.PROFILE_APPLIED, element: <ProfilePage /> },
-              { path: PATH.PROFILE_BOOKMARK, element: <ProfilePage /> },
+              { path: PATH.PROFILE(':category'), element: <ProfilePage /> },
               { path: PATH.CREATE, element: <CreateClubPage /> },
               { path: PATH.EVENT.SUBMIT_FORM(':eventId'), element: <SubmitFormPage /> },
               {

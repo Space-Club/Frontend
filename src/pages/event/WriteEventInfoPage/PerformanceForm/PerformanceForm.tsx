@@ -5,7 +5,7 @@ import { FORM_INFO_VALUE } from '@/constants/limitInputValue';
 import { ShowDetailResponse } from '@/types/api/getEventDetail';
 import { ReactHookFormProps } from '@/types/event';
 import setFormValue from '@/utils/setFormValue';
-import { validateTimeCompare, validateTodayDate } from '@/utils/validate';
+import { validateTimeCompare, validateTodayDate, validateTrim } from '@/utils/validate';
 
 import { useEffect } from 'react';
 
@@ -24,14 +24,19 @@ interface PerformanceForm extends ReactHookFormProps {
 const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: PerformanceForm) => {
   useEffect(() => {
     if (eventDetail) {
+      const { eventInfo, ticketInfo, bankInfo } = eventDetail;
+      const { startDate, startTime, location } = eventInfo;
+      const { maxTicketCount, cost } = ticketInfo;
+      const { bankName, bankAccountNumber } = bankInfo;
+
       setFormValue({ setValue, eventDetail });
 
-      setValue('startDate', `${eventDetail.startDate}T${eventDetail.startTime}`);
-      setValue('location', eventDetail.location);
-      setValue('cost', eventDetail.cost);
-      setValue('bankName', eventDetail.bankName);
-      setValue('accountNumber', eventDetail.bankAccountNumber);
-      setValue('maxTicketCount', eventDetail.maxTicketCount);
+      setValue('startDate', `${startDate}T${startTime}`);
+      setValue('location', location);
+      setValue('cost', cost);
+      setValue('bankName', bankName);
+      setValue('accountNumber', bankAccountNumber);
+      setValue('maxTicketCount', maxTicketCount);
     }
   }, [eventDetail, setValue]);
 
@@ -50,6 +55,7 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
               value: LIMIT_LENGTH.TITLE_MAX,
               message: MAX_LENGTH('공연 이름', LIMIT_LENGTH.TAGET_MAX),
             },
+            validate: (value) => validateTrim(value),
           })}
           labelText="공연 이름"
           required
@@ -78,6 +84,7 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
               value: LIMIT_LENGTH.LOCATION_MAX,
               message: MAX_LENGTH('공연 장소', LIMIT_LENGTH.LOCATION_MAX),
             },
+            validate: (value) => validateTrim(value),
           })}
           labelText="공연 장소"
           required
@@ -93,6 +100,9 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
             labelText="정원"
             inputType="number"
             placeholder="정수(1-n)"
+            min={LIMIT_VALUE.CAPACITY_MIN}
+            max={LIMIT_VALUE.CAPACITY_MAX}
+            unit="명"
           />
           <InputForm
             {...register('cost', {
@@ -102,6 +112,9 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
             labelText="비용"
             inputType="number"
             placeholder="정수(0-n)"
+            min={LIMIT_VALUE.CAPACITY_MIN}
+            max={LIMIT_VALUE.CAPACITY_MAX}
+            unit="원"
           />
         </TwoInputContainer>
         {errors.capacity && <ErrorMessage>{errors.capacity.message as string}</ErrorMessage>}
@@ -113,6 +126,7 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
                 value: LIMIT_LENGTH.BANK_NAME_MAX,
                 message: MAX_LENGTH('은행 이름', LIMIT_LENGTH.BANK_NAME_MAX),
               },
+              validate: (value) => validateTrim(value),
             })}
             labelText="은행 명"
             inputType="text"
@@ -124,6 +138,7 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
                 value: LIMIT_LENGTH.ACCOUNT_NUMBER_MAX,
                 message: MAX_LENGTH('계좌 번호', LIMIT_LENGTH.ACCOUNT_NUMBER_MAX),
               },
+              validate: (value) => validateTrim(value),
             })}
             labelText="계좌 번호"
             inputType="text"
@@ -131,7 +146,9 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
           />
         </TwoInputContainer>
         {errors.bankName && <ErrorMessage>{errors.bankName.message as string}</ErrorMessage>}
-        {errors.account && <ErrorMessage>{errors.account.message as string}</ErrorMessage>}
+        {errors.accountNumber && (
+          <ErrorMessage>{errors.accountNumber.message as string}</ErrorMessage>
+        )}
         <HalfInputForm
           {...register('maxTicketCount', {
             min: { value: LIMIT_VALUE.TICKET_COUNT_MIN, message: `${TICKET}` },
@@ -140,6 +157,10 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
           labelText="인당 예매 가능 수"
           inputType="number"
           placeholder="정수(1-n)"
+          min={LIMIT_VALUE.TICKET_COUNT_MIN}
+          max={LIMIT_VALUE.TICKET_COUNT_MAX}
+          unit="매"
+          isHalf={true}
         />
         {errors.maxTicketCount && (
           <ErrorMessage>{errors.maxTicketCount.message as string}</ErrorMessage>
@@ -182,7 +203,7 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
           watch={watch}
           errors={errors}
           isRequired={eventDetail ? false : REQUIRED('포스터는')}
-          posterImageUrl={eventDetail?.posterImageUrl}
+          posterImageUrl={eventDetail?.eventInfo.posterImageUrl}
         />
         <TextAreaForm
           {...register('content', {
@@ -191,6 +212,7 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
               value: LIMIT_LENGTH.CONTENT_MAX,
               message: MAX_LENGTH('공연 내용', LIMIT_LENGTH.CONTENT_MAX),
             },
+            validate: (value) => validateTrim(value),
           })}
           labelText="공연 내용 작성"
           required

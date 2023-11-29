@@ -23,7 +23,7 @@ const AppliedEvents = () => {
   return (
     <>
       <AppliedEventContainer>
-        {events ? (
+        {events.length !== 0 ? (
           events.map((event) => (
             <AppliedEventCard
               key={event.id}
@@ -40,7 +40,12 @@ const AppliedEvents = () => {
           <EmptyEventWrapper>신청한 행사가 없습니다.</EmptyEventWrapper>
         )}
       </AppliedEventContainer>
-      <Pagination totalPages={totalPages} size={size} onChangePage={handleChangePage} />
+      <Pagination
+        totalPages={totalPages}
+        size={size}
+        onChangePage={handleChangePage}
+        currentPage={currentPage}
+      />
     </>
   );
 };

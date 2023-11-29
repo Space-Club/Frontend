@@ -19,6 +19,7 @@ const handleTokenError = async (error: AxiosError<HttpException>) => {
   if (error.response?.data.code === EXCEPTION_CODE.INVALID_ACCESS_TOKEN) {
     return axiosClientWithAuth(originalRequest);
   }
+  return Promise.reject(error);
 };
 
 const setToken = (config: InternalAxiosRequestConfig) => {

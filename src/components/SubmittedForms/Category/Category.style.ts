@@ -10,8 +10,12 @@ const CategoryStyled = styled.div`
   font-size: ${Theme.fontSize.largeContent};
 `;
 
+const CategoryNthStyled = styled.div`
+  min-width: 4rem;
+`;
+
 const CategoryRowStyled = styled.div`
-  width: 4rem;
+  min-width: 10rem;
 `;
 
 const CategoryItemStyled = styled.div`
@@ -25,7 +29,13 @@ const ManageTitleStyled = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 6rem;
+  min-width: 6rem;
 `;
 
-export { CategoryStyled, CategoryRowStyled, CategoryItemStyled, ManageTitleStyled };
+export {
+  CategoryStyled,
+  CategoryNthStyled,
+  CategoryRowStyled,
+  CategoryItemStyled,
+  ManageTitleStyled,
+};

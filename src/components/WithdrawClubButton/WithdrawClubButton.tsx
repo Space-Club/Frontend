@@ -2,13 +2,13 @@ import useWithdrawClubMutation from '@/hooks/query/club/useWithdrawClubMutation'
 import useModal from '@/hooks/useModal';
 
 import ConfirmModal from '../Modals/ConfirmModal';
-import { LeaveClubButtonStyled } from './LeaveClubButton.style';
+import { WithdrawClubButtonStyled } from './WithdrawClubButton.style';
 
-interface LeaveClubButtonProps {
+interface WithdrawClubButtonProps {
   clubId: string;
 }
 
-const LeaveClubButton = ({ clubId }: LeaveClubButtonProps) => {
+const WithdrawClubButton = ({ clubId }: WithdrawClubButtonProps) => {
   const { withdrawClubMutate } = useWithdrawClubMutation();
   const { showModal, modalOpen, modalClose } = useModal();
 
@@ -22,9 +22,9 @@ const LeaveClubButton = ({ clubId }: LeaveClubButtonProps) => {
           onClose={modalClose}
         />
       )}
-      <LeaveClubButtonStyled onClick={modalOpen}>탈퇴하기</LeaveClubButtonStyled>
+      <WithdrawClubButtonStyled onClick={modalOpen}>클럽 탈퇴</WithdrawClubButtonStyled>
     </>
   );
 };
 
-export default LeaveClubButton;
+export default WithdrawClubButton;

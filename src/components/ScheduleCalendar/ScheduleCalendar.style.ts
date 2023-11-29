@@ -5,15 +5,15 @@ const CalendarWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 1.1;
+  flex: 1;
   min-width: 30rem;
   height: 31rem;
-  padding: 2rem;
+  padding: 2rem 0;
   background-color: ${Theme.color.tWhiteGrey};
   border-radius: 1.3rem;
 
   .react-calendar {
-    max-width: 40rem;
+    max-width: 27rem;
     width: 100%;
     height: 100%;
     padding: 1rem;

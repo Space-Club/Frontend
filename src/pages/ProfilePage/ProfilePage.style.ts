@@ -4,13 +4,16 @@ import styled from '@emotion/styled';
 const ProfileBottomWrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
-  padding: 0 5.87rem;
+  margin: 0 auto;
+  max-width: 50rem;
 `;
 
 const AppliedEventTabContainer = styled.div`
   width: 100%;
   border-bottom: 1px solid ${Theme.color.tLine};
+  margin-bottom: 1.5rem;
 `;
 
 const AppliedEventContainer = styled.div`

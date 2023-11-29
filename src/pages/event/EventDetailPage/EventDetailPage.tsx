@@ -1,12 +1,13 @@
+import ManagerButton from '@/components/ManagerButton/ManagerButton';
+import ApplyEventModal from '@/components/Modals/ApplyModal/ApplyEventModal';
+import ApplyShowModal from '@/components/Modals/ApplyModal/ApplyShowModal';
 import ConfirmModal from '@/components/Modals/ConfirmModal';
 import SearchInputForm from '@/components/SearchInputForm/SearchInputForm';
-import BookMark from '@/components/common/BookMark/BookMark';
+import UserApplyButton from '@/components/UserApplyButton/UserApplyButton';
 import Header from '@/components/common/Header/Header';
 import Poster from '@/components/common/Poster/Poster';
 import Tab from '@/components/common/Tab/Tab';
-import { EVENT_DETAIL_BUTTON } from '@/constants/event';
 import { MODAL_TEXT } from '@/constants/modalMessage';
-import { PATH } from '@/constants/path';
 import { MAIN_TABS } from '@/constants/tab';
 import useDeleteEventMutation from '@/hooks/query/event/useDeleteEventMutation';
 import useEventDetailQuery from '@/hooks/query/event/useEventDetailQuery';
@@ -14,30 +15,19 @@ import useModal from '@/hooks/useModal';
 import { ShowDetailResponse } from '@/types/api/getEventDetail';
 import { getStorage } from '@/utils/localStorage';
 
-import { useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import ApplyEventModal from './ApplyModal/ApplyEventModal';
-import ApplyShowModal from './ApplyModal/ApplyShowModal';
 import CategoryDetailForm from './CategoryDetail/CategoryDetailForm';
 import {
-  ApplicantButton,
-  ApplyButton,
-  BookmarkButton,
-  ButtonWrapper,
   ContentWrapper,
   DetailContentWrapper,
   EventContentTitle,
   EventContentWrapper,
   EventDetailPageContainer,
   EventDetailWrapper,
-  FormButtonWrapper,
-  PurpleButton,
-  UpdateDeleteWrapper,
 } from './EventDetailPage.style';
 
 const EventDetailPage = () => {
-  const bookmarkRef = useRef<HTMLDivElement>(null);
   const { eventId } = useParams();
   const navigate = useNavigate();
   const token = getStorage('token');
@@ -57,25 +47,14 @@ const EventDetailPage = () => {
     throw new Error('eventId is null');
   }
 
-  const { eventDetail, isEventDetailLoading } = useEventDetailQuery({ eventId });
+  const { eventDetail, isEventDetailLoading } = useEventDetailQuery({
+    eventId,
+  });
 
   const { deleteEventMutate } = useDeleteEventMutation({ eventId });
 
-  const {
-    isManager,
-    posterImageUrl,
-    content,
-    applicants,
-    capacity,
-    isBookmarked,
-    eventCategory,
-    clubId = '6', // TODO: API 명세서 나올 시 기본 값 제거
-  } = eventDetail ?? {};
-
-  const handleEventDelete = async () => {
-    deleteEventMutate();
-    navigate('/');
-  };
+  const { category, hasForm, eventInfo } = eventDetail ?? {};
+  const { content, posterImageUrl } = eventInfo ?? {};
 
   return (
     <EventDetailPageContainer>
@@ -88,16 +67,17 @@ const EventDetailPage = () => {
                 onClose={applyModalClose}
                 onConfirm={() => navigate('/login')}
               />
-            ) : eventCategory === 'SHOW' ? (
+            ) : category === 'SHOW' ? (
               <ApplyShowModal
                 eventId={eventId}
                 eventDetail={eventDetail as ShowDetailResponse}
+                hasForm={hasForm!}
                 applyModalClose={applyModalClose}
               />
             ) : (
               <ApplyEventModal
                 eventId={eventId}
-                eventDetail={eventDetail!}
+                hasForm={hasForm!}
                 applyModalClose={applyModalClose}
               />
             ))}
@@ -105,7 +85,7 @@ const EventDetailPage = () => {
             <ConfirmModal
               message={MODAL_TEXT.DELETE_EVENT}
               onClose={deleteModalClose}
-              onConfirm={handleEventDelete}
+              onConfirm={() => deleteEventMutate()}
             />
           )}
           <Header>
@@ -113,50 +93,20 @@ const EventDetailPage = () => {
             <Tab tabItems={MAIN_TABS} />
           </Header>
           <ContentWrapper>
-            {isManager && (
-              <FormButtonWrapper>
-                <PurpleButton
-                  onClick={() => navigate(PATH.EVENT.SUBMITTED_FORMS('clubId', eventId))} //TODO: club id 가져와서 주소에 넣어주기
-                >
-                  {EVENT_DETAIL_BUTTON.showSubmitForm}
-                </PurpleButton>
-                <UpdateDeleteWrapper>
-                  <PurpleButton
-                    reverse
-                    onClick={() =>
-                      navigate(PATH.EVENT.EDIT_WRITE_INFO(clubId, eventCategory!), {
-                        state: {
-                          eventDetail,
-                          eventId,
-                        },
-                      })
-                    }
-                  >
-                    {EVENT_DETAIL_BUTTON.edit}
-                  </PurpleButton>
-                  <PurpleButton onClick={deleteModalOpen}>
-                    {EVENT_DETAIL_BUTTON.delete}
-                  </PurpleButton>
-                </UpdateDeleteWrapper>
-              </FormButtonWrapper>
-            )}
+            <ManagerButton
+              eventId={eventId}
+              eventDetail={eventDetail!}
+              deleteModalOpen={deleteModalOpen}
+            />
             <EventDetailWrapper>
               <Poster posterSrc={posterImageUrl ? posterImageUrl : ''} width={23} />
               <DetailContentWrapper>
                 <CategoryDetailForm data={eventDetail!} />
-                <ButtonWrapper>
-                  {capacity && (
-                    <ApplicantButton reverse capacity={!!capacity} disabled>
-                      {applicants}/{capacity}
-                    </ApplicantButton>
-                  )}
-                  <ApplyButton capacity={!!capacity} onClick={() => applyModalOpen()}>
-                    {EVENT_DETAIL_BUTTON.apply}
-                  </ApplyButton>
-                  <BookmarkButton reverse bold onClick={() => bookmarkRef.current?.click()}>
-                    <BookMark bookmarked={isBookmarked!} eventId={eventId} ref={bookmarkRef} />
-                  </BookmarkButton>
-                </ButtonWrapper>
+                <UserApplyButton
+                  eventId={eventId}
+                  eventDetail={eventDetail!}
+                  applyModalOpen={applyModalOpen}
+                />
               </DetailContentWrapper>
             </EventDetailWrapper>
             <EventContentWrapper>

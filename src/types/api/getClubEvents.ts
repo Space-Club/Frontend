@@ -4,7 +4,8 @@ import { ClubEventInfo } from '../event';
 
 interface GetClubEventsRequest {
   clubId: string;
-  pageNumber: number;
+  pageNumber?: number;
+  isSchedule?: boolean;
 }
 
 interface GetClubEventsResponse {

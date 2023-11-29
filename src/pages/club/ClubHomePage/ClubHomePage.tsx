@@ -11,7 +11,6 @@ import { Suspense } from 'react';
 import { useParams } from 'react-router-dom';
 
 import {
-  ClubHomeBottomWrapper,
   ClubHomePageContainer,
   ClubHomeTopWrapper,
   ClubMemberTextedWrapper,
@@ -36,7 +35,7 @@ const ClubHomePage = () => {
       <Suspense fallback={<Spinner />}>
         <ClubHomePageContainer>
           <ClubHomeTopWrapper>
-            <ClubBanner leaveButton clubId={clubId} bannerSize="small" />
+            <ClubBanner withdrawClubButton clubId={clubId} bannerSize="small" />
           </ClubHomeTopWrapper>
           <ClubMiddleWrapper>
             <ClubNoticeTextedWrapper>
@@ -55,9 +54,7 @@ const ClubHomePage = () => {
               </ClubMemberWrapper>
             </ClubMemberTextedWrapper>
           </ClubMiddleWrapper>
-          <ClubHomeBottomWrapper>
-            <ScheduleManage />
-          </ClubHomeBottomWrapper>
+          <ScheduleManage />
         </ClubHomePageContainer>
       </Suspense>
     </>

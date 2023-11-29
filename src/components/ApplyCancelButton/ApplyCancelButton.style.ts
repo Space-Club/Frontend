@@ -10,6 +10,11 @@ const ButtonStyled = styled.button<{ isCanceled: boolean }>`
   border-radius: ${({ isCanceled }) => (isCanceled ? '0' : '0.3rem')};
   font-size: ${Theme.fontSize.tagText};
   cursor: ${({ isCanceled }) => (isCanceled ? 'default' : 'pointer')};
+
+  :hover {
+    color: white;
+    background-color: ${({ isCanceled }) => (isCanceled ? 'none' : Theme.color.shadow)};
+  }
 `;
 
 const ButtonTextStyled = styled.span`

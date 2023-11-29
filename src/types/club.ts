@@ -11,7 +11,7 @@ interface Club {
 interface ClubInfo extends Pick<Club, 'name' | 'logoImageUrl' | 'coverImageUrl'> {}
 
 interface CreateClubFormValue {
-  image: File | null;
+  image: File;
   name?: string;
   info?: string;
 }

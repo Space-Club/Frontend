@@ -9,7 +9,6 @@ import {
 } from 'react-hook-form';
 
 import { ClubInfo } from './club';
-import { FormType } from './form';
 
 type EventStatus = 'CONFIRMED' | 'PENDING' | 'CANCEL_REQUESTED' | 'CANCELED';
 

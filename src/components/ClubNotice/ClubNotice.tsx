@@ -24,7 +24,7 @@ const ClubNotice = ({ notice, noticeId, clubId }: ClubNoticeProps) => {
         />
       )}
       <ClubNoticeContainer onClick={modalOpen}>
-        <ClubNoticeTextStyled>{notice}</ClubNoticeTextStyled>
+        <ClubNoticeTextStyled value={notice} readOnly />
       </ClubNoticeContainer>
     </>
   );

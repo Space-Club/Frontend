@@ -34,6 +34,8 @@ const ERROR_MESSAGE = {
 
     JOIN_FAILED: '클럽 가입에 실패했습니다. ',
     CREATE_FAILED: '클럽 개설에 실패했습니다. ',
+
+    WITHDRAW_FAILED: '클럽 탈퇴에 실패했습니다.',
   },
   FORM: {
     POST_OPTION: '서버에러로 인해 등록에 실패했습니다.',
@@ -42,6 +44,7 @@ const ERROR_MESSAGE = {
 
   COMMON: {
     CURRENT_REF_ERROR: '할당된 current ref가 없습니다',
+    TRIM: '공백으로만 이루어질 수 없습니다.',
   },
 } as const;
 

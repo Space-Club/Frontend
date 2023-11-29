@@ -1,11 +1,11 @@
 import { Schedule } from '@/types/event';
 
-const isDateInRange = (selectedDate: string, startDateTime: string, endDateTime: string) => {
-  const startDate = new Date(startDateTime);
-  const endDate = new Date(endDateTime);
-  const targetDate = new Date(selectedDate);
+const isDateInRange = (selectedDate: string, start: string, end: string | null) => {
+  if (!end) {
+    return selectedDate === start;
+  }
 
-  return targetDate >= startDate && targetDate <= endDate;
+  return start <= selectedDate && selectedDate <= end;
 };
 
 const filterSchedulesBySelectedDate = (selectedDate: string, schedules: Schedule[]) => {

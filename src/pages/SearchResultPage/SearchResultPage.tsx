@@ -5,7 +5,7 @@ import Pagination from '@/components/common/Pagination/Pagination';
 import Tab from '@/components/common/Tab/Tab';
 import { MAIN_TABS } from '@/constants/tab';
 import useSearchResultQuery from '@/hooks/query/event/useSearchResultQuery';
-import { EventsWrapper } from '@/styles/common';
+import { CommonEmptyEventsWrapper, EventsWrapper } from '@/styles/common';
 
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -45,10 +45,14 @@ const SearchResultPage = () => {
             />
           ))}
         </EventsWrapper>
+        {data?.length === 0 && (
+          <CommonEmptyEventsWrapper>검색결과가 없습니다.</CommonEmptyEventsWrapper>
+        )}
         <Pagination
           totalPages={totalPages}
           size={size}
           onChangePage={(page) => setCurrentPage(page)}
+          currentPage={currentPage}
         />
       </SearchesContainer>
     </>

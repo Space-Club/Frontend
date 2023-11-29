@@ -53,6 +53,14 @@ const useCarousel = ({ totalItem, autoSlide = false }: UseCarouselProps) => {
     slide(currentIndex);
   }, [currentIndex, slide]);
 
+  useEffect(() => {
+    if (currentIndex > totalItem - 1) {
+      setCurrentIndex(totalItem - 1);
+    } else if (currentIndex < 0) {
+      setCurrentIndex(0);
+    }
+  }, [totalItem, currentIndex]);
+
   return {
     goNext,
     goPrev,

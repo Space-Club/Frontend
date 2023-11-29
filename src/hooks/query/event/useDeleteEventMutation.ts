@@ -1,7 +1,12 @@
 import deleteEvent from '@/apis/event/deleteEvent';
+import { PATH } from '@/constants/path';
 import useToast from '@/hooks/useToast';
 
-import { useMutation } from '@tanstack/react-query';
+import { useNavigate } from 'react-router-dom';
+
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+import { QUERY_KEY as GET_ALL_EVENT_QUERY_KEY } from './useAllEventsQuery';
 
 interface useDeleteEventMutation {
   eventId: string;
@@ -9,10 +14,14 @@ interface useDeleteEventMutation {
 
 const useDeleteEventMutation = ({ eventId }: useDeleteEventMutation) => {
   const { createToast } = useToast();
+  const queryClient = useQueryClient();
+  const navigate = useNavigate();
   const { mutate: deleteEventMutate } = useMutation({
     mutationKey: ['delete_event', `${eventId}`],
     mutationFn: () => deleteEvent({ eventId }),
     onSuccess: () => {
+      queryClient.invalidateQueries([GET_ALL_EVENT_QUERY_KEY]);
+      navigate(PATH.MAIN);
       createToast({ message: '행사가 성공적으로 삭제되었습니다.', toastType: 'success' });
     },
     onError: () => {
