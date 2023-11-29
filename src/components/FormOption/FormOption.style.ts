@@ -24,16 +24,16 @@ const FormOptionCustomTextareaStyled = styled(textAreaScrollBar)`
   border: none;
   resize: none;
   background-color: white;
-  height: 6rem;
   transition: all 0.2s ease-in-out;
+  height: 2.5rem;
 
   :focus {
+    height: 6rem;
     outline: none;
   }
 
   :disabled {
     color: ${Theme.color.black};
-    height: 2.5rem;
   }
 `;
 
