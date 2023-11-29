@@ -16,6 +16,7 @@ const useAllEventsQuery = ({ pageNumber, category, sort }: AllEventsRequest, pat
       pageNumber,
     ],
     queryFn: () => getAllEvents({ pageNumber, category, sort }),
+    suspense: true,
   });
 
   const { data, pageData } = allEvents ?? {};

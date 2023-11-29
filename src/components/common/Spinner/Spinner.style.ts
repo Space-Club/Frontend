@@ -6,7 +6,7 @@ const SpinnerWrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
+  height: 40vh;
 `;
 
 const SpinnerStyled = styled.div<{ size: number }>`
