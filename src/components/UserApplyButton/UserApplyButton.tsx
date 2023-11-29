@@ -20,14 +20,14 @@ interface UserApplyButton {
 const UserApplyButton = ({ eventId, eventDetail, applyModalOpen }: UserApplyButton) => {
   const bookmarkRef = useRef<HTMLDivElement>(null);
   const { isBookmarked } = useIsBookmarkedQuery({ eventId });
-  const { hasAlreadyApplied, eventInfo, formInfo } = eventDetail ?? {};
+  const { category, hasAlreadyApplied, eventInfo, formInfo } = eventDetail ?? {};
   const { capacity, applicants, isEnded } = eventInfo ?? {};
   const { isAbleToApply } = formInfo ?? {};
 
   const checkApplyButtonText = () => {
     if (hasAlreadyApplied) {
       return EVENT_DETAIL_BUTTON.apply.completed;
-    } else if (applicants >= capacity) {
+    } else if (category !== 'RECRUITMENT' && applicants >= capacity) {
       return EVENT_DETAIL_BUTTON.apply.soldOut;
     } else if (isEnded || isAbleToApply) {
       return EVENT_DETAIL_BUTTON.apply.deadLine;
@@ -42,7 +42,7 @@ const UserApplyButton = ({ eventId, eventDetail, applyModalOpen }: UserApplyButt
         <ApplicantButton
           reverse
           capacity={!!capacity}
-          isDisabled={hasAlreadyApplied || isEnded || isAbleToApply || applicants >= capacity}
+          isDisabled={checkApplyButtonText() !== EVENT_DETAIL_BUTTON.apply.possible}
           disabled
         >
           {applicants}/{capacity}
@@ -50,7 +50,7 @@ const UserApplyButton = ({ eventId, eventDetail, applyModalOpen }: UserApplyButt
       )}
       <ApplyButton
         capacity={Boolean(capacity)}
-        disabled={hasAlreadyApplied || isEnded || isAbleToApply || applicants >= capacity}
+        disabled={checkApplyButtonText() !== EVENT_DETAIL_BUTTON.apply.possible}
         onClick={() => applyModalOpen()}
       >
         {checkApplyButtonText()}
