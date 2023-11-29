@@ -1,73 +1,27 @@
-import useBreadcrumbContext from '@/hooks/useBreadcrumbContext';
+import { useNavigate } from 'react-router-dom';
 
-interface BreadcrumbProps {
-  path: string;
-  eventId?: string;
+import { BreadcrumbContainer, CrumbStyled } from './Breadcrumb.style';
+
+interface Crumb extends React.HTMLAttributes<HTMLDivElement> {
+  title: string;
+  link: string;
 }
 
-const Breadcrumb = ({ path, eventId }: BreadcrumbProps) => {
-  const { breadcrumb, setBreadcrumb } = useBreadcrumbContext();
-  breadcrumb.push(path);
+interface BreadcrumbProps {
+  crumbs: Crumb[] | null;
+}
 
-  const handlePushBreadcrumb = (newPath: string) => {
-    setBreadcrumb((prevBreadcrumb) => {
-      const newPathIndex = prevBreadcrumb.indexOf(newPath);
-      if (newPathIndex !== -1) {
-        // Remove the newPath if it exists to re-insert it later at the end
-        prevBreadcrumb.splice(newPathIndex, 1);
-      }
-
-      if (newPath === '/' || newPath === '/events' || newPath === '/recruitment') {
-        // Filter out '/', '/events', '/recruitment' if they exist
-        prevBreadcrumb = prevBreadcrumb.filter(
-          (item) => !(item === '/' || item === '/events' || item === '/recruitment'),
-        );
-      }
-
-      if (
-        newPath.startsWith('/event/') &&
-        (newPath.includes('/forms') || newPath.includes('/submit'))
-      ) {
-        // Filter out 'event/:eventId/forms', 'event/:eventId/submit' if they exist
-        prevBreadcrumb = prevBreadcrumb.filter(
-          (item) =>
-            !(item.startsWith('/event/') && (item.includes('/forms') || item.includes('/submit'))),
-        );
-      }
-
-      // Check if the newPath is eligible for inclusion based on conditions
-      if (
-        (newPath === `/event/${eventId}` &&
-          !(
-            prevBreadcrumb.includes(`/event/${eventId}/forms`) ||
-            prevBreadcrumb.includes(`/event/${eventId}/submit`)
-          )) ||
-        (newPath === `/event/${eventId}/forms` &&
-          !prevBreadcrumb.includes(`/event/${eventId}/submit`)) ||
-        !(
-          newPath === '/' ||
-          newPath === '/events' ||
-          newPath === '/recruitment' ||
-          newPath.startsWith('/event/') ||
-          newPath.includes('/forms') ||
-          newPath.includes('/submit')
-        )
-      ) {
-        prevBreadcrumb.push(newPath);
-      }
-
-      return [...prevBreadcrumb];
-    });
-  };
-
-  handlePushBreadcrumb(path);
+const Breadcrumb = ({ crumbs }: BreadcrumbProps) => {
+  const navigate = useNavigate();
 
   return (
-    <>
-      {breadcrumb.map((path, index) => (
-        <div key={index}>{`${path} >`}</div>
+    <BreadcrumbContainer>
+      {crumbs?.map((crumb, index) => (
+        <CrumbStyled key={index} onClick={() => navigate(crumb.link)}>
+          {crumb.title}
+        </CrumbStyled>
       ))}
-    </>
+    </BreadcrumbContainer>
   );
 };
 
