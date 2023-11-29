@@ -1,12 +1,13 @@
 import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
-const BreadcrumbContainer = styled.div`
+const BreadcrumbContainer = styled.ol`
+  list-style: none;
   display: flex;
   padding: 1rem 0 2rem 0;
 `;
 
-const CrumbStyled = styled.span`
+const CrumbStyled = styled.li`
   text-align: center;
   color: ${Theme.color.semiBlack};
   font-size: ${Theme.fontSize.largeContent};
