@@ -32,7 +32,7 @@ const UserApplyButton = ({ eventId, eventDetail, applyModalOpen }: UserApplyButt
         </ApplicantButton>
       )}
       <ApplyButton
-        capacity={!!capacity}
+        capacity={Boolean(capacity)}
         disabled={isEnded || isAbleToApply}
         onClick={() => applyModalOpen()}
       >
