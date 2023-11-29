@@ -37,7 +37,7 @@ const SubmitFormPage = () => {
     const existingQuestionIndex = forms.findIndex((q) => q.optionId === question.optionId);
 
     if (existingQuestionIndex !== -1) {
-      if (question.content === '') {
+      if (question.content === '' || question.content.trim() === '') {
         setForms((prevForms) => {
           const newForm = prevForms.filter((answer) => answer.optionId !== question.optionId);
           return newForm;
@@ -50,7 +50,7 @@ const SubmitFormPage = () => {
         });
       }
     } else {
-      if (question.content === '') return;
+      if (question.content === '' || question.content.trim() === '') return;
       setForms((prevForms) => [...prevForms, question]);
     }
   };
