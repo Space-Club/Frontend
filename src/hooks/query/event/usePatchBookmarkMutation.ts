@@ -16,9 +16,8 @@ const usePatchBookmarkMutation = ({ bookmarkPaint }: UsePatchBookmarkMutation) =
   const { mutate: patchBookmarkMutate, isLoading: isBookmarkLoading } = useMutation({
     mutationFn: patchEventBookmark,
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        queryKey: [GET_IS_BOOKMARK_QUERY_KEY, GET_EVENT_BOOKMARKS_QUERY_KEY],
-      });
+      queryClient.invalidateQueries([GET_IS_BOOKMARK_QUERY_KEY]);
+      queryClient.invalidateQueries([GET_EVENT_BOOKMARKS_QUERY_KEY]);
     },
     onError: () => {
       if (bookmarkPaint)
