@@ -18,6 +18,7 @@ const END_POINTS = {
     `users/events?page=${page}&size=${size}&sort=${sort}`,
   GET_EVENT_DETAIL: '/events',
   GET_EVENT_FORM: (eventId: string) => `/events/${eventId}/forms`,
+  GET_BANNER_EVENTS: '/events/banner',
   ALL_EVENTS: ({
     category,
     pageNumber,
