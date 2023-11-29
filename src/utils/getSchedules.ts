@@ -5,7 +5,7 @@ const isDateInRange = (selectedDate: string, start: string, end: string | null) 
     return selectedDate === start;
   }
 
-  return selectedDate >= start && selectedDate <= end;
+  return start <= selectedDate  && selectedDate <= end;
 };
 
 const filterSchedulesBySelectedDate = (selectedDate: string, schedules: Schedule[]) => {
