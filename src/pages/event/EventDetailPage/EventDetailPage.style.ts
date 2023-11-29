@@ -62,15 +62,15 @@ const ButtonWrapper = styled.div`
   height: 4rem;
 `;
 
-const ApplicantButton = styled(SemiPurpleButton)<{ capacity: boolean }>`
+const ApplicantButton = styled(SemiPurpleButton)<{ capacity: boolean; isDisabled: boolean }>`
   display: ${({ capacity }) => (capacity ? 'block' : 'none')};
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
   padding: 0 1rem;
+  cursor: revert;
 
-  &:hover {
-    cursor: revert;
-  }
+  color: ${({ isDisabled }) => isDisabled && Theme.color.idkGrey};
+  border-color: ${({ isDisabled }) => isDisabled && Theme.color.idkGrey};
 `;
 const ApplyButton = styled(SemiPurpleButton)<{ capacity: boolean }>`
   width: 30%;
@@ -79,7 +79,9 @@ const ApplyButton = styled(SemiPurpleButton)<{ capacity: boolean }>`
   font-size: ${Theme.fontSize.mediumContent};
 
   &:disabled {
-    cursor: revert;
+    background-color: ${Theme.color.idkGrey};
+    border-color: transparent;
+    cursor: not-allowed;
   }
 `;
 const BookmarkButton = styled(SemiPurpleButton)`

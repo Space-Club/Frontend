@@ -56,7 +56,12 @@ const EVENT_DETAIL_BUTTON = {
   showSubmitForm: '제출된 폼 보기',
   edit: '수정하기',
   delete: '삭제하기',
-  apply: '참여 신청하기',
+  apply: {
+    completed: '신청 완료',
+    soldOut: 'SOLD OUT',
+    deadLine: '신청 마감',
+    possible: '참여 신청하기',
+  },
 };
 
 const SUBMIT_FORM_OPTIONS = {
