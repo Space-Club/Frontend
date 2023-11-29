@@ -19,10 +19,11 @@ const ModalBaseContainer = styled.div`
   left: 50%;
   z-index: 50;
   min-width: 20rem;
+  max-width: 90vw;
   padding: 3rem;
   border-radius: 2rem;
   background-color: ${Theme.color.tWhiteGrey};
-  transform: translate(-38%, -50%);
+  transform: translate(-50%, -50%);
   overflow: hidden;
 `;
 

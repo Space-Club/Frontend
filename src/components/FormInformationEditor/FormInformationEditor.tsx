@@ -9,7 +9,7 @@ const FormInformationEditor = () => {
 
   const handleBlur = (event: React.FocusEvent<HTMLTextAreaElement>) => {
     if (event.target.textContent !== null) {
-      setDescription(event.target.value);
+      setDescription(event.target.value.trim());
     }
   };
 
@@ -17,8 +17,8 @@ const FormInformationEditor = () => {
     <>
       <FormInformationEditorContainer
         placeholder="폼에 대한 설명을 작성해주세요!"
-        contentEditable
         onBlur={handleBlur}
+        maxLength={1000}
       ></FormInformationEditorContainer>
     </>
   );

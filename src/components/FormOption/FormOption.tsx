@@ -22,7 +22,7 @@ const FormOption = ({ option, onClose, onBlur }: FormOptionProps) => {
   };
 
   const handleInputBlur = (event: ChangeEvent<HTMLInputElement>) => {
-    onBlur(option, event.target.value);
+    onBlur(option, event.target.value.trim());
   };
 
   return (
@@ -31,6 +31,7 @@ const FormOption = ({ option, onClose, onBlur }: FormOptionProps) => {
         <FormOptionCustomInputStyled
           autoFocus={true}
           onBlur={handleInputBlur}
+          maxLength={20}
           placeholder="제목을 입력하세요"
         ></FormOptionCustomInputStyled>
       ) : (

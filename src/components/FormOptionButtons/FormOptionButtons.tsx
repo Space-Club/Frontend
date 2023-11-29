@@ -23,6 +23,7 @@ const FormOptionButtons = ({ eventId }: FormOptionButtonProps) => {
   const { postOption } = usePostFormOptionMutation({ eventId });
   const { showModal, modalClose, modalOpen } = useModal();
   const navigate = useNavigate();
+  const isEmpty = selectedOptions.length === 0;
 
   const handleFormOptionButtonClick = () => {
     postOption({
@@ -47,13 +48,18 @@ const FormOptionButtons = ({ eventId }: FormOptionButtonProps) => {
       {showModal && (
         <ConfirmModal
           message={MODAL_TEXT.FORM_OPTION_SKIP_CONFIRM}
-          confirmLabel={'건너뛰기'}
           onConfirm={onModalConfirm}
           onClose={modalClose}
         />
       )}
-      <FormSkipButtonStyled onClick={handleSkipButtonClick}>건너뛰기</FormSkipButtonStyled>
-      <FormOptionButtonStyled onClick={handleFormOptionButtonClick}>
+      <FormSkipButtonStyled isEmpty={isEmpty} onClick={handleSkipButtonClick}>
+        건너뛰기
+      </FormSkipButtonStyled>
+      <FormOptionButtonStyled
+        isEmpty={isEmpty}
+        disabled={isEmpty}
+        onClick={handleFormOptionButtonClick}
+      >
         폼 추가하기
       </FormOptionButtonStyled>
     </FormOptionButtonsContainer>
