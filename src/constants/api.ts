@@ -11,6 +11,7 @@ const END_POINTS = {
 
   PATCH_PROFILE_IMAGE: '/me/profile',
   PUT_USER_INFO: '/me/profile',
+  DELETE_PROFILE_IMAGE: '/me/profile/images',
 
   PERFORMANCE_FORM: '/events',
   GET_APPLIED_EVENT: ({ page, size, sort }: { page: number; size: string; sort: string }) =>
