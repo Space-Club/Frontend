@@ -1,4 +1,8 @@
-const getDateRange = (start: string, end: string) => {
+const getDateRange = (start: string, end: string | null) => {
+  if (!end) {
+    return [start];
+  }
+
   const startDate = new Date(start);
   const endDate = new Date(end);
 

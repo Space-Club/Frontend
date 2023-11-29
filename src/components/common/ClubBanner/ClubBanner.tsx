@@ -1,4 +1,4 @@
-import LeaveClubButton from '@/components/LeaveClubButton/LeaveClubButton';
+import WithdrawClubButton from '@/components/WithdrawClubButton/WithdrawClubButton';
 import useGetClubQuery from '@/hooks/query/club/useGetClubQuery';
 
 import Avatar from '../Avatar/Avatar';
@@ -8,11 +8,11 @@ import { ClubAvatarInfoWrapper, ClubBannerContainer } from './ClubBanner.style';
 
 interface ClubBannerProps {
   clubId: string;
-  leaveButton?: boolean;
+  withdrawClubButton?: boolean;
   bannerSize?: 'small' | 'large';
 }
 
-const ClubBanner = ({ clubId, bannerSize = 'large', leaveButton }: ClubBannerProps) => {
+const ClubBanner = ({ clubId, bannerSize = 'large', withdrawClubButton }: ClubBannerProps) => {
   const { clubInfo } = useGetClubQuery({ clubId });
 
   if (!clubInfo) return null;
@@ -27,7 +27,7 @@ const ClubBanner = ({ clubId, bannerSize = 'large', leaveButton }: ClubBannerPro
           <ClubInfo info={info} name={name} memberCount={memberCount} />
         </ClubAvatarInfoWrapper>
       </ClubCover>
-      {leaveButton && <LeaveClubButton clubId={clubId} />}
+      {withdrawClubButton && <WithdrawClubButton clubId={clubId} />}
     </ClubBannerContainer>
   );
 };

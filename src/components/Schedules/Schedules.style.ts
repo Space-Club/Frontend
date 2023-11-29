@@ -7,7 +7,7 @@ const SchedulesContainer = styled.div`
   flex-direction: column;
   align-items: center;
   flex: 1;
-  min-width: 27rem;
+  min-width: 30rem;
   height: 31rem;
   border-radius: 1.3rem;
   background-color: ${Theme.color.tWhiteGrey};

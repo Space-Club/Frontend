@@ -1,4 +1,5 @@
 import { PATH } from '@/constants/path';
+import useMemberAuth from '@/hooks/query/club/useMemberAuth';
 import useSelectedDateContext from '@/hooks/useSelectedDateContext';
 import { SchedulesProps } from '@/types/event';
 import { filterSchedulesBySelectedDate } from '@/utils/getSchedules';
@@ -20,16 +21,15 @@ import {
 const Schedules = ({ clubEvents }: SchedulesProps) => {
   const { selectedDate } = useSelectedDateContext();
   const { clubId } = useParams();
-
   if (!clubId) {
     throw new Error('there is not clubId');
   }
+  const { role } = useMemberAuth({ clubId });
   const navigate = useNavigate();
 
   const selectedDateFormatted = moment(`${selectedDate}`).format('YYYY-MM-DD');
   const selectedDateSchedules = filterSchedulesBySelectedDate(selectedDateFormatted, clubEvents);
 
-  //#TODO: 관리자가 아닐 경우에 행사 생성하기 보여주지 말기
   return (
     <SchedulesContainer>
       <SchedulesHeaderWrapper>
@@ -39,9 +39,11 @@ const Schedules = ({ clubEvents }: SchedulesProps) => {
       {!selectedDateSchedules.length ? (
         <NoScheduleWrapper>
           <NoScheduleMessageStyled>해당 날짜에 행사가 없습니다! </NoScheduleMessageStyled>
-          <LinkMessageStyled onClick={() => navigate(PATH.CLUB.CHOICE(clubId))}>
-            행사 생성하기
-          </LinkMessageStyled>
+          {role === 'MANAGER' && (
+            <LinkMessageStyled onClick={() => navigate(PATH.CLUB.CHOICE(clubId))}>
+              행사 생성하기
+            </LinkMessageStyled>
+          )}
         </NoScheduleWrapper>
       ) : (
         <SchedulesWrapper>
