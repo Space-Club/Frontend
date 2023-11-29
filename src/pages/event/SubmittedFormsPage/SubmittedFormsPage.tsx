@@ -1,5 +1,6 @@
 import SearchInputForm from '@/components/SearchInputForm/SearchInputForm';
 import SubmittedForms from '@/components/SubmittedForms/SubmittedForms';
+import Breadcrumb from '@/components/common/Breadcrumb/Breadcrumb';
 import Header from '@/components/common/Header/Header';
 import Pagination from '@/components/common/Pagination/Pagination';
 import Tab from '@/components/common/Tab/Tab';
@@ -12,7 +13,10 @@ import { useParams } from 'react-router-dom';
 import { SubmittedFormsWrapper } from './SubmittedFormsPage.style';
 
 const SubmittedFormsPage = () => {
-  const { eventId } = useParams() as { eventId: string };
+  const { eventId } = useParams();
+  if (!eventId) {
+    throw new Error('id를 찾을 수 없습니다!');
+  }
   const [currentPage, setCurrentPage] = useState(0);
   const { formInfo, userForms, pageData } = useGetSubmittedFormsQuery({
     eventId,
@@ -34,6 +38,7 @@ const SubmittedFormsPage = () => {
         <SearchInputForm />
         <Tab tabItems={MAIN_TABS} />
       </Header>
+      <Breadcrumb eventId={eventId} pageType="submittedForms" />
       <SubmittedFormsWrapper>
         <SubmittedForms formInfo={formInfo} userForms={userForms} />
       </SubmittedFormsWrapper>

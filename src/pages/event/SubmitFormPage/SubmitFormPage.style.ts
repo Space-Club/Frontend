@@ -4,7 +4,6 @@ import styled from '@emotion/styled';
 const SubmitFormContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
 `;
 const SubmitFormTitle = styled.p`
   font-size: ${Theme.fontSize.extraTitle};

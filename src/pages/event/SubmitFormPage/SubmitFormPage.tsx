@@ -1,5 +1,6 @@
 import FormItem from '@/components/FormItem/FormItem';
 import SearchInputForm from '@/components/SearchInputForm/SearchInputForm';
+import Breadcrumb from '@/components/common/Breadcrumb/Breadcrumb';
 import Header from '@/components/common/Header/Header';
 import Tab from '@/components/common/Tab/Tab';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
@@ -73,6 +74,7 @@ const SubmitFormPage = () => {
         <SearchInputForm />
         <Tab tabItems={MAIN_TABS} />
       </Header>
+      <Breadcrumb eventId={eventId} pageType="writeApplyForm" />
       <SubmitFormTitle>{eventFormData?.event.title}</SubmitFormTitle>
       <SubmitFormContent>{eventFormData?.form.description}</SubmitFormContent>
       <FormWrapper>
