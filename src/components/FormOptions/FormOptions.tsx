@@ -22,7 +22,7 @@ const FormOptions = () => {
           key={option.id}
           option={option}
           onClose={deleteOption}
-          onChange={(event) => handleOptionTitleChange(option, event)}
+          onBlur={(event) => handleOptionTitleChange(option, event)}
         />
       ))}
     </>
