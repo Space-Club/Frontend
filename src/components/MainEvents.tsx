@@ -3,8 +3,8 @@ import { EventsWrapper } from '@/styles/common';
 
 import { useEffect, useState } from 'react';
 
-import EventCard from '../common/EventCard/EventCard';
-import Pagination from '../common/Pagination/Pagination';
+import EventCard from './common/EventCard/EventCard';
+import Pagination from './common/Pagination/Pagination';
 
 interface MainEventsProps {
   pathname: string;

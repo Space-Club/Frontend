@@ -1,4 +1,4 @@
-import MainEvents from '@/components/MainEvents/MainEvents';
+import MainEvents from '@/components/MainEvents';
 import SearchInputForm from '@/components/SearchInputForm/SearchInputForm';
 import Banner from '@/components/common/Banner/Banner';
 import Header from '@/components/common/Header/Header';
