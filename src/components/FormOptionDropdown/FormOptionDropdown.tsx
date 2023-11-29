@@ -50,7 +50,7 @@ const FormOptionDropdown = ({ eventType }: FormOptionDropdownProps) => {
       id: generateUniqueId(),
       title: '',
       type: 'TEXT',
-      visible: false,
+      predefined: false,
     });
     toggleDropdown();
   };
