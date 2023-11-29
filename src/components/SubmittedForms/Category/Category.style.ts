@@ -10,6 +10,10 @@ const CategoryStyled = styled.div`
   font-size: ${Theme.fontSize.largeContent};
 `;
 
+const CategoryNthStyled = styled.div`
+  min-width: 4rem;
+`;
+
 const CategoryRowStyled = styled.div`
   min-width: 10rem;
 `;
@@ -28,4 +32,10 @@ const ManageTitleStyled = styled.div`
   min-width: 6rem;
 `;
 
-export { CategoryStyled, CategoryRowStyled, CategoryItemStyled, ManageTitleStyled };
+export {
+  CategoryStyled,
+  CategoryNthStyled,
+  CategoryRowStyled,
+  CategoryItemStyled,
+  ManageTitleStyled,
+};

@@ -1,7 +1,11 @@
 import Theme from '@/styles/Theme';
 import styled from '@emotion/styled';
 
-import { CategoryItemStyled, CategoryRowStyled } from '../Category/Category.style';
+import {
+  CategoryItemStyled,
+  CategoryNthStyled,
+  CategoryRowStyled,
+} from '../Category/Category.style';
 
 const FormStyled = styled.div`
   display: flex;
@@ -15,10 +19,12 @@ const FormStyled = styled.div`
   }
 `;
 
+const FormNthStyled = styled(CategoryNthStyled)``;
+
 const FormRowStyled = styled(CategoryRowStyled)``;
 
 const FormItemStyled = styled(CategoryItemStyled)`
   cursor: pointer;
 `;
 
-export { FormStyled, FormRowStyled, FormItemStyled };
+export { FormStyled, FormNthStyled, FormRowStyled, FormItemStyled };

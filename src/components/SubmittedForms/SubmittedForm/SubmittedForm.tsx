@@ -3,7 +3,7 @@ import useModal from '@/hooks/useModal';
 import { EventStatus } from '@/types/event';
 
 import FormStatus from '../FormStatus/FormStatus';
-import { FormItemStyled, FormRowStyled, FormStyled } from './SubmittedForm.style';
+import { FormItemStyled, FormNthStyled, FormRowStyled, FormStyled } from './SubmittedForm.style';
 
 interface SubmittedFormProps {
   index: number;
@@ -36,7 +36,7 @@ const SubmittedForm = ({
     <>
       {showModal && <FormDetailModal onClose={modalClose} options={options} nthForm={nthForm} />}
       <FormStyled key={index}>
-        <FormItemStyled>{nthForm}</FormItemStyled>
+        <FormNthStyled>{nthForm}</FormNthStyled>
         <FormRowStyled>{dateTime}</FormRowStyled>
         {options.map((option, index) => (
           <FormItemStyled onClick={modalOpen} key={index}>
