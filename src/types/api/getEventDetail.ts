@@ -11,6 +11,7 @@ type getEventDetailResponse =
 interface CommonDetailResponse {
   id: number;
   hasForm: boolean;
+  hasAlreadyApplied: boolean;
   clubInfo: {
     clubId: string;
     clubName: string;

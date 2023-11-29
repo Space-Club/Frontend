@@ -1,6 +1,6 @@
 import BookMark from '@/components/common/BookMark/BookMark';
 import { EVENT_DETAIL_BUTTON } from '@/constants/event';
-import useIsBookmarkQuery from '@/hooks/query/event/useIsBookmarkedQuery';
+import useIsBookmarkedQuery from '@/hooks/query/event/useIsBookmarkedQuery';
 import {
   ApplicantButton,
   ApplyButton,
@@ -19,24 +19,41 @@ interface UserApplyButton {
 
 const UserApplyButton = ({ eventId, eventDetail, applyModalOpen }: UserApplyButton) => {
   const bookmarkRef = useRef<HTMLDivElement>(null);
-  const { isBookmarked } = useIsBookmarkQuery({ eventId });
-  const { eventInfo, formInfo } = eventDetail ?? {};
+  const { isBookmarked } = useIsBookmarkedQuery({ eventId });
+  const { hasAlreadyApplied, eventInfo, formInfo } = eventDetail ?? {};
   const { capacity, applicants, isEnded } = eventInfo ?? {};
   const { isAbleToApply } = formInfo ?? {};
+
+  const checkApplyButtonText = () => {
+    if (hasAlreadyApplied) {
+      return EVENT_DETAIL_BUTTON.apply.completed;
+    } else if (applicants >= capacity) {
+      return EVENT_DETAIL_BUTTON.apply.soldOut;
+    } else if (isEnded || isAbleToApply) {
+      return EVENT_DETAIL_BUTTON.apply.deadLine;
+    } else {
+      return EVENT_DETAIL_BUTTON.apply.possible;
+    }
+  };
 
   return (
     <ButtonWrapper>
       {capacity && (
-        <ApplicantButton reverse capacity={!!capacity} disabled>
+        <ApplicantButton
+          reverse
+          capacity={!!capacity}
+          isDisabled={hasAlreadyApplied || isEnded || isAbleToApply || applicants >= capacity}
+          disabled
+        >
           {applicants}/{capacity}
         </ApplicantButton>
       )}
       <ApplyButton
         capacity={Boolean(capacity)}
-        disabled={isEnded || isAbleToApply}
+        disabled={hasAlreadyApplied || isEnded || isAbleToApply || applicants >= capacity}
         onClick={() => applyModalOpen()}
       >
-        {EVENT_DETAIL_BUTTON.apply}
+        {checkApplyButtonText()}
       </ApplyButton>
       <BookmarkButton reverse bold onClick={() => bookmarkRef.current?.click()}>
         <BookMark bookmarked={isBookmarked!} eventId={eventId} ref={bookmarkRef} />
