@@ -136,7 +136,7 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
                 value: LIMIT_LENGTH.BANK_NAME_MAX,
                 message: MAX_LENGTH('은행 이름', LIMIT_LENGTH.BANK_NAME_MAX),
               },
-              validate: (value) => validateTrim(value),
+              validate: (value) => (value ? validateTrim(value) : true),
             })}
             labelText="은행 명"
             inputType="text"
@@ -148,7 +148,7 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
                 value: LIMIT_LENGTH.ACCOUNT_NUMBER_MAX,
                 message: MAX_LENGTH('계좌 번호', LIMIT_LENGTH.ACCOUNT_NUMBER_MAX),
               },
-              validate: (value) => validateTrim(value),
+              validate: (value) => (value ? validateTrim(value) : true),
             })}
             labelText="계좌 번호"
             inputType="text"

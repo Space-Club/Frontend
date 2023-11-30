@@ -63,7 +63,7 @@ const RecruitForm = ({ register, setValue, watch, errors, eventDetail }: Recruit
               value: LIMIT_LENGTH.LOCATION_MAX,
               message: MAX_LENGTH('활동 위치', LIMIT_LENGTH.LOCATION_MAX),
             },
-            validate: (value) => validateTrim(value),
+            validate: (value) => (value ? validateTrim(value) : true),
           })}
           labelText="활동 위치"
           inputType="text"
@@ -79,7 +79,7 @@ const RecruitForm = ({ register, setValue, watch, errors, eventDetail }: Recruit
               value: LIMIT_LENGTH.TAGET_MAX,
               message: MAX_LENGTH('모집 대상', LIMIT_LENGTH.TAGET_MAX),
             },
-            validate: (value) => validateTrim(value),
+            validate: (value) => (value ? validateTrim(value) : true),
           })}
           labelText="모집 대상"
           rows={2}

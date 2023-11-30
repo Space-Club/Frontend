@@ -102,7 +102,7 @@ const ScheduleForm = ({ register, setValue, watch, errors, eventDetail }: Schedu
               value: LIMIT_LENGTH.LOCATION_MAX,
               message: MAX_LENGTH('장소', LIMIT_LENGTH.LOCATION_MAX),
             },
-            validate: (value) => validateTrim(value),
+            validate: (value) => (value ? validateTrim(value) : true),
           })}
           labelText="장소"
           inputType="text"
@@ -186,7 +186,7 @@ const ScheduleForm = ({ register, setValue, watch, errors, eventDetail }: Schedu
               value: LIMIT_LENGTH.CONTENT_MAX,
               message: MAX_LENGTH('일정 안내', LIMIT_LENGTH.CONTENT_MAX),
             },
-            validate: (value) => validateTrim(value),
+            validate: (value) => (value ? validateTrim(value) : true),
           })}
           labelText="일정 안내"
           rows={10}
