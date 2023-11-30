@@ -25,10 +25,12 @@ const PreviewImage = styled.img`
 const ImageLabelStyled = styled.label`
   position: absolute;
   bottom: 0;
+  min-width: 8.5rem;
   margin-left: 1rem;
+  padding: 0.5rem 1rem;
   border-radius: 0.25rem;
   background-color: ${Theme.color.tButton};
-  padding: 0.5rem 1rem;
+  text-align: center;
   color: white;
   cursor: pointer;
 `;
