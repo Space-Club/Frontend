@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 
 const AppliedEventCardContainer = styled.div`
   display: flex;
+  cursor: pointer;
 `;
 
 const EventLeftSection = styled.div`

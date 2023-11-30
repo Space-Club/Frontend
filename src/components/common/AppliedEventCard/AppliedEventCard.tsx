@@ -1,4 +1,7 @@
+import { PATH } from '@/constants/path';
 import { Event, EventStatus } from '@/types/event';
+
+import { useNavigate } from 'react-router-dom';
 
 import Poster from '@components/common/Poster/Poster';
 
@@ -27,9 +30,10 @@ const AppliedEventCard = ({
   ...props
 }: AppliedEventCardProps) => {
   const isPossibleCancel = eventStatus === 'PENDING' || eventStatus === 'CONFIRMED';
+  const navigate = useNavigate();
 
   return (
-    <AppliedEventCardContainer {...props}>
+    <AppliedEventCardContainer onClick={() => navigate(PATH.EVENT.DETAIL(eventId))} {...props}>
       <EventLeftSection>
         <Poster posterSrc={posterImageUrl} width={7.6} />
         <AppliedEventInfo

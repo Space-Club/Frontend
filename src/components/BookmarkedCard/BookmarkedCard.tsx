@@ -1,4 +1,7 @@
+import { PATH } from '@/constants/path';
 import { BookmarkedEvent } from '@/types/event';
+
+import { useNavigate } from 'react-router-dom';
 
 import BookMark from '../common/BookMark/BookMark';
 import Poster from '../common/Poster/Poster';
@@ -20,8 +23,14 @@ const BookmarkedCard = ({
   startDate,
   bookmark,
 }: BookmarkedEvent) => {
+  const navigate = useNavigate();
+
   return (
-    <BookmarkedCardContainer>
+    <BookmarkedCardContainer
+      onClick={() => {
+        navigate(PATH.EVENT.DETAIL(eventId));
+      }}
+    >
       <Poster posterSrc={posterImageUrl} width={7.6} />
       <BookmarkedInfoWrapper>
         <BookmarkedTitleStyled>{title}</BookmarkedTitleStyled>
