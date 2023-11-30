@@ -40,7 +40,7 @@ const RecruitmentDetail = ({ data }: RecruitmentDetail) => {
         {recruitmentLimit && (
           <div>
             <ContentLabel>{EVENT_DETAIL.RECRUIT_CAPACITY}</ContentLabel>
-            <div>{recruitmentLimit}</div>
+            <div>{recruitmentLimit}명</div>
           </div>
         )}
         {activityArea && (

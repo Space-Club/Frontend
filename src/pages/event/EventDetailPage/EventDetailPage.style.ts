@@ -45,6 +45,7 @@ const DetailContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  max-width: 38rem;
   flex-grow: 1;
   margin-left: 3rem;
 `;

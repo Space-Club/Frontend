@@ -14,6 +14,7 @@ const ShowDetail = ({ data }: ShowDetail) => {
   const { eventInfo, ticketInfo } = data;
   const { startDate, startTime, location } = eventInfo;
   const { cost } = ticketInfo;
+  const totalCost = cost === 0 ? '0' : cost;
 
   return (
     <Fragment>
@@ -30,10 +31,10 @@ const ShowDetail = ({ data }: ShowDetail) => {
           <ContentLabel>{EVENT_DETAIL.LOCATION}</ContentLabel>
           <div>{location}</div>
         </div>
-        {cost && (
+        {totalCost && (
           <div>
             <ContentLabel>{EVENT_DETAIL.COST}</ContentLabel>
-            <div>{cost.toLocaleString()}원</div>
+            <div>{totalCost.toLocaleString()}원</div>
           </div>
         )}
       </TwoContentWrapper>
