@@ -1,4 +1,4 @@
-import { EventTags } from '@/types/event';
+import { EventTags, MainBannerText } from '@/types/event';
 
 const APPLIED_EVENTS_TAGS: EventTags = {
   PENDING: {
@@ -87,4 +87,16 @@ const SUBMIT_FORM_OPTIONS = {
   GENDER: ['남', '여'],
 };
 
-export { APPLIED_EVENTS_TAGS, EVENT_DETAIL, EVENT_DETAIL_BUTTON, SUBMIT_FORM_OPTIONS };
+const MAIN_BANNER_EVENTS_TEXT: MainBannerText = {
+  SHOW: ' 공연 참여 신청하기',
+  PROMOTION: ' 행사 참여 신청하기',
+  RECRUITMENT: ' 신입부원 모집 중!',
+};
+
+export {
+  APPLIED_EVENTS_TAGS,
+  EVENT_DETAIL,
+  EVENT_DETAIL_BUTTON,
+  SUBMIT_FORM_OPTIONS,
+  MAIN_BANNER_EVENTS_TEXT,
+};

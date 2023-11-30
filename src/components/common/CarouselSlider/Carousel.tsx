@@ -13,10 +13,11 @@ import {
 interface CarouselProps {
   totalItem: number;
   children: React.ReactNode;
+  autoSlide?: boolean;
 }
 
-const Carousel = ({ totalItem, children }: CarouselProps) => {
-  const { goNext, goPrev, carouselRef, currentIndex } = useCarousel({ totalItem });
+const Carousel = ({ totalItem, autoSlide, children }: CarouselProps) => {
+  const { goNext, goPrev, carouselRef, currentIndex } = useCarousel({ totalItem, autoSlide });
 
   return (
     <CarouselContainer>

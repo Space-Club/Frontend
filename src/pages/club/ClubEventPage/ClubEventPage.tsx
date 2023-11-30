@@ -27,14 +27,14 @@ const ClubEventPage = () => {
           <ClubEvents clubId={clubId} />
         </ContentContainer>
       </Suspense>
-      {role === "MANAGER" && (
-      <ButtonWrapper>
-        <ActiveButton
-          buttonText={CREATE_EVENT.BUTTON_TEXT}
-          fontSize="mediumContent"
-          onClick={() => navigate(`${PATH.CLUB.CHOICE(clubId)}`)}
-        />
-      </ButtonWrapper>
+      {role === 'MANAGER' && (
+        <ButtonWrapper>
+          <ActiveButton
+            buttonText={CREATE_EVENT.BUTTON_TEXT}
+            fontSize="mediumContent"
+            onClick={() => navigate(`${PATH.CLUB.CHOICE(clubId)}`)}
+          />
+        </ButtonWrapper>
       )}
     </>
   );
