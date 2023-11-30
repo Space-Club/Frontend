@@ -12,7 +12,7 @@ const StatusButtonContainer = styled.button<{ status: EventStatus }>`
   color: ${({ status }) =>
     status === 'CONFIRMED' ? Theme.color.tSemiActive : Theme.color.textGrey};
   font-size: ${Theme.fontSize.tagText};
-  cursor: pointer;
+  cursor: ${({ status }) => (status === 'CANCELED' ? 'default' : 'pointer')};
 `;
 
 const ButtonValueStyled = styled.div`

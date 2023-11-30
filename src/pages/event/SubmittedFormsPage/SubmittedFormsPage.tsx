@@ -6,6 +6,7 @@ import Pagination from '@/components/common/Pagination/Pagination';
 import Tab from '@/components/common/Tab/Tab';
 import { MAIN_TABS } from '@/constants/tab';
 import useGetSubmittedFormsQuery from '@/hooks/query/event/useGetSubmittedFormsQuery';
+import { CommonEmptyEventsWrapper } from '@/styles/common';
 
 import { useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -41,6 +42,9 @@ const SubmittedFormsPage = () => {
       <Breadcrumb eventId={eventId} pageType="submittedForms" />
       <SubmittedFormsWrapper>
         <SubmittedForms formInfo={formInfo} userForms={userForms} />
+        {userForms.length === 0 && (
+          <CommonEmptyEventsWrapper>제출된 폼이 없습니다.</CommonEmptyEventsWrapper>
+        )}
       </SubmittedFormsWrapper>
       <Pagination
         totalPages={totalPages}

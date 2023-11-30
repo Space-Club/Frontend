@@ -8,7 +8,7 @@ const FORMS_STALE_TIME = 1000 * 60;
 
 const useGetSubmittedFormsQuery = ({ eventId, pageNumber }: GetSubmittedFormsRequest) => {
   const { data: submittedForms } = useQuery({
-    queryKey: [QUERY_KEY.SUBMITTED_FORMS],
+    queryKey: [QUERY_KEY.SUBMITTED_FORMS, eventId, pageNumber],
     queryFn: () => getSubmittedForms({ eventId, pageNumber }),
     staleTime: FORMS_STALE_TIME,
   });
