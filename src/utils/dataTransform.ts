@@ -39,7 +39,7 @@ const dataTransform = ({ data, eventType, clubId, eventId }: dataTransform) => {
         },
         ticketInfo: {
           cost: parseInt(data.cost),
-          maxTicketCount: parseInt(data.maxTicketCount),
+          maxTicketCount: parseInt(data.maxTicketCount) || 1,
         },
         bankInfo: {
           name: data.bankName || null,
