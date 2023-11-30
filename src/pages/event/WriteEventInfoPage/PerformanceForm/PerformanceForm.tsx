@@ -112,8 +112,8 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
             labelText="비용"
             inputType="number"
             placeholder="정수(0-n)"
-            min={LIMIT_VALUE.CAPACITY_MIN}
-            max={LIMIT_VALUE.CAPACITY_MAX}
+            min={LIMIT_VALUE.COST_MIN}
+            max={LIMIT_VALUE.COST_MAX}
             unit="원"
           />
         </TwoInputContainer>
