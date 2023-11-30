@@ -21,8 +21,10 @@ const UserApplyButton = ({ eventId, eventDetail, applyModalOpen }: UserApplyButt
   const bookmarkRef = useRef<HTMLDivElement>(null);
   const { isBookmarked } = useIsBookmarkedQuery({ eventId });
   const { category, hasAlreadyApplied, eventInfo, formInfo } = eventDetail ?? {};
-  const { capacity, applicants, isEnded } = eventInfo ?? {};
+  const { applicants, isEnded } = eventInfo ?? {};
   const { isAbleToApply } = formInfo ?? {};
+
+  const capacity = category === 'RECRUITMENT' ? eventInfo.recruitmentLimit : eventInfo.capacity;
 
   const getApplyButtonText = () => {
     if (hasAlreadyApplied) {
