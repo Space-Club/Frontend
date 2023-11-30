@@ -2,6 +2,7 @@ import { MAIN_BANNER_EVENTS_TEXT } from '@/constants/event';
 import { PATH } from '@/constants/path';
 import useGetMainBannerQuery from '@/hooks/query/event/useGetMainBannerQuery';
 import { EmptyEventWrapper } from '@/pages/ProfilePage/ProfilePage.style';
+import { transDate } from '@/utils/timeTransform';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -19,13 +20,9 @@ const MainBanner = () => {
   const { mainBannerEvents } = useGetMainBannerQuery();
   const navigate = useNavigate();
 
-  if (!mainBannerEvents) return null;
-
   return (
     <BannerContainerStyled>
-      {mainBannerEvents.length === 0 ? (
-        <EmptyEventWrapper>현재 신청 가능한 행사가 없습니다</EmptyEventWrapper>
-      ) : (
+      {mainBannerEvents ? (
         <Carousel autoSlide totalItem={mainBannerEvents.length}>
           {mainBannerEvents.map(({ clubInfo, eventInfo }) => (
             <BannerWrapperStyled onClick={() => navigate(PATH.EVENT.DETAIL(eventInfo.eventId))}>
@@ -39,7 +36,7 @@ const MainBanner = () => {
                 }
               </BannerTopTitleStyled>
               <BannerBottomTitleStyled>
-                ~{eventInfo.formCloseDateTime} 신청 마감
+                {transDate(eventInfo.formCloseDateTime)} 신청 마감
               </BannerBottomTitleStyled>
               {clubInfo.coverImageUrl && (
                 <BannerImageStyled src={clubInfo.coverImageUrl} alt="클럽 커버 이미지" />
@@ -47,6 +44,8 @@ const MainBanner = () => {
             </BannerWrapperStyled>
           ))}
         </Carousel>
+      ) : (
+        <EmptyEventWrapper>현재 신청 가능한 행사가 없습니다</EmptyEventWrapper>
       )}
     </BannerContainerStyled>
   );
