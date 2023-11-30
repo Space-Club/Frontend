@@ -1,12 +1,12 @@
 import { useNavigate } from 'react-router-dom';
 
-import { ButtonWrapper, PrevButton, SubmitButton } from './NavigateButton.style';
+import { ButtonWrapper, PrevButton, SubmitButton } from './InfoNavigateButton.style';
 
-interface NavigateButton {
+interface InfoNavigateButton {
   submitButtonText: string;
 }
 
-const NavigateButton = ({ submitButtonText }: NavigateButton) => {
+const InfoNavigateButton = ({ submitButtonText }: InfoNavigateButton) => {
   const navigate = useNavigate();
   return (
     <ButtonWrapper>
@@ -18,4 +18,4 @@ const NavigateButton = ({ submitButtonText }: NavigateButton) => {
   );
 };
 
-export default NavigateButton;
+export default InfoNavigateButton;

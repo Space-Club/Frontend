@@ -6,7 +6,7 @@ import getQueryString from '@/utils/getQueryString';
 import { FieldValues, useForm } from 'react-hook-form';
 import { useLocation, useParams } from 'react-router-dom';
 
-import NavigateButton from './NavigateButton/NavigateButton';
+import InfoNavigateButton from './NavigateButton/InfoNavigateButton';
 import SelectEventInfo from './SelectEventInfo/SelectEventInfo';
 import { EventFormContainer } from './WriteEventInfoPage.style';
 
@@ -54,7 +54,7 @@ const WriteEventInfoPage = () => {
     <FormLayout>
       <EventFormContainer onSubmit={handleSubmit(onEventSubmitForm)}>
         <SelectEventInfo eventQuery={eventQuery} eventDetail={state?.eventDetail} {...infoProps} />
-        <NavigateButton submitButtonText={state ? '수정' : '다음'} />
+        <InfoNavigateButton submitButtonText={state ? '수정' : '다음'} />
       </EventFormContainer>
     </FormLayout>
   );
