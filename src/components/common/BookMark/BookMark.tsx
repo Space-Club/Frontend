@@ -1,7 +1,7 @@
 import usePatchBookmarkMutation from '@/hooks/query/event/usePatchBookmarkMutation';
 import Theme from '@/styles/Theme';
 
-import { HTMLAttributes, MouseEventHandler, forwardRef, useState } from 'react';
+import { HTMLAttributes, MouseEventHandler, forwardRef, useEffect, useState } from 'react';
 import { FaBookmark, FaRegBookmark } from 'react-icons/fa';
 
 interface BookMark extends HTMLAttributes<HTMLDivElement> {
@@ -14,8 +14,11 @@ interface BookMark extends HTMLAttributes<HTMLDivElement> {
 const BookMark = forwardRef<HTMLDivElement, BookMark>(
   ({ bookmarked, size = 30, strokeWidth = 10, eventId, ...props }, ref) => {
     const [bookmarkPaint, setBookmarkPaint] = useState(bookmarked);
-
     const { patchBookmarkMutate, isBookmarkLoading } = usePatchBookmarkMutation({ bookmarkPaint });
+
+    useEffect(() => {
+      setBookmarkPaint(bookmarked);
+    }, [bookmarked]);
 
     const handleBookmarkClick: MouseEventHandler<HTMLDivElement> = async (event) => {
       event.stopPropagation();
