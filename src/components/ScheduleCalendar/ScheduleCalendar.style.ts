@@ -28,7 +28,7 @@ const CalendarWrapper = styled.div`
 
   .react-calendar__tile {
     text-align: center;
-    height: 3.5rem;
+    height: 3.3rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -47,6 +47,10 @@ const CalendarWrapper = styled.div`
   .react-calendar__tile--now:enabled:hover,
   .react-calendar__tile--now:enabled:focus {
     background: ${Theme.color.tSemiActive};
+  }
+
+  .react-calendar__month-view__days__day--neighboringMonth {
+    color: ${Theme.color.tSeparator};
   }
 `;
 
