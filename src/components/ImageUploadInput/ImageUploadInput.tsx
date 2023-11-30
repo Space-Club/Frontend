@@ -1,9 +1,8 @@
 import ImageForm from '@/components/ImageForm/ImageForm';
+import { ErrorMessage } from '@/pages/event/WriteEventInfoPage/WriteEventInfoPage.style';
 
 import { useEffect, useState } from 'react';
 import { FieldErrors, FieldValues, UseFormRegister, UseFormWatch } from 'react-hook-form';
-
-import { ErrorMessage } from '../WriteEventInfoPage.style';
 
 interface ImageUploadInput {
   register: UseFormRegister<FieldValues>;

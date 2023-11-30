@@ -1,4 +1,6 @@
-import useSubmitForm from '@/hooks/query/event/useSubmitForm';
+import InfoNavigateButton from '@/components/NavigateButton/InfoNavigateButton';
+import SelectEventInfo from '@/components/SelectEventInfo/SelectEventInfo';
+import usePostEventInfoMutation from '@/hooks/query/event/usePostEventInfoMutation';
 import FormLayout from '@/pages/FormLayout/FormLayout';
 import { EventType, eventTypeAPI } from '@/types/event';
 import getQueryString from '@/utils/getQueryString';
@@ -6,8 +8,6 @@ import getQueryString from '@/utils/getQueryString';
 import { FieldValues, useForm } from 'react-hook-form';
 import { useLocation, useParams } from 'react-router-dom';
 
-import NavigateButton from './NavigateButton/NavigateButton';
-import SelectEventInfo from './SelectEventInfo/SelectEventInfo';
 import { EventFormContainer } from './WriteEventInfoPage.style';
 
 const WriteEventInfoPage = () => {
@@ -35,7 +35,7 @@ const WriteEventInfoPage = () => {
     errors,
   };
 
-  const { submitForm, isSubmitLoading } = useSubmitForm({
+  const { submitForm, isSubmitLoading } = usePostEventInfoMutation({
     eventType,
     clubId,
     isEdit: !!state,
@@ -54,7 +54,7 @@ const WriteEventInfoPage = () => {
     <FormLayout>
       <EventFormContainer onSubmit={handleSubmit(onEventSubmitForm)}>
         <SelectEventInfo eventQuery={eventQuery} eventDetail={state?.eventDetail} {...infoProps} />
-        <NavigateButton submitButtonText={state ? '수정' : '다음'} />
+        <InfoNavigateButton submitButtonText={state ? '수정' : '다음'} />
       </EventFormContainer>
     </FormLayout>
   );
