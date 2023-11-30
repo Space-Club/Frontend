@@ -31,7 +31,12 @@ const Breadcrumb = ({ eventId, pageType }: BreadcrumbProps) => {
     <BreadcrumbContainer>
       {crumbs &&
         crumbs.map((crumb, index) => (
-          <CrumbStyled key={index} onClick={() => navigate(crumb.link)}>
+          <CrumbStyled
+            key={index}
+            onClick={() => {
+              crumb.link && navigate(crumb.link);
+            }}
+          >
             {crumb.title}
           </CrumbStyled>
         ))}
