@@ -8,7 +8,7 @@ import {
   UseFormWatch,
 } from 'react-hook-form';
 
-import { ClubInfo } from './club';
+import { Club, ClubInfo } from './club';
 
 type EventStatus = 'CONFIRMED' | 'PENDING' | 'CANCEL_REQUESTED' | 'CANCELED';
 
@@ -52,6 +52,20 @@ interface EventInfo {
   endTime: string;
   isEnded: boolean;
 }
+
+interface MainBannerEvents {
+  clubInfo: Pick<Club, 'coverImageUrl' | 'name'>;
+  eventInfo: {
+    eventId: string;
+    title: string;
+    formCloseDateTime: string;
+    eventCategory: Omit<eventTypeAPI, 'CLUB'>;
+  };
+}
+
+type MainBannerText = {
+  [key in Exclude<eventTypeAPI, 'CLUB'>]: string;
+};
 
 type ClubEventInfo = EventInfo & { openStatus: 'ALL' | 'CLUB' };
 
@@ -108,4 +122,6 @@ export {
   EventInfo,
   ReactHookFormProps,
   Schedule,
+  MainBannerEvents,
+  MainBannerText,
 };

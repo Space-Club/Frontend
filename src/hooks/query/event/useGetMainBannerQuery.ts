@@ -11,7 +11,7 @@ const useGetMainBannerQuery = () => {
     queryFn: getMainBannerEvents,
     queryKey: [QUERY_KEY.MAIN_BANNER_EVENTS],
   });
-  return mainBannerEvents;
+  return { mainBannerEvents };
 };
 
 export default useGetMainBannerQuery;

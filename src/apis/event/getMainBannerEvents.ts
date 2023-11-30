@@ -1,10 +1,10 @@
 import { END_POINTS } from '@/constants/api';
 import { GetMainBannerEventsResponse } from '@/types/api/getMainBannerEvents';
 
-import axios from 'axios';
+import { axiosClient } from '../axiosClient';
 
 const getMainBannerEvents = async () => {
-  const { data } = await axios.get<GetMainBannerEventsResponse>(END_POINTS.GET_BANNER_EVENTS);
+  const { data } = await axiosClient.get<GetMainBannerEventsResponse>(END_POINTS.GET_BANNER_EVENTS);
 
   return data;
 };
