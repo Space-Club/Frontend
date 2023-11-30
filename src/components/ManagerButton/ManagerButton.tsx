@@ -17,7 +17,7 @@ interface ManagerButton {
 }
 
 const ManagerButton = ({ eventId, eventDetail, deleteModalOpen }: ManagerButton) => {
-  const { clubInfo } = eventDetail;
+  const { clubInfo, hasForm } = eventDetail;
   const { clubId } = clubInfo;
   const { role } = useMemberAuth({ clubId });
   const navigate = useNavigate();
@@ -25,10 +25,12 @@ const ManagerButton = ({ eventId, eventDetail, deleteModalOpen }: ManagerButton)
   return (
     <>
       {role === 'MANAGER' && (
-        <FormButtonWrapper>
-          <PurpleButton onClick={() => navigate(PATH.EVENT.SUBMITTED_FORMS(clubId!, eventId))}>
-            {EVENT_DETAIL_BUTTON.SHOW_SUBMIT_FORM}
-          </PurpleButton>
+        <FormButtonWrapper hasForm={hasForm}>
+          {hasForm && (
+            <PurpleButton onClick={() => navigate(PATH.EVENT.SUBMITTED_FORMS(clubId!, eventId))}>
+              {EVENT_DETAIL_BUTTON.SHOW_SUBMIT_FORM}
+            </PurpleButton>
+          )}
           <UpdateDeleteWrapper>
             <PurpleButton
               reverse
