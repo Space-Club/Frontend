@@ -19,19 +19,22 @@ interface FormOptionButtonProps {
 }
 
 const FormOptionButtons = ({ eventId }: FormOptionButtonProps) => {
-  const { selectedOptions, description, isManaged } = useContext(FormOptionContext);
+  const { selectedOptions, description, isManaged, validateOptionTitle } =
+    useContext(FormOptionContext);
   const { postOption } = usePostFormOptionMutation({ eventId });
   const { showModal, modalClose, modalOpen } = useModal();
   const navigate = useNavigate();
   const isEmpty = selectedOptions.length === 0;
 
   const handleFormOptionButtonClick = () => {
-    postOption({
-      eventId,
-      description,
-      managed: isManaged,
-      options: selectedOptions,
-    });
+    if (validateOptionTitle()) {
+      postOption({
+        eventId,
+        description,
+        managed: isManaged,
+        options: selectedOptions,
+      });
+    }
   };
 
   const handleSkipButtonClick = () => {

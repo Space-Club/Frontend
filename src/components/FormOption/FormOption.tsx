@@ -1,45 +1,37 @@
 import { FormOption as FormOptionType } from '@/types/form';
 
-import { ChangeEvent } from 'react';
 import { AiOutlineClose } from 'react-icons/ai';
 
 import {
-  FormOptionCloseButton,
+  FormOptionButton,
   FormOptionContainer,
-  FormOptionCustomInputStyled,
-  FormOptionTitleStyled,
+  FormOptionCustomTextareaStyled,
 } from './FormOption.style';
 
-interface FormOptionProps {
+interface FormOptionProps extends React.HtmlHTMLAttributes<HTMLTextAreaElement> {
   option: FormOptionType;
   onClose: (option: FormOptionType) => void;
-  onBlur: (option: FormOptionType, title: string) => void;
 }
 
-const FormOption = ({ option, onClose, onBlur }: FormOptionProps) => {
-  const handleCloseClick = () => {
+const FormOption = ({ option, onClose, ...props }: FormOptionProps) => {
+  const handleCloseClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
     onClose(option);
   };
 
-  const handleInputBlur = (event: ChangeEvent<HTMLInputElement>) => {
-    onBlur(option, event.target.value.trim());
-  };
-
   return (
-    <FormOptionContainer>
-      {option.title === '' ? (
-        <FormOptionCustomInputStyled
-          autoFocus={true}
-          onBlur={handleInputBlur}
-          maxLength={20}
-          placeholder="제목을 입력하세요"
-        ></FormOptionCustomInputStyled>
-      ) : (
-        <FormOptionTitleStyled>{option.title}</FormOptionTitleStyled>
-      )}
-      <FormOptionCloseButton onClick={handleCloseClick}>
-        <AiOutlineClose size={15} />
-      </FormOptionCloseButton>
+    <FormOptionContainer isDisabled={false}>
+      <FormOptionCustomTextareaStyled
+        maxLength={500}
+        defaultValue={option.title}
+        disabled={option.predefined}
+        placeholder="제목을 입력하세요"
+        {...props}
+      />
+
+      <FormOptionButton onClick={handleCloseClick}>
+        <AiOutlineClose size={20} />
+      </FormOptionButton>
     </FormOptionContainer>
   );
 };

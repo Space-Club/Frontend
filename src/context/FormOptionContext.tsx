@@ -11,6 +11,7 @@ interface FormOptionContextProps {
   isManaged: boolean;
   appendOption: (options: FormOption) => void;
   deleteOption: (options: FormOption) => void;
+  validateOptionTitle: () => boolean;
   changeOptionTitle: (options: FormOption, title: string) => void;
   setDescription: (description: string) => void;
   setIsManaged: (managed: boolean) => void;
@@ -27,6 +28,7 @@ const FormOptionContext = createContext<FormOptionContextProps>({
   appendOption: () => {},
   deleteOption: () => {},
   changeOptionTitle: () => {},
+  validateOptionTitle: () => false,
   setIsManaged: () => {},
   setDescription: () => {},
 });
@@ -53,7 +55,6 @@ const FormOptionContextProvider = ({ children }: FormContextOptionProviderProps)
   }, []);
 
   const changeOptionTitle = useCallback((option: FormOption, title: string) => {
-    if (!validateOptionTitle(title)) return;
     setSelectedOptions((prev) =>
       prev.map((prevOption) => {
         if (prevOption.id === option.id) {
@@ -63,25 +64,28 @@ const FormOptionContextProvider = ({ children }: FormContextOptionProviderProps)
       }),
     );
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  const validateOptionTitle = () => {
+    const isTitleValid = selectedOptions.every(({ title, id }) => {
+      if (title.trim().length === 0) {
+        createToast({
+          message: '제목이 입력되지 않은 항목이 있습니다.',
+          toastType: 'error',
+        });
+        return false;
+      }
 
-  const validateOptionTitle = (title: string) => {
-    if (title === '') {
-      createToast({
-        message: '제목을 입력해주세요.',
-        toastType: 'error',
-      });
-      return false;
-    }
+      if (selectedOptions.some((option) => option.id !== id && option.title === title)) {
+        createToast({
+          message: '중복된 제목은 사용할 수 없습니다.',
+          toastType: 'error',
+        });
+        return false;
+      }
 
-    if (selectedOptions.some((option) => option.title === title)) {
-      createToast({
-        message: '중복된 제목은 사용할 수 없습니다.',
-        toastType: 'error',
-      });
-      return false;
-    }
+      return true;
+    });
 
-    return true;
+    return isTitleValid;
   };
 
   const contextValue = useMemo(
@@ -93,6 +97,7 @@ const FormOptionContextProvider = ({ children }: FormContextOptionProviderProps)
       deleteOption,
       changeOptionTitle,
       setIsManaged,
+      validateOptionTitle,
       setDescription,
     }),
     [selectedOptions, description, isManaged], // eslint-disable-line react-hooks/exhaustive-deps
