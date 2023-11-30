@@ -17,7 +17,6 @@ const dataTransform = ({ data, eventType, clubId, eventId }: dataTransform) => {
     eventInfo: {
       title,
       content: content.trim() || null,
-      capacity: parseInt(capacity),
     },
     formInfo: {
       openDate: openDate.split('T')[0],
@@ -36,6 +35,7 @@ const dataTransform = ({ data, eventType, clubId, eventId }: dataTransform) => {
           startDate: data.startDate.split('T')[0],
           startTime: data.startDate.split('T')[1],
           location: data.location || null,
+          capacity: parseInt(capacity),
         },
         ticketInfo: {
           cost: parseInt(data.cost),
@@ -55,6 +55,7 @@ const dataTransform = ({ data, eventType, clubId, eventId }: dataTransform) => {
           startDate: data.startDate.split('T')[0],
           startTime: data.startDate.split('T')[1],
           location: data.location || null,
+          capacity: parseInt(capacity),
         },
       };
 
@@ -65,6 +66,7 @@ const dataTransform = ({ data, eventType, clubId, eventId }: dataTransform) => {
           ...commonData.eventInfo,
           activityArea: data.activityArea || null,
           recruitmentTarget: data.recruitmentTarget || null,
+          recruitmentLimit: parseInt(capacity),
         },
       };
 
@@ -78,6 +80,7 @@ const dataTransform = ({ data, eventType, clubId, eventId }: dataTransform) => {
           endDate: data.endDate.split('T')[0],
           endTime: data.endDate.split('T')[1],
           location: data.location || null,
+          capacity: parseInt(capacity),
           dues: parseInt(data.dues),
         },
       };
