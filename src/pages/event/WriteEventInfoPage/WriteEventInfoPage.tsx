@@ -1,4 +1,4 @@
-import useSubmitForm from '@/hooks/query/event/useSubmitForm';
+import usePostEventInfoMutation from '@/hooks/query/event/usePostEventInfoMutation';
 import FormLayout from '@/pages/FormLayout/FormLayout';
 import { EventType, eventTypeAPI } from '@/types/event';
 import getQueryString from '@/utils/getQueryString';
@@ -35,7 +35,7 @@ const WriteEventInfoPage = () => {
     errors,
   };
 
-  const { submitForm, isSubmitLoading } = useSubmitForm({
+  const { submitForm, isSubmitLoading } = usePostEventInfoMutation({
     eventType,
     clubId,
     isEdit: !!state,

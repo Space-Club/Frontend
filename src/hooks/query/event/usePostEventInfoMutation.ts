@@ -12,9 +12,9 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 
 import { QUERY_KEY as CLUB_EVENTS_QUERY_KEY } from '../club/useClubEventsQuery';
-import { QUERY_KEY as ALL_EVENTS_QUERY_KEY } from '../event/useAllEventsQuery';
+import { QUERY_KEY as ALL_EVENTS_QUERY_KEY } from './useAllEventsQuery';
 
-const useSubmitForm = ({ eventType, clubId, isEdit }: FormPage) => {
+const usePostEventInfoMutation = ({ eventType, clubId, isEdit }: FormPage) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const { handleTextException } = useTextException();
@@ -45,4 +45,4 @@ const useSubmitForm = ({ eventType, clubId, isEdit }: FormPage) => {
   return { submitForm, isSubmitLoading };
 };
 
-export default useSubmitForm;
+export default usePostEventInfoMutation;
