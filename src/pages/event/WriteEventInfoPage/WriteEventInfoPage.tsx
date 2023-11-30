@@ -1,3 +1,5 @@
+import InfoNavigateButton from '@/components/NavigateButton/InfoNavigateButton';
+import SelectEventInfo from '@/components/SelectEventInfo/SelectEventInfo';
 import usePostEventInfoMutation from '@/hooks/query/event/usePostEventInfoMutation';
 import FormLayout from '@/pages/FormLayout/FormLayout';
 import { EventType, eventTypeAPI } from '@/types/event';
@@ -6,8 +8,6 @@ import getQueryString from '@/utils/getQueryString';
 import { FieldValues, useForm } from 'react-hook-form';
 import { useLocation, useParams } from 'react-router-dom';
 
-import InfoNavigateButton from './NavigateButton/InfoNavigateButton';
-import SelectEventInfo from './SelectEventInfo/SelectEventInfo';
 import { EventFormContainer } from './WriteEventInfoPage.style';
 
 const WriteEventInfoPage = () => {

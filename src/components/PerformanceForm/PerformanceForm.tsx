@@ -2,6 +2,12 @@ import InputForm from '@/components/common/InputForm/InputForm';
 import TextAreaForm from '@/components/common/TextAreaForm/TextAreaForm';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
 import { FORM_INFO_VALUE } from '@/constants/limitInputValue';
+import {
+  ContentArea,
+  ErrorMessage,
+  HalfInputForm,
+  TwoInputContainer,
+} from '@/pages/event/WriteEventInfoPage/WriteEventInfoPage.style';
 import { ShowDetailResponse } from '@/types/api/getEventDetail';
 import { ReactHookFormProps } from '@/types/event';
 import setFormValue from '@/utils/setFormValue';
@@ -10,12 +16,6 @@ import { validateTimeCompare, validateTodayDate, validateTrim } from '@/utils/va
 import { useEffect } from 'react';
 
 import ImageUploadInput from '../ImageUploadInput/ImageUploadInput';
-import {
-  ContentArea,
-  ErrorMessage,
-  HalfInputForm,
-  TwoInputContainer,
-} from '../WriteEventInfoPage.style';
 
 interface PerformanceForm extends ReactHookFormProps {
   eventDetail?: ShowDetailResponse;
