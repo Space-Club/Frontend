@@ -164,7 +164,9 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
             min: { value: LIMIT_VALUE.TICKET_COUNT_MIN, message: `${TICKET}` },
             max: { value: LIMIT_VALUE.TICKET_COUNT_MAX, message: `${TICKET}` },
             validate: (value) =>
-              watch('capacity') && validateLarger(value, watch('capacity'), '인당 예매 수', '정원'),
+              watch('capacity')
+                ? validateLarger(value, watch('capacity'), '인당 예매 수', '정원')
+                : true,
           })}
           labelText="인당 예매 가능 수"
           inputType="number"
