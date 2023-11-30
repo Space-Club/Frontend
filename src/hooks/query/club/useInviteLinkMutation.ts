@@ -1,4 +1,5 @@
 import postInviteLink from '@/apis/club/postInviteLink';
+import useToast from '@/hooks/useToast';
 import transInviteLink from '@/utils/transInviteLink';
 
 import { useParams } from 'react-router-dom';
@@ -9,17 +10,15 @@ export const QUERY_KEY = { INVITE_LINK: 'INVITE_LINK' };
 
 const useInviteLinkMutation = () => {
   const { clubId = '' } = useParams();
+  const { createToast } = useToast();
   const { mutate: createInviteLink, data } = useMutation({
     mutationFn: () => postInviteLink({ clubId }),
+    onSuccess: () => {
+      createToast({ message: '초대링크가 생성되었습니다.', toastType: 'info' });
+    },
   });
 
-  if (data?.Location) {
-    const inviteLink = transInviteLink(data.Location);
-    return { inviteLink, createInviteLink };
-  } else {
-    const inviteLink = '오른쪽 버튼을 눌러 초대링크를 생성해보세요!';
-    return { inviteLink, createInviteLink };
-  }
+  return { inviteLink: data && transInviteLink(data?.location), createInviteLink };
 };
 
 export default useInviteLinkMutation;
