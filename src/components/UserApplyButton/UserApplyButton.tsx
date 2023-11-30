@@ -29,6 +29,8 @@ const UserApplyButton = ({ eventId, eventDetail, applyModalOpen }: UserApplyButt
   const getApplyButtonText = () => {
     if (hasAlreadyApplied) {
       return EVENT_DETAIL_BUTTON.APPLY.COMPLETED;
+    } else if (category === 'RECRUITMENT' && applicants >= 1000) {
+      return EVENT_DETAIL_BUTTON.APPLY.APPLICANT;
     } else if (category !== 'RECRUITMENT' && applicants >= capacity) {
       return EVENT_DETAIL_BUTTON.APPLY.SOLD_OUT;
     } else if (isEnded || isAbleToApply) {
