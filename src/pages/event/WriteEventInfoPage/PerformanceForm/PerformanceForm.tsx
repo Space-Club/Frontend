@@ -25,7 +25,7 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
   useEffect(() => {
     if (eventDetail) {
       const { eventInfo, ticketInfo, bankInfo } = eventDetail;
-      const { startDate, startTime, location } = eventInfo;
+      const { startDate, startTime, location, capacity } = eventInfo;
       const { maxTicketCount, cost } = ticketInfo;
       const { bankName, bankAccountNumber } = bankInfo;
 
@@ -33,6 +33,7 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
 
       setValue('startDate', `${startDate}T${startTime}`);
       setValue('location', location);
+      setValue('capacity', capacity);
       setValue('cost', cost);
       setValue('bankName', bankName);
       setValue('accountNumber', bankAccountNumber);
