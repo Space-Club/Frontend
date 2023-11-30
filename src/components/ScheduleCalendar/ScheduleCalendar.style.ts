@@ -48,6 +48,10 @@ const CalendarWrapper = styled.div`
   .react-calendar__tile--now:enabled:focus {
     background: ${Theme.color.tSemiActive};
   }
+
+  .react-calendar__month-view__days__day--neighboringMonth {
+    color: ${Theme.color.tSeparator};
+  }
 `;
 
 const Dot = styled.div`
