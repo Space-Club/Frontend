@@ -1,25 +1,17 @@
 import SearchInputForm from '@/components/SearchInputForm/SearchInputForm';
-import EventCard from '@/components/common/EventCard/EventCard';
+import SearchedEvents from '@/components/SearchedEvents';
 import Header from '@/components/common/Header/Header';
-import Pagination from '@/components/common/Pagination/Pagination';
+import Spinner from '@/components/common/Spinner/Spinner';
 import Tab from '@/components/common/Tab/Tab';
 import { MAIN_TABS } from '@/constants/tab';
-import useSearchResultQuery from '@/hooks/query/event/useSearchResultQuery';
-import { CommonEmptyEventsWrapper, EventsWrapper } from '@/styles/common';
 
-import { useState } from 'react';
+import { Suspense } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { SearchMessageStyled, SearchesContainer } from './SearchResultPage.style';
 
 const SearchResultPage = () => {
   const { keyword } = useParams();
-  const [currentPage, setCurrentPage] = useState(0);
-  const { data, pageData } = useSearchResultQuery({ keyword: keyword ?? '', page: currentPage });
-  if (!pageData) {
-    return null;
-  }
-  const { totalPages, size } = pageData;
 
   return (
     <>
@@ -28,33 +20,11 @@ const SearchResultPage = () => {
         <Tab tabItems={MAIN_TABS} />
       </Header>
       <SearchMessageStyled>{`"${keyword}" 검색 결과`}</SearchMessageStyled>
-      <SearchesContainer>
-        <EventsWrapper>
-          {data?.map(({ id, eventInfo, clubInfo }) => (
-            <EventCard
-              key={id}
-              eventId={id}
-              eventTitle={eventInfo.title}
-              startDate={eventInfo.startDate}
-              endDate={eventInfo.endDate}
-              posterSrc={eventInfo.posterImageUrl}
-              location={eventInfo.location}
-              clubName={clubInfo.name}
-              clubLogoImageUrl={clubInfo.logoImageUrl}
-              isEnded={eventInfo.isEnded}
-            />
-          ))}
-        </EventsWrapper>
-        {data?.length === 0 && (
-          <CommonEmptyEventsWrapper>검색결과가 없습니다.</CommonEmptyEventsWrapper>
-        )}
-        <Pagination
-          totalPages={totalPages}
-          size={size}
-          onChangePage={(page) => setCurrentPage(page)}
-          currentPage={currentPage}
-        />
-      </SearchesContainer>
+      <Suspense fallback={<Spinner />}>
+        <SearchesContainer>
+          <SearchedEvents keyword={keyword} />
+        </SearchesContainer>
+      </Suspense>
     </>
   );
 };
