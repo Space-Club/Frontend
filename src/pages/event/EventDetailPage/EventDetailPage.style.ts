@@ -94,8 +94,14 @@ const EventContentWrapper = styled.div`
   margin-top: 2rem;
 `;
 const EventContentTitle = styled.div`
+  border-top: 1px solid ${Theme.color.tSeparator};
   font-size: ${Theme.fontSize.largeTitle};
-  margin-bottom: 0.5rem;
+  padding: 1rem 0;
+`;
+const EventContent = styled.textarea`
+  width: 100%;
+  border: none;
+  outline: none;
 `;
 
 export {
@@ -115,4 +121,5 @@ export {
   BookmarkButton,
   EventContentWrapper,
   EventContentTitle,
+  EventContent,
 };
