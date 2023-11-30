@@ -34,7 +34,12 @@ const UpdateDeleteWrapper = styled.div`
 `;
 const EventDetailWrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
+
+  @media (max-width: 1023px) {
+    justify-content: center;
+  }
 `;
 const DetailContentWrapper = styled.div`
   display: flex;
@@ -51,6 +56,10 @@ const TwoContentWrapper = styled.div<{ itemLength: number }>`
   grid-template-rows: ${({ itemLength }) => (itemLength > 2 ? 'repeat(2, 1fr)' : 'repeat(1, 1fr)')};
   grid-template-columns: repeat(2, 1fr);
   gap: 3rem;
+
+  @media (max-width: 1023px) {
+    gap: 0;
+  }
 `;
 const ContentLabel = styled.div`
   font-size: ${Theme.fontSize.mediumTitle};
@@ -74,6 +83,7 @@ const ApplicantButton = styled(SemiPurpleButton)<{ capacity: boolean; isDisabled
 `;
 const ApplyButton = styled(SemiPurpleButton)<{ capacity: boolean }>`
   width: 30%;
+  min-width: 10rem;
   border-top-left-radius: ${({ capacity }) => capacity && '0'};
   border-bottom-left-radius: ${({ capacity }) => capacity && '0'};
   font-size: ${Theme.fontSize.mediumContent};
