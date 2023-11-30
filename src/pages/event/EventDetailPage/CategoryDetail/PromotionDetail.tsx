@@ -12,7 +12,7 @@ interface PromotionDetail {
 
 const PromotionDetail = ({ data }: PromotionDetail) => {
   const { eventInfo } = data;
-  const { startDate, startTime, activityArea } = eventInfo;
+  const { startDate, startTime, location } = eventInfo;
   return (
     <Fragment>
       <TwoContentWrapper itemLength={3}>
@@ -26,7 +26,7 @@ const PromotionDetail = ({ data }: PromotionDetail) => {
         </div>
         <div>
           <ContentLabel>{EVENT_DETAIL.LOCATION}</ContentLabel>
-          <div>{activityArea}</div>
+          <div>{location}</div>
         </div>
       </TwoContentWrapper>
     </Fragment>
