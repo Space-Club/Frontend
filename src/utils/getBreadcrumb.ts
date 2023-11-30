@@ -10,13 +10,23 @@ interface BreadcrumbProps {
 
 const getBreadcrumbs = ({ category, eventId, title, pageType, clubId }: BreadcrumbProps) => {
   const categoryTitle =
-    category === 'SHOW' ? '공연' : category === 'PROMOTION' ? '행사' : '모집공고';
+    category === 'SHOW'
+      ? '공연'
+      : category === 'PROMOTION'
+      ? '행사'
+      : category === 'RECRUITMENT'
+      ? '모집공고'
+      : '클럽일정';
   const categoryPath =
     category === 'SHOW'
       ? PATH.MAIN
       : category === 'PROMOTION'
       ? PATH.MAIN_EVENT
-      : PATH.MAIN_RECRUITMENT;
+      : category === 'RECRUITMENT'
+      ? PATH.MAIN_RECRUITMENT
+      : clubId
+      ? PATH.CLUB.EVENT(clubId)
+      : null;
 
   const baseBreadcrumb = [
     { title: categoryTitle, link: categoryPath },

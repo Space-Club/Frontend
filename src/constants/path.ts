@@ -14,9 +14,9 @@ const PATH = {
   SEARCH: (keyword: string) => `/search/${keyword}`,
 
   CLUB: {
-    HOME: (clubId: string | number) => `/club/${clubId}/home`,
-    EVENT: (clubId: string | number) => `/club/${clubId}/event`,
-    MANAGE: (clubId: string | number) => `/club/${clubId}/manage`,
+    HOME: (clubId: string) => `/club/${clubId}/home`,
+    EVENT: (clubId: string) => `/club/${clubId}/event`,
+    MANAGE: (clubId: string) => `/club/${clubId}/manage`,
     CHOICE: (clubId: string) => `/club/${clubId}/choice`,
     WRITE_INFO: (clubId: string) => `/club/${clubId}/writeinfo`,
     WRITE_FORM: (clubId: string, eventId: string) => `/club/${clubId}/writeform/${eventId}`,
