@@ -11,7 +11,12 @@ import {
 import { ShowDetailResponse } from '@/types/api/getEventDetail';
 import { ReactHookFormProps } from '@/types/event';
 import setFormValue from '@/utils/setFormValue';
-import { validateTimeCompare, validateTodayDate, validateTrim } from '@/utils/validate';
+import {
+  validateLarger,
+  validateTimeCompare,
+  validateTodayDate,
+  validateTrim,
+} from '@/utils/validate';
 
 import { useEffect } from 'react';
 
@@ -154,6 +159,8 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
           {...register('maxTicketCount', {
             min: { value: LIMIT_VALUE.TICKET_COUNT_MIN, message: `${TICKET}` },
             max: { value: LIMIT_VALUE.TICKET_COUNT_MAX, message: `${TICKET}` },
+            validate: (value) =>
+              watch('capacity') && validateLarger(value, watch('capacity'), '인당 예매 수', '정원'),
           })}
           labelText="인당 예매 가능 수"
           inputType="number"

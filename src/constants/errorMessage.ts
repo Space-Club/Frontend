@@ -12,6 +12,7 @@ const ERROR_MESSAGE = {
   EVENT: {
     REQUIRED: (text: string) => `* ${text} 필수입니다.`,
     MAX_LENGTH: (text: string, length: number) => `* ${text}의 최대 길이는 ${length}자입니다.`,
+    LARGER: (small: string, large: string) => `* ${small}는 ${large}보다 클 수 없습니다.`,
 
     PERSONNEL: `* 정원은 ${FORM_INFO_VALUE.LIMIT_VALUE.CAPACITY_MIN}~${FORM_INFO_VALUE.LIMIT_VALUE.CAPACITY_MAX} 사이의 숫자여야합니다.`,
     COST: '* 비용의 최댓값은 100만원입니다.',
