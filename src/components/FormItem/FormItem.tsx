@@ -33,9 +33,9 @@ const FormItem = ({ id, index, title, type, options, onAnswer }: FormItem) => {
     } else if (type === 'RADIO' && itemOptions) {
       return <FormRadio options={itemOptions} keyName={title} id={id} onAnswer={onAnswer} />;
     } else if (type === 'NUMBER') {
-      return <AnswerStyled type="number" onBlur={handleChange} required />;
+      return <AnswerStyled type="number" maxLength={1000} onBlur={handleChange} required />;
     } else {
-      return <AnswerStyled type="text" onBlur={handleChange} required />;
+      return <AnswerStyled type="text" maxLength={1000} onBlur={handleChange} required />;
     }
   };
 

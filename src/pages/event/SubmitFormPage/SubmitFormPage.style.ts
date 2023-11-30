@@ -29,6 +29,7 @@ const SubmitButton = styled.button`
   background-color: ${Theme.color.tSemiActive};
   color: white;
   box-sizing: border-box;
+  cursor: pointer;
 `;
 
 export { SubmitFormContainer, SubmitFormTitle, SubmitFormContent, FormWrapper, SubmitButton };
