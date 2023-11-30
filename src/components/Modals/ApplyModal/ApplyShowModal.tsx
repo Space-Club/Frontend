@@ -18,13 +18,18 @@ const ApplyShowModal = ({ eventId, eventDetail, hasForm, applyModalClose }: Appl
   const [ticketCount, setTicketCount] = useState('1');
   const navigate = useNavigate();
   const { applyEvent } = usePostEventApplyMutation({ eventId });
-  const { ticketInfo } = eventDetail;
+  const { eventInfo, ticketInfo } = eventDetail;
+  const { capacity, applicants } = eventInfo;
   const { maxTicketCount } = ticketInfo;
+  const remainingTicketCount = capacity - applicants;
 
-  const ticketList = Array.from({ length: maxTicketCount }, (_, index) => ({
-    label: `${index + 1}장`,
-    value: index + 1,
-  }));
+  const ticketList = Array.from(
+    { length: maxTicketCount > remainingTicketCount ? remainingTicketCount : maxTicketCount },
+    (_, index) => ({
+      label: `${index + 1}장`,
+      value: index + 1,
+    }),
+  );
 
   return (
     <ConfirmModal

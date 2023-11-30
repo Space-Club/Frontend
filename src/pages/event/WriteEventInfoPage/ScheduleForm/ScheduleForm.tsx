@@ -20,13 +20,14 @@ const ScheduleForm = ({ register, setValue, watch, errors, eventDetail }: Schedu
   useEffect(() => {
     if (eventDetail) {
       const { eventInfo } = eventDetail;
-      const { startDate, startTime, endDate, endTime, location, dues } = eventInfo;
+      const { startDate, startTime, endDate, endTime, location, capacity, dues } = eventInfo;
 
       setFormValue({ setValue, eventDetail });
 
       setValue('startDate', `${startDate}T${startTime}`);
       setValue('endDate', `${endDate}T${endTime}`);
       setValue('location', location);
+      setValue('capacity', capacity);
       setValue('dues', dues);
     }
   }, [eventDetail, setValue]);

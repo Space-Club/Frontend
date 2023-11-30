@@ -25,12 +25,13 @@ const PromotionForm = ({ register, setValue, watch, errors, eventDetail }: Promo
   useEffect(() => {
     if (eventDetail) {
       const { eventInfo } = eventDetail;
-      const { startDate, startTime, activityArea } = eventInfo;
+      const { startDate, startTime, activityArea, capacity } = eventInfo;
 
       setFormValue({ setValue, eventDetail });
 
       setValue('startDate', `${startDate}T${startTime}`);
       setValue('location', activityArea);
+      setValue('capacity', capacity);
     }
   }, [eventDetail, setValue]);
 
