@@ -5,28 +5,40 @@ import styled from '@emotion/styled';
 const EventFormContainer = styled.form`
   display: flex;
   position: relative;
+  flex-wrap: wrap;
   width: 100%;
   height: 100%;
   padding: 3rem 0;
 
   & > div:first-of-type {
-    padding-right: 1.5rem;
-    border-right: 1px solid ${Theme.color.tSeparator};
+    @media (min-width: 1023px) {
+      padding-right: 1.5rem;
+      border-right: 1px solid ${Theme.color.tSeparator};
+    }
   }
 
   & > div:nth-last-of-type(2) {
-    padding-left: 1.5rem;
+    @media (min-width: 1023px) {
+      padding-left: 1.5rem;
+    }
   }
   & > div:first-child > div:nth-last-of-type(2) {
     flex-grow: 1;
   }
 `;
 const ContentArea = styled.div`
-  width: 50%;
+  min-width: 50%;
   min-height: 100%;
   display: flex;
   flex-direction: column;
   gap: 1rem;
+
+  & > div:last-of-type {
+    @media (max-width: 1023px) {
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+    }
+  }
 `;
 const TwoInputContainer = styled.div`
   display: flex;
@@ -35,6 +47,10 @@ const TwoInputContainer = styled.div`
   &:last-of-type {
     padding-top: 1rem;
     border-top: 1px solid ${Theme.color.tSeparator};
+
+    @media (max-width: 1023px) {
+      border-bottom: 1px solid ${Theme.color.tSeparator};
+    }
   }
 `;
 const HalfInputForm = styled(InputForm)`
