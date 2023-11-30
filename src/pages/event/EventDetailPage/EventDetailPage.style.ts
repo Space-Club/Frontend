@@ -5,7 +5,6 @@ import styled from '@emotion/styled';
 const EventDetailPageContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
 `;
 const ContentWrapper = styled.div`
   width: 100%;

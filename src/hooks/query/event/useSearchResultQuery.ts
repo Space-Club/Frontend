@@ -10,6 +10,7 @@ const useSearchResultQuery = ({ keyword, page }: SearchResultRequest) => {
     queryKey: [QUERY_KEY.SEARCH_RESULT, keyword, page],
     queryFn: () => getSearchResult({ keyword, page }),
     enabled: !!keyword,
+    suspense: true,
   });
 
   const { data, pageData } = searchResultData ?? {};

@@ -12,6 +12,7 @@ const useClubEventsQuery = ({ clubId, pageNumber, isSchedule }: GetClubEventsReq
     queryKey: [QUERY_KEY.CLUB_EVENTS, clubId, pageNumber],
     queryFn: () => getClubEvents({ clubId, pageNumber, isSchedule }),
     staleTime: CLUB_EVENTS_STALE_TIME,
+    suspense: true,
   });
 
   const { data, pageData } = events ?? {};

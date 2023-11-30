@@ -10,7 +10,7 @@ interface FormOption {
   id: string;
   title: string;
   type: FormType;
-  visible: boolean;
+  predefined: boolean;
 }
 
 interface FormInfo {
