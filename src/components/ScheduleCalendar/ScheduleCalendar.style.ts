@@ -28,7 +28,7 @@ const CalendarWrapper = styled.div`
 
   .react-calendar__tile {
     text-align: center;
-    height: 3.5rem;
+    height: 3.3rem;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
