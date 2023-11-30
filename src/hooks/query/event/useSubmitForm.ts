@@ -1,10 +1,15 @@
 import postPerformanceForm from '@/apis/event/postPerformanceForm';
 import { PATH } from '@/constants/path';
+import useImageException from '@/hooks/useImageException';
+import useTextException from '@/hooks/useTextException';
+import { HttpException } from '@/types/common';
 import { FormPage } from '@/types/event';
 
 import { useNavigate } from 'react-router-dom';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+
+import { AxiosError } from 'axios';
 
 import { QUERY_KEY as CLUB_EVENTS_QUERY_KEY } from '../club/useClubEventsQuery';
 import { QUERY_KEY as ALL_EVENTS_QUERY_KEY } from '../event/useAllEventsQuery';
@@ -12,6 +17,8 @@ import { QUERY_KEY as ALL_EVENTS_QUERY_KEY } from '../event/useAllEventsQuery';
 const useSubmitForm = ({ eventType, clubId, isEdit }: FormPage) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const { handleTextException } = useTextException();
+  const { handleImageException } = useImageException();
 
   const { mutate: submitForm, isLoading: isSubmitLoading } = useMutation({
     mutationFn: postPerformanceForm,
@@ -30,9 +37,9 @@ const useSubmitForm = ({ eventType, clubId, isEdit }: FormPage) => {
         ]),
       ]);
     },
-    onError: (error) => {
-      console.log(error);
-      // TODO 구현 예정
+    onError: (error: AxiosError<HttpException>) => {
+      handleTextException(error);
+      handleImageException(error);
     },
   });
   return { submitForm, isSubmitLoading };
