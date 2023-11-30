@@ -3,11 +3,7 @@ import { postEventApplyRequest } from '@/types/api/postApplyEvent';
 
 import { axiosClientWithAuth } from '../axiosClient';
 
-const postApplyEvent = async ({
-  forms = [],
-  ticketCount = null,
-  eventId,
-}: postEventApplyRequest) => {
+const postApplyEvent = async ({ forms = [], ticketCount = 1, eventId }: postEventApplyRequest) => {
   const data = {
     eventId,
     ticketCount,
