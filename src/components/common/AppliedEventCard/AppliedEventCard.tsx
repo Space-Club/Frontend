@@ -33,8 +33,8 @@ const AppliedEventCard = ({
   const navigate = useNavigate();
 
   return (
-    <AppliedEventCardContainer onClick={() => navigate(PATH.EVENT.DETAIL(eventId))} {...props}>
-      <EventLeftSection>
+    <AppliedEventCardContainer {...props}>
+      <EventLeftSection onClick={() => navigate(PATH.EVENT.DETAIL(eventId))}>
         <Poster posterSrc={posterImageUrl} width={7.6} />
         <AppliedEventInfo
           eventId={eventId}
