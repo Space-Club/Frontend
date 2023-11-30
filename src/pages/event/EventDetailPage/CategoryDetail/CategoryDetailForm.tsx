@@ -34,14 +34,14 @@ const CategoryDetailForm = ({ data }: CategoryDetailForm) => {
       <EventTitle>{eventInfo.title}</EventTitle>
       {renderCategory()}
       <div>
-        <ContentLabel>{EVENT_DETAIL.applicationPeriod}</ContentLabel>
+        <ContentLabel>{EVENT_DETAIL.APPLICATION_PERIOD}</ContentLabel>
         <div>
           {transDate(openDate)} {transTime(openTime)} ~ {transDate(closeDate)}{' '}
           {transTime(closeTime)}까지
         </div>
       </div>
       <div>
-        <ContentLabel>{EVENT_DETAIL.organizer}</ContentLabel>
+        <ContentLabel>{EVENT_DETAIL.ORGANIZER}</ContentLabel>
         {clubInfo.clubName}
       </div>
     </>

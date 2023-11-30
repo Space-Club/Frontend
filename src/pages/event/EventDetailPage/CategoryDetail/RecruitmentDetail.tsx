@@ -27,19 +27,19 @@ const RecruitmentDetail = ({ data }: RecruitmentDetail) => {
       <TwoContentWrapper itemLength={calculateItem(recruitmentTarget, capacity, location)}>
         {recruitmentTarget && (
           <div>
-            <ContentLabel>{EVENT_DETAIL.recruitTarget}</ContentLabel>
+            <ContentLabel>{EVENT_DETAIL.RECRUIT_TARGET}</ContentLabel>
             <div>{recruitmentTarget}</div>
           </div>
         )}
         {capacity && (
           <div>
-            <ContentLabel>{EVENT_DETAIL.recruitCapacity}</ContentLabel>
+            <ContentLabel>{EVENT_DETAIL.RECRUIT_CAPACITY}</ContentLabel>
             <div>{capacity}</div>
           </div>
         )}
         {location && (
           <div>
-            <ContentLabel>{EVENT_DETAIL.location}</ContentLabel>
+            <ContentLabel>{EVENT_DETAIL.LOCATION}</ContentLabel>
             <div>{location}</div>
           </div>
         )}
