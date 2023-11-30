@@ -27,7 +27,7 @@ const ManagerButton = ({ eventId, eventDetail, deleteModalOpen }: ManagerButton)
       {role === 'MANAGER' && (
         <FormButtonWrapper>
           <PurpleButton onClick={() => navigate(PATH.EVENT.SUBMITTED_FORMS(clubId!, eventId))}>
-            {EVENT_DETAIL_BUTTON.showSubmitForm}
+            {EVENT_DETAIL_BUTTON.SHOW_SUBMIT_FORM}
           </PurpleButton>
           <UpdateDeleteWrapper>
             <PurpleButton
@@ -41,9 +41,9 @@ const ManagerButton = ({ eventId, eventDetail, deleteModalOpen }: ManagerButton)
                 })
               }
             >
-              {EVENT_DETAIL_BUTTON.edit}
+              {EVENT_DETAIL_BUTTON.EDIT}
             </PurpleButton>
-            <PurpleButton onClick={deleteModalOpen}>{EVENT_DETAIL_BUTTON.delete}</PurpleButton>
+            <PurpleButton onClick={deleteModalOpen}>{EVENT_DETAIL_BUTTON.DELETE}</PurpleButton>
           </UpdateDeleteWrapper>
         </FormButtonWrapper>
       )}

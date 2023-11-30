@@ -40,27 +40,27 @@ const APPLIED_EVENTS_TAGS: EventTags = {
 };
 
 const EVENT_DETAIL = {
-  date: '날짜',
-  time: '시간',
-  location: '장소',
-  cost: '비용',
-  applicationPeriod: '참여 신청 가능기간',
-  organizer: '주최자',
-  recruitTarget: '모집 대상',
-  recruitCapacity: '모집 인원',
-  activityLocation: '활동 위치',
-  schedule: '일정',
+  DATE: '날짜',
+  TIME: '시간',
+  LOCATION: '장소',
+  COST: '비용',
+  APPLICATION_PERIOD: '참여 신청 가능기간',
+  ORGANIZER: '주최자',
+  RECRUIT_TARGET: '모집 대상',
+  RECRUIT_CAPACITY: '모집 인원',
+  ACTIVITY_LOCATION: '활동 위치',
+  SCHEDULE: '일정',
 };
 
 const EVENT_DETAIL_BUTTON = {
-  showSubmitForm: '제출된 폼 보기',
-  edit: '수정하기',
-  delete: '삭제하기',
-  apply: {
-    completed: '신청 완료',
-    soldOut: 'SOLD OUT',
-    deadLine: '신청 마감',
-    possible: '참여 신청하기',
+  SHOW_SUBMIT_FORM: '제출된 폼 보기',
+  EDIT: '수정하기',
+  DELETE: '삭제하기',
+  APPLY: {
+    COMPLETED: '신청 완료',
+    SOLD_OUT: 'SOLD OUT',
+    DEADLINE: '신청 마감',
+    POSSIBLE: '참여 신청하기',
   },
 };
 

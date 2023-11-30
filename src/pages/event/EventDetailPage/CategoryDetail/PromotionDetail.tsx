@@ -17,15 +17,15 @@ const PromotionDetail = ({ data }: PromotionDetail) => {
     <Fragment>
       <TwoContentWrapper itemLength={3}>
         <div>
-          <ContentLabel>{EVENT_DETAIL.date}</ContentLabel>
+          <ContentLabel>{EVENT_DETAIL.DATE}</ContentLabel>
           <div>{transDate(startDate)}</div>
         </div>
         <div>
-          <ContentLabel>{EVENT_DETAIL.time}</ContentLabel>
+          <ContentLabel>{EVENT_DETAIL.TIME}</ContentLabel>
           <div>{transTime(startTime)}</div>
         </div>
         <div>
-          <ContentLabel>{EVENT_DETAIL.location}</ContentLabel>
+          <ContentLabel>{EVENT_DETAIL.LOCATION}</ContentLabel>
           <div>{activityArea}</div>
         </div>
       </TwoContentWrapper>

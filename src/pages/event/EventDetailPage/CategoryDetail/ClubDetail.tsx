@@ -24,19 +24,19 @@ const ClubDetail = ({ data }: ClubDetail) => {
     <Fragment>
       <TwoContentWrapper itemLength={calculateItem(dues, location)}>
         <div>
-          <ContentLabel>{EVENT_DETAIL.schedule}</ContentLabel>
+          <ContentLabel>{EVENT_DETAIL.SCHEDULE}</ContentLabel>
           {transDate(startDate)} {transTime(startTime)} ~ {transDate(endDate)} {transTime(endTime)}
           까지
         </div>
         {dues && (
           <div>
-            <ContentLabel>{EVENT_DETAIL.cost}</ContentLabel>
+            <ContentLabel>{EVENT_DETAIL.COST}</ContentLabel>
             <div>{dues}원</div>
           </div>
         )}
         {location && (
           <div>
-            <ContentLabel>{EVENT_DETAIL.location}</ContentLabel>
+            <ContentLabel>{EVENT_DETAIL.LOCATION}</ContentLabel>
             <div>{location}</div>
           </div>
         )}

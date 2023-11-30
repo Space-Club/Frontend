@@ -26,13 +26,13 @@ const UserApplyButton = ({ eventId, eventDetail, applyModalOpen }: UserApplyButt
 
   const getApplyButtonText = () => {
     if (hasAlreadyApplied) {
-      return EVENT_DETAIL_BUTTON.apply.completed;
+      return EVENT_DETAIL_BUTTON.APPLY.COMPLETED;
     } else if (category !== 'RECRUITMENT' && applicants >= capacity) {
-      return EVENT_DETAIL_BUTTON.apply.soldOut;
+      return EVENT_DETAIL_BUTTON.APPLY.SOLD_OUT;
     } else if (isEnded || isAbleToApply) {
-      return EVENT_DETAIL_BUTTON.apply.deadLine;
+      return EVENT_DETAIL_BUTTON.APPLY.DEADLINE;
     } else {
-      return EVENT_DETAIL_BUTTON.apply.possible;
+      return EVENT_DETAIL_BUTTON.APPLY.POSSIBLE;
     }
   };
 
@@ -42,7 +42,7 @@ const UserApplyButton = ({ eventId, eventDetail, applyModalOpen }: UserApplyButt
         <ApplicantButton
           reverse
           capacity={!!capacity}
-          isDisabled={getApplyButtonText() !== EVENT_DETAIL_BUTTON.apply.possible}
+          isDisabled={getApplyButtonText() !== EVENT_DETAIL_BUTTON.APPLY.POSSIBLE}
           disabled
         >
           {applicants}/{capacity}
@@ -50,7 +50,7 @@ const UserApplyButton = ({ eventId, eventDetail, applyModalOpen }: UserApplyButt
       )}
       <ApplyButton
         capacity={Boolean(capacity)}
-        disabled={getApplyButtonText() !== EVENT_DETAIL_BUTTON.apply.possible}
+        disabled={getApplyButtonText() !== EVENT_DETAIL_BUTTON.APPLY.POSSIBLE}
         onClick={() => applyModalOpen()}
       >
         {getApplyButtonText()}
