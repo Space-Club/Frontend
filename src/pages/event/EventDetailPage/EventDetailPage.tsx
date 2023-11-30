@@ -4,6 +4,7 @@ import ApplyShowModal from '@/components/Modals/ApplyModal/ApplyShowModal';
 import ConfirmModal from '@/components/Modals/ConfirmModal';
 import SearchInputForm from '@/components/SearchInputForm/SearchInputForm';
 import UserApplyButton from '@/components/UserApplyButton/UserApplyButton';
+import Breadcrumb from '@/components/common/Breadcrumb/Breadcrumb';
 import Header from '@/components/common/Header/Header';
 import Poster from '@/components/common/Poster/Poster';
 import Tab from '@/components/common/Tab/Tab';
@@ -92,6 +93,7 @@ const EventDetailPage = () => {
             <SearchInputForm />
             <Tab tabItems={MAIN_TABS} />
           </Header>
+          <Breadcrumb eventId={eventId} pageType="eventDetail" />
           <ContentWrapper>
             <ManagerButton
               eventId={eventId}
