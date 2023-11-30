@@ -75,6 +75,7 @@ const ScheduleForm = ({ register, setValue, watch, errors, eventDetail }: Schedu
             required
             inputType="datetime-local"
             containerWidth="50%"
+            readOnly={Boolean(eventDetail)}
           />
           <InputForm
             {...register('endDate', {
@@ -88,6 +89,7 @@ const ScheduleForm = ({ register, setValue, watch, errors, eventDetail }: Schedu
             required
             inputType="datetime-local"
             containerWidth="50%"
+            readOnly={Boolean(eventDetail)}
           />
         </TwoInputContainer>
         {errors.startDate && errors.startDate.message !== errors.endDate?.message && (
@@ -104,6 +106,7 @@ const ScheduleForm = ({ register, setValue, watch, errors, eventDetail }: Schedu
           })}
           labelText="장소"
           inputType="text"
+          readOnly={Boolean(eventDetail)}
         />
         <TwoInputContainer>
           <InputForm
@@ -117,6 +120,7 @@ const ScheduleForm = ({ register, setValue, watch, errors, eventDetail }: Schedu
             min={LIMIT_VALUE.CAPACITY_MIN}
             max={LIMIT_VALUE.CAPACITY_MAX}
             unit="명"
+            readOnly={Boolean(eventDetail)}
           />
           <InputForm
             {...register('dues', {
@@ -129,6 +133,7 @@ const ScheduleForm = ({ register, setValue, watch, errors, eventDetail }: Schedu
             min={LIMIT_VALUE.COST_MIN}
             max={LIMIT_VALUE.COST_MAX}
             unit="원"
+            readOnly={Boolean(eventDetail)}
           />
         </TwoInputContainer>
         {errors.capacity && <ErrorMessage>{errors.capacity.message as string}</ErrorMessage>}
@@ -147,6 +152,7 @@ const ScheduleForm = ({ register, setValue, watch, errors, eventDetail }: Schedu
             required
             inputType="datetime-local"
             containerWidth="50%"
+            readOnly={Boolean(eventDetail)}
           />
           <InputForm
             {...register('closeDate', {
@@ -158,6 +164,7 @@ const ScheduleForm = ({ register, setValue, watch, errors, eventDetail }: Schedu
             required
             inputType="datetime-local"
             containerWidth="50%"
+            readOnly={Boolean(eventDetail)}
           />
         </TwoInputContainer>
         {errors.openDate && errors.openDate.message !== errors.closeDate?.message && (

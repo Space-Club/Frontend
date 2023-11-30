@@ -68,6 +68,7 @@ const RecruitForm = ({ register, setValue, watch, errors, eventDetail }: Recruit
           labelText="활동 위치"
           inputType="text"
           placeholder="온라인일 경우, 온라인이라고 기재"
+          readOnly={Boolean(eventDetail)}
         />
         {errors.activityArea && (
           <ErrorMessage>{errors.activityArea.message as string}</ErrorMessage>
@@ -98,6 +99,7 @@ const RecruitForm = ({ register, setValue, watch, errors, eventDetail }: Recruit
           max={LIMIT_VALUE.CAPACITY_MAX}
           unit="명"
           isHalf={true}
+          readOnly={Boolean(eventDetail)}
         />
         {errors.capacity && <ErrorMessage>{errors.capacity.message as string}</ErrorMessage>}
         <TwoInputContainer>
@@ -114,6 +116,7 @@ const RecruitForm = ({ register, setValue, watch, errors, eventDetail }: Recruit
             required
             inputType="datetime-local"
             containerWidth="50%"
+            readOnly={Boolean(eventDetail)}
           />
           <InputForm
             {...register('closeDate', {
@@ -125,6 +128,7 @@ const RecruitForm = ({ register, setValue, watch, errors, eventDetail }: Recruit
             required
             inputType="datetime-local"
             containerWidth="50%"
+            readOnly={Boolean(eventDetail)}
           />
         </TwoInputContainer>
         {errors.openDate && errors.openDate.message !== errors.closeDate?.message && (
