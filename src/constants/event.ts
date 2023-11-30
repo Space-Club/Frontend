@@ -60,6 +60,7 @@ const EVENT_DETAIL_BUTTON = {
     COMPLETED: '신청 완료',
     SOLD_OUT: 'SOLD OUT',
     DEADLINE: '신청 마감',
+    APPLICANT: '인원 마감',
     POSSIBLE: '참여 신청하기',
   },
 };

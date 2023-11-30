@@ -11,9 +11,9 @@ const ContentWrapper = styled.div`
   max-width: 65rem;
   margin: 1rem auto;
 `;
-const FormButtonWrapper = styled.div`
+const FormButtonWrapper = styled.div<{ hasForm: boolean }>`
   display: flex;
-  justify-content: space-between;
+  justify-content: ${({ hasForm }) => (hasForm ? 'space-between' : 'flex-end')};
   margin-bottom: 1rem;
 `;
 const PurpleButton = styled.button<{ reverse?: boolean }>`
@@ -28,6 +28,7 @@ const PurpleButton = styled.button<{ reverse?: boolean }>`
   cursor: pointer;
 `;
 const UpdateDeleteWrapper = styled.div`
+  align-self: flex-end;
   display: flex;
   gap: 0.25rem;
 `;

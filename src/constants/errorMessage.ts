@@ -1,3 +1,5 @@
+import { FORM_INFO_VALUE } from './limitInputValue';
+
 const ERROR_MESSAGE = {
   REGISTER: {
     FAILED: '가입에 실패했습니다',
@@ -11,9 +13,9 @@ const ERROR_MESSAGE = {
     REQUIRED: (text: string) => `* ${text} 필수입니다.`,
     MAX_LENGTH: (text: string, length: number) => `* ${text}의 최대 길이는 ${length}입니다.`,
 
-    PERSONNEL: '* 정원은 1~999 사이의 숫자여야합니다.',
+    PERSONNEL: `* 정원은 ${FORM_INFO_VALUE.LIMIT_VALUE.CAPACITY_MIN}~${FORM_INFO_VALUE.LIMIT_VALUE.CAPACITY_MAX} 사이의 숫자여야합니다.`,
     COST: '* 비용의 최댓값은 100만원입니다.',
-    TICKET: '* 인당 예매 가능 수는 1~999입니다.',
+    TICKET: `* 인당 예매 가능 수는 ${FORM_INFO_VALUE.LIMIT_VALUE.COST_MIN}~${FORM_INFO_VALUE.LIMIT_VALUE.COST_MAX}입니다.`,
     MAX_YEAR: '* 최대 2099년까지 설정이 가능합니다.',
     START_TIME: '* 날짜는 오늘 이후로 설정해야 합니다.',
     LAST_TIME: '* 마감 날짜는 시작 날짜 이후로 설정해야 합니다.',
