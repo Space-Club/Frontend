@@ -41,7 +41,7 @@ const UserApplyButton = ({ eventId, eventDetail, applyModalOpen }: UserApplyButt
       {capacity && (
         <ApplicantButton
           reverse
-          capacity={!!capacity}
+          capacity={Boolean(capacity)}
           isDisabled={getApplyButtonText() !== EVENT_DETAIL_BUTTON.APPLY.POSSIBLE}
           disabled
         >

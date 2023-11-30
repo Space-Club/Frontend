@@ -20,7 +20,6 @@ interface CommonDetailResponse {
     title: string;
     content: string;
     applicants: number;
-    capacity: number;
     posterImageUrl: string;
     isEnded: boolean;
   };
@@ -39,6 +38,7 @@ interface ShowDetailResponse extends CommonDetailResponse {
     startDate: string;
     startTime: string;
     location: string;
+    capacity: number;
   };
   ticketInfo: {
     cost: number;
@@ -56,6 +56,7 @@ interface PromotionDetailResponse extends CommonDetailResponse {
     startDate: string;
     startTime: string;
     activityArea: string;
+    capacity: number;
   };
 }
 
@@ -65,6 +66,7 @@ interface RecruitmentDetailResponse extends CommonDetailResponse {
     startDate: string;
     startTime: string;
     location: string;
+    recruitmentLimit: number;
     recruitmentTarget: string;
   };
 }
@@ -78,6 +80,7 @@ interface ClubDetailResponse extends CommonDetailResponse {
     endTime: string;
     dues: number;
     location: string;
+    capacity: number;
   };
 }
 
