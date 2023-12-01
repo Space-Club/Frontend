@@ -64,7 +64,7 @@ const FormOptionContextProvider = ({ children }: FormContextOptionProviderProps)
       });
       setSelectedOptions((prev) => prev.slice(0, MAX_OPTION_COUNT));
     }
-  }, [selectedOptions]);
+  }, [selectedOptions]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const changeOptionTitle = useCallback((option: FormOption, title: string) => {
     setSelectedOptions((prev) =>
