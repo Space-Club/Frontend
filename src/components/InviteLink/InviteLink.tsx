@@ -44,7 +44,7 @@ const InviteLink = () => {
   }, [inviteLink, isExpired]);
 
   useEffect(() => {
-    setInviteLinkValue(newInviteLink);
+    newInviteLink && setInviteLinkValue(newInviteLink);
   }, [newInviteLink]);
 
   useEffect(() => {
