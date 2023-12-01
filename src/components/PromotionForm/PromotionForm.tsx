@@ -71,6 +71,7 @@ const PromotionForm = ({ register, setValue, watch, errors, eventDetail }: Promo
           labelText="행사 시작 날짜 및 시간"
           required
           inputType="datetime-local"
+          readOnly={Boolean(eventDetail)}
         />
         {errors.startDate && <ErrorMessage>{errors.startDate.message as string}</ErrorMessage>}
         <InputForm
@@ -85,6 +86,7 @@ const PromotionForm = ({ register, setValue, watch, errors, eventDetail }: Promo
           labelText="행사 장소"
           required
           inputType="text"
+          readOnly={Boolean(eventDetail)}
         />
         {errors.location && <ErrorMessage>{errors.location.message as string}</ErrorMessage>}
         <HalfInputForm
@@ -99,6 +101,7 @@ const PromotionForm = ({ register, setValue, watch, errors, eventDetail }: Promo
           max={LIMIT_VALUE.CAPACITY_MAX}
           unit="명"
           isHalf={true}
+          readOnly={Boolean(eventDetail)}
         />
         {errors.capacity && <ErrorMessage>{errors.capacity.message as string}</ErrorMessage>}
         <TwoInputContainer>
@@ -115,6 +118,7 @@ const PromotionForm = ({ register, setValue, watch, errors, eventDetail }: Promo
             required
             inputType="datetime-local"
             containerWidth="50%"
+            readOnly={Boolean(eventDetail)}
           />
           <InputForm
             {...register('closeDate', {
@@ -126,6 +130,7 @@ const PromotionForm = ({ register, setValue, watch, errors, eventDetail }: Promo
             required
             inputType="datetime-local"
             containerWidth="50%"
+            readOnly={Boolean(eventDetail)}
           />
         </TwoInputContainer>
         {errors.openDate && errors.openDate.message !== errors.closeDate?.message && (

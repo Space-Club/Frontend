@@ -11,7 +11,12 @@ import {
 import { ShowDetailResponse } from '@/types/api/getEventDetail';
 import { ReactHookFormProps } from '@/types/event';
 import setFormValue from '@/utils/setFormValue';
-import { validateTimeCompare, validateTodayDate, validateTrim } from '@/utils/validate';
+import {
+  validateLarger,
+  validateTimeCompare,
+  validateTodayDate,
+  validateTrim,
+} from '@/utils/validate';
 
 import { useEffect } from 'react';
 
@@ -76,6 +81,7 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
           labelText="공연 시작 날짜 및 시간"
           required
           inputType="datetime-local"
+          readOnly={Boolean(eventDetail)}
         />
         {errors.startDate && <ErrorMessage>{errors.startDate.message as string}</ErrorMessage>}
         <InputForm
@@ -90,6 +96,7 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
           labelText="공연 장소"
           required
           inputType="text"
+          readOnly={Boolean(eventDetail)}
         />
         {errors.location && <ErrorMessage>{errors.location.message as string}</ErrorMessage>}
         <TwoInputContainer>
@@ -104,6 +111,7 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
             min={LIMIT_VALUE.CAPACITY_MIN}
             max={LIMIT_VALUE.CAPACITY_MAX}
             unit="명"
+            readOnly={Boolean(eventDetail)}
           />
           <InputForm
             {...register('cost', {
@@ -116,6 +124,7 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
             min={LIMIT_VALUE.COST_MIN}
             max={LIMIT_VALUE.COST_MAX}
             unit="원"
+            readOnly={Boolean(eventDetail)}
           />
         </TwoInputContainer>
         {errors.capacity && <ErrorMessage>{errors.capacity.message as string}</ErrorMessage>}
@@ -127,7 +136,7 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
                 value: LIMIT_LENGTH.BANK_NAME_MAX,
                 message: MAX_LENGTH('은행 이름', LIMIT_LENGTH.BANK_NAME_MAX),
               },
-              validate: (value) => validateTrim(value),
+              validate: (value) => (value ? validateTrim(value) : true),
             })}
             labelText="은행 명"
             inputType="text"
@@ -139,7 +148,7 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
                 value: LIMIT_LENGTH.ACCOUNT_NUMBER_MAX,
                 message: MAX_LENGTH('계좌 번호', LIMIT_LENGTH.ACCOUNT_NUMBER_MAX),
               },
-              validate: (value) => validateTrim(value),
+              validate: (value) => (value ? validateTrim(value) : true),
             })}
             labelText="계좌 번호"
             inputType="text"
@@ -154,6 +163,10 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
           {...register('maxTicketCount', {
             min: { value: LIMIT_VALUE.TICKET_COUNT_MIN, message: `${TICKET}` },
             max: { value: LIMIT_VALUE.TICKET_COUNT_MAX, message: `${TICKET}` },
+            validate: (value) =>
+              watch('capacity')
+                ? validateLarger(value, watch('capacity'), '인당 예매 수', '정원')
+                : true,
           })}
           labelText="인당 예매 가능 수"
           inputType="number"
@@ -162,6 +175,7 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
           max={LIMIT_VALUE.TICKET_COUNT_MAX}
           unit="매"
           isHalf={true}
+          readOnly={Boolean(eventDetail)}
         />
         {errors.maxTicketCount && (
           <ErrorMessage>{errors.maxTicketCount.message as string}</ErrorMessage>
@@ -180,6 +194,7 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
             required
             inputType="datetime-local"
             containerWidth="50%"
+            readOnly={Boolean(eventDetail)}
           />
           <InputForm
             {...register('closeDate', {
@@ -191,6 +206,7 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
             required
             inputType="datetime-local"
             containerWidth="50%"
+            readOnly={Boolean(eventDetail)}
           />
         </TwoInputContainer>
         {errors.openDate && errors.openDate.message !== errors.closeDate?.message && (
