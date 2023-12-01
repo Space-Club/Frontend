@@ -1,5 +1,6 @@
 import postClubNotice from '@/apis/club/postClubNotice';
 import useTextException from '@/hooks/useTextException';
+import useToast from '@/hooks/useToast';
 import { HttpException } from '@/types/common';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
@@ -14,6 +15,7 @@ interface usePostNoticeMutationProps {
 
 const usePostNoticeMutation = ({ handleSuccess }: usePostNoticeMutationProps) => {
   const queryClient = useQueryClient();
+  const { createToast } = useToast();
   const { handleTextException } = useTextException();
 
   const { mutate: postNotice, isSuccess: postSuccess } = useMutation({
@@ -24,6 +26,7 @@ const usePostNoticeMutation = ({ handleSuccess }: usePostNoticeMutationProps) =>
     },
     onError: (error: AxiosError<HttpException>) => {
       handleTextException(error);
+      createToast({ message: '공지사항 작성에 실패했습니다.', toastType: 'error' });
     },
   });
 

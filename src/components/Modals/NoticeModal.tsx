@@ -43,8 +43,8 @@ const NoticeModal = ({
   const { createToast } = useToast();
 
   const { postNotice } = usePostNoticeMutation({ handleSuccess: () => onClose() });
-  const { patchNotice } = usePatchClubNoticeMutation();
-  const { deleteNotice } = useDeleteClubNoticeMutation();
+  const { patchNotice } = usePatchClubNoticeMutation({ handleSuccess: () => onClose() });
+  const { deleteNotice } = useDeleteClubNoticeMutation({ handleSuccess: () => onClose() });
 
   const handleCreateNoticeButtonClick = () => {
     const notice = getValidNotice();
@@ -64,6 +64,7 @@ const NoticeModal = ({
     }
     if (notice) {
       patchNotice({ clubId, notice, noticeId });
+      setIsEdit(false);
     }
   };
 
@@ -72,7 +73,6 @@ const NoticeModal = ({
       throw new Error('공지사항 삭제를 위해서 noticeId가 필요합니다.');
     }
     deleteNotice({ clubId, noticeId });
-    onClose();
   };
 
   const getValidNotice = () => {
@@ -123,7 +123,7 @@ const NoticeModal = ({
           ref={noticeContentRef}
           disabled={!isEdit}
           defaultValue={content}
-          maxLength={2000}
+          maxLength={1000}
           {...props}
         />
         <NoticeModalHeaderWrapper />
