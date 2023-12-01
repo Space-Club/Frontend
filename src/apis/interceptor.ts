@@ -1,4 +1,5 @@
 import { EXCEPTION_CODE } from '@/constants/exceptionCode';
+import { PATH } from '@/constants/path';
 import { HttpException } from '@/types/common';
 import { getStorage } from '@/utils/localStorage';
 
@@ -22,14 +23,20 @@ const handleTokenError = async (error: AxiosError<HttpException>) => {
   return Promise.reject(error);
 };
 
+const handleRefreshTokenError = (error: AxiosError<HttpException>) => {
+  if (error.response?.data.code === EXCEPTION_CODE.INVALID_REFRESH_TOKEN) {
+    alert('로그인이 만료되었습니다. 다시 로그인해주세요.');
+    window.location.href = PATH.LOGIN;
+  }
+  return Promise.reject(error);
+};
+
 const setToken = (config: InternalAxiosRequestConfig) => {
   const token = getStorage('token');
 
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
-  }
+  config.headers.Authorization = `Bearer ${token}`;
 
   return config;
 };
 
-export { handleTokenError, setToken };
+export { handleTokenError, setToken, handleRefreshTokenError };
