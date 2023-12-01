@@ -13,7 +13,7 @@ const getBreadcrumbs = ({ category, eventId, title, pageType, clubId }: Breadcru
     category === 'SHOW'
       ? '공연'
       : category === 'PROMOTION'
-      ? '행사'
+      ? '홍보'
       : category === 'RECRUITMENT'
       ? '모집공고'
       : '클럽일정';
