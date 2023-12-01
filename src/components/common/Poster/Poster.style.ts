@@ -34,6 +34,7 @@ const PosterAreaStyled = styled.div<{ width: number; isEnded?: boolean }>`
     font-size: ${Theme.fontSize.smallContent};
     text-align: center;
     display: ${({ isEnded }) => (isEnded ? 'block' : 'none')};
+    white-space: nowrap;
   }
 `;
 

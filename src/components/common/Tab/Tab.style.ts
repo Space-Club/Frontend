@@ -16,6 +16,7 @@ const TabItemStyled = styled.div<{ isActive: boolean }>`
   line-height: 2rem;
   color: ${(props) => (props.isActive ? `${Theme.color.activeColor}` : `${Theme.color.black}`)};
   cursor: pointer;
+  white-space: nowrap;
 
   &:not(:last-of-type)::after {
     content: '';
