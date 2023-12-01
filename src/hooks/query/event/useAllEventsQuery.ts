@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 
 export const QUERY_KEY = { SHOW: 'SHOW', PROMOTION: 'PROMOTION', RECRUITMENT: 'RECRUITMENT' };
 
-const useAllEventsQuery = ({ pageNumber, category, sort }: AllEventsRequest, pathname: string) => {
+const useAllEventsQuery = ({ pageNumber, category }: AllEventsRequest, pathname: string) => {
   const { data: allEvents } = useQuery({
     queryKey: [
       pathname === '/'
@@ -15,7 +15,7 @@ const useAllEventsQuery = ({ pageNumber, category, sort }: AllEventsRequest, pat
         : QUERY_KEY.RECRUITMENT,
       pageNumber,
     ],
-    queryFn: () => getAllEvents({ pageNumber, category, sort }),
+    queryFn: () => getAllEvents({ pageNumber, category }),
     suspense: true,
   });
 

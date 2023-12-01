@@ -21,7 +21,6 @@ const MainEvents = ({ pathname }: MainEventsProps) => {
     {
       pageNumber: currentPage,
       category: pathname === '/' ? 'SHOW' : pathname === '/events' ? 'PROMOTION' : 'RECRUITMENT',
-      sort: pathname === '/recruitment' ? 'FormInfo.formCloseDateTime' : 'EventInfo.startDateTime',
     },
     pathname,
   );
