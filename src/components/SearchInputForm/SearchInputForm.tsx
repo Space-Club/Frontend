@@ -40,8 +40,8 @@ const SearchInputForm = () => {
   }, []);
 
   const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter' && debouncedKeyword.trim() !== '') {
-      navigate(PATH.SEARCH(debouncedKeyword));
+    if (event.key === 'Enter' && keyword.trim() !== '') {
+      navigate(PATH.SEARCH(keyword));
     }
   };
 
