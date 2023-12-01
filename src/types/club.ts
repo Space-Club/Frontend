@@ -8,7 +8,7 @@ interface Club {
   reverse?: boolean;
 }
 
-interface ClubInfo extends Pick<Club, 'name' | 'logoImageUrl' | 'coverImageUrl'> {}
+interface ClubInfo extends Pick<Club, 'name' | 'logoImageUrl'> {}
 
 interface CreateClubFormValue {
   image: File;

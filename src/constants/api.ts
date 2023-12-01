@@ -19,15 +19,8 @@ const END_POINTS = {
   GET_EVENT_DETAIL: '/events',
   GET_EVENT_FORM: (eventId: string) => `/events/${eventId}/forms`,
   GET_BANNER_EVENTS: '/events/banner',
-  ALL_EVENTS: ({
-    category,
-    pageNumber,
-    sort,
-  }: {
-    category: string;
-    pageNumber: number;
-    sort: string;
-  }) => `events?category=${category}&page=${pageNumber}&size=12&sort=${sort},asc`,
+  ALL_EVENTS: ({ category, pageNumber }: { category: string; pageNumber: number }) =>
+    `events?category=${category}&page=${pageNumber}&size=12,asc`,
   EVENT_APPLY: '/events/participate',
   CANCEL_EVENT: ({ eventId }: { eventId: string }) => `/events/${eventId}/participate`,
   GET_SUBMITTED_FORMS: ({ eventId, pageNumber }: { eventId: string; pageNumber: number }) =>
