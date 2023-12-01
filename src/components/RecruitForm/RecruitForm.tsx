@@ -107,7 +107,7 @@ const RecruitForm = ({ register, setValue, watch, errors, eventDetail }: Recruit
             {...register('openDate', {
               required: REQUIRED('신청 시작 날짜는'),
               validate: {
-                today: validateTodayDate,
+                today: (value) => (eventDetail ? true : validateTodayDate(value)),
                 compare: (value) => validateTimeCompare(value, watch('closeDate'), LAST_TIME),
               },
               max: { value: LIMIT_VALUE.DATE_MAX, message: MAX_YEAR },

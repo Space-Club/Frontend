@@ -64,7 +64,7 @@ const ScheduleForm = ({ register, setValue, watch, errors, eventDetail }: Schedu
             {...register('startDate', {
               required: REQUIRED('활동 시작 날짜는'),
               validate: {
-                today: validateTodayDate,
+                today: (value) => (eventDetail ? true : validateTodayDate(value)),
                 compare: (value) => validateTimeCompare(value, watch('endDate'), LAST_TIME),
                 compareForm: (value) =>
                   validateTimeCompare(watch('closeDate'), value, FORM_START_TIME('활동')),
@@ -143,7 +143,7 @@ const ScheduleForm = ({ register, setValue, watch, errors, eventDetail }: Schedu
             {...register('openDate', {
               required: REQUIRED('신청 시작 날짜는'),
               validate: {
-                today: validateTodayDate,
+                today: (value) => (eventDetail ? true : validateTodayDate(value)),
                 compare: (value) => validateTimeCompare(value, watch('closeDate'), LAST_TIME),
               },
               max: { value: LIMIT_VALUE.DATE_MAX, message: MAX_YEAR },
