@@ -1,20 +1,33 @@
 import postClubNotice from '@/apis/club/postClubNotice';
+import useTextException from '@/hooks/useTextException';
+import { HttpException } from '@/types/common';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
+import { AxiosError } from 'axios';
+
 import { QUERY_KEY } from './useGetClubNoticeQuery';
 
-const usePostNoticeMutation = () => {
-  const queryClient = useQueryClient();
+interface usePostNoticeMutationProps {
+  handleSuccess?: () => void;
+}
 
-  const { mutate: postNotice } = useMutation({
+const usePostNoticeMutation = ({ handleSuccess }: usePostNoticeMutationProps) => {
+  const queryClient = useQueryClient();
+  const { handleTextException } = useTextException();
+
+  const { mutate: postNotice, isSuccess: postSuccess } = useMutation({
     mutationFn: postClubNotice,
     onSuccess: () => {
       queryClient.invalidateQueries([QUERY_KEY.CLUB_NOTICE]);
+      handleSuccess?.();
+    },
+    onError: (error: AxiosError<HttpException>) => {
+      handleTextException(error);
     },
   });
 
-  return { postNotice };
+  return { postNotice, postSuccess };
 };
 
 export default usePostNoticeMutation;

@@ -42,7 +42,7 @@ const NoticeModal = ({
 
   const { createToast } = useToast();
 
-  const { postNotice } = usePostNoticeMutation();
+  const { postNotice } = usePostNoticeMutation({ handleSuccess: () => onClose() });
   const { patchNotice } = usePatchClubNoticeMutation();
   const { deleteNotice } = useDeleteClubNoticeMutation();
 
@@ -50,7 +50,6 @@ const NoticeModal = ({
     const notice = getValidNotice();
     if (notice) {
       postNotice({ clubId, notice });
-      onClose();
     }
   };
 
@@ -65,7 +64,6 @@ const NoticeModal = ({
     }
     if (notice) {
       patchNotice({ clubId, notice, noticeId });
-      setIsEdit(false);
     }
   };
 
