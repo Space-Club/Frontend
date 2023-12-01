@@ -9,6 +9,7 @@ interface GetAppliedEventData {
   location: string;
   participationStatus: EventStatus;
   posterImageUrl: string;
+  ticketCount: string;
 }
 
 interface GetAppliedEventResponse {
