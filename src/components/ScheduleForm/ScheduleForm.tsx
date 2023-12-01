@@ -190,6 +190,7 @@ const ScheduleForm = ({ register, setValue, watch, errors, eventDetail }: Schedu
           })}
           labelText="일정 안내"
           rows={10}
+          maxLength={LIMIT_LENGTH.CONTENT_MAX}
         />
         {errors.content && <ErrorMessage>{errors.content.message as string}</ErrorMessage>}
       </ContentArea>

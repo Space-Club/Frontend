@@ -156,6 +156,7 @@ const RecruitForm = ({ register, setValue, watch, errors, eventDetail }: Recruit
           labelText="공고 내용"
           required
           rows={10}
+          maxLength={LIMIT_LENGTH.CONTENT_MAX}
         />
         {errors.content && <ErrorMessage>{errors.content.message as string}</ErrorMessage>}
       </ContentArea>

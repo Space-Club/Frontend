@@ -234,6 +234,7 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
           labelText="공연 내용 작성"
           required
           rows={10}
+          maxLength={LIMIT_LENGTH.CONTENT_MAX}
         />
         {errors.content && <ErrorMessage>{errors.content?.message as string}</ErrorMessage>}
       </ContentArea>

@@ -158,6 +158,7 @@ const PromotionForm = ({ register, setValue, watch, errors, eventDetail }: Promo
           labelText="행사 내용 작성"
           required
           rows={10}
+          maxLength={LIMIT_LENGTH.CONTENT_MAX}
         />
         {errors.content && <ErrorMessage>{errors.content?.message as string}</ErrorMessage>}
       </ContentArea>
