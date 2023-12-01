@@ -9,34 +9,35 @@ const EventFormContainer = styled.form`
   width: 100%;
   height: 100%;
   padding: 3rem 0;
+  gap: 3rem;
 
-  & > div:first-of-type {
-    @media (min-width: 1023px) {
-      padding-right: 1.5rem;
-      border-right: 1px solid ${Theme.color.tSeparator};
-    }
-  }
-
-  & > div:nth-last-of-type(2) {
-    @media (min-width: 1023px) {
-      padding-left: 1.5rem;
-    }
-  }
   & > div:first-child > div:nth-last-of-type(2) {
     flex-grow: 1;
   }
 `;
 const ContentArea = styled.div`
-  min-width: 50%;
-  min-height: 100%;
+  flex: 1;
   display: flex;
+  position: relative;
   flex-direction: column;
   gap: 1rem;
 
-  & > div:last-of-type {
-    @media (max-width: 1023px) {
-      padding-bottom: 1.5rem;
-      margin-bottom: 2rem;
+  &:first-of-type::after {
+    @media (min-width: 896px) {
+      content: '';
+      position: absolute;
+      right: -1.5rem;
+      height: 100%;
+      border-right: 1px solid ${Theme.color.tSeparator};
+    }
+  }
+  &:nth-of-type(2)::after {
+    @media (max-width: 896px) {
+      content: '';
+      position: absolute;
+      top: -1.5rem;
+      width: 100%;
+      border-top: 1px solid ${Theme.color.tSeparator};
     }
   }
 `;
@@ -47,10 +48,6 @@ const TwoInputContainer = styled.div`
   &:last-of-type {
     padding-top: 1rem;
     border-top: 1px solid ${Theme.color.tSeparator};
-
-    @media (max-width: 1023px) {
-      border-bottom: 1px solid ${Theme.color.tSeparator};
-    }
   }
 `;
 const HalfInputForm = styled(InputForm)`
