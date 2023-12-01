@@ -106,6 +106,7 @@ const CommonEmptyEventsWrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
+  padding: 2rem 0;
   color: ${Theme.color.gray};
 `;
 

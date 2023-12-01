@@ -10,12 +10,18 @@ import {
 } from './SubmittedForms.style';
 
 const SubmittedForms = ({ formInfo, userForms }: { formInfo: FormInfo; userForms: UserForm[] }) => {
+  const isPerform = Boolean(userForms[0].ticketCount);
+
   return (
     <SubmittedFormsContainer>
       <SubmittedFormsWrapper>
         <FormsWrapper>
           <FormLengthStyled>{`제출된 폼: ${formInfo.count}`}</FormLengthStyled>
-          <Category optionTitles={formInfo.optionTitles} managed={formInfo.managed} />
+          <Category
+            optionTitles={formInfo.optionTitles}
+            managed={formInfo.managed}
+            isPerform={isPerform}
+          />
           {userForms?.map((form, index) => {
             return (
               <SubmittedForm
@@ -25,6 +31,7 @@ const SubmittedForms = ({ formInfo, userForms }: { formInfo: FormInfo; userForms
                 userId={form.userId}
                 options={form.options}
                 participation={form.participation}
+                ticketCount={form.ticketCount}
                 managed={formInfo.managed}
               />
             );
