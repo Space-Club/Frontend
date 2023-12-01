@@ -106,6 +106,7 @@ const EventDetailPage = () => {
               <DetailContentWrapper>
                 <CategoryDetailForm data={eventDetail!} />
                 <UserApplyButton
+                  isToken={Boolean(token)}
                   eventId={eventId}
                   eventDetail={eventDetail!}
                   applyModalOpen={applyModalOpen}
