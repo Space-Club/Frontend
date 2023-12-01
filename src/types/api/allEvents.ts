@@ -5,7 +5,6 @@ import { EventInfo } from '../event';
 interface AllEventsRequest {
   pageNumber: number;
   category: string;
-  sort: string;
 }
 
 interface AllEventsResponse {

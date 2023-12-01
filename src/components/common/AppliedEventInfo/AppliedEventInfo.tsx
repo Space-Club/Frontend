@@ -13,6 +13,7 @@ import {
 interface AppliedEventInfoProps
   extends Pick<Event, 'title' | 'startDate' | 'location' | 'clubName'> {
   eventId: string;
+  ticketCount?: string;
   eventStatus: EventStatus;
 }
 
@@ -21,6 +22,7 @@ const AppliedEventInfo = ({
   startDate,
   location,
   clubName,
+  ticketCount,
   eventStatus,
 }: AppliedEventInfoProps) => {
   return (
@@ -38,6 +40,12 @@ const AppliedEventInfo = ({
         장소
         <SemiBlackFont>{location}</SemiBlackFont>
       </EventDescription>
+      {ticketCount && (
+        <EventDescription>
+          예매매수
+          <SemiBlackFont>{ticketCount}</SemiBlackFont>
+        </EventDescription>
+      )}
     </EventInfoSection>
   );
 };

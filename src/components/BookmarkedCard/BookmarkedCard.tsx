@@ -7,6 +7,7 @@ import BookMark from '../common/BookMark/BookMark';
 import Poster from '../common/Poster/Poster';
 import {
   BookmarkedCardContainer,
+  BookmarkedCardImageWrapper,
   BookmarkedInfoLabelStyled,
   BookmarkedInfoLine,
   BookmarkedInfoStyled,
@@ -31,7 +32,9 @@ const BookmarkedCard = ({
         navigate(PATH.EVENT.DETAIL(eventId));
       }}
     >
-      <Poster posterSrc={posterImageUrl} width={7.6} />
+      <BookmarkedCardImageWrapper>
+        <Poster posterSrc={posterImageUrl} width={7.6} />
+      </BookmarkedCardImageWrapper>
       <BookmarkedInfoWrapper>
         <BookmarkedTitleStyled>{title}</BookmarkedTitleStyled>
         <BookmarkedInfoLine>

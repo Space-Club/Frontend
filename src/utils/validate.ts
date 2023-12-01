@@ -7,11 +7,16 @@ import {
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
 
 const { TRIM } = ERROR_MESSAGE.COMMON;
-const { START_TIME } = ERROR_MESSAGE.EVENT;
+const { START_TIME, LARGER } = ERROR_MESSAGE.EVENT;
 const { NAME, NUMBER } = ERROR_MESSAGE.REGISTER;
 
 const validateTrim = (input: string) => {
   if (!input.trim() && input.length > 0) return TRIM;
+  else return true;
+};
+
+const validateLarger = (small: number, big: number, smallText: string, bigText: string) => {
+  if (small > big) return LARGER(smallText, bigText);
   else return true;
 };
 
@@ -83,6 +88,7 @@ const validateClubInfo = (clubInfo: string) => {
 export {
   validateTrim,
   validateName,
+  validateLarger,
   validateNumber,
   validateTimeCompare,
   validateTodayDate,

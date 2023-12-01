@@ -34,12 +34,18 @@ const UpdateDeleteWrapper = styled.div`
 `;
 const EventDetailWrapper = styled.div`
   display: flex;
+  flex-wrap: wrap;
   width: 100%;
+
+  @media (max-width: 1023px) {
+    justify-content: center;
+  }
 `;
 const DetailContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  max-width: 38rem;
   flex-grow: 1;
   margin-left: 3rem;
 `;
@@ -51,6 +57,10 @@ const TwoContentWrapper = styled.div<{ itemLength: number }>`
   grid-template-rows: ${({ itemLength }) => (itemLength > 2 ? 'repeat(2, 1fr)' : 'repeat(1, 1fr)')};
   grid-template-columns: repeat(2, 1fr);
   gap: 3rem;
+
+  @media (max-width: 1023px) {
+    gap: 0;
+  }
 `;
 const ContentLabel = styled.div`
   font-size: ${Theme.fontSize.mediumTitle};
@@ -74,6 +84,7 @@ const ApplicantButton = styled(SemiPurpleButton)<{ capacity: boolean; isDisabled
 `;
 const ApplyButton = styled(SemiPurpleButton)<{ capacity: boolean }>`
   width: 30%;
+  min-width: 10rem;
   border-top-left-radius: ${({ capacity }) => capacity && '0'};
   border-bottom-left-radius: ${({ capacity }) => capacity && '0'};
   font-size: ${Theme.fontSize.mediumContent};
@@ -94,8 +105,14 @@ const EventContentWrapper = styled.div`
   margin-top: 2rem;
 `;
 const EventContentTitle = styled.div`
+  border-top: 1px solid ${Theme.color.tSeparator};
   font-size: ${Theme.fontSize.largeTitle};
-  margin-bottom: 0.5rem;
+  padding: 1rem 0;
+`;
+const EventContent = styled.textarea`
+  width: 100%;
+  border: none;
+  outline: none;
 `;
 
 export {
@@ -115,4 +132,5 @@ export {
   BookmarkButton,
   EventContentWrapper,
   EventContentTitle,
+  EventContent,
 };

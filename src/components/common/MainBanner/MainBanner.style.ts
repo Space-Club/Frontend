@@ -1,12 +1,15 @@
 import Theme from '@/styles/Theme';
+import { twoLineTitle } from '@/styles/common';
 import styled from '@emotion/styled';
 
 const BannerContainerStyled = styled.div`
   width: 100%;
+  max-width: 60rem;
   height: 19rem;
   border-radius: 2.3125rem;
-  margin: 2rem 0;
+  margin: 4rem 0;
   overflow: hidden;
+  cursor: pointer;
 `;
 
 const BannerWrapperStyled = styled.div`
@@ -21,7 +24,7 @@ const BannerImageStyled = styled.img`
   height: 100%;
 `;
 
-const BannerTopTitleStyled = styled.h1`
+const BannerTopTitleStyled = styled(twoLineTitle)`
   position: absolute;
   top: 1.56rem;
   left: 2.65rem;

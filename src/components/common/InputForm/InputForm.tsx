@@ -31,6 +31,7 @@ const InputForm = forwardRef<HTMLInputElement, InputForm>(
       containerWidth,
       unit,
       isHalf,
+      readOnly,
       ...props
     },
     ref,
@@ -56,6 +57,7 @@ const InputForm = forwardRef<HTMLInputElement, InputForm>(
             maxLength={maxLength}
             placeholder={placeholder}
             onKeyDown={handleKeyDown}
+            readOnly={readOnly}
             {...props}
           />
           {unit && <InputUnit isHalf={!!isHalf}>{unit}</InputUnit>}

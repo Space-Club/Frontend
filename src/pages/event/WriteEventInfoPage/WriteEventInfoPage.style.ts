@@ -5,28 +5,41 @@ import styled from '@emotion/styled';
 const EventFormContainer = styled.form`
   display: flex;
   position: relative;
+  flex-wrap: wrap;
   width: 100%;
   height: 100%;
   padding: 3rem 0;
+  gap: 3rem;
 
-  & > div:first-of-type {
-    padding-right: 1.5rem;
-    border-right: 1px solid ${Theme.color.tSeparator};
-  }
-
-  & > div:nth-last-of-type(2) {
-    padding-left: 1.5rem;
-  }
   & > div:first-child > div:nth-last-of-type(2) {
     flex-grow: 1;
   }
 `;
 const ContentArea = styled.div`
-  width: 50%;
-  min-height: 100%;
+  flex: 1;
   display: flex;
+  position: relative;
   flex-direction: column;
   gap: 1rem;
+
+  &:first-of-type::after {
+    @media (min-width: 896px) {
+      content: '';
+      position: absolute;
+      right: -1.5rem;
+      height: 100%;
+      border-right: 1px solid ${Theme.color.tSeparator};
+    }
+  }
+  &:nth-of-type(2)::after {
+    @media (max-width: 896px) {
+      content: '';
+      position: absolute;
+      top: -1.5rem;
+      width: 100%;
+      border-top: 1px solid ${Theme.color.tSeparator};
+    }
+  }
 `;
 const TwoInputContainer = styled.div`
   display: flex;

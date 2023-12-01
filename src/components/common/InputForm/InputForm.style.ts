@@ -37,6 +37,9 @@ const InputStyled = styled.input`
     color: ${Theme.color.black};
     border: none;
   }
+  :read-only {
+    background-color: ${Theme.color.tWhiteGrey};
+  }
 
   &[type='datetime-local']::-webkit-datetime-edit {
     padding-left: 1.5rem;

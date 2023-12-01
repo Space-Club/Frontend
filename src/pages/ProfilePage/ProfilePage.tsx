@@ -27,8 +27,8 @@ const ProfilePage = () => {
           <DeleteUserButton />
         </DeleteUserButtonWrapper>
       </Header>
-      <Profile />
       <Suspense fallback={<Spinner />}>
+        <Profile />
         <ProfileBottomWrapper>
           <AppliedEventTabContainer>
             <Tab tabItems={PROFILE_TABS} />

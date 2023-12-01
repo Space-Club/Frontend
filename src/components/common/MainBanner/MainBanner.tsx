@@ -28,7 +28,7 @@ const MainBanner = () => {
             <BannerWrapperStyled onClick={() => navigate(PATH.EVENT.DETAIL(eventInfo.eventId))}>
               <ClubCoverTransparent />
               <BannerTopTitleStyled>
-                {clubInfo.name}
+                {eventInfo.eventCategory === 'RECRUITMENT' ? clubInfo.name : eventInfo.title}
                 {
                   MAIN_BANNER_EVENTS_TEXT[
                     eventInfo.eventCategory as keyof typeof MAIN_BANNER_EVENTS_TEXT
