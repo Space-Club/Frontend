@@ -7,7 +7,7 @@ const SidebarContainer = styled.div<{ isOpen: boolean }>`
   position: fixed;
   z-index: 100;
   width: 5.7rem;
-  height: 100vh;
+  height: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -92,7 +92,7 @@ const SidebarToggleButtonStyled = styled.button`
   border: none;
   align-items: center;
   position: absolute;
-  padding-right: 0.2=1rem;
+  padding-right: 0.2rem;
   right: -0.7rem;
   top: 50%;
   z-index: 100;
