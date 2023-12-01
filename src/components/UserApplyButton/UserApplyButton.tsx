@@ -27,7 +27,7 @@ const UserApplyButton = ({
   loginModalOpen,
 }: UserApplyButton) => {
   const bookmarkRef = useRef<HTMLDivElement>(null);
-  const { isBookmarked } = useIsBookmarkedQuery({ eventId });
+  const { isBookmarked } = useIsBookmarkedQuery({ eventId, isEnabled: isToken });
   const { category, hasAlreadyApplied, eventInfo, formInfo } = eventDetail ?? {};
   const { applicants, isEnded } = eventInfo ?? {};
   const { isAbleToApply } = formInfo ?? {};

@@ -103,6 +103,7 @@ const EventDetailPage = () => {
           <Breadcrumb eventId={eventId} pageType="eventDetail" />
           <ContentWrapper>
             <ManagerButton
+              isToken={Boolean(token)}
               eventId={eventId}
               eventDetail={eventDetail!}
               deleteModalOpen={deleteModalOpen}
