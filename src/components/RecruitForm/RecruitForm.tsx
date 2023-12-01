@@ -25,11 +25,11 @@ const RecruitForm = ({ register, setValue, watch, errors, eventDetail }: Recruit
   useEffect(() => {
     if (eventDetail) {
       const { eventInfo } = eventDetail;
-      const { location, recruitmentTarget, recruitmentLimit } = eventInfo;
+      const { activityArea, recruitmentTarget, recruitmentLimit } = eventInfo;
 
       setFormValue({ setValue, eventDetail });
 
-      setValue('activityArea', location);
+      setValue('activityArea', activityArea);
       setValue('recruitmentTarget', recruitmentTarget);
       setValue('capacity', recruitmentLimit);
     }

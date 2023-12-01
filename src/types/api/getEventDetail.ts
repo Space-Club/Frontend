@@ -55,7 +55,7 @@ interface PromotionDetailResponse extends CommonDetailResponse {
   eventInfo: CommonDetailResponse['eventInfo'] & {
     startDate: string;
     startTime: string;
-    activityArea: string;
+    location: string;
     capacity: number;
   };
 }
@@ -65,7 +65,7 @@ interface RecruitmentDetailResponse extends CommonDetailResponse {
   eventInfo: CommonDetailResponse['eventInfo'] & {
     startDate: string;
     startTime: string;
-    location: string;
+    activityArea: string;
     recruitmentLimit: number;
     recruitmentTarget: string;
   };

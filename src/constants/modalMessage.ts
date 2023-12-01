@@ -3,7 +3,7 @@ const MODAL_TEXT = {
   LOGOUT: '로그아웃 하시겠습니까?',
   UNDONE: '저장되지 않은 수정사항이 있습니다.',
   TICKET_APPLY: '예매 장수를 선택해주세요.',
-  EVENT_APPLY: '행사를 신청하시겠습니까?',
+  EVENT_APPLY: '신청하시겠습니까?',
   DELETE_MEMBER: '정말 이 멤버를 탈퇴시키시겠어요?',
   MANAGE_INFO: `관리모드를 사용하면 참여신청에 대한 승인과 취소를 할 수 있어요.`,
   FORM_OPTION_SKIP_CONFIRM:

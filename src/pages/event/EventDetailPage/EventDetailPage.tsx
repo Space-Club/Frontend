@@ -22,6 +22,7 @@ import CategoryDetailForm from './CategoryDetail/CategoryDetailForm';
 import {
   ContentWrapper,
   DetailContentWrapper,
+  EventContent,
   EventContentTitle,
   EventContentWrapper,
   EventDetailPageContainer,
@@ -113,7 +114,7 @@ const EventDetailPage = () => {
             </EventDetailWrapper>
             <EventContentWrapper>
               <EventContentTitle>행사 상세 내용</EventContentTitle>
-              {content}
+              <EventContent>{content}</EventContent>
             </EventContentWrapper>
           </ContentWrapper>
         </>
