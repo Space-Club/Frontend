@@ -8,7 +8,7 @@ interface FormDetailModalProps {
   onClose: () => void;
   options: { title: string; content: string }[];
   nthForm: number;
-  ticketCount: string | null;
+  ticketCount?: string;
 }
 
 const FormDetailModal = ({ onClose, options, nthForm, ticketCount }: FormDetailModalProps) => {

@@ -17,7 +17,7 @@ interface SubmittedFormProps {
     status: EventStatus;
     dateTime: string;
   };
-  ticketCount: string | null;
+  ticketCount?: string;
   managed: boolean;
 }
 
