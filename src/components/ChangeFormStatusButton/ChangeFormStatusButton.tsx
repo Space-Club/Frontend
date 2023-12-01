@@ -22,7 +22,7 @@ const ChangeFormStatusButton = ({ eventId, formId, status }: ChangeFormStatusBut
     <>
       {showModal && (
         <ConfirmModal
-          message={`상태를 ${status === 'CONFIRMED' ? '"대기"로' : '"확인"으로'} 변경하시겠습니까?`}
+          message={`상태를 ${status === 'CONFIRMED' ? '"대기"로' : '"승인"으로'} 변경하시겠습니까?`}
           onConfirm={() =>
             changeSubmittedFormStatus({
               eventId,
