@@ -5,6 +5,7 @@ import { EventStatus } from '@/types/event';
 import { FaCheckCircle } from 'react-icons/fa';
 import { FaRegCheckCircle } from 'react-icons/fa';
 
+import AlertModal from '../Modals/AlertModal';
 import ConfirmModal from '../Modals/ConfirmModal';
 import { ButtonValueStyled, StatusButtonContainer } from './ChangeFormStatusButton.style';
 
@@ -20,19 +21,24 @@ const ChangeFormStatusButton = ({ eventId, formId, status }: ChangeFormStatusBut
 
   return (
     <>
-      {showModal && (
-        <ConfirmModal
-          message={`상태를 ${status === 'CONFIRMED' ? '"대기"로' : '"승인"으로'} 변경하시겠습니까?`}
-          onConfirm={() =>
-            changeSubmittedFormStatus({
-              eventId,
-              formUserId: formId,
-              participationStatus: status === 'CONFIRMED' ? 'PENDING' : 'CONFIRMED',
-            })
-          }
-          onClose={modalClose}
-        />
-      )}
+      {showModal &&
+        (status === 'CANCEL_REQUESTED' ? (
+          <AlertModal message="취소요청한 폼은 상태를 변경할 수 없습니다." onClose={modalClose} />
+        ) : (
+          <ConfirmModal
+            message={`상태를 ${
+              status === 'CONFIRMED' ? '"대기"로' : '"승인"으로'
+            } 변경하시겠습니까?`}
+            onConfirm={() =>
+              changeSubmittedFormStatus({
+                eventId,
+                formUserId: formId,
+                participationStatus: status === 'CONFIRMED' ? 'PENDING' : 'CONFIRMED',
+              })
+            }
+            onClose={modalClose}
+          />
+        ))}
       <StatusButtonContainer
         status={status}
         onClick={() => modalOpen()}
