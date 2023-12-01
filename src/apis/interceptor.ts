@@ -25,10 +25,6 @@ const handleTokenError = async (error: AxiosError<HttpException>) => {
 const setToken = (config: InternalAxiosRequestConfig) => {
   const token = getStorage('token');
 
-  if (!token) {
-    throw new Error('토큰이 없습니다.');
-  }
-
   config.headers.Authorization = `Bearer ${token}`;
 
   return config;
