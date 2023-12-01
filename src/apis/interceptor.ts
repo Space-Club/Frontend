@@ -17,14 +17,15 @@ const handleTokenError = async (error: AxiosError<HttpException>) => {
 
   originalRequest.headers.Authorization = `Bearer ${refreshToken}`;
 
-  if (error.response?.data.code === EXCEPTION_CODE.INVALID_ACCESS_TOKEN) {
+  if (error.response?.data.code === EXCEPTION_CODE.EXPIRED_ACCESS_TOKEN) {
     return axiosClientWithAuth(originalRequest);
   }
+
   return Promise.reject(error);
 };
 
 const handleRefreshTokenError = (error: AxiosError<HttpException>) => {
-  if (error.response?.data.code === EXCEPTION_CODE.INVALID_REFRESH_TOKEN) {
+  if (error.response?.data.code === EXCEPTION_CODE.EXPIRED_REFRESH_TOKEN) {
     alert('로그인이 만료되었습니다. 다시 로그인해주세요.');
     window.location.href = PATH.LOGIN;
   }
