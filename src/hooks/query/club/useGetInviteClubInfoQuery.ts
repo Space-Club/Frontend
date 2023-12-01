@@ -9,7 +9,6 @@ const useGetInviteClubInfoQuery = ({ inviteCode }: JoinClubRequest) => {
   const { data: inviteClubInfo } = useQuery({
     queryFn: () => getInviteClubInfo({ inviteCode }),
     queryKey: [QUERY_KEY],
-    suspense: true,
   });
 
   return { inviteClubInfo };
