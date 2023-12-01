@@ -23,7 +23,7 @@ const usePostEventApplyMutation = ({ eventId }: usePostEventApplyMutation) => {
   const { mutate: applyEvent, isLoading: isApplyLoading } = useMutation({
     mutationFn: postApplyEvent,
     onSuccess: () => {
-      queryClient.invalidateQueries([EVENT_DETAIL_QUERY_KEY]);
+      queryClient.invalidateQueries([EVENT_DETAIL_QUERY_KEY.EVENT_DETAIL]);
       createToast({ message: '성공적으로 신청되었습니다.', toastType: 'success' });
       navigate(`/event/${eventId}`);
     },
