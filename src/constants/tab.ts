@@ -2,7 +2,7 @@ import { PATH } from './path';
 
 enum TAB_CONSTANTS {
   PERFORMANCE = '공연',
-  EVENT_SHOW = '행사',
+  EVENT_SHOW = '홍보',
   RECRUITMENT = '모집공고',
 
   APPLIED_EVENT = '참여 신청한 행사',
