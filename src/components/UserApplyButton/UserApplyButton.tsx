@@ -12,12 +12,13 @@ import { getEventDetailResponse } from '@/types/api/getEventDetail';
 import { useRef } from 'react';
 
 interface UserApplyButton {
+  isToken: boolean;
   eventId: string;
   eventDetail: getEventDetailResponse;
   applyModalOpen: () => void;
 }
 
-const UserApplyButton = ({ eventId, eventDetail, applyModalOpen }: UserApplyButton) => {
+const UserApplyButton = ({ isToken, eventId, eventDetail, applyModalOpen }: UserApplyButton) => {
   const bookmarkRef = useRef<HTMLDivElement>(null);
   const { isBookmarked } = useIsBookmarkedQuery({ eventId });
   const { category, hasAlreadyApplied, eventInfo, formInfo } = eventDetail ?? {};
@@ -33,8 +34,10 @@ const UserApplyButton = ({ eventId, eventDetail, applyModalOpen }: UserApplyButt
       return EVENT_DETAIL_BUTTON.APPLY.APPLICANT;
     } else if (category !== 'RECRUITMENT' && applicants >= capacity) {
       return EVENT_DETAIL_BUTTON.APPLY.SOLD_OUT;
-    } else if (isEnded || isAbleToApply) {
+    } else if (isEnded) {
       return EVENT_DETAIL_BUTTON.APPLY.DEADLINE;
+    } else if (!isAbleToApply) {
+      return EVENT_DETAIL_BUTTON.APPLY.NOT_PERIOD;
     } else {
       return EVENT_DETAIL_BUTTON.APPLY.POSSIBLE;
     }
@@ -59,7 +62,7 @@ const UserApplyButton = ({ eventId, eventDetail, applyModalOpen }: UserApplyButt
       >
         {getApplyButtonText()}
       </ApplyButton>
-      <BookmarkButton reverse bold onClick={() => bookmarkRef.current?.click()}>
+      <BookmarkButton reverse bold disabled={!isToken} onClick={() => bookmarkRef.current?.click()}>
         <BookMark bookmarked={isBookmarked!} eventId={eventId} ref={bookmarkRef} />
       </BookmarkButton>
     </ButtonWrapper>

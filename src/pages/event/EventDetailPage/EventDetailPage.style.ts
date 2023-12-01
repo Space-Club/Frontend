@@ -85,6 +85,7 @@ const ApplicantButton = styled(SemiPurpleButton)<{ capacity: boolean; isDisabled
 const ApplyButton = styled(SemiPurpleButton)<{ capacity: boolean }>`
   width: 30%;
   min-width: 10rem;
+  padding: 0;
   border-top-left-radius: ${({ capacity }) => capacity && '0'};
   border-bottom-left-radius: ${({ capacity }) => capacity && '0'};
   font-size: ${Theme.fontSize.mediumContent};
@@ -98,6 +99,10 @@ const ApplyButton = styled(SemiPurpleButton)<{ capacity: boolean }>`
 const BookmarkButton = styled(SemiPurpleButton)`
   margin-left: 0.5rem;
   padding: 0 1.5rem;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 `;
 
 const EventContentWrapper = styled.div`
