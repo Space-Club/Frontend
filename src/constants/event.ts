@@ -58,6 +58,7 @@ const EVENT_DETAIL_BUTTON = {
   DELETE: '삭제하기',
   APPLY: {
     COMPLETED: '신청 완료',
+    NOT_PERIOD: '신청 기간이 아닙니다.',
     SOLD_OUT: 'SOLD OUT',
     DEADLINE: '신청 마감',
     APPLICANT: '인원 마감',

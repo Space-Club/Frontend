@@ -34,8 +34,10 @@ const UserApplyButton = ({ isToken, eventId, eventDetail, applyModalOpen }: User
       return EVENT_DETAIL_BUTTON.APPLY.APPLICANT;
     } else if (category !== 'RECRUITMENT' && applicants >= capacity) {
       return EVENT_DETAIL_BUTTON.APPLY.SOLD_OUT;
-    } else if (isEnded || isAbleToApply) {
+    } else if (isEnded) {
       return EVENT_DETAIL_BUTTON.APPLY.DEADLINE;
+    } else if (!isAbleToApply) {
+      return EVENT_DETAIL_BUTTON.APPLY.NOT_PERIOD;
     } else {
       return EVENT_DETAIL_BUTTON.APPLY.POSSIBLE;
     }

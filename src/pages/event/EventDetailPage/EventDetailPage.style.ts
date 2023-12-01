@@ -85,6 +85,7 @@ const ApplicantButton = styled(SemiPurpleButton)<{ capacity: boolean; isDisabled
 const ApplyButton = styled(SemiPurpleButton)<{ capacity: boolean }>`
   width: 30%;
   min-width: 10rem;
+  padding: 0;
   border-top-left-radius: ${({ capacity }) => capacity && '0'};
   border-bottom-left-radius: ${({ capacity }) => capacity && '0'};
   font-size: ${Theme.fontSize.mediumContent};
