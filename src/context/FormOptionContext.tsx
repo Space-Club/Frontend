@@ -2,7 +2,7 @@ import { FORM_OPTION } from '@/constants/form';
 import useToast from '@/hooks/useToast';
 import { FormOption } from '@/types/form';
 
-import { createContext, useCallback } from 'react';
+import { createContext, useCallback, useEffect } from 'react';
 import { useMemo, useState } from 'react';
 
 interface FormOptionContextProps {
@@ -20,6 +20,8 @@ interface FormOptionContextProps {
 interface FormContextOptionProviderProps {
   children: React.ReactNode;
 }
+
+const MAX_OPTION_COUNT = 20;
 
 const FormOptionContext = createContext<FormOptionContextProps>({
   selectedOptions: [],
@@ -53,6 +55,16 @@ const FormOptionContextProvider = ({ children }: FormContextOptionProviderProps)
       }),
     );
   }, []);
+
+  useEffect(() => {
+    if (MAX_OPTION_COUNT < selectedOptions.length) {
+      createToast({
+        message: `항목은 최대 ${MAX_OPTION_COUNT}개까지만 추가할 수 있습니다.`,
+        toastType: 'error',
+      });
+      setSelectedOptions((prev) => prev.slice(0, MAX_OPTION_COUNT));
+    }
+  }, [selectedOptions]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const changeOptionTitle = useCallback((option: FormOption, title: string) => {
     setSelectedOptions((prev) =>

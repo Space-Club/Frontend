@@ -31,6 +31,7 @@ const EXCEPTION_CODE = {
   MAX_IMAGE_SIZE_EXCEEDED: 'MAX_IMAGE_SIZE_EXCEEDED',
   INVALID_FILE_EXTENSION: 'INVALID_FILE_EXTENSION',
   BAD_WORD_DETECTED: 'BAD_WORD_DETECTED',
+  EXISTED_FORM: 'EXISTED_FORM',
   USER_CANNOT_WITHDRAW: 'USER_CANNOT_WITHDRAW',
 } as const;
 
@@ -65,6 +66,7 @@ const EXCEPTION_CODE_MESSAGE: ExceptionCodeMessage = {
   MAX_IMAGE_SIZE_EXCEEDED: '이미지의 최대 크기를 초과했습니다.',
   INVALID_FILE_EXTENSION: '지원하지 않는 파일 형식입니다.',
   BAD_WORD_DETECTED: '비속어가 포함되어 있습니다.',
+  EXISTED_FORM: '이미 폼 옵션을 설정한 행사입니다.',
   USER_CANNOT_WITHDRAW: '소속된 클럽을 모두 나간 뒤 탈퇴할 수 있습니다.',
 };
 

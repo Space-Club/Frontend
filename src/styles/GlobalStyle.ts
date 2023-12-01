@@ -11,6 +11,11 @@ const GlobalStyle = css`
   body {
   }
 
+  #root {
+    min-height: 100vh;
+    width: 100%;
+  }
+
   #overlays {
     position: fixed;
     z-index: 100;
