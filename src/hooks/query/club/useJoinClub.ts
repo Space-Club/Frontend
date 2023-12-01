@@ -1,15 +1,16 @@
 import postJoinClub from '@/apis/club/postJoinClub';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
-import { EXCEPTION_CODE_MESSAGE } from '@/constants/exceptionCode';
+import { EXCEPTION_CODE, EXCEPTION_CODE_MESSAGE } from '@/constants/exceptionCode';
 import { PATH } from '@/constants/path';
 import { SUCCESS_MESSAGE } from '@/constants/successMessage';
 import useToast from '@/hooks/useToast';
+import { HttpException } from '@/types/common';
 
 import { useNavigate } from 'react-router-dom';
 
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
-import { isAxiosError } from 'axios';
+import { AxiosError, isAxiosError } from 'axios';
 
 import { QUERY_KEY } from './useClubs';
 
@@ -26,20 +27,22 @@ const useJoinClub = () => {
       createToast({ message: SUCCESS_MESSAGE.CLUB.JOIN, toastType: 'success' });
       navigate(PATH.CLUB.HOME(data.clubId));
     },
-    onError: (error) => {
+    onError: (error: AxiosError<HttpException>) => {
       if (isAxiosError<ResponseDataType>(error)) {
-        const errorCode = error.response?.data.split(':')[1]; //#TODO: 추후 에러코드만 오면 바꾸기
-        const { INVITE_EXPIRED, INVITE_NOT_FOUND, CLUB_ALREADY_JOINED } = EXCEPTION_CODE_MESSAGE;
-        createToast({
-          message: !errorCode
-            ? ERROR_MESSAGE.CLUB.JOIN_FAILED
-            : errorCode === CLUB_ALREADY_JOINED
-            ? CLUB_ALREADY_JOINED
-            : errorCode === INVITE_EXPIRED
-            ? INVITE_EXPIRED
-            : INVITE_NOT_FOUND,
-          toastType: 'error',
-        });
+        const errorCode = error.response?.data.code;
+        const { INVITE_EXPIRED, INVITE_NOT_FOUND, CLUB_ALREADY_JOINED, CLUB_NOT_FOUND } =
+          EXCEPTION_CODE;
+        if (errorCode === INVITE_EXPIRED) {
+          createToast({ message: EXCEPTION_CODE_MESSAGE.INVITE_EXPIRED, toastType: 'error' });
+        } else if (errorCode === INVITE_NOT_FOUND) {
+          createToast({ message: EXCEPTION_CODE_MESSAGE.INVITE_NOT_FOUND, toastType: 'error' });
+        } else if (errorCode === CLUB_ALREADY_JOINED) {
+          createToast({ message: EXCEPTION_CODE_MESSAGE.CLUB_ALREADY_JOINED, toastType: 'error' });
+        } else if (errorCode === CLUB_NOT_FOUND) {
+          createToast({ message: EXCEPTION_CODE_MESSAGE.CLUB_NOT_FOUND, toastType: 'error' });
+        } else {
+          createToast({ message: ERROR_MESSAGE.CLUB.JOIN_FAILED, toastType: 'error' });
+        }
       }
     },
   });
