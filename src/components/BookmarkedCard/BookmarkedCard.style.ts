@@ -1,15 +1,23 @@
 import Theme from '@/styles/Theme';
-import { ellipsisText } from '@/styles/common';
+import { ellipsisMultiLineText, ellipsisText } from '@/styles/common';
 import styled from '@emotion/styled';
 
 const BookmarkedCardContainer = styled.div`
   display: flex;
   width: 20rem;
+  height: 100%;
   cursor: pointer;
+  padding: 0 1rem;
   position: relative;
 `;
 
-const BookmarkedTitleStyled = styled.h3`
+const BookmarkedCardImageWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const BookmarkedTitleStyled = styled(ellipsisMultiLineText)`
   font-size: 1.375rem;
   font-weight: 400;
   margin-bottom: 1.8rem;
@@ -47,4 +55,5 @@ export {
   BookmarkedInfoStyled,
   BookmarkedInfoLine,
   BookmarkedInfoLabelStyled,
+  BookmarkedCardImageWrapper,
 };

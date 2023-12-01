@@ -34,6 +34,7 @@ const AppliedEvents = () => {
               location={event.location}
               clubName={event.clubName}
               eventStatus={event.participationStatus}
+              ticketCount={event.ticketCount}
             />
           ))
         ) : (

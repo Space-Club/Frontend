@@ -17,6 +17,7 @@ interface AppliedEventCardProps
   extends Pick<Event, 'title' | 'posterImageUrl' | 'startDate' | 'location' | 'clubName'> {
   eventId: string;
   eventStatus: EventStatus;
+  ticketCount?: string;
 }
 
 const AppliedEventCard = ({
@@ -27,6 +28,7 @@ const AppliedEventCard = ({
   location,
   clubName,
   eventStatus,
+  ticketCount,
   ...props
 }: AppliedEventCardProps) => {
   const isPossibleCancel = eventStatus === 'PENDING' || eventStatus === 'CONFIRMED';
@@ -43,6 +45,7 @@ const AppliedEventCard = ({
           location={location}
           clubName={clubName}
           eventStatus={eventStatus}
+          ticketCount={ticketCount}
         />
       </EventLeftSection>
       <EventRightSection>

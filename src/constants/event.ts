@@ -88,8 +88,8 @@ const SUBMIT_FORM_OPTIONS = {
 };
 
 const MAIN_BANNER_EVENTS_TEXT: MainBannerText = {
-  SHOW: ' 공연 참여 신청하기',
-  PROMOTION: ' 행사 참여 신청하기',
+  SHOW: ' 참여 신청하기',
+  PROMOTION: ' 참여 신청하기',
   RECRUITMENT: ' 신입부원 모집 중!',
 };
 
