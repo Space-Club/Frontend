@@ -2,7 +2,7 @@ import { EventStatus } from './event';
 
 interface Form {
   title: string;
-  content: string; //#TODO: boolean일 수도 있음 (체크박스?)
+  content: string;
 }
 
 interface UserForm {
@@ -12,6 +12,7 @@ interface UserForm {
     status: EventStatus;
     dateTime: string;
   };
+  ticketCount: string;
 }
 
 interface FormInfo {

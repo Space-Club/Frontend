@@ -17,6 +17,7 @@ interface SubmittedFormProps {
     status: EventStatus;
     dateTime: string;
   };
+  ticketCount: string | null;
   managed: boolean;
 }
 
@@ -26,6 +27,7 @@ const SubmittedForm = ({
   userId,
   options,
   participation,
+  ticketCount,
   managed,
 }: SubmittedFormProps) => {
   const { showModal, modalOpen, modalClose } = useModal();
@@ -34,10 +36,18 @@ const SubmittedForm = ({
 
   return (
     <>
-      {showModal && <FormDetailModal onClose={modalClose} options={options} nthForm={nthForm} />}
+      {showModal && (
+        <FormDetailModal
+          onClose={modalClose}
+          options={options}
+          nthForm={nthForm}
+          ticketCount={ticketCount}
+        />
+      )}
       <FormStyled key={index}>
         <FormNthStyled>{nthForm}</FormNthStyled>
         <FormRowStyled>{dateTime}</FormRowStyled>
+        {ticketCount && <FormNthStyled>{ticketCount}</FormNthStyled>}
         {options.map((option, index) => (
           <FormItemStyled onClick={modalOpen} key={index}>
             {option.content}
