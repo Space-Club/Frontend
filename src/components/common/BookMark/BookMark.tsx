@@ -9,10 +9,11 @@ interface BookMark extends HTMLAttributes<HTMLDivElement> {
   eventId: string;
   size?: number;
   strokeWidth?: number;
+  disabled?: boolean;
 }
 
 const BookMark = forwardRef<HTMLDivElement, BookMark>(
-  ({ bookmarked, size = 30, strokeWidth = 10, eventId, ...props }, ref) => {
+  ({ bookmarked, size = 30, strokeWidth = 10, eventId, disabled = false, ...props }, ref) => {
     const [bookmarkPaint, setBookmarkPaint] = useState(bookmarked);
     const { patchBookmarkMutate, isBookmarkLoading } = usePatchBookmarkMutation({ bookmarkPaint });
 
@@ -21,6 +22,7 @@ const BookMark = forwardRef<HTMLDivElement, BookMark>(
     }, [bookmarked]);
 
     const handleBookmarkClick: MouseEventHandler<HTMLDivElement> = async (event) => {
+      if (disabled) return;
       event.stopPropagation();
       if (isBookmarkLoading) return;
       patchBookmarkMutate({ eventId, bookmark: !bookmarkPaint });

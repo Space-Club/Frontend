@@ -99,10 +99,6 @@ const ApplyButton = styled(SemiPurpleButton)<{ capacity: boolean }>`
 const BookmarkButton = styled(SemiPurpleButton)`
   margin-left: 0.5rem;
   padding: 0 1.5rem;
-
-  &:disabled {
-    cursor: not-allowed;
-  }
 `;
 
 const EventContentWrapper = styled.div`

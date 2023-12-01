@@ -35,6 +35,11 @@ const EventDetailPage = () => {
   const token = getStorage('token');
 
   const {
+    showModal: loginModal,
+    modalOpen: loginModalOpen,
+    modalClose: loginModalClose,
+  } = useModal();
+  const {
     showModal: showApplyModal,
     modalOpen: applyModalOpen,
     modalClose: applyModalClose,
@@ -62,14 +67,15 @@ const EventDetailPage = () => {
     <EventDetailPageContainer>
       {!isEventDetailLoading && (
         <>
+          {loginModal && (
+            <ConfirmModal
+              message={MODAL_TEXT.LOGIN}
+              onClose={loginModalClose}
+              onConfirm={() => navigate('/login')}
+            />
+          )}
           {showApplyModal &&
-            (!token ? (
-              <ConfirmModal
-                message={MODAL_TEXT.LOGIN}
-                onClose={applyModalClose}
-                onConfirm={() => navigate('/login')}
-              />
-            ) : category === 'SHOW' ? (
+            (category === 'SHOW' ? (
               <ApplyShowModal
                 eventId={eventId}
                 eventDetail={eventDetail as ShowDetailResponse}
@@ -110,6 +116,7 @@ const EventDetailPage = () => {
                   eventId={eventId}
                   eventDetail={eventDetail!}
                   applyModalOpen={applyModalOpen}
+                  loginModalOpen={loginModalOpen}
                 />
               </DetailContentWrapper>
             </EventDetailWrapper>

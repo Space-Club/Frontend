@@ -16,9 +16,16 @@ interface UserApplyButton {
   eventId: string;
   eventDetail: getEventDetailResponse;
   applyModalOpen: () => void;
+  loginModalOpen: () => void;
 }
 
-const UserApplyButton = ({ isToken, eventId, eventDetail, applyModalOpen }: UserApplyButton) => {
+const UserApplyButton = ({
+  isToken,
+  eventId,
+  eventDetail,
+  applyModalOpen,
+  loginModalOpen,
+}: UserApplyButton) => {
   const bookmarkRef = useRef<HTMLDivElement>(null);
   const { isBookmarked } = useIsBookmarkedQuery({ eventId });
   const { category, hasAlreadyApplied, eventInfo, formInfo } = eventDetail ?? {};
@@ -43,6 +50,14 @@ const UserApplyButton = ({ isToken, eventId, eventDetail, applyModalOpen }: User
     }
   };
 
+  const handleBookmarkClick = () => {
+    if (isToken) {
+      bookmarkRef.current?.click();
+    } else {
+      loginModalOpen();
+    }
+  };
+
   return (
     <ButtonWrapper>
       {capacity && (
@@ -58,12 +73,17 @@ const UserApplyButton = ({ isToken, eventId, eventDetail, applyModalOpen }: User
       <ApplyButton
         capacity={Boolean(capacity)}
         disabled={getApplyButtonText() !== EVENT_DETAIL_BUTTON.APPLY.POSSIBLE}
-        onClick={() => applyModalOpen()}
+        onClick={() => (isToken ? applyModalOpen() : loginModalOpen())}
       >
         {getApplyButtonText()}
       </ApplyButton>
-      <BookmarkButton reverse bold disabled={!isToken} onClick={() => bookmarkRef.current?.click()}>
-        <BookMark bookmarked={isBookmarked!} eventId={eventId} ref={bookmarkRef} />
+      <BookmarkButton reverse bold onClick={() => handleBookmarkClick()}>
+        <BookMark
+          bookmarked={isBookmarked!}
+          eventId={eventId}
+          ref={bookmarkRef}
+          disabled={!isToken}
+        />
       </BookmarkButton>
     </ButtonWrapper>
   );
