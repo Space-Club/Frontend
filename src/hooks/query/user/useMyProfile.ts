@@ -16,6 +16,7 @@ export const QUERY_KEY = {
 };
 
 const useMyProfile = ({ setValue }: useMyProfile = {}) => {
+  const token = getStorage('token');
   const { data } = useQuery({
     queryKey: [QUERY_KEY.MY_PROFILE, QUERY_KEY.ID],
     queryFn: () => getMyProfileInfo(),
@@ -25,6 +26,7 @@ const useMyProfile = ({ setValue }: useMyProfile = {}) => {
         setValue('number', phoneNumber);
       }
     },
+    enabled: !!token,
   });
 
   return { data };
