@@ -36,10 +36,7 @@ const EventDetailWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   width: 100%;
-
-  @media (max-width: 1023px) {
-    justify-content: center;
-  }
+  justify-content: center;
 `;
 const DetailContentWrapper = styled.div`
   display: flex;
@@ -51,6 +48,15 @@ const DetailContentWrapper = styled.div`
 `;
 const EventTitle = styled.div`
   font-size: ${Theme.fontSize.largeTitle};
+
+  @media (max-width: 1023px) {
+    margin: 1rem 0;
+  }
+`;
+const EventRow = styled.div`
+  @media (max-width: 1023px) {
+    margin-top: 1rem;
+  }
 `;
 const TwoContentWrapper = styled.div<{ itemLength: number }>`
   display: ${({ itemLength }) => (itemLength === 0 ? 'none' : 'grid')};
@@ -59,7 +65,7 @@ const TwoContentWrapper = styled.div<{ itemLength: number }>`
   gap: 3rem;
 
   @media (max-width: 1023px) {
-    gap: 0;
+    gap: 1rem;
   }
 `;
 const ContentLabel = styled.div`
@@ -110,10 +116,13 @@ const EventContentTitle = styled.div`
   font-size: ${Theme.fontSize.largeTitle};
   padding: 1rem 0;
 `;
-const EventContent = styled.textarea`
+const EventContent = styled.div`
   width: 100%;
-  border: none;
-  outline: none;
+  min-height: 30rem;
+  background-color: ${Theme.color.tWhiteGrey};
+  border-radius: 0.25rem;
+  padding: 1rem;
+  white-space: pre-wrap;
 `;
 
 export {
@@ -125,6 +134,7 @@ export {
   EventDetailWrapper,
   DetailContentWrapper,
   EventTitle,
+  EventRow,
   TwoContentWrapper,
   ContentLabel,
   ButtonWrapper,

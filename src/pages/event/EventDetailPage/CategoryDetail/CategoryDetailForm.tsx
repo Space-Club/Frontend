@@ -2,7 +2,7 @@ import { EVENT_DETAIL } from '@/constants/event';
 import { getEventDetailResponse } from '@/types/api/getEventDetail';
 import { transDate, transTime } from '@/utils/timeTransform';
 
-import { ContentLabel, EventTitle } from '../EventDetailPage.style';
+import { ContentLabel, EventRow, EventTitle } from '../EventDetailPage.style';
 import ClubDetail from './ClubDetail';
 import PromotionDetail from './PromotionDetail';
 import RecruitmentDetail from './RecruitmentDetail';
@@ -33,17 +33,17 @@ const CategoryDetailForm = ({ data }: CategoryDetailForm) => {
     <>
       <EventTitle>{eventInfo.title}</EventTitle>
       {renderCategory()}
-      <div>
+      <EventRow>
         <ContentLabel>{EVENT_DETAIL.APPLICATION_PERIOD}</ContentLabel>
         <div>
           {transDate(openDate)} {transTime(openTime)} ~ {transDate(closeDate)}{' '}
           {transTime(closeTime)}까지
         </div>
-      </div>
-      <div>
+      </EventRow>
+      <EventRow>
         <ContentLabel>{EVENT_DETAIL.ORGANIZER}</ContentLabel>
         {clubInfo.clubName}
-      </div>
+      </EventRow>
     </>
   );
 };
