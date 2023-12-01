@@ -7,7 +7,6 @@ const MyProfileStyled = styled.div`
   width: 4.6rem;
   height: 4.6rem;
   border-radius: 1.6rem;
-  background: rgba(239, 239, 244, 0.2);
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
   overflow: hidden;
 `;

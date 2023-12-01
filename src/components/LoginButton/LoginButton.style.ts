@@ -12,17 +12,27 @@ const LoginButtonStyled = styled.button`
   border-radius: 0.3rem;
   background: rgba(239, 239, 244, 0.2);
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+  transition: all 0.2s ease-in-out;
+  color: ${Theme.color.black};
 
   &:hover {
-    transform: scale(1.1);
-    transition: transform 0.2s ease-in-out;
+    background-color: ${Theme.color.tPurple};
+    color: ${Theme.color.white};
   }
+`;
+
+const LogoTextStyled = styled.div`
+  font-size: ${Theme.fontSize.largeContent};
+  text-align: center;
+  color: ${Theme.color.tSemiPurple};
+  font-family: 'LogoFont';
+  cursor: pointer;
+  margin-top: 1rem;
 `;
 
 const TextStyled = styled.span`
   word-break: keep-all;
   font-size: ${Theme.fontSize.tagText};
-  color: white;
 `;
 
-export { LoginButtonStyled, TextStyled };
+export { LoginButtonStyled, TextStyled, LogoTextStyled };
