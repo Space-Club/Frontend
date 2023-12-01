@@ -3,18 +3,20 @@ import { hoverBox, sideBarScrollAreaStyled } from '@/styles/common';
 import { css } from '@emotion/css';
 import styled from '@emotion/styled';
 
-const SidebarContainer = styled.div`
+const SidebarContainer = styled.div<{ isOpen: boolean }>`
   position: fixed;
+  z-index: 100;
   width: 5.7rem;
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1rem;
   padding-bottom: 2rem;
-  box-sizing: border-box;
   background: ${Theme.color.sidebarColor};
   color: ${Theme.color.gray};
+  transform: ${({ isOpen }) => (isOpen ? 'translateX(0)' : 'translateX(-100%)')};
+  transition: all 0.2s ease-in-out;
 `;
 
 const ClubWrapper = styled(sideBarScrollAreaStyled)`
@@ -79,4 +81,31 @@ const iconStyle = css`
   filter: drop-shadow(2px 3px 1px ${Theme.color.shadow});
 `;
 
-export { SidebarContainer, ClubWrapper, CreateClubButtonStyled, iconStyle, ClubLogoWrapper };
+const SidebarToggleButtonStyled = styled.button`
+  display: flex;
+  width: 0.7rem;
+  height: 1.5rem;
+  transform: translateY(-1.5rem);
+  justify-content: center;
+  color: ${Theme.color.white};
+  background-color: ${Theme.color.tSemiPurple};
+  border: none;
+  align-items: center;
+  position: absolute;
+  padding-right: 0.2=1rem;
+  right: -0.7rem;
+  top: 50%;
+  z-index: 100;
+  font-size: ${Theme.fontSize.tagText};
+  border-radius: 0 0.5rem 0.5rem 0;
+  cursor: pointer;
+`;
+
+export {
+  SidebarContainer,
+  ClubWrapper,
+  CreateClubButtonStyled,
+  iconStyle,
+  ClubLogoWrapper,
+  SidebarToggleButtonStyled,
+};

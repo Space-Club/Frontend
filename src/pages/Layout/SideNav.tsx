@@ -15,9 +15,14 @@ import {
   ClubWrapper,
   CreateClubButtonStyled,
   SidebarContainer,
+  SidebarToggleButtonStyled,
 } from './SideNav.style';
 
-const SideNav = () => {
+interface SideNavProps extends React.HTMLAttributes<HTMLButtonElement> {
+  isSideNavOpen: boolean;
+}
+
+const SideNav = ({ isSideNavOpen, ...props }: SideNavProps) => {
   const { clubs } = useClubs();
   const { data } = useMyProfile();
   const isLoginUser = Boolean(getStorage('token'));
@@ -25,7 +30,8 @@ const SideNav = () => {
   const navigate = useNavigate();
 
   return (
-    <SidebarContainer>
+    <SidebarContainer isOpen={isSideNavOpen}>
+      <SidebarToggleButtonStyled {...props}>{isSideNavOpen ? '<' : '>'} </SidebarToggleButtonStyled>
       <LogoTextStyled onClick={() => navigate(PATH.MAIN)}>Space Club</LogoTextStyled>
       {isLoginUser && (
         <CreateClubButtonStyled onClick={() => navigate(PATH.CREATE)}>
