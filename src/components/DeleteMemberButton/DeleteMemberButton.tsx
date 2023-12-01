@@ -1,5 +1,5 @@
 import { MODAL_TEXT } from '@/constants/modalMessage';
-import useDeleteMemberMutation from '@/hooks/query/user/useDeleteMemberMutation';
+import useDeleteMemberMutation from '@/hooks/query/club/useDeleteMemberMutation';
 import useModal from '@/hooks/useModal';
 
 import ConfirmModal from '../Modals/ConfirmModal';
