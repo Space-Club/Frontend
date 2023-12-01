@@ -5,9 +5,10 @@ const AppliedEventCardContainer = styled.div`
 `;
 
 const EventLeftSection = styled.div`
+  display: flex;
   width: 29rem;
   min-width: 20rem;
-  display: flex;
+  cursor: pointer;
 `;
 
 const EventRightSection = styled.div`

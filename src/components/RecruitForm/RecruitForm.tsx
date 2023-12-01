@@ -2,7 +2,13 @@ import InputForm from '@/components/common/InputForm/InputForm';
 import TextAreaForm from '@/components/common/TextAreaForm/TextAreaForm';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
 import { FORM_INFO_VALUE } from '@/constants/limitInputValue';
-import { PromotionDetailResponse } from '@/types/api/getEventDetail';
+import {
+  ContentArea,
+  ErrorMessage,
+  HalfInputForm,
+  TwoInputContainer,
+} from '@/pages/event/WriteEventInfoPage/WriteEventInfoPage.style';
+import { RecruitmentDetailResponse } from '@/types/api/getEventDetail';
 import { ReactHookFormProps } from '@/types/event';
 import setFormValue from '@/utils/setFormValue';
 import { validateTimeCompare, validateTodayDate, validateTrim } from '@/utils/validate';
@@ -10,33 +16,26 @@ import { validateTimeCompare, validateTodayDate, validateTrim } from '@/utils/va
 import { useEffect } from 'react';
 
 import ImageUploadInput from '../ImageUploadInput/ImageUploadInput';
-import {
-  ContentArea,
-  ErrorMessage,
-  HalfInputForm,
-  TwoInputContainer,
-} from '../WriteEventInfoPage.style';
 
-interface PromotionForm extends ReactHookFormProps {
-  eventDetail?: PromotionDetailResponse;
+interface RecruitForm extends ReactHookFormProps {
+  eventDetail?: RecruitmentDetailResponse;
 }
 
-const PromotionForm = ({ register, setValue, watch, errors, eventDetail }: PromotionForm) => {
+const RecruitForm = ({ register, setValue, watch, errors, eventDetail }: RecruitForm) => {
   useEffect(() => {
     if (eventDetail) {
       const { eventInfo } = eventDetail;
-      const { startDate, startTime, activityArea, capacity } = eventInfo;
+      const { location, recruitmentTarget, recruitmentLimit } = eventInfo;
 
       setFormValue({ setValue, eventDetail });
 
-      setValue('startDate', `${startDate}T${startTime}`);
-      setValue('location', activityArea);
-      setValue('capacity', capacity);
+      setValue('activityArea', location);
+      setValue('recruitmentTarget', recruitmentTarget);
+      setValue('capacity', recruitmentLimit);
     }
   }, [eventDetail, setValue]);
 
-  const { PERSONNEL, MAX_YEAR, REQUIRED, MAX_LENGTH, FORM_START_TIME, LAST_TIME } =
-    ERROR_MESSAGE.EVENT;
+  const { PERSONNEL, MAX_YEAR, LAST_TIME, REQUIRED, MAX_LENGTH } = ERROR_MESSAGE.EVENT;
 
   const { LIMIT_LENGTH, LIMIT_VALUE } = FORM_INFO_VALUE;
 
@@ -45,56 +44,56 @@ const PromotionForm = ({ register, setValue, watch, errors, eventDetail }: Promo
       <ContentArea>
         <InputForm
           {...register('title', {
-            required: REQUIRED('행사 이름은'),
+            required: REQUIRED('공고 제목은'),
             maxLength: {
               value: LIMIT_LENGTH.TITLE_MAX,
-              message: MAX_LENGTH('행사 이름', LIMIT_LENGTH.TITLE_MAX),
+              message: MAX_LENGTH('공고 제목', LIMIT_LENGTH.TITLE_MAX),
             },
             validate: (value) => validateTrim(value),
           })}
-          labelText="행사 이름"
+          labelText="공고 제목"
           required
           inputType="text"
-          placeholder="행사 이름을 입력하세요."
+          placeholder="클럽 이름을 입력하세요"
         />
         {errors.title && <ErrorMessage>{errors.title.message as string}</ErrorMessage>}
-        <HalfInputForm
-          {...register('startDate', {
-            required: REQUIRED('행사 시작 날짜는'),
-            validate: {
-              today: validateTodayDate,
-              compare: (value) =>
-                validateTimeCompare(watch('closeDate'), value, FORM_START_TIME('행사')),
-            },
-            max: { value: LIMIT_VALUE.DATE_MAX, message: MAX_YEAR },
-          })}
-          labelText="행사 시작 날짜 및 시간"
-          required
-          inputType="datetime-local"
-        />
-        {errors.startDate && <ErrorMessage>{errors.startDate.message as string}</ErrorMessage>}
         <InputForm
-          {...register('location', {
-            required: REQUIRED('행사 장소는'),
+          {...register('activityArea', {
             maxLength: {
               value: LIMIT_LENGTH.LOCATION_MAX,
-              message: MAX_LENGTH('행사 장소', LIMIT_LENGTH.LOCATION_MAX),
+              message: MAX_LENGTH('활동 위치', LIMIT_LENGTH.LOCATION_MAX),
             },
             validate: (value) => validateTrim(value),
           })}
-          labelText="행사 장소"
-          required
+          labelText="활동 위치"
           inputType="text"
+          placeholder="온라인일 경우, 온라인이라고 기재"
         />
-        {errors.location && <ErrorMessage>{errors.location.message as string}</ErrorMessage>}
+        {errors.activityArea && (
+          <ErrorMessage>{errors.activityArea.message as string}</ErrorMessage>
+        )}
+        <TextAreaForm
+          {...register('recruitmentTarget', {
+            maxLength: {
+              value: LIMIT_LENGTH.TAGET_MAX,
+              message: MAX_LENGTH('모집 대상', LIMIT_LENGTH.TAGET_MAX),
+            },
+            validate: (value) => validateTrim(value),
+          })}
+          labelText="모집 대상"
+          rows={2}
+        />
+        {errors.recruitmentTarget && (
+          <ErrorMessage>{errors.recruitmentTarget.message as string}</ErrorMessage>
+        )}
         <HalfInputForm
           {...register('capacity', {
             min: { value: LIMIT_VALUE.CAPACITY_MIN, message: `${PERSONNEL}` },
             max: { value: LIMIT_VALUE.CAPACITY_MAX, message: `${PERSONNEL}` },
           })}
-          labelText="정원"
+          labelText="모집 인원"
           inputType="number"
-          placeholder="정수(0-n)"
+          placeholder="정수(1-n)"
           min={LIMIT_VALUE.CAPACITY_MIN}
           max={LIMIT_VALUE.CAPACITY_MAX}
           unit="명"
@@ -143,21 +142,21 @@ const PromotionForm = ({ register, setValue, watch, errors, eventDetail }: Promo
         />
         <TextAreaForm
           {...register('content', {
-            required: REQUIRED('행사 내용은'),
+            required: REQUIRED('공고 내용은'),
             maxLength: {
               value: LIMIT_LENGTH.CONTENT_MAX,
-              message: MAX_LENGTH('행사 내용', LIMIT_LENGTH.CONTENT_MAX),
+              message: MAX_LENGTH('공고 내용', LIMIT_LENGTH.CONTENT_MAX),
             },
             validate: (value) => validateTrim(value),
           })}
-          labelText="행사 내용 작성"
+          labelText="공고 내용"
           required
           rows={10}
         />
-        {errors.content && <ErrorMessage>{errors.content?.message as string}</ErrorMessage>}
+        {errors.content && <ErrorMessage>{errors.content.message as string}</ErrorMessage>}
       </ContentArea>
     </>
   );
 };
 
-export default PromotionForm;
+export default RecruitForm;

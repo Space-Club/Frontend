@@ -5,6 +5,7 @@ import styled from '@emotion/styled';
 const BookmarkedCardContainer = styled.div`
   display: flex;
   width: 20rem;
+  cursor: pointer;
   position: relative;
 `;
 

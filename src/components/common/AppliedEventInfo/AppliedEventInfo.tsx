@@ -1,9 +1,6 @@
 import { APPLIED_EVENTS_TAGS } from '@/constants/event';
-import { PATH } from '@/constants/path';
 import { EventStatus } from '@/types/event';
 import { Event } from '@/types/event';
-
-import { useNavigate } from 'react-router-dom';
 
 import EventStatusTag from '../EventStatusTag/EventStatusTag';
 import {
@@ -20,20 +17,16 @@ interface AppliedEventInfoProps
 }
 
 const AppliedEventInfo = ({
-  eventId,
   title,
   startDate,
   location,
   clubName,
   eventStatus,
 }: AppliedEventInfoProps) => {
-  const navigate = useNavigate();
   return (
     <EventInfoSection>
       <EventStatusTag eventTag={APPLIED_EVENTS_TAGS[eventStatus]} />
-      <AppliedEventTitleStyled onClick={() => navigate(PATH.EVENT.DETAIL(eventId))}>
-        {title}
-      </AppliedEventTitleStyled>
+      <AppliedEventTitleStyled>{title}</AppliedEventTitleStyled>
       <EventDescription>
         날짜<SemiBlackFont>{startDate}</SemiBlackFont>
       </EventDescription>
