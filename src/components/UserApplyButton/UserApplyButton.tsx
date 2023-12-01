@@ -60,7 +60,7 @@ const UserApplyButton = ({
 
   return (
     <ButtonWrapper>
-      {capacity && (
+      {capacity && category !== 'RECRUITMENT' && (
         <ApplicantButton
           reverse
           capacity={Boolean(capacity)}
@@ -71,7 +71,7 @@ const UserApplyButton = ({
         </ApplicantButton>
       )}
       <ApplyButton
-        capacity={Boolean(capacity)}
+        capacity={Boolean(category !== 'RECRUITMENT' && capacity)}
         disabled={getApplyButtonText() !== EVENT_DETAIL_BUTTON.APPLY.POSSIBLE}
         onClick={() => (isToken ? applyModalOpen() : loginModalOpen())}
       >
