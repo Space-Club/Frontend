@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { NETWORK_TIMEOUT } from '@constants/api';
 
-import { handleRefreshTokenError, handleTokenError, setToken } from './interceptor';
+import { handleTokenError, setToken } from './interceptor';
 
 const BASE_OPTION = {
   headers: {
@@ -19,4 +19,3 @@ export const axiosClientWithAuth = axios.create(BASE_OPTION);
 
 axiosClientWithAuth.interceptors.request.use(setToken);
 axiosClientWithAuth.interceptors.response.use((response) => response, handleTokenError);
-axiosClientWithAuth.interceptors.response.use((response) => response, handleRefreshTokenError);
