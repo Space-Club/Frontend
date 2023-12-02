@@ -119,7 +119,7 @@ const EventContentTitle = styled.div`
 const EventContent = styled.div`
   width: 100%;
   min-height: 30rem;
-  background-color: ${Theme.color.tWhiteGrey};
+  background-color: ${Theme.color.tButtonWhite};
   border-radius: 0.25rem;
   padding: 1rem;
   white-space: pre-wrap;
