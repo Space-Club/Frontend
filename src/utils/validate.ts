@@ -15,9 +15,10 @@ const validateTrim = (input: string) => {
   else return true;
 };
 
-const validateLarger = (small: number, big: number, smallText: string, bigText: string) => {
-  if (small > big) return LARGER(smallText, bigText);
-  else return true;
+const validateLarger = (small: string, big: string, smallText: string, bigText: string) => {
+  if (parseInt(small) > parseInt(big)) {
+    return LARGER(smallText, bigText);
+  } else return true;
 };
 
 const validateName = (input: string) => {

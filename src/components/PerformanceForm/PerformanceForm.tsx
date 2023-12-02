@@ -73,7 +73,7 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
           {...register('startDate', {
             required: REQUIRED('공연 시작 날짜는'),
             validate: {
-              today: validateTodayDate,
+              today: (value) => (eventDetail ? true : validateTodayDate(value)),
               compare: (value) =>
                 validateTimeCompare(watch('closeDate'), value, FORM_START_TIME('공연')),
             },
@@ -185,7 +185,7 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
             {...register('openDate', {
               required: REQUIRED('신청 시작 날짜는'),
               validate: {
-                today: validateTodayDate,
+                today: (value) => (eventDetail ? true : validateTodayDate(value)),
                 compare: (value) => validateTimeCompare(value, watch('closeDate'), LAST_TIME),
               },
               max: { value: LIMIT_VALUE.DATE_MAX, message: MAX_YEAR },
@@ -234,6 +234,7 @@ const PerformanceForm = ({ register, setValue, watch, errors, eventDetail }: Per
           labelText="공연 내용 작성"
           required
           rows={10}
+          maxLength={LIMIT_LENGTH.CONTENT_MAX}
         />
         {errors.content && <ErrorMessage>{errors.content?.message as string}</ErrorMessage>}
       </ContentArea>

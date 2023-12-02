@@ -1,7 +1,6 @@
 import postPerformanceForm from '@/apis/event/postPerformanceForm';
 import { PATH } from '@/constants/path';
-import useImageException from '@/hooks/useImageException';
-import useTextException from '@/hooks/useTextException';
+import useException from '@/hooks/useException';
 import { HttpException } from '@/types/common';
 import { FormPage } from '@/types/event';
 
@@ -17,8 +16,7 @@ import { QUERY_KEY as ALL_EVENTS_QUERY_KEY } from './useAllEventsQuery';
 const usePostEventInfoMutation = ({ eventType, clubId, isEdit }: FormPage) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const { handleTextException } = useTextException();
-  const { handleImageException } = useImageException();
+  const { handleException } = useException({ defaultMessage: '정보 작성에 실패했습니다.' });
 
   const { mutate: submitForm, isLoading: isSubmitLoading } = useMutation({
     mutationFn: postPerformanceForm,
@@ -38,8 +36,7 @@ const usePostEventInfoMutation = ({ eventType, clubId, isEdit }: FormPage) => {
       ]);
     },
     onError: (error: AxiosError<HttpException>) => {
-      handleTextException(error);
-      handleImageException(error);
+      handleException(error);
     },
   });
   return { submitForm, isSubmitLoading };

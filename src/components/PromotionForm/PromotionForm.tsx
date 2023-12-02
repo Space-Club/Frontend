@@ -62,7 +62,7 @@ const PromotionForm = ({ register, setValue, watch, errors, eventDetail }: Promo
           {...register('startDate', {
             required: REQUIRED('행사 시작 날짜는'),
             validate: {
-              today: validateTodayDate,
+              today: (value) => (eventDetail ? true : validateTodayDate(value)),
               compare: (value) =>
                 validateTimeCompare(watch('closeDate'), value, FORM_START_TIME('행사')),
             },
@@ -109,7 +109,7 @@ const PromotionForm = ({ register, setValue, watch, errors, eventDetail }: Promo
             {...register('openDate', {
               required: REQUIRED('신청 시작 날짜는'),
               validate: {
-                today: validateTodayDate,
+                today: (value) => (eventDetail ? true : validateTodayDate(value)),
                 compare: (value) => validateTimeCompare(value, watch('closeDate'), LAST_TIME),
               },
               max: { value: LIMIT_VALUE.DATE_MAX, message: MAX_YEAR },
@@ -158,6 +158,7 @@ const PromotionForm = ({ register, setValue, watch, errors, eventDetail }: Promo
           labelText="행사 내용 작성"
           required
           rows={10}
+          maxLength={LIMIT_LENGTH.CONTENT_MAX}
         />
         {errors.content && <ErrorMessage>{errors.content?.message as string}</ErrorMessage>}
       </ContentArea>

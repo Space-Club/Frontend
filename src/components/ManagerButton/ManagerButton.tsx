@@ -11,15 +11,16 @@ import { getEventDetailResponse } from '@/types/api/getEventDetail';
 import { useNavigate } from 'react-router-dom';
 
 interface ManagerButton {
+  isToken: boolean;
   eventId: string;
   eventDetail: getEventDetailResponse;
   deleteModalOpen: () => void;
 }
 
-const ManagerButton = ({ eventId, eventDetail, deleteModalOpen }: ManagerButton) => {
+const ManagerButton = ({ isToken, eventId, eventDetail, deleteModalOpen }: ManagerButton) => {
   const { clubInfo, hasForm } = eventDetail;
   const { clubId } = clubInfo;
-  const { role } = useMemberAuth({ clubId });
+  const { role } = useMemberAuth({ clubId, isEnabled: isToken });
   const navigate = useNavigate();
 
   return (
