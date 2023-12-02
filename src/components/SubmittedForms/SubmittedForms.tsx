@@ -10,7 +10,7 @@ import {
 } from './SubmittedForms.style';
 
 const SubmittedForms = ({ formInfo, userForms }: { formInfo: FormInfo; userForms: UserForm[] }) => {
-  const isPerform = Boolean(userForms[0].ticketCount);
+  const isPerform = userForms.length !== 0 && userForms[0].ticketCount !== null;
 
   return (
     <SubmittedFormsContainer>

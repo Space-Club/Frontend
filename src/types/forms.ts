@@ -12,7 +12,7 @@ interface UserForm {
     status: EventStatus;
     dateTime: string;
   };
-  ticketCount: string;
+  ticketCount?: string;
 }
 
 interface FormInfo {
