@@ -9,7 +9,8 @@ const SubmitFormTitle = styled.p`
   font-size: ${Theme.fontSize.extraTitle};
 `;
 const SubmitFormContent = styled.p`
-  font-size: 1.5rem;
+  font-size: 1rem;
+  white-space: pre-wrap;
 `;
 const FormWrapper = styled.form`
   display: flex;
