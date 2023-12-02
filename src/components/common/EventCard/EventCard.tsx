@@ -1,6 +1,6 @@
 import { APPLIED_EVENTS_TAGS } from '@/constants/event';
 import { PATH } from '@/constants/path';
-import { EventTitleStyled } from '@/styles/common';
+import { EventTitleStyled, PlaceStyled } from '@/styles/common';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -14,7 +14,6 @@ import {
   EventDateStyled,
   EventFooterWrapper,
   EventInfoWrapper,
-  PlaceStyled,
 } from './EventCard.style';
 
 interface EventProps {

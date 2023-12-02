@@ -41,11 +41,6 @@ const EventFooterWrapper = styled.div`
   margin-right: 3%;
 `;
 
-const PlaceStyled = styled.div`
-  color: grey;
-  font-size: 1rem;
-`;
-
 const ClubInfoWrapperStyle = styled.div`
   display: flex;
   align-items: center;
@@ -64,7 +59,6 @@ export {
   EventDateStyled,
   EventTimeStyled,
   EventFooterWrapper,
-  PlaceStyled,
   ClubInfoWrapperStyle,
   ClubNameStyled,
 };
