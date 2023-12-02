@@ -11,6 +11,7 @@ const SubmitFormTitle = styled.p`
 const SubmitFormContent = styled.p`
   font-size: 1rem;
   white-space: pre-wrap;
+  margin-bottom: 1rem;
 `;
 const FormWrapper = styled.form`
   display: flex;
