@@ -5,10 +5,12 @@ const BreadcrumbContainer = styled.ol`
   list-style: none;
   display: flex;
   padding: 1rem 0 2rem 0;
+  height: 6rem;
 `;
 
 const CrumbStyled = styled.li`
-  text-align: center;
+  display: flex;
+  align-items: center;
   color: ${Theme.color.semiBlack};
   font-size: ${Theme.fontSize.largeContent};
   cursor: pointer;
