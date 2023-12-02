@@ -15,13 +15,7 @@ const ClubNotice = ({ notice, noticeId, clubId }: ClubNoticeProps) => {
   return (
     <>
       {showModal && (
-        <InfoModal
-          noticeId={noticeId}
-          clubId={clubId}
-          isManager
-          content={notice}
-          onClose={modalClose}
-        />
+        <InfoModal noticeId={noticeId} clubId={clubId} content={notice} onClose={modalClose} />
       )}
       <ClubNoticeContainer onClick={modalOpen}>
         <ClubNoticeTextStyled value={notice} readOnly />
