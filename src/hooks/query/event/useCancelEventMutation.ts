@@ -6,6 +6,7 @@ import useToast from '@/hooks/useToast';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 
 import { QUERY_KEY } from './useAppliedEventQuery';
+import { QUERY_KEY as SUBMITTED_FORM_QUERY_KEY } from './useGetSubmittedFormsQuery';
 
 const useCancelEventMutation = () => {
   const { createToast } = useToast();
@@ -25,7 +26,10 @@ const useCancelEventMutation = () => {
         throw new Error('취소 요청 후 이벤트 상태가 CANCEL_REQUESTED 또는 CANCELED가 아닙니다');
       }
 
-      queryClient.invalidateQueries([QUERY_KEY.APPLIED_EVENT]);
+      Promise.all([
+        queryClient.invalidateQueries([QUERY_KEY.APPLIED_EVENT]),
+        queryClient.invalidateQueries([SUBMITTED_FORM_QUERY_KEY.SUBMITTED_FORMS]),
+      ]);
     },
     onError: () => {
       createToast({ message: ERROR_MESSAGE.EVENT.CANCEL, toastType: 'error' });
