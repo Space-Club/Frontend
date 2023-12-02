@@ -1,3 +1,5 @@
+import Theme from '@/styles/Theme';
+
 import { BiSolidUserCircle } from 'react-icons/bi';
 
 import { MyProfileStyled, ProfileImageStyled } from './SideBarMyProfile.style';
@@ -12,7 +14,7 @@ const SideBarMyProfile = ({ profileImageUrl, ...props }: SideBarAvatarProps) => 
       {profileImageUrl ? (
         <ProfileImageStyled src={profileImageUrl} alt="my profile image" />
       ) : (
-        <BiSolidUserCircle size="4.6rem" style={{ fill: 'rgba(239, 239, 244, 0.50)' }} />
+        <BiSolidUserCircle size="4.6rem" style={{ fill: Theme.color.tSemiPurple }} />
       )}
     </MyProfileStyled>
   );

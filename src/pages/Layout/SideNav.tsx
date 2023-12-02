@@ -1,4 +1,5 @@
 import LoginButton from '@/components/LoginButton/LoginButton';
+import { LogoTextStyled } from '@/components/LoginButton/LoginButton.style';
 import SideBarMyProfile from '@/components/SideBarMyProfile/SideBarMyProfile';
 import Avatar from '@/components/common/Avatar/Avatar';
 import { PATH } from '@/constants/path';
@@ -7,7 +8,6 @@ import useMyProfile from '@/hooks/query/user/useMyProfile';
 import { getStorage } from '@/utils/localStorage';
 
 import { FaPlusCircle } from 'react-icons/fa';
-import { IoMdHome } from 'react-icons/io';
 import { Link, useNavigate } from 'react-router-dom';
 
 import {
@@ -15,10 +15,14 @@ import {
   ClubWrapper,
   CreateClubButtonStyled,
   SidebarContainer,
-  iconStyle,
+  SidebarToggleButtonStyled,
 } from './SideNav.style';
 
-const SideNav = () => {
+interface SideNavProps extends React.HTMLAttributes<HTMLButtonElement> {
+  isSideNavOpen: boolean;
+}
+
+const SideNav = ({ isSideNavOpen, ...props }: SideNavProps) => {
   const { clubs } = useClubs();
   const { data } = useMyProfile();
   const isLoginUser = Boolean(getStorage('token'));
@@ -26,7 +30,9 @@ const SideNav = () => {
   const navigate = useNavigate();
 
   return (
-    <SidebarContainer>
+    <SidebarContainer isOpen={isSideNavOpen}>
+      <SidebarToggleButtonStyled {...props}>{isSideNavOpen ? '<' : '>'} </SidebarToggleButtonStyled>
+      <LogoTextStyled onClick={() => navigate(PATH.MAIN)}>Space Club</LogoTextStyled>
       {isLoginUser && (
         <CreateClubButtonStyled onClick={() => navigate(PATH.CREATE)}>
           클럽 생성
@@ -48,7 +54,6 @@ const SideNav = () => {
           </ClubLogoWrapper>
         ))}
       </ClubWrapper>
-      <IoMdHome className={iconStyle} onClick={() => navigate(PATH.MAIN)} />
       {isLoginUser ? (
         <Link to={PATH.PROFILE_APPLIED}>
           <SideBarMyProfile profileImageUrl={data?.profileImageUrl} />

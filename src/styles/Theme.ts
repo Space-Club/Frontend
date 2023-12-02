@@ -40,6 +40,7 @@ const color = {
   shadow: 'rgba(0, 0, 0, 0.25)',
   sideScrollBarThumb: 'rgba(239, 239, 244, 0.2)',
   sideScrollBarTrack: 'rgba(239, 239, 244, 0.1)',
+  sidebarColor: '#EFEFF4',
 } as const;
 
 const componentStyle = {

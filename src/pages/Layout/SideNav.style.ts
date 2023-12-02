@@ -3,8 +3,9 @@ import { hoverBox, sideBarScrollAreaStyled } from '@/styles/common';
 import { css } from '@emotion/css';
 import styled from '@emotion/styled';
 
-const SidebarContainer = styled.div`
+const SidebarContainer = styled.div<{ isOpen: boolean }>`
   position: fixed;
+  z-index: 100;
   width: 5.7rem;
   height: 100%;
   display: flex;
@@ -12,9 +13,10 @@ const SidebarContainer = styled.div`
   align-items: center;
   gap: 1rem;
   padding-bottom: 2rem;
-  box-sizing: border-box;
-  background: ${Theme.color.logo_2};
+  background: ${Theme.color.sidebarColor};
   color: ${Theme.color.gray};
+  transform: ${({ isOpen }) => (isOpen ? 'translateX(0)' : 'translateX(-100%)')};
+  transition: all 0.2s ease-in-out;
 `;
 
 const ClubWrapper = styled(sideBarScrollAreaStyled)`
@@ -36,6 +38,11 @@ const ClubLogoWrapper = styled(hoverBox)`
   justify-content: center;
   width: 100%;
   position: relative;
+
+  div {
+    border-radius: 50%;
+    box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
+  }
 `;
 
 const CreateClubButtonStyled = styled.div`
@@ -44,7 +51,7 @@ const CreateClubButtonStyled = styled.div`
   justify-content: center;
   align-items: center;
   gap: 0.2rem;
-  margin-top: 2rem;
+
   min-width: 4rem;
   min-height: 4rem;
   width: 4rem;
@@ -54,12 +61,13 @@ const CreateClubButtonStyled = styled.div`
   box-shadow: 0px 1px 4px 0px ${Theme.color.shadow};
   font-size: ${Theme.fontSize.tagText};
   cursor: pointer;
-
+  transition: transform 0.3s ease-in-out;
   position: relative;
 
+  transition: all 0.2s ease-in-out;
+
   &:hover {
-    transform: scale(1.1);
-    transition: transform 0.3s ease-in-out;
+    background-color: ${Theme.color.tSemiPurple};
   }
 `;
 
@@ -73,4 +81,31 @@ const iconStyle = css`
   filter: drop-shadow(2px 3px 1px ${Theme.color.shadow});
 `;
 
-export { SidebarContainer, ClubWrapper, CreateClubButtonStyled, iconStyle, ClubLogoWrapper };
+const SidebarToggleButtonStyled = styled.button`
+  display: flex;
+  width: 0.7rem;
+  height: 1.5rem;
+  transform: translateY(-1.5rem);
+  justify-content: center;
+  color: ${Theme.color.white};
+  background-color: ${Theme.color.tSemiPurple};
+  border: none;
+  align-items: center;
+  position: absolute;
+  padding-right: 0.2rem;
+  right: -0.7rem;
+  top: 50%;
+  z-index: 100;
+  font-size: ${Theme.fontSize.tagText};
+  border-radius: 0 0.5rem 0.5rem 0;
+  cursor: pointer;
+`;
+
+export {
+  SidebarContainer,
+  ClubWrapper,
+  CreateClubButtonStyled,
+  iconStyle,
+  ClubLogoWrapper,
+  SidebarToggleButtonStyled,
+};
