@@ -11,7 +11,10 @@ const SubmitFormTitle = styled.p`
 const SubmitFormContent = styled.p`
   font-size: 1rem;
   white-space: pre-wrap;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  border: 1px solid ${Theme.color.idkGrey};
+  border-radius: 0.25rem;
 `;
 const FormWrapper = styled.form`
   display: flex;
