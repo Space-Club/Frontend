@@ -32,7 +32,7 @@ const ClubDetail = ({ data }: ClubDetail) => {
         {totalCost && (
           <div>
             <ContentLabel>{EVENT_DETAIL.COST}</ContentLabel>
-            <div>{totalCost}원</div>
+            <div>{totalCost.toLocaleString()}원</div>
           </div>
         )}
         {location && (
