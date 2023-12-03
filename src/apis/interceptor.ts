@@ -15,7 +15,7 @@ const handleTokenError = async (error: AxiosError<HttpException>) => {
     return Promise.reject(error);
   }
 
-  originalRequest.headers.Authorization = `Bearer ${refreshToken}`;
+  originalRequest.headers.RefreshToken = `Bearer ${refreshToken}`;
 
   if (error.response?.data.code === EXCEPTION_CODE.EXPIRED_ACCESS_TOKEN) {
     return axiosClientWithAuth(originalRequest);
