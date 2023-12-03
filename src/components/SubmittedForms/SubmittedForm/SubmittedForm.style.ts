@@ -24,6 +24,7 @@ const FormNthStyled = styled(CategoryNthStyled)``;
 const FormRowStyled = styled(CategoryRowStyled)``;
 
 const FormItemStyled = styled(CategoryItemStyled)`
+  text-align: center;
   cursor: pointer;
 `;
 
