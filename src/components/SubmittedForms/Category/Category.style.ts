@@ -12,15 +12,18 @@ const CategoryStyled = styled.div`
 
 const CategoryNthStyled = styled.div`
   min-width: 4rem;
+  text-align: center;
 `;
 
 const CategoryRowStyled = styled.div`
   min-width: 10rem;
+  text-align: center;
 `;
 
 const CategoryItemStyled = styled.div`
   width: 10rem;
   overflow: hidden;
+  text-align: center;
   text-overflow: ellipsis;
   white-space: nowrap;
 `;
