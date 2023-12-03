@@ -15,7 +15,7 @@ const CreateNoticeButton = ({ clubId }: CreateNoticeButtonProps) => {
 
   return (
     <>
-      {showModal && <NoticeModal clubId={clubId} onClose={modalClose} isNew isManager />}
+      {showModal && <NoticeModal clubId={clubId} onClose={modalClose} isNew />}
       <CreateButtonStyled onClick={modalOpen}>
         <AiFillPlusCircle size={20} color={Theme.color.tWhiteGrey} />
       </CreateButtonStyled>

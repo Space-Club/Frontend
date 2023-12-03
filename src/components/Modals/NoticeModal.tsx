@@ -1,4 +1,5 @@
 import useDeleteClubNoticeMutation from '@/hooks/query/club/useDeleteClubNoticeMutation';
+import useMemberAuth from '@/hooks/query/club/useMemberAuth';
 import usePatchClubNoticeMutation from '@/hooks/query/club/usePatchClubNoticeMutation';
 import usePostNoticeMutation from '@/hooks/query/club/usePostClubNoticeMutation';
 import useToast from '@/hooks/useToast';
@@ -23,28 +24,30 @@ interface NoticeModalProps {
   clubId: string;
   noticeId?: string;
   content?: string;
-  isManager?: boolean;
   isNew?: boolean;
 }
 
-const NoticeModal = ({
-  onClose,
-  noticeId,
-  clubId,
-  isManager,
-  isNew,
-  content,
-  ...props
-}: NoticeModalProps) => {
+const NoticeModal = ({ onClose, noticeId, clubId, isNew, content, ...props }: NoticeModalProps) => {
   const noticeContentRef = useRef<HTMLTextAreaElement>(null);
 
-  const [isEdit, setIsEdit] = useState(isNew && isManager);
+  const [isEdit, setIsEdit] = useState(isNew);
 
   const { createToast } = useToast();
 
   const { postNotice } = usePostNoticeMutation({ handleSuccess: () => onClose() });
   const { patchNotice } = usePatchClubNoticeMutation({ handleSuccess: () => onClose() });
   const { deleteNotice } = useDeleteClubNoticeMutation({ handleSuccess: () => onClose() });
+  const { role } = useMemberAuth({ clubId });
+
+  useEffect(() => {
+    if (isEdit) {
+      noticeContentRef.current?.focus();
+    }
+  }, [isEdit]);
+
+  if (!role) return null;
+
+  const isManager = role === 'MANAGER';
 
   const handleCreateNoticeButtonClick = () => {
     const notice = getValidNotice();
@@ -84,12 +87,6 @@ const NoticeModal = ({
     }
     return validNotice;
   };
-
-  useEffect(() => {
-    if (isEdit) {
-      noticeContentRef.current?.focus();
-    }
-  }, [isEdit]);
 
   return (
     <Portal>
