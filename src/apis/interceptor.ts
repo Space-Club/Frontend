@@ -26,8 +26,8 @@ const handleTokenError = async (error: AxiosError<HttpException>) => {
 
 const handleRefreshTokenError = (error: AxiosError<HttpException>) => {
   if (error.response?.data.code === EXCEPTION_CODE.EXPIRED_REFRESH_TOKEN) {
-    alert('로그인이 만료되었습니다. 다시 로그인해주세요.');
     window.location.href = PATH.LOGIN;
+    alert('로그인이 만료되었습니다. 다시 로그인해주세요.');
   }
   return Promise.reject(error);
 };
