@@ -1,9 +1,9 @@
 import { EXCEPTION_CODE } from '@/constants/exceptionCode';
 import { PATH } from '@/constants/path';
 import { HttpException } from '@/types/common';
-import { getStorage } from '@/utils/localStorage';
+import { getStorage, setStorage } from '@/utils/localStorage';
 
-import { AxiosError, InternalAxiosRequestConfig } from 'axios';
+import { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 
 import { axiosClientWithAuth } from './axiosClient';
 
@@ -26,10 +26,19 @@ const handleTokenError = async (error: AxiosError<HttpException>) => {
 
 const handleRefreshTokenError = (error: AxiosError<HttpException>) => {
   if (error.response?.data.code === EXCEPTION_CODE.EXPIRED_REFRESH_TOKEN) {
-    alert('로그인이 만료되었습니다. 다시 로그인해주세요.');
     window.location.href = PATH.LOGIN;
   }
   return Promise.reject(error);
+};
+
+const setNewAccessToken = (response: AxiosResponse) => {
+  const newAccessToken = response.headers.Authorization;
+
+  if (newAccessToken) {
+    setStorage('token', newAccessToken);
+  }
+
+  return response;
 };
 
 const setToken = (config: InternalAxiosRequestConfig) => {
@@ -42,4 +51,4 @@ const setToken = (config: InternalAxiosRequestConfig) => {
   return config;
 };
 
-export { handleTokenError, setToken, handleRefreshTokenError };
+export { handleTokenError, setToken, handleRefreshTokenError, setNewAccessToken };

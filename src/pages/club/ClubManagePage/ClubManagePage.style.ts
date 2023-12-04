@@ -4,16 +4,19 @@ import styled from '@emotion/styled';
 
 const ClubManagePageContainer = styled.div`
   display: flex;
+  align-items: stretch;
   margin: 2.3rem 0;
   gap: 4rem;
   flex-wrap: wrap;
 `;
 
 const ClubManagePageLeftWrapper = styled.section`
+  max-height: 110vh;
   flex-grow: 3;
 `;
 
 const ClubManagePageRightWrapper = styled.section`
+  max-height: 110vh;
   flex-grow: 4;
 `;
 
