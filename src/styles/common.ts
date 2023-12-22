@@ -35,6 +35,7 @@ const ellipsisText = styled.p`
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  -webkit-line-clamp: 1;
 `;
 
 const ellipsisMultiLineText = styled.p`
