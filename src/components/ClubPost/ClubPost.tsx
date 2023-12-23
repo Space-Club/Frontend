@@ -10,9 +10,9 @@ import {
   ContentStyled,
   PostDateWrapper,
   TitleStyled,
-} from './ClubBoard.style';
+} from './ClubPost.style';
 
-interface ClubBoardProps {
+interface ClubPostProps {
   clubId?: string;
   postId?: string;
   title?: string;
@@ -22,7 +22,7 @@ interface ClubBoardProps {
   postDate?: string;
 }
 
-const ClubBoard = ({
+const ClubPost = ({
   clubId = '1',
   postId = '1',
   title = '제목입니다',
@@ -30,7 +30,7 @@ const ClubBoard = ({
   author = '닉네임',
   imageUrl,
   postDate = '2023/12/23',
-}: ClubBoardProps) => {
+}: ClubPostProps) => {
   const navigate = useNavigate();
   const hasImage = Boolean(imageUrl);
 
@@ -49,4 +49,4 @@ const ClubBoard = ({
   );
 };
 
-export default ClubBoard;
+export default ClubPost;

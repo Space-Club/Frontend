@@ -1,4 +1,4 @@
-import ClubBoard from '@/components/ClubBoard/ClubBoard';
+import ClubBoard from '@/components/ClubPost/ClubPost';
 import BigLogo from '@/components/common/BigLogo/BigLogo';
 import { LOGO_TEXT, MESSAGE } from '@/constants/logo';
 
