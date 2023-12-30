@@ -12,6 +12,7 @@ import {
   ContentStyled,
   ContentWrapper,
   ErrorMessageStyled,
+  FileInputWrapper,
   TitleStyled,
 } from './ClubPostWritePage.style';
 
@@ -80,7 +81,9 @@ const ClubPostWritePage = () => {
               placeholder="내용을 입력해주세요."
             />
             <ErrorMessageStyled>{errors?.content ? errors.content.message : ''}</ErrorMessageStyled>
-            <input type="file" accept=".jpg, .jpeg, .png, .heic" />
+            <FileInputWrapper>
+              <input type="file" accept=".jpg, .jpeg, .png, .heic" />
+            </FileInputWrapper>
           </ContentWrapper>
         </form>
       </ClubPostWritePageContainer>

@@ -13,7 +13,8 @@ const ContentWrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
-  width: 90%;
+  width: 100%;
+  padding: 1rem;
 `;
 
 const ButtonWrapper = styled.div`
@@ -25,14 +26,23 @@ const ButtonWrapper = styled.div`
 
 const TitleStyled = styled.input`
   width: 100%;
-  height: 3rem;
+  height: 2.5rem;
+  padding: 0.3rem;
   border: 1px solid ${Theme.color.tSeparator};
 `;
 
 const ContentStyled = styled.textarea`
   width: 100%;
   height: 20rem;
+  padding: 0.5rem 0.3rem;
   border: 1px solid ${Theme.color.tSeparator};
+`;
+
+const FileInputWrapper = styled.div`
+  display: flex;
+  justify-content: start;
+  width: 100%;
+  padding: 0.5rem;
 `;
 
 const ErrorMessageStyled = styled.span`
@@ -47,5 +57,6 @@ export {
   ButtonWrapper,
   TitleStyled,
   ContentStyled,
+  FileInputWrapper,
   ErrorMessageStyled,
 };
