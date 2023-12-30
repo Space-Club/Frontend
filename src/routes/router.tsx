@@ -8,9 +8,11 @@ import OauthRedirectPage from '@/pages/OauthRedirectPage';
 import ProfilePage from '@/pages/ProfilePage/ProfilePage';
 import RegisterPage from '@/pages/RegisterPage/RegisterPage';
 import SearchResultPage from '@/pages/SearchResultPage/SearchResultPage';
+import ClubBoardPage from '@/pages/club/ClubBoardPage/ClubBoardPage';
 import ClubEventPage from '@/pages/club/ClubEventPage/ClubEventPage';
 import ClubHomePage from '@/pages/club/ClubHomePage/ClubHomePage';
 import ClubManagePage from '@/pages/club/ClubManagePage/ClubManagePage';
+import ClubPostWritePage from '@/pages/club/ClubPostWritePage/ClubPostWritePage';
 import CreateClubPage from '@/pages/club/CreateClubPage/CreateClubPage';
 import InvitePage from '@/pages/club/InvitePage/InvitePage';
 import ChoiceEventPage from '@/pages/event/ChoiceEventPage/ChoiceEventPage';
@@ -56,6 +58,8 @@ const router = createBrowserRouter([
                 children: [
                   { path: PATH.CLUB.HOME(':clubId'), element: <ClubHomePage /> },
                   { path: PATH.CLUB.EVENT(':clubId'), element: <ClubEventPage /> },
+                  { path: PATH.CLUB.BOARD(':clubId'), element: <ClubBoardPage /> },
+                  { path: PATH.CLUB.WRITE_POST(':clubId'), element: <ClubPostWritePage /> },
                   {
                     element: <PrivateManager />,
                     children: [
