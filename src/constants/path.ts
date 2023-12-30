@@ -17,6 +17,7 @@ const PATH = {
     HOME: (clubId: string) => `/club/${clubId}/home`,
     EVENT: (clubId: string) => `/club/${clubId}/event`,
     BOARD: (clubId: string) => `/club/${clubId}/board`,
+    WRITE_POST: (clubId: string) => `/club/${clubId}/board/write`,
     POST: (clubId: string, postId: string) => `/club/${clubId}/board/${postId}`,
     MANAGE: (clubId: string) => `/club/${clubId}/manage`,
     CHOICE: (clubId: string) => `/club/${clubId}/choice`,

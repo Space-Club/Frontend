@@ -9,7 +9,7 @@ const ClubBoardTopWrapper = styled(ClubHomeTopWrapper)``;
 const ClubBoardContentWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   width: 100%;
   height: 100%;
@@ -25,15 +25,17 @@ const ButtonWrapper = styled.div`
 const MyPostsCommentsButtonStyled = styled.button`
   border: 0;
   background-color: transparent;
+  cursor: pointer;
 `;
 
 const MyButtonsWrapper = styled.div`
   display: flex;
-  gap: 1;
   width: fit-content;
+  gap: 0.5rem;
 
-  &:not(:last-of-type)::after {
+  & > *:not(:last-of-type)::after {
     content: '|';
+    margin-left: 0.5rem;
   }
 `;
 

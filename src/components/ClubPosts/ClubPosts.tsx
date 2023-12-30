@@ -2,6 +2,7 @@ import useGetClubPostsQuery from '@/hooks/query/club/useGetClubPostsQuery';
 
 import { useState } from 'react';
 
+import { EmptyClubEvent } from '../ClubEvents/ClubEvent.style';
 import ClubPost from '../ClubPost/ClubPost';
 import Pagination from '../common/Pagination/Pagination';
 import { PostsContainer } from './ClubPosts.style';
@@ -40,6 +41,7 @@ const ClubPosts = ({ clubId }: ClubPostsProps) => {
             postDate={postDate}
           />
         ))}
+        {posts?.length === 0 && <EmptyClubEvent>게시글이 없습니다.</EmptyClubEvent>}
       </PostsContainer>
       <Pagination
         totalPages={totalPages}
