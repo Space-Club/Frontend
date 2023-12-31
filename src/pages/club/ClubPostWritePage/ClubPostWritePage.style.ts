@@ -21,7 +21,6 @@ const ButtonWrapper = styled.div`
   display: flex;
   justify-content: start;
   width: 100%;
-  padding: 0.5rem;
 `;
 
 const TitleStyled = styled.input`
