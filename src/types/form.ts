@@ -1,6 +1,6 @@
 import { EventType } from './event';
 
-type FormType = 'RADIO' | 'TEXT' | 'SELECT' | 'NUMBER';
+type FormType = 'RADIO' | 'TEXT' | 'SELECT' | 'NUMBER' | 'CHECKBOX';
 
 type FormOptionButtonText = {
   [key in EventType]: string;
@@ -9,6 +9,7 @@ type FormOptionButtonText = {
 interface FormOption {
   id: string;
   title: string;
+  options?: string[];
   type: FormType;
   predefined: boolean;
 }
