@@ -40,6 +40,7 @@ const END_POINTS = {
   CLUB_SCHEDULES: ({ clubId }: { clubId: string }) => `/clubs/${clubId}/events?page=0&sort=id,desc`,
   CLUB_POSTS: (clubId: string, pageNumber: number) =>
     `/boards/${clubId}?page=${pageNumber}&size=20&sort=id,desc`,
+  CLUB_POST: (clubId: string, postId: string) => `/boards/posts/${clubId}/${postId}`,
 
   PATCH_MEMBER_ROLE: ({ clubId, memberId }: { clubId: string; memberId: string }) =>
     `/clubs/${clubId}/members/${memberId}`,
