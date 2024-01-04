@@ -6,6 +6,7 @@ import { PATH } from '@/constants/path';
 
 import { useNavigate, useParams } from 'react-router-dom';
 
+import ClubPostDetailPage from '../ClubPostDetailPage/ClubPostDetailPage';
 import {
   ButtonWrapper,
   ClubBoardContentWrapper,
@@ -41,6 +42,7 @@ const ClubBoardPage = () => {
           <ClubPosts clubId={clubId} />
         </ClubBoardContentWrapper>
       </ClubBoardPageContainer>
+      <ClubPostDetailPage />
     </>
   );
 };
