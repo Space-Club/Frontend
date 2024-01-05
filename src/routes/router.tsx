@@ -12,6 +12,7 @@ import ClubBoardPage from '@/pages/club/ClubBoardPage/ClubBoardPage';
 import ClubEventPage from '@/pages/club/ClubEventPage/ClubEventPage';
 import ClubHomePage from '@/pages/club/ClubHomePage/ClubHomePage';
 import ClubManagePage from '@/pages/club/ClubManagePage/ClubManagePage';
+import ClubPostDetailPage from '@/pages/club/ClubPostDetailPage/ClubPostDetailPage';
 import ClubPostWritePage from '@/pages/club/ClubPostWritePage/ClubPostWritePage';
 import CreateClubPage from '@/pages/club/CreateClubPage/CreateClubPage';
 import InvitePage from '@/pages/club/InvitePage/InvitePage';
@@ -60,6 +61,7 @@ const router = createBrowserRouter([
                   { path: PATH.CLUB.EVENT(':clubId'), element: <ClubEventPage /> },
                   { path: PATH.CLUB.BOARD(':clubId'), element: <ClubBoardPage /> },
                   { path: PATH.CLUB.WRITE_POST(':clubId'), element: <ClubPostWritePage /> },
+                  { path: PATH.CLUB.POST(':clubId', ':postId'), element: <ClubPostDetailPage /> },
                   {
                     element: <PrivateManager />,
                     children: [
