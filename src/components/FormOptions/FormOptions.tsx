@@ -6,7 +6,7 @@ import React, { useContext } from 'react';
 import FormOption from '../FormOption/FormOption';
 
 const FormOptions = () => {
-  const { selectedOptions, deleteOption, changeOptionTitle } = useContext(FormOptionContext);
+  const { selectedOptions, changeOptionTitle } = useContext(FormOptionContext);
 
   const handleOptionTitleChange = (
     option: FormOptionType,
@@ -21,7 +21,6 @@ const FormOptions = () => {
         <FormOption
           key={option.id}
           option={option}
-          onClose={deleteOption}
           onChange={(event) => handleOptionTitleChange(option, event)}
         />
       ))}

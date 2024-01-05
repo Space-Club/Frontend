@@ -1,13 +1,17 @@
-import { FORM_OPTION } from '@/constants/form';
+import { CUSTOM_FORM_OPTIONS, FORM_OPTION } from '@/constants/form';
 import { FormOptionContext } from '@/context/FormOptionContext';
 import { eventTypeAPI } from '@/types/event';
-import { FormOption } from '@/types/form';
+import { FormOption, FormType } from '@/types/form';
 import generateUniqueId from '@/utils/generateUniqueId';
 
-import { useEffect, useRef, useState } from 'react';
+import { MouseEvent as ReactMouseEvent, useEffect, useRef, useState } from 'react';
 import { useContext } from 'react';
 
-import { DropdownItemStyled, FormOptionDropdownContainer } from './FormOptionDropdown.style';
+import {
+  CustomDropdownItemWrapper,
+  DropdownItemStyled,
+  FormOptionDropdownContainer,
+} from './FormOptionDropdown.style';
 
 interface FormOptionDropdownProps {
   eventType: eventTypeAPI;
@@ -15,6 +19,7 @@ interface FormOptionDropdownProps {
 
 const FormOptionDropdown = ({ eventType }: FormOptionDropdownProps) => {
   const [showDropdown, setShowDropdown] = useState(false);
+  const [showCustomOption, setShowCustomOption] = useState(false);
   const { appendOption, selectedOptions } = useContext(FormOptionContext);
   const options = Object.values(FORM_OPTION[eventType]).filter(
     (option) => !selectedOptions.find((selectedOption) => selectedOption.title === option.title),
@@ -26,6 +31,7 @@ const FormOptionDropdown = ({ eventType }: FormOptionDropdownProps) => {
     const handleClickOutside = (event: MouseEvent) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setShowDropdown(false);
+        setShowCustomOption(false);
       }
     };
 
@@ -39,6 +45,9 @@ const FormOptionDropdown = ({ eventType }: FormOptionDropdownProps) => {
   const toggleDropdown = () => {
     setShowDropdown((prev) => !prev);
   };
+  const toggleCustomDropdown = () => {
+    setShowCustomOption((prev) => !prev);
+  };
 
   const handleDropdownItemClick = (option: FormOption) => {
     appendOption(option);
@@ -46,13 +55,18 @@ const FormOptionDropdown = ({ eventType }: FormOptionDropdownProps) => {
   };
 
   const handleDropdownCustomClick = () => {
+    toggleCustomDropdown();
+  };
+  const handleCustomClick = (event: ReactMouseEvent<HTMLDivElement>) => {
     appendOption({
       id: generateUniqueId(),
       title: '',
-      type: 'TEXT',
+      options: [],
+      type: event.currentTarget.dataset.type as FormType,
       predefined: false,
     });
     toggleDropdown();
+    toggleCustomDropdown();
   };
 
   return (
@@ -66,6 +80,15 @@ const FormOptionDropdown = ({ eventType }: FormOptionDropdownProps) => {
         ))}
       {showDropdown && (
         <DropdownItemStyled onClick={handleDropdownCustomClick}>사용자 지정</DropdownItemStyled>
+      )}
+      {showCustomOption && (
+        <CustomDropdownItemWrapper>
+          {Object.entries(CUSTOM_FORM_OPTIONS).map(([key, value]) => (
+            <DropdownItemStyled data-type={key} type={key} onClick={handleCustomClick}>
+              {value}
+            </DropdownItemStyled>
+          ))}
+        </CustomDropdownItemWrapper>
       )}
     </FormOptionDropdownContainer>
   );

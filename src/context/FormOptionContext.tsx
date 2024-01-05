@@ -12,7 +12,8 @@ interface FormOptionContextProps {
   appendOption: (options: FormOption) => void;
   deleteOption: (options: FormOption) => void;
   validateOptionTitle: () => boolean;
-  changeOptionTitle: (options: FormOption, title: string) => void;
+  changeOptionTitle: (option: FormOption, title: string) => void;
+  changeOptionOptions: (option: FormOption, options: string[]) => void;
   setDescription: (description: string) => void;
   setIsManaged: (managed: boolean) => void;
 }
@@ -30,6 +31,7 @@ const FormOptionContext = createContext<FormOptionContextProps>({
   appendOption: () => {},
   deleteOption: () => {},
   changeOptionTitle: () => {},
+  changeOptionOptions: () => {},
   validateOptionTitle: () => false,
   setIsManaged: () => {},
   setDescription: () => {},
@@ -76,6 +78,16 @@ const FormOptionContextProvider = ({ children }: FormContextOptionProviderProps)
       }),
     );
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+  const changeOptionOptions = useCallback((option: FormOption, options: string[]) => {
+    setSelectedOptions((prev) =>
+      prev.map((prevOption) => {
+        if (prevOption.id === option.id) {
+          return { ...prevOption, options };
+        }
+        return prevOption;
+      }),
+    );
+  }, []);
   const validateOptionTitle = () => {
     const isTitleValid = selectedOptions.every(({ title, id }) => {
       if (title.trim().length === 0) {
@@ -108,6 +120,7 @@ const FormOptionContextProvider = ({ children }: FormContextOptionProviderProps)
       appendOption,
       deleteOption,
       changeOptionTitle,
+      changeOptionOptions,
       setIsManaged,
       validateOptionTitle,
       setDescription,

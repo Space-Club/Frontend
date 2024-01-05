@@ -128,6 +128,14 @@ const SUBMIT_FORM_OPTIONS = {
   GENDER: ['남', '여'],
 };
 
+const CUSTOM_FORM_OPTIONS = {
+  TEXT: '텍스트',
+  NUMBER: '숫자',
+  SELECT: '드롭다운',
+  RADIO: '단일 선택',
+  CHECKBOX: '다중 선택',
+};
+
 export {
   PERFORMANCE_FORM_OPTION,
   PROMOTION_FORM_OPTION,
@@ -136,4 +144,5 @@ export {
   FORM_OPTION,
   FORM_STATUS_DROPDOWN_OPTIONS,
   SUBMIT_FORM_OPTIONS,
+  CUSTOM_FORM_OPTIONS,
 };
