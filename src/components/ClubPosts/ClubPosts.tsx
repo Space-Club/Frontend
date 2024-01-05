@@ -29,18 +29,21 @@ const ClubPosts = ({ clubId }: ClubPostsProps) => {
   return (
     <>
       <PostsContainer>
-        {posts?.map(({ postId, title, content, author, imageUrl, postDate }) => (
-          <ClubPost
-            key={postId}
-            clubId={clubId}
-            postId={postId}
-            title={title}
-            content={content}
-            author={author}
-            imageUrl={imageUrl}
-            postDate={postDate}
-          />
-        ))}
+        {posts?.map(
+          ({ postId, title, content, author, authorImageUrl, createdDate, postImageUrl }) => (
+            <ClubPost
+              key={postId}
+              clubId={clubId}
+              postId={postId}
+              title={title}
+              content={content}
+              author={author}
+              authorImageUrl={authorImageUrl}
+              postImageUrl={postImageUrl}
+              createdDate={createdDate}
+            />
+          ),
+        )}
         {posts?.length === 0 && <EmptyClubEvent>게시글이 없습니다.</EmptyClubEvent>}
       </PostsContainer>
       <Pagination
