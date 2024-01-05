@@ -9,10 +9,10 @@ interface GetClubPostResponse {
   content: string;
   authorId: string;
   author: string;
-  authorImageUrl: string;
-  postImageUrl: string;
+  authorImageUrl?: string;
+  postImageUrl?: string;
   createDate: string;
-  lastModifiedDate: string;
+  lastModifiedDate?: string;
 }
 
 export { GetClubPostRequest, GetClubPostResponse };

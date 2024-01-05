@@ -1,19 +1,22 @@
 import ClubHeader from '@/components/ClubHeader/ClubHeader';
-import Button from '@/components/common/Button/Button';
+import ClubPostDetail from '@/components/ClubPostDetail/ClubPostDetail';
 import ClubBanner from '@/components/common/ClubBanner/ClubBanner';
 
 import { useParams } from 'react-router-dom';
 
 import {
-  ButtonWrapper,
   ClubPostDetailPageContainer,
   ClubPostDetailTopWrapper,
   ClubPostWrapper,
 } from './ClubPostDetailPage.style';
 
 const ClubPostDetailPage = () => {
-  const { clubId } = useParams();
-  if (!clubId) throw new Error('클럽 ID를 찾을 수 없습니다');
+  const { clubId, postId } = useParams();
+  if (!clubId) {
+    throw new Error('클럽 ID를 찾을 수 없습니다');
+  } else if (!postId) {
+    return null; //#TODO: 게시물 찾을 수 없다는 모달창 띄우고 전 페이지로 이동
+  }
 
   return (
     <>
@@ -23,10 +26,7 @@ const ClubPostDetailPage = () => {
           <ClubBanner withdrawClubButton clubId={clubId} bannerSize="small" />
         </ClubPostDetailTopWrapper>
         <ClubPostWrapper>
-          <ButtonWrapper>
-            <Button buttonText="수정" outline />
-            <Button buttonText="삭제" />
-          </ButtonWrapper>
+          <ClubPostDetail clubId={clubId} postId={postId} />
         </ClubPostWrapper>
       </ClubPostDetailPageContainer>
     </>

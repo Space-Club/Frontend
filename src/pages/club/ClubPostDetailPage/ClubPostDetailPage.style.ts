@@ -16,11 +16,4 @@ const ClubPostWrapper = styled.div`
   padding: 1rem;
 `;
 
-const ButtonWrapper = styled.div`
-  display: flex;
-  justify-content: end;
-  width: 100%;
-  gap: 0.5rem;
-`;
-
-export { ClubPostDetailPageContainer, ClubPostDetailTopWrapper, ClubPostWrapper, ButtonWrapper };
+export { ClubPostDetailPageContainer, ClubPostDetailTopWrapper, ClubPostWrapper };
