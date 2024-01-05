@@ -1,6 +1,7 @@
 import ClubHeader from '@/components/ClubHeader/ClubHeader';
 import Button from '@/components/common/Button/Button';
 import ClubBanner from '@/components/common/ClubBanner/ClubBanner';
+import usePostCreateClubPost from '@/hooks/query/club/usePostCreateClubPost';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
@@ -36,8 +37,11 @@ const ClubPostWritePage = () => {
     },
   });
   if (!clubId) throw new Error('클럽 ID를 찾을 수 없습니다');
+  const { createPost } = usePostCreateClubPost();
 
-  const onSubmit: SubmitHandler<ClubPostWriteValue> = () => {};
+  const onSubmit: SubmitHandler<ClubPostWriteValue> = (data) => {
+    createPost({ clubId, ...data });
+  };
 
   return (
     <>
@@ -82,7 +86,7 @@ const ClubPostWritePage = () => {
             />
             <ErrorMessageStyled>{errors?.content ? errors.content.message : ''}</ErrorMessageStyled>
             <FileInputWrapper>
-              <input type="file" accept=".jpg, .jpeg, .png, .heic" />
+              <input {...register('image')} type="file" accept=".jpg, .jpeg, .png, .heic" />
             </FileInputWrapper>
           </ContentWrapper>
         </form>

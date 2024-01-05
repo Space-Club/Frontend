@@ -38,6 +38,8 @@ const END_POINTS = {
   CLUB_EVENTS: ({ clubId, pageNumber }: { clubId: string; pageNumber: number }) =>
     `/clubs/${clubId}/events?page=${pageNumber}&size=12&sort=id,asc`,
   CLUB_SCHEDULES: ({ clubId }: { clubId: string }) => `/clubs/${clubId}/events?page=0&sort=id,desc`,
+
+  CREATE_CLUB_POST: (clubId: string) => `/boards/posts/${clubId}`,
   CLUB_POSTS: (clubId: string, pageNumber: number) =>
     `/boards/${clubId}?page=${pageNumber}&size=20&sort=id,desc`,
   CLUB_POST: (clubId: string, postId: string) => `/boards/posts/${clubId}/${postId}`,
