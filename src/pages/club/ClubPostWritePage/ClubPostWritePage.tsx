@@ -1,6 +1,12 @@
 import ClubHeader from '@/components/ClubHeader/ClubHeader';
 import Button from '@/components/common/Button/Button';
 import ClubBanner from '@/components/common/ClubBanner/ClubBanner';
+import {
+  MAX_CLUB_POST_CONTENT_LENGTH,
+  MAX_CLUB_POST_TITLE_LENGTH,
+  MIN_CLUB_POST_CONTENT_LENGTH,
+  MIN_CLUB_POST_TITLE_LENGTH,
+} from '@/constants/club';
 import usePostCreateClubPost from '@/hooks/query/club/usePostCreateClubPost';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
@@ -65,12 +71,12 @@ const ClubPostWritePage = () => {
               {...register('title', {
                 required: '제목 입력은 필수입니다.',
                 minLength: {
-                  value: 2,
-                  message: '2글자 이상 입력해주세요.',
+                  value: MIN_CLUB_POST_TITLE_LENGTH,
+                  message: `${MIN_CLUB_POST_TITLE_LENGTH}글자 이상 입력해주세요.`,
                 },
                 maxLength: {
-                  value: 30,
-                  message: '30자 이상 입력할 수 없습니다.',
+                  value: MAX_CLUB_POST_TITLE_LENGTH,
+                  message: `${MAX_CLUB_POST_TITLE_LENGTH}자 이상 입력할 수 없습니다.`,
                 },
                 validate: (value) => handleInputValueValidate(value ?? ''),
               })}
@@ -81,12 +87,12 @@ const ClubPostWritePage = () => {
               {...register('content', {
                 required: '내용 입력은 필수입니다.',
                 minLength: {
-                  value: 2,
-                  message: '2글자 이상 입력해주세요.',
+                  value: MIN_CLUB_POST_CONTENT_LENGTH,
+                  message: `${MIN_CLUB_POST_CONTENT_LENGTH}글자 이상 입력해주세요.`,
                 },
                 maxLength: {
-                  value: 1000,
-                  message: '1000자 이상 입력할 수 없습니다.',
+                  value: MAX_CLUB_POST_CONTENT_LENGTH,
+                  message: `${MAX_CLUB_POST_CONTENT_LENGTH}자 이상 입력할 수 없습니다.`,
                 },
                 validate: (value) => handleInputValueValidate(value ?? ''),
               })}
