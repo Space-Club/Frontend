@@ -6,13 +6,16 @@ interface GetClubPostsRequest {
 }
 
 interface GetClubPostsResponse {
-  posts: {
+  data: {
     postId: string;
     title: string;
     content: string;
+    authorId: string;
     author: string;
-    imageUrl: string;
-    postDate: string;
+    authorImageUrl?: string;
+    postImageUrl?: string;
+    createdDate: string;
+    lastModifiedDate?: string;
   }[];
   pageData: PageData;
 }

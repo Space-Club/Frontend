@@ -1,6 +1,13 @@
 import ClubHeader from '@/components/ClubHeader/ClubHeader';
 import Button from '@/components/common/Button/Button';
 import ClubBanner from '@/components/common/ClubBanner/ClubBanner';
+import {
+  MAX_CLUB_POST_CONTENT_LENGTH,
+  MAX_CLUB_POST_TITLE_LENGTH,
+  MIN_CLUB_POST_CONTENT_LENGTH,
+  MIN_CLUB_POST_TITLE_LENGTH,
+} from '@/constants/club';
+import usePostCreateClubPost from '@/hooks/query/club/usePostCreateClubPost';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
@@ -36,8 +43,17 @@ const ClubPostWritePage = () => {
     },
   });
   if (!clubId) throw new Error('클럽 ID를 찾을 수 없습니다');
+  const { createPost } = usePostCreateClubPost();
 
-  const onSubmit: SubmitHandler<ClubPostWriteValue> = () => {};
+  const onSubmit: SubmitHandler<ClubPostWriteValue> = (data) => {
+    createPost({ clubId, ...data, title: data.title?.trim(), content: data.content?.trim() });
+  };
+
+  const handleInputValueValidate = (value: string) => {
+    if (value.trim() === '') {
+      return '공백 문자만 입력할 수 없습니다.';
+    }
+  };
 
   return (
     <>
@@ -55,13 +71,14 @@ const ClubPostWritePage = () => {
               {...register('title', {
                 required: '제목 입력은 필수입니다.',
                 minLength: {
-                  value: 2,
-                  message: '2글자 이상 입력해주세요.',
+                  value: MIN_CLUB_POST_TITLE_LENGTH,
+                  message: `${MIN_CLUB_POST_TITLE_LENGTH}글자 이상 입력해주세요.`,
                 },
                 maxLength: {
-                  value: 30,
-                  message: '30자 이상 입력할 수 없습니다.',
+                  value: MAX_CLUB_POST_TITLE_LENGTH,
+                  message: `${MAX_CLUB_POST_TITLE_LENGTH}자 이상 입력할 수 없습니다.`,
                 },
+                validate: (value) => handleInputValueValidate(value ?? ''),
               })}
               placeholder="제목을 입력해주세요."
             />
@@ -70,19 +87,20 @@ const ClubPostWritePage = () => {
               {...register('content', {
                 required: '내용 입력은 필수입니다.',
                 minLength: {
-                  value: 2,
-                  message: '2글자 이상 입력해주세요.',
+                  value: MIN_CLUB_POST_CONTENT_LENGTH,
+                  message: `${MIN_CLUB_POST_CONTENT_LENGTH}글자 이상 입력해주세요.`,
                 },
                 maxLength: {
-                  value: 1000,
-                  message: '1000자 이상 입력할 수 없습니다.',
+                  value: MAX_CLUB_POST_CONTENT_LENGTH,
+                  message: `${MAX_CLUB_POST_CONTENT_LENGTH}자 이상 입력할 수 없습니다.`,
                 },
+                validate: (value) => handleInputValueValidate(value ?? ''),
               })}
               placeholder="내용을 입력해주세요."
             />
             <ErrorMessageStyled>{errors?.content ? errors.content.message : ''}</ErrorMessageStyled>
             <FileInputWrapper>
-              <input type="file" accept=".jpg, .jpeg, .png, .heic" />
+              <input {...register('image')} type="file" accept=".jpg, .jpeg, .png, .heic" />
             </FileInputWrapper>
           </ContentWrapper>
         </form>

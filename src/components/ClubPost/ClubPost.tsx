@@ -2,6 +2,7 @@ import { PATH } from '@/constants/path';
 
 import { useNavigate } from 'react-router-dom';
 
+import Avatar from '../common/Avatar/Avatar';
 import {
   AuthorWrapper,
   BoardContainer,
@@ -18,8 +19,9 @@ interface ClubPostProps {
   title: string;
   content: string;
   author: string;
-  imageUrl?: string;
-  postDate: string;
+  authorImageUrl?: string;
+  postImageUrl?: string;
+  createdDate: string;
 }
 
 const ClubPost = ({
@@ -28,11 +30,12 @@ const ClubPost = ({
   title,
   content,
   author,
-  imageUrl,
-  postDate,
+  authorImageUrl,
+  postImageUrl,
+  createdDate,
 }: ClubPostProps) => {
   const navigate = useNavigate();
-  const hasImage = Boolean(imageUrl);
+  const hasImage = Boolean(postImageUrl);
 
   return (
     <BoardContainer>
@@ -42,7 +45,8 @@ const ClubPost = ({
         <ContentStyled>{content}</ContentStyled>
       </BoardContentWrapper>
       <BoardInfoWrapper>
-        <PostDateWrapper>{postDate}</PostDateWrapper>
+        <PostDateWrapper>{createdDate}</PostDateWrapper>
+        <Avatar avatarSize="small" profileImageSrc={authorImageUrl} />
         <AuthorWrapper>{author}</AuthorWrapper>
       </BoardInfoWrapper>
     </BoardContainer>
