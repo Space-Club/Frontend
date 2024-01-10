@@ -26,7 +26,7 @@ const PostContentStyled = styled.p`
 `;
 
 const PostedDateStyled = styled.div`
-  font-size: ${Theme.fontSize.largeContent};
+  font-size: ${Theme.fontSize.smallContent};
   color: ${Theme.color.textGrey};
 `;
 
