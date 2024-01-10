@@ -41,7 +41,7 @@ const END_POINTS = {
 
   CREATE_CLUB_POST: (clubId: string) => `/boards/posts/${clubId}`,
   CLUB_POSTS: (clubId: string, pageNumber: number) =>
-    `/boards/${clubId}?page=${pageNumber}&size=20&sort=id,desc`,
+    `/boards/posts/${clubId}?page=${pageNumber}&size=20&sort=id,desc`,
   CLUB_POST: (clubId: string, postId: string) => `/boards/posts/${clubId}/${postId}`,
 
   PATCH_MEMBER_ROLE: ({ clubId, memberId }: { clubId: string; memberId: string }) =>

@@ -6,7 +6,7 @@ interface GetClubPostsRequest {
 }
 
 interface GetClubPostsResponse {
-  posts: {
+  data: {
     postId: string;
     title: string;
     content: string;

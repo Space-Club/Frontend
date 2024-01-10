@@ -14,9 +14,9 @@ const useGetClubPostsQuery = ({ clubId, pageNumber }: GetClubPostsRequest) => {
     staleTime: CLUB_POSTS_STALE_TIME,
   });
 
-  const { posts, pageData } = clubPosts ?? {};
+  const { data, pageData } = clubPosts ?? {};
 
-  return { posts, pageData };
+  return { posts: data, pageData };
 };
 
 export default useGetClubPostsQuery;
