@@ -18,11 +18,17 @@ const postCreateClubPost = async ({ clubId, title, content, image }: PostCreateC
     formData.append('image', image);
   }
 
-  await axiosClientWithAuth.post(END_POINTS.CREATE_CLUB_POST(clubId), formData, {
-    headers: {
-      'Content-Type': 'multipart/form-data',
+  const { headers } = await axiosClientWithAuth.post(
+    END_POINTS.CREATE_CLUB_POST(clubId),
+    formData,
+    {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
     },
-  });
+  );
+
+  return headers.location;
 };
 
 export default postCreateClubPost;
