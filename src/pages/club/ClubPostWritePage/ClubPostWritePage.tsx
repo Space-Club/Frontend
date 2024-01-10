@@ -40,7 +40,13 @@ const ClubPostWritePage = () => {
   const { createPost } = usePostCreateClubPost();
 
   const onSubmit: SubmitHandler<ClubPostWriteValue> = (data) => {
-    createPost({ clubId, ...data });
+    createPost({ clubId, ...data, title: data.title?.trim(), content: data.content?.trim() });
+  };
+
+  const handleInputValueValidate = (value: string) => {
+    if (value.trim() === '') {
+      return '공백 문자만 입력할 수 없습니다.';
+    }
   };
 
   return (
@@ -66,6 +72,7 @@ const ClubPostWritePage = () => {
                   value: 30,
                   message: '30자 이상 입력할 수 없습니다.',
                 },
+                validate: (value) => handleInputValueValidate(value ?? ''),
               })}
               placeholder="제목을 입력해주세요."
             />
@@ -81,6 +88,7 @@ const ClubPostWritePage = () => {
                   value: 1000,
                   message: '1000자 이상 입력할 수 없습니다.',
                 },
+                validate: (value) => handleInputValueValidate(value ?? ''),
               })}
               placeholder="내용을 입력해주세요."
             />
