@@ -1,7 +1,7 @@
 interface PostClubCommentRequest {
   postId: string;
   content: string;
-  isPrivate: string;
+  isPrivate: boolean;
 }
 
 export { PostClubCommentRequest };
