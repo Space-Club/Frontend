@@ -8,6 +8,7 @@ import {
   ClubPostDetailContainer,
   PostAuthorWrapper,
   PostContentStyled,
+  PostSeparatorStyled,
   PostTitleStyled,
   PostedDateStyled,
 } from './ClubPostDetail.style';
@@ -58,6 +59,7 @@ const ClubPostDetail = ({ clubId, postId }: ClubPostDetailProps) => {
       <PostedDateStyled>
         {postedDate} {postedTime} {isEdited && <span>(편집됨)</span>}
       </PostedDateStyled>
+      <PostSeparatorStyled />
     </ClubPostDetailContainer>
   );
 };
