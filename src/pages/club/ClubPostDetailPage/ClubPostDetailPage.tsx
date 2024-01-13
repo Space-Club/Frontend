@@ -1,3 +1,4 @@
+import ClubComments from '@/components/ClubComments/ClubComments';
 import ClubHeader from '@/components/ClubHeader/ClubHeader';
 import ClubPostDetail from '@/components/ClubPostDetail/ClubPostDetail';
 import WriteClubComment from '@/components/WriteClubComment/WriteClubComment';
@@ -29,7 +30,8 @@ const ClubPostDetailPage = () => {
         <ClubPostWrapper>
           <ClubPostDetail clubId={clubId} postId={postId} />
         </ClubPostWrapper>
-        <WriteClubComment />
+        <ClubComments postId={postId} />
+        <WriteClubComment postId={postId} />
       </ClubPostDetailPageContainer>
     </>
   );

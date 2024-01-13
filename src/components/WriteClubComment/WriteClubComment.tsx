@@ -3,7 +3,6 @@ import useMyProfile from '@/hooks/query/user/useMyProfile';
 import { ErrorMessageStyled } from '@/pages/club/ClubPostWritePage/ClubPostWritePage.style';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
 
 import Avatar from '../common/Avatar/Avatar';
 import {
@@ -23,8 +22,11 @@ interface WriteClubCommentValue {
   isPrivate: boolean;
 }
 
-const WriteClubComment = () => {
-  const { postId } = useParams();
+interface WriteClubCommentProps {
+  postId: string;
+}
+
+const WriteClubComment = ({ postId }: WriteClubCommentProps) => {
   const {
     register,
     handleSubmit,
@@ -38,7 +40,7 @@ const WriteClubComment = () => {
   const { data } = useMyProfile();
   const { postComment } = useClubCommentMutation();
 
-  if (!data || !postId) {
+  if (!data) {
     return null;
   }
 
