@@ -1,11 +1,11 @@
 import App from '@/App';
+import ProfileSkeleton from '@/components/common/Skeleton/ProfileSkeleton';
 import { PATH } from '@/constants/path';
 import Layout from '@/pages/Layout/Layout';
 import LoginPage from '@/pages/LoginPage/LoginPage';
 import MainPage from '@/pages/MainPage/MainPage';
 import NotFoundPage from '@/pages/NotFoundPage/NotFoundPage';
 import OauthRedirectPage from '@/pages/OauthRedirectPage';
-import ProfilePage from '@/pages/ProfilePage/ProfilePage';
 import RegisterPage from '@/pages/RegisterPage/RegisterPage';
 import SearchResultPage from '@/pages/SearchResultPage/SearchResultPage';
 import ClubEventPage from '@/pages/club/ClubEventPage/ClubEventPage';
@@ -20,11 +20,14 @@ import SubmittedFormsPage from '@/pages/event/SubmittedFormsPage/SubmittedFormsP
 import WriteEventFormPage from '@/pages/event/WriteEventFormPage/WriteEventFormPage';
 import WriteEventInfoPage from '@/pages/event/WriteEventInfoPage/WriteEventInfoPage';
 
+import { Suspense, lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
 
 import PrivateLogin from './PrivateLogin';
 import PrivateManager from './PrivateManager';
 import PrivateMember from './PrivateMember';
+
+const ProfilePageLazy = lazy(() => import('@/pages/ProfilePage/ProfilePage')); // eslint-disable-line
 
 const router = createBrowserRouter([
   {
@@ -48,7 +51,14 @@ const router = createBrowserRouter([
           {
             element: <PrivateLogin />,
             children: [
-              { path: PATH.PROFILE(':category'), element: <ProfilePage /> },
+              {
+                path: PATH.PROFILE(':category'),
+                element: (
+                  <Suspense fallback={<ProfileSkeleton />}>
+                    <ProfilePageLazy />
+                  </Suspense>
+                ),
+              },
               { path: PATH.CREATE, element: <CreateClubPage /> },
               { path: PATH.EVENT.SUBMIT_FORM(':eventId'), element: <SubmitFormPage /> },
               {

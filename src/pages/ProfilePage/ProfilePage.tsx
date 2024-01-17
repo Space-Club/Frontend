@@ -1,12 +1,10 @@
 import DeleteUserButton from '@/components/DeleteUserButton/DeleteUserButton';
 import Profile from '@/components/Profile/Profile';
 import Header from '@/components/common/Header/Header';
-import Spinner from '@/components/common/Spinner/Spinner';
 import Tab from '@/components/common/Tab/Tab';
 import { PROFILE_TABS } from '@/constants/tab';
 import { ProfileEventType } from '@/types/event';
 
-import { Suspense } from 'react';
 import { useParams } from 'react-router-dom';
 
 import AppliedEvents from './AppliedEvents';
@@ -27,15 +25,13 @@ const ProfilePage = () => {
           <DeleteUserButton />
         </DeleteUserButtonWrapper>
       </Header>
-      <Suspense fallback={<Spinner />}>
-        <Profile />
-        <ProfileBottomWrapper>
-          <AppliedEventTabContainer>
-            <Tab tabItems={PROFILE_TABS} />
-          </AppliedEventTabContainer>
-          {category === 'applied' ? <AppliedEvents /> : <BookmarkedEvents />}
-        </ProfileBottomWrapper>
-      </Suspense>
+      <Profile />
+      <ProfileBottomWrapper>
+        <AppliedEventTabContainer>
+          <Tab tabItems={PROFILE_TABS} />
+        </AppliedEventTabContainer>
+        {category === 'applied' ? <AppliedEvents /> : <BookmarkedEvents />}
+      </ProfileBottomWrapper>
     </>
   );
 };
