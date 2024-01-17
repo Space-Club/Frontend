@@ -44,7 +44,7 @@ const END_POINTS = {
     `/boards/posts/${clubId}?page=${pageNumber}&size=20&sort=id,desc`,
   CLUB_POST: (clubId: string, postId: string) => `/boards/posts/${clubId}/${postId}`,
   CLUB_COMMENTS: (postId: string, pageNumber: number) =>
-    `/board/posts/${postId}/comments?page=${pageNumber}&size=20&sort=id,asc`,
+    `/boards/posts/${postId}/comments?page=${pageNumber}&size=20&sort=id,asc`,
   CLUB_COMMENT: (postId: string) => `/boards/posts/${postId}/comments`,
 
   PATCH_MEMBER_ROLE: ({ clubId, memberId }: { clubId: string; memberId: string }) =>
