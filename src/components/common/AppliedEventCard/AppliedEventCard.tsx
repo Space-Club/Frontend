@@ -37,7 +37,7 @@ const AppliedEventCard = ({
   return (
     <AppliedEventCardContainer {...props}>
       <EventLeftSection onClick={() => navigate(PATH.EVENT.DETAIL(eventId))}>
-        <Poster posterSrc={posterImageUrl} width={7.6} />
+        <Poster isLazy posterSrc={posterImageUrl} width={7.6} />
         <AppliedEventInfo
           eventId={eventId}
           title={title}

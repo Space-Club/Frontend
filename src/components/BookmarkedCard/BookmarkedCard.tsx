@@ -33,7 +33,7 @@ const BookmarkedCard = ({
       }}
     >
       <BookmarkedCardImageWrapper>
-        <Poster posterSrc={posterImageUrl} width={7.6} />
+        <Poster isLazy posterSrc={posterImageUrl} width={7.6} />
       </BookmarkedCardImageWrapper>
       <BookmarkedInfoWrapper>
         <BookmarkedTitleStyled>{title}</BookmarkedTitleStyled>
