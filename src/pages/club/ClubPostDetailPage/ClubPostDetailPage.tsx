@@ -7,6 +7,7 @@ import ClubBanner from '@/components/common/ClubBanner/ClubBanner';
 import { useParams } from 'react-router-dom';
 
 import {
+  ClubCommentWrapper,
   ClubPostDetailPageContainer,
   ClubPostDetailTopWrapper,
   ClubPostWrapper,
@@ -30,8 +31,10 @@ const ClubPostDetailPage = () => {
         <ClubPostWrapper>
           <ClubPostDetail clubId={clubId} postId={postId} />
         </ClubPostWrapper>
-        <ClubComments postId={postId} />
-        <WriteClubComment postId={postId} />
+        <ClubCommentWrapper>
+          <ClubComments postId={postId} />
+          <WriteClubComment postId={postId} />
+        </ClubCommentWrapper>
       </ClubPostDetailPageContainer>
     </>
   );
