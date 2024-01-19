@@ -1,10 +1,11 @@
 import { FORM_OPTION } from '@/constants/form';
 import { FormOptionContext } from '@/context/FormOptionContext';
+import useCloseOnOutsideClick from '@/hooks/useCloseOnOutsideClick';
 import { eventTypeAPI } from '@/types/event';
 import { FormOption } from '@/types/form';
 import generateUniqueId from '@/utils/generateUniqueId';
 
-import { useEffect, useRef, useState } from 'react';
+import { useRef } from 'react';
 import { useContext } from 'react';
 
 import { DropdownItemStyled, FormOptionDropdownContainer } from './FormOptionDropdown.style';
@@ -14,35 +15,18 @@ interface FormOptionDropdownProps {
 }
 
 const FormOptionDropdown = ({ eventType }: FormOptionDropdownProps) => {
-  const [showDropdown, setShowDropdown] = useState(false);
   const { appendOption, selectedOptions } = useContext(FormOptionContext);
   const options = Object.values(FORM_OPTION[eventType]).filter(
     (option) => !selectedOptions.find((selectedOption) => selectedOption.title === option.title),
   );
 
+  const { toggleOpen, setIsOpen, isOpen } = useCloseOnOutsideClick();
+
   const dropdownRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-        setShowDropdown(false);
-      }
-    };
-
-    document.addEventListener('mousedown', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
-  const toggleDropdown = () => {
-    setShowDropdown((prev) => !prev);
-  };
 
   const handleDropdownItemClick = (option: FormOption) => {
     appendOption(option);
-    toggleDropdown();
+    toggleOpen();
   };
 
   const handleDropdownCustomClick = () => {
@@ -52,19 +36,19 @@ const FormOptionDropdown = ({ eventType }: FormOptionDropdownProps) => {
       type: 'TEXT',
       predefined: false,
     });
-    toggleDropdown();
+    toggleOpen();
   };
 
   return (
     <FormOptionDropdownContainer ref={dropdownRef}>
-      <DropdownItemStyled onClick={toggleDropdown}>+ 추가</DropdownItemStyled>
-      {showDropdown &&
+      <DropdownItemStyled onClick={() => setIsOpen(true)}>+ 추가</DropdownItemStyled>
+      {isOpen &&
         options.map((option) => (
           <DropdownItemStyled key={option.title} onClick={() => handleDropdownItemClick(option)}>
             {option.title}
           </DropdownItemStyled>
         ))}
-      {showDropdown && (
+      {isOpen && (
         <DropdownItemStyled onClick={handleDropdownCustomClick}>사용자 지정</DropdownItemStyled>
       )}
     </FormOptionDropdownContainer>
