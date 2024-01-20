@@ -1,10 +1,12 @@
+import { ERROR_MESSAGE } from '@/constants/errorMessage';
 import { MODAL_TEXT } from '@/constants/modalMessage';
 import { PATH } from '@/constants/path';
-import { FormOptionContext } from '@/context/FormOptionContext';
 import usePostFormOptionMutation from '@/hooks/query/form/usePostFormOptionMutation';
 import useModal from '@/hooks/useModal';
+import useToast from '@/hooks/useToast';
+import { useBoundStore } from '@/store/useBoundStore';
+import { validateFormOptions } from '@/utils/validate';
 
-import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import ConfirmModal from '../Modals/ConfirmModal';
@@ -19,20 +21,25 @@ interface FormOptionButtonProps {
 }
 
 const FormOptionButtons = ({ eventId }: FormOptionButtonProps) => {
-  const { selectedOptions, description, isManaged, validateOptionTitle } =
-    useContext(FormOptionContext);
+  const { selectedOptions, description, isManaged } = useBoundStore();
   const { postOption } = usePostFormOptionMutation({ eventId });
   const { showModal, modalClose, modalOpen } = useModal();
+  const { createToast } = useToast();
   const navigate = useNavigate();
   const isEmpty = selectedOptions.length === 0;
 
   const handleFormOptionButtonClick = () => {
-    if (validateOptionTitle()) {
+    if (validateFormOptions(selectedOptions)) {
       postOption({
         eventId,
         description,
         managed: isManaged,
         options: selectedOptions,
+      });
+    } else {
+      createToast({
+        toastType: 'error',
+        message: ERROR_MESSAGE.COMMON.NON_TITLE,
       });
     }
   };

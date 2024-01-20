@@ -1,12 +1,9 @@
 import { FORM_OPTION } from '@/constants/form';
-import { FormOptionContext } from '@/context/FormOptionContext';
 import useCloseOnOutsideClick from '@/hooks/useCloseOnOutsideClick';
+import { useBoundStore } from '@/store/useBoundStore';
 import { eventTypeAPI } from '@/types/event';
 import { FormOption } from '@/types/form';
 import generateUniqueId from '@/utils/generateUniqueId';
-
-import { useRef } from 'react';
-import { useContext } from 'react';
 
 import { DropdownItemStyled, FormOptionDropdownContainer } from './FormOptionDropdown.style';
 
@@ -15,14 +12,12 @@ interface FormOptionDropdownProps {
 }
 
 const FormOptionDropdown = ({ eventType }: FormOptionDropdownProps) => {
-  const { appendOption, selectedOptions } = useContext(FormOptionContext);
+  const { appendOption, selectedOptions } = useBoundStore();
   const options = Object.values(FORM_OPTION[eventType]).filter(
     (option) => !selectedOptions.find((selectedOption) => selectedOption.title === option.title),
   );
 
-  const { toggleOpen, setIsOpen, isOpen } = useCloseOnOutsideClick();
-
-  const dropdownRef = useRef<HTMLDivElement>(null);
+  const { toggleOpen, isOpen, targetRef } = useCloseOnOutsideClick();
 
   const handleDropdownItemClick = (option: FormOption) => {
     appendOption(option);
@@ -40,8 +35,8 @@ const FormOptionDropdown = ({ eventType }: FormOptionDropdownProps) => {
   };
 
   return (
-    <FormOptionDropdownContainer ref={dropdownRef}>
-      <DropdownItemStyled onClick={() => setIsOpen(true)}>+ 추가</DropdownItemStyled>
+    <FormOptionDropdownContainer ref={targetRef}>
+      <DropdownItemStyled onClick={() => toggleOpen()}>+ 추가</DropdownItemStyled>
       {isOpen &&
         options.map((option) => (
           <DropdownItemStyled key={option.title} onClick={() => handleDropdownItemClick(option)}>

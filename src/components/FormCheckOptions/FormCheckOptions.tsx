@@ -1,13 +1,11 @@
 import { MODAL_TEXT } from '@/constants/modalMessage';
-import { FormOptionContext } from '@/context/FormOptionContext';
-
-import { useContext } from 'react';
+import { useBoundStore } from '@/store/useBoundStore';
 
 import CheckBox from '../common/CheckBox/CheckBox';
 import { FormCheckOptionsContainer } from './FormCheckOptions.style';
 
 const FormCheckOptions = () => {
-  const { setIsManaged } = useContext(FormOptionContext);
+  const { setIsManaged } = useBoundStore();
 
   return (
     <FormCheckOptionsContainer>
