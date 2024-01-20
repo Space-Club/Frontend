@@ -48,6 +48,7 @@ const ERROR_MESSAGE = {
   COMMON: {
     CURRENT_REF_ERROR: '할당된 current ref가 없습니다',
     TRIM: '공백으로만 이루어질 수 없습니다.',
+    NON_TITLE: '제목이 입력되지 않은 항목이 있습니다.',
   },
 } as const;
 

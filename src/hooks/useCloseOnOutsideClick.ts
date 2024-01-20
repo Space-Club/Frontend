@@ -2,7 +2,16 @@ import { useEffect, useRef, useState } from 'react';
 
 const useCloseOnOutsideClick = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const ref = useRef<HTMLElement>(null);
+  const targetRef = useRef<HTMLDivElement>(null);
+  const toggleOpen = () => {
+    setIsOpen((prev) => !prev);
+  };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (targetRef.current && !targetRef.current.contains(event.target as Node)) {
+      setIsOpen(false);
+    }
+  };
 
   useEffect(() => {
     document.addEventListener('mousedown', (event) => handleClickOutside(event));
@@ -10,19 +19,9 @@ const useCloseOnOutsideClick = () => {
     return () => {
       document.removeEventListener('mousedown', (event) => handleClickOutside(event));
     };
-  }, [ref]);
+  }, [targetRef]);
 
-  const toggleOpen = () => {
-    setIsOpen((prev) => !prev);
-  };
-
-  const handleClickOutside = (event: MouseEvent) => {
-    if (ref.current && !ref.current.contains(event.target as Node)) {
-      setIsOpen(false);
-    }
-  };
-
-  return { isOpen, setIsOpen, toggleOpen, ref };
+  return { isOpen, setIsOpen, toggleOpen, targetRef };
 };
 
 export default useCloseOnOutsideClick;
