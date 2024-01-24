@@ -1,6 +1,10 @@
+import { MODAL_TEXT } from '@/constants/modalMessage';
+import useDeleteClubPostMutation from '@/hooks/query/club/useDeleteClubPostMutation';
 import useGetClubPostDetail from '@/hooks/query/club/useGetClubPostDetail';
+import useModal from '@/hooks/useModal';
 import { getStorage } from '@/utils/localStorage';
 
+import ConfirmModal from '../Modals/ConfirmModal';
 import Avatar from '../common/Avatar/Avatar';
 import Button from '../common/Button/Button';
 import {
@@ -20,6 +24,8 @@ interface ClubPostDetailProps {
 
 const ClubPostDetail = ({ clubId, postId }: ClubPostDetailProps) => {
   const { clubPostDetail } = useGetClubPostDetail({ clubId, postId });
+  const { deletePost } = useDeleteClubPostMutation();
+  const { modalClose, modalOpen, showModal } = useModal();
 
   if (!clubPostDetail) {
     return null;
@@ -42,25 +48,35 @@ const ClubPostDetail = ({ clubId, postId }: ClubPostDetailProps) => {
   const postedTime = createdDate.split('T')[1];
 
   return (
-    <ClubPostDetailContainer>
-      {isAuthor && (
-        <ButtonWrapper>
-          <Button buttonText="수정" outline />
-          <Button buttonText="삭제" />
-        </ButtonWrapper>
+    <>
+      {showModal && (
+        <ConfirmModal
+          message={MODAL_TEXT.DELETE_CLUB_POST}
+          confirmLabel="확인"
+          onConfirm={() => deletePost({ postId })}
+          onClose={modalClose}
+        />
       )}
-      <PostAuthorWrapper>
-        <Avatar avatarSize="small" profileImageSrc={authorImageUrl} />
-        {author}
-      </PostAuthorWrapper>
-      <PostTitleStyled>{title}</PostTitleStyled>
-      {postImageUrl && <img src={postImageUrl} />}
-      <PostContentStyled>{content}</PostContentStyled>
-      <PostedDateStyled>
-        {postedDate} {postedTime} {isEdited && <span>(편집됨)</span>}
-      </PostedDateStyled>
-      <PostSeparatorStyled />
-    </ClubPostDetailContainer>
+      <ClubPostDetailContainer>
+        {isAuthor && (
+          <ButtonWrapper>
+            <Button buttonText="수정" outline />
+            <Button buttonText="삭제" onClick={modalOpen} />
+          </ButtonWrapper>
+        )}
+        <PostAuthorWrapper>
+          <Avatar avatarSize="small" profileImageSrc={authorImageUrl} />
+          {author}
+        </PostAuthorWrapper>
+        <PostTitleStyled>{title}</PostTitleStyled>
+        {postImageUrl && <img src={postImageUrl} />}
+        <PostContentStyled>{content}</PostContentStyled>
+        <PostedDateStyled>
+          {postedDate} {postedTime} {isEdited && <span>(편집됨)</span>}
+        </PostedDateStyled>
+        <PostSeparatorStyled />
+      </ClubPostDetailContainer>
+    </>
   );
 };
 
