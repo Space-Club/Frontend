@@ -1,6 +1,5 @@
 import useClubCommentMutation from '@/hooks/query/club/useClubCommentMutation';
 import useMyProfile from '@/hooks/query/user/useMyProfile';
-import { ErrorMessageStyled } from '@/pages/club/ClubPostWritePage/ClubPostWritePage.style';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
 
@@ -72,9 +71,8 @@ const WriteClubComment = ({ postId }: WriteClubCommentProps) => {
                   message: '500글자 이상 작성할 수 없습니다.',
                 },
               })}
-              placeholder="댓글을 작성해주세요."
+              placeholder={errors?.content ? errors.content.message : '댓글을 작성해주세요.'}
             />
-            {errors?.content && <ErrorMessageStyled>{errors.content.message}</ErrorMessageStyled>}
           </TextareaWrapper>
           <ButtonsWrapper>
             <CommentButtonStyled>작성</CommentButtonStyled>

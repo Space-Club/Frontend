@@ -42,7 +42,10 @@ const ClubComment = ({
       </AuthorInfoWrapper>
       {isPrivate ? (
         isAuthor ? (
-          <CommentContentStyled>{content}</CommentContentStyled>
+          <>
+            <MdLock size={'1rem'} />
+            <CommentContentStyled>{content}</CommentContentStyled>
+          </>
         ) : (
           <PrivateContentWrapper>
             <MdLock size={'1rem'} />

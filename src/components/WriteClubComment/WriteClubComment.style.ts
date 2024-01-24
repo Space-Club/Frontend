@@ -8,7 +8,7 @@ const WriteCommentContainer = styled.div`
   gap: 1rem;
   width: 100%;
   min-width: 20rem;
-  padding: 1rem;
+  padding: 1rem 1rem 0 1rem;
 `;
 
 const UserInfoWrapper = styled.div`

@@ -5,7 +5,7 @@ const CommentsContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
   width: 100%;
   padding-bottom: 1rem;
 `;
