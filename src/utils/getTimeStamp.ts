@@ -8,7 +8,7 @@ function getTimeStamp(time: string | null | undefined) {
 }
 
 function getDateStamp(date: string) {
-  return date.replace('-', '/');
+  return date.replaceAll('-', '/');
 }
 
 export { getTimeStamp, getDateStamp };

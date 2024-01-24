@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 
 const CommentContainer = styled.div`
   display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 0.5rem;
   width: 90%;
@@ -16,7 +17,16 @@ const AuthorInfoWrapper = styled.div`
   font-weight: 600;
 `;
 
+const LockIconWrapper = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 1rem;
+`;
+
 const CommentContentStyled = styled.div`
+  display: flex;
+  gap: 0.5rem;
   width: 70%;
   font-size: ${Theme.fontSize.smallContent};
   word-break: break-all;
@@ -51,4 +61,5 @@ export {
   CreatedDateStyled,
   DeleteButtonAreaStyled,
   PrivateContentWrapper,
+  LockIconWrapper,
 };

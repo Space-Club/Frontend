@@ -1,4 +1,6 @@
 import useDeleteClubCommentMutation from '@/hooks/query/club/useDeleteClubCommentMutation';
+import Theme from '@/styles/Theme';
+import { getDateStamp } from '@/utils/getTimeStamp';
 import { getStorage } from '@/utils/localStorage';
 
 import { IoIosClose } from 'react-icons/io';
@@ -11,6 +13,7 @@ import {
   CommentContentStyled,
   CreatedDateStyled,
   DeleteButtonAreaStyled,
+  LockIconWrapper,
   PrivateContentWrapper,
 } from './ClubComment.style';
 
@@ -35,6 +38,8 @@ const ClubComment = ({
 }: ClubCommentProps) => {
   const isAuthor = authorId === getStorage('userId');
   const { deleteComment } = useDeleteClubCommentMutation();
+  const postedDate = getDateStamp(createdDate.split('T')[0]);
+  const postedTime = createdDate.split('T')[1];
 
   return (
     <CommentContainer>
@@ -44,20 +49,24 @@ const ClubComment = ({
       </AuthorInfoWrapper>
       {isPrivate ? (
         isAuthor ? (
-          <>
-            <MdLock size={'1rem'} />
-            <CommentContentStyled>{content}</CommentContentStyled>
-          </>
+          <CommentContentStyled>
+            <LockIconWrapper>
+              <MdLock size={'1rem'} fill={Theme.color.tSeparator} />
+            </LockIconWrapper>
+            <div>{content}</div>
+          </CommentContentStyled>
         ) : (
           <PrivateContentWrapper>
-            <MdLock size={'1rem'} />
+            <MdLock size={'1rem'} fill={Theme.color.tSeparator} />
             <span>'비밀댓글입니다.'</span>
           </PrivateContentWrapper>
         )
       ) : (
         <CommentContentStyled>{content}</CommentContentStyled>
       )}
-      <CreatedDateStyled>{createdDate}</CreatedDateStyled>
+      <CreatedDateStyled>
+        {postedDate} {postedTime}
+      </CreatedDateStyled>
       <DeleteButtonAreaStyled>
         {isAuthor && <IoIosClose size={'1rem'} onClick={() => deleteComment({ commentId })} />}
       </DeleteButtonAreaStyled>
