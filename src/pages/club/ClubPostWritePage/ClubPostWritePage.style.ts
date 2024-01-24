@@ -44,7 +44,8 @@ const FileInputWrapper = styled.div`
   padding: 0.5rem;
 `;
 
-const ErrorMessageStyled = styled.span`
+const ErrorMessageStyled = styled.div`
+  padding-left: 10rem;
   font-size: ${Theme.fontSize.smallContent};
   color: ${Theme.color.tRed};
 `;

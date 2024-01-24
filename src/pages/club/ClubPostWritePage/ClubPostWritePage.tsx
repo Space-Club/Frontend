@@ -46,7 +46,13 @@ const ClubPostWritePage = () => {
   const { createPost } = usePostCreateClubPost();
 
   const onSubmit: SubmitHandler<ClubPostWriteValue> = (data) => {
-    createPost({ clubId, ...data, title: data.title?.trim(), content: data.content?.trim() });
+    createPost({
+      clubId,
+      ...data,
+      image: data.image,
+      title: data.title?.trim(),
+      content: data.content?.trim(),
+    });
   };
 
   const handleInputValueValidate = (value: string) => {

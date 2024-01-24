@@ -4,7 +4,7 @@ import styled from '@emotion/styled';
 const ClubPostDetailContainer = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
   width: 100%;
 `;
 
@@ -26,13 +26,13 @@ const PostContentStyled = styled.p`
 `;
 
 const PostedDateStyled = styled.div`
-  font-size: ${Theme.fontSize.largeContent};
+  font-size: ${Theme.fontSize.smallContent};
   color: ${Theme.color.textGrey};
 `;
 
 const PostSeparatorStyled = styled.div`
   width: 100%;
-  border: 1px solid ${Theme.color.tSeparator};
+  border-bottom: 1px solid ${Theme.color.tSeparator};
 `;
 
 const ButtonWrapper = styled.div`

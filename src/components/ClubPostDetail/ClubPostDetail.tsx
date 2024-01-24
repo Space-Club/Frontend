@@ -8,6 +8,7 @@ import {
   ClubPostDetailContainer,
   PostAuthorWrapper,
   PostContentStyled,
+  PostSeparatorStyled,
   PostTitleStyled,
   PostedDateStyled,
 } from './ClubPostDetail.style';
@@ -31,11 +32,14 @@ const ClubPostDetail = ({ clubId, postId }: ClubPostDetailProps) => {
     author,
     authorImageUrl,
     postImageUrl,
-    createDate,
+    createdDate,
     lastModifiedDate,
   } = clubPostDetail;
 
   const isAuthor = authorId === getStorage('userId');
+  const isEdited = createdDate !== lastModifiedDate;
+  const postedDate = createdDate.split('T')[0].replaceAll('-', '/');
+  const postedTime = createdDate.split('T')[1];
 
   return (
     <ClubPostDetailContainer>
@@ -52,8 +56,10 @@ const ClubPostDetail = ({ clubId, postId }: ClubPostDetailProps) => {
       <PostTitleStyled>{title}</PostTitleStyled>
       {postImageUrl && <img src={postImageUrl} />}
       <PostContentStyled>{content}</PostContentStyled>
-      {lastModifiedDate && <div>편집됨</div>}
-      <PostedDateStyled>{createDate}</PostedDateStyled>
+      <PostedDateStyled>
+        {postedDate} {postedTime} {isEdited && <span>(편집됨)</span>}
+      </PostedDateStyled>
+      <PostSeparatorStyled />
     </ClubPostDetailContainer>
   );
 };

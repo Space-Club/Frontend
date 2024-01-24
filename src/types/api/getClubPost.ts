@@ -11,7 +11,7 @@ interface GetClubPostResponse {
   author: string;
   authorImageUrl?: string;
   postImageUrl?: string;
-  createDate: string;
+  createdDate: string;
   lastModifiedDate?: string;
 }
 

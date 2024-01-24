@@ -7,4 +7,8 @@ function getTimeStamp(time: string | null | undefined) {
   return minutes ? `${hours}시 ${minutes}분` : `${hours}시`;
 }
 
-export { getTimeStamp };
+function getDateStamp(date: string) {
+  return date.replaceAll('-', '/');
+}
+
+export { getTimeStamp, getDateStamp };

@@ -1,10 +1,13 @@
+import ClubComments from '@/components/ClubComments/ClubComments';
 import ClubHeader from '@/components/ClubHeader/ClubHeader';
 import ClubPostDetail from '@/components/ClubPostDetail/ClubPostDetail';
+import WriteClubComment from '@/components/WriteClubComment/WriteClubComment';
 import ClubBanner from '@/components/common/ClubBanner/ClubBanner';
 
 import { useParams } from 'react-router-dom';
 
 import {
+  ClubCommentWrapper,
   ClubPostDetailPageContainer,
   ClubPostDetailTopWrapper,
   ClubPostWrapper,
@@ -28,6 +31,10 @@ const ClubPostDetailPage = () => {
         <ClubPostWrapper>
           <ClubPostDetail clubId={clubId} postId={postId} />
         </ClubPostWrapper>
+        <ClubCommentWrapper>
+          <ClubComments postId={postId} />
+          <WriteClubComment postId={postId} />
+        </ClubCommentWrapper>
       </ClubPostDetailPageContainer>
     </>
   );
