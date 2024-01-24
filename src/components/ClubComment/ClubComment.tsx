@@ -1,3 +1,4 @@
+import useDeleteClubCommentMutation from '@/hooks/query/club/useDeleteClubCommentMutation';
 import { getStorage } from '@/utils/localStorage';
 
 import { IoIosClose } from 'react-icons/io';
@@ -33,6 +34,7 @@ const ClubComment = ({
   isPrivate,
 }: ClubCommentProps) => {
   const isAuthor = authorId === getStorage('userId');
+  const { deleteComment } = useDeleteClubCommentMutation();
 
   return (
     <CommentContainer>
@@ -57,12 +59,7 @@ const ClubComment = ({
       )}
       <CreatedDateStyled>{createdDate}</CreatedDateStyled>
       <DeleteButtonAreaStyled>
-        {isAuthor && (
-          <IoIosClose
-            size={'1rem'}
-            onClick={() => console.log(`댓글 삭제버튼 누름 ${commentId}`)}
-          />
-        )}
+        {isAuthor && <IoIosClose size={'1rem'} onClick={() => deleteComment({ commentId })} />}
       </DeleteButtonAreaStyled>
     </CommentContainer>
   );
