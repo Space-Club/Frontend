@@ -1,4 +1,5 @@
 import { PATH } from '@/constants/path';
+import { getDateStamp } from '@/utils/getTimeStamp';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -36,6 +37,8 @@ const ClubPost = ({
 }: ClubPostProps) => {
   const navigate = useNavigate();
   const hasImage = Boolean(postImageUrl);
+  const postedDate = getDateStamp(createdDate.split('T')[0]);
+  const postedTime = createdDate.split('T')[1];
 
   return (
     <BoardContainer>
@@ -45,7 +48,9 @@ const ClubPost = ({
         <ContentStyled>{content}</ContentStyled>
       </BoardContentWrapper>
       <BoardInfoWrapper>
-        <PostDateWrapper>{createdDate}</PostDateWrapper>
+        <PostDateWrapper>
+          {postedDate} {postedTime}
+        </PostDateWrapper>
         <Avatar avatarSize="small" profileImageSrc={authorImageUrl} />
         <AuthorWrapper>{author}</AuthorWrapper>
       </BoardInfoWrapper>
