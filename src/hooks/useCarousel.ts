@@ -59,7 +59,7 @@ const useCarousel = ({ totalItem, autoSlide = false }: UseCarouselProps) => {
     } else if (currentIndex < 0) {
       setCurrentIndex(0);
     }
-  }, [totalItem, currentIndex]);
+  }, [totalItem]); //eslint-disable-line
 
   return {
     goNext,
