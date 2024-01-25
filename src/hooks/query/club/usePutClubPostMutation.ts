@@ -10,7 +10,7 @@ import { QUERY_KEY } from './useGetClubPostDetail';
 
 interface usePutClubPostMutationProps {
   clubId: string;
-  postId: string;
+  postId: string | null;
 }
 
 const usePutClubPostMutation = ({ clubId, postId }: usePutClubPostMutationProps) => {
@@ -22,7 +22,9 @@ const usePutClubPostMutation = ({ clubId, postId }: usePutClubPostMutationProps)
     onSuccess: () => {
       queryClient.invalidateQueries([QUERY_KEY.GET_CLUB_POST_DETAIL]);
       createToast({ message: '수정이 완료되었습니다.', toastType: 'success' });
-      navigate(PATH.CLUB.POST(clubId, postId));
+      if (postId) {
+        navigate(PATH.CLUB.POST(clubId, postId));
+      }
     },
     onError: () => {
       createToast({ message: '수정에 실패했습니다.', toastType: 'error' });
