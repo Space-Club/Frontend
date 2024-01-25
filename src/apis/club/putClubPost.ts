@@ -4,6 +4,10 @@ import { PutClubPostRequest } from '@/types/api/putClubPost';
 import { axiosClientWithAuth } from '../axiosClient';
 
 const putClubPost = async ({ postRequest, image, postId }: PutClubPostRequest) => {
+  if (!postId) {
+    return null;
+  }
+
   const formData = new FormData();
 
   if (postRequest) {

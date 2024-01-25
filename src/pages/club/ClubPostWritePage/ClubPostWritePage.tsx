@@ -38,9 +38,12 @@ interface ClubPostState {
 
 const ClubPostWritePage = () => {
   const { clubId } = useParams();
-  const { state } = useLocation() as { state: ClubPostState };
+  const { state } = useLocation() as { state: ClubPostState | null };
   const isEdit = Boolean(state);
-  const { clubPostDetail, postId } = state;
+  const { clubPostDetail, postId } = state || {
+    clubPostDetail: { title: null, content: null },
+    postId: null,
+  };
 
   const {
     register,
@@ -53,7 +56,7 @@ const ClubPostWritePage = () => {
       image: undefined,
     },
   });
-  if (!clubId) throw new Error('클럽 ID를 찾을 수 없습니다');
+  if (!clubId) throw new Error('ID를 찾을 수 없습니다');
   const { createPost } = usePostCreateClubPost();
   const { putPost } = usePutClubPostMutation({ clubId, postId });
 

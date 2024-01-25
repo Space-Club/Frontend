@@ -5,7 +5,7 @@ interface PutClubPostRequest {
     doesPostImageExist: boolean;
   };
   image: File | null;
-  postId: string;
+  postId: string | null;
 }
 
 export { PutClubPostRequest };
