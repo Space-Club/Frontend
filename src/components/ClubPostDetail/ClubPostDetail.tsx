@@ -1,8 +1,11 @@
 import { MODAL_TEXT } from '@/constants/modalMessage';
+import { PATH } from '@/constants/path';
 import useDeleteClubPostMutation from '@/hooks/query/club/useDeleteClubPostMutation';
 import useGetClubPostDetail from '@/hooks/query/club/useGetClubPostDetail';
 import useModal from '@/hooks/useModal';
 import { getStorage } from '@/utils/localStorage';
+
+import { useNavigate } from 'react-router-dom';
 
 import ConfirmModal from '../Modals/ConfirmModal';
 import Avatar from '../common/Avatar/Avatar';
@@ -26,6 +29,7 @@ const ClubPostDetail = ({ clubId, postId }: ClubPostDetailProps) => {
   const { clubPostDetail } = useGetClubPostDetail({ clubId, postId });
   const { deletePost } = useDeleteClubPostMutation();
   const { modalClose, modalOpen, showModal } = useModal();
+  const navigate = useNavigate();
 
   if (!clubPostDetail) {
     return null;
@@ -60,7 +64,18 @@ const ClubPostDetail = ({ clubId, postId }: ClubPostDetailProps) => {
       <ClubPostDetailContainer>
         {isAuthor && (
           <ButtonWrapper>
-            <Button buttonText="수정" outline />
+            <Button
+              buttonText="수정"
+              outline
+              onClick={() =>
+                navigate(PATH.CLUB.WRITE_POST(clubId), {
+                  state: {
+                    clubPostDetail,
+                    postId,
+                  },
+                })
+              }
+            />
             <Button buttonText="삭제" onClick={modalOpen} />
           </ButtonWrapper>
         )}

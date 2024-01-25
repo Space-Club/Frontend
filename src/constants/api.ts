@@ -43,6 +43,7 @@ const END_POINTS = {
   CLUB_POSTS: (clubId: string, pageNumber: number) =>
     `/boards/posts/${clubId}?page=${pageNumber}&size=20&sort=id,desc`,
   CLUB_POST: (clubId: string, postId: string) => `/boards/posts/${clubId}/${postId}`,
+  PUT_CLUB_POST: (postId: string) => `/boards/posts/${postId}`,
   DELETE_CLUB_POST: (postId: string) => `/boards/posts/${postId}`,
   CLUB_COMMENTS: (postId: string, pageNumber: number) =>
     `/boards/posts/${postId}/comments?page=${pageNumber}&size=20&sort=id,asc`,
