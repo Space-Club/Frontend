@@ -9,13 +9,13 @@ const BannerContainerStyled = styled.div`
   border-radius: 2.3125rem;
   margin: 4rem 0;
   overflow: hidden;
-  cursor: pointer;
 `;
 
 const BannerWrapperStyled = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
+  cursor: pointer;
 `;
 
 const BannerImageStyled = styled.img`

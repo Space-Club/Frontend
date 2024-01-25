@@ -33,7 +33,8 @@ const AppliedEventContainer = styled.div`
 const EmptyEventWrapper = styled.div`
   width: 100%;
   height: 20rem;
-  color: ${Theme.color.gray};
+  color: ${Theme.color.white};
+  background-color: ${Theme.color.gray};
   display: flex;
   justify-content: center;
   align-items: center;

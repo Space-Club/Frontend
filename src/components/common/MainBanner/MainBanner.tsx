@@ -22,7 +22,7 @@ const MainBanner = () => {
 
   return (
     <BannerContainerStyled>
-      {mainBannerEvents ? (
+      {mainBannerEvents?.length ? (
         <Carousel autoSlide totalItem={mainBannerEvents.length}>
           {mainBannerEvents.map(({ clubInfo, eventInfo }) => (
             <BannerWrapperStyled onClick={() => navigate(PATH.EVENT.DETAIL(eventInfo.eventId))}>
