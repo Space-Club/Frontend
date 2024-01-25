@@ -45,7 +45,9 @@ const FileInputWrapper = styled.div`
 `;
 
 const ErrorMessageStyled = styled.div`
-  padding-left: 10rem;
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
   font-size: ${Theme.fontSize.smallContent};
   color: ${Theme.color.tRed};
 `;
