@@ -21,7 +21,7 @@ const usePostCreateClubPost = () => {
       navigate(PATH.CLUB.POST(clubId, postId));
     },
     onError: () => {
-      createToast({ message: '글 작성 실패', toastType: 'error' });
+      createToast({ message: '글 작성에 실패하였습니다.', toastType: 'error' });
     },
   });
 

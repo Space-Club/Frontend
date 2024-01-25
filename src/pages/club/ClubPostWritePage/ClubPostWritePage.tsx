@@ -8,9 +8,11 @@ import {
   MIN_CLUB_POST_TITLE_LENGTH,
 } from '@/constants/club';
 import usePostCreateClubPost from '@/hooks/query/club/usePostCreateClubPost';
+import usePutClubPostMutation from '@/hooks/query/club/usePutClubPostMutation';
+import { GetClubPostResponse } from '@/types/api/getClubPost';
 
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 
 import {
   ButtonWrapper,
@@ -29,30 +31,56 @@ interface ClubPostWriteValue {
   content: string;
 }
 
+interface ClubPostState {
+  clubPostDetail: GetClubPostResponse;
+  postId: string;
+}
+
 const ClubPostWritePage = () => {
   const { clubId } = useParams();
+  const { state } = useLocation() as { state: ClubPostState | null };
+  const isEdit = Boolean(state);
+  const { clubPostDetail, postId } = state || {
+    clubPostDetail: { title: null, content: null },
+    postId: null,
+  };
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<ClubPostWriteValue>({
     defaultValues: {
-      title: '',
-      content: '',
+      title: clubPostDetail.title ?? '',
+      content: clubPostDetail.content ?? '',
       image: undefined,
     },
   });
-  if (!clubId) throw new Error('클럽 ID를 찾을 수 없습니다');
+  if (!clubId) throw new Error('ID를 찾을 수 없습니다');
   const { createPost } = usePostCreateClubPost();
+  const { putPost } = usePutClubPostMutation({ clubId, postId });
 
   const onSubmit: SubmitHandler<ClubPostWriteValue> = (data) => {
-    createPost({
-      clubId,
-      ...data,
-      image: data.image,
-      title: data.title?.trim(),
-      content: data.content?.trim(),
-    });
+    if (isEdit) {
+      putPost({
+        postId,
+        ...data,
+        postRequest: {
+          title: data.title?.trim(),
+          content: data.content?.trim(),
+          doesPostImageExist: Boolean(data.image),
+        },
+        image: data.image,
+      });
+    } else {
+      createPost({
+        clubId,
+        ...data,
+        image: data.image,
+        title: data.title?.trim(),
+        content: data.content?.trim(),
+      });
+    }
   };
 
   const handleInputValueValidate = (value: string) => {
@@ -71,7 +99,7 @@ const ClubPostWritePage = () => {
         <form onSubmit={handleSubmit(onSubmit)}>
           <ContentWrapper>
             <ButtonWrapper>
-              <Button buttonText="작성 완료" />
+              <Button buttonText={isEdit ? '수정 완료' : '작성 완료'} />
             </ButtonWrapper>
             <TitleStyled
               {...register('title', {
@@ -87,6 +115,7 @@ const ClubPostWritePage = () => {
                 validate: (value) => handleInputValueValidate(value ?? ''),
               })}
               placeholder="제목을 입력해주세요."
+              maxLength={MAX_CLUB_POST_TITLE_LENGTH}
             />
             <ErrorMessageStyled>{errors?.title ? errors.title.message : ''}</ErrorMessageStyled>
             <ContentStyled
@@ -103,6 +132,7 @@ const ClubPostWritePage = () => {
                 validate: (value) => handleInputValueValidate(value ?? ''),
               })}
               placeholder="내용을 입력해주세요."
+              maxLength={MAX_CLUB_POST_CONTENT_LENGTH}
             />
             <ErrorMessageStyled>{errors?.content ? errors.content.message : ''}</ErrorMessageStyled>
             <FileInputWrapper>

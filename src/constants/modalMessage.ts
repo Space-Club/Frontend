@@ -14,6 +14,8 @@ const MODAL_TEXT = {
     '정말 스페이스 클럽을 탈퇴하시겠어요? 3일 안에 다시 로그인 하시면 데이터를 복구할 수 있지만 이후에는 관련 데이터가 모두 삭제됩니다',
   FORM_OPTION_EMPTY_TITLE: '제목이 입력되지 않은 항목이 있습니다.',
   CANCELED_SUBMITTED_FORM: '제출된 폼을 취소 시키겠습니까? 취소된 폼은 되돌릴 수 없습니다.',
+
+  DELETE_CLUB_POST: '게시물을 삭제하겠습니까?',
 };
 
 const MODAL_BUTTON_TEXT = {
