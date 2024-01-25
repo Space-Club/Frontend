@@ -1,18 +1,16 @@
-import { FormOptionContext } from '@/context/FormOptionContext';
+import { useBoundStore } from '@/store/useBoundStore';
 import { FormOption as FormOptionType } from '@/types/form';
-
-import React, { useContext } from 'react';
 
 import FormOption from '../FormOption/FormOption';
 
 const FormOptions = () => {
-  const { selectedOptions, deleteOption, changeOptionTitle } = useContext(FormOptionContext);
+  const { selectedOptions, deleteOption, changeOptionTitle } = useBoundStore();
 
   const handleOptionTitleChange = (
     option: FormOptionType,
     event: React.FormEvent<HTMLTextAreaElement>,
   ) => {
-    changeOptionTitle(option, event.currentTarget.value);
+    changeOptionTitle(option.id, event.currentTarget.value);
   };
 
   return (

@@ -1,11 +1,9 @@
-import { FormOptionContext } from '@/context/FormOptionContext';
-
-import { useContext } from 'react';
+import { useBoundStore } from '@/store/useBoundStore';
 
 import { FormInformationEditorContainer } from './FormInformationEditor.style';
 
 const FormInformationEditor = () => {
-  const { setDescription } = useContext(FormOptionContext);
+  const { setDescription } = useBoundStore();
 
   const handleBlur = (event: React.FocusEvent<HTMLTextAreaElement>) => {
     if (event.target.textContent !== null) {

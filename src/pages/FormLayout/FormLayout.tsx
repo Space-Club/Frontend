@@ -1,5 +1,3 @@
-import { FormOptionContextProvider } from '@/context/FormOptionContext';
-
 import { PropsWithChildren, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 
@@ -36,12 +34,10 @@ const FormLayout = ({ children }: PropsWithChildren) => {
   }, [location.pathname]);
 
   return (
-    <FormOptionContextProvider>
-      <Container>
-        <Title>{title}</Title>
-        <Content>{children}</Content>
-      </Container>
-    </FormOptionContextProvider>
+    <Container>
+      <Title>{title}</Title>
+      <Content>{children}</Content>
+    </Container>
   );
 };
 

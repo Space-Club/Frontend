@@ -5,6 +5,7 @@ import {
   MIN_CLUB_NAME_LENGTH,
 } from '@/constants/club';
 import { ERROR_MESSAGE } from '@/constants/errorMessage';
+import { FormOption } from '@/types/form';
 
 const { TRIM } = ERROR_MESSAGE.COMMON;
 const { START_TIME, LARGER } = ERROR_MESSAGE.EVENT;
@@ -86,6 +87,28 @@ const validateClubInfo = (clubInfo: string) => {
   return true;
 };
 
+//비어있는 title이 없는지 확인하고, 중복되는 id와 title이 있는지 확인
+//함수형이고 선언적으로
+const validateFormOptions = (formOptions: FormOption[]) => {
+  const isTitleEmpty = formOptions.some(({ title }) => !title.trim());
+  const isTitleDuplicated = formOptions.some(
+    (formOption, index) =>
+      formOptions.findIndex(
+        (comparisonFormOption) => comparisonFormOption.title === formOption.title,
+      ) !== index,
+  );
+
+  if (isTitleEmpty) {
+    return false;
+  }
+
+  if (isTitleDuplicated) {
+    return false;
+  }
+
+  return true;
+};
+
 export {
   validateTrim,
   validateName,
@@ -95,4 +118,5 @@ export {
   validateTodayDate,
   validateClubName,
   validateClubInfo,
+  validateFormOptions,
 };
