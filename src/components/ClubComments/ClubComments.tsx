@@ -1,4 +1,5 @@
 import useGetClubCommentsQuery from '@/hooks/query/club/useGetClubCommentsQuery';
+import { CommonEmptyEventsWrapper } from '@/styles/common';
 
 import { useState } from 'react';
 
@@ -41,6 +42,9 @@ const ClubComments = ({ postId }: ClubCommentsProps) => {
             isPrivate={comment.isPrivate}
           />
         ))}
+        {totalElements === 0 && (
+          <CommonEmptyEventsWrapper>댓글이 없습니다.</CommonEmptyEventsWrapper>
+        )}
       </CommentsContainer>
       <Pagination
         totalPages={totalPages}
