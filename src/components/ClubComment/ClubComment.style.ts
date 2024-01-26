@@ -13,6 +13,7 @@ const AuthorInfoWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  min-width: 5rem;
   font-size: ${Theme.fontSize.smallContent};
   font-weight: 600;
 `;
