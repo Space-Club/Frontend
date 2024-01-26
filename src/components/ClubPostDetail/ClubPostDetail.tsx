@@ -89,8 +89,8 @@ const ClubPostDetail = ({ clubId, postId }: ClubPostDetailProps) => {
         <PostedDateStyled>
           {postedDate} {postedTime} {isEdited && <span>(편집됨)</span>}
         </PostedDateStyled>
-        <PostSeparatorStyled />
       </ClubPostDetailContainer>
+      <PostSeparatorStyled />
     </>
   );
 };

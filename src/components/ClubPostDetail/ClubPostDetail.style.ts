@@ -6,6 +6,7 @@ const ClubPostDetailContainer = styled.div`
   flex-direction: column;
   gap: 1.5rem;
   width: 100%;
+  padding: 1.5rem;
 `;
 
 const PostAuthorWrapper = styled.div`
