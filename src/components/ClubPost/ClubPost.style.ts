@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 
 const BoardContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
   width: 90%;
   height: 6.2rem;
