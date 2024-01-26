@@ -1,3 +1,5 @@
+import { PageData } from '../common';
+
 interface GetClubCommentsRequest {
   postId: string;
   pageNumber: number;
@@ -14,13 +16,7 @@ interface GetClubCommentsResponse {
     lastModifiedDate: string;
     isPrivate: boolean;
   }[];
-  sliceData: {
-    first: boolean;
-    last: boolean;
-    number: number;
-    size: number;
-    numberOfElements: number;
-  };
+  pageData: PageData;
 }
 
 export { GetClubCommentsRequest, GetClubCommentsResponse };

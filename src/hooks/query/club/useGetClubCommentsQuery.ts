@@ -11,9 +11,9 @@ const useGetClubCommentsQuery = ({ postId, pageNumber }: GetClubCommentsRequest)
     queryFn: () => getClubComments({ postId, pageNumber }),
   });
 
-  const { data, sliceData } = comments ?? {};
+  const { data, pageData } = comments ?? {};
 
-  return { clubPostComments: data, pageData: sliceData };
+  return { clubPostComments: data, pageData };
 };
 
 export default useGetClubCommentsQuery;
