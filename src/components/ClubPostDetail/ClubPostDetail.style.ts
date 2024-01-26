@@ -23,6 +23,7 @@ const PostTitleStyled = styled.h1`
 const PostContentStyled = styled.p`
   font-size: ${Theme.fontSize.largeContent};
   word-break: break-all;
+  white-space: pre-wrap;
 `;
 
 const PostedDateStyled = styled.div`

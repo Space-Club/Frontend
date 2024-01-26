@@ -1,4 +1,5 @@
 import Theme from '@/styles/Theme';
+import { ellipsisText } from '@/styles/common';
 import styled from '@emotion/styled';
 
 const BoardContainer = styled.div`
@@ -52,7 +53,7 @@ const TitleStyled = styled.h1`
   font-weight: 800;
 `;
 
-const ContentStyled = styled.p`
+const ContentStyled = styled(ellipsisText)`
   font-size: ${Theme.fontSize.mediumContent};
 `;
 
