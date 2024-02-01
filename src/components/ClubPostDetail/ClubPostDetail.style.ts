@@ -6,6 +6,7 @@ const ClubPostDetailContainer = styled.div`
   flex-direction: column;
   gap: 1.5rem;
   width: 100%;
+  padding: 1.5rem;
 `;
 
 const PostAuthorWrapper = styled.div`
@@ -23,6 +24,7 @@ const PostTitleStyled = styled.h1`
 const PostContentStyled = styled.p`
   font-size: ${Theme.fontSize.largeContent};
   word-break: break-all;
+  white-space: pre-wrap;
 `;
 
 const PostedDateStyled = styled.div`
@@ -33,6 +35,10 @@ const PostedDateStyled = styled.div`
 const PostSeparatorStyled = styled.div`
   width: 100%;
   border-bottom: 1px solid ${Theme.color.tSeparator};
+`;
+
+const ImageStyled = styled.img`
+  max-width: 40rem;
 `;
 
 const ButtonWrapper = styled.div`
@@ -50,4 +56,5 @@ export {
   PostedDateStyled,
   PostSeparatorStyled,
   ButtonWrapper,
+  ImageStyled,
 };

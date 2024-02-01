@@ -1,17 +1,18 @@
 import Theme from '@/styles/Theme';
+import { ellipsisText } from '@/styles/common';
 import styled from '@emotion/styled';
 
 const BoardContainer = styled.div`
   display: flex;
-  flex-wrap: wrap;
   justify-content: space-between;
+  gap: 2rem;
   width: 90%;
   height: 6.2rem;
   padding: 0.5rem;
+  border-bottom: 1px solid ${Theme.color.tSemiWhite};
 
-  &:not(:last-of-type)::after {
-    width: 100%;
-    border-bottom: 1px solid ${Theme.color.tSeparator};
+  &:last-child {
+    border-bottom: none;
   }
 `;
 
@@ -53,7 +54,7 @@ const TitleStyled = styled.h1`
   font-weight: 800;
 `;
 
-const ContentStyled = styled.p`
+const ContentStyled = styled(ellipsisText)`
   font-size: ${Theme.fontSize.mediumContent};
 `;
 

@@ -13,6 +13,7 @@ const AuthorInfoWrapper = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  min-width: 5rem;
   font-size: ${Theme.fontSize.smallContent};
   font-weight: 600;
 `;
@@ -52,6 +53,7 @@ const DeleteButtonAreaStyled = styled.div`
   align-items: center;
   width: 1rem;
   height: 1rem;
+  cursor: pointer;
 `;
 
 export {

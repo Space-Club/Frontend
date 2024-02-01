@@ -18,7 +18,7 @@ const ClubPostDetailPage = () => {
   if (!clubId) {
     throw new Error('클럽 ID를 찾을 수 없습니다');
   } else if (!postId) {
-    return null; //#TODO: 게시물 찾을 수 없다는 모달창 띄우고 전 페이지로 이동
+    return null;
   }
 
   return (

@@ -8,7 +8,7 @@ const WriteCommentContainer = styled.div`
   gap: 1rem;
   width: 100%;
   min-width: 20rem;
-  padding: 1rem 1rem 0 1rem;
+  padding: 1rem 1rem 5rem 1rem;
 `;
 
 const UserInfoWrapper = styled.div`
@@ -54,8 +54,9 @@ const CommentButtonStyled = styled.button`
   outline: none;
   border: 0;
   color: white;
-  background-color: ${Theme.color.tSeparator};
+  background-color: ${Theme.color.tSemiPurple};
   border-radius: 0.5rem;
+  cursor: pointer;
 `;
 
 const PrivateWrapper = styled.div`
