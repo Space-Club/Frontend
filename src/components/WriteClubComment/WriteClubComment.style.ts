@@ -54,8 +54,9 @@ const CommentButtonStyled = styled.button`
   outline: none;
   border: 0;
   color: white;
-  background-color: ${Theme.color.tSeparator};
+  background-color: ${Theme.color.tSemiPurple};
   border-radius: 0.5rem;
+  cursor: pointer;
 `;
 
 const PrivateWrapper = styled.div`

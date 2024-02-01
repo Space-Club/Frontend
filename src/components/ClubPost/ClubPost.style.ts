@@ -23,6 +23,7 @@ const BoardContentWrapper = styled.div`
   justify-content: center;
   min-width: 20rem;
   width: 70%;
+  cursor: pointer;
 `;
 
 const BoardInfoWrapper = styled.div`
