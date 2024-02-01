@@ -12,8 +12,6 @@ import {
   ClubBoardContentWrapper,
   ClubBoardPageContainer,
   ClubBoardTopWrapper,
-  MyButtonsWrapper,
-  MyPostsCommentsButtonStyled,
 } from './ClubBoardPage.style';
 
 const ClubBoardPage = () => {
@@ -34,10 +32,6 @@ const ClubBoardPage = () => {
               buttonText="글 작성하기"
               onClick={() => navigate(PATH.CLUB.WRITE_POST(clubId))}
             />
-            <MyButtonsWrapper>
-              <MyPostsCommentsButtonStyled>내가 쓴 글</MyPostsCommentsButtonStyled>
-              <MyPostsCommentsButtonStyled>내가 쓴 댓글</MyPostsCommentsButtonStyled>
-            </MyButtonsWrapper>
           </ButtonWrapper>
           <ClubPosts clubId={clubId} />
         </ClubBoardContentWrapper>

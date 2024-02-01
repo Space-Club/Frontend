@@ -19,32 +19,8 @@ const ClubBoardContentWrapper = styled.div`
 
 const ButtonWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   width: 100%;
 `;
 
-const MyPostsCommentsButtonStyled = styled.button`
-  border: 0;
-  background-color: transparent;
-  cursor: pointer;
-`;
-
-const MyButtonsWrapper = styled.div`
-  display: flex;
-  width: fit-content;
-  gap: 0.5rem;
-
-  & > *:not(:last-of-type)::after {
-    content: '|';
-    margin-left: 0.5rem;
-  }
-`;
-
-export {
-  ClubBoardPageContainer,
-  ClubBoardTopWrapper,
-  ClubBoardContentWrapper,
-  ButtonWrapper,
-  MyPostsCommentsButtonStyled,
-  MyButtonsWrapper,
-};
+export { ClubBoardPageContainer, ClubBoardTopWrapper, ClubBoardContentWrapper, ButtonWrapper };
