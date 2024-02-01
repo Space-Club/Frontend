@@ -41,7 +41,27 @@ const FileInputWrapper = styled.div`
   display: flex;
   justify-content: start;
   width: 100%;
-  padding: 0.5rem;
+`;
+
+const FileInputLabelStyled = styled.label`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  background-color: ${Theme.color.tSeparator};
+  color: white;
+  cursor: pointer;
+`;
+
+const InputStyled = styled.input`
+  display: none;
+`;
+
+const PreviewImageStyled = styled.img`
+  width: 3rem;
+  height: 3rem;
+  object-fit: cover;
 `;
 
 const ErrorMessageStyled = styled.div`
@@ -61,4 +81,7 @@ export {
   ContentStyled,
   FileInputWrapper,
   ErrorMessageStyled,
+  FileInputLabelStyled,
+  InputStyled,
+  PreviewImageStyled,
 };

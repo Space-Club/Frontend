@@ -8,6 +8,7 @@ const postCreateClubPost = async ({ clubId, title, content, image }: PostCreateC
     title,
     content,
   };
+
   const formData = new FormData();
   if (title || content) {
     const blobRequest = new Blob([JSON.stringify(dataTransform)], { type: 'application/json' });

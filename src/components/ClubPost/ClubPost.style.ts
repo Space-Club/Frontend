@@ -8,11 +8,6 @@ const BoardContainer = styled.div`
   width: 90%;
   height: 6.2rem;
   padding: 0.5rem;
-
-  &:not(:last-of-type)::after {
-    width: 100%;
-    border-bottom: 1px solid ${Theme.color.tSeparator};
-  }
 `;
 
 const BoardContentWrapper = styled.div`
@@ -22,7 +17,6 @@ const BoardContentWrapper = styled.div`
   justify-content: center;
   min-width: 20rem;
   width: 70%;
-  cursor: pointer;
 `;
 
 const BoardInfoWrapper = styled.div`

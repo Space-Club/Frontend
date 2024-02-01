@@ -51,8 +51,10 @@ const ClubPost = ({
         <PostDateWrapper>
           {postedDate} {postedTime}
         </PostDateWrapper>
-        <Avatar avatarSize="small" profileImageSrc={authorImageUrl} />
-        <AuthorWrapper>{author}</AuthorWrapper>
+        <AuthorWrapper>
+          <Avatar avatarSize="small" profileImageSrc={authorImageUrl} />
+          {author}
+        </AuthorWrapper>
       </BoardInfoWrapper>
     </BoardContainer>
   );
