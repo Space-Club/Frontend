@@ -29,6 +29,7 @@ const WriteClubComment = ({ postId }: WriteClubCommentProps) => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<WriteClubCommentValue>({
     defaultValues: {
@@ -45,9 +46,9 @@ const WriteClubComment = ({ postId }: WriteClubCommentProps) => {
 
   const { username, profileImageUrl } = data;
 
-  const onSubmit: SubmitHandler<WriteClubCommentValue> = (data, event) => {
+  const onSubmit: SubmitHandler<WriteClubCommentValue> = (data) => {
     postComment({ postId, content: data.content, isPrivate: data.isPrivate });
-    event?.target.reset();
+    reset();
   };
 
   return (
