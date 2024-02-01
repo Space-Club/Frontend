@@ -8,6 +8,11 @@ const BoardContainer = styled.div`
   width: 90%;
   height: 6.2rem;
   padding: 0.5rem;
+  border-bottom: 1px solid ${Theme.color.tSemiWhite};
+
+  &:last-child {
+    border-bottom: none;
+  }
 `;
 
 const BoardContentWrapper = styled.div`
