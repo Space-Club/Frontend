@@ -13,6 +13,7 @@ import Button from '../common/Button/Button';
 import {
   ButtonWrapper,
   ClubPostDetailContainer,
+  ImageStyled,
   PostAuthorWrapper,
   PostContentStyled,
   PostSeparatorStyled,
@@ -84,7 +85,7 @@ const ClubPostDetail = ({ clubId, postId }: ClubPostDetailProps) => {
           {author}
         </PostAuthorWrapper>
         <PostTitleStyled>{title}</PostTitleStyled>
-        {postImageUrl && <img src={postImageUrl} />}
+        {postImageUrl && <ImageStyled src={postImageUrl} />}
         <PostContentStyled>{content}</PostContentStyled>
         <PostedDateStyled>
           {postedDate} {postedTime} {isEdited && <span>(편집됨)</span>}

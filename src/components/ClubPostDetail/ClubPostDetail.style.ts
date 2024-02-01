@@ -37,6 +37,10 @@ const PostSeparatorStyled = styled.div`
   border-bottom: 1px solid ${Theme.color.tSeparator};
 `;
 
+const ImageStyled = styled.img`
+  max-width: 40rem;
+`;
+
 const ButtonWrapper = styled.div`
   display: flex;
   justify-content: end;
@@ -52,4 +56,5 @@ export {
   PostedDateStyled,
   PostSeparatorStyled,
   ButtonWrapper,
+  ImageStyled,
 };

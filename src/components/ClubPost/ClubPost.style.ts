@@ -5,6 +5,7 @@ import styled from '@emotion/styled';
 const BoardContainer = styled.div`
   display: flex;
   justify-content: space-between;
+  gap: 2rem;
   width: 90%;
   height: 6.2rem;
   padding: 0.5rem;
