@@ -156,8 +156,16 @@ const ClubPostWritePage = () => {
             <ErrorMessageStyled>{errors?.content ? errors.content.message : ''}</ErrorMessageStyled>
             <FileInputWrapper>
               <FileInputLabelStyled htmlFor="clubPostInput">
-                {previewImage ? (
-                  <PreviewImageStyled src={URL.createObjectURL(previewImage)} />
+                {previewImage || clubPostDetail.postImageUrl ? (
+                  <PreviewImageStyled
+                    src={
+                      previewImage
+                        ? URL.createObjectURL(previewImage)
+                        : clubPostDetail.postImageUrl
+                        ? clubPostDetail.postImageUrl
+                        : ''
+                    }
+                  />
                 ) : (
                   <RiImageAddFill size={'2rem'} />
                 )}
