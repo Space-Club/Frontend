@@ -24,6 +24,7 @@ interface EventProps {
   startDate?: string;
   endDate?: string;
   clubLogoImageUrl?: string;
+  isLazy?: boolean;
   clubName: string;
   openStatus?: string;
   isEnded: boolean;
@@ -40,12 +41,13 @@ const EventCard = ({
   clubName,
   openStatus,
   isEnded,
+  isLazy,
 }: EventProps) => {
   const navigate = useNavigate();
 
   return (
     <ContainerStyled onClick={() => navigate(PATH.EVENT.DETAIL(eventId))}>
-      <Poster posterSrc={posterSrc} width={9.5} isEnded={isEnded}>
+      <Poster isLazy={isLazy} posterSrc={posterSrc} width={9.5} isEnded={isEnded}>
         {openStatus && (
           <EventStatusTag
             eventTag={APPLIED_EVENTS_TAGS[openStatus === 'ALL' ? 'publicEvent' : 'clubOnlyEvent']}
