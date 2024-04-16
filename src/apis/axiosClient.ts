@@ -13,7 +13,7 @@ const BASE_OPTION = {
   headers: {
     'Content-Type': 'application/json',
   },
-  baseURL: 'https://spaceclub.site/api/v1',
+  baseURL: 'https://space-club.site/api/v1',
   withCredentials: true,
   timeout: NETWORK_TIMEOUT,
 };
