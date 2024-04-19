@@ -3,15 +3,18 @@ import { textAreaScrollBar } from '@/styles/common';
 import styled from '@emotion/styled';
 
 const FormOptionContainer = styled.div<{ isDisabled: boolean }>`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   width: 100%;
   max-width: 40rem;
   border: 1px solid ${Theme.color.gray};
   border-radius: 0.3125rem;
   padding: 0.7rem 1.2rem;
   margin-bottom: 0.5rem;
+`;
+
+const FormOptionTitleWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 `;
 
 const FormOptionTitleStyled = styled.p`
@@ -39,6 +42,34 @@ const FormOptionCustomTextareaStyled = styled(textAreaScrollBar)`
   }
 `;
 
+const FormOptionCustomContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+`;
+const FormOptionCustomOptionWrapper = styled.div`
+  display: flex;
+  align-items: center;
+`;
+const FormOptionCustomOptionIndex = styled.span`
+  color: gray;
+  font-size: 0.8rem;
+  margin-right: 0.5rem;
+`;
+const FormOptionCustomOption = styled.input`
+  border: none;
+  outline: none;
+
+  &::placeholder {
+    font-size: 0.8rem;
+  }
+`;
+const FormOptionCustomOptionDisabled = styled.div`
+  color: gray;
+  font-size: 0.8rem;
+  cursor: text;
+`;
+
 const FormOptionButton = styled.button`
   width: 1.25rem;
   height: 1.25rem;
@@ -59,4 +90,10 @@ export {
   FormOptionTitleStyled,
   FormOptionButton,
   FormOptionCustomTextareaStyled,
+  FormOptionTitleWrapper,
+  FormOptionCustomContentWrapper,
+  FormOptionCustomOptionWrapper,
+  FormOptionCustomOptionIndex,
+  FormOptionCustomOption,
+  FormOptionCustomOptionDisabled,
 };

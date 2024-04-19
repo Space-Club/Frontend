@@ -1,11 +1,17 @@
-import { FORM_OPTION } from '@/constants/form';
+import { CUSTOM_FORM_OPTIONS, FORM_OPTION } from '@/constants/form';
 import useCloseOnOutsideClick from '@/hooks/useCloseOnOutsideClick';
 import { useBoundStore } from '@/store/useBoundStore';
 import { eventTypeAPI } from '@/types/event';
-import { FormOption } from '@/types/form';
+import { FormOption, FormType } from '@/types/form';
 import generateUniqueId from '@/utils/generateUniqueId';
 
-import { DropdownItemStyled, FormOptionDropdownContainer } from './FormOptionDropdown.style';
+import { MouseEvent as ReactMouseEvent } from 'react';
+
+import {
+  CustomDropdownItemWrapper,
+  DropdownItemStyled,
+  FormOptionDropdownContainer,
+} from './FormOptionDropdown.style';
 
 interface FormOptionDropdownProps {
   eventType: eventTypeAPI;
@@ -18,6 +24,7 @@ const FormOptionDropdown = ({ eventType }: FormOptionDropdownProps) => {
   );
 
   const { toggleOpen, isOpen, targetRef } = useCloseOnOutsideClick();
+  const { toggleOpen: toggleCustomOpen, isOpen: isCustomOpen } = useCloseOnOutsideClick();
 
   const handleDropdownItemClick = (option: FormOption) => {
     appendOption(option);
@@ -25,13 +32,18 @@ const FormOptionDropdown = ({ eventType }: FormOptionDropdownProps) => {
   };
 
   const handleDropdownCustomClick = () => {
+    toggleCustomOpen();
+  };
+  const handleCustomClick = (event: ReactMouseEvent<HTMLDivElement>) => {
     appendOption({
       id: generateUniqueId(),
       title: '',
-      type: 'TEXT',
+      options: [],
+      type: event.currentTarget.dataset.type as FormType,
       predefined: false,
     });
     toggleOpen();
+    toggleCustomOpen();
   };
 
   return (
@@ -45,6 +57,15 @@ const FormOptionDropdown = ({ eventType }: FormOptionDropdownProps) => {
         ))}
       {isOpen && (
         <DropdownItemStyled onClick={handleDropdownCustomClick}>사용자 지정</DropdownItemStyled>
+      )}
+      {isCustomOpen && (
+        <CustomDropdownItemWrapper>
+          {Object.entries(CUSTOM_FORM_OPTIONS).map(([key, value]) => (
+            <DropdownItemStyled data-type={key} type={key} onClick={handleCustomClick}>
+              {value}
+            </DropdownItemStyled>
+          ))}
+        </CustomDropdownItemWrapper>
       )}
     </FormOptionDropdownContainer>
   );
