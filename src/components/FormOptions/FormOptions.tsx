@@ -4,7 +4,7 @@ import { FormOption as FormOptionType } from '@/types/form';
 import FormOption from '../FormOption/FormOption';
 
 const FormOptions = () => {
-  const { selectedOptions, deleteOption, changeOptionTitle } = useBoundStore();
+  const { selectedOptions, changeOptionTitle } = useBoundStore();
 
   const handleOptionTitleChange = (
     option: FormOptionType,
@@ -19,7 +19,6 @@ const FormOptions = () => {
         <FormOption
           key={option.id}
           option={option}
-          onClose={deleteOption}
           onChange={(event) => handleOptionTitleChange(option, event)}
         />
       ))}

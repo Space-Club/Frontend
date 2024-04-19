@@ -8,6 +8,7 @@ export interface FormOptionSlice {
   appendOption: (option: FormOption) => void;
   deleteOption: (option: FormOption) => void;
   changeOptionTitle: (id: string, title: string) => void;
+  changeOptionOptions: (id: string, options: string[]) => void;
   setDescription: (description: string) => void;
   setIsManaged: (managed: boolean) => void;
 }
@@ -38,6 +39,18 @@ export const createFormOptionSlice: StateCreator<FormOptionSlice, [], [], FormOp
           ? {
               ...comparisonOption,
               title,
+            }
+          : comparisonOption,
+      ),
+    }));
+  },
+  changeOptionOptions: (id, options) => {
+    set((state) => ({
+      selectedOptions: state.selectedOptions.map((comparisonOption) =>
+        comparisonOption.id === id
+          ? {
+              ...comparisonOption,
+              options,
             }
           : comparisonOption,
       ),

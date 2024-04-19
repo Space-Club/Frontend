@@ -1,4 +1,4 @@
-const SPACECLUB_BASE_URL = 'https://spaceclub.site';
+const SPACECLUB_BASE_URL = 'https://space-club.site';
 
 const NETWORK_TIMEOUT = 10000;
 
