@@ -50,6 +50,7 @@ const MainEvents = ({ pathname }: MainEventsProps) => {
               isEnded={eventInfo.isEnded}
               clubName={clubInfo.name}
               clubLogoImageUrl={clubInfo.logoImageUrl}
+              isLazy={true}
             />
           );
         })}
